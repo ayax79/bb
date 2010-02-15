@@ -10,7 +10,6 @@
         <module>presentation</module>
         <module>core</module>
         <module>server</module>
-        <module>service</module>
     </modules>
     <properties>
         <slf4j.version>1.5.8</slf4j.version>
