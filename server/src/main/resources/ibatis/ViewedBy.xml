@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="ViewedBy">
+
+    <resultMap id="ViewedByResult" type="com.blackbox.user.ViewedBy">
+        <result property="destGuid" />
+        <result property="user.guid" column="user_guid" />
+        <result property="viewedByType" javaType="com.blackbox.user.ViewedBy$ViewedByType" jdbcType="INTEGER" />
+    </resultMap>
+
+    <insert id="insert" parameterType="com.blackbox.user.ViewedBy">
+        insert into bb_viewedby
+        (created, destGuid, modified, version, viewedByType, user_guid, guid)
+        values
+        (#{created,jdbcType=DATE}, #{destGuid,jdbcType=VARCHAR}, #{modified,jdbcType=DATE}, #{version,jdbcType=INTEGER},
+        #{viewedByType,jdbcType=INTEGER}, #{user.guid,jdbcType=VARCHAR}, #{guid,jdbcType=VARCHAR})
+    </insert>
+
+    <select id="countViewNumByDestGuid" parameterType="string" resultType="int">
+        select count(*) from bb_viewedby where destGuid = #{value}
+    </select>
+
+    <select id="loadViewersByDestGuid" parameterType="string" resultMap="ViewedBy.ViewedByResult">
+        select distinct * from bb_viewedby where destGuid = #{value} order by created desc
+    </select>
+
+
+</mapper>

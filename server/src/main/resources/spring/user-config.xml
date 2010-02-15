@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2009. Blackbox, LLC
+  ~ All rights reserved.
+  -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
+        >
+
+    <bean id="registrationListeners"  class="com.blackbox.server.user.listener.RegistrationListener">
+        <property name="listeners">
+            <util:list>
+                <!--
+                save payment
+                <ref bean="saveRegistrationVerificationListener" />
+                -->
+                <!--
+                bill payment
+                <ref bean="saveRegistrationVerificationListener" />
+                -->
+                <ref bean="followAngelsListener" />
+                <ref bean="sendRegistrationDirectMessage" />
+            </util:list>
+        </property>
+    </bean>
+    <bean id="userCreateListener" class="com.blackbox.server.user.listener.CreateUserListener"/>
+    <bean id="userUpdateListener" class="com.blackbox.server.user.listener.UpdateUserListener"/>
+    <bean id="deleteUserListener" class="com.blackbox.server.user.listener.DeleteUserListener"/>
+
+    <bean id="followAngelsListener" class="com.blackbox.server.user.listener.FollowAngelsListener" />
+
+    <bean id="sendRegistrationDirectMessage" class="com.blackbox.server.user.listener.SendRegistrationDirectMessageListener" />
+
+
+</beans>

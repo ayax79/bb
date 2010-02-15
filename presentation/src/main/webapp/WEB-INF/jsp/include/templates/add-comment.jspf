@@ -1,0 +1,15 @@
+<%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
+<div class="article-comment-add">
+	<%--<ui:roundedBox className="rounded-commentsbg">--%>
+	<div class="" style="background-color:#ebf7fc;padding:8px;border:1px solid #d1ecf8;">
+		<div class="article-comment-add-pict">
+			<ui:profileImage guid="${actionBean.currentUser.guid}" linkToProfile="false" showMiniProfile="false" size="small" color="blue" />
+		</div>
+		<div class="article-comment-add-body">
+			<%--<ui:roundedBox className="rounded-comment">--%>
+				<textarea cols="40" rows="1" name="messageBody" class="dv comment-publish publisher-msg-source input-default">Post an update...</textarea>
+			<%--</ui:roundedBox>--%>
+		</div>
+	</div>
+	<%--</ui:roundedBox>--%>
+</div>

@@ -1,0 +1,25 @@
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
+        http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+        version="2.0">
+
+    <display-name>Direct Message Tag Library</display-name>
+    <tlib-version>1.0</tlib-version>
+    <short-name>dm</short-name>
+
+    <function>
+        <description>Checks to see if a thread is read</description>
+        <name>isRead</name>
+        <function-class>com.blackbox.presentation.action.activity.InboxActionBean</function-class>
+        <function-signature>boolean isRead(com.blackbox.activity.IActivityThread,com.blackbox.user.User)</function-signature>
+    </function>
+
+    <function>
+        <description>Checks to see if the thread has been replied too</description>
+        <name>isReply</name>
+        <function-class>com.blackbox.presentation.action.activity.InboxActionBean</function-class>
+        <function-signature>boolean isReply(com.blackbox.activity.IActivityThread,com.blackbox.user.User)</function-signature>
+    </function>
+
+</taglib>

@@ -1,0 +1,25 @@
+.vid_but_red{
+	width:115px;
+	height:19px;
+}
+.vid_tc_bg{
+	width:105px;
+	height:103px;
+	padding-top:23px;
+	padding-left:10px;
+	font-size:11px;
+	font-weight:bold;
+	color:#747474;
+	background:url(../images/persona/vid_tc_bg.png) no-repeat left top;
+}
+.vid_del{
+	font-size:11px;
+	font-weight:bold;
+	color:#FF3F00;
+	padding-top:5px;
+}
+.vid_but_red img{
+	width:115px;
+	height:19px;
+        border:none;
+}

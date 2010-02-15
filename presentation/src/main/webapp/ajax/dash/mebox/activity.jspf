@@ -1,0 +1,45 @@
+<%--@elvariable id="actionBean" type="com.blackbox.presentation.action.user.MePageActionBean"--%>
+<%@include file="/WEB-INF/jsp/include/taglibs.jspf"%>
+
+<div class="filters-menu-container">
+	<ul class="filters-menu">
+		<c:set var="actionUrl"><s:url beanclass="com.blackbox.presentation.action.user.MePageActionBean" event="activity_list"/></c:set>
+		<li><ui:anchorButton href="${actionUrl}&activityFilterType=ALL" typeClass="smlbtn" styleClass="grey-blue btnFilterEveryone filterButton">All conversations</ui:anchorButton></li>
+		<li><ui:anchorButton href="${actionUrl}&activityFilterType=OWNER" typeClass="smlbtn" styleClass="grey-blue btnFilterFriend filterButton">Started by me</ui:anchorButton></li>
+		<li><ui:anchorButton href="${actionUrl}&activityFilterType=PARTICIPANT" typeClass="smlbtn" styleClass="grey-blue btnFilterFollower filterButton">Participating in</ui:anchorButton></li>
+	</ul>
+	<div class="clear"></div>
+</div>
+
+<div id="meStream">
+	<%@ include file="/ajax/stream/activity_list.jspf"%>
+</div>
+<ui:publisher id="miniPublisher" className="mini" config="mini"/>
+<c:if test="${not empty actionBean.threads}">
+	<a href="#" id="me-more-link" class="more-activity"><span>Load 10 more</span></a>
+</c:if>
+
+<script type="text/javascript">
+//<![CDATA[
+	var meStream = new Activity.Stream("#meStream");
+	meStream.addEventTypes([
+		Activity.Event.MESSAGE_EVENT,
+		Activity.Event.MEDIA_EVENT,
+		Activity.Event.OCCASION_EVENT
+	], "scene");
+	meStream.activate();
+
+	meStream.bindFilterButtons($(".filters-menu"));
+	meStream.setFilterParamName("activityFilterType");
+	meStream.setStartIndexParamName("startIndex");
+	meStream.setMaxResultsParamName("maxResults");
+	meStream.bindShowMore($("#me-more-link"), bb.urls.mebox.activity);
+
+	bb.widgets.createMiniPublisher();
+	bb.pageInit.bindArticleEvents($("#meStream"));
+
+
+//]]>
+</script>
+
+

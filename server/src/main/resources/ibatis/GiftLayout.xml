@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="GiftLayout">
+
+    <resultMap id="GiftLayoutResult" type="com.blackbox.gifting.GiftLayout"
+               extends="BBPersistentObject.BBPersistentObjectResult">
+        <result property="active"/>
+        <result property="frame"/>
+        <result property="iconLocation"/>
+        <result property="activityReference.guid" column="referenceGuid"/>
+        <result property="activityReference.ownerType" column="referenceType" javaType="com.blackbox.EntityType"
+                jdbcType="INTEGER"/>
+        <result property="shelf"/>
+        <result property="size"/>
+        <result property="x"/>
+        <result property="y"/>
+        <result property="z"/>
+        <result property="location"/>
+        <result property="type" />
+    </resultMap>
+
+    <resultMap id="MediaGiftResult" type="com.blackbox.gifting.GiftLayout" extends="GiftLayoutResult">
+        <result property="location"/>
+    </resultMap>
+
+
+    <insert id="insert" parameterType="com.blackbox.gifting.GiftLayout">
+        insert into bb_gift_layout
+        (active, created, frame, iconLocation, modified, referenceGuid, referenceType, shelf, size, version, x, y, z, guid)
+        values
+        (#{active,jdbcType=BOOLEAN}, #{created,jdbcType=DATE}, #{frame,jdbcType=VARCHAR}, #{iconLocation,jdbcType=VARCHAR},
+        #{modified,jdbcType=DATE}, #{activityReference.guid,jdbcType=VARCHAR}, #{activityReference.ownerType,jdbcType=INTEGER},
+        #{shelf,jdbcType=INTEGER}, #{size,jdbcType=INTEGER}, #{version,jdbcType=INTEGER}, #{x,jdbcType=INTEGER}, #{y,jdbcType=INTEGER},
+        #{z,jdbcType=INTEGER}, #{guid,jdbcType=VARCHAR})
+    </insert>
+
+    <update id="update" parameterType="com.blackbox.gifting.GiftLayout">
+        update bb_gift_layout set
+        active = #{active,jdbcType=BOOLEAN},
+        frame = #{frame,jdbcType=VARCHAR},
+        iconLocation = #{iconLocation,jdbcType=VARCHAR},
+        modified = #{modified,jdbcType=DATE},
+        referenceGuid = #{activityReference.guid,jdbcType=VARCHAR},
+        referenceType = #{activityReference.ownerType,jdbcType=INTEGER},
+        shelf = #{shelf,jdbcType=INTEGER},
+        size = #{size,jdbcType=INTEGER},
+        version = #{version,jdbcType=INTEGER},
+        x = #{x,jdbcType=INTEGER},
+        y = #{y,jdbcType=INTEGER},
+        z = #{z,jdbcType=INTEGER}
+        where
+        guid = #{guid,jdbcType=VARCHAR}
+    </update>
+
+    <delete id="delete" parameterType="string">
+        delete from bb_gift_layout where guid = #{guid}
+    </delete>
+
+    <delete id="deleteByActivityGuid" parameterType="string">
+        delete from bb_gift_layout where referenceGuid = #{value}
+    </delete>
+
+    <select id="load" parameterType="string" resultMap="GiftLayoutResult">
+        select gl.*,md.location,coalesce(md.comment, m.body) as body from bb_gift_layout gl
+        left join bb_media_meta_data md on gl.referenceguid = md.guid
+        left join bb_message m on gl.referenceguid = m.guid
+        where gl.guid = #{value} limit 1
+    </select>
+
+    <select id="loadVirtualGiftForRecipient" resultMap="GiftLayoutResult" parameterType="map">
+        (select gl.*, m.body as body, NULL as location, 0 as type, m.postDate as postDate
+        from
+        bb_message m, bb_message_meta_data md, bb_message_recipient r, bb_gift_layout gl
+        where
+        gl.referenceguid = m.guid
+        and m.artifactMetaData_guid = md.guid
+        and md.guid = r.messagemetadata_guid
+        and m.virtualgift = true
+        <if test="acknowledged != null">and m.acknowledged = #{acknowledged,jdbcType=BOOLEAN}</if>
+        and r.recipientguid = #{guid})
+        union
+        (select gl.*, m.comment as body, m.location as location, 3 as type, m.postDate as postDate
+        from
+        bb_media_meta_data m, bb_media_recipient r, bb_gift_layout gl
+        where
+        gl.referenceguid = m.guid
+        and r.media_guid = m.guid
+        and m.virtualGift = true
+        <if test="acknowledged != null">and m.acknowledged = #{acknowledged,jdbcType=BOOLEAN}</if>
+        and r.recipientguid = #{guid}
+        ) order by postdate
+    </select>
+
+
+</mapper>

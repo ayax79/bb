@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="MediaLibrary">
+
+    <resultMap id="MediaLibraryResult" type="com.blackbox.media.MediaLibrary"
+               extends="BaseEntity.BaseEntityResult">
+        <result property="description"/>
+        <result property="networkTypeEnum" javaType="com.blackbox.social.NetworkTypeEnum" jdbcType="INTEGER"/>
+        <result property="type" javaType="com.blackbox.media.MediaLibrary$MediaLibraryType" jdbcType="INTEGER"/>
+        <result property="owner.guid" column="referenceGuid"/>
+        <result property="owner.ownerType" column="referenceType"/>
+        <collection property="media" ofType="com.blackbox.media.MediaMetaData">
+            <id property="guid" column="mediaGuid"/>
+            <result property="fileName" column="mediaFilename"/>
+            <result property="comment" column="mediaComment"/>
+            <result property="artifactType" column="mediaArtifactType"/>
+            <result property="library" column="libraryMedia"/>
+            <result property="postDate" column="mediaPostDate"/>
+            <result property="thumbnailLocation" column="mediaThumbnailLocation"/>
+            <result property="location" column="mediaLocation"/>
+            <result property="recipientDepth" column="mediaRecipientDepth" />
+            <result property="version" column="version" />
+        </collection>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.blackbox.media.MediaLibrary">
+        insert into bb_media_library
+        (created, description, modified, name, networktypeenum, referenceguid, referencetype, status, type, version, guid)
+        values
+        (#{created,jdbcType=DATE}, #{description,jdbcType=VARCHAR}, #{modified,jdbcType=DATE}, #{name,jdbcType=VARCHAR},
+        #{networkTypeEnum,jdbcType=INTEGER}, #{owner.guid,jdcbType=VARCHAR}, #{owner.ownerType,jdbcType=INTEGER},
+        #{status,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{version,jdbcType=INTEGER}, #{guid,jdbcType=VARCHAR})
+    </insert>
+
+    <insert id="insertJoin" parameterType="map">
+        insert into bb_media_library_bb_media_meta_data (bb_media_library_guid, media_guid) values (#{library.guid}, #{media.guid})
+    </insert>
+
+    <update id="update" parameterType="com.blackbox.media.MediaLibrary">
+        update bb_media_library set
+        description = #{description,jdbcType=VARCHAR},
+        name = #{name,jdbcType=VARCHAR},
+        networkTypeEnum = #{networkTypeEnum,jdbcType=INTEGER},
+        status = #{status,jdbcType=INTEGER},
+        type = #{type,jdbcType=INTEGER},
+        version = #{version,jdbcType=INTEGER}
+        where
+        guid = #{guid,jdbcType=VARCHAR}
+    </update>
+
+    <delete id="delete" parameterType="string">
+        delete from bb_media_library where guid = #{value}
+    </delete>
+
+    <delete id="deleteJoin" parameterType="string">
+        delete from bb_media_library_bb_media_meta_data where bb_media_library_guid = #{value}
+    </delete>
+
+    <sql id="librarySelectClause">
+        ml.guid,
+        ml.created,
+        ml.description,
+        ml.modified,
+        ml.name,
+        ml.networkTypeEnum,
+        ml.referenceGuid,
+        ml.referenceType,
+        ml.status,
+        ml.version,
+        md.comment as mediaComment,
+        md.guid as mediaGuid,
+        md.filename as mediaFilename,
+        md.artifactType as mediaArtifactType,
+        md.libraryMedia as mediaLibrary,
+        md.postDate as mediaPostDate,
+        md.thumbnailLocation as mediaThumbnailLocation,
+        md.location as mediaLocation,
+        md.recipientDepth as mediaRecipientDepth,
+        md.version as version
+    </sql>
+
+    <select id="load" resultMap="MediaLibraryResult" parameterType="string">
+        select
+        <include refid="librarySelectClause"/>
+        from bb_media_library ml
+        left join bb_media_library_bb_media_meta_data mlmd on (mlmd.bb_media_library_guid = ml.guid)
+        left join bb_media_meta_data md on (mlmd.media_guid = md.guid) 
+        where ml.guid = #{value}
+    </select>
+
+    <select id="loadByMediaMetaDataGuid" resultType="com.blackbox.media.MediaLibrary" parameterType="string">
+        select
+        <include refid="librarySelectClause"/>
+        from bb_media_library ml
+        left join bb_media_library_bb_media_meta_data mlmd on (mlmd.bb_media_library_guid = ml.guid)
+        left join bb_media_meta_data md on (mlmd.media_guid = md.guid)
+        where
+        md.guid = #{value}
+    </select>
+
+    <select id="loadByOwner" resultMap="MediaLibraryResult" parameterType="string">
+        select
+        <include refid="librarySelectClause"/>
+        from bb_media_library ml
+        left join bb_media_library_bb_media_meta_data mlmd on (mlmd.bb_media_library_guid = ml.guid)
+        left join bb_media_meta_data md on (mlmd.media_guid = md.guid)
+        where ml.referenceGuid = #{value}
+    </select>
+
+    <select id="countAlbumsForUser" resultType="int" parameterType="string">
+        select count(ml.guid) from bb_media_library ml where ml.referenceGuid = #{value}
+    </select>
+
+    <select id="countPhotosForUser" resultType="int" parameterType="map">
+        select count(md.guid)
+        from bb_media_library ml
+        join bb_media_library_bb_media_meta_data mlmd on (mlmd.bb_media_library_guid = ml.guid)
+        join bb_media_meta_data md on (mlmd.media_guid = md.guid)
+        where
+        ml.referenceGuid = #{guid}
+        and md.artifactType = #{type}
+    </select>
+
+    <select id="countPhotosByAlbum" resultType="int" parameterType="map">
+        select count(m.guid)
+        from bb_media_library ml
+        join bb_media_library_bb_media_meta_data mlmd on (mlmd.bb_media_library_guid = ml.guid)
+        join bb_media_meta_data md on (mlmd.media_guid = md.guid)
+        where
+        and ml.guid = #{guid}
+        and md.artifactType = #{type}
+    </select>
+
+</mapper>

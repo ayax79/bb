@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="AvatarImage">
+
+    <resultMap id="AvatarImageResult" type="com.blackbox.media.AvatarImage">
+        <result property="entityGuid" column="guid"/>
+        <result property="userType" column="type"/>
+        <result property="name" column="username"/>
+        <result property="imageLink" column="thumbnailLocation"/>
+    </resultMap>
+
+    <select id="load" parameterType="string" resultMap="AvatarImageResult">
+        select
+        u.guid, u.username, u.type, mmd.thumbnailLocation
+        from
+        bb_media_meta_data mmd
+        join bb_user u on (u.guid = mmd.ownerGuid)
+        where
+        u.guid = #{guid}
+        and mmd.avatar = true
+        order by mmd.created desc
+        limit 1
+    </select>
+
+</mapper>

@@ -1,0 +1,33 @@
+update bb_user set name = 'Debi', lastname = 'Taylor' where username = 'jade';
+update bb_user set name = 'Alex', lastname = 'Ruman' where username = 'armstrong';
+update bb_user set name = 'Edwin', lastname = 'Anderson' where username = 'blacksteelflower';
+update bb_user set name = 'Benjamin', lastname = 'Diggles' where username = 'mrdiggles';
+update bb_user set name = 'Sam', lastname = 'Lawrence' where username = 'sam';
+update bb_user set name = 'April', lastname = 'Donato' where username = 'April';
+update bb_user set name = 'Mary', lastname = 'Gilbert' where username = 'mary';
+update bb_user set name = 'Alex', lastname = 'Armstrong' where username = 'alex';
+update bb_user set name = 'A.J.', lastname = 'Wright' where username = 'ayax';
+update bb_user set name = 'Matthew', lastname = 'Sweet' where username = 'matt';
+update bb_user set name = 'James', lastname = 'Deer' where username = 'james';
+update bb_user set name = 'Andy', lastname = 'Nelsen' where username = 'andy';
+update bb_user set name = 'Bill', lastname = 'Maynard' where username = 'bill';
+update bb_user set name = 'Artie', lastname = 'Copeland' where username = 'artie';
+update bb_user set name = 'Jack', lastname = 'Wang' where username = 'jack';
+update bb_user set name = 'Dan', lastname = 'Sweet' where username = 'dan';
+update bb_user set name = 'Jon', lastname = 'Stevens' where username = 'latchkey';
+
+update bb_profile set birthdayInVisible = false;
+update bb_profile set visibleToPersona = true;
+update bb_profile set visibleToPubStream = true;
+update bb_profile set visibleToSearch = true;
+update bb_profile set visibleToTrialMember = true;
+update bb_media_meta_data set avatar = true;
+
+update bb_media_meta_data set parentownertype = 8 where parentownertype = 9;
+update bb_media_meta_data set parentownertype = 9 where parentownertype = 10;
+update bb_media_meta_data set parentownertype = 10 where parentownertype = 11;
+update bb_message set parentownertype = 8 where parentownertype = 9;
+update bb_message set parentownertype = 9 where parentownertype = 10;
+update bb_message set parentownertype = 10 where parentownertype = 11;
+update bb_media_meta_data set aspect = 1.0;
+update bb_media_meta_data set loosePic = false;

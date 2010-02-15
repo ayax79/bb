@@ -1,0 +1,38 @@
+<%--@elvariable id="actionBean" type="com.blackbox.presentation.action.user.MePageActionBean"--%>
+<%@include file="/WEB-INF/jsp/include/taglibs.jspf" %>
+
+<div style="display:none;">
+	<input type="hidden" id="startIndex" value="${actionBean.vouches.startIndex}"/>
+	<input type="hidden" id="numResults" value="${actionBean.maxResults}"/>
+	<input type="hidden" id="totalResults" value="${actionBean.vouches.totalResults}"/>
+</div>
+
+<c:choose>
+	<c:when test="${not empty actionBean.vouches.results}">
+		<table class="me-table">
+			<tbody>
+			<c:forEach var="vouch" items="${actionBean.vouches.results}">
+				<%--@elvariable id="vouch" type="com.blackbox.social.UserVouch"--%>
+				<c:set var="user" value="${vouch.user}"/>
+				<%--@elvariable id="user" type="com.blackbox.user.User"--%>
+				<ui:meBoxUserRow user="${user}" type="vouches" vouch="${vouch}"/>
+			</c:forEach>
+			</tbody>
+		</table>
+	</c:when>
+	<c:otherwise>
+		<p class="no-results">No vouches</p>
+	</c:otherwise>
+</c:choose>
+
+<c:if test="${not empty actionBean.vouches.results && actionBean.vouches.totalResults > actionBean.maxResults}">
+	<ui:pagingControls id="bottomPaging" items="${actionBean.vouches.results}"/>
+</c:if>
+
+<script type="text/javascript">
+	//<![CDATA[
+	(function () {
+		$(".gear-menu").gearMenu();
+	})();
+	//]]>
+</script>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="OccasionLayout">
+
+    <resultMap id="OccasionLayoutResult" type="com.blackbox.occasion.OccasionLayout"
+               extends="BBPersistentObject.BBPersistentObjectResult">
+        <result property="backgroundColor"/>
+        <result property="bodySize"/>
+        <result property="boxcolor"/>
+        <result property="dataFormat" javaType="com.blackbox.occasion.OccasionLayout$DateFormat" jdbcType="INTEGER"/>
+        <result property="font"/>
+        <result property="headerFont"/>
+        <result property="headerSize"/>
+        <result property="imageGuid"/>
+        <result property="layoutType" javaType="com.blackbox.occasion.OccasionLayout$LayoutType" jdbcType="INTEGER"/>
+        <result property="showHeading" />
+        <result property="textAlign"/>
+        <result property="textColor"/>
+        <result property="videoGuid"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.blackbox.occasion.OccasionLayout">
+        insert into bb_occasion_layout
+        (backgroundColor, bodySize, boxcolor, created, dataFormat, font, headerFont, headerSize, imageGuid, layoutType,
+        modified, showHeading, textAlign, textColor, version, videoGuid, guid)
+        values
+        (#{backgroundColor,jdbcType=VARCHAR}, #{bodySize,jdbcType=INTEGER}, #{boxcolor,jdbcType=VARCHAR}, #{created,jdbcType=DATE},
+        #{dataFormat,jdbcType=INTEGER}, #{font,jdbcType=VARCHAR}, #{headerFont,jdbcType=VARCHAR}, #{headerSize,jdbcType=INTEGER},
+        #{imageGuid,jdbcType=VARCHAR}, #{layoutType,jdbcType=INTEGER}, #{modified,jdbcType=DATE}, #{showHeading,jdbcType=BOOLEAN},
+        #{textAlign,jdbcType=VARCHAR}, #{textColor,jdbcType=VARCHAR}, #{version,jdbcType=INTEGER}, #{videoGuid,jdbcType=VARCHAR},
+        #{guid,jdbcType=VARCHAR})
+    </insert>
+
+    <update id="update" parameterType="com.blackbox.occasion.OccasionLayout">
+        update bb_occasion_layout set
+        backgroundColor = #{backgroundColor,jdbcType=VARCHAR},
+        bodySize = #{bodySize,jdbcType=INTEGER},
+        boxcolor = #{boxcolor,jdbcType=VARCHAR},
+        dataFormat = #{dataFormat,jdbcType=INTEGER},
+        font = #{font,jdbcType=VARCHAR},
+        headerFont = #{headerFont,jdbcType=VARCHAR},
+        headerSize = #{headerSize,jdbcType=INTEGER},
+        imageGuid = #{imageGuid,jdbcType=VARCHAR},
+        layoutType = #{layoutType,jdbcType=INTEGER},
+        modified = #{modified,jdbcType=DATE},
+        showHeading = #{showHeading,jdbcType=BOOLEAN},
+        textAlign = #{textAlign,jdbcType=VARCHAR},
+        textColor = #{textColor,jdbcType=VARCHAR},
+        version = #{version,jdbcType=INTEGER},
+        videoGuid = #{videoGuid,jdbcType=VARCHAR}
+        where
+        guid = #{guid,jdbcType=VARCHAR}
+    </update>
+
+    <delete id="delete" parameterType="string">
+        delete from bb_occasion_layout where guid = #{value}    
+    </delete>
+
+    <select id="load" resultMap="OccasionLayout.OccasionLayoutResult" parameterType="string">
+        select * from bb_occasion_layout where guid = #{value}
+    </select>
+
+</mapper>

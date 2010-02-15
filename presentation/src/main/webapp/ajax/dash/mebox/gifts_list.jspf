@@ -1,0 +1,114 @@
+<%--@elvariable id="actionBean" type="com.blackbox.presentation.action.user.MePageActionBean"--%>
+<%@include file="/WEB-INF/jsp/include/taglibs.jspf" %>
+<c:set var="newLine" value="
+"/>
+<div style="display:none;">
+	<input type="hidden" id="startIndex" value="${actionBean.gifts.startIndex}"/>
+	<input type="hidden" id="numResults" value="${actionBean.maxResults}"/>
+	<input type="hidden" id="totalResults" value="${actionBean.gifts.totalResults}"/>
+</div>
+
+<c:choose>
+	<c:when test="${not empty actionBean.gifts.results}">
+		<div id="gifts">
+			<c:forEach var="gift" items="${actionBean.gifts.results}">
+				<c:choose>
+					<c:when test="${gift.activityType == 'MEDIA'}">
+						<c:set var="deleteBeanEvent" value="deleteMedia"/>
+					</c:when>
+					<c:when test="${gift.activityType == 'MESSAGE'}">
+						<c:set var="deleteBeanEvent" value="deleteMessage"/>
+					</c:when>
+				</c:choose>
+
+				<div class="gift-row clearfix" id="gift_${gift.guid}">
+					<div class="gift-avatar"><ui:profileImage guid="${gift.sender.guid}" size="medium" linkToProfile="true" showMiniProfile="true" showUserType="true"/></div>
+					<div class="gift-body">
+						<p class="gift-from">
+							<strong>From:</strong>
+							<s:link beanclass="com.blackbox.presentation.action.persona.PersonaActionBean" class="user-link">
+								<c:choose>
+									<c:when test="${bb:isMessage(gift)}">
+										<s:param name="identifier" value="${gift.artifactMetaData.artifactOwner.guid}"/>${bb:displayName(gift.artifactMetaData.artifactOwner)}
+									</c:when>
+									<c:when test="${bb:isMedia(gift)}">
+										<s:param name="identifier" value="${gift.artifactOwner.guid}"/>${bb:displayName(gift.artifactOwner)}
+									</c:when>
+								</c:choose>
+							</s:link>
+						</p>
+
+						<p class="gift-content">
+							<c:choose>
+								<c:when test="${bb:isMessage(gift)}">
+									${f:replace(gift.body, newLine, "<br/>")}
+								</c:when>
+								<c:when test="${bb:isMedia(gift)}">
+									${f:replace(gift.comment, newLine, "<br/>")}
+								</c:when>
+							</c:choose>
+						</p>
+
+						<p class="article-media">
+							<c:if test="${bb:isMedia(gift)}">
+								<c:choose>
+									<c:when test="${gift.mimeType == 'application/octet-stream'}">
+										VIDEO NOT SUPPORTED YET
+									</c:when>
+									<c:otherwise>
+										<ui:streamImage msgObject="${gift}"/>
+									</c:otherwise>
+								</c:choose>
+							</c:if>
+						</p>
+
+						<p class="date-received">Received: ${gift.formattedPostDate}</p>
+					</div>
+					<div class="gift-status">
+						<%--<p>Gift status</p>--%>
+						<%--<ul>--%>
+							<%--<li><input type="radio" id="gs_${gift.guid}_active" name="${gift.guid}" value=""/><label for="gs_${gift.guid}_active">Active</label></li>--%>
+							<%--<li><input type="radio" id="gs_${gift.guid}_archived" name="${gift.guid}" value=""/><label for="gs_${gift.guid}_archived">Archived</label></li>--%>
+						<%--</ul>--%>
+						<ul>
+							<li>
+								<s:link class="delete-button deny-gift-link" beanclass="com.blackbox.presentation.action.media.PublishActionBean" event="${deleteBeanEvent}"><s:param name="view" value="json"/><s:param name="recipientDepth" value="${gift.recipientDepth}"/><s:param name="guid" value="${gift.guid}"/><span>Delete</span></s:link>
+							</li>
+						</ul>
+
+					</div>
+				</div>
+			</c:forEach>
+		</div>
+	</c:when>
+	<c:otherwise>
+		<p class="no-results">No gifts</p>
+	</c:otherwise>
+</c:choose>
+
+<c:if test="${not empty actionBean.gifts.results && actionBean.gifts.totalResults > actionBean.maxResults}">
+	<ui:pagingControls id="bottomPaging" items="${actionBean.gifts.results}"/>
+</c:if>
+
+<script type="text/javascript">
+	//<![CDATA[
+	(function () {
+
+		$("#gifts").find(".deny-gift-link").click(function() {
+			$link = $(this);
+			params = bb.utils.getQueryParamObject($link.attr("href"));
+
+			
+
+
+			$.post($link.attr("href"), params, function() {
+				$("#gift_" + params.guid).hide().remove();
+			});
+			return false;
+		});
+		$.each($(".article-media img.lightbox", $("#gifts")), function() {
+			$(this).parent().lightBox({showImgNbr:'no'});
+		});
+	})();
+	//]]>
+</script>

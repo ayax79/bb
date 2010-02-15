@@ -1,0 +1,142 @@
+<%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
+
+<div id="exp_search_container">
+	<%--<ui:roundedBox id="messages" className="rounded-notify">--%>
+		<%--<strong>Tip: </strong>Save a search once you've completed it to return and see newer results at a later time.--%>
+	<%--</ui:roundedBox>--%>
+	<s:form beanclass="com.blackbox.presentation.action.search.ExploreActionBean" id="peopleExplore" method="post">
+	    <h2>I'm looking for:</h2>
+
+		<ui:roundedBox className="banana filter-criteria">
+
+			<ul class="name-search">
+				<li>
+					<s:label for="ex_misc_use_name">Name:</s:label>
+					<span class="textinput30"><s:text name="explore.name" id="exp_query" value="" /></span>
+				</li>
+			</ul>
+			<hr/>
+			<ul>
+				<li><s:checkbox name="explore.genders" id="ex_sex_male" value="MALE"/><label for="ex_sex_male">Male</label></li>
+				<li><s:checkbox name="explore.genders" id="ex_sex_female" value="FEMALE"/><label for="ex_sex_female">Female</label></li>
+				<li><s:checkbox name="explore.genders" id="ex_sex_not_specified" value="XXX"/><label for="ex_sex_not_specified">Not specified</label></li>
+				<li><s:checkbox name="explore.single" id="ex_relationship_single" value="true"/><label for="ex_relationship_single">Single</label></li>
+				<li><s:checkbox name="explore.inRelationship" id="ex_relationship_inrelationship" value="true"/><label for="ex_relationship_inrelationship">In relationship</label></li>
+			</ul>
+			<ul>
+				<li><s:radio name="explore.depth" id="ex_network_everyone" value="ALL_MEMBERS"/><label for="ex_network_everyone">Everyone</label></li>
+				<li><s:radio name="explore.depth" id="ex_network_friends" value="FRIENDS"/><label for="ex_network_friends">Friends</label></li>
+				<li><s:radio name="explore.depth" id="ex_network_followers" value="FOLLOWERS"/><label for="ex_network_followers">Followers</label></li>
+				<li><s:radio name="explore.depth" id="ex_network_following" value="FOLLOWING"/><label for="ex_network_following">Following</label></li>
+			</ul>
+			<ul>
+				<li>
+					<s:label for="explore.lastOnline">Last online:</s:label>
+					<s:select name="explore.lastOnline">
+						<option value=""></option>
+						<option value="-1D">1 day ago</option>
+						<option value="-2D">2 days ago</option>
+						<option value="-3D">3 days ago</option>
+						<option value="-1W">1 week ago</option>
+						<option value="-1M">1 month ago</option>
+					</s:select>
+				</li>
+				<li><s:checkbox name="explore.vouched"/><s:label for="explore.vouched">Vouched</s:label></li>
+				<li>
+					<s:label for="explore.zipCode">Zip:</s:label>
+					<span class="textinput30"><s:text name="explore.zipCode" /></span>
+				</li>
+				<li>
+					<s:label for="explore.registrationDate">New member since:</s:label>
+					<s:select name="explore.registrationDate">
+						<option value=""></option>
+						<option value="-1D">1 day ago</option>
+						<option value="-2D">2 days ago</option>
+						<option value="-3D">3 days ago</option>
+						<option value="-1W">1 week ago</option>
+						<option value="-1M">1 month ago</option>
+					</s:select>
+				</li>
+			</ul>
+			<div class="clear"></div>
+		</ui:roundedBox>
+
+		<ui:roundedBox className="banana filter-criteria slider_container">
+			<s:hidden name="explore.orientation.startIndex" class="slider-val-min"/>
+			<s:hidden name="explore.orientation.lastIndex" class="slider-val-max"/>
+			<label><fmt:message key="settings.field.orientation"/></label>
+			<ui:slider containerClass="testSlider" labelLeft="Gay" labelCenter="Bi" labelRight="Hetero"/>
+		</ui:roundedBox>
+	
+		<ui:roundedBox className="banana filter-criteria slider_container">
+			<s:hidden name="explore.polyStatus.startIndex" class="slider-val-min"/>
+			<s:hidden name="explore.polyStatus.lastIndex" class="slider-val-max"/>
+			<label><fmt:message key="settings.field.addPartners"/></label>
+			<ui:slider containerClass="testSlider" labelLeft="Room for more" labelCenter="It fluctuates" labelRight="Not right now"/>
+		</ui:roundedBox>
+
+		<ui:roundedBox className="banana filter-criteria slider_container">
+			<s:hidden name="explore.relationshipStatus.startIndex" class="slider-val-min"/>
+			<s:hidden name="explore.relationshipStatus.lastIndex" class="slider-val-max"/>
+			<label><fmt:message key="settings.field.status"/></label>
+			<ui:slider containerClass="testSlider" labelLeft="Unattached" labelCenter="It's complicated" labelRight="Attached"/>
+		</ui:roundedBox>
+
+		<ui:roundedBox className="banana filter-criteria slider_container">
+			<s:hidden name="explore.interestLevel.startIndex" class="slider-val-min"/>
+			<s:hidden name="explore.interestLevel.lastIndex" class="slider-val-max"/>
+			<label><fmt:message key="settings.field.lovin"/></label>
+			<ui:slider containerClass="testSlider" labelLeft="Going slow" labelCenter="If it happens, it happens" labelRight="Gotta have it"/>
+		</ui:roundedBox>
+
+		<ui:roundedBox className="banana filter-criteria slider_container">
+			<s:hidden name="explore.energyLevel.startIndex" class="slider-val-min"/>
+			<s:hidden name="explore.energyLevel.lastIndex" class="slider-val-max"/>
+			<label><fmt:message key="settings.field.vibe"/></label>
+			<ui:slider containerClass="testSlider" labelLeft="Party mode" labelCenter="Let's hang" labelRight="Lying low"/>
+		</ui:roundedBox>
+
+		<s:hidden name="explore.maxResults" value="100"/>
+
+		<button class="grey33 bbbutton" id="exp_people_submit"><span>Search</span></button>
+	</s:form>
+</div>
+<div id="exp_results_container">
+	<div id="exp_results">&nbsp;</div>
+	<button class="grey33 bbbutton" id="exp_new_search"><span>Modify Search</span></button>
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+	var search_alert;
+
+	bb.pageInit.bindSliders($("#exp_search_container"));
+
+	$("#exp_results_container").hide();
+	$("#exp_people_submit").click(function() {
+		$("#exp_results").empty();
+        $("#exp_results").load(bb.urls.search.explorerSearchUser, $("#peopleExplore").serializeArray(), function(result) {
+			$("#exp_search_container").hide();
+			$("#exp_results_container").show();
+			$(".collapse-button", this).unbind(".st");
+			$(".collapse-button", this).bind("click.st", function() {
+				$(".xplr-results-more", $(this).parent()).slideToggle(200);
+				$(this).find(".xplr-collapse").toggleClass("xplr-collapsed");
+			}).bind("mouseenter.st", function() {
+				$(this).find(".xplr-collapse").addClass("xplr-hover");
+			}).bind("mouseleave.st", function() {
+				$(this).find(".xplr-collapse").removeClass("xplr-hover");
+			});
+			bb.pageInit.bindMiniProfiles($("#exp_results"));
+		});
+		$("#exp_people_submit span").text('Searching...');
+		return false;
+	});
+	$("#exp_new_search").click(function() {
+		$("#exp_results_container").hide();
+		$("#exp_search_container").show();
+		$("#exp_people_submit span").text('Search');
+	});
+	
+//]]>
+</script>

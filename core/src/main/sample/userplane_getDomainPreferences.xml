@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!-- COPYRIGHT Userplane 2004 (http://www.userplane.com) -->
+<!-- CS version 2.0.2 -->
+<communicationsuite>
+    <domain>
+        <maxxmlretries>5</maxxmlretries>
+        <avenabled>true</avenabled>
+        <forbiddenwordslist>crap,shit</forbiddenwordslist>
+        <allowCalls>setBannedStatus,setBlockedStatus,setFriendStatus</allowCalls>
+        <domainPrefReloadInterval>-1</domainPrefReloadInterval>
+        <!-- in minutes -->
+        <maxUsers includeAdmins="false" includeSpeakers="false">-1</maxUsers>
+        <domainInvalid>false</domainInvalid>
+        <!-- if true, users will not be allowed connection and all will be disconnected if connected already -->
+        <adminsRequired>false</adminsRequired>
+        <!-- if true, users will not be allowed connection if no admins connected and all will be disconnected when admin leaves -->
+        <textColors>
+            000000,ff0000,f0037f,4c004a,000275,26429b,00a0c6,005100,6dc000,ff3f00,ff8600,542c06,905b34,787878,7ea5ba
+        </textColors>
+        <smileys/>
+        <chat>
+            <allowModeratedRooms autoOn="false">false</allowModeratedRooms>
+            <floodControlResetTime>5</floodControlResetTime>
+            <floodControlInterval>5</floodControlInterval>
+            <floodControlMaxMessages>5</floodControlMaxMessages>
+            <labels>
+                <userdata initiallines="0">
+                    <line>Age</line>
+                    <line>Sex</line>
+                    <line>Location</line>
+                </userdata>
+                <lobby>
+                    <name>Waiting Room</name>
+                    <description>Lobby Description</description>
+                </lobby>
+            </labels>
+            <maxroomusers>20</maxroomusers>
+            <!-- Allowing multiple dock items could result in bandwidth overage fees.-->
+            <!-- Please contact a userplane representative for details on overage rates and billing questions.-->
+            <!-- http://www.userplane.com/contact.cfm-->
+            <maxdockitems>0</maxdockitems>
+            <characterlimit>200</characterlimit>
+            <userroomcreate>true</userroomcreate>
+            <roomemptytimeout>600</roomemptytimeout>
+            <maxhistorymessages>20</maxhistorymessages>
+            <showJoinLeaveMessages>true</showJoinLeaveMessages>
+            <gui>
+                <viewprofile>true</viewprofile>
+                <instantcommunicator>true</instantcommunicator>
+                <addfriend>true</addfriend>
+                <block>true</block>
+                <reportabuse textLines="0" avEnabled="false" avWebAccessible="true" avSeconds="30" avUserID="">false
+                </reportabuse>
+                <titleBarColor></titleBarColor>
+                <scrollTrackColor></scrollTrackColor>
+                <outerBackgroundColor></outerBackgroundColor>
+                <innerBackgroundColor></innerBackgroundColor>
+                <uiFontColor></uiFontColor>
+                <buttonColor></buttonColor>
+                <leftPaneMinimized>false</leftPaneMinimized>
+                <dockMinimized>false</dockMinimized>
+                <images>
+                    <watermark alpha="5">http://images.clearplane.userplane.com/im/images/UserplaneLogo.jpg</watermark>
+                </images>
+                <initialinputlines>1</initialinputlines>
+                <help>true</help>
+            </gui>
+            <roomlist>
+                <!-- Make as many as you want, these will always appear when the app reloads (even if deleted in the client) -->
+                <room>
+                    <name>Singles</name>
+                    <description>Singles Description</description>
+                </room>
+                <room>
+                    <name>Lazy People</name>
+                    <description>Lazy People Description</description>
+                </room>
+                <room>
+                    <name>Athletic People</name>
+                    <description>Athletic People Description</description>
+                </room>
+            </roomlist>
+            <getannouncementsinterval>-1</getannouncementsinterval>
+            <sendarchive>false</sendarchive>
+            <banNotification><![CDATA[<b>[[NAME]] was banned</b>]]></banNotification>
+            <sendConnectionListInterval>-1</sendConnectionListInterval>
+            <conferenceCallEnabled>-1</conferenceCallEnabled>
+            <conferenceCallText>Call the party line:</conferenceCallText>
+        </chat>
+    </domain>
+</communicationsuite>

@@ -1,0 +1,242 @@
+<%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
+<link rel="stylesheet" href="${bb:libraryResource('/library/uploadify/uploadify.css')}" type="text/css" />
+<script src="${bb:libraryResource('/library/uploadify/jquery.uploadify.js')}" type="text/javascript"></script>
+<script src="${bb:libraryResource("/library/uploadify/swfobject.js")}" type="text/javascript"></script>
+<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAAp9yvzzCMVz8SKrPHBMtKBhRoR84c2uF6PsISXXf8g1VBgaojsRSd3xfJ2bYFyKbTkZ4c9b7tStQrFw"
+type="text/javascript"></script>
+<style type="text/css">
+    #event_image{
+    
+        width:800px;
+        height:317px;
+        padding:20px 50px 0 18px;
+        overflow-y:auto;
+        overflow-x:hidden;
+        background-color:#202121;
+        text-align:left;
+    }
+    .event_activity{border: 5px solid rgb(2, 191, 246)!important;}
+    .uploadifyProgressBar {
+        background-color:orange;
+        width: 1px;
+        height: 15px;
+    }
+    .uploadifyQueueItem{
+        width:260px;
+        margin:10px;
+    }
+</style>
+<script type="text/javascript">
+    var link_dialog=null;
+    var upload_dialog=null;
+    var map_dialog=null;
+    var all_image_dialog=null;
+    var create_dialog_for_link=function(title,word,type){
+        $("#image_storage_url").show();
+        if(link_dialog==null&&type=="image"){
+            var id="#image_storage_url";
+            $(id).bbDialog({
+                title:title,
+                modal:true,
+                dialogClass:"ps-dialog",
+                buttons:{
+                    'Close':function() {
+                        link_dialog=this;
+                        this.close();
+                    },
+                    'add link':function() {
+                    }
+                }
+            });
+        }else if(link_dialog!=null){
+            link_dialog.open();
+        }
+    };
+    var create_dialog_for_upload=function(){
+        $("#upload_image_dialog").show();
+        if(upload_dialog==null){
+            var id="#upload_image_dialog";
+            upload_dialog=$(id).bbDialog({
+                title:"Upload an Image",
+                modal:true,
+                dialogClass:"ps-dialog",
+                buttons:{
+                    'Close':function() {
+                        this.close();
+                    }
+                }
+            });
+        }else if(upload_dialog!=null){
+            $("#upload_image_dialog").bbDialog("open");
+        }
+    };
+    var create_dialog_for_google_map=function(location){
+        $("#google_map_dialog").show();
+        if(map_dialog==null){
+            map_dialog= $("#google_map_dialog").bbDialog({
+                title:"Upload an Image",
+                autoOpen:false,
+                modal:true,
+                dialogClass:"ps-dialog",
+                onopen:function(){
+                    var map = new GMap2(document.getElementById("google_map_canvas"));
+                    var geocoder = new GClientGeocoder();
+                    var address=getAddress();
+                    var location=getLocation();
+                    geocoder.getLatLng(
+                    address,
+                    function(point) {
+                        if (!point) {
+                            alert("IN the EarTH? " + address);
+                        } else {
+                            map.setCenter(point, 13);
+                            var marker = new GMarker(point);
+                            map.addOverlay(marker);
+                            marker.openInfoWindowHtml(location+"<br/>"+address);
+                        }
+                    }
+                );
+                },
+                buttons:{
+                    'Close':function() {
+                        this.close();
+                    }
+                }
+            });
+        }
+        $("#google_map_dialog").bbDialog("open")
+    };
+    var create_dialog_for_all_image=function(){
+        $("#upload_image_dialog").bbDialog("close");
+        $("#event_image").show();
+        if(all_image_dialog==null){
+            all_image_dialog=$("#event_image").bbDialog({
+                title:"My Album Images",
+                autoOpen:false,
+                modal:true,
+                dialogClass:"ps-dialog",
+                onopen:function(){
+                    $("#event_image").load( '<s:url beanclass="com.blackbox.presentation.action.psevent.PSAjaxEventActionBean" />;jsessionid=<%=session.getId()%>',
+                    {'_eventName' : 'images'},
+                    function(){
+                    });
+                },
+                buttons:{
+                    'Cancel':function() {
+                        this.close();
+                    },
+                    "Select":function(){
+                        if(selected_image.src!=null&&selected_image.guid!=null){
+                            $.get( '<s:url beanclass="com.blackbox.presentation.action.psevent.PSAjaxEventActionBean" />;jsessionid=<%=session.getId()%>',
+                            {'_eventName' : 'updateMediaByGuid','guid':selected_image.guid},
+                            function(data){
+                                src=selected_image.src;
+                                return_page()
+                                $("#jcrop_box").text("");
+                                sma=true;
+                                $("#jcrop_box").append("<img  id='small_event_image' src='"+src+"' onload='javascript:create_jcrop_for_samll_img();' onerror='Activity.Utils.imgPoll(event, this);' ></img>");
+                                $("#big_event_image").attr("src", selected_image.src);
+                            });
+                        }
+                        this.close();
+                    }
+                }
+            });
+            $("#event_image").bbDialog("open");
+        }else{
+            $("#event_image").bbDialog("open");
+        }
+    };
+    $(function(){
+        initScetionForDialog();
+        $('#image_file').uploadify({
+            'uploader': '${bb:libraryResource("/library/uploadify/uploadify.swf")}',
+            'cancelImg': '${bb:libraryResource("/library/uploadify/cancel.png")}',
+            'fileDesc' : 'User Image File',
+            'fileExt': '*.jpg;*.jpeg;*.gif;*.png',
+            'buttonText': 'Select File',
+            'wmode'          : 'transparent',
+            'script'    : '<s:url beanclass="com.blackbox.presentation.action.psevent.PSAjaxEventActionBean" />;jsessionid=<%=session.getId()%>',
+            'scriptData' : {'_eventName' : 'addMediaToEvent'},
+            'auto'      : true,
+            'queueID'        : 'upload_image_dialog',
+            'fileDataName' : 'fileData', /* maps to the field in the action */
+            'onError'   : function(event, queueID, fileObj, errorObj) {},
+             'onProgress':function(event,queueID,fileObj,data){
+            },
+            'onComplete' : function(event,queueID,fileObj,resp,data) {
+                var src='<s:url beanclass="com.blackbox.presentation.action.media.SessionImageActionBean"/>?'+new Date().getMilliseconds();
+                return_page()
+                $("#jcrop_box").text("");
+                sma=true;
+                $("#jcrop_box").append("<img  id='small_event_image' src='"+src+"' onload='javascript:create_jcrop_for_samll_img();' onerror='Activity.Utils.imgPoll(event, this);' ></img>");
+                $("#big_event_image").attr("src", src);
+            },
+            'multi' : false
+        });
+    });
+    var create_jcrop_for_samll_img=function(){
+        if(sma==true&&($("#small_event_image").attr("complete")||$.browser.msie)){
+            var img=new Image();
+            img.src=$("#small_event_image").attr("src");
+            layout_config.image_croods.width=img.width;
+            layout_config.image_croods.height=img.height;
+            crop_config.small.width=img.width;
+            crop_config.small.height=img.height;
+            var aspectRatio=(crop_config.big.width/crop_config.big.height).toFixed(2)
+            crop_box = $.Jcrop("#small_event_image", {
+                aspectRatio: aspectRatio,
+                onSelect: updateCoords,
+                boxWidth:235,
+                boxHeight:165,
+                onChange: showBIG
+            });
+            if($("#small_event_image").attr("complete")||$.browser.msie){
+                sma=false;
+            }
+        }
+        $("#big_event_image").css({
+                        position:"relative",
+                        width:"598px",
+                        height:"390px",
+                       margin:"0 0 0 0"
+                    })
+    }
+    var return_page=function(){
+        try{
+            $('#image_file').uploadifyClearQueue();
+        }catch(e){}
+        $("#upload_image_dialog").bbDialog("close");
+        
+    };
+    var initScetionForDialog=function(){
+        $("#image_storage_url").hide();
+        $("#upload_image_dialog").hide();
+        $("#google_map_dialog").hide();
+        $("#event_image").hide();
+    };
+</script>
+<div id="dailog_helper">
+    <div id="image_storage_url" style="height:220px;width:300px">
+        inter the your image url like this: http://www.xxx.com/fdfd<br/>
+
+        <input type="text" name="url"/>
+    </div>
+    <div id="upload_image_dialog" style="height:220px;width:300px;">
+        We support most image files.  Size limit, 3MB.
+        <div  align="center" id="uploadify-content">
+            <span>
+                <input id="image_file" type="file" />
+            </span>
+            <br/>
+            <span>
+                <button id="get_image_from_album" onclick="create_dialog_for_all_image();">From Album</button>
+            </span>
+        </div>
+    </div>
+    <div id="google_map_dialog" style="height:300px;width:500px;">
+        <div id="google_map_canvas" style="width: 500px; height: 300px"></div>
+    </div>
+    <div id="event_image"></div>
+</div>
+

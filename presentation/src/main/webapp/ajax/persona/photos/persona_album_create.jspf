@@ -1,0 +1,89 @@
+<%@ include file="/WEB-INF/jsp/include/page_header.jspf" %>
+<%--@elvariable id="actionBean" type="com.blackbox.presentation.action.persona.PSUploadActionBean"--%>
+
+<%--<ui:miniBio/>--%>
+
+<div id="pictures-container">
+	<div id="album-list">
+		<div class="pictures-uploader" id="upload-images-step">
+			<div class="pictures-header clearfix">
+				<c:choose>
+					<c:when test="${param.addTo == 'true'}">
+						<h3 class="clearfix">Add photos <span>${actionBean.currentAlbum.name} (${f:length(actionBean.currentAlbum.media)} photos)</span></h3>
+					</c:when>
+					<c:otherwise>
+						<h3 class="clearfix">Create an Album - Photo Upload</h3>
+					</c:otherwise>
+				</c:choose>
+			</div>
+			<div id="ps_p_upload_file_album_zone">
+				<div id="ps_p_upload_file"></div>
+			</div>
+		</div>
+		<c:if test="${param.addTo != 'true'}">
+			<div class="pictures-uploader" id="create-album-step">
+				<div class="pictures-header clearfix">
+					<h3 class="clearfix">Create an Album <span>You&#8217;ll be able to choose pictures in the next step</span></h3>
+				</div>
+				<s:form beanclass="com.blackbox.presentation.action.persona.PSUploadActionBean" id="create-album-form">
+					<label for="albumName">Album name</label>
+					<s:text id="albumName" name="albumName"/>
+					<label for="albumDesc">Add a description (optional)</label>
+					<s:textarea id="albumDesc" name="albumDesc"></s:textarea>
+					<div id="permissions" class="clearfix">
+						<label>Viewing permissions</label>
+
+						<div class="radio-button">
+							<s:radio name="permission" id="world" value="WORLD" checked="checked"/><label for="world">Public life</label>
+						</div>
+						<div class="radio-button">
+							<s:radio name="permission" id="members" value="ALL_MEMBERS"/><label for="members">All Blackbox members</label>
+						</div>
+						<div class="radio-button">
+							<s:radio name="permission" id="friends" value="FRIENDS"/><label for="friends">Friends only</label>
+						</div>
+					</div>
+				</s:form>
+				<div id="upload-buttons">
+					<div id="cancel-create">
+						<button><span>Cancel</span></button>
+					</div>
+					<div id="create-album">
+						<button><span>Create album</span></button>
+					</div>
+				</div>
+			</div>
+		</c:if>
+		<%@include file="/WEB-INF/jsp/include/persona_albums_sidebar.jspf" %>
+	</div>
+</div>
+
+<script type="text/javascript">
+	//<![CDATA[
+	<c:if test="${param.addTo == 'true'}">
+	$("#upload-images-step").show();
+	</c:if>
+
+	$("#ps_p_upload_file").uploadify({
+		'uploader': '${bb:libraryResource('/library/uploadify/uploadify.swf')}',
+		'cancelImg': '${bb:libraryResource('/library/uploadify/cancel.png')}',
+		'buttonImg': '${bb:libraryResource('/library/images/controls/upload-btn-bg.png')}',
+		'script': '<s:url beanclass="com.blackbox.presentation.action.persona.PSUploadActionBean" />;jsessionid=<%=session.getId()%>',
+		'fileDataName' : 'fileData', /* maps to the field in the action */
+		'multi': true,
+		'fileDesc': 'Image Files',
+		'fileExt': '*.jpg;*.jpeg;*.gif;*.png',
+		'buttonText': 'Select Files',
+		'simUploadLimit': 4,
+		'auto' : true,
+		'scriptData': {'_eventName':'uploadPicture','identifier':'${actionBean.identifier}'},
+		onAllComplete: function (evt, response, data) {
+			$.post('<s:url beanclass="com.blackbox.presentation.action.persona.PSUploadActionBean" />',
+			{ _eventName : "uploadPictureComplete",'identifier':'${actionBean.identifier}'}, function(result) {
+				myPictureTab.getAlbumView(result.guid, true);
+			}, "json");
+		}
+	});
+
+	//]]>
+</script>

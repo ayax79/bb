@@ -1,0 +1,329 @@
+<%@ include file="/WEB-INF/jsp/include/page_header.jspf" %>
+<script type="text/javascript">
+//<![CDATA[
+    $(document).ready(function(){
+        $(".inf_bg_sav").hide();
+        $(".inf_lis_edi").hide();
+        $(".inf_bg_can").hide();
+        $(".inf_list").each(function(){
+            $(this).click(function(){
+                var temp=this;
+                $(".inf_list").each(function(){
+                    if(this!=temp){
+                        try{
+                            $(this).attr("target", 'false');
+                            disable_edit_profile_field($(this).attr("id")+"_a",true);
+                        }catch(e){};
+                    }
+                });
+                if($(this).attr("target")=="false"){
+                    try{
+                        highlightInfoField(this);
+                    }catch(e){
+                        console.log(e);
+                    }
+                }
+                $(this).attr("target", 'true');
+            });
+        });
+    });
+    var highlightInfoField=function(e){
+        disable_edit_profile_field('birthday_a', true);
+        disable_edit_profile_field('city_a', true);
+        disable_edit_profile_field('zipCode_a', true);
+        disable_edit_profile_field('politicalViews_a', true);
+        disable_edit_profile_field('religiousViews_a', true);
+        disable_edit_profile_field('bodyMods_a', true);
+        disable_edit_profile_field('mostly_a', true);
+        disable_edit_profile_field('website_a', true);
+        //showInfo();
+        $(".inf_list").each(function(){
+            $(this).css({backgroundColor:'white'});
+            $($(this).children()[0]).removeClass("inf_bg_tit");
+            try{
+                $($(this).children(".inf_lis_edi")[0]).hide();
+                $($(this).children(".inf_bg_can")[0]).hide();
+            }catch(e){}
+        });
+        $(e).css({backgroundColor: "#fffbcc",'float':'left'});
+        $($(e).children()[0]).addClass("inf_bg_tit");
+        try{
+                $($(e).children(".inf_lis_edi")[0]).show();
+        }catch(e){}
+        
+    };
+    
+    var showInfo=function(){        
+        $.getJSON('<s:url beanclass="com.blackbox.presentation.action.persona.PSProfileActionBean" />', { 'view': 'json' }
+        ,function(data){            
+            render_value('acceptsGifts',data.acceptsGifts);
+            render_value('birthday',data.birthday);
+            render_value('bodyMods',data.bodyMods);
+            var location = data.location;
+            if( location!= null) {
+                if(location.address != null) {
+                    render_value('city',location.address.city);
+                    render_value('zipCode',location.address.zipCode);
+                }else {
+                    //alert("it is null value here not set it ");
+                }
+            }else {
+                render_value('city',"");
+                render_value('zipCode',"");
+            }
+            render_value('lookingFor',data.lookingFor);
+            render_value('mostly',data.mostly);
+            render_value('politicalViews',data.politicalViews);
+            render_value('religiousViews',data.religiousViews);
+            render_value('sex',data.sex);
+            render_value('website',data.website);
+        });
+    };
+    var update_showed_profile_items=function(){
+
+        var birthday = $("#birthday_a").html(); //it needs to be checked before submit.        
+        var birDate = new Date(birthday);
+        var ages = (new Date().getTime() - birDate.getTime()) / (365 * 24 * 3600 * 1000);        
+        if($("#age_span_id") != null) {
+            $("#age_span_id").html(Math.round(ages));
+        }
+        $("#city_span_id").html($("#city_a").html());
+        $("#zipcode_span_id").html($("#zipCode_a").html());
+    }
+    var save_profile_field=function(key,eid){
+        disable_edit_profile_field(eid);
+        var id="#"+eid;
+        var value=$(id).text();
+
+        var params = "_eventName="+key+"&"+key+"="+value; // had to handle this way since my hash was being treated inappropriately        
+        $.get('<s:url beanclass="com.blackbox.presentation.action.persona.PSProfileActionBean" />', params,
+                function(data){
+                    if(data == "success") {
+                        update_showed_profile_items();
+                    }
+                }
+        );
+    };
+    var save_radio=function(key,value,e){
+       if(e.type=="checkbox"){
+           value = e.checked;
+        }
+        var params = "_eventName="+key+"&"+key+"="+value; // had to handle this way since my hash was being treated inappropriately
+
+        $.getJSON('<s:url beanclass="com.blackbox.presentation.action.persona.PSProfileActionBean" />',
+            params, function(data){
+            //showInfo();
+        });
+    };
+    //tmp fixed the problem in IE7 when editing the profile items
+    var getDivInnerContent = function(obj, id) {
+        var content = "";
+        if(document.all){            
+            content = document.getElementById(id).innerHTML;            
+        }else{
+            content = obj.textContent;
+        }
+        return content;
+    };
+    
+    var enable_edit_profile_field=function(eid){
+        var id="#"+ eid;
+        var con="";
+            if($(id).contents()[0]!=null){
+                //con=$(id).contents()[0].textContent;
+                con = getDivInnerContent($(id).contents()[0], eid);
+            }
+            var input_e=create_html_element("input","text",eid,con);
+            if($(id).contents().length==0){
+                $(id).append(input_e);
+            }else{
+                $(id).contents().replaceWith(input_e);
+            }
+            $(id).nextAll("div.inf_lis_edi").hide();
+            $(id).nextAll("div.inf_bg_can").show();
+            $(id).nextAll("div.inf_bg_sav").show();
+    };
+    var create_html_element=function(e,type,name,value){
+        var e=document.createElement(e);
+        e.type=type;
+        e.name=name;
+        e.value=value;
+        return e;
+    };
+    var disable_edit_profile_field=function(id,showEdit){
+        var oldId = id;
+        var id="#"+id;
+        var con=" ";
+        var con_v=null;
+        var con_c=null;
+        var temp_contents_array=$(id).contents();
+        try{
+            var con_v=temp_contents_array[0].value;
+            //var con_c=temp_contents_array[0].textContent;
+            var con_c = getDivInnerContent(temp_contents_array[0], oldId);
+        }catch(e){}
+
+        //whether is text type input
+        //if length==1:text
+        if(temp_contents_array.length==1){
+            if(con_v!=null&&con_v!=""){
+                con=con_v;
+            }else if(con_c!=null&&con_c!=""){
+                con=con_c;
+            }            
+            $(id).contents().replaceWith(con);
+            $(id).nextAll("div.inf_bg_can").hide();
+            $(id).nextAll("div.inf_bg_sav").hide();
+            if(showEdit==null){
+                $(id).nextAll("div.inf_lis_edi").show();
+            }else{
+                $(id).nextAll("div.inf_lis_edi").hide();
+            }
+        }
+    };
+    var render_value=function(id,value){
+        try{
+            //Jimmy added for ticket125
+            if(value == null) {
+                value = "";
+            }
+            var field=$("#"+id+"_a");
+            if(field.children().length==0){
+                field.text(value);
+            }else{
+                if(field.children("input[value="+value+"]").length!=0){
+                    var field_value=$(field.children("input[value="+value+"]")[0]);
+                    if(field_value!=null||typeof(field_value)!="undefined"){
+                        field_value.attr("checked","true");
+                    }
+                }else if(id=="lookingFor"){
+                    for(var p in value){
+                        if(typeof(value[p])!="function"){
+                            var looking_opt=value[p];
+                            $(p).attr("checked", "checked");
+                        }
+                    }
+                }
+                
+            }
+        }catch(e){
+            console.log(e);
+        }
+    };
+//]]>
+</script>
+
+
+<%--<div class="wis_tab">
+    <ul>
+        <li class="wis_tab_peo">Me</li>
+        <li class="inf_tab_tex">My partner(s):</li>
+        <li class="wis_tab_eve">James Deer</li>
+        <li class="wis_tab_tex">Edit relationships</li>
+    </ul>
+</div>--%>
+<br/>
+<s:form id="persona_info_from" beanclass="com.blackbox.presentation.action.persona.PSProfileActionBean">
+    <div class="inf_con" style="height:330px;overflow-x:hidden;overflow-y:auto;">
+        <div id="profile.birthday" class="inf_list" target="false">
+            <div id="birthday_q" class="inf_lis_lef"><fmt:message key="com.blackbox.presentation.action.persona.PSProfileActionBean.profile.birthday" /></div>
+            <div id="birthday_a" class="inf_bg_con">${actionBean.profile.birthday}</div>
+            <div class="inf_bg_sav"><a id="birthday_info_save" href="javascript:save_profile_field('profile.birthday','birthday_a');"><img src="${bb:libraryResource('/library/images/persona/save_but.jpg')}" /></a></div>
+            <div class="inf_lis_edi"><a id="birthday_info_link" href="javascript:enable_edit_profile_field('birthday_a')">Edit</a></div>
+            <div class="inf_bg_can"><a id="birthday_info_cancel" href="javascript:disable_edit_profile_field('birthday_a'); ">Cancel</a></div>
+            <div class="clear"></div>
+        </div>
+        <div id="profile.location.city" class="inf_list" target="false">
+            <div id="city_q" class="inf_lis_lef"><fmt:message key="com.blackbox.presentation.action.persona.PSProfileActionBean.profile.location.city" /></div>
+            <div id="city_a" class="inf_bg_con">${actionBean.profile.location.city}</div>
+            <div class="inf_bg_sav"><a id="city_info_save" href="javascript:save_profile_field('profile.location.city','city_a');"><img src="${bb:libraryResource('/library/images/persona/save_but.jpg')}" /></a></div>
+            <div class="inf_lis_edi"><a id="city_info_link" href="javascript:enable_edit_profile_field('city_a')">Edit</a></div>
+            <div class="inf_bg_can"><a id="city_info_cancel" href="javascript:disable_edit_profile_field('city_a'); ">Cancel</a></div>
+            <div class="clear"></div>
+        </div>
+        <div id="profile.location.zipCode" class="inf_list" target="false">
+            <div id="zipCode_q" class="inf_lis_lef"><fmt:message key="com.blackbox.presentation.action.persona.PSProfileActionBean.profile.location.zipCode" /></div>
+            <div id="zipCode_a" class="inf_bg_con">${actionBean.profile.location.zipCode}</div>
+            <div class="inf_bg_sav"><a id="zipCode_info_save" href="javascript:save_profile_field('profile.location.zipCode','zipCode_a');"><img src="${bb:libraryResource('/library/images/persona/save_but.jpg')}" /></a></div>
+            <div class="inf_lis_edi"><a id="zipCode_info_link" href="javascript:enable_edit_profile_field('zipCode_a')">Edit</a></div>
+            <div class="inf_bg_can"><a id="zipCode_info_cancel" href="javascript:disable_edit_profile_field('zipCode_a'); ">Cancel</a></div>
+            <div class="clear"></div>
+        </div>
+        <div id="profile.sex" class="inf_list" target="false">
+            <div id="sex_q" class="inf_lis_lef"><fmt:message key="com.blackbox.presentation.action.persona.PSProfileActionBean.profile.sex" /> </div>
+            <div id="sex_a" class="inf_bg_con1 inf_lis_rig">
+                <input type="radio" name="sex" value="MALE" onClick="save_radio('profile.sex','MALE','radio');"
+                       <c:if test="${actionBean.profile.sex != null and s:enumName(actionBean.profile.sex) == 'MALE'}">checked="checked"</c:if> /><fmt:message key="SexEnum.MALE" />
+                <input type="radio" name="sex" value="FEMALE" onClick="save_radio('profile.sex','FEMALE','radio');"
+                       <c:if test="${actionBean.profile.sex != null and s:enumName(actionBean.profile.sex) == 'FEMALE'}">checked="checked"</c:if> /><fmt:message key="SexEnum.FEMALE" />
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div id="profile.acceptsGifts" class="inf_list" target="false">
+            <div id="acceptsGifts_q" class="inf_lis_lef"><fmt:message key="com.blackbox.presentation.action.persona.PSProfileActionBean.profile.acceptsGifts" /></div>
+            <div id="acceptsGifts_a" class="inf_bg_con1 inf_lis_rig">
+                <input type="radio" name="acceptsGifts" value="true" onClick="save_radio('profile.acceptsGifts',true,'radio');"
+                       <c:if test="${actionBean.profile.acceptsGifts}">checked="checked"</c:if>  />True
+                <input type="radio" name="acceptsGifts" value="false" onClick="save_radio('profile.acceptsGifts',false,'radio');"
+                       <c:if test="${!actionBean.profile.acceptsGifts}">checked="checked"</c:if>/>False
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div id="profile.lookingFor" class="inf_list" target="false">
+            <div id="lookingFor_q" class="inf_lis_lef"><fmt:message key="com.blackbox.presentation.action.persona.PSProfileActionBean.profile.lookingFor" /></div>
+            <div id="lookingFor_a" class="inf_bg_rig" style="">
+                <c:forEach var="val" items="${bb:enumValues('com.blackbox.user.LookingForEnum')}"
+                           varStatus="status">
+                    <input type="checkbox" id="profile.lookingFor.${s:enumName(val)}"
+                           name="lookingFor"
+                           value="${s:enumName(val)}"
+                           onclick="save_radio('profile.lookingFor.${s:enumName(val)}','${val}',this);"
+                           <c:if test="${actionBean.profile.lookingFor[s:enumName(val)]}">checked="checked"</c:if> />${s:enumName(val)}
+                </c:forEach>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div id="profile.politicalViews" class="inf_list" target="false">
+            <div id="politicalViews_q" class="inf_lis_lef"><fmt:message key="com.blackbox.presentation.action.persona.PSProfileActionBean.profile.politicalViews" /></div>
+            <div id="politicalViews_a" class="inf_bg_con">${actionBean.profile.politicalViews}</div>
+            <div class="inf_bg_sav"><a id="politicalViews_info_save" href="javascript:save_profile_field('profile.politicalViews','politicalViews_a');"><img src="${bb:libraryResource('/library/images/persona/save_but.jpg')}" /></a></div>
+            <div class="inf_lis_edi"><a id="politicalViews_info_link" href="javascript:enable_edit_profile_field('politicalViews_a')">Edit</a></div>
+            <div class="inf_bg_can"><a id="politicalViews_info_cancel" href="javascript:disable_edit_profile_field('politicalViews_a'); ">Cancel</a></div>
+            <div class="clear"></div>
+        </div>
+        <div id="profile.religiousViews" class="inf_list" target="false">
+            <div id="religiousViews_q" class="inf_lis_lef"><fmt:message key="com.blackbox.presentation.action.persona.PSProfileActionBean.profile.religiousViews" /> </div>
+            <div id="religiousViews_a" class="inf_bg_con">${actionBean.profile.religiousViews}</div>
+            <div class="inf_bg_sav"><a id="religiousViews_info_save" href="javascript:save_profile_field('profile.religiousViews','religiousViews_a');"><img src="${bb:libraryResource('/library/images/persona/save_but.jpg')}" /></a></div>
+            <div class="inf_lis_edi"><a id="religiousViews_info_link" href="javascript:enable_edit_profile_field('religiousViews_a')">Edit</a></div>
+            <div class="inf_bg_can"><a id="religiousViews_info_cancel" href="javascript:disable_edit_profile_field('religiousViews_a'); ">Cancel</a></div>
+            <div class="clear"></div>
+        </div>
+        <div id="profile.website" class="inf_list" target="false">
+            <div id="website_q" class="inf_lis_lef"><fmt:message key="com.blackbox.presentation.action.persona.PSProfileActionBean.profile.website" /></div>
+            <div id="website_a" class="inf_bg_con">${actionBean.profile.website}</div>
+            <div class="inf_bg_sav"><a id="website_info_save" href="javascript:save_profile_field('profile.website','website_a');"><img src="${bb:libraryResource('/library/images/persona/save_but.jpg')}" /></a></div>
+            <div class="inf_lis_edi"><a id="website_info_link" href="javascript:enable_edit_profile_field('website_a')">Edit</a></div>
+            <div class="inf_bg_can"><a id="website_info_cancel" href="javascript:disable_edit_profile_field('website_a'); ">Cancel</a></div>
+            <div class="clear"></div>
+        </div>
+        <div id="profile.bodyMods" class="inf_list" target="false">
+            <div id="bodyMods_q" class="inf_lis_lef"><fmt:message key="com.blackbox.presentation.action.persona.PSProfileActionBean.profile.bodyMods" /></div>
+            <div id="bodyMods_a" class="inf_bg_con">${actionBean.profile.bodyMods}</div>
+            <div class="inf_bg_sav"><a id="bodyMods_info_save" href="javascript:save_profile_field('bodyMods','bodyMods_a');"><img src="${bb:libraryResource('/library/images/persona/save_but.jpg')}" /></a></div>
+            <div class="inf_lis_edi"><a id="bodyMods_info_link" href="javascript:enable_edit_profile_field('bodyMods_a')">Edit</a></div>
+            <div class="inf_bg_can"><a id="bodyMods_info_cancel" href="javascript:disable_edit_profile_field('bodyMods_a'); ">Cancel</a></div>
+            <div class="clear"></div>
+        </div>
+        <div id="profile.mostly" class="inf_list" target="false">
+            <div id="mostly_q" class="inf_lis_lef"><fmt:message key="com.blackbox.presentation.action.persona.PSProfileActionBean.profile.mostly"/></div>
+            <div id="mostly_a" class="inf_bg_con">${actionBean.profile.mostly}</div>
+            <div class="inf_bg_sav"><a id="mostly_info_save" href="javascript:save_profile_field('mostly','mostly_a');"><img src="${bb:libraryResource('/library/images/persona/save_but.jpg')}" /></a></div>
+            <div class="inf_lis_edi"><a id="mostly_info_link" href="javascript:enable_edit_profile_field('mostly_a')">Edit</a></div>
+            <div class="inf_bg_can"><a id="mostly_info_cancel" href="javascript:disable_edit_profile_field('mostly_a'); ">Cancel</a></div>
+            <div class="clear"></div>
+        </div>
+
+
+    </div>
+</s:form>

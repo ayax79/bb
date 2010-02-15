@@ -1,0 +1,137 @@
+<%--@elvariable id="actionBean" type="com.blackbox.presentation.action.search.ExploreActionBean"--%>
+<%@include file="/WEB-INF/jsp/include/taglibs.jspf" %>
+<fmt:setBundle basename="StripesResources"/>
+
+<c:choose>
+	<c:when test="${not empty actionBean.results.results}">
+
+		<h2>Search Results
+
+            <c:choose>
+                <c:when test="${actionBean.results.totalResults >= 500}">
+                    (First 500 people returned)
+                </c:when>
+                <c:otherwise>
+                    (${actionBean.results.totalResults} people found)
+                </c:otherwise>
+            </c:choose>
+            </h2>
+
+		<c:forEach var="result" items="${actionBean.results.results}">
+			<%--@elvariable id="result" type="com.blackbox.search.SearchResult"--%>
+
+			<c:set var="user" value="${result.entity}"/>
+			<%--@elvariable id="user" type="com.blackbox.user.User"--%>
+
+			<c:set var="activity" value="${result.latest}"/>
+			<%--@elvariable id="activity" type="com.blackbox.activity.IActivity"--%>
+
+			<c:set var="network" value="${result.network}"/>
+			<%--@elvariable id="network" type="com.blackbox.social.RelationshipNetwork"--%>
+             <%-- result.distance --%>
+
+            <table id="user_table_${user.guid}" class="results_table" cellpadding="0" cellspacing="0" border="0" width="100%">
+                <tr>
+                    <td valign="top" class="results-col-1">
+
+                        <div class='results-padding'>
+                            <ui:profileImage guid="${user.guid}" size="large" color="white" linkToProfile="true"
+                                             showMiniProfile="true" showUserType="true"/>
+                        </div>
+
+                    </td>
+                    <td valign="top" class="results-col-2">
+
+                        <div class="results-padding" style='font-size: 11px;'>
+                            <span class="name"><ui:entitylink entity="${user}">${bb:displayName(user)}</ui:entitylink></span><br/>
+                            <c:set var="prevToken" value="false"/>
+                            <c:if test="${not empty user.profile.location.city or not empty user.profile.location.state or not empty user.profile.location.country}">
+                            <span>
+                            <c:if test="${not empty user.profile.location.city}">
+                                ${user.profile.location.city}
+                                <c:set var="prevToken" value="true"/>
+                            </c:if>
+                            <c:if test="${not empty user.profile.location.state}">
+                               <c:if test="${prevToken}">, </c:if>
+                                ${bb:stateAbv(user.profile.location.state)}
+                            </c:if>
+
+                            <c:if test="${not empty result.distance}">
+                                (<fmt:formatNumber value="${result.distance}" maxFractionDigits='0' /> miles)
+                            </c:if>
+
+                            <%-- Need to show country nicely... --%>
+                            <%--<c:if test="${prevToken}">, </c:if>--%>
+
+                            <%--<c:if test="${not empty msgUser.profile.location.country}">--%>
+                            <%--${bb:stateAbv(msgUser.profile.location.country)}--%>
+                            <%--</c:if>--%>
+
+                            </span><br/>
+
+                            </c:if>
+
+                        <span>
+                        <c:if test="${not empty user.profile.sex}">
+                            <c:choose>
+                                <c:when test="${user.profile.sex == 'MALE'}">Male</c:when>
+                                <c:when test="${user.profile.sex == 'FEMALE'}">Female</c:when>
+                                <c:when test="${user.profile.sex == 'XXX'}">Not specified</c:when>
+                            </c:choose>
+                            <c:set var="previousValue" value="true"/>
+                        </c:if>
+                        <c:if test="${not user.profile.birthdayInVisible and not empty user.profile.birthday}">
+                            , ${bb:age(user.profile.birthday)}
+                        </c:if>
+
+                        </span><br/>
+
+                            <%--<div class="info-sliders mini-slider <c:if test="${actionBean.profile.mood.makePrivate}"> private </c:if>">--%>
+                        <ui:tinySliders user="${user}"/>
+                        </div>
+                    </td>
+                    <td class="results-col-line"><div class='user_table_vert_line'></div></td>
+                    <td valign="top">
+                        <div class="results-padding results-col-3">
+                            <c:if test="${not empty user.profile.lookingForExplain}">
+                                ${user.profile.lookingForExplain}
+                            </c:if>
+                        </div>
+                    </td>
+                    <td class="results-col-line"><div class='user_table_vert_line'></div></td>
+                    <td valign="top" width="130">
+                        <c:choose>
+                            <c:when test="${bb:isPending(user)}"><div class="statusbtn-grey">Friend Pending</div></c:when>
+                            <c:when test="${bb:isFriend(user)}"><div class="statusbtn-green">Friend</div></c:when>
+                            <c:when test="${!bb:isFriend(user)}">
+                                <c:if test="${bb:isFollowing(user)}"><div class="statusbtn-blue">Following</div></c:if>
+                                <c:if test="${bb:isFollowedBy(user)}"><div class="statusbtn-orange">Follower</div></c:if>
+                            </c:when>
+                        </c:choose>
+                    </td>
+                </tr>
+            </table>
+
+
+
+
+
+
+		</c:forEach>
+
+        <c:if test="${actionBean.results.totalResults > 10}">
+            <div style="display:none;">
+                <input type="text" id="startIndex" value="${actionBean.explore.startIndex}"/>
+                <input type="text" id="numResults" value="${actionBean.explore.maxResults}"/>
+                <input type="text" id="totalResults" value="${actionBean.results.totalResults}"/>
+            </div>
+            <div id="paging_container_div" style="margin-top: 20px;">
+                <ui:pagingControls id="bottomPaging" items="${actionBean.results}"/>
+            </div>
+        </c:if>
+
+    </c:when>
+    <c:otherwise>
+		<p><h2 id="no_results_msg">No results found</h2></p>
+	</c:otherwise>
+</c:choose>

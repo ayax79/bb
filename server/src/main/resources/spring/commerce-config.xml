@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id="loadMerchantByIdListener" class="com.blackbox.server.commerce.listener.LoadMerchantByGuidListener"/>
+    <bean id="loadInventoryListener" class="com.blackbox.server.commerce.listener.LoadInventoryListener"/>
+    <bean id="loadProductByIdListener" class="com.blackbox.server.commerce.listener.LoadProductByGuidListener"/>
+    <bean id="saveMerchantListener" class="com.blackbox.server.commerce.listener.SaveMerchantListener"/>
+    <bean id="saveProductListener" class="com.blackbox.server.commerce.listener.SaveProductListener"/>
+    <bean id="saveShoppingCartListener" class="com.blackbox.server.commerce.listener.SaveShoppingCartListener"/>
+    <bean id="purchaseOrderListener" class="com.blackbox.server.commerce.listener.PurchaseOrderListener"/>
+    <bean id="sendOrderListener" class="com.blackbox.server.commerce.listener.SendOrderListener"/>
+    <bean id="saveCartRelationshipsListener" class="com.blackbox.server.commerce.listener.SaveCartRelationshipsListener"
+            p:weight="10"/>
+
+
+    <bean id="saveInventoryListener" class="com.blackbox.server.commerce.listener.SaveInventoryListener"/>
+    <bean id="shoppingCartCache" class="org.yestech.cache.impl.TerracottaDistributedCacheManager"/>
+</beans>

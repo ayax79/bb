@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="Message">
+
+    <resultMap id="ParentActivityResult" type="com.blackbox.activity.ActivityReference">
+        <result property="activityType" column="parentActivityType" javaType="com.blackbox.activity.ActivityTypeEnum"
+                jdbcType="INTEGER"/>
+        <result property="guid" column="parentguid"/>
+        <result property="postDate" column="parentActivityPostDate" javaType="jodaDate"/>
+        <result property="ownerType" column="parentOwnerType" javaType="com.blackbox.EntityType" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <resultMap id="MessageResult" type="com.blackbox.message.Message" extends="BaseEntity.BaseEntityResult">
+        <result property="acknowledged" />
+        <result property="body"/>
+        <result property="postDate" javaType="jodaDate"/>
+        <result property="published" />
+        <result property="recipientDepth" javaType="com.blackbox.social.NetworkTypeEnum" jdbcType="INTEGER"/>
+        <result property="subject"/>
+        <result property="virtualGift" />
+        <association property="parentActivity" resultMap="ParentActivityResult"/>
+        <association property="artifactMetaData" resultMap="MessageMetaData.MessageMetaDataResult"/>
+    </resultMap>
+
+     <resultMap id="MessageWithRecipientsResult" type="com.blackbox.message.Message" extends="BaseEntity.BaseEntityResult">
+        <result property="acknowledged" />
+        <result property="body"/>
+        <result property="postDate" javaType="jodaDate"/>
+        <result property="published" />
+        <result property="recipientDepth" javaType="com.blackbox.social.NetworkTypeEnum" jdbcType="INTEGER"/>
+        <result property="subject"/>
+        <result property="virtualGift" />
+        <association property="parentActivity" resultMap="ParentActivityResult"/>
+        <association property="artifactMetaData" resultMap="MessageMetaData.MessageMetaDataWithRecipientsResult"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.blackbox.message.Message">
+        insert into bb_message (acknowledged, body, created, modified, parentactivitypostdate, parentactivitytype,
+        parentguid, parentownertype, postdate, published, recipientdepth,
+        subject, version, virtualgift, artifactmetadata_guid, guid)
+        values
+        (
+        #{acknowledged,jdbcType=BOOLEAN}, #{body,jdbcType=VARCHAR}, #{created,jdbcType=DATE}, #{modified,jdbcType=DATE},
+        #{parentActivity.postDate,jdbcType=DATE}, #{parentActivity.activityType,jdbcType=INTEGER}, #{parentActivity.guid,jdbcType=VARCHAR},
+        #{parentActivity.ownerType,jdbcType=INTEGER}, #{postDate,jdbcType=DATE}, #{published,jdbcType=BOOLEAN},
+        #{recipientDepth,jdbcType=INTEGER}, #{subject,jdbcType=VARCHAR}, #{version,jdbcType=INTEGER},
+        #{virtualGift,jdbcType=BOOLEAN}, #{artifactMetaData.guid,jdbcType=BOOLEAN}, #{guid,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <update id="update" parameterType="com.blackbox.message.Message">
+        update bb_message set
+        acknowledged = #{acknowledged,jdbcType=BOOLEAN},
+        body = #{body,jdbcType=VARCHAR},
+        modified = #{modified,jdbcType=DATE},
+        version = #{version,jdbcType=INTEGER},
+        published = #{published,jdbcType=BOOLEAN},
+        subject = #{subject,jdbcType=VARCHAR},
+        recipientDepth = #{recipientDepth,jdbcType=INTEGER}
+        where
+        guid = #{guid,jdbcType=VARCHAR}
+    </update>
+
+    <delete id="delete" parameterType="string">
+        delete from bb_message where guid = #{value}
+    </delete>
+
+    <select id="loadAllAssociatedMessages" resultMap="Message.MessageWithRecipientsResult" parameterType="map">
+        select
+        m.*,
+        md.*
+        from bb_message m
+        join bb_message_meta_data md on (m.artifactMetaData_guid = md.guid)
+        join bb_message_recipient r on (md.guid = r.messagemetadata_guid)
+        where
+        m.virtualGift = false
+        and m.acknowledged = true
+        and md.ownerguid = #{guid,jdbcType=VARCHAR}
+        <if test="types != null" >
+            and m.recipientDepth in <foreach collection="types" item="item" open="(" separator="," close=")">#{item}</foreach>
+        </if>
+        order by m.postDate desc
+    </select>
+
+    <sql id="defaultSelectAndJoins">
+        select
+        m.*,
+        md.*
+        from bb_message m
+        join bb_message_meta_data md on (m.artifactMetaData_guid = md.guid)
+
+    </sql>
+
+    <select id="loadPublicParentMessages" resultMap="Message.MessageResult">
+        <include refid="Message.defaultSelectAndJoins"/>
+        <where>
+        m.virtualGift = false
+        and m.acknowledged = true
+        and m.recipientDepth = 6
+        and m.parentGuid is null
+        order by m.postDate desc
+        </where>
+    </select>
+
+    <select id="loadWithParent" resultMap="Message.MessageWithRecipientsResult" >
+        <include refid="Message.defaultSelectAndJoins"/>
+        <where>
+        m.guid in <foreach item="item" collection="list" open="(" separator="," close=")">#{item}</foreach>
+        or m.parentguid in <foreach item="item" collection="list" open="(" separator="," close=")">#{item}</foreach>
+        </where>
+    </select>
+
+    <select id="load" resultMap="Message.MessageWithRecipientsResult" parameterType="string">
+        <include refid="Message.defaultSelectAndJoins"/>
+        <where>
+        m.guid = #{value}
+        </where>
+    </select>
+
+    <select id="loadRecipientMessages" resultType="string" parameterType="map">
+        select
+        distinct coalesce(m.parentguid, m.guid)
+        from bb_message m
+        join bb_message_meta_data md on (m.artifactMetaData_guid = md.guid)
+        join bb_message_recipient r on (md.guid = r.messagemetadata_guid)
+        where
+        m.published = #{published,jdbcType=BOOLEAN}
+        and m.recipientDepth = #{recipientDepth,jdbcType=INTEGER}
+        <choose>
+            <when test="folder.name() == 'INBOX_FOLDER'">
+                and r.recipientguid = #{userGuid,jdbcType=VARCHAR}
+                <!-- and r.status = #{status,jdbcType=INTEGER} -->
+            </when>
+            <when test="folder.name() == 'ARCHIVED_FOLDER'" >
+                and r.recipientguid = #{userGuid,jdbcType=VARCHAR}
+                <!-- and r.status = #{status,jdbcType=INTEGER} -->
+            </when>
+            <when test="folder.name() == 'DRAFTS_FOLDER'" >
+                and md.ownerguid = #{userGuid,jdbcType=VARCHAR}
+            </when>
+            <when test="folder.name() == 'SENT_FOLDER'" >
+                and md.ownerguid = #{userGuid,jdbcType=VARCHAR}
+            </when>
+        </choose>
+        <choose>
+            <when test="readState != null and readState.name() == 'READ' ">
+                and r.read = true
+            </when>
+            <when test="readState != null and readState.name() == 'UNREAD' ">
+                and r.read = false
+            </when>
+        </choose>
+        <include refid="BBPersistentObject.boundsSql" />
+    </select>
+
+    <select id="loadAll" resultMap="MessageResult">
+        <include refid="defaultSelectAndJoins" />
+    </select>
+
+
+</mapper>

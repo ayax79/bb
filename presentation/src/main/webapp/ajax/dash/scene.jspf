@@ -1,0 +1,74 @@
+<%--@elvariable id="actionBean" type="com.blackbox.presentation.action.activity.SceneActivityActionBean"--%>
+<%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
+
+<div class="scene-activity-bg">
+	<span class="scene-activity">Activity:</span>
+	<ul class="filters-menu scene-filter-menu">
+		<c:set var="actionUrl"><s:url beanclass="com.blackbox.presentation.action.activity.SceneActivityActionBean" event="loadPartial"/></c:set>
+		<li><ui:anchorButton href="${actionUrl}&filter=all" typeClass="smlbtn" styleClass="menu-item all-filter">Everyone</ui:anchorButton></li>
+		<%--<li><ui:anchorButton href="${actionUrl}&filter=friends_following" typeClass="smlbtn" styleClass="menu-item">Friends+Following</ui:anchorButton></li>--%>
+		<li><ui:anchorButton href="${actionUrl}&filter=friends" typeClass="smlbtn" styleClass="menu-item friends-filter">Friends</ui:anchorButton></li>
+		<li><ui:anchorButton href="${actionUrl}&filter=following" typeClass="smlbtn" styleClass="menu-item following-filter">Following</ui:anchorButton></li>
+	</ul>
+	<div class="clear"></div>
+</div>
+<div class="clear"></div>
+<div class="bb-left main-col">
+	
+	<ui:mainPublisher inputId="scene-publisher" defaultText="What are you exploring?"/>
+	
+	<div id="scene_target" class="stream-content articles">
+		<%@include file="/ajax/dash/activity-stream.jspf" %>
+	</div>
+	<a href="#" id="scene-more-link" class="more-activity"><span>Show more updates!</span></a>
+	<div class="clear"></div>
+</div>
+<div class="bb-right right-col last">
+	<%@include file="/ajax/dash/right-column-scene.jspf"%>
+</div>
+<div class="clear"></div>
+
+<ui:publisher id="publisher"     className="main" config="main" sourceUser="${actionBean.currentUser}"/>
+<ui:publisher id="miniPublisher" className="mini" config="mini"/>
+
+<script type="text/javascript">
+//<![CDATA[
+
+	var sceneStream = new Activity.Stream("#scene_target");
+	sceneStream.addEventTypes([
+		Activity.Event.MESSAGE_EVENT,
+		Activity.Event.MEDIA_EVENT,
+		Activity.Event.OCCASION_EVENT
+	], "scene");
+	sceneStream.activate();
+	sceneStream.bindFilterButtons($(".scene-filter-menu"));
+	sceneStream.bindShowMore($("#scene-more-link"), bb.urls.activity.read);
+
+	//Bind initial filter button
+	$(".filters-menu li a.${actionBean.filter}-filter").addClass("active");
+
+	// Main Publisher
+	var mainPublisher = new Publisher("#publisher", "main");
+	// Mini Publisher
+	bb.widgets.createMiniPublisher();
+
+	bb.pageInit.bindArticleEvents($("#scene_container"));
+	bb.pageInit.bindDefaultTextBoxes($("#scene_container"));
+	$(".main-publisher-src").focus(function() {
+			mainPublisher.attach(this);
+	});
+	
+	$(function() {
+	
+		<c:if test="${actionBean.firstTime}">
+		$.prettyPhoto.open('http://cdn.episodic.com/player/EpisodicPlayer.swf?width=480&height=360&config=http%3A%2F%2Fcdn.episodic.com%2Fshows%2Fob0pj9jq17up%2Fob1grg4gej2n%2Fconfig.xml');
+		</c:if>
+
+		$("#intro").click(function() {
+		   $.prettyPhoto.open('http://cdn.episodic.com/player/EpisodicPlayer.swf?width=480&height=360&config=http%3A%2F%2Fcdn.episodic.com%2Fshows%2Fob0pj9jq17up%2Fob1grg4gej2n%2Fconfig.xml');
+		});
+
+	});
+
+//]]>
+</script>

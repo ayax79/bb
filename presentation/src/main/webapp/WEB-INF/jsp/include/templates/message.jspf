@@ -1,0 +1,47 @@
+<%@ page import="java.util.Arrays" %>
+<%@ page import="java.util.StringTokenizer" %>
+<%--@elvariable id="activity" type="com.blackbox.activity.ActivityThread"--%>
+<%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
+<c:set var="newLine" value="
+"/>
+
+<div class="article <c:if test="${not empty activity.parent.guid}"> article_${activity.parent.guid}</c:if> <c:if test="${not empty activity.parent.artifactMetaData.artifactOwner.guid}"> U${activity.parent.artifactMetaData.artifactOwner.guid}</c:if> <c:if test="${bb:isCollapsedPost(cookie.cu.value, activity.parent.artifactMetaData.artifactOwner.guid)}"> collapsed-post</c:if>">
+	<p class="create-update">
+		<s:link beanclass="com.blackbox.presentation.action.persona.PersonaActionBean" class="user-link thread-starter">
+			<s:param name="identifier" value="${activity.parent.artifactMetaData.artifactOwner.guid}"/>
+			${bb:userName(activity.parent.artifactMetaData.artifactOwner)}
+		</s:link>
+		started the conversation <span class="create-date">${bb:formatDate(activity.parent.postDate, "MMMM d")}</span>
+	</p>
+	<div class="article-content clearfix">
+		<%@include file="/WEB-INF/jsp/include/templates/article-actions.jspf" %>
+		<div class="article-left">
+			<div class="article-pict">
+				<ui:profileImage guid="${activity.parent.artifactMetaData.artifactOwner.guid}" showMiniProfile="true" size="medium_large"/>
+			</div>
+			<ui:privacyControl guid="20" ownerType="" defaultValue="${activity.parent.recipientDepth}" beanclass="com.blackbox.presentation.action.bookmark.BookmarkActionBean"/>
+		</div>
+		<div class="article-right">
+			<div class="article-body">
+				<div class="article-header">
+					<div class="article-meta">
+					<span class="article-user">
+                        <s:link beanclass="com.blackbox.presentation.action.persona.PersonaActionBean" class="user-link">
+							<s:param name="identifier" value="${activity.parent.artifactMetaData.artifactOwner.guid}"/>
+							<c:set var="ao" value="${activity.parent.artifactMetaData.artifactOwner}" scope="page"/>
+							${bb:userName(activity.parent.artifactMetaData.artifactOwner)}
+						</s:link>
+                    </span>
+						<span class="collapsed-message">posted a message</span>
+						<span class="article-date"><abbr class="timeago" title="${activity.parent.formattedPostDate}">${activity.parent.formattedPostDate}</abbr></span>
+					</div>
+					<div class="clear"></div>
+				</div>
+				<c:set var="donkeySrc"><img src="${bb:libraryResource('/library/images/icons/donkey.jpg')}" alt="donkey"/></c:set>
+				<c:set var="body">${f:replace(activity.parent.body, "{DONKEY}", donkeySrc)}</c:set>
+				<div class="article-meat">${f:replace(body, newLine, "<br/>")}</div>
+				<%@include file="/WEB-INF/jsp/include/templates/comments.jspf" %>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,15 @@
+<div id="album-sidebar">
+	<div class="pictures-header">
+		<h3>${bb:displayName(actionBean.user)}&#8217;s Albums &nbsp;<span> (<span class="total-number-albums">${f:length(actionBean.mediaLibList)}</span> albums | <span class="all-albums-total">${actionBean.totalImages}</span> photos)</span></h3>
+	</div>
+	<div class="sidebar-images clearfix">
+	<c:forEach var="album" items="${actionBean.mediaLibList}" varStatus="albumLoopCount">
+		<%--@elvariable id="album" type="com.blackbox.media.MediaLibrary"--%>
+		<div class="album-cover"><a href="#${album.guid}" class="album-link"><img src="${album.media[0].thumbnailLocation}" alt="album-thumb-dummy"/></a></div>
+	</c:forEach>
+	</div>
+	<div class="paging-right">
+		<a href="#" class="paging-button previous"><span class="label">&nbsp;</span></a>
+		<a href="#" class="paging-button next"><span class="label">&nbsp;</span></a>
+	</div>
+</div>

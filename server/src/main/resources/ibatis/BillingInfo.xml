@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="BillingInfo">
+
+    <resultMap id="BillingInfoResult" type="com.blackbox.billing.BillingInfo">
+        <result property="address.address1" column="address1"/>
+        <result property="address.address2" column="address2"/>
+        <result property="address.city" column="city" />
+        <result property="address.country" column="country"/>
+        <result property="address.county" column="county"/>
+        <result property="address.latitude" column="latitude"/>
+        <result property="address.longitude" column="longitude"/>
+        <result property="address.state" column="state"/>
+        <result property="address.zipCode" column="zipCode"/>
+        <result property="providerGuid" />
+        <result property="billingPhone" />
+        <result property="provider" javaType="com.blackbox.billing.BillingInfo$BillingProvider" jdbcType="INTEGER" />
+        <result property="lastBilled" javaType="jodaDate" />
+        <result property="lastExpirationDate" javaType="jodaDate" />
+        <result property="nextBillDate" javaType="jodaDate" />
+        <result property="lastResponse" />
+        <result property="authResponse" />
+        <result property="lastAmount" />
+        <result property="lastCardType" />
+        <result property="lastCardNum" />
+        <result property="lastName" />
+        <result property="firstName" />
+        <result property="user.guid" column="user_guid" />
+    </resultMap>
+
+    <insert id="insert" parameterType="com.blackbox.billing.BillingInfo">
+        insert into bb_billing_info
+        (address1, address2, authResponse, billingPhone, city, country, county, created, lastAmount, lastBilled,
+        lastCardNum, lastCardType, lastExpirationDate, lastResponse, latitude, longitude, modified, nextBillDate, provider,
+        providerGuid, state, version, zipCode, user_guid, firstName, lastName, guid)
+        values
+        (#{address.address1,jdbcType=VARCHAR},
+        #{address.address2,jdbcType=VARCHAR},
+        #{authResponse,jdbcType=VARCHAR},
+        #{billingPhone,jdbcType=VARCHAR},
+        #{address.city,jdbcType=VARCHAR},
+        #{address.country,jdbcType=VARCHAR},
+        #{address.county,jdbcType=VARCHAR},
+        #{created,jdbcType=DATE},
+        #{lastAmount,jdbcType=VARCHAR},
+        #{lastBilled,jdbcType=DATE},
+        #{lastCardNum,jdbcType=VARCHAR},
+        #{lastCardType,jdbcType=VARCHAR},
+        #{lastExpirationDate,jdbcType=DATE},
+        #{lastResponse,jdbcType=DATE},
+        #{address.latitude,jdbcType=INTEGER},
+        #{address.longitude,jdbcType=INTEGER},
+        #{modified,jdbcType=DATE},
+        #{nextBillDate,jdbcType=DATE},
+        #{provider,jdbcType=INTEGER},
+        #{providerGuid,jdbcType=VARCHAR},
+        #{address.state,jdbcType=VARCHAR},
+        #{version,jdbcType=INTEGER},
+        #{address.zipCode,jdbcType=VARCHAR},
+        #{user.guid,jdbcType=VARCHAR},
+        #{firstName,jdbcType=VARCHAR},
+        #{lastName,jdbcType=VARCHAR},
+        #{guid,jdbcType=VARCHAR} )
+    </insert>
+
+    <update id="update" parameterType="com.blackbox.billing.BillingInfo">
+        update bb_billing_info set
+        address1 = #{address.address1,jdbcType=VARCHAR},
+        address2 = #{address.address2,jdbcType=VARCHAR},
+        authResponse = #{authResponse,jdbcType=VARCHAR},
+        billingPhone = #{billingPhone,jdbcType=VARCHAR},
+        city = #{address.city,jdbcType=VARCHAR},
+        country = #{address.country,jdbcType=VARCHAR},
+        county = #{address.county,jdbcType=VARCHAR},
+        lastAmount = #{lastAmount,jdbcType=INTEGER}, 
+        lastBilled = #{lastBilled,jdbcType=DATE},
+        lastCardNum = #{lastCardNum,jdbcType=VARCHAR},
+        lastCardType = #{lastCardType,jdbcType=VARCHAR},
+        lastExpirationDate = #{lastExpirationDate,jdbcType=DATE},
+        lastResponse = #{lastResponse,jdbcType=VARCHAR},
+        latitude = #{address.latitude,jdbcType=INTEGER},
+        longitude = #{address.longitude,jdbcType=INTEGER},
+        modified = #{modified,jdbcType=DATE},
+        nextBillDate = #{nextBillDate,jdbcType=DATE},
+        provider = #{provider,jdbcType=INTEGER},
+        providerGuid = #{providerGuid,jdbcType=VARCHAR},
+        state = #{address.state,jdbcType=VARCHAR},
+        version = #{version,jdbcType=INTEGER},
+        zipCode = #{address.zipCode,jdbcType=VARCHAR},
+        firstName = #{firstName,jdbcType=VARCHAR},
+        lastName = #{lastName,jdbcType=VARCHAR}
+        where
+        guid = #{guid}
+    </update>
+
+    <select id="loadByUser" parameterType="string" resultMap="BillingInfoResult">
+        select * from bb_billing_info where user_guid = #{value}
+    </select>
+
+
+</mapper>

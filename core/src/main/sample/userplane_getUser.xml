@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!-- COPYRIGHT Userplane 2004 (http://www.userplane.com) -->
+<!-- CS version 1.9.0 -->
+<communicationsuite>
+    <time>March 22, 2007 08:16:02 PM</time>
+    <user>
+        <userid>123456</userid>
+        <admin>false</admin>
+        <speaker>false</speaker>
+        <displayname>My User Name</displayname>
+        <avsettings>
+            <avEnabled>true</avEnabled>
+            <audioSend>true</audioSend>
+            <videoSend>true</videoSend>
+            <audioReceive>true</audioReceive>
+            <videoReceive>true</videoReceive>
+            <audiokbps>16</audiokbps>
+            <!--- acceptable values: 10,16,22,44,88 -->
+            <videokbps>100</videokbps>
+            <!--- recommended range: 10 - 200 -->
+            <videofps>15</videofps>
+            <!--- acceptable range: 1 - 30 -->
+            <videosize>1</videosize>
+            <!--- acceptable values: 1, 2, 3  -->
+            <videoDisplaySize>2</videoDisplaySize>
+        </avsettings>
+        <buddylist>
+            <user>
+                <userid>22222</userid>
+                <displayname>joeschmoe</displayname>
+                <images>
+                    <icon>http://images.yourcompany.userplane.com/pathToIcon.jpg</icon>
+                    <thumbnail>http://images.yourcompany.userplane.com/pathToThumbnail.jpg</thumbnail>
+                </images>
+            </user>
+            <user>
+                <userid>33333</userid>
+                <displayname>johnjohnson</displayname>
+                <images>
+                    <icon>http://images.yourcompany.userplane.com/pathToIcon.jpg</icon>
+                    <thumbnail>http://images.yourcompany.userplane.com/pathToThumbnail.jpg</thumbnail>
+                </images>
+            </user>
+        </buddylist>
+        <blocklist>
+            <userid>77777</userid>
+        </blocklist>
+        <images>
+            <icon>http://images.yourcompany.userplane.com/pathToIcon.jpg</icon>
+            <thumbnail>http://images.yourcompany.userplane.com/pathToThumbnail.jpg</thumbnail>
+            <fullsize>http://images.yourcompany.userplane.com/pathToFullSize.jpg</fullsize>
+        </images>
+        <chat>
+            <userdatavalues>
+                <line>Milpitas, CA</line>
+                <line>Honda of Milpitas</line>
+                <line>2003 CBR F4</line>
+            </userdatavalues>
+            <gui>
+                <viewprofile>true</viewprofile>
+                <instantcommunicator>true</instantcommunicator>
+            </gui>
+            <notextentry>false</notextentry>
+            <invisible>false</invisible>
+            <userroomcreate>true</userroomcreate>
+            <adminrooms>
+                <room createOnLogin="true">
+                    <name>Joe's Room</name>
+                    <description>A rooom just for Joe</description>
+                </room>
+                <room createOnLogin="false">
+                    <name>Singles</name>
+                    <description>Singles Description</description>
+                </room>
+                <room createOnLogin="false">
+                    <name>18-24</name>
+                </room>
+            </adminrooms>
+            <restrictedRooms allowRestricted="false">
+                <room createOnLogin="true" creatorID="4377">
+                    <name>Only Site Admins</name>
+                    <description>Only Site admins can get into this room</description>
+                </room>
+            </restrictedRooms>
+            <initialroom createOnLogin="true">Lazy People</initialroom>
+            <maxdockitems>1</maxdockitems>
+            <permitCopy>true</permitCopy>
+            <sessionTimeout>-1</sessionTimeout>
+            <sessionTimeoutMessage>Your session has expired.</sessionTimeoutMessage>
+            <selecteduser>123</selecteduser>
+            <inactivityTimeout>2</inactivityTimeout>
+            <inactivityTimeoutMessage>You were timed out due to inactivity.</inactivityTimeoutMessage>
+            <permitWhisper>true</permitWhisper>
+        </chat>
+        <userlist>
+            <gui>
+                <modulelist>miniprofile,onlineusers,buddylist</modulelist>
+                <viewprofile>false</viewprofile>
+                <instantcommunicator>false</instantcommunicator>
+                <addfriend>true</addfriend>
+                <search>true</search>
+            </gui>
+            <buddyviewableonly>false</buddyviewableonly>
+        </userlist>
+        <minichat>
+            <useAnonymousScreenNames>false</useAnonymousScreenNames>
+            <showUserCount>true</showUserCount>
+            <showWatcherUserCount>true</showWatcherUserCount>
+            <allowTextInput>false</allowTextInput>
+            <allowRoomUserlist>false</allowRoomUserlist>
+        </minichat>
+    </user>
+</communicationsuite>

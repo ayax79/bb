@@ -1,0 +1,50 @@
+<%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#submitbutton').click(function() {
+            $('#member_privacy_form').submit();
+        });
+    });
+</script>
+
+<s:form id="member_privacy_form" class="bbform bbsettings" beanclass="com.blackbox.presentation.action.user.AccountSettingsActionBean" method="post">
+    <s:hidden name="_eventName" value="updatePrivacy"/>
+    <h2>Privacy settings</h2>
+
+	<ul>
+		<li>
+			<label>Unvouched users can:</label>
+			<s:checkbox id="limitedCanPm" name="user.profile.limitedCanPm"/><label for="limitedCanPm" class="sub">Send me Private Messages</label><br />
+			<s:checkbox id="limitedCanFollow" name="user.profile.limitedCanFollow"/><label for="limitedCanFollow" class="sub">Follow Me</label><br />
+			<s:checkbox id="limitedCanComment" name="user.profile.limitedCanComment"/><label for="limitedCanComment" class="sub">Comment on My Posts</label><br />
+			<s:checkbox id="limitedCanSearch" name="user.profile.limitedCanSearch"/><label for="limitedCanSearch" class="sub">See me in Search Results</label>
+		</li>
+	</ul>
+
+ 	<%--<ul style="float:left;">--%>
+		<%--<li>--%>
+			<%--<label>Any User can:</label>--%>
+			<%--<s:checkbox id="anyUserCanPm" name="user.profile.anyUserCanPm"/><label for="anyUserCanPm" class="sub">Send me Private Messages</label><br />--%>
+			<%--<s:checkbox id="anyUserCanFollow" name="user.profile.anyUserCanFollow"/><label for="anyUserCanFollow" class="sub">Follow Me</label><br />--%>
+			<%--<s:checkbox id="anyUserCanComment" name="user.profile.anyUserCanComment"/><label for="anyUserCanComment" class="sub">Comment on My Posts</label><br />--%>
+			<%--<s:checkbox id="anyUserCanSearch" name="user.profile.anyUserCanSearch"/><label for="anyUserCanSearch" class="sub">See me in Search Results</label>--%>
+		<%--</li>--%>
+	<%--</ul>--%>
+
+	<%--<div class="clear"></div>--%>
+
+	<div class="button-panel">
+		<button name="updatePrivacy" id="submitbutton" type="submit" class="bbform-button bbutton grey"><span>Save changes</span></button>
+	</div>
+
+</s:form>
+
+
+
+
+
+
+
+
+
+

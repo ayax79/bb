@@ -1,0 +1,79 @@
+<%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
+<head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>Event</title>
+
+	<link href="${bb:libraryResource('/library/css/psevent.css')}" rel="stylesheet" type="text/css"/>
+	<script type="text/javascript" src="${bb:libraryResource('/library/js/jquery.Jcrop.min.js')}"></script>
+	<script type="text/javascript" src="${bb:libraryResource('/library/js/colorpicker.js')}"></script>
+	<script type="text/javascript" src="${bb:libraryResource('/library/js/psevent.js')}"></script>
+	<link rel="stylesheet" href="${bb:libraryResource('/library/css/jquery.Jcrop.css')}" type="text/css"/>
+	<link rel="stylesheet" href="${bb:libraryResource('/library/css/jquery.colorpicker/css/colorpicker.css')}" type="text/css"/>
+</head>
+<body>
+<div class="eve_con_rig_mar">
+	<div id="layout_preview" class="event_background_color_white" style="background-color:#${occasion.layout.backgroundColor};color:#${occasion.layout.textColor};">
+		<div class="event_media">
+			<div class="event_media_video">
+				<c:choose>
+					<c:when test="${occasion.layout.transiantVideo != null}">
+						<img src="${occasion.layout.transiantVideo.location}" onerror='Activity.Utils.imgPoll(event, this);'/>
+					</c:when>
+					<c:otherwise>
+						<img src="${defaultVideoLocation}" onerror='Activity.Utils.imgPoll(event, this);'/>
+					</c:otherwise>
+				</c:choose>
+			</div>
+			<div class="event_media_pic" style="position:relative;">
+				<c:choose>
+					<c:when test="${occasion.layout.transiantImage != null}">
+						<img id="big_event_image_p" src="${occasion.layout.transiantImage.location}" onerror='Activity.Utils.imgPoll(event, this);'/>
+					</c:when>
+					<c:otherwise>
+						<img id="big_event_image_p" src="${defaultImageLocation}" onerror='Activity.Utils.imgPoll(event, this);'/>
+					</c:otherwise>
+				</c:choose>
+			</div>
+		</div>
+		<div class="event_content event_content_left" style="width:300px">
+			<div class="field">
+				<div class="name">${occasion.name}</div>
+				<div class="txt">description</div>
+			</div>
+			<div class="field">
+				<div class="title">Date</div>
+				<div class="txt">July, 29, 2009 at 18:00.</div>
+			</div>
+			<div class="field">
+				<div class="title">Location</div>
+				<div class="txt">${userType}</div>
+			</div>
+			<div class="field">
+				<div class="title">Address</div>
+				<div class="map">
+					<div class="txt">${defaultImageLocation}<br/>
+						${occasion.layout.showHeading}<br/>
+						${occasion.layout.layoutType}<br/>
+						Oregon<br/>
+						97068
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+		<div class="event_content_right">
+			<c:choose>
+				<c:when test="${userType eq 'PROMOTER'}">
+					<div style="background-image:url(${bb:libraryResource('/library/images/psevent/map_mock.jpg')}) ; width:161px; height:128px; margin:244px 20px 20px 0;float:right;"></div>
+				</c:when>
+				<c:otherwise>
+					<div style="background-image:url(${bb:libraryResource('/library/images/defaultplaceholder.jpg')}) ; width:241px; height:188px; margin:20px 20px 0 0; color:#FF3C00; font-size:14px; text-align:center; font-weight:bold; line-height:188px;">Select a video to use here</div>
+					<div style="background-image:url(${bb:libraryResource('/library/images/psevent/map_mock.jpg')}) ; width:161px; height:128px; margin:40px 20px 0 0;float:right;"></div>
+				</c:otherwise>
+			</c:choose>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+</body>

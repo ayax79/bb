@@ -1,0 +1,669 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="Activity">
+
+    <resultMap id="ActivityResult" type="com.blackbox.activity.Activity">
+        <result property="acknowledged" />
+        <result property="activityType" />
+        <result property="artifactType" />
+        <result property="aspect" />
+        <result property="avatar" />
+        <result property="comment" />
+        <result property="contentSize" />
+        <result property="created" />
+        <result property="episodeId" />
+        <result property="fileName" />
+        <result property="location" />
+        <result property="loosePic" />
+        <result property="mimeType" />
+        <result property="modified" />
+        <association property="occasion" resultMap="ActivityOccasionResult" />
+    </resultMap>
+
+    <resultMap id="ActivityOccasionResult" type="com.blackbox.occasion.ActivityOccasion">
+        <result property="guid" column="occasionguid"/>
+        <result property="description" column="occasiondescription" />
+        <result property="avatarLocation" column="occasionavatarlocation" />
+        <result property="hostBy" column="occasionhostby"/>
+        <result property="eventTime" column="occasioneventtime"/>
+        <result property="eventEndTime" column="occasioneventendtime"/>
+        <result property="occasionType" column="occasiontype"/>
+        <result property="eventUrl" column="occasioneventurl"/>
+        <association property="address" resultMap="OccasionAddressResult" />
+    </resultMap>
+
+    <resultMap id="OccasionAddressResult" type="com.blackbox.social.Address">
+        <result property="address1" column="occasionaddress1" />
+        <result property="address2" column="occasionaddress2" />
+        <result property="city" column="occasioncity" />
+        <result property="state" column="occasionstate" />
+        <result property="country" column="occasioncountry" />
+        <result property="zipCode" column="occasionzipCode" />
+        <result property="county" column="occasioncounty" />
+        <result property="latitude" column="occasionlatitude" />
+        <result property="longitude" column="occasionlongitude" />
+        <result property="timeZone" column="occasiontimeZone" />
+    </resultMap>
+
+
+    <resultMap id="ParentActivityResult" type="com.blackbox.activity.ActivityReference">
+        <result property="activityType" column="parentActivityType" javaType="com.blackbox.activity.ActivityTypeEnum"
+                jdbcType="INTEGER"/>
+        <result property="guid" column="parentguid"/>
+        <result property="postDate" column="parentActivityPostDate" javaType="jodaDate"/>
+        <result property="ownerType" column="parentOwnerType" javaType="com.blackbox.EntityType" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <resultMap id="MessageResult" type="com.blackbox.message.Message" extends="BaseEntity.BaseEntityResult">
+        <result property="acknowledged"/>
+        <result property="body"/>
+        <result property="postDate" javaType="jodaDate"/>
+        <result property="published"/>
+        <result property="recipientDepth" javaType="com.blackbox.social.NetworkTypeEnum" jdbcType="INTEGER"/>
+        <result property="subject"/>
+        <result property="virtualGift"/>
+        <association property="artifactMetaData" resultMap="MessageMetaData.MessageMetaDataResult"/>
+        <association property="parentActivity" resultMap="ParentActivityResult"/>
+    </resultMap>
+
+    <resultMap id="LightParentActivityResult" type="com.blackbox.activity.ActivityReference">
+        <result property="guid" column="parentguid"/>
+    </resultMap>
+
+    <resultMap id="ChildMessageResult" type="com.blackbox.message.Message">
+        <result property="guid" jdbcType="VARCHAR" javaType="string" column="guid"/>
+        <result property="body"/>
+        <result property="postDate" javaType="jodaDate"/>
+        <result property="recipientDepth" javaType="com.blackbox.social.NetworkTypeEnum" jdbcType="INTEGER"/>
+        <association property="parentActivity" resultMap="LightParentActivityResult"/>
+        <association property="artifactMetaData" resultMap="MessageMetaData.MessageMetaDataResult"/>
+    </resultMap>
+
+    <resultMap id="ChildMediaResult" type="com.blackbox.media.MediaMetaData">
+        <result property="guid" jdbcType="VARCHAR" javaType="string" column="guid"/>
+        <result property="body"/>
+        <result property="postDate" javaType="jodaDate"/>
+        <result property="recipientDepth" javaType="com.blackbox.social.NetworkTypeEnum" jdbcType="INTEGER"/>
+        <result property="owner.ownerType" column="ownerownerType" jdbcType="INTEGER"/>
+        <result property="owner.guid" column="ownerguid" />
+        <association property="parentActivity" resultMap="LightParentActivityResult"/>
+    </resultMap>
+
+    <resultMap id="MediaResult" type="com.blackbox.media.MediaMetaData">
+        <result property="guid" />
+        <result property="postDate" />
+        <result property="recipientDepth" />
+        <result property="comment" />
+        <result property="location" />
+        <result property="mimeType" />
+        <result property="thumbnailLocation" />
+        <result property="owner.guid" />
+        <result property="owner.ownerType" />
+        <result property="virtualGift" />
+    </resultMap>
+
+    <insert id="insert" parameterType="com.blackbox.activity.Activity">
+        insert into bb_activity
+        (acknowledged, activitytype, artifacttype, aspect, assetid, avatar, comment, contentsize, created, episodeid,
+        filename, location, loosepic, mimetype, modified, occasionaddress1, occasionaddress2, occasionavatarlocation,
+        occasioncity, occasioncountry, occasioncounty, occasiondescription, occasioneventendtime, occasioneventtime,
+        occasionguid, occasionhostby, occasionlatitude, occasionlongitude, occasionstate, occasiontype, occasionurl,
+        occasionzipcode, ownerguid, ownerownertype, ownertype, parentactivitypostdate, parentactivitytype, parentguid,
+        parentownertype, passwordprotect, postdate, publishtotwitter, recipientdepth, senderavatarimage, senderdisplayname,
+        senderprofileimage, thumbnaillocation, version, virtualgift, guid)
+        values
+        (#{acknowledged,jdbcType=BOOLEAN}, #{activityType,jdbcType=INTEGER}, #{artifactType,jdbcType=INTEGER},
+        #{aspect,jdbcType=DOUBLE}, #{assetId,jdbcType=VARCHAR}, #{avatar,jdbcType=BOOLEAN}, #{comment,jdbcType=VARCHAR},
+        #{size,jdbcType=INTEGER}, #{created,jdbcType=DATE}, #{episodeId,jdbcType=VARCHAR}, #{fileName,jdbcType=VARCHAR},
+        #{location,jdbcType=VARCHAR}, #{loosePic,jdbcType=BOOLEAN}, #{mimeType,jdbcType=VARCHAR}, #{modified,jdbcType=DATE},
+        #{occasion.address.address1,jdbcType=VARCHAR}, #{occasion.address.address2,jdbcType=VARCHAR},
+        #{occasion.avatarLocation,jdbcType=VARCHAR}, #{occasion.address.city,jdbcType=VARCHAR},
+        #{occasion.address.country,jdbcType=INTEGER}, #{occasion.address.county,jdbcType=INTEGER},
+        #{occasion.description,jdbcType=VARCHAR}, #{occasion.eventEndTime,jdbcType=DATE},
+        #{occasion.eventTime,jdbcType=DATE}, #{occasion.guid,jdbcType=VARCHAR}, #{occasion.hostBy,jdbcType=VARCHAR},
+        #{occasion.address.latitude,jdbcType=INTEGER}, #{occasion.address.longitude,jdbcType=INTEGER},
+        #{occasion.address.state,jdbcType=VARCHAR}, #{occasion.occasionType,jdbcType=INTEGER}, #{occasion.eventUrl,jdbcType=VARCHAR},
+        #{occasion.address.zipCode,jdbcType=VARCHAR}, #{owner.guid,jdbcType=VARCHAR}, #{owner.ownerType,jdbcType=INTEGER},
+        #{ownerType,jdbcType=INTEGER}, #{parentActivity.postDate,jdbcType=DATE}, #{parentActivity.activityType,jdbcType=INTEGER},
+        #{parentActivity.guid,jdbcType=VARCHAR}, #{parentActivity.ownerType,jdbcType=INTEGER}, #{passwordProtect,jdbcType=BOOLEAN},
+        #{postDate,jdbcType=DATE}, #{publishToTwitter,jdbcType=BOOLEAN}, #{recipientDepth,jdbcType=INTEGER},
+        #{senderProfile.senderAvatarImage,jdbcType=VARCHAR}, #{senderProfile.senderDisplayName,jdbcType=VARCHAR},
+        #{senderProfile.senderProfileImage,jdbcType=VARCHAR}, #{thumbnailLocation,jdbcType=VARCHAR}, #{version,jdbcType=INTEGER},
+        #{virtualGift,jdbcType=BOOLEAN}, #{guid,jdbcType=VARCHAR})
+    </insert>
+
+    <update id="update" parameterType="com.blackbox.activity.Activity">
+        update bb_activity set
+        acknowledged = #{acknowledged,jdbcType=BOOLEAN},
+        activitytype = #{activityType,jdbcType=INTEGER},
+        artifacttype = #{artifactType,jdbcType=INTEGER},
+        aspect = #{aspect,jdbcType=DOUBLE},
+        assetid = #{assetId,jdbcType=VARCHAR},
+        avatar = #{avatar,jdbcType=BOOLEAN},
+        comment = #{comment,jdbcType=VARCHAR},
+        contentsize = #{size,jdbcType=INTEGER},
+        episodeid = #{episodeId,jdbcType=VARCHAR},
+        filename = #{fileName,jdbcType=VARCHAR},
+        location = #{location,jdbcType=VARCHAR},
+        loosepic = #{loosePic,jdbcType=BOOLEAN},
+        mimetype = #{mimeType,jdbcType=VARCHAR},
+        modified = #{modified,jdbcType=DATE},
+        occasionaddress1 = #{occasion.address.address1,jdbcType=VARCHAR},
+        occasionaddress2 = #{occasion.address.address2,jdbcType=VARCHAR},
+        occasionavatarlocation = #{occasion.avatarLocation,jdbcType=VARCHAR},
+        occasioncity = #{occasion.address.city,jdbcType=VARCHAR},
+        occasioncountry = #{occasion.address.country,jdbcType=INTEGER},
+        occasioncounty = #{occasion.address.county,jdbcType=INTEGER},
+        occasiondescription = #{occasion.description,jdbcType=VARCHAR},
+        occasioneventendtime = #{occasion.eventEndTime,jdbcType=DATE},
+        occasioneventtime = #{occasion.eventTime,jdbcType=DATE},
+        occasionguid = #{occasion.guid,jdbcType=VARCHAR},
+        occasionhostby = #{occasion.hostBy,jdbcType=VARCHAR},
+        occasionlatitude = #{occasion.address.latitude,jdbcType=INTEGER},
+        occasionlongitude = #{occasion.address.longitude,jdbcType=INTEGER},
+        occasionstate = #{occasion.address.state,jdbcType=VARCHAR},
+        occasiontype = #{occasion.type,jdbcType=INTEGER},
+        occasionurl = #{occasion.url,jdbcType=VARCHAR},
+        occasionzipcode = #{occasion.address.zipCode,jdbcType=VARCHAR},
+        ownerguid = #{owner.guid,jdbcType=VARCHAR},
+        ownerownertype = #{owner.ownerType,jdbcType=INTEGER},
+        ownertype = #{ownerType,jdbcType=INTEGER},
+        parentactivitypostdate = #{parentActivity.postDate,jdbcType=DATE},
+        parentactivitytype = #{parentActivity.activityType,jdbcType=INTEGER},
+        parentguid = #{parentActivity.guid,jdbcType=VARCHAR},
+        parentownertype = #{parentActivity.ownerType,jdbcType=INTEGER},
+        passwordprotect = #{passwordProtect,jdbcType=BOOLEAN},
+        postdate = #{postDate,jdbcType=DATE},
+        publishtotwitter = #{publishToTwitter,jdbcType=BOOLEAN},
+        recipientdepth = #{recipientDepth,jdbcType=INTEGER},
+        senderavatarimage = #{senderProfile.senderAvatarImage,jdbcType=VARCHAR},
+        senderdisplayname = #{senderProfile.senderDisplayName,jdbcType=VARCHAR},
+        senderprofileimage = #{senderProfile.senderProfileImage,jdbcType=VARCHAR},
+        thumbnaillocation = #{thumbnailLocation,jdbcType=VARCHAR},
+        version = #{version,jdbcType=INTEGER},
+        virtualgift = #{virtualGift,jdbcType=BOOLEAN}
+        where
+        guid = #{guid,jdbcType=VARCHAR}
+    </update>
+
+    <select id="loadChildMessage" resultMap="Activity.ChildMessageResult" parameterType="string">
+        select
+        m.guid, m.postDate, m.recipientDepth, m.body, m.parentguid, mm.ownerguid, mm.ownerownertype as ownerOwnerType
+        from
+        bb_message m, bb_message_meta_data mm
+        where
+        mm.guid = m.artifactmetadata_guid
+        and
+        m.parentguid = #{value}
+        order
+        by m.created asc
+    </select>
+
+
+    <select id="loadChildMedia" resultMap="Activity.ChildMediaResult" parameterType="string">
+        select
+        mm.guid, mm.postDate, mm.recipientDepth, mm.comment, mm.location, mm.mimeType, mm.thumbnaillocation,
+        mm.ownerguid, mm.ownerownertype, mm.parentguid
+        from
+        bb_media_meta_data mm
+        where
+        mm.parentguid = #{value}
+        order by
+        mm.created asc
+    </select>
+
+
+    <select id="loadMediaFollowing" resultMap="Activity.MediaResult" parameterType="map">
+        select
+        mm.guid, mm.postDate, mm.recipientDepth, mm.comment, mm.location, mm.mimeType, mm.thumbnailLocation,
+        mm.ownerguid, mm.ownerownertype, mm.virtualGift
+        from
+        bb_media_meta_data mm
+        where
+        (
+        mm.ownerguid in
+        (
+        select
+        u.guid
+        from
+        bb_relationship r, bb_user u
+        where
+        r.weight = #{followWeight}
+        and
+        r.fromguid = #{fromGuid}
+        and
+        r.toguid = u.guid
+        )
+        or
+        mm.ownerguid = #{fromGuid}
+        )
+        and
+        mm.recipientDepth in (#{allMembers},#{world})
+        and
+        mm.parentguid is null
+        and
+        mm.librarymedia = false
+        and
+        mm.loosePic = false
+        and
+        mm.acknowledged = true
+        and
+        mm.virtualGift = false
+        order by
+        mm.created desc
+        <include refid="BBPersistentObject.boundsSql"/>
+    </select>
+
+
+    <select id="loadMessageFollowing" resultMap="Activity.MessageResult" parameterType="map">
+        select
+        m.guid, m.postDate, m.recipientDepth, m.body, mm.ownerguid,
+        mm.ownerownertype, m.virtualGift
+        from
+        bb_message m, bb_message_meta_data mm
+        where
+        (
+        mm.ownerguid in
+        (
+            select u.guid from bb_relationship r, bb_user u
+            where
+            r.weight = #{followWeight}
+            and
+            r.fromguid = #{fromGuid}
+            and
+            r.toguid = u.guid
+        )
+        or
+        mm.ownerguid = #{fromGuid}
+        )
+        and
+        m.artifactMetaData_guid = mm.guid
+        and
+        m.recipientDepth in (#{allMembers},#{world})
+        and
+        m.parentguid is null
+        and
+        m.acknowledged = true
+        and
+        m.virtualGift = false
+        order by
+        m.created desc
+        <include refid="BBPersistentObject.boundsSql"/>
+    </select>
+
+
+    <select id="loadFriendMessages" resultMap="Activity.MessageResult" parameterType="map">
+        select
+        m.guid, m.postDate, m.recipientDepth, m.body, mm.ownerguid, mm.ownerownerType, m.virtualGift
+        from
+        bb_message m, bb_message_meta_data mm
+        where
+        (
+        mm.ownerguid in
+        (
+        select
+        u.guid
+        from
+        bb_relationship r, bb_user u
+        where
+        (
+        r.weight = #{friendWeight}
+        or
+        r.weight = #{inRelationshipWeight}
+        )
+        and
+        r.fromguid = #{fromGuid}
+        and
+        r.toguid = u.guid
+        )
+        or
+        mm.ownerguid = #{fromGuid}
+        )
+        and
+        m.artifactMetaData_guid = mm.guid
+        and
+        m.recipientDepth = #{friend}
+        and
+        m.parentguid is null
+        and
+        m.acknowledged = true
+        and
+        m.virtualGift = false
+        order by
+        m.created desc
+        <include refid="BBPersistentObject.boundsSql"/>
+    </select>
+
+    <select id="loadFriendMedias" resultMap="Activity.MediaResult" parameterType="map">
+        select
+        mm.guid, mm.postDate, mm.recipientDepth, mm.comment, mm.location, mm.mimeType, mm.thumbnailLocation,
+        mm.ownerguid, mm.ownerownerType, mm.virtualGift
+        from
+        bb_media_meta_data mm
+        where
+        (
+        mm.ownerguid in
+        (
+        select
+        u.guid
+        from
+        bb_relationship r, bb_user u
+        where
+        (
+        r.weight = #{friendWeight}
+        or
+        r.weight = #{inRelationshipWeight}
+        )
+        and
+        r.fromguid = #{fromGuid}
+        and
+        r.toguid = u.guid
+        )
+        or
+        mm.ownerguid = #{fromGuid}
+        )
+        and
+        mm.recipientDepth = #{friend}
+        and
+        mm.parentguid is null
+        and
+        mm.librarymedia = false
+        and
+        mm.loosePic = false
+        and
+        mm.acknowledged = true
+        and
+        mm.virtualGift = false
+        order by
+        mm.created desc
+        <include refid="BBPersistentObject.boundsSql"/>
+    </select>
+    <select id="loadEverythingParentMessage" resultMap="Activity.MessageResult" parameterType="map">
+        select
+        m.guid, m.postDate, m.recipientDepth, m.body, mm.ownerguid, mm.ownerownerType, m.virtualGift
+        from
+        bb_message m, bb_message_meta_data mm
+        where
+        (
+        (
+        mm.ownerguid in
+        (
+        select
+        u.guid
+        from
+        bb_relationship r, bb_user u
+        where
+        (
+        r.weight = #{friendWeight}
+        or
+        r.weight = #{inRelationshipWeight}
+        )
+        and
+        r.fromguid = #{fromGuid}
+        and
+        r.toguid = u.guid
+        )
+        or
+        mm.ownerguid = #{fromGuid}
+        )
+        and
+        m.artifactMetaData_guid = mm.guid
+        and
+        m.recipientDepth = #{friend}
+        and
+        m.parentguid is null
+        and
+        m.acknowledged = true
+        and
+        m.virtualGift = false
+        )
+        or
+        (
+        mm.ownerguid in
+        (
+        select
+        u.guid
+        from
+        bb_relationship r, bb_user u
+        where
+        r.weight = #{followWeight}
+        and
+        r.fromguid = #{fromGuid}
+        and
+        r.toguid = u.guid
+        )
+        and
+        m.artifactMetaData_guid = mm.guid
+        and
+        m.recipientDepth = #{friend}
+        and
+        m.parentguid is null
+        and
+        m.acknowledged = true
+        and
+        m.virtualGift = false
+        )
+        or
+        (
+        m.artifactMetaData_guid = mm.guid
+        and
+        m.recipientDepth in
+        (
+        #{allMembers},#{world}
+        )
+        and
+        m.parentguid is null
+        and
+        m.acknowledged = true
+        and
+        m.virtualGift = false
+        )
+        order by
+        m.created desc
+        <include refid="BBPersistentObject.boundsSql"/>
+    </select>
+
+    <select id="loadMessagesByParent" resultMap="Message.MessageResult" parameterType="map">
+        select
+        m.*
+        from
+        bb_message m
+        where
+        m.acknowledged = true
+        and
+        m.recipientDepth = #{recipientDepth}
+        and
+        guid = #{guid}
+    </select>
+
+    <select id="loadMediasByParent" resultMap="Activity.MediaResult" parameterType="map">
+        select
+        m.*
+        from
+        bb_media_meta_data m
+        where
+        m.acknowledged = true
+        and
+        m.loosePic = false
+        and
+        m.virtualGift = false
+        and
+        m.library = false
+        and
+        m.recipientDepth = #{recipientDepth}
+        and
+        m.guid = #{guid}
+    </select>
+
+    <select id="loadChildActivities" resultMap="Activity.ActivityResult" parameterType="string">
+        select
+        a.*
+        from
+        bb_activity a
+        where
+        a.parentguid = #{value}
+        order by
+        a.postDate ASC
+    </select>
+
+    <select id="loadEverythingParentMedia" resultMap="Activity.ChildMediaResult" parameterType="map">
+        select
+        mm.guid, mm.postDate, mm.recipientDepth, mm.comment, mm.location, mm.mimeType, mm.thumbnailLocation,
+        mm.ownerguid, mm.ownerownertype, mm.virtualGift
+        from
+        bb_media_meta_data mm
+        where
+        (
+        (
+        mm.ownerguid in
+        (
+        select
+        u.guid
+        from
+        bb_relationship r, bb_user u
+        where
+        (
+        r.weight = #{friendWeight}
+        or
+        r.weight = #{inRelationshipWeight}
+        )
+        and
+        r.fromguid = #{fromGuid}
+        and
+        r.toguid = u.guid
+        )
+        or
+        mm.ownerguid = #{fromGuid}
+        )
+        and
+        mm.recipientDepth = #{friend}
+        and
+        mm.parentguid is null
+        and
+        mm.librarymedia = false
+        and
+        mm.loosePic = false
+        and
+        mm.acknowledged = true
+        and
+        mm.virtualGift = false
+        )
+        or
+        (
+        mm.ownerguid in
+        (
+        select
+        u.guid
+        from
+        bb_relationship r, bb_user u
+        where
+        r.weight = #{followWeight}
+        and
+        r.fromguid = #{fromGuid}
+        and
+        r.toguid = u.guid
+        )
+        and
+        mm.recipientDepth in
+        (
+        #{allMembers},#{world}
+        )
+        and
+        mm.parentguid is null
+        and
+        mm.librarymedia = false
+        and
+        mm.loosePic = false
+        and
+        mm.acknowledged = true
+        and
+        mm.virtualGift = false
+        )
+        or
+        (
+        mm.recipientDepth in
+        (
+        #{allMembers},#{world}
+        )
+
+        and
+        mm.parentguid is null
+        and
+        mm.librarymedia = false
+        and
+        mm.loosePic = false
+        and
+        mm.acknowledged = true
+        and
+        mm.virtualGift = false
+        )
+        order by
+        mm.created desc
+        limit #{bounds.maxResults} offset #{bounds.startIndex}
+    </select>
+    <select id="loadPublicMessage" resultMap="Activity.MessageResult" parameterType="map">
+        select
+        m.guid, m.postDate, m.recipientDepth, m.body, mm.ownerguid, mm.ownerownertype, m.virtualGift
+        from
+        bb_message m, bb_message_meta_data mm
+        where
+        m.artifactmetadata_guid = mm.guid
+        and
+        m.acknowledged = true
+        and
+        m.virtualGift = false
+        and
+        m.parentActivity is null
+        and
+        m.recipientDepth = #{type}
+        order by
+        m.postDate desc
+        <include refid="BBPersistentObject.boundsSql"/>
+    </select>
+    <select id="loadPublicMedia" resultMap="Activity.MediaResult" parameterType="map">
+        select
+        mm.guid, mm.postDate, mm.recipientDepth, mm.comment, mm.location, mm.mimeType, mm.thumbnailLocation,
+        mm.ownerguid, mm.ownerownertype, mm.virtualGift
+        from
+        bb_media_meta_data mm
+        where
+        mm.acknowledged = true
+        and
+        mm.librarymedia = false
+        and
+        mm.loosePic = false
+        and
+        mm.virtualGift = false
+        and
+        mm.parentActivity is null
+        and
+        mm.recipientDepth = #{type}
+        order by
+        mm.postDate desc
+        <include refid="BBPersistentObject.boundsSql"/>
+    </select>
+
+    <select id="loadAllAssociatiatedMessages" resultMap="Message.MessageResult" parameterType="map">
+        select
+        m.*,
+        md.*
+        from bb_message m, bb_message_meta_data md, bb_message_recipient r, bb_message_meta_data_bb_message_recipient mr
+        where
+        m.artifactMetaData_guid = md.guid
+        and md.guid = mr.bb_message_meta_data_guid
+        and mr.recipients_guid = r.guid
+        and m.virtualGift = false
+        and m.acknowledged = true
+        and md.ownerguid = #{guid}
+        <if test="types != null &amp;&amp; !types.isEmpty()">
+            and types in
+            <foreach collection="types" open="(" separator="," close=")" item="type">#{type}</foreach>
+        </if>
+        order by m.postDate desc
+    </select>
+
+    <select id="loadAll" resultMap="ActivityResult">
+        select * from bb_activity
+    </select>
+
+</mapper>

@@ -1,0 +1,18 @@
+<%@ page import="java.net.URLEncoder" %>
+<%@include file="/WEB-INF/jsp/include/taglibs.jspf" %>
+<div id="giftShelfage"></div>
+<script type="text/javascript">
+    var flashvars = {
+        save_url: "<%= request.getContextPath() %>/media/VirtualGift.action;jsessionid=<%=session.getId() %>%3Fguid=${actionBean.user.guid}%26saveLayout=",
+        json_url: "<%= request.getContextPath() %>/media/VirtualGift.action;jsessionid=<%=session.getId() %>%3F_eventName=loadJson%26guid=${actionBean.user.guid}&",
+        user_data: "json",
+        edit_view: "${actionBean.owner}",
+        delete_key: "giftGuid",
+        delete_url: "<%= request.getContextPath() %>/media/VirtualGift.action;jsessionid=<%=session.getId() %>%3F_eventName=disable%26guid=${actionBean.user.guid}&" 
+    };
+    var params = {
+        menu: "false",
+        wmode: "opaque"
+    };
+    swfobject.embedSWF("<s:url value="${bb:libraryResource('/library/swf/giftshelf.swf')}" />", "giftShelfage", 939, 330, "9.0.0", "", flashvars, params);
+</script>

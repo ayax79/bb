@@ -1,0 +1,381 @@
+<%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
+
+<head>
+    <style type="text/css">
+        .errors li {
+            font-size: 18px;
+            color: red;
+            margin-top: 5px;
+        }
+    </style>
+    <script type="text/javascript">
+        var RecaptchaOptions = {
+            theme : 'white'
+        };
+    </script>
+    <script type="text/javascript">
+        //<![CDATA[
+        $(document).ready(
+            function() {
+                $("#register_password2").blur(
+                    function() {
+                        if($("#register_password").val() != $("#register_password2").val()) {
+                            $("#match_password_error_container").show();
+                        } else {
+                            $("#match_password_error_container").hide();    
+                        }
+                    }
+                );
+            }
+        );
+        $(function() {
+            pageTracker._trackPageview("/goalfunnel/register/begin");
+            $("#reg-name-avail").hide();
+            $("#reg-name-taken").hide();
+            $("#reg-email-taken").hide();
+
+            $("#register_username").blur(function () {
+                var userName = $("#register_username").val();
+                var regex = /^([a-zA-Z0-9]+)$/;
+
+                if (regex.test(userName)) {
+                    $.getJSON("<%= request.getContextPath()%>/action/ajax/useravailable", {_eventName: "availableByUsername", token: userName }, function(data) {
+                        if (data.success) {
+                            $("#reg-name-avail").show();
+                            $("#reg-name-taken").hide();
+                        } else {
+                            $("#reg-name-taken").show();
+                            $("#reg-name-avail").hide();
+                            $("#register_username").val("");
+                        }
+                        myWizard.updateMaskHeight();
+                    });
+                } else {
+                    $("#reg-name-avail").hide();
+                    $("#reg-name-taken").hide();
+                }
+            });
+            $("#register_email").blur(function () {
+                var email = $("#register_email").val();
+                if (email != "") {
+                    $.getJSON("<%= request.getContextPath()%>/action/ajax/useravailable", {_eventName: "availableByEmail", token: email }, function(data) {
+                        if (data.success) {
+                            $("#reg-email-taken").hide();
+                        } else {
+                            $("#reg-email-taken").show().find(" .email").text(email);
+                            $("#register_email").val("");
+                        }
+                        myWizard.updateMaskHeight();
+                    });
+                }
+            });
+
+            bb.pageInit.bindSliders();
+            $("#explain").keyup(function() {
+                updateCharCount();
+            });
+            var updateCharCount = function () {
+                var maxChars = 240;
+                var charCount = $("#explain").val().length;
+                if (charCount > maxChars) {
+                    $(".chars-remaining").addClass("over-count");
+                } else {
+                    $(".chars-remaining").removeClass("over-count");
+                }
+                $(".char-count").text(maxChars - charCount);
+            };
+            updateCharCount();
+
+            myWizard = new SliderWizard($("#regForm"));
+            myWizard.setStep(0);
+            myWizard.init();
+
+            $("#referral_source").bind("change", function() {
+                if ($(this).val() == "OTHER") {
+                    $("#referral_source_other").parent().show();
+                } else {
+                    $("#referral_source_other").parent().hide();
+                }
+                myWizard.updateMaskHeight();
+            });
+
+            $("#register_legal").bind("click", function() {
+                var check = $(this);
+                if ($(this).is(":checked")) {
+
+                    $.bbDialog.ageConfirm("<p class='dialogMsg'>By clicking \"accept\" I declare under penalty of perjury that the foregoing and subsequent personal information inclusive of being over eighteen years of age is true and correct.</p>", function() {
+                    }, function() {
+                        check.attr("checked", "");
+                    });
+                }
+            });
+
+            $("#regForm").bind("highlight.validate", function() {
+                $(this).animate({"left":"0"}, 20, function() {
+                    myWizard.updateMaskHeight();
+                });
+            });
+
+            $("#regForm").bind("unhighlight.validate", function() {
+                $(this).animate({"left":"0"}, 20, function() {
+                    myWizard.updateMaskHeight();
+                });
+            });
+
+        <c:if test="${not empty actionBean.context.validationErrors}">
+            myWizard.setStep(2);
+            myWizard.updateStep();
+        </c:if>
+        });
+		
+        //]]>
+    </script>
+    <script type="text/javascript" src="${bb:libraryResource('/library/js/bb.plugins.js')}"></script>
+    <script type="text/javascript" src="${bb:libraryResource('/library/js/textarea-maxlength.js')}"></script>
+    <script type="text/javascript">
+		$(function()
+		{
+		  $('#explain').maxLength(240);
+		});
+	</script>
+
+</head>
+
+<body class="register">
+<ul id="reg-nav" class="clearfix">
+    <li id="create" class="current">1. Create your account</li>
+    <li id="setup">2. Set up your persona</li>
+    <li id="choose">3. Choose a plan</li>
+    <li id="payment">4. Payment</li>
+    <li id="confirmation">5. Confirmation</li>
+</ul>
+<s:form class="bbform bbsettings" id="regForm"
+        beanclass="com.blackbox.presentation.action.user.FullRegisterUserActionBean" method="post">
+<%--<c:if test="${not empty actionBean.context.validationErrors}">
+    <div class="login-errors">
+        <ui:roundedBox className="rounded-comment xplr-results-container">
+            <s:errors/>
+            <s:messages/>
+        </ui:roundedBox>
+    </div>
+</c:if>--%>
+<c:if test="${not empty actionBean.context.validationErrors}">
+    <s:errors/>
+</c:if>
+<div class="reg-col-l">
+    <div class="movie-box">
+       <object id="ep_player" name="ep_player" height="235" width="314" data="http://cdn.episodic.com/player/EpisodicPlayer.swf?config=http%3A%2F%2Fcdn.episodic.com%2Fshows%2Fob0pj9jq17up%2Fob1jkalbofm0%2Fconfig.xml" type="application/x-shockwave-flash"><param name="movie" value="http://cdn.episodic.com/player/EpisodicPlayer.swf?config=http%3A%2F%2Fcdn.episodic.com%2Fshows%2Fob0pj9jq17up%2Fob1jkalbofm0%2Fconfig.xml"/><param name="AllowScriptAccess" value="always"/><param name="allowfullscreen" value="true"/><embed src="http://cdn.episodic.com/player/EpisodicPlayer.swf?config=http%3A%2F%2Fcdn.episodic.com%2Fshows%2Fob0pj9jq17up%2Fob1jkalbofm0%2Fconfig.xml" type="application/x-shockwave-flash" allowfullscreen="true" AllowScriptAccess="always" width="314" height="235" id="ep_player" name="ep_player"/></object>
+    </div>
+
+
+    <h2>Define who you are, today</h2>
+    <ui:roundedBox className="textarea1">
+        <div class="info-sliders mini-slider">
+            <ul>
+
+                <!-- Mood sliders -->
+                <li class="slider_container clearfix">
+                    <s:hidden name="user.profile.mood.orientation" class="slider-val"
+                              value="${actionBean.user.profile.mood.orientation}"/>
+                    <label><span><fmt:message key="settings.field.orientation"/></span></label>
+                    <ui:slider containerClass="sliderz" labelLeft="Gay" labelCenter="Bi" labelRight="Hetero"
+                               showQuarterTicks="true"/>
+                </li>
+                <li class="slider_container clearfix">
+                    <s:hidden name="user.profile.mood.relationshipStatus" class="slider-val"
+                              value="${actionBean.user.profile.mood.relationshipStatus}"/>
+                    <label><span><fmt:message key="settings.field.status"/></span></label>
+                    <ui:slider containerClass="sliderz" labelLeft="Unattached" labelCenter="It's complicated"
+                               labelRight="Attached" showQuarterTicks="true"/>
+                </li>
+                <li class="slider_container clearfix">
+                    <s:hidden name="user.profile.mood.polyStatus" class="slider-val"/>
+                    <label><span><fmt:message key="settings.field.addPartners"/></span></label>
+                    <ui:slider containerClass="sliderz" labelLeft="Room for more" labelCenter="It fluctuates"
+                               labelRight="Not right now" showQuarterTicks="true"/>
+                </li>
+                <li class="slider_container clearfix">
+                    <s:hidden name="user.profile.mood.interestLevel" class="slider-val"/>
+                    <label><span><fmt:message key="settings.field.lovin"/></span></label>
+                    <ui:slider containerClass="sliderz" labelLeft="Going slow"
+                               labelCenter="If it happens, it happens"
+                               labelRight="Gotta have it" showQuarterTicks="true"/>
+                </li>
+                <li class="slider_container clearfix">
+                    <s:hidden name="user.profile.mood.energyLevel" class="slider-val"/>
+                    <label><span><fmt:message key="settings.field.vibe"/></span></label>
+                    <ui:slider containerClass="sliderz" labelLeft="Party mode" labelCenter="Let's hang"
+                               labelRight="Lying low" showQuarterTicks="true"/>
+                </li>
+            </ul>
+        </div>
+        <div class="slider_privacy clearfix">
+            <input id="mood_private" name="profile.mood.makePrivate" value="true" type="checkbox"/><label
+                for="mood_private" class="sub mood_private_label">Make these private on my page<br/><em>You can
+            always
+            edit this later from your account settings</em></label>
+        </div>
+    </ui:roundedBox>
+
+</div>
+<div class="reg-col-r">
+    <h2 class="first">What you want. Now.</h2>
+
+    <div class="clearfix">
+        <input type="checkbox" class="lookingForCheck" name="dummyfield" style="display:none;"/>
+        <ul class="looking-for">
+	      <span>  
+	       	<li>
+                   <s:checkbox class="lookingForCheck" name="user.profile.lookingFor.friends" id="real_friends"/><label
+                       for="real_friends" class="sub"><fmt:message key="register.checkbox.lookingFor.friends"/></label>
+               </li>
+	        <li>
+                <s:checkbox class="lookingForCheck" name="user.profile.lookingFor.dates" id="casual_dates"/><label
+                    for="casual_dates" class="sub"><fmt:message key="register.checkbox.lookingFor.dates"/></label>
+            </li>
+	        <li>
+                <s:checkbox class="lookingForCheck" name="user.profile.lookingFor.donkeySex" id="donkey_sex"/><label
+                    for="donkey_sex" class="sub"><fmt:message key="register.checkbox.lookingFor.relationships"/></label>
+            </li>
+	       </span>
+	    <span>
+	    	<li>
+                <s:checkbox class="lookingForCheck" name="user.profile.lookingFor.love" id="love"/>
+                <label for="love" class="sub"><fmt:message key="register.checkbox.lookingFor.love"/></label>
+            </li>
+	        <li>
+                <s:checkbox class="lookingForCheck" name="user.profile.lookingFor.snuggling" id="parties"/><label
+                    for="parties" class="sub"><fmt:message key="register.checkbox.lookingFor.snuggling"/></label>
+            </li>
+	        <li>
+                <s:checkbox class="lookingForCheck" name="user.profile.lookingFor.hookup" id="hookups"/><label
+                    for="hookups" class="sub"><fmt:message key="register.checkbox.lookingFor.hookups"/></label>
+            </li>
+	    </span>
+        </ul>
+    </div>
+    <div class="clear"></div>
+
+    <h2>Tell us about yourself</h2>
+    <s:label for="explain"><fmt:message key="register.textarea.lookingFor.explain"/></s:label>
+    <s:textarea rows="2" name="profile.lookingForExplain" cols="20" id="explain"></s:textarea>
+    <span class="chars-remaining"><span class="char-count">240</span> characters remaining</span>
+
+    <h2>Set up your account</h2>
+
+    <s:label for="register_username"><fmt:message key="register.field.username.choose"/>*<span
+        style="font-weight:normal; margin-left: 5px;">(No spaces, please!)</s:label>
+        <p class="reg-name-avail" id="reg-name-avail">Username is available</p>
+		<p class="reg-name-taken" id="reg-name-taken">Username is <strong>not</strong> available</p>
+        <s:text name="user.username" maxlength="25" id="register_username"
+                class="required maskMethod2 textinput"/>
+
+        <s:label for="register_email"><fmt:message key="register.field.email"/>*</s:label>
+        <p class="reg-name-taken" id="reg-email-taken">your email <span class="email"></span> is already registered</p>
+        <s:text name="user.email" id="register_email" class="required email textinput"/>
+
+        <s:label for="register_password"><fmt:message key="register.field.password"/>*</s:label>
+        <s:password name="user.password" id="register_password" class="required textinput"/>
+
+        <s:label for="register_password2"><fmt:message key="register.field.password2"/>*</s:label>
+        <p id='match_password_error_container' class="error-wrap" style="display: none;"><span class="error">Passwords do not match.</span></p>
+        <s:password name="password2" id="register_password2" class="required textinput"/>
+
+        <div class="referral">
+            <s:label for="referral_source"><fmt:message key="register.field.referral"/></s:label>
+            <s:select name="profile.referFrom.referFromType" id="referral_source">
+                <s:options-enumeration enum="com.blackbox.user.ReferFrom.ReferFromType"/>
+            </s:select>
+        </div>
+
+        <div class="agecheck">
+            <s:label for="register_legal"><fmt:message key="register.field.over18"/></s:label>
+            <s:checkbox id="register_legal" class="required maskMethod1" value="yes" name="registerLegal"/>
+            <s:label class="sub lh37" for="register_legal">Yes</s:label>
+        </div>
+    <div class="tnc clearfix">
+
+        <s:checkbox id="register_tnc" class="required" value="yes" name="tnc"/>
+        <s:label class="sub lh37" for="register_tnc">I have read and agree to the
+            <a href="http://www.blackboxrepublic.com/tos" target="_blank">Terms of Service</a> and
+            <a href="http://www.blackboxrepublic.com/privacy" target="_blank">Privacy Policy</a>.</s:label>
+
+    </div>
+
+</div>
+
+<div class="clear"></div>
+
+<div class="reg-footer clearfix">
+
+    <div class="captcha clearfix">
+        <h2>Prove you&#8217;re not an evil donkey</h2>
+        <s:label for="kaptcha"><fmt:message key="register.field.kaptcha"/></s:label>
+        <img src="<%= request.getContextPath() %>/kaptcha.jpg" class="captcha-image"/>
+        <s:text name="kaptcha" id="kaptcha" value=""/>
+
+            <%--<ui:recaptcha publicKey="${actionBean.recaptchaPublicKey}" jsVar="recaptcha"
+            error="${actionBean.captchaErrorCode}"/>--%>
+    </div>
+
+    <s:image id="reg-submit" class="submit-button" name="step2"
+             src="/library/images/register/next-step-button.png" alt="Next step"/>
+</div>
+
+<s:field-metadata var="fieldMetadata">
+    $(function(){
+    $.fn.stripesValidation('${fieldMetadata.formId}', ${fieldMetadata});
+    });
+</s:field-metadata>
+<script type="text/javascript">
+    $(function() {
+
+    <%--
+            $("#recaptcha_response_field").rules("add", {
+                required: true,
+                messages: {
+                    required: "This field is required."
+                }
+            });
+    --%>
+
+        $("#explain").rules("add", {
+            maxlength: 240
+        });
+
+        $("#register_username").rules("add", {
+            required: true,
+            maxlength: 25
+        });
+
+        $("#register_username").keypress(function(event) {
+            var key = String.fromCharCode(event.which);
+            var regex = /^([a-zA-Z0-9]+)$/;
+            if (
+                    event.keyCode == 8 ||
+                    event.keyCode == 9 ||
+                    event.keyCode == 37 ||
+                    event.keyCode == 39
+                    ) {
+                return true;
+            }
+            if (!regex.test(key)) {
+                event.preventDefault();
+                return false;
+            }
+        });
+
+
+        $.validator.addMethod("lookingFor", function(value, element, params) {
+            return $(".lookingForCheck:checked").length > 0;
+        }, $.format("Please select at least one option."));
+
+        $(".lookingForCheck").rules("add", {
+            lookingFor: true
+        });
+
+    });
+</script>
+
+</s:form>
+</body>

@@ -1,0 +1,117 @@
+<!DOCTYPE configuration
+        PUBLIC "-//ibatis.apache.org//DTD Config 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-config.dtd">
+<configuration>
+
+    <settings>
+        <setting name="cacheEnabled" value="false" />
+        <setting name="lazyLoadingEnabled" value="false" />
+        <setting name="multipleResultSetsEnabled" value="true" />
+        <setting name="useGeneratedKeys" value="false" />
+    </settings>
+
+    <typeAliases>
+        <typeAlias alias="jodaDate" type="org.joda.time.DateTime"/>
+        <typeAlias alias="networkType" type="com.blackbox.social.NetworkTypeEnum" />
+        <typeAlias alias="entityType" type="com.blackbox.EntityType" />
+        <typeAlias alias="artifactType" type="org.yestech.publish.objectmodel.ArtifactType"/>
+        <typeAlias alias="recipientStatus" type="com.blackbox.activity.IRecipient$RecipientStatus" />
+        <typeAlias alias="mediaLibraryType" type="com.blackbox.media.MediaLibrary$MediaLibraryType" />
+        <typeAlias alias="status" type="com.blackbox.Status" />
+        <typeAlias alias="userType" type="com.blackbox.user.User$UserType" />
+    </typeAliases>
+
+    <typeHandlers>
+        <typeHandler javaType="org.joda.time.DateTime"
+                     handler="com.blackbox.server.system.ibatis.DateTimeTypeHandler"/>
+
+        <typeHandler javaType="com.blackbox.EntityType"
+                     handler="com.blackbox.server.system.ibatis.enumimpl.EntityTypeHandler"/>
+        <typeHandler javaType="com.blackbox.activity.ActivityTypeEnum"
+                     handler="com.blackbox.server.system.ibatis.enumimpl.ActivityTypeHandler"/>
+        <typeHandler javaType="org.yestech.publish.objectmodel.ArtifactType"
+                     handler="com.blackbox.server.system.ibatis.enumimpl.ArtifactTypeHandler"/>
+        <typeHandler javaType="com.blackbox.social.NetworkTypeEnum"
+                     handler="com.blackbox.server.system.ibatis.enumimpl.NetworkTypeHandler"/>
+        <typeHandler javaType="com.blackbox.activity.IRecipient$RecipientStatus"
+                     handler="com.blackbox.server.system.ibatis.enumimpl.RecipientStatusHandler"/>
+        <typeHandler javaType="com.blackbox.media.MediaLibrary$MediaLibraryType"
+                     handler="com.blackbox.server.system.ibatis.enumimpl.MediaLibraryTypeHandler" />
+        <typeHandler javaType="com.blackbox.Status"
+                     handler="com.blackbox.server.system.ibatis.enumimpl.StatusHandler" />
+        <typeHandler javaType="com.blackbox.user.User$UserType"
+                     handler="com.blackbox.server.system.ibatis.enumimpl.UserTypeHandler" />
+        <typeHandler javaType="com.blackbox.bookmark.Bookmark$BookmarkType"
+                     handler="com.blackbox.server.system.ibatis.enumimpl.BookmarkTypeHandler" />
+        <typeHandler javaType="com.blackbox.user.SexEnum"
+                     handler="com.blackbox.server.system.ibatis.enumimpl.SexHandler" />
+        <typeHandler javaType="com.blackbox.occasion.OccasionWebDetail$CanViewGuestList"
+                     handler="com.blackbox.server.system.ibatis.enumimpl.CanViewGuestListHandler" />
+        <typeHandler javaType="com.blackbox.occasion.OccasionLevel"
+                     handler="com.blackbox.server.system.ibatis.enumimpl.OccasionLevelHandler"/>
+        <typeHandler javaType="com.blackbox.occasion.OccasionType"
+                     handler="com.blackbox.server.system.ibatis.enumimpl.OccasionTypeHandler"/>
+        <typeHandler javaType="com.blackbox.occasion.AttendingStatus"
+                     handler="com.blackbox.server.system.ibatis.enumimpl.AttendingStatusHandler"/>
+        <typeHandler javaType="com.blackbox.social.Ignore$IgnoreType"
+                     handler="com.blackbox.server.system.ibatis.enumimpl.IgnoreTypeHandler" />
+        <typeHandler javaType="com.blackbox.user.ViewedBy$ViewedByType"
+                     handler="com.blackbox.server.system.ibatis.enumimpl.ViewedByTypeHandler" />
+        <typeHandler javaType="com.blackbox.occasion.OccasionLayout$DateFormat"
+                     handler="com.blackbox.server.system.ibatis.enumimpl.DateFormatHandler" />
+        <typeHandler javaType="com.blackbox.occasion.OccasionLayout$LayoutType"
+                     handler="com.blackbox.server.system.ibatis.enumimpl.OccasionLayoutType" />
+        <typeHandler javaType="com.blackbox.gifting.GiftLayout$Shelf"
+                     handler="com.blackbox.server.system.ibatis.enumimpl.GiftLayoutShelfHandler" />
+        <typeHandler javaType="com.blackbox.gifting.GiftLayout$GiftLayoutSize"
+                     handler="com.blackbox.server.system.ibatis.enumimpl.GiftLayoutSizeHandler" />
+        <typeHandler javaType="com.blackbox.occasion.AttendeeSource"
+                     handler="com.blackbox.server.system.ibatis.enumimpl.AttendeeSourceHandler" />
+        <typeHandler javaType="com.blackbox.user.ExternalCredentials$CredentialType"
+                     handler="com.blackbox.server.system.ibatis.enumimpl.ExternalCredentialTypeHandler" />
+        <typeHandler javaType="com.blackbox.billing.BillingInfo$BillingProvider"
+                     handler="com.blackbox.server.system.ibatis.enumimpl.BillingProviderHandler" />
+        <typeHandler javaType="com.blackbox.user.ReferFrom$ReferFromType"
+                     handler="com.blackbox.server.system.ibatis.enumimpl.ReferFromTypeHandler" />
+        <typeHandler javaType="com.blackbox.billing.Transaction$TransactionStatus"
+                     handler="com.blackbox.server.system.ibatis.enumimpl.TransactionStatusHandler" />
+
+    </typeHandlers>
+
+    <mappers>
+        <mapper resource="ibatis/BBPersistentObject.xml"/>
+        <mapper resource="ibatis/BaseEntity.xml"/>
+        <mapper resource="ibatis/User.xml"/>
+        <mapper resource="ibatis/Profile.xml"/>
+        <mapper resource="ibatis/EmailCapture.xml"/>
+        <mapper resource="ibatis/Relationship.xml"/>
+        <mapper resource="ibatis/Ignore.xml"/>
+        <mapper resource="ibatis/Bookmark.xml"/>
+        <mapper resource="ibatis/Message.xml"/>
+        <mapper resource="ibatis/MessageMetaData.xml"/>
+        <mapper resource="ibatis/MessageRecipient.xml"/>
+        <mapper resource="ibatis/MediaLibrary.xml"/>
+        <mapper resource="ibatis/MediaMetaData.xml"/>
+        <mapper resource="ibatis/Occasion.xml"/>
+        <mapper resource="ibatis/Attendee.xml"/>
+        <mapper resource="ibatis/OccasionLayout.xml"/>
+        <mapper resource="ibatis/OccasionWebDetail.xml"/>
+        <mapper resource="ibatis/OccasionWebDetailExtraWebLink.xml"/>
+        <mapper resource="ibatis/Vouch.xml"/>
+        <mapper resource="ibatis/AffiliateMapping.xml"/>
+        <mapper resource="ibatis/ViewedBy.xml"/>
+        <mapper resource="ibatis/PromoCode.xml"/>
+        <mapper resource="ibatis/Transaction.xml"/>
+        <mapper resource="ibatis/BillingInfo.xml" />
+        <mapper resource="ibatis/Permission.xml" />
+        <mapper resource="ibatis/Privacy.xml" />
+        <mapper resource="ibatis/ExternalCredentials.xml" />
+        <mapper resource="ibatis/CorkboardImage.xml" />
+        <mapper resource="ibatis/AvatarImage.xml" />
+        <mapper resource="ibatis/MediaRecipient.xml" />
+        <mapper resource="ibatis/Activity.xml" />
+        <mapper resource="ibatis/VirtualGift.xml" />
+        <mapper resource="ibatis/GiftLayout.xml" />
+    </mappers>
+
+</configuration>

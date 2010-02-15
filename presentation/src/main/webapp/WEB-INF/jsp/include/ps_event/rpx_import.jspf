@@ -1,0 +1,25 @@
+<%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
+
+<div id="import_zone"  class="sel_con_rig" style="overflow:hidden;">
+    <div class="sel_but_lis">
+        <div class="sel_all"><a id="select_all" href="javascript:select_live_all(0);"><img src="${bb:libraryResource('/library/images/psevent/sel_allbg1.jpg')}" border="0" /></a></div>
+        <div class="sel_non"><a id="select_none" href="javascript:seleect_live_none(0);"><img src="${bb:libraryResource('/library/images/psevent/sel_nonbg2.jpg')}" border="0" /></a></div>
+        <div class="sel_tot">Total imported: ${f:length(tempImportReceiver)}</div>
+        <div class="clear"></div>
+    </div>
+    <div style="overflow-y:auto;overflow-x:hidden;height:300px">
+        <c:if test="${not empty tempImportReceiver}">
+        <c:forEach var="contact" items="${tempImportReceiver}">
+            <div class="sel_list">
+                <div class="sel_lis_box">
+                    <input type="checkbox" class="other_import" checked="true" name="live_import" email="${contact.emails[0].value}" value="${contact.displayName}" />
+                </div>
+                <div class="sel_lis_nam">${contact.displayName}</div>
+                <div class="sel_lis_mai">${contact.emails[0].value}</div>
+                <div class="clear"></div>
+            </div>
+        </c:forEach>
+    </c:if>
+    </div>
+    
+</div>

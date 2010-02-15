@@ -1,0 +1,408 @@
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
+        http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+        version="2.0">
+
+    <display-name>Blackbox Tag Library</display-name>
+    <tlib-version>1.0</tlib-version>
+    <short-name>bb</short-name>
+
+    <tag>
+        <description>Displays the internationalized value of a enum</description>
+        <name>i18nEnum</name>
+        <tag-class>com.blackbox.presentation.action.util.I18nEnumTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <description>
+                The enum value to get the i18n key for.
+            </description>
+            <name>value</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <function>
+        <description>
+            Used for displaying the correct name for any BBPersistentObject
+        </description>
+        <name>displayName</name>
+        <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
+        <function-signature>java.lang.String displayName(com.blackbox.IEntity)</function-signature>
+    </function>
+
+    <function>
+        <description>
+            Used for displaying the correct userName for any BBPersistentObject
+        </description>
+        <name>userName</name>
+        <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
+        <function-signature>java.lang.String userName(com.blackbox.IEntity)</function-signature>
+    </function>
+
+    <function>
+        <description>
+            The full name of a user
+        </description>
+        <name>userFullName</name>
+        <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
+        <function-signature>java.lang.String userFullName(com.blackbox.user.User)</function-signature>
+    </function>
+
+    <function>
+        <description>
+            Used for acquiring enum values
+        </description>
+        <name>enumValues</name>
+        <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
+        <function-signature>java.util.List enumValues(java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <description>
+            Used to see if an activity is an occasion
+        </description>
+        <name>isOccasion</name>
+        <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
+        <function-signature>boolean isOccasion(com.blackbox.activity.IActivity)</function-signature>
+    </function>
+
+    <function>
+        <description>
+            Used to see if an activity is an message
+        </description>
+        <name>isMessage</name>
+        <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
+        <function-signature>boolean isMessage(com.blackbox.activity.IActivity)</function-signature>
+    </function>
+
+    <function>
+        <description>
+            Used to see if an activity is an media
+        </description>
+        <name>isMedia</name>
+        <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
+        <function-signature>boolean isMedia(com.blackbox.activity.IActivity)</function-signature>
+    </function>
+
+    <function>
+        <description>
+            Convert an activity to json
+        </description>
+        <name>activityThreadToJson</name>
+        <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
+        <function-signature>java.lang.String activityThreadToJson(com.blackbox.activity.ActivityThread)
+        </function-signature>
+    </function>
+
+    <function>
+        <description>
+            Convert an occasion to json
+        </description>
+        <name>occasionToJson</name>
+        <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
+        <function-signature>java.lang.String occasionToJson(com.blackbox.occasion.Occasion)</function-signature>
+    </function>
+
+    <function>
+        <description>formats a joda date</description>
+        <name>formatDate</name>
+        <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
+        <function-signature>java.lang.String formatDate(org.joda.time.DateTime,java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <description>formats a joda date to be compatible with timeago plugin</description>
+        <name>timeagoFormatDate</name>
+        <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
+        <function-signature>java.lang.String timeagoFormatDate(org.joda.time.DateTime)</function-signature>
+    </function>
+
+    <function>
+        <description>Tells the years difference between two dates.</description>
+        <name>yearsDifference</name>
+        <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
+        <function-signature>int yearsDifference(org.joda.time.DateTime,org.joda.time.DateTime)</function-signature>
+    </function>
+
+    <function>
+        <description>Returns the age of something based on a start date.</description>
+        <name>age</name>
+        <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
+        <function-signature>int age(org.joda.time.DateTime)</function-signature>
+    </function>
+
+    <function>
+        <description>Use for library resources, will add the cdn url if appropriate</description>
+        <name>libraryResource</name>
+        <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
+        <function-signature>java.lang.String libraryResource(java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <description>used to see if a users posts are collapsed based on cookie value</description>
+        <name>isCollapsedPost</name>
+        <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
+        <function-signature>boolean isCollapsedPost(java.lang.String, java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <description>Whether the given entity is friended</description>
+        <name>isFriend</name>
+        <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
+        <function-signature>boolean isFriend(com.blackbox.IEntity)</function-signature>
+    </function>
+
+    <function>
+        <description>Returns the weight of the relationship if there is one</description>
+        <name>getWeight</name>
+        <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
+        <function-signature>java.lang.Integer getWeight(com.blackbox.IEntity)</function-signature>
+    </function>
+
+    <function>
+        <description>Whether the given entity is blocked</description>
+        <name>isBlocked</name>
+        <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
+        <function-signature>boolean isBlocked(com.blackbox.IEntity)</function-signature>
+    </function>
+
+    <function>
+        <description>Whether the given entity is pending friend status</description>
+        <name>isPending</name>
+        <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
+        <function-signature>boolean isPending(com.blackbox.IEntity)</function-signature>
+    </function>
+
+    <function>
+        <description>Whether the given entity is being followed</description>
+        <name>isFollowing</name>
+        <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
+        <function-signature>boolean isFollowing(com.blackbox.IEntity)</function-signature>
+    </function>
+
+    <function>
+        <description>Whether the given entity is in a relationship with the current user</description>
+        <name>isInRelationship</name>
+        <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
+        <function-signature>boolean isInRelationship(com.blackbox.IEntity)</function-signature>
+    </function>
+
+    <function>
+        <description>Whether the current user can see the given entity's full name</description>
+        <name>canSeeName</name>
+        <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
+        <function-signature>boolean canSeeName(com.blackbox.IEntity)</function-signature>
+    </function>
+
+    <function>
+        <description>Whether the given user has a limited membership type</description>
+        <name>isLimited</name>
+        <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
+        <function-signature>boolean isLimited(com.blackbox.IEntity)</function-signature>
+    </function>
+
+    <function>
+        <description>Returns true if the current user is friended by a particular user.</description>
+        <name>isFriendedBy</name>
+        <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
+        <function-signature>boolean isFriendedBy(com.blackbox.IEntity)</function-signature>
+    </function>
+
+    <function>
+        <description>Method to check to see if a user is vouched.</description>
+        <name>isVouched</name>
+        <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
+        <function-signature>boolean isVouched(java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <description>Returns true if the current user is followed by a particular user.</description>
+        <name>isFollowedBy</name>
+        <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
+        <function-signature>boolean isFollowedBy(com.blackbox.IEntity)</function-signature>
+    </function>
+
+    <function>
+        <description>state Abbreviation</description>
+        <name>stateAbv</name>
+        <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
+        <function-signature>java.lang.String stateAbv(java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <description>Picture demension</description>
+        <name>picDemension</name>
+        <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
+        <function-signature>java.lang.String picDemension(int, int, double)</function-signature>
+    </function>
+
+    <function>
+        <description>Returns the enum value for a specified string.</description>
+        <name>enumValue</name>
+        <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
+        <function-signature>java.lang.Enum enumValue(java.lang.String,java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <description>Returns the enum for a state string. Currently only supports US and canada states/provinces.</description>
+        <name>stateEnum</name>
+        <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
+        <function-signature>java.lang.Enum stateEnum(java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <description>Returns the latest activity from a thread.</description>
+        <name>latestActivity</name>
+        <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
+        <function-signature>T latestActivity(com.blackbox.activity.ActivityThread)</function-signature>
+    </function>
+
+    <function>
+        <description>Formats ReadablePeriod into a time</description>
+        <name>formatTimePeriod</name>
+        <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
+        <function-signature>java.lang.String formatTimePeriod(org.joda.time.ReadablePeriod)</function-signature>
+    </function>
+
+    <function>
+        <description>Checks to see if the user is some kind of affiliate</description>
+        <name>isAffiliate</name>
+        <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
+        <function-signature>boolean isAffiliate(com.blackbox.user.User)</function-signature>
+    </function>
+
+    <function>
+        <description>Checks to see if the user is a marketing-level admin</description>
+        <name>isMarketing</name>
+        <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
+        <function-signature>boolean isMarketing(com.blackbox.user.User)</function-signature>
+    </function>
+
+    <function>
+        <description>Checks to see if the user is a Blackbox Employee</description>
+        <name>isEmployee</name>
+        <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
+        <function-signature>boolean isEmployee(com.blackbox.user.User)</function-signature>
+    </function>
+
+    <function>
+        <description>Checks to see if the user is a Blackbox System Admin</description>
+        <name>isAdmin</name>
+        <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
+        <function-signature>boolean isAdmin(com.blackbox.user.User)</function-signature>
+    </function>
+
+    <function>
+        <description>Gets a property from the presentation.properties file</description>
+        <name>getProperty</name>
+        <function-class>com.blackbox.presentation.action.util.PresentationUtil</function-class>
+        <function-signature>java.lang.String getProperty(java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <description>Displays time in short format</description>
+        <name>displayShortTime</name>
+        <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
+        <function-signature>java.lang.String displayShortTime(org.joda.time.DateTime)</function-signature>
+    </function>
+
+    <function>
+        <description>Displays the description of the relationship with a specified individual</description>
+        <name>relationshipDescription</name>
+        <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
+        <function-signature>java.lang.String relationshipDescription(com.blackbox.IEntity)</function-signature>
+    </function>
+
+    <function>
+        <description>Returns a value from the resource bundle</description>
+        <name>getBundleString</name>
+        <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
+        <function-signature>java.lang.String getBundleString(java.lang.String, java.lang.String)</function-signature>
+    </function>
+    
+    <function>
+       <description>Calls UrlEncoder.encode</description>
+       <name>urlEncode</name>
+       <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
+       <function-signature>java.lang.String urlEncode(java.lang.String)</function-signature>
+    </function>
+    
+    <function>
+        <description>Returns a presentation property from presentation.properties</description>
+        <name>property</name>
+        <function-class>com.blackbox.presentation.action.util.PresentationUtil</function-class>
+        <function-signature>java.lang.String getProperty(java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <description>The batch id to use with transactions (iso date, no delimeters)</description>
+        <name>batchId</name>
+        <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
+        <function-signature>java.lang.String batchId()</function-signature>
+    </function>
+
+    <function>
+        <description>Returns a truncated string if greater than a given length</description>
+        <name>limitString</name>
+        <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
+        <function-signature>java.lang.String limitString(java.lang.String, int)</function-signature>
+    </function>
+
+    <function>
+        <description>Checks for existence of a property</description>
+        <name>hasProperty</name>
+        <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
+        <function-signature>boolean hasProperty(java.lang.Object,java.lang.String)</function-signature>
+    </function>
+
+
+   <function>
+        <description>FUCK</description>
+        <name>isAllowedToFollow</name>
+        <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
+        <function-signature>boolean isAllowedToFollow(com.blackbox.user.User,java.lang.String)</function-signature>
+    </function>
+
+   <function>
+        <description>FUCK</description>
+        <name>isAllowedToPrivateMessage</name>
+        <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
+        <function-signature>boolean isAllowedToPrivateMessage(com.blackbox.user.User,java.lang.String)</function-signature>
+    </function>
+
+
+   <function>
+        <description>FUCK</description>
+        <name>isAllowedToSearch</name>
+        <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
+        <function-signature>boolean isAllowedToSearch(com.blackbox.user.User,java.lang.String)</function-signature>
+    </function>
+
+
+   <function>
+        <description>FUCK</description>
+        <name>isAllowedToViewPersona</name>
+        <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
+        <function-signature>boolean isAllowedToViewPersona(com.blackbox.user.User,java.lang.String)</function-signature>
+    </function>
+
+
+   <function>
+        <description>FUCK</description>
+        <name>isAllowedToGift</name>
+        <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
+        <function-signature>boolean isAllowedToGift(com.blackbox.user.User,java.lang.String)</function-signature>
+    </function>
+
+
+   <function>
+        <description>FUCK</description>
+        <name>isAllowedToSeeStalk</name>
+        <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
+        <function-signature>boolean isAllowedToSeeStalk(com.blackbox.user.User,java.lang.String)</function-signature>
+    </function>
+
+
+</taglib>

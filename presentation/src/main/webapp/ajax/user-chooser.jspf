@@ -1,0 +1,17 @@
+<%--@elvariable id="actionBean" type="com.blackbox.presentation.action.search.UserChooserActionBean"--%>
+<%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
+
+<div class="up-actions-container">
+	<select name="user-filter" class="user-filter">
+		<option value="all">Filter by</option>
+		<option value="all">Everyone</option>
+		<option value="friends">Friends</option>
+		<option value="followers">Followers</option>
+		<option value="following">Following</option>
+	</select>
+	<%--&nbsp;&nbsp;&nbsp;[wish not supported yet!]--%>
+</div>
+
+<div class="up-users-container">
+	<%@include file="user-chooser-list.jspf" %>
+</div>

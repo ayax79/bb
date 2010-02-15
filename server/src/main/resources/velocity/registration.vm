@@ -1,0 +1,14 @@
+<html>
+<body>
+$registration_real_name,
+</br>
+</br>
+Welcome to Blackbox.
+<br/>
+Please click here to verify your registration: <a href="$presentation_url/verify?verify&key=$registration_key&userGuid=$user_guid">$presentation_url/verify?verify&key=$registration_key&userGuid=$user_guid</a>.
+<br/>
+<br/>
+Thanks,
+The Blackbox Team
+</body>
+<html>

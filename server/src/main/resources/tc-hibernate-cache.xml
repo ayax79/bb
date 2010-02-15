@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<terracotta-hibernate-cache-configuration>
+
+  <default-configuration>
+    <time-to-idle-seconds>60</time-to-idle-seconds>
+    <time-to-live-seconds>120</time-to-live-seconds>
+  </default-configuration>
+
+<!-- The default configuration applies to any properties not
+     defined in the <cache> blocks below. -->
+
+  <cache>
+    <region-name>com.blackbox.commerce.Merchant</region-name>
+    <region-name>com.blackbox.commerce.Product</region-name>
+    <region-name>com.blackbox.commerce.ShoppingCart</region-name>
+    <region-name>com.blackbox.media.ContentMetaData</region-name>
+    <region-name>com.blackbox.occasion.Promoter</region-name>
+    <region-name>com.blackbox.security.Permissions</region-name>
+    <region-name>com.blackbox.security.Role</region-name>
+    <region-name>com.blackbox.social.Category</region-name>
+    <region-name>com.blackbox.social.Relationship</region-name>
+    <region-name>com.blackbox.user.User</region-name>
+    <configuration>
+      <time-to-idle-seconds>120</time-to-idle-seconds>
+      <time-to-live-seconds>600</time-to-live-seconds>
+    </configuration>
+  </cache>
+
+  <!-- More cache blocks here as needed. -->
+
+</terracotta-hibernate-cache-configuration>

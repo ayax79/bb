@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2009. Blackbox, LLC
+  ~ All rights reserved.
+  -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jee="http://www.springframework.org/schema/jee" xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd"
+        >
+
+    <bean id="createMiniProfileListener" class="com.blackbox.server.user.listener.CreateMiniProfileListener"/>
+
+    <bean id="createUserEventListeners"
+          class="org.springframework.beans.factory.config.ListFactoryBean">
+        <property name="sourceList">
+            <util:list>
+                <ref bean="userCreateListener"/>
+                <ref bean="registrationListeners"/>
+            </util:list>
+        </property>
+    </bean>
+    <bean id="updateUserEventListeners"
+          class="org.springframework.beans.factory.config.ListFactoryBean">
+        <property name="sourceList">
+            <util:list>
+                <ref bean="userUpdateListener"/>
+            </util:list>
+        </property>
+    </bean>
+    <bean id="deleteUserEventListeners"
+          class="org.springframework.beans.factory.config.ListFactoryBean">
+        <property name="sourceList">
+            <util:list>
+                <ref bean="deleteUserListener"/>
+            </util:list>
+        </property>
+    </bean>
+    <bean id="commerceEventListeners"
+          class="org.springframework.beans.factory.config.ListFactoryBean">
+        <property name="sourceList">
+            <util:list>
+                <ref bean="loadMerchantByIdListener"/>
+                <ref bean="loadProductByIdListener"/>
+                <ref bean="saveMerchantListener"/>
+                <ref bean="saveProductListener"/>
+                <ref bean="saveShoppingCartListener"/>
+                <ref bean="purchaseOrderListener"/>
+                <ref bean="sendOrderListener"/>
+                <ref bean="saveCartRelationshipsListener"/>
+                <ref bean="loadInventoryListener"/>
+                <ref bean="saveInventoryListener"/>
+            </util:list>
+        </property>
+    </bean>
+    <bean id="securityListeners"
+          class="org.springframework.beans.factory.config.ListFactoryBean">
+        <property name="sourceList">
+            <util:list>
+                <ref bean="createMiniProfileListener"/>
+                <ref bean="persistLastLoginListener"/>
+            </util:list>
+        </property>
+    </bean>
+    <bean id="socialEventListeners"
+          class="org.springframework.beans.factory.config.ListFactoryBean">
+        <property name="sourceList">
+            <util:list>
+            </util:list>
+        </property>
+    </bean>
+    <bean id="generalListeners"
+          class="org.springframework.beans.factory.config.ListFactoryBean">
+        <property name="sourceList">
+            <util:list>
+                <ref bean="loadMetaDataListener"/>
+                <ref bean="loadContentListener"/>
+                <ref bean="loadProfileMediaMetaDataListener"/>
+                <ref bean="loadMediaLibrariesByOwnerListener"/>
+                <ref bean="saveMediaLibraryListener"/>
+                <ref bean="clearWishStatusCacheListener" />
+                <ref bean="loadActivityThreadListener" />
+                <ref bean="loadAssociateActivityThreadListener" />
+                <ref bean="loadLastActivityListener" />
+                <ref bean="deleteMessageFromDatabaseListener" />
+                <!--<ref bean="deletePrimaryMessageFromActivityStreamListener" />-->
+                <!--<ref bean="deleteAssociatedMessageFromActivityStreamListener" />-->
+                <!--<ref bean="deleteSenderMessageFromActivityStreamListener" />-->
+                <ref bean="deleteMetaDataFromDatabaseListener" />
+                <!--<ref bean="deletePrimaryMetaDataFromActivityStreamListener" />-->
+                <!--<ref bean="deleteAssociatedMetaDataFromActivityStreamListener" />-->
+                <!--<ref bean="deleteSenderMetaDataFromActivityStreamListener" />-->
+                <!--
+                begin order matters for these
+                -->
+                <!--
+                begin order matters for these
+                -->
+            </util:list>
+        </property>
+    </bean>
+
+    <bean id="loadMediaLibrariesByOwnerListener"
+          class="com.blackbox.server.media.listener.LoadMediaLibrariesByOwnerListener"/>
+    <bean id="saveMediaLibraryListener" class="com.blackbox.server.media.listener.SaveMediaLibraryListener"/>
+    <bean id="clearWishStatusCacheListener" class="com.blackbox.server.bookmark.listener.ClearBookmarkCacheListener" />
+
+</beans>

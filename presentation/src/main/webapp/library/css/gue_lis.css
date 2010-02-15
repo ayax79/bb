@@ -1,0 +1,316 @@
+.gue_lis{
+	width:941px;
+	margin:0 auto;
+}
+.gue_menbg{
+	width:880px;
+	padding-left:61px;
+	padding-top:20px;
+	height:20px;
+	text-align:left;
+	font-size:11px;
+	color:#6D6D6D;
+    background:url(../images/psevent/gue_menbg.jpg) repeat-x left top;
+}
+.gue_men_del{
+	width:61px;
+	float:left;
+	padding-top:7px;
+	text-align:center;
+}
+.gue_men_sou{
+	width:87px;
+	float:left;
+}
+.gue_men_nam{
+	width:178px;
+	float:left;
+}
+.gue_men_nam1{
+	width:178px;
+	line-height:40px;
+	float:left;
+	font-size:11px;
+	color:#2e2e2e;
+	font-weight:bold;
+}
+.gue_men_sen{
+	width:529px;
+	float:left;
+	height:20px;
+}
+.gue_men_sen span{
+	float:left;
+	height:20px;
+	line-height:20px;
+}
+.gue_men_sen img{
+	float:left;
+	padding-left:10px;
+}
+.gue_men_sen1{
+	width:529px;
+	font-size:11px;
+	color:#2e2e2e;
+	line-height:40px;
+	float:left;
+}
+.gue_men_ema{
+	width:61px;
+	float:left;
+}
+.gue_men_sms{
+	width:86px;
+	float:left;
+}
+.gue_men_ema1{
+	width:61px;
+	float:left;
+	padding-top:12px;
+}
+.gue_men_sms1{
+	width:86px;
+	float:left;
+	padding-top:12px;
+}
+.gue_con{
+	width:941px;
+	padding-bottom:23px;
+	overflow-y:auto;
+	overflow-x:hidden;
+	border-bottom:#E1E1E1 1px solid;
+	background-color:#fff;
+}
+.gue_con_ts{
+	width:941px;
+	padding-top:150px;
+	height:170px;
+	text-align:center;
+	font-size:12px;
+	font-weight:bold;
+	background-color:#fff;
+	border-bottom:#E1E1E1 1px solid;
+}
+.gue_lis_bot{
+	width:941px;
+	height:6px;
+    background:url(../images/psevent/eve_bot_bg.png) no-repeat left top;
+}
+.gue_con_lis{
+	width:880px;
+	padding-left:61px;
+	height:41px;
+	background:url(../images/persona/solid3.png) repeat-x left bottom;
+}
+.gue_con_lis1{
+	width:941px;
+	height:41px;
+	background:url(../images/persona/solid3.png) repeat-x left bottom;
+}
+.gue_log{
+	width:33px;
+	padding-top:11px;
+	float:left;
+}
+.gue_pic{
+	float:left;
+	padding-top:7px;
+	background:url(../images/psevent/gue_picbg.jpg) no-repeat left bottom;
+	width:22px;
+	height:26px;
+}
+.gue_pic img{
+	width:22px;
+	height:22px;
+	overflow:hidden;
+}
+.gue_share{
+	width:941px;
+	height:89px;
+	border-bottom:#E1E1E1 1px solid;
+	background-color:#fff;
+}
+.gue_share1{
+	width:941px;
+	height:89px;
+	background-color:#fff;
+}
+.gue_sha_tex{
+	width:156px;
+	line-height:89px;
+	float:left;
+	padding-left:21px;
+	font-size:14px;
+	color:#2e2e2e;
+	font-weight:bold;
+}
+.gue_sha_box{
+	width:27px;
+	float:left;
+	padding-top:36px;
+}
+.gue_sha_pic{
+	float:left;
+	width:121px;
+	padding-right:48px;
+	padding-top:21px;
+}
+.gue_box_lef{
+	width:380px;
+	padding-left:22px;
+	padding-top:40px;
+	float:left;
+	background-color:#fff;
+}
+.gue_box_rig{
+	width:430px;
+	padding-top:40px;
+	float:left;
+	background-color:#fff;
+	padding-left:109px;
+}
+.gue_box_tit{
+	font-size:14px;
+	font-weight:bold;
+	color:#2e2e2e;
+	padding-bottom:15px;
+}
+.gue_box_tit1{
+	font-size:14px;
+	font-weight:bold;
+	color:#2e2e2e;
+	padding-bottom:15px;
+	padding-top:25px;
+}
+
+.gue_box_sel{
+	font-size:12px;
+	color:#2e2e2e;
+	padding-bottom:10px;
+}
+.gue_box_sel select{
+	width:158px;
+	height:18px;
+}
+.gue_box_sel1{
+	font-size:12px;
+	color:#2e2e2e;
+	padding-bottom:10px;
+	padding-left:20px;
+}
+.gue_box_sel2{
+	font-size:12px;
+	color:#2e2e2e;
+	padding-bottom:18px;
+	padding-left:20px;
+	background:url(../images/persona/solid3.png) repeat-x left bottom;
+}
+.gue_box_sel5{
+	font-size:12px;
+	color:#2e2e2e;
+	padding-bottom:18px;
+	padding-top:20px;
+	background:url(../images/persona/solid3.png) repeat-x left bottom;
+}
+.gue_box_sel3{
+	font-size:14px;
+	color:#2e2e2e;
+	padding-bottom:50px;
+	padding-left:20px;
+}
+.gue_tex_yel{
+	color:#ff6600;
+	font-size:24px;
+	font-weight:bold;
+	text-decoration:underline;
+}
+.gue_inv{
+    width:941px;
+    margin:0 auto;
+}
+.gue_inv_lef{
+    float:left;
+	width:9px;
+	height:36px;
+    background: transparent url(../images/psevent/crea_1_lm1.png) no-repeat left bottom;
+}
+.gue_inv_mid{
+    float:left;
+	width:890px;
+	height:36px;
+	line-height:36px;
+    padding-left:10px;
+	font-size:16px;
+    font-weight:bold;
+	color:#fff;
+    background: transparent url(../images/psevent/crea_1_lm2.png) repeat-x left top;
+}
+.gue_inv_rig{
+    float:left;
+	width:32px;
+	height:36px;
+    background: transparent url(../images/psevent/crea_1_lm3.png) no-repeat left top;
+}
+.gue_share5{
+	width:919px;
+	height:34px;
+	border-bottom:#E1E1E1 1px solid;
+	background-color:#fff;
+	padding:15px 11px 15px 11px;
+}
+.but_gre_inv{
+	float:left;
+    width:141px;
+    height:34px;
+    background:url(../images/psevent/but_gre_bg1.jpg) no-repeat left top;
+}
+.but_gre_inv_rig{
+    text-align:center;
+    color:#fff;
+    font-size:11px;
+    font-weight:bold;
+    margin-left:5px;
+    height:34px;
+    line-height:34px;
+    background:url(../images/psevent/but_gre_bg2.jpg) repeat-x right top;
+}
+.gue_but_lis{
+	float:right;
+	width:200px;
+	height:34px;
+	padding-top:6px;
+}
+
+.edit_inp_lef6{
+	width:7px;
+	height:120px;
+	float:left;
+	background:url(../images/psevent/add_lefbg.jpg) no-repeat left top;
+}
+.edit_inp_rig6{
+	width:6px;
+	height:120px;
+	float:left;
+	background:url(../images/psevent/add_rigbg.jpg) no-repeat left top;
+}
+
+
+.gue_tha_are{
+	width:340px;
+	height:120px;
+	float:left;
+}
+.gue_tha_are textarea{
+	width:320px;
+	height:100px;
+	padding:10px;
+	border:0;
+	background:url(../images/psevent/add_midbg.jpg) repeat-x left bottom;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	margin:0;
+	word-wrap: break-word;
+	overflow:auto;
+	overflow-x:hidden;
+	overflow-y:hidden;
+	font-size:12px;
+}

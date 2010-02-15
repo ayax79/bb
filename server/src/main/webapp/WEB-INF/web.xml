@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2009. Blackbox, LLC
+  ~ All rights reserved.
+  -->
+
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+    <display-name>server</display-name>
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            classpath:/spring/baseconfig.xml,
+            classpath:/spring/cache-config.xml,
+            classpath:/spring/activity-config.xml,
+            classpath:/spring/media-config.xml,
+            classpath:/spring/message-config.xml,
+            classpath:/spring/notification-config.xml,
+            classpath:/spring/commerce-config.xml,
+            classpath:/spring/diskstore-config.xml,
+            classpath:/spring/occasion-config.xml,
+            classpath:/spring/producer-messagebus-config.xml,
+            classpath:/spring/scheduled-jobs.xml,
+            classpath:/spring/search-config.xml,
+            classpath:/spring/security-config.xml,
+            classpath:/spring/social-config.xml,
+            classpath:/spring/user-config.xml,
+            classpath:/spring/generic-listener-config.xml,
+            classpath:/camel/base-camel.xml,
+            classpath:/camel/multimediaContentPublish-camel.xml,
+            classpath:/camel/notification-camel.xml,
+            classpath:/camel/textMessagePublish-camel.xml
+        </param-value>
+    </context-param>
+
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <filter>
+        <filter-name>filedownload</filter-name>
+        <filter-class>org.yestech.lib.io.FileSystemFileDownloadFilter</filter-class>
+        <init-param>
+            <param-name>deleteAfterDownload</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <init-param>
+            <param-name>baseDirectory</param-name>
+            <param-value>/tmp/store</param-value>
+        </init-param>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>filedownload</filter-name>
+        <url-pattern>/download/*</url-pattern>
+    </filter-mapping>
+
+    <servlet>
+        <servlet-name>spring</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>/WEB-INF/spring-remoting.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>spring</servlet-name>
+        <url-pattern>/remoting/*</url-pattern>
+    </servlet-mapping>
+
+
+</web-app>

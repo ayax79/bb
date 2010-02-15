@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="Relationship">
+
+    <resultMap id="FromEntityResult" type="com.blackbox.EntityReference">
+        <result property="guid" column="fromguid" javaType="string"/>
+        <result property="ownerType" column="fromownertype" javaType="com.blackbox.EntityType" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <resultMap id="ToEntityResult" type="com.blackbox.EntityReference">
+        <result property="guid" column="toguid" javaType="string"/>
+        <result property="ownerType" column="toownertype" javaType="com.blackbox.EntityType" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <resultMap id="RelationshipResult" type="com.blackbox.social.Relationship"
+               extends="BBPersistentObject.BBPersistentObjectResult">
+        <result property="acknowledged" javaType="boolean"/>
+        <result property="description" javaType="string"/>
+        <result property="previousWeight" javaType="integer" jdbcType="INTEGER"/>
+        <result property="weight" javaType="int"/>
+        <association property="fromEntity" resultMap="FromEntityResult"/>
+        <association property="toEntity" resultMap="ToEntityResult"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.blackbox.social.Relationship">
+        insert into bb_relationship
+        (acknowledged, created, description, fromguid, fromownertype, modified, previousweight, toguid, toownertype, version, weight, guid)
+        values
+        (#{acknowledged,jdbcType=BOOLEAN}, #{created,jdbcType=DATE}, #{description,jdbcType=VARCHAR}, #{fromEntity.guid,jdbcType=VARCHAR},
+        #{fromEntity.ownerType,jdbcType=INTEGER}, #{modified,jdbcType=DATE}, #{previousWeight,jdbcType=INTEGER}, #{toEntity.guid,jdbcType=INTEGER},
+        #{toEntity.ownerType,jdbcType=INTEGER}, #{version,jdbcType=INTEGER}, #{weight,jdbcType=INTEGER}, #{guid,jdbcType=VARCHAR})
+    </insert>
+
+    <update id="update" parameterType="com.blackbox.social.Relationship">
+        update bb_relationship set
+        acknowledged = #{acknowledged,jdbcType=BOOLEAN},
+        description = #{description,jdbcType=VARCHAR},
+        modified = #{modified,jdbcType=DATE},
+        weight = #{weight,jdbcType=INTEGER},
+        previousweight = #{previousWeight,jdbcType=INTEGER}
+        where guid = #{guid,jdbcType=VARCHAR}
+    </update>
+
+    <delete id="delete" parameterType="string">
+        delete from bb_relationship where guid = #{value}
+    </delete>
+
+    <delete id="bulkRelationshipDelete" parameterType="map">
+        delete from bb_relationship where toguid = #{toGuid} and fromguid = #{fromGuid}
+    </delete>
+
+    <select id="loadRelationshipsByFromEntityGuid" resultMap="Relationship.RelationshipResult" parameterType="string">
+        select * from bb_relationship where fromguid = #{value}
+    </select>
+
+    <select id="loadRelationshipsPending" resultMap="Relationship.RelationshipResult" parameterType="map">
+        select * from bb_relationship where toguid = #{guid} and weight in (#{startWeight},#{endWeight}) order by created desc 
+    </select>
+
+    <select id="loadRelationshipsByToEntityAndWeights" resultMap="Relationship.RelationshipResult" parameterType="map">
+        select * from bb_relationship where toguid = #{guid}
+        <if test="weights != null">
+            and weight in
+            <foreach collection="weights" open="(" close=")" separator="," item="item">#{item}</foreach>
+        </if>
+    </select>
+
+    <select id="countFriendsOrGreater" resultType="int" parameterType="map">
+        <![CDATA[select count(*) from bb_relationship where toguid = #{guid} and weight >= #{weight} ]]>
+    </select>
+
+    <select id="loadRelationshipsByFromEntityAndWeights" resultMap="Relationship.RelationshipResult"
+            parameterType="map">
+        select * from bb_relationship where fromguid = #{guid}
+        <if test="weights != null">
+            and weight in
+            <foreach collection="weights" open="(" close=")" separator="," item="item">#{item}</foreach>
+        </if>
+    </select>
+
+    <select id="loadRelationshipsByToEntityGuidAndWeightRange" resultMap="Relationship.RelationshipResult"
+            parameterType="map">
+        <![CDATA[
+        select * from bb_relationship r where r.toguid = #{guid} and r.weight >= #{startWeight} and r.weight < #{endWeight} order by r.created desc
+        ]]>
+    </select>
+
+    <select id="loadRelationshipsByFromEntityGuidAndWeightRange" resultMap="Relationship.RelationshipResult"
+            parameterType="map">
+        <![CDATA[
+        select * from bb_relationship r where r.toguid = #{guid} and r.weight >= #{startWeight} and r.weight < #{endWeight} order by r.created desc
+        ]]>
+    </select>
+
+    <select id="loadRelationshipsByToEntityGuid" resultMap="Relationship.RelationshipResult" parameterType="string">
+        select * from bb_relationship r where r.toguid = #{value}
+    </select>
+
+    <select id="loadRelationshipByGuid" resultMap="Relationship.RelationshipResult" parameterType="string">
+        select * from bb_relationship r where r.guid = #{value}
+    </select>
+
+    <select id="loadRelationshipByEntities" resultMap="Relationship.RelationshipResult" parameterType="map">
+        select * from bb_relationship where fromguid = #{fromGuid} and toguid = #{toGuid} limit 1 
+    </select>
+
+    <select id="loadRelationshipByEntitiesAndWeight" resultMap="Relationship.RelationshipResult" parameterType="map">
+        select * from bb_relationship where fromguid = #{fromGuid} and toguid = #{toGuid} and weight = #{weight} limit 1
+    </select>
+
+    <select id="loadConnections" resultMap="Relationship.RelationshipResult" parameterType="map">
+        <![CDATA[
+        select * from bb_relationship r where
+        ( r.fromguid = #{fromGuid,jdbcType=VARCHAR}
+        or r.toguid = #{toGuid,jdbcType=VARCHAR} )
+        and r.fromownertype = #{ownerType,jdbcType=INTEGER} 
+        and r.weight >= #{minWeight,jdbcType=INTEGER}
+        and r.weight < #{maxWeight,jdbcType=INTEGER}
+        order by r.modified DESC
+        ]]>
+    </select>
+
+
+</mapper>

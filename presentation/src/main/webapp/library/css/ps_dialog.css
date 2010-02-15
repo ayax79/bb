@@ -1,0 +1,21 @@
+.ps-dialog .dialog-cl {
+    padding-left: 10px;
+}
+
+.ps-dialog .dialog-cr {
+    padding-right: 10px;
+}
+
+.ps-dialog .dialog-bl {
+    padding-left: 20px;
+    margin-left: 0px;
+}
+
+.ps-dialog .dialog-br {
+    padding-right: 10px;
+}
+
+.ps-dialog .dialog-content {
+    padding: 0px;
+}
+

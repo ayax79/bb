@@ -1,0 +1,192 @@
+<%--@elvariable id="actionBean" type="com.blackbox.presentation.action.search.ExploreActionBean"--%>
+<%@include file="/WEB-INF/jsp/include/taglibs.jspf" %>
+<fmt:setBundle basename="StripesResources"/>
+
+
+
+<c:choose>
+	<c:when test="${not empty actionBean.results.results}">
+
+
+<h2>
+    Search Results (
+    <c:if test="${not empty actionBean.results.totalResults}">
+        ${actionBean.results.totalResults}
+    </c:if>
+    events found)
+</h2>
+<c:forEach var="result" items="${actionBean.results.results}">
+
+    <c:set var="event" value="${result.entity}"/>
+    <c:set var="layout" value="${result.entity.layout}" />
+    <c:set var="address" value="${result.entity.address}" />
+    <c:set var="attendees" value="${result.entity.attendees}" />
+    <c:set var="attendingStatus" value="${result.attendingStatus}" />
+
+
+
+
+    <table cellpadding="0" cellspacing="0" border="0" width="100%" class="results_table">
+        <tr>
+            <td valign="top" class="results-col-1">
+
+                <c:choose>
+                    <c:when test="${not empty layout.transiantImage.location}">
+                        <ui:roughBorderedImage url="${layout.transiantImage.location}" alt="" className="event-image" />
+                    </c:when>
+                    <c:otherwise>
+                        <ui:roughBorderedImage url="${bb:libraryResource('/library/images/events/event_default_avatar.gif')}" alt="" className="event-image" />
+                    </c:otherwise>
+                </c:choose>
+                <%--
+                <div class="results-padding">
+                    <div style='border: 4px solid #7fc34b; width: 98px; height: 98px;'>
+                        <img src="${layout.transiantImage.location}" alt="Event Image" width="96" height="96" style='border: 1px solid #fff;'/>
+                    </div>
+                </div>
+                --%>
+
+            </td>
+            <td valign="top" style="padding-top: 5px;">
+                <table cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                        <td class="event_result_label">Event</td>
+                        <td class="event_result_data"><s:link beanclass="com.blackbox.presentation.action.psevent.PSShowEventActionBean"><s:param name="eventParam" value="${event.guid}"/>${event.name}</s:link></td>
+                    </tr>
+                    <tr>
+                        <td class="event_result_label">Location</td>
+                        <td class="event_result_data">
+                            <c:set var="prevToken" value="false" />
+                            <c:if test="${not empty address.address1}">
+                                ${address.address1}
+                                <c:if test="${empty address.address2}">, </c:if>
+                            </c:if>
+                            <c:if test="${not empty address.address2}">
+                                &nbsp;${address.address2},
+                            </c:if>
+                            <c:if test="${not empty address.city}">
+                                ${address.city},
+                            </c:if>
+                            <c:if test="${not empty address.state}">
+                                ${address.state}
+                            </c:if>
+                            <c:if test="${address.zipCode}">
+                                ${address.zipCode}
+                            </c:if>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="event_result_label">Date</td>
+                        <td class="event_result_data">
+                        ${bb:formatDate(event.eventTime, "EEEE MMMM d, yyyy")}
+                        @
+                        ${bb:formatDate(event.eventTime, "h:mm a")}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="event_result_label" valign="top">Details</td>
+                        <td class="event_result_data"><div style='width: 300px; height: 28px; overflow: hidden;'>${event.description}</div></td>
+                    </tr>
+                    <tr>
+                        <td class="event_result_label">Guests</td>
+                        <td class="event_result_data">${event.totalAttendees} attendees</td>
+                    </tr>
+                </table>
+            </td>
+            <td width="1">
+               <div class="user_table_vert_line"></div>
+            </td>
+            <td valign="top" width="125">
+                <div class="results-padding" style='font-size: 11px;'>
+                    <%--
+                    ${event.occasionType}<br>
+                    ${attendingStatus}<br>
+                    --%>
+                    <c:choose>
+                        <c:when test="${event.owner.guid == actionBean.currentUser.guid}">
+                            <s:link beanclass="com.blackbox.presentation.action.psevent.PSShowEventActionBean"><s:param name="eventParam" value="${event.guid}"/>Visit event page</s:link><br />                            
+                        </c:when>
+                        <c:when test="${event.occasionType == 'OPEN'}">
+                            <script type="text/javascript">
+                                if("ATTENDING" == "${attendingStatus}") {
+                                    populateRSVP('${event.guid}', 'ATTENDING');
+                                } else if ("TENATIVE" == "${attendingStatus}") {
+                                    populateRSVP('${event.guid}', 'TENATIVE');
+                                } else if ("NOT_ATTENDING" == "${attendingStatus}") {
+                                    populateRSVP('${event.guid}', 'NOT_ATTENDING');
+                                }
+                            </script>
+                            <div style='font-weight: bold;'>RSVP for this event</div>
+                            <a href="javascript:setRSVP('${event.guid}', '${actionBean.currentUser.guid}', 'ATTENDING')"><img id="statusradio_${event.guid}_attending" src="${bb:libraryResource('/library/images/explore/rsvp_radio_off.png')}" alt="Yes" style="margin-top: 4px;"></a>&nbsp;<a href="javascript:setRSVP('${event.guid}', '${actionBean.currentUser.guid}', 'ATTENDING')">Yes</a><br />
+                            <a href="javascript:setRSVP('${event.guid}', '${actionBean.currentUser.guid}', 'TENATIVE')"><img id="statusradio_${event.guid}_tentative" src="${bb:libraryResource('/library/images/explore/rsvp_radio_off.png')}" alt="Maybe" style="margin-top: 4px;"></a>&nbsp;<a href="javascript:setRSVP('${event.guid}', '${actionBean.currentUser.guid}', 'TENATIVE')">Maybe</a><br />
+                            <a href="javascript:setRSVP('${event.guid}', '${actionBean.currentUser.guid}', 'NOT_ATTENDING')"><img id="statusradio_${event.guid}_notattending" src="${bb:libraryResource('/library/images/explore/rsvp_radio_off.png')}" alt="No" style="margin-top: 4px;"></a>&nbsp;<a href="javascript:setRSVP('${event.guid}', '${actionBean.currentUser.guid}', 'NOT_ATTENDING')">No</a><br />
+                        </c:when>
+                        <c:when test="${event.occasionType == 'INVITE_ONLY'}">
+                            ${attendingStatus}<br>
+                            <c:choose>
+                                <c:when test="${attendingStatus == 'NOT_INVITED'}">
+                                    <%--<a href="javascript:requestInvitation('${result.guid}');">Request Invitation</a>--%>
+                                    <div id="req_inv_link_container_${event.guid}">
+                                        <a href="javascript:setRSVP('${event.guid}', '${actionBean.currentUser.guid}', 'REQUESTED_INVITATION');">Request Invitation</a>
+                                    </div>
+                                </c:when>
+                                <c:when test="${attendingStatus == 'NOT_INVITED'}">
+                                    <%--<a href="javascript:requestInvitation('${result.guid}');">Request Invitation</a>--%>
+                                    <div id="req_inv_link_container_${event.guid}">
+                                        Request Pending
+                                    </div>
+                                </c:when>
+                                <c:when test="${attendingStatus == 'ATTENDING' ||
+                                 attendingStatus == 'NOT_ATTENDING' ||
+                                 attendingStatus == 'TENATIVE' ||
+                                 attendingStatus == 'NOT_RESPONDED'
+                                 }">
+                                    <script type="text/javascript">
+                                       if("ATTENDING" == "${attendingStatus}") {
+                                           populateRSVP('${event.guid}', 'ATTENDING');
+                                       } else if ("TENATIVE" == "${attendingStatus}") {
+                                           populateRSVP('${event.guid}', 'TENATIVE');
+                                       } else if ("NOT_ATTENDING" == "${attendingStatus}") {
+                                           populateRSVP('${event.guid}', 'NOT_ATTENDING');
+                                       }
+                                   </script>
+                                   <div style='font-weight: bold;'>RSVP for this event</div>
+                                   <a href="javascript:setRSVP('${event.guid}', '${actionBean.currentUser.guid}', 'ATTENDING')"><img id="statusradio_${event.guid}_attending" src="${bb:libraryResource('/library/images/explore/rsvp_radio_off.png')}" alt="Yes" style="margin-top: 4px;"></a>&nbsp;<a href="javascript:setRSVP('${event.guid}', '${actionBean.currentUser.guid}', 'ATTENDING')">Yes</a><br />
+                                   <a href="javascript:setRSVP('${event.guid}', '${actionBean.currentUser.guid}', 'TENATIVE')"><img id="statusradio_${event.guid}_tentative" src="${bb:libraryResource('/library/images/explore/rsvp_radio_off.png')}" alt="Maybe" style="margin-top: 4px;"></a>&nbsp;<a href="javascript:setRSVP('${event.guid}', '${actionBean.currentUser.guid}', 'TENATIVE')">Maybe</a><br />
+                                   <a href="javascript:setRSVP('${event.guid}', '${actionBean.currentUser.guid}', 'NOT_ATTENDING')"><img id="statusradio_${event.guid}_notattending" src="${bb:libraryResource('/library/images/explore/rsvp_radio_off.png')}" alt="No" style="margin-top: 4px;"></a>&nbsp;<a href="javascript:setRSVP('${event.guid}', '${actionBean.currentUser.guid}', 'NOT_ATTENDING')">No</a><br />
+                                </c:when>
+                            </c:choose>
+                            
+                        </c:when>
+                        <c:when test="${event.occasionType == 'PRIVATE'}">
+                            PRIVATE EVENT, SHOULD NOT DISPLAY UNLESS YOU ARE INVITED    
+                        </c:when>
+                    </c:choose>
+
+                </div>
+            </td>
+        </tr>
+    </table>
+
+
+
+
+
+</c:forEach>
+
+<c:if test="${actionBean.results.totalResults > 10}">
+    <div style="display:none;">
+        <input type="text" id="startIndex" value="${actionBean.explore.startIndex}"/>
+        <input type="text" id="numResults" value="${actionBean.explore.maxResults}"/>
+        <input type="text" id="totalResults" value="${actionBean.results.totalResults}"/>
+    </div>
+    <div id="paging_container_div" style="margin-top: 20px;">
+        <ui:pagingControls id="bottomPaging" items="${actionBean.results}"/>
+    </div>
+</c:if>
+
+   </c:when>
+    <c:otherwise>
+		<p><h2 id="no_results_msg">No results found</h2></p>
+	</c:otherwise>
+</c:choose>        

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2009. Blackbox, LLC
+  ~ All rights reserved.
+  -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
+        >
+
+
+    <bean id="emailListeners"
+          class="org.springframework.beans.factory.config.ListFactoryBean">
+        <property name="sourceList">
+            <util:list>
+                <ref bean="sendRegistrationEmailListener"/>
+                <ref bean="sendForgotPasswordEmailListener"/>
+                <ref bean="occasionSendInvEmailListener"/>
+                <ref bean="directMessageEmailNotificationListener"/>
+                <ref bean="newFriendRequestEmailListener"/>
+                <ref bean="followEmailListener"/>
+                <!--<ref bean="newRelationshipRequestEmailListener" />-->
+                <ref bean="vouchEmailListener" />
+                <ref bean="newGiftEmailListener" />
+                <ref bean="wishEmailListener" />
+            </util:list>
+        </property>
+    </bean>
+
+    <bean id="notificationBridge" class="org.yestech.notify.client.NotificationBridge"
+          p:producer-ref="notifyProducer"/>
+
+    <bean id="sendRegistrationEmailListener" class="com.blackbox.server.user.listener.SendRegisterEmailListener"/>
+    <bean id="sendForgotPasswordEmailListener"
+          class="com.blackbox.server.user.listener.SendResetPasswordEmailListener"/>
+
+    <bean id="occasionSendInvEmailListener" class="com.blackbox.server.occasion.listener.OccasionSendInvEmailListener"
+          p:presentationUrl="${presentation.url}"/>
+
+    <bean id="directMessageEmailNotificationListener"
+          class="com.blackbox.server.message.listener.DirectMessageEmailNotificationListener"/>
+
+    <bean id="newFriendRequestEmailListener"
+          class="com.blackbox.server.social.listener.NewFriendRequestEmailListener"/>
+
+    <bean id="followEmailListener" class="com.blackbox.server.social.listener.NewFollowEmailListener"/>
+    <!--<bean id="newRelationshipRequestEmailListener" class="com.blackbox.server.social.listener.NewRelationshipRequestEmailListener" />-->
+    <bean id="vouchEmailListener" class="com.blackbox.server.social.listener.VouchEmailListener" />
+    <bean id="newGiftEmailListener" class="com.blackbox.server.gifting.listener.NewGiftEmailListener" />
+    <bean id="wishEmailListener" class="com.blackbox.server.bookmark.listener.WishEmailListener" />
+
+
+
+    <bean id="angelsSender" class="org.yestech.notify.objectmodel.Sender"
+          p:displayName="${registration.sender.displayName}"
+          p:emailAddress="${registration.sender.emailAddress}" p:replyAddress="${registration.sender.replyAddress}"/>
+
+</beans>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2009. Blackbox, LLC
+  ~ All rights reserved.
+  -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"
+        >
+
+    <bean id="dataStoreManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean"
+            p:configLocation="classpath:/cache/datastore-ehcache.xml" p:shared="false"/>
+
+    <!--
+    BEGIN UPDATE TO CONSISTENT HASHING AND EHCACHE SERVER; ADD L1 and L2 using ehcache and ehcache server....
+    -->
+    <bean id="activityMetaDataDataStore" class="org.yestech.cache.impl.EhCacheCacheManager" p:cache-ref="activityMetaDataDataStoreDelegate" />
+    <bean id="activityMetaDataDataStoreDelegate" class="org.springframework.cache.ehcache.EhCacheFactoryBean" p:cacheManager-ref="dataStoreManager"
+          p:cacheName="activityMetaDataDataStore" />
+    <!--
+    END UPDATE TO CONSISTENT HASHING AND EHCACHE SERVER; ADD L1 and L2 using ehcache and ehcache server....
+    -->
+    <bean id="privateActivityDataStore" class="org.yestech.cache.impl.EhCacheCacheManager" p:cache-ref="privateActivityDataStoreDelegate" />
+    <bean id="privateActivityDataStoreDelegate" class="org.springframework.cache.ehcache.EhCacheFactoryBean" p:cacheManager-ref="dataStoreManager"
+            p:cacheName="privateActivityDataStore"/>
+
+    <bean id="globalActivityDataStore" class="org.yestech.cache.impl.EhCacheCacheManager" p:cache-ref="globalActivityDataStoreDelegate" />
+    <bean id="globalActivityDataStoreDelegate" class="org.springframework.cache.ehcache.EhCacheFactoryBean" p:cacheManager-ref="dataStoreManager"
+            p:cacheName="globalActivityDataStore"/>
+
+    <bean id="privateFriendsActivityDataStore" class="org.yestech.cache.impl.EhCacheCacheManager" p:cache-ref="privateFriendsActivityDataStoreDelegate" />
+    <bean id="privateFriendsActivityDataStoreDelegate" class="org.springframework.cache.ehcache.EhCacheFactoryBean" p:cacheManager-ref="dataStoreManager"
+            p:cacheName="privateFriendsActivityDataStore"/>
+
+    <bean id="privateFollowingActivityDataStore" class="org.yestech.cache.impl.EhCacheCacheManager" p:cache-ref="privateFollowingActivityDataStoreDelegate" />
+    <bean id="privateFollowingActivityDataStoreDelegate" class="org.springframework.cache.ehcache.EhCacheFactoryBean" p:cacheManager-ref="dataStoreManager"
+            p:cacheName="privateFollowingActivityDataStore"/>
+
+    <bean id="globalChildActivityDataStore" class="org.yestech.cache.impl.EhCacheCacheManager" p:cache-ref="globalChildActivityDataStoreDelegate" />
+    <bean id="globalChildActivityDataStoreDelegate" class="org.springframework.cache.ehcache.EhCacheFactoryBean" p:cacheManager-ref="dataStoreManager"
+            p:cacheName="globalChildActivityDataStore"/>
+
+    <bean id="privateChildActivityDataStore" class="org.yestech.cache.impl.EhCacheCacheManager" p:cache-ref="privateChildActivityDataStoreDelegate" />
+    <bean id="privateChildActivityDataStoreDelegate" class="org.springframework.cache.ehcache.EhCacheFactoryBean" p:cacheManager-ref="dataStoreManager"
+            p:cacheName="privateChildActivityDataStore"/>
+
+</beans>

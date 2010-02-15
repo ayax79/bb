@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="OccasionWebDetail">
+
+    <resultMap id="OccasionWebDetailResult" type="com.blackbox.occasion.OccasionWebDetail"
+            extends="BBPersistentObject.BBPersistentObjectResult">
+        <result property="canSharePhoto" />
+        <result property="canViewGuestList"  />
+        <result property="facebookMsg" />
+        <result property="promoteOnFacebook" />
+        <result property="promoteOnTwitter" />
+        <result property="twitterMsg" />
+        <association property="extraWebLinks" column="bb_occasion_webdetail_guid" select="OccasionWebDetailExtraWebLink.loadByOccasionWebDetailGuid" />
+    </resultMap>
+
+    <insert id="insert" parameterType="com.blackbox.occasion.OccasionWebDetail">
+        insert into bb_occasion_webdetail
+        (canSharePhoto, canViewGuestList, created, facebookMsg, modified, promoteOnFacebook,
+        promoteOnTwitter, twitterMsg, version, guid)
+        values
+        (#{canSharePhoto,jdbcType=BOOLEAN}, #{canViewGuestList,jdbcType=INTEGER}, #{created,jdbcType=DATE},
+        #{facebookMsg,jdbcType=VARCHAR}, #{modified,jdbcType=DATE}, #{promoteOnFacebook,jdbcType=BOOLEAN},
+        #{promoteOnTwitter,jdbcType=BOOLEAN},#{twitterMsg,jdbcType=VARCHAR}, #{version,jdbcType=DATE},
+        #{guid,jdbcType=VARCHAR})
+    </insert>
+
+    <update id="update" parameterType="com.blackbox.occasion.OccasionWebDetail">
+        update bb_occasion_webdetail set
+        canSharePhoto = #{canSharePhoto,jdbcType=BOOLEAN},
+        canViewGuestList = #{canViewGuestList,jdbcType=INTEGER},
+        created = #{created,jdbcType=DATE},
+        facebookMsg = #{facebookMsg,jdbcType=VARCHAR},
+        modified = #{modified,jdbcType=DATE},
+        promoteOnFacebook = #{promoteOnFacebook,jdbcType=BOOLEAN},
+        promoteOnTwitter = #{promoteOnTwitter,jdbcType=BOOLEAN},
+        twitterMsg = #{twitterMsg,jdbcType=VARCHAR},
+        version = #{twitterMsg,jdbcType=INTEGER}
+        where
+        guid = #{guid,jdbcType=VARCHAR} 
+    </update>
+
+    <delete id="delete" parameterType="string">
+        delete from bb_occasion_webdetail where guid = #{value}
+    </delete>
+
+    <select id="load" resultMap="OccasionWebDetail.OccasionWebDetailResult" parameterType="string">
+        select * from bb_occasion_webdetail where guid = #{value}
+    </select>
+
+
+</mapper>

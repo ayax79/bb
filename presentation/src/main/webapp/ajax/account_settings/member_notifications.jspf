@@ -1,0 +1,20 @@
+<%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
+<s:form class="bbform bbsettings" id="notifications_settings_form" beanclass="com.blackbox.presentation.action.user.AccountSettingsActionBean" method="post">
+
+	<h2>Notification settings</h2>
+	
+	<ul>
+		<li>
+			<label>Send me an email when I receive:</label>
+			<input type="checkbox" id="priv-message" name=""/><label for="priv-message" class="sub">New private message</label><br />
+			<input type="checkbox" id="friend-request" name=""/><label for="friend-request" class="sub">New friend request</label><br/>
+			<input type="checkbox" id="new-follower" name=""/><label for="new-follower" class="sub">New follower</label><br />
+			<input type="checkbox" id="new-gift" name=""/><label for="new-gift" class="sub">New gift</label>
+		</li>
+	</ul>
+
+	<div class="button-panel">
+		<button name="updateNotifications" id="submitbutton" type="submit" class="bbform-button bbutton grey"><span>Save changes</span></button>
+	</div>
+
+</s:form>

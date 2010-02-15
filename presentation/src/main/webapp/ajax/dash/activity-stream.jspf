@@ -1,0 +1,62 @@
+<%@ page import="com.blackbox.activity.ActivityTypeEnum" %>
+<%@ page import="com.blackbox.activity.IActivityThread" %>
+<%@ page import="com.blackbox.activity.IActivity" %>
+<%@ page import="com.blackbox.presentation.action.util.JSONUtil" %>
+
+<%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
+
+<%------------------------------------------------------------------------------
+TODO:
+All of the template JSPs should probably just be turned into custom jsp tags so
+we can pass the activity thread  and children explicitly, rather than putting
+them in the request. This would also make it nicer for embedding the templates
+in the html page as we could structure them differently.
+------------------------------------------------------------------------------%>
+
+<%------------------------------------------------------------------------------
+Creates the appropriate HTML for each Activity object, depending on type
+------------------------------------------------------------------------------%>
+<c:forEach var="activityThread" items="${actionBean.activities}">
+    <c:set var="parent" scope="page" value="${activityThread.parent}" />
+	<c:set var="activity" scope="request" value="${activityThread}" />
+    <c:choose>
+        <c:when test="${bb:isMessage(parent) && not parent.virtualGift}">
+            <%-- MESSAGE --%>
+            <%@include file="/WEB-INF/jsp/include/templates/message.jspf"%>
+        </c:when>
+       <c:when test="${bb:isMessage(parent) && parent.virtualGift}">
+            <%-- MESSAGE --%>
+            <%@include file="/WEB-INF/jsp/include/templates/gift-message.jspf"%>
+        </c:when>
+        <c:when test="${bb:isMedia(parent) && not parent.virtualGift}">
+            <%-- MEDIA --%>
+			<%@include file="/WEB-INF/jsp/include/templates/media.jspf" %>
+        </c:when>
+        <c:when test="${bb:isMedia(parent) && parent.virtualGift}">
+            <%-- MEDIA --%>
+			<%@include file="/WEB-INF/jsp/include/templates/gift-media.jspf" %>
+        </c:when>
+        <c:when test="${bb:isOccasion(parent) && not parent.virtualGift}">
+            <%-- OCCASION --%>
+			<p>THIS IS AN EVENT - TEMPLATE NOT COMPLETE</p>
+			<%--<%@include file="/WEB-INF/jsp/include/templates/events.jspf" %>--%>
+        </c:when>
+    </c:choose>
+</c:forEach>
+
+<%------------------------------------------------------------------------------
+Creates the javascript that is required to register each activity object.
+By registering an object, the front end associates a data publish with the dom
+node using jQuery's data object.
+------------------------------------------------------------------------------%>
+<c:if test="${not empty actionBean.activities}">
+<script type="text/javascript">
+//<![CDATA[
+Activity.registerObject([
+<c:forEach var="activityThread" items="${actionBean.activities}" varStatus="index">
+    ${bb:activityThreadToJson(activityThread)}<c:if test="${!index.last}" >, </c:if>
+</c:forEach>
+	]);
+//]]>
+</script>
+</c:if>

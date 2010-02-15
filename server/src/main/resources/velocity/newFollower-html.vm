@@ -1,0 +1,9 @@
+#parse("/velocity/html-email-header.vm")
+Don't look now $recipient_name but $requesting_username is totally following you. <br />
+No, fo reals. They're all, " $recipient_name is interesting."<br />
+And you're all, "hey! someone is following me again, I must be interesting."<br />
+And then they're all, "ummmmmm, yeah! You ARE interesting."<br /><br />
+
+Well anyway, you get it,  $recipient_name. The question is, what are you going to do about it? Follow back? Hmm.<br />
+<a href="$presentation_url">Login</a> now to have a look at their persona and follow them back if you're a just little intrigued. Whoop whoop!
+#parse("/velocity/html-email-footer.vm")

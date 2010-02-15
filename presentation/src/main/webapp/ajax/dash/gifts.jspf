@@ -1,0 +1,62 @@
+<%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
+
+<div style="background:transparent url(${bb:libraryResource('/library/images/bg/grey2.png')});padding:10px;">
+	<span style="float:left;color:#727272;line-height:24px;">Activity:</span>
+	<ul class="filters-menu">
+		<c:set var="actionUrl"><s:url beanclass="com.blackbox.presentation.action.activity.GiftActivityActionBean" event="loadPartial"/></c:set>
+		<li><ui:anchorButton href="${actionUrl}&filter=all" typeClass="smlbtn" styleClass="menu-item">Everyone</ui:anchorButton></li>
+		<%--<li><ui:anchorButton href="${actionUrl}&filter=friends_following" typeClass="smlbtn" styleClass="menu-item">Friends+Following</ui:anchorButton></li>--%>
+		<li><ui:anchorButton href="${actionUrl}&filter=friends" typeClass="smlbtn" styleClass="menu-item">Friends</ui:anchorButton></li>
+		<li><ui:anchorButton href="${actionUrl}&filter=following" typeClass="smlbtn" styleClass="menu-item">Following</ui:anchorButton></li>
+	</ul>
+	<div class="clear"></div>
+</div>
+<div class="clear"></div>
+<div class="bb-left main-col">
+	
+	<ui:mainPublisher inputId="gifts-publisher" defaultText="Give something"/>
+	<%--<h2 class="stream-header">Friends+Following</h2>--%>
+
+	<div id="gifts_target" class="stream-content articles">
+		<%--<%@include file="/WEB-INF/jsp/include/templates/11th-hour.jspf" flush="true"/>--%>
+		<%@include file="/WEB-INF/jsp/include/templates/gift1.jspf" %>
+	</div>
+	<div class="clear"></div>
+</div>
+
+<div style="display:none;" id="gifts-message">
+	<h2 style="margin-left:0;">It's better to give than to receive. Right?</h2>
+	<p>Yummy, delicious gifts will be ready before we're live. So get ready to give. :)</p>
+</div>
+
+<div class="bb-right right-col last">
+	<%@include file="/ajax/dash/right-column-gifts.jspf"%>
+</div>
+<div class="clear"></div>
+
+<script type="text/javascript">
+//<![CDATA[
+	var giftStream = new Activity.Stream("#gifts_target");
+	giftStream.addEventTypes([
+		Activity.Event.MESSAGE_EVENT,
+		Activity.Event.MEDIA_EVENT,
+		Activity.Event.OCCASION_EVENT
+	],"gifts");
+	giftStream.activate();
+
+ 	$(".filters-menu li a, .main-col, .right-col").attr("href", "#").click(function() {return false;});
+	$(".mainpub-container *").unbind();
+
+	$("#gifts-message").bbDialog({
+		onopen: function() {$(this).show();$(this).bbDialog('center');},
+		autoCenterX:true,
+		autoCenterY:true,
+		modal:true,
+		draggable:false,
+		buttons: {
+			'OK':function() {this.close();}
+		},
+		title:'Hey there camper!'
+	});
+//]]>
+</script>

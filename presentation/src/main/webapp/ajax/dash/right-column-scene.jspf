@@ -1,0 +1,104 @@
+<%--@elvariable id="actionBean" type="com.blackbox.presentation.action.activity.SceneActivityActionBean"--%>
+<%@include file="/WEB-INF/jsp/include/taglibs.jspf" %>
+
+<script type="text/javascript">
+//<![CDATA[
+//	$(function() {
+//		$(function() {
+//			$(".explore-more a").click(function() {
+//				bb.explore.open('events');
+//				return false;
+//			});
+//		});
+//	});
+//]]>
+</script>
+
+<div id="events">
+
+
+	<c:if test="${not empty actionBean.notifications.follows.items or
+			not empty actionBean.notifications.friends.items or
+			not empty actionBean.notifications.gifts.items or
+			not empty actionBean.notifications.vouches.items or
+			not empty actionBean.notifications.wishes.items}">
+
+		<h2>Notifications</h2>
+	
+		<div class="events-container section notification clearfix">
+
+			<div class="clearfix">
+			<c:if test="${not empty actionBean.notifications.follows.items}">
+				<p><s:link beanclass="com.blackbox.presentation.action.notification.BaseNotificationActionBean"><s:param name="viewAllType" value="follow"/>${f:length(actionBean.notifications.follows.items)} new follower<c:if test="${f:length(actionBean.notifications.follows.items) > 1}">s</c:if></s:link></p>
+			</c:if>
+
+			<c:if test="${not empty actionBean.notifications.friends.items}">
+				<p><s:link beanclass="com.blackbox.presentation.action.notification.BaseNotificationActionBean"><s:param name="viewAllType" value="friend"/>${f:length(actionBean.notifications.friends.items)} new friend request<c:if test="${f:length(actionBean.notifications.friends.items) > 1}">s</c:if></s:link></p>
+			</c:if>
+
+			<c:if test="${not empty actionBean.notifications.gifts.items}">
+				<p><s:link beanclass="com.blackbox.presentation.action.notification.BaseNotificationActionBean"><s:param name="viewAllType" value="gift"/>${f:length(actionBean.notifications.gifts.items)} new gift<c:if test="${f:length(actionBean.notifications.gifts.items) > 1}">s</c:if></s:link></p>
+			</c:if>
+
+			<c:if test="${not empty actionBean.notifications.vouches.items}">
+				<p><s:link beanclass="com.blackbox.presentation.action.notification.BaseNotificationActionBean"><s:param name="viewAllType" value="vouch"/>${f:length(actionBean.notifications.vouches.items)} new vouch<c:if test="${f:length(actionBean.notifications.vouches.items) > 1}">es</c:if></s:link></p>
+			</c:if>
+
+			<c:if test="${not empty actionBean.notifications.wishes.items}">
+				<p><s:link beanclass="com.blackbox.presentation.action.notification.BaseNotificationActionBean"><s:param name="viewAllType" value="wish"/>${f:length(actionBean.notifications.wishes.items)} new wish<c:if test="${f:length(actionBean.notifications.wishes.items) > 1}">es</c:if></s:link></p>
+			</c:if>
+			</div>
+
+		</div>
+	</c:if>
+
+	<h2>Upcoming Events</h2>
+
+
+	<div class="events-container section">
+        <span><s:link beanclass="com.blackbox.presentation.action.psevent.PSPrepareEventActionBean" class="last">Create an event</s:link></span>
+	</div>
+
+	<c:choose>
+		<c:when test="${not empty actionBean.occasions}">
+			<%--@elvariable id="occasion" type="com.blackbox.occasion.Occasion"--%>
+			<c:forEach var="occasion" items="${actionBean.occasions}">
+				<div class="events-container section">
+                    <s:link beanclass="com.blackbox.presentation.action.psevent.PSShowEventActionBean"><s:param name="eventParam" value="${occasion.guid}"/>
+					<c:choose>
+						<c:when test="${not empty occasion.layout.transiantImage.location}">
+							<ui:roughBorderedImage url="${occasion.layout.transiantImage.location}" alt="" className="event-image" />
+						</c:when>
+						<c:otherwise>
+							<ui:roughBorderedImage url="${bb:libraryResource('/library/images/events/event_default_avatar.gif')}" alt="" className="event-image" />
+						</c:otherwise>
+					</c:choose>
+                    </s:link>
+					<h3><s:link beanclass="com.blackbox.presentation.action.psevent.PSShowEventActionBean"><s:param name="eventParam" value="${occasion.guid}"/>${occasion.name}</s:link></h3>
+					<p class="event-body">
+						<span class="event-date">${bb:formatDate(occasion.eventTime,"MMM dd, yyyy")}</span><br/>
+                         <c:if test="${not empty occasion.address.city}">
+                            ${occasion.address.city},
+                        </c:if>
+                        <c:if test="${not empty occasion.address.state}">
+                            ${occasion.address.state}
+                        </c:if><br />
+                        <strong>${occasion.totalAttendees}</strong> people attending
+					</p>
+					<p class="event-link">
+						<s:link beanclass="com.blackbox.presentation.action.psevent.PSShowEventActionBean"><s:param name="eventParam" value="${occasion.guid}"/>Visit event page</s:link>
+					</p>
+					<div class="clear"></div>
+				</div>
+			</c:forEach>
+		</c:when>
+		<c:otherwise>
+			<div class="events-container section">
+				<p>You have no upcoming events right now.</p>
+				<%--<p class="explore-more">--%>
+					 <%--<a href="#">Explore more events</a>--%>
+				<%--</p>--%>
+			</div>
+		</c:otherwise>
+	</c:choose>
+</div>

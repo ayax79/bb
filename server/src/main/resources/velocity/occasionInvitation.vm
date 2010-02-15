@@ -1,0 +1,11 @@
+<html>
+<body>
+Hi,
+</br>
+You have been invited to and event hosted by "$occasion_name" on blackbox.
+click here to open the event: <a href="$occasion_url">$occasion_name</a>
+<br/>
+$password_phrase
+
+</body>
+<html>

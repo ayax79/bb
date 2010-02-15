@@ -1,0 +1,9 @@
+#parse("/velocity/html-email-header.vm")
+Hi $name,<br /><br />
+
+Is this cool or what? $gifting_username made you a present.<br /><br />
+
+It's waiting for you to accept so that you can add it to your gift shelf. So put on your decorating shoes (is there such a thing?) and go see what goodie is waiting for you.<br /><br />
+
+<a href="$presentation_url">Login</a>, open carefully and enjoy the day...$gifting_username thinks you're pretty special. :)
+#parse("/velocity/html-email-footer.vm")

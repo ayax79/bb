@@ -1,0 +1,8 @@
+#parse("/velocity/html-email-header.vm")
+Hey $recipient_name,<br /><br />
+
+You've got new mail waiting in the Republic. Seriously! Fo reals.<br /><br />
+
+<a href="$presentation_url">Login</a> now to see if $sender_username has anything interesting to say.<br />
+If not, maybe you can send them something that makes them laugh so hard milk splurts out their nose. 
+#parse('/velocity/html-email-footer.vm')

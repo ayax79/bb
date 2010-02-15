@@ -1,0 +1,23 @@
+<%--@elvariable id="actionBean" type="com.blackbox.presentation.action.persona.EditRelationshipsActionBean"--%>
+<%@include file="/WEB-INF/jsp/include/taglibs.jspf" %>
+<%--@elvariable id="relationship" type="com.blackbox.social.Relationship"--%>
+
+<%--
+Because things "had" to change... we can no longer expect the displayMode param to be included in the param map.
+So we need to test if it was set as a jstl var and if it's in the param map.
+--%>
+
+<c:if test="${displayMode == 'horizontal' || param.displayMode == 'horizontal'}">
+	<c:set var="thisshitisigettingreallyold" value="horizontal"/>
+</c:if>
+
+<c:choose>
+	<c:when test="${not empty actionBean.relationships}">
+		<c:forEach var="relationship" items="${actionBean.relationships}">
+			<ui:relationshipBlock user="${relationship.toEntityObject}" relationshipDescription="${relationship.description}" displayMode="${thisshitisigettingreallyold}" />
+		</c:forEach>
+	</c:when>
+	<c:otherwise>
+		<p class="no-relationships-message">Not currently listed as being in a relationship with anyone.</p>
+	</c:otherwise>
+</c:choose>

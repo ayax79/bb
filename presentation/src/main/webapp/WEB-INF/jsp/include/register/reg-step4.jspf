@@ -1,0 +1,311 @@
+<%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
+
+<head>
+    <%@ include file="/WEB-INF/jsp/include/jcrop.jspf" %>
+    
+    <script type="text/javascript">
+        //<![CDATA[
+        $(function() {
+
+            $('#register_country').change(function() {
+                if ($(this).val() == 'UNITED_STATES') {
+                    $('#us_states').show().focus();
+                } else if ($(this).val() == 'CANADA') {
+                    $('#canada_provinces').show().focus();
+                } else if ($(this).val() == 'UNITED_KINGDOM' || $(this).val() == 'IRELAND') {
+                    $('#county').show().focus();
+                }
+            });
+
+            var openUploader = function() {
+                var win = bb.imageUploader.open("<%= request.getContextPath()%>");
+
+                $(window).unbind(".reg4").bind("loaderClose.reg4", function(event, avatarUrl, profileUrl) {
+
+                    $("#uploadStart").hide();
+                    $("#uploadComplete").show();
+                    $("#avatar_image").css({
+                        width :$("#avatar_previewImage").css("width"),
+                        height :$("#avatar_previewImage").css("height"),
+                        "margin-left":$("#avatar_previewImage").css("margin-left"),
+                        "margin-top" :$("#avatar_previewImage").css("margin-top")
+                    })
+                    $("#persona_image").css({
+                        width :$("#persona_previewImage").css("width"),
+                        height :$("#persona_previewImage").css("height"),
+                        "margin-left":$("#persona_previewImage").css("margin-left"),
+                        "margin-top" :$("#persona_previewImage").css("margin-top")
+                    })
+                    $("#avatar_image").attr("src", avatarUrl);
+                    $("#persona_image").attr("src", profileUrl);
+
+                    var avatar_v = $("#avatar").imageCropper("serialize");
+                    var persona_v = $("#persona").imageCropper("serialize");
+
+                    $("#avatarH").val(avatar_v.h);
+                    $("#avatarW").val(avatar_v.w);
+                    $("#avatarX").val(avatar_v.x);
+                    $("#avatarY").val(avatar_v.y);
+                    $("#personaH").val(persona_v.h);
+                    $("#personaW").val(persona_v.w);
+                    $("#personaX").val(persona_v.x);
+                    $("#personaY").val(persona_v.y);
+                    $(win).bbDialog('remove');
+                });
+                return false;
+            };
+
+            $("#create_avatar").click(function() {
+                openUploader();
+                return false;
+            });
+
+            $("#change_avatar").click(function() {
+                openUploader();
+                return false;
+            });
+
+            var endYear = (new Date().getFullYear() - 18);
+            $('#register_birthday').datepicker({
+                showOn: 'button',
+                buttonImage: '/library/images/CalendarButton.png',
+                buttonImageOnly: true,
+                defaultDate: "-18y",
+                changeMonth: true,
+                changeYear: true,
+                dateFormat:'mm/dd/yy',
+                yearRange: '1900:' + endYear
+            });
+
+            $('#register_birthday').change(
+			function() {
+				var today = new Date();
+				var todaydd = today.getDate();
+				var todaymm = today.getMonth() + 1;
+				var todayyyyy = today.getFullYear();
+				var mindate = new Date(todaymm + "/" + todaydd + "/" + (todayyyyy - 18));
+
+				var birthday = new Date($('#register_birthday').val());
+
+				if(birthday > mindate) {
+					$.bbDialog.info("You must be at least 18 years of age to be a Blackbox member.");
+                    $("#register_birthday").val('');
+				}
+
+           });
+
+        });
+
+        //]]>
+
+    </script>
+</head>
+
+<body>
+<ul id="reg-nav">
+    <li id="create">1. Create your account</li>
+    <li id="setup">2. Set up your persona</li>
+    <li id="choose" class="current">3. Choose a plan</li>
+    <li id="payment">4. Payment</li>
+    <li id="confirmation">5. Confirmation</li>
+</ul>
+<div class="reg-video">
+    <object id="ep_player" name="ep_player" height="385" width="617"
+            data="http://cdn.episodic.com/player/EpisodicPlayer.swf?config=http%3A%2F%2Fcdn.episodic.com%2Fshows%2Fnhbmhkq6nhtt%2Fnudb826qeioz%2Fconfig.xml&pid=351"
+            type="application/x-shockwave-flash">
+        <param name="movie"
+               value="http://cdn.episodic.com/player/EpisodicPlayer.swf?config=http%3A%2F%2Fcdn.episodic.com%2Fshows%2Fnhbmhkq6nhtt%2Fnudb826qeioz%2Fconfig.xml&pid=351"/>
+        <param name="AllowScriptAccess" value="always"/>
+        <param name="allowfullscreen" value="true"/>
+        <param name="wmode" value="transparent"/> 
+        <embed src="http://cdn.episodic.com/player/EpisodicPlayer.swf?config=http%3A%2F%2Fcdn.episodic.com%2Fshows%2Fnhbmhkq6nhtt%2Fnudb826qeioz%2Fconfig.xml&pid=351"
+               type="application/x-shockwave-flash" allowfullscreen="true" AllowScriptAccess="always" width="617"
+               height="385" id="ep_player" name="ep_player" wmode="transparent"/>
+    </object>
+</div>
+
+<div id="form-top"></div>
+<s:form beanclass="com.blackbox.presentation.action.user.FullRegisterUserActionBean" class="bbform" method="post">
+    <ul>
+        <li>
+            <label for="create_avatar">Create your personal image and avatar<em>*</em></label>
+
+            <div id="uploadStart">
+                <button class="bbbutton grey27" id="create_avatar"><span>Click here to begin</span></button>
+            </div>
+            <div id="uploadComplete" style="display:none;">
+                <div class="avatar-column-wrap">
+                    <div class="avatar-column">
+                        <p>Your avatar</p>
+
+                        <div id="avatar_box" class="reg-avatar-image">
+                            <img src="${bb:libraryResource('/library/images/spacer.gif')}" alt="Your Avatar"
+                                 id="avatar_image"/>
+                        </div>
+                        <s:hidden id="avatarH" name="avatarH"/>
+                        <s:hidden id="avatarW" name="avatarW"/>
+                        <s:hidden id="avatarX" name="avatarX"/>
+                        <s:hidden id="avatarY" name="avatarY"/>
+                    </div>
+                    <div class="avatar-column">
+                        <p>Your persona picture</p>
+
+                        <div id="persona_box" class="reg-persona-image">
+                            <img src="${bb:libraryResource('/library/images/spacer.gif')}" alt="Your Persona"
+                                 id="persona_image"/>
+                        </div>
+                        <s:hidden id="personaH" name="personaH"/>
+                        <s:hidden id="personaW" name="personaW"/>
+                        <s:hidden id="personaX" name="personaX"/>
+                        <s:hidden id="personaY" name="personaY"/>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <button class="bbbutton grey27" id="change_avatar"><span>Select a new image</span></button>
+            </div>
+        </li>
+            <%-- invalid element placement --%>
+        <s:hidden name="user.type" value="${actionBean.user.type}"/>
+
+        <!-- Base city -->
+        <li>
+            <label for="register_city"><fmt:message key="register.field.city"/><em>*</em></label>
+            <span class="textinput37"><s:text id="register_city" name="profile.location.city"/></span>
+            <s:label class="sub" for="user.profile.frequentCities1"><fmt:message
+            key="register.field.frequentCities.city"/></s:label>
+        </li>
+
+        <!-- Base country -->
+        <li>
+            <label for="register_country">Country<em>*</em></label>
+            <s:select id="register_country" name="profile.location.country">
+                <s:option value="" disabled="disabled" selected="selected"><fmt:message key="register.select.country"/>
+                </s:option>
+                <s:options-enumeration enum="org.yestech.lib.i18n.CountryEnum"/>
+            </s:select><br/>
+            <span class="note">Note: English is currently the only language supported</span>
+        </li>
+
+        <!-- Base state or province -->
+        <li id="us_states" style="display:none;">
+            <label for="register_state">State</label>
+            <s:select id="register_state" name="user.profile.location.state">
+                <s:option value="" disabled="disabled" selected="selected"><fmt:message key="register.select.state"/></s:option>
+                <s:options-enumeration enum="org.yestech.lib.i18n.USStateEnum"/>
+            </s:select>
+        </li>
+
+        <li id="canada_provinces" style="display:none;">
+            <label for="register_state">Province</label>
+            <s:select id="register_state" name="user.profile.location.state">
+                <s:option value="" disabled="disabled" selected="selected"><fmt:message key="register.select.state"/>
+                </s:option>
+                <s:options-enumeration enum="org.yestech.lib.i18n.CanadaProvinceEnum"/>
+            </s:select>
+        </li>
+
+        <!-- Time zone -->
+        <li>
+            <label for="register_timezone"><fmt:message key="register.field.timezone"/><em>*</em></label>
+            <s:select name="profile.timeZone" id="register_timezone">
+                <s:option value="" disabled="disabled" selected="selected"><fmt:message key="register.field.timezone.select"/> </s:option>
+                <s:options-enumeration enum="com.blackbox.user.TimeZoneEnum"/>
+            </s:select>
+        </li>
+
+        <!-- Frequent cities -->
+        <li>
+            <label for="frequent_city1">I'm also here a lot</label>
+            <span class="textinput37"><s:text id="frequent_city1" name="profile.frequentCities1"/></span><label
+                class="sub" for="frequent_city1"><fmt:message key="register.field.frequentCities.city"/></label><br/>
+            <span class="textinput37"><s:text id="frequent_city2" name="profile.frequentCities2"/></span><label
+                class="sub" for="frequent_city2"><fmt:message key="register.field.frequentCities.city"/></label><br/>
+            <span class="textinput37"><s:text id="frequent_city3" name="profile.frequentCities3"/></span><label
+                class="sub" for="frequent_city3"><fmt:message key="register.field.frequentCities.city"/></label>
+        </li>
+
+        <!-- Real name -->
+        <li>
+            <label for="user.name">Name<em>*</em></label>
+            <span class="textinput37"><s:text id="register_firstname" name="user.name"/></span><label class="sub"
+                                                                                                      for="register_firstname"><fmt:message
+                key="register.field.firstName"/></label><br/>
+            <span class="textinput37"><s:text id="register_lastname" name="user.lastname"/></span><label class="sub"
+                                                                                                         for="register_lastname"><fmt:message
+                key="register.field.lastName"/></label>
+        </li>
+
+        <!-- Gender -->
+        <li>
+            <label for="register_sex_male"><fmt:message key="register.field.gender"/><em>*</em></label>
+            <s:radio value="MALE" name="profile.sex" id="register_sex_male"/><label class="sub" for="register_sex_male"><fmt:message
+                key="SexEnum.MALE"/></label>
+            <s:radio value="FEMALE" name="profile.sex" id="register_sex_female"/><label class="sub"
+                                                                                        for="register_sex_female"><fmt:message
+                key="SexEnum.FEMALE"/></label>
+            <s:radio value="XXX" name="profile.sex" id="register_sex_complicated"/><label class="sub"
+                                                                                          for="register_sex_complicated"><fmt:message
+                key="SexEnum.XXX"/></label>
+        </li>
+
+        <!-- Birthday -->
+        <li>
+            <label for="register_birthday"><fmt:message key="register.field.birthday"/><em>*</em></label>
+            <span class="textinput37"><s:text id="register_birthday" name="profile.birthday" value="MM/DD/YYYY" onfocus="if(this.value=='MM/DD/YYYY'){this.value=''}"/></span><br/>
+            <s:checkbox name="profile.birthdayInVisible" id="register_birthday_visible"/>
+            <label class="sub" for="register_birthday_visible">Don't show my age</label>
+        </li>
+
+
+            <%--
+           <li>
+               <label for="register_billingaddress1">Address<em>*</em></label>
+               <span class="textinput37"><s:text id="register_billingaddress1" name="profile.location.address1"/></span><br/>
+               <span class="textinput37"><s:text id="register_billingaddress2" name="profile.location.address2"/></span>
+           </li>
+
+           <li>
+               <label for="register_country"><fmt:message key="register.field.country"/><em>*</em></label>
+               <s:select id="register_country" name="profile.location.country">
+                   <s:option value=""><fmt:message key="register.select.country"/> </s:option>
+                   <s:options-enumeration enum="org.yestech.lib.i18n.CountryEnum"/>
+               </s:select><br/>
+               <span class="note">Note: English is currently the only language supported</span>
+           </li>
+           <li id="us_states" style="display:none;">
+               <label for="register_state"><fmt:message key="register.field.state"/></label>
+               <s:select id="register_state" name="profile.location.state">
+                   <s:option><fmt:message key="register.select.state"/> </s:option>
+                   <s:options-enumeration enum="org.yestech.lib.i18n.USStateEnum"/>
+               </s:select>
+           </li>
+           <li id="canada_provinces" style="display:none;">
+               <label for="register_state"><fmt:message key="register.field.province"/></label>
+               <s:select id="register_state" name="profile.location.state">
+                   <s:option><fmt:message key="register.select.state"/> </s:option>
+                   <s:options-enumeration enum="org.yestech.lib.i18n.CanadaProvinceEnum"/>
+               </s:select>
+           </li>
+           <li id="county" style="display:none;">
+               <label for="register_county"><fmt:message key="register.field.county"/><em>*</em></label>
+               <span class="textinput37"><s:text id="register_county" name="profile.location.county"/></span>
+           </li>
+           <li>
+               <label for="register_zipcode"><fmt:message key="register.field.zipCode"/><em>*</em></label>
+               <span class="textinput37"><s:text id="register_zipcode" name="profile.location.zipCode"/></span>
+           </li>
+           --%>
+        <li>
+            <button id="submitbtn1" name="register" type="submit" class="orange-button bbbutton step"><span><fmt:message
+                    key="register.submit"/></span></button>
+        </li>
+    </ul>
+    <s:field-metadata var="fieldMetadata">
+        $(function(){
+        $.fn.stripesValidation('${fieldMetadata.formId}', ${fieldMetadata});
+        });
+    </s:field-metadata>
+</s:form>
+<br/>
+
+</body>

@@ -1,0 +1,9 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background:  #f3f8f8 url("${library.prefix}/images/errors/error-bg.png") repeat-x fixed;
+}
+img {
+    border: 0;
+}

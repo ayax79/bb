@@ -1,0 +1,180 @@
+<%@include file="/WEB-INF/jsp/include/taglibs.jspf"%>
+<%--@elvariable id="actionBean" type="com.blackbox.presentation.action.persona.PersonaActionBean"--%>
+
+
+<script type="text/javascript">
+    <%--$(document).ready(function(){
+        var player = $f("player", "${bb:libraryResource('/library/swf/flowplayer.commercial-3.1.1.swf')}");
+        $('#player_box').bbDialog({
+            autoOpen: false,
+            height:500,
+            width:600,
+            modal: false,
+            onopen:function(){
+                player.load();
+            },
+            buttons:{
+                'close':function(){
+                    player.unload();
+                    this.close();
+                }
+            }
+        });
+        $('#ps_v_upload').hide();
+
+        $("#ps_v_upload_file").uploadify({
+            'uploader': '${bb:libraryResource("/library/uploadify/uploadify.swf")}',
+            'cancelImg': '${bb:libraryResource('/library/uploadify/cancel.png')}',
+            'script': '<s:url beanclass="com.blackbox.presentation.action.persona.PSVideoActionBean" />;jsessionid=<%=session.getId()%>',
+            'fileDataName' : 'fileData', /* maps to the field in the action */
+            'multi': false,
+            'fileDesc': 'Video Files',
+            'fileExt': '*.flv;*.mpeg;*.mpg;*.mp4;*.mov', // put jpg file here temporary
+            'buttonText': 'Choose pictures you wish to upload',
+            'displayData': 'speed',
+            'scriptData': {'_eventName':'uploadVideo'},
+            onAllComplete: function (evt, data) {
+                //alert("Successfully uploaded: " + data);
+                //$.get('/action/ajax/psupload', 'action=alldone_v', function(newData) {/*do nothing here*/});
+                //$('#ps_v_upload_do').hide();
+                //$('#ps_v_upload_done').show();
+            }
+        });
+
+        $("#ps_v_upload_leave").click(function () {
+            $('#ps_v_show').show();
+            $('#ps_v_upload').hide();
+            return false;
+        });
+        $("#link_to_tip").click(function(){
+            $('#ps_v_upload_start').hide();
+            $("#ps_v_tip").show();
+            var conditions='&_eventName=uploadVideo&videoName='+$('#videoName').val()+'&videoDesc='+$('#videoDesc').val();
+            $("#ps_v_upload_file").uploadifySettings('scriptData',conditions);
+            
+            return false;
+        });
+        $(".persona_video_play_link").each(function(){
+            $(this).click(function(){
+                $('#player_box').bbDialog("open");
+                return false;
+            });
+        });
+    });
+    var showVideo=function(){
+        $('#ps_v_show').show();
+        $('#ps_v_upload').hide();
+        $("#ps_v_upload_done").hide();
+    };
+    function showUploadVideo() {
+        $('#ps_v_show').hide();
+        $('#ps_v_upload').show();
+        $('#ps_v_upload_start').show();
+        $("#ps_v_tip").hide();
+        $('#ps_v_upload_do').hide();
+        $('#ps_v_upload_done').hide();
+    }--%>
+</script>
+<div id="ps_v_show">
+    <!--
+    <div class="wis_tab">
+        <ul>
+            <li class="wis_tab_peo">Latest</li>
+            <li class="wis_tab_eve">Popular</li>
+            <li class="wis_tab_eve">All</li>
+            <li id="cre_tex" class="add_vid_but"><a href="javascript:showUploadVideo();"><img src="${bb:libraryResource('/library/images/persona/add_vid_but.jpg')}" alt=""/></a></li>
+        </ul>
+    </div>
+    <div class="vid_list_con videos">
+        <c:forEach var="video" items="${actionBean.videoLibList}">
+            <div class="vid_list">
+                <div class="vid_lis_pic"><a class="persona_video_play_link" rel="div.overlay" href="#"><img src="${bb:libraryResource('/library/images/persona/cor_pic6.png')}" width="142" height="105"  onerror="Activity.ImgPoll(event, this);" alt="" /></a></div>
+                <div class="vid_lis_tex">${video.name}</div>
+            </div>
+        </c:forEach>
+
+        <div class="vid_list">
+            <div class="vid_lis_pic"><a class="persona_video_play_link" rel="div.overlay" href="#"><img src="${bb:libraryResource('/library/images/persona/cor_pic6.png')}" width="142" height="105" alt=""/></a></div>
+            <div class="vid_lis_tex">15 comments</div>
+        </div>
+        <div class="vid_list">
+            <div class="vid_lis_pic"><a class="persona_video_play_link" rel="div.overlay" href="#"><img src="${bb:libraryResource('/library/images/persona/cor_pic6.png')}" width="142" height="105" alt=""/></a></div>
+            <div class="vid_lis_tex">15 comments</div>
+        </div>
+        <div class="vid_list">
+            <div class="vid_lis_pic"><a class="persona_video_play_link" rel="div.overlay" href="#"><img src="${bb:libraryResource('/library/images/persona/cor_pic6.png')}" width="142" height="105" alt=""/></a></div>
+            <div class="vid_lis_tex">15 comments</div>
+        </div>
+        <div class="vid_list">
+            <div class="vid_lis_pic"><a class="persona_video_play_link" rel="div.overlay" href="#"><img src="${bb:libraryResource('/library/images/persona/cor_pic6.png')}" width="142" height="105" alt=""/></a></div>
+            <div class="vid_lis_tex">15 comments</div>
+        </div>
+        <div class="vid_list">
+            <div class="vid_lis_pic"><a class="persona_video_play_link" rel="div.overlay" href="#"><img src="${bb:libraryResource('/library/images/persona/cor_pic6.png')}" width="142" height="105" alt=""/></a></div>
+            <div class="vid_lis_tex">15 comments</div>
+        </div>
+        <div class="vid_list">
+            <div class="vid_lis_pic"><a class="persona_video_play_link" rel="div.overlay" href="#"><img src="${bb:libraryResource('/library/images/persona/cor_pic6.png')}" width="142" height="105" alt=""/></a></div>
+            <div class="vid_lis_tex">15 comments</div>
+        </div>
+        <div class="vid_list">
+            <div class="vid_lis_pic"><a class="persona_video_play_link" rel="div.overlay" href="#"><img src="${bb:libraryResource('/library/images/persona/cor_pic6.png')}" width="142" height="105" alt=""/></a></div>
+            <div class="vid_lis_tex">15 comments</div>
+        </div>
+    </div>
+    <div>
+        <div class="wis_pre_but">Previous</div>
+        <div class="wis_nex_but">Next</div>
+        <div class="clear"></div>
+    </div>
+    -->
+    Coming soon....
+</div>
+
+<!--
+<div id="ps_v_upload">
+    <div id="ps_v_upload_start" class="vid_con">
+        <div class="vid_lef">
+            <div class="vid_lefbut">Take a video with your webcam</div>
+        </div>
+        <div class="vid_rig">
+
+
+            <div class="vid_tex1">Create a video</div>
+            <div class="vid_tex2">You'll be able to choose video on the next step.</div>
+            <div class="vid_inp_nam">Choose a name:</div>
+            <div>
+                <input id="videoName" type="text" name="videoName" />
+            </div>
+            <div class="vid_inp_nam">Add a short description:<span style="color:#747474;"> (optional)</span></div>
+            <div>
+                <input id="videoDesc" type="text" name="videoDesc" />
+            </div>
+            <div class="vid_bot_but">
+                <a id="link_to_tip" href="#">Next step: Choose video</a>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div id="ps_v_tip">
+        <div <%--class="vid_con_cho"--%>>
+            <div id="ps_v_upload_file">Choose video you wish to upload</div>
+        </div>
+        <%--<div class="vid_cho_tex">Tip: To select multiple pictures at once, you should hold down Shift whilst making the selection.</div>--%>
+        <%--<p></p>--%>
+        <a href="javascript:$('#ps_v_upload_file').uploadifyUpload()">Start Upload</a> |  <a href="javascript:$('#ps_v_upload_file').uploadifyClearQueue()">Clear Queue</a>
+        <p></p>
+    </div>
+</div>
+
+<div id="ps_v_upload_done">
+    <div class="but_cli_tex"><span style="font-size:14px; font-weight:normal;">Thank you for uploading <span id="upload_done_nbr"></span>photos,</span> click here to go back.</div>
+    <div class="but_cli_but"><input id="ps_v_upload_leave" type="button" value="Show Video"/></div>
+</div>
+
+
+<div id="player_box">
+    <a id="player" style="display:block;width:560px;height:420px;" href="http://e1p1.simplecdn.net/flowplayer/flowplayer-700.flv"></a>
+</div>
+
+-->

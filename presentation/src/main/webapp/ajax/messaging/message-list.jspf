@@ -1,0 +1,131 @@
+<%--@elvariable id="actionBean" type="com.blackbox.presentation.action.activity.InboxActionBean"--%>
+<%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
+<%@ taglib prefix="dm" uri="/WEB-INF/directmessage.tld" %>
+
+<div style="display:none;">
+	<input type="hidden" id="startIndex" value="${actionBean.messages.startIndex}"/>
+	<%--<input type="hidden" id="numResults" value="${actionBean.messages.numResults}"/>--%>
+	<input type="hidden" id="numResults" value="10"/>
+	<input type="hidden" id="totalResults" value="${actionBean.messages.totalResults}"/>
+</div>
+
+<c:choose>
+	<c:when test="${f:length(actionBean.messages.results) == 0}">
+		<p class="nomessages">There are no messages in this mailbox.</p>
+	</c:when>
+	<c:otherwise>
+		<table class="message-list">
+			<tbody>
+			<c:forEach items="${actionBean.messages.results}" var="activity">
+
+
+				<c:set var="message" value="${activity.parent}"/>
+				<c:set var="latestmessage" value="${bb:latestActivity(activity)}"/>
+				<%--@elvariable id="message" type="com.blackbox.activity.IActivity"--%>
+				<%--@elvariable id="latestmessage" type="com.blackbox.activity.IActivity"--%>
+				<c:choose>
+					<c:when test="${actionBean.mailboxRequest.folder eq 'SENT_FOLDER'}">
+						<c:set var="msgUser" value="${actionBean.userGuidMap[latestmessage.recipients[0].recipient.guid]}"/>
+					</c:when>
+					<c:otherwise>
+						<c:set var="msgUser" value="${actionBean.userGuidMap[latestmessage.artifactMetaData.artifactOwner.guid]}"/>
+					</c:otherwise>
+				</c:choose>
+				<%--@elvariable id="msgUser" type="com.blackbox.user.User"--%>
+				<c:choose>
+					<c:when test="${dm:isReply(activity, actionBean.currentUser)}">
+						<c:set var="msgStatus" value="replied"/>
+					</c:when>
+					<c:otherwise>
+						<c:choose>
+							<c:when test="${dm:isRead(activity, actionBean.currentUser)}">
+								<c:set var="msgStatus" value="read"/>
+							</c:when>
+							<c:otherwise>
+								<c:set var="msgStatus" value="unread"/>
+							</c:otherwise>
+						</c:choose>
+					</c:otherwise>
+				</c:choose>
+				<tr class="message_${message.guid} message-row status-${msgStatus}">
+					<td class="status-icon">
+						<div class="msg-status-icon">&nbsp;</div>
+					</td>
+					<td class="user-avatar">
+						<c:choose>
+							<c:when test="${actionBean.mailboxRequest.folder eq 'SENT_FOLDER'}">
+								<ui:profileImage guid="${msgUser.guid}" size="large" linkToProfile="true" showMiniProfile="true" showUserType="true"/>
+							</c:when>
+							<c:otherwise>
+								<ui:profileImage guid="${latestmessage.artifactMetaData.artifactOwner.guid}" size="large" linkToProfile="true" showMiniProfile="true" showUserType="true"/>
+							</c:otherwise>
+						</c:choose>
+					</td>
+					<td class="user-info">
+						<span class="name">${bb:displayName(msgUser)}</span><br/>
+						<c:set var="prevToken" value="false"/>
+						<c:if test="${not empty msgUser.profile.location.city or not empty msgUser.profile.location.state or not empty msgUser.profile.location.country}">
+						<span>
+							<c:if test="${not empty msgUser.profile.location.city}">
+								${msgUser.profile.location.city}
+								<c:set var="prevToken" value="true"/>
+							</c:if>
+
+							<c:if test="${prevToken}">, </c:if>
+
+							<c:if test="${not empty msgUser.profile.location.state}">
+								${bb:stateAbv(msgUser.profile.location.state)}
+							</c:if>
+							<%-- Need to show country nicely... --%>
+							<%--<c:if test="${prevToken}">, </c:if>--%>
+
+							<%--<c:if test="${not empty msgUser.profile.location.country}">--%>
+								<%--${bb:stateAbv(msgUser.profile.location.country)}--%>
+							<%--</c:if>--%>
+
+						</span><br/>
+
+						</c:if>
+
+						<span>
+							<c:if test="${not msgUser.profile.birthdayInVisible and not empty msgUser.profile.birthday}">
+								${bb:age(msgUser.profile.birthday)} /
+							</c:if>
+
+							<c:if test="${not empty msgUser.profile.sex}">
+								<c:choose>
+									<c:when test="${msgUser.profile.sex == 'MALE'}">Male</c:when>
+									<c:when test="${msgUser.profile.sex == 'FEMALE'}">Female</c:when>
+									<c:when test="${msgUser.profile.sex == 'XXX'}">Not specified</c:when>
+								</c:choose>
+								<c:set var="previousValue" value="true"/>
+							</c:if>
+
+							</span><br/>
+
+							<%--<div class="info-sliders mini-slider <c:if test="${actionBean.profile.mood.makePrivate}"> private </c:if>">--%>
+						<ui:tinySliders user="${msgUser}"/>
+					</td>
+					<td class="msg-content">
+						<div class="read-message-link-div">
+							<h4><a href="#${message.guid}" class="read-message-link"><c:if test="${not empty latestmessage.parentActivity}">RE: </c:if>${message.subject}</a></h4>
+							<p>${bb:limitString(latestmessage.body, 200)}</p>
+							<p class="message-action-meta">
+								<c:choose>
+									<c:when test="${not empty message.artifactMetaData.recipients[0].replyDate}">
+										Replied ${bb:formatDate(message.artifactMetaData.recipients[0].replyDate, "MMM d, h:MM:sa")}
+									</c:when>
+									<c:otherwise>
+										Received ${bb:formatDate(message.postDate, "MMM d, h:MM:sa")}
+									</c:otherwise>
+								</c:choose>
+							</p>
+						</div>
+					</td>
+					<td class="msg-select"><input value="${message.guid}" type="checkbox"/></td>
+				</tr>
+			</c:forEach>
+			</tbody>
+		</table>
+	</c:otherwise>
+</c:choose>

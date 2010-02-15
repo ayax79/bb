@@ -1,0 +1,25 @@
+<%--@elvariable id="actionBean" type="com.blackbox.presentation.action.search.UserChooserActionBean"--%>
+<%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
+
+<c:forEach var="user" items="${actionBean.users}">
+	<%--@elvariable id="user" type="com.blackbox.user.User"--%>
+	<div class="picker-user">
+
+			<%--<c:if test="${param.allowMultiple ne 'true'}">--%>
+		<a href="#${user.guid}" class="user-select-link">
+
+			<img src='<c:out value="${user.profile.avatarUrl}" default="${bb:libraryResource('/library/images/icons/profile_person.png')}"/>' width="25" height="25" alt="" class="up-avatar" alt="avatar"/>
+
+			<c:choose>
+				<c:when test="${bb:isFriend(user) || bb:isInRelationship(user)}">
+					<span class="up-name">${bb:displayName(user)}</span><br/>
+					<span class="up-name2">${user.username}</span>
+				</c:when>
+				<c:otherwise>
+					<span class="up-name">${bb:displayName(user)}</span>
+				</c:otherwise>
+			</c:choose>
+			<div class="clear"></div>
+		</a>
+	</div>
+</c:forEach>

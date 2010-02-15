@@ -1,0 +1,9 @@
+#parse("/velocity/html-email-header.vm")
+Hey there!<br /><br />
+
+Lucky you! Your friend $name has gifted you a Blackbox Republic account!<br /><br />
+
+Please click the following link to register:<br /><br />
+
+$link
+#parse('/velocity/html-email-footer.vm')

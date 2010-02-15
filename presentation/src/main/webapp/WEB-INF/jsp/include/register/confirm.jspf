@@ -1,0 +1,69 @@
+<%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
+<html>
+<body class="register">
+<script type="text/javascript">
+    //<![CDATA[
+    $(function() {
+        pageTracker._trackPageview("/goalfunnel/register/confirmation/${actionBean.user.type}");
+        pageTracker._addItem(
+            "${sessionScope.billing.lastResponse}",
+            "${actionBean.user.type}",
+            "${sessionScope.billing.lastAmount}",
+            "1"
+        );
+        pageTracker._addTrans(
+            "${sessionScope.billing.lastResponse}",
+            "${sessionScope.promoCode}",
+            "${sessionScope.billing.lastAmount}" 
+        );
+        pageTracker._setCustomVar(1,"Membership", "${actionBean.user.type}", 1);
+        pageTracker._trackTrans();
+
+        pageTracker._trackEvent('Registration', 'Confirmation', '${actionBean.user.type}');
+    });
+    //]]>
+</script>
+<ul id="reg-nav" class="clearfix">
+    <li id="create" class="complete">1. Create your account</li>
+    <li id="setup" class="complete">2. Set up your persona</li>
+    <li id="choose" class="complete">3. Choose a plan</li>
+    <li id="payment" class="complete">4. Payment</li>
+    <li id="confirmation" class="current">5. Confirmation</li>
+</ul>
+
+<div class="reg-col-l">
+
+    <h2 class="welcome">Welcome to the Republic</h2>
+
+    <p>A confirmation email has been sent to ${actionBean.user.email}</p>
+    <object id="ep_player" name="ep_player" height="235" width="314"
+            data="http://cdn.episodic.com/player/EpisodicPlayer.swf?config=http%3A%2F%2Fcdn.episodic.com%2Fshows%2Fob0pj9jq17up%2Fob1l1cj8olqo%2Fconfig.xml"
+            type="application/x-shockwave-flash">
+        <param name="movie"
+               value="http://cdn.episodic.com/player/EpisodicPlayer.swf?config=http%3A%2F%2Fcdn.episodic.com%2Fshows%2Fob0pj9jq17up%2Fob1l1cj8olqo%2Fconfig.xml"/>
+        <param name="AllowScriptAccess" value="always"/>
+        <param name="allowfullscreen" value="true"/>
+        <embed src="http://cdn.episodic.com/player/EpisodicPlayer.swf?config=http%3A%2F%2Fcdn.episodic.com%2Fshows%2Fob0pj9jq17up%2Fob1l1cj8olqo%2Fconfig.xml"
+               type="application/x-shockwave-flash" allowfullscreen="true" AllowScriptAccess="always" width="314"
+               height="235" id="ep_player" name="ep_player"/>
+    </object>
+
+</div>
+
+
+<div class="reg-col-r">
+
+    <s:form beanclass="com.blackbox.presentation.action.user.FullRegisterUserActionBean">
+
+</div>
+
+<div class="clear"></div>
+
+<div class="reg-footer clearfix">
+
+    <s:image id="take-me" name="register" src="/library/images/register/take-me-to-account.png"
+             alt="Take me to my account"/>
+    </s:form>
+</div>
+</body>
+</html>

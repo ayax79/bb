@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="AffiliateMapping">
+
+    <resultMap id="AffiliateUsersResult" type="com.blackbox.user.User" >
+        <result property="guid" column="users_guid" />
+    </resultMap>
+
+    <resultMap id="AffiliateMappingResult" type="com.blackbox.user.AffiliateMapping"
+            extends="BBPersistentObject.BBPersistentObjectResult">
+        <result property="affiliate.guid" column="affiliate_guid" />
+        <association property="users" column="guid" select="AffiliateMapping.loadAffiliateUsers" />
+    </resultMap>
+
+    <insert id="insert" parameterType="com.blackbox.user.AffiliateMapping">
+        insert into bb_affiliate_mapping
+        (created, modified, version, affiliate_guid, guid)
+        values
+        (#{created}, #{modified}, #{version}, #{affiliate.guid}, #{guid})
+    </insert>
+
+    <delete id="delete" parameterType="string">
+        delete from bb_affiliate_mapping where guid = #{value}
+    </delete>
+
+    <select id="loadAffiliateUsers" parameterType="string" resultMap="AffiliateMapping.AffiliateUsersResult">
+        select users_guid from bb_affiliate_mapping_bb_user where bb_affiliate_mapping_guid=#{value}
+    </select>
+
+    <select id="loadByAffiliateGuid" resultMap="AffiliateMapping.AffiliateMappingResult" parameterType="string">
+        select * from bb_affiliate_mapping where affiliate_guid = #{value}
+    </select>
+
+</mapper>

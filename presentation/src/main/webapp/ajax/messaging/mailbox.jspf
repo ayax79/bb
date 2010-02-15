@@ -1,0 +1,62 @@
+	<%--@elvariable id="actionBean" type="com.blackbox.presentation.action.activity.InboxActionBean"--%>
+<%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
+
+<div class="mailbox-actions clearfix">
+	<c:if test="${actionBean.mailboxRequest.folder ne 'SENT_FOLDER'}">
+	<span class="actions-label" style="float:left;"><strong>Filter:</strong></span>
+	<ul class="filters-menu scene-filter-menu">
+		<c:set var="actionUrl"><s:url beanclass="com.blackbox.presentation.action.activity.InboxActionBean"/></c:set>
+		<li class="<c:if test="${'ALL' == s:enumName(actionBean.mailboxRequest.filter)}">active</c:if>"><ui:anchorButton href="#ALL" typeClass="smlbtn" styleClass="grey-blue btnFilterEveryone filterButton">All</ui:anchorButton></li>
+		<li class="<c:if test="${'FRIENDS' == s:enumName(actionBean.mailboxRequest.filter)}">active</c:if>"><ui:anchorButton href="#FRIENDS" typeClass="smlbtn" styleClass="grey-blue btnFilterFriend filterButton">Friend</ui:anchorButton></li>
+		<li class="<c:if test="${'FOLLWERS' == s:enumName(actionBean.mailboxRequest.filter)}">active</c:if>"><ui:anchorButton href="#FOLLWERS" typeClass="smlbtn" styleClass="grey-blue btnFilterFollower filterButton">Follower</ui:anchorButton></li>
+		<li class="<c:if test="${'FOLLOWING' == s:enumName(actionBean.mailboxRequest.filter)}">active</c:if>"><ui:anchorButton href="#FOLLOWING" typeClass="smlbtn" styleClass="grey-blue btnFilterFollowing filterButton">Following</ui:anchorButton></li>
+		<li class="<c:if test="${'WISHED' == s:enumName(actionBean.mailboxRequest.filter)}">active</c:if>"><ui:anchorButton href="#WISHED" typeClass="smlbtn" styleClass="grey-blue btnFilterWished filterButton">Wished</ui:anchorButton></li>
+	</ul>
+	<%--<div style="float:left;margin-left:30px;">--%>
+		<%--<span style="font-size:11px;">Location: </span>--%>
+		<%--<select>--%>
+			<%--<option>Within 100 mi</option>--%>
+		<%--</select>--%>
+	<%--</div>--%>
+	</c:if>
+	<a href="#" class="btnCompose grey-ds grey-ds-s" style="float:right;"><span>Compose new message</span></a>
+</div>
+
+<c:if test="${f:length(actionBean.messages.results) == 0}">
+	<c:set var="disabledStyle" value="disabled"/>
+</c:if>
+
+<div id="message-pane">
+
+<div class="mailbox-view clearfix">
+    <div style="float:left;">
+		<c:set var="actionUrl"><s:url beanclass="com.blackbox.presentation.action.activity.InboxActionBean" event="load"/></c:set>
+		<span class="actions-label"><strong>View:</strong></span>
+        <a href="#EITHER" class="btnMessageStatus btnShowAll">All</a><a href="#READ" class="btnMessageStatus btnShowRead">Read</a><a href="#UNREAD" class="btnMessageStatus btnShowUnread last">Unread</a>
+    </div>
+     <input class="btnMessageSelect" type="checkbox" title="Select all"/>
+    <div style="float:right;">
+		<span class="actions-label"><strong>Selected:</strong></span>
+		<a href="#" class="btnMarkUnread ${disabledStyle}"><span>Mark Unread</span></a><c:if test="${actionBean.mailboxRequest.folder eq 'INBOX_FOLDER'}"><a href="#" class="btnArchive ${disabledStyle}"><span>Archive</span></a><a href="#" class="last btnDelete ${disabledStyle}"><span>Delete</span></a></c:if>
+
+    </div>
+   
+</div>
+
+<div style="margin-top: 0;">
+	<%@include file="message-list.jspf"%>
+</div>
+
+	
+<c:if test="${not empty actionBean.messages.results && actionBean.messages.totalResults > actionBean.messages.numResults}">
+	<div class="mailbox-paging">
+		<ui:pagingControls id="bottomPaging" items="${actionBean.messages.results}"/>
+	</div>
+</c:if>
+
+ <%--<div class="mailbox-paging">--%>
+        <%--<a href="#" class="grey-paging grey-paging-prev btnPrevPage"><span>#</span></a>--%>
+        <%--<a href="#" class="grey-paging grey-paging-next btnNextPage"><span>#</span></a>--%>
+ <%--</div>--%>
+
+</div>

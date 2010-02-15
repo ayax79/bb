@@ -1,0 +1,132 @@
+<%@ page import="org.joda.time.DateTime" %>
+<%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
+
+<%
+	DateTime now = new DateTime();
+	int nowYear = now.getYear();
+	pageContext.setAttribute("nowYear", nowYear);
+%>
+<s:form class="bbform blarghyporkfat" id="member_persona_form" beanclass="com.blackbox.presentation.action.user.AccountSettingsActionBean" method="post">
+
+<div class="hidden-fields">
+	<s:hidden name="_eventName" value="updateBilling"/>
+</div>
+
+<h2>Billing settings</h2>
+
+		<div class="settings-col-left">
+		<fieldset>
+			<legend>Credit card information</legend>
+			<ul>
+				<li>
+					<label for="regsiter_creditCardName">Name on credit card<em>*</em></label>
+					<s:text id="regsiter_creditCardName" name="register.creditCardName" />
+				</li>
+				<li>
+					<label for="paymentInfo_creditCardType">Card type<em>*</em></label>
+					<s:select id="paymentInfo_creditCardType" name="paymentInfo.creditCard.creditCardType">
+						<s:option><fmt:message key="register.select.creditcard" /></s:option>
+						<s:options-enumeration enum="com.blackbox.user.CreditCardType" />
+					</s:select>
+				</li>
+				<li>
+					<label for="paymentInfo_creditCardNumber">Card number<em>*</em></label>
+					<s:text id="paymentInfo_creditCardNumber" name="paymentInfo.creditCard.creditCardNumber" />
+				</li>
+				<li>
+					<label for="register_creditExpiration">Expiration date<em>*</em></label>
+					<s:select id="register_creditExpiration" name="paymentInfo.creditCard.epirationDate">
+						<c:forEach var="month" begin="1" end="12">
+							<s:option>${month}</s:option>
+						</c:forEach>
+					</s:select> /
+					<s:select id="register_creditExpiration" name="paymentInfo.creditCard.epirationDate">
+						<c:forEach var="year" begin="${nowYear}" end="${nowYear + 10}">
+							<s:option>${year}</s:option>
+						</c:forEach>
+					</s:select>
+				</li>
+			</ul>
+
+		</fieldset>
+	  </div>
+	<div class="settings-col-right">
+		<fieldset>
+			<legend>Billing address</legend>
+			<ul>
+
+				<li>
+					<label for="register_address1">Address<em>*</em></label>
+					<s:text id="register_address1" name="paymentInfo.address.address1" /><br/>
+					<s:text id="register_address2" name="paymentInfo.address.address2" />
+				</li>
+				<li>
+					<label for="register_city">City<em>*</em></label>
+					<s:text id="register_city" name="paymentInfo.address.city" />
+				</li>
+
+				<li>
+					<label for="register_country">Country<em>*</em></label>
+					<s:select id="register_country" name="paymentInfo.address.country">
+						<s:option><fmt:message key="register.select.country" /> </s:option>
+						<s:options-enumeration enum="org.yestech.lib.i18n.CountryEnum" />
+					</s:select>
+				</li>
+
+				<li id="us_states" style="display:none;">
+					<label for="register_state">State<em>*</em></label>
+					<s:select id="register_state" name="paymentInfo.address.state">
+						<s:option><fmt:message key="register.select.state" /> </s:option>
+						<s:options-enumeration enum="org.yestech.lib.i18n.USStateEnum" />
+					</s:select>
+				</li>
+
+				<li id="canada_provinces" style="display:none;">
+					<label for="register_state">Province<em>*</em></label>
+					<s:select id="register_state" name="paymentInfo.address.state">
+						<s:option><fmt:message key="register.select.state" /> </s:option>
+						<s:options-enumeration enum="org.yestech.lib.i18n.CanadaProvinceEnum" />
+					</s:select>
+				</li>
+
+				<li id="county" style="display:none;">
+					<label for="register_county">County<em>*</em></label>
+					<s:text id="register_county" name="paymentInfo.address.county" />
+				</li>
+
+				<li>
+					<label for="register_zipCode">Zip code<em>*</em></label>
+					<s:text id="register_zipCode" name="paymentInfo.address.zipCode" />
+				</li>
+
+			</ul>
+		</fieldset>
+	</div>
+
+	<div class="clear"></div>
+
+	<div class="button-panel">
+		<button name="register" type="submit" class="bbform-button grey"><span>Save changes</span></button>
+	</div>
+
+</s:form>
+
+<script type="text/javascript">
+//<![CDATA[
+	$('#register_country').change(function() {
+		if ($(this).val() == 'UNITED_STATES') {
+			$('#us_states').show().focus();
+		} else if ($(this).val() == 'CANADA') {
+			$('#canada_provinces').show().focus();
+		} else if ($(this).val() == 'UNITED_KINGDOM' || $(this).val() == 'IRELAND') {
+			$('#county').show().focus();
+		} else {
+			$(this).val('');
+			//alert("<fmt:message key="register.country.notsupported" />");
+		}
+	});
+
+	$('#register_country').trigger("change");
+
+//]]>
+</script>

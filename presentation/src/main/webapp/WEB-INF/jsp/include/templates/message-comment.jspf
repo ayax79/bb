@@ -1,0 +1,32 @@
+<%@include file="/WEB-INF/jsp/include/taglibs.jspf" %>
+<c:set var="newLine" value="
+" />
+
+<div class="article-comment comment_${childActivity.guid} U${childActivity.artifactMetaData.artifactOwner.guid} <c:if test="${bb:isCollapsedPost(cookie.cu.value, childActivity.artifactMetaData.artifactOwner.guid)}"> collapsed-post</c:if>">
+	<div class="article-comment-pict">
+		<ui:profileImage guid="${childActivity.sender.guid}" showUserType="true" linkToProfile="true" showMiniProfile="true" size="small"/>
+	</div>
+	<div class="article-comment-body">
+		<div class="article-comment-header">
+			<div class="article-comment-meta">
+				<span class="article-comment-user">
+					<s:link beanclass="com.blackbox.presentation.action.persona.PersonaActionBean" class="user-link">
+						<s:param name="identifier" value="${childActivity.artifactMetaData.artifactOwner.guid}"/>
+						${bb:userName(childActivity.sender)}
+					</s:link>
+				</span>
+				<span class="collapsed-message">posted a reply</span>
+				<span class="article-comment-date"><abbr class="timeago" title="${childActivity.formattedPostDate}">${childActivity.formattedPostDate}</abbr></span>
+			</div>
+			<%@include file="/WEB-INF/jsp/include/templates/comment-actions.jspf" %>
+			<div class="clear"></div>
+		</div>
+		<div class="article-comment-meat">
+			<div class="comment-meat">
+				<c:set var="donkeySrc"><img src="${bb:libraryResource('/library/images/icons/donkey.jpg')}" alt="donkey"/></c:set>
+				<c:set var="body">${f:replace(childActivity.body, "{DONKEY}", donkeySrc)}</c:set>
+				${f:replace(body, newLine, "<br/>")}
+			</div>
+		</div>
+	</div>
+</div>

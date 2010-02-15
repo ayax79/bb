@@ -1,0 +1,15 @@
+<%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
+<div id="dailog_helper">
+    <div id="image_storage_url" style="height:220px;width:300px">
+        inter the your image url like this: http://www.xxx.com/fdfd<br/>
+        <input type="text" name="url"></input>
+    </div>
+    <div id="upload_image" style="height:220px;width:300px;">
+        <div  align="center" id="uploadify-content">
+                <span>
+                    <input id="image_file" type="file" />
+                </span>
+            </div>
+    </div>
+</div>
+

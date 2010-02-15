@@ -1,0 +1,6 @@
+<%--
+  ~ Copyright (c) 2009. Blackbox, LLC
+  ~ All rights reserved.
+  --%>
+<script type="text/javascript" src="${bb:libraryResource('/library/js/jquery.Jcrop.min.js')}"></script>
+<link rel="stylesheet" href="${bb:libraryResource('/library/css/jquery.Jcrop.css')}" type="text/css" />

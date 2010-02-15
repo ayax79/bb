@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2009. Blackbox, LLC
+  ~ All rights reserved.
+  -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
+        >
+
+    <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean"
+            p:configLocation="classpath:/cache/ehcache.xml"  p:shared="false"/>
+
+    <bean id="userCache" class="org.yestech.cache.impl.EhCacheCacheManager" p:cache-ref="userCacheDelagate"/>
+    <bean id="userCacheDelagate" class="org.springframework.cache.ehcache.EhCacheFactoryBean"
+          p:cacheManager-ref="cacheManager" p:cacheName="userCache"/>
+
+    <bean id="userGuidCache" class="org.yestech.cache.impl.EhCacheCacheManager" p:cache-ref="userGuidCacheDelagate"/>
+    <bean id="userGuidCacheDelagate" class="org.springframework.cache.ehcache.EhCacheFactoryBean"
+          p:cacheManager-ref="cacheManager" p:cacheName="userGuidCache"/>
+    
+    <bean id="miniProfileCache" class="org.yestech.cache.impl.EhCacheCacheManager" p:cache-ref="miniProfileCacheDelagate"/>
+    <bean id="miniProfileCacheDelagate" class="org.springframework.cache.ehcache.EhCacheFactoryBean"
+          p:cacheManager-ref="cacheManager" p:cacheName="miniProfileCache"/>
+
+    <bean id="userRefreshCache" class="org.yestech.cache.impl.EhCacheCacheManager" p:cache-ref="userRefreshCacheDelagate"/>
+    <bean id="userRefreshCacheDelagate" class="org.springframework.cache.ehcache.EhCacheFactoryBean"
+          p:cacheManager-ref="cacheManager" p:cacheName="userRefreshCache"/>
+
+    <bean id="relationshipCache" class="org.yestech.cache.impl.EhCacheCacheManager" p:cache-ref="relationshipCacheDelagate"/>
+    <bean id="relationshipCacheDelagate" class="org.springframework.cache.ehcache.EhCacheFactoryBean"
+          p:cacheManager-ref="cacheManager" p:cacheName="relationshipCache"/>
+    
+    <bean id="followedByCache" class="org.yestech.cache.impl.EhCacheCacheManager" p:cache-ref="followedByCacheDelagate"/>
+    <bean id="followedByCacheDelagate" class="org.springframework.cache.ehcache.EhCacheFactoryBean"
+          p:cacheManager-ref="cacheManager" p:cacheName="followedByCache"/>
+
+    <bean id="avatarImageCache" class="org.yestech.cache.impl.EhCacheCacheManager" p:cache-ref="avatarImageCacheDelegate" />
+    <bean id="avatarImageCacheDelegate" class="org.springframework.cache.ehcache.EhCacheFactoryBean"
+          p:cacheManager-ref="cacheManager" p:cacheName="avatarImageCache" />
+    
+    <bean id="wishStatusCache" class="org.yestech.cache.impl.EhCacheCacheManager" p:cache-ref="wishStatusCacheDelegate" />
+    <bean id="wishStatusCacheDelegate" class="org.springframework.cache.ehcache.EhCacheFactoryBean"
+          p:cacheManager-ref="cacheManager" p:cacheName="wishStatusCache" />
+    
+    <bean id="wordFrequencyCache" class="org.yestech.cache.impl.EhCacheCacheManager" p:cache-ref="wordFrequencyCacheDelegate" />
+    <bean id="wordFrequencyCacheDelegate" class="org.springframework.cache.ehcache.EhCacheFactoryBean"
+          p:cacheManager-ref="cacheManager" p:cacheName="wordFrequencyCache" />
+    
+    <bean id="viewedByCache" class="org.yestech.cache.impl.EhCacheCacheManager" p:cache-ref="viewedByCacheDelegate" />
+    <bean id="viewedByCacheDelegate" class="org.springframework.cache.ehcache.EhCacheFactoryBean"
+          p:cacheManager-ref="cacheManager" p:cacheName="viewedByCache" />
+    
+    <bean id="profileImageCache" class="org.yestech.cache.impl.EhCacheCacheManager" p:cache-ref="profileImageCacheDelegate" />
+    <bean id="profileImageCacheDelegate" class="org.springframework.cache.ehcache.EhCacheFactoryBean"
+          p:cacheManager-ref="cacheManager" p:cacheName="profileImageCache" />
+
+    <bean id="ownerMediaLibraryCache" class="org.yestech.cache.impl.EhCacheCacheManager" p:cache-ref="ownerMediaLibraryCacheDelegate" />
+    <bean id="ownerMediaLibraryCacheDelegate" class="org.springframework.cache.ehcache.EhCacheFactoryBean"
+          p:cacheManager-ref="cacheManager" p:cacheName="ownerMediaLibraryCache" />
+
+    <bean id="vouchTargetCache" class="org.yestech.cache.impl.EhCacheCacheManager" p:cache-ref="vouchTargetCacheDelegate" />
+    <bean id="vouchTargetCacheDelegate" class="org.springframework.cache.ehcache.EhCacheFactoryBean"
+          p:cacheManager-ref="cacheManager" p:cacheName="vouchTargetCache" />
+
+    <bean id="vouchVoucherCache" class="org.yestech.cache.impl.EhCacheCacheManager" p:cache-ref="vouchVoucherCacheDelegate" />
+    <bean id="vouchVoucherCacheDelegate" class="org.springframework.cache.ehcache.EhCacheFactoryBean"
+          p:cacheManager-ref="cacheManager" p:cacheName="vouchVoucherCache" />
+
+    <bean id="connectionCache" class="org.yestech.cache.impl.EhCacheCacheManager" p:cache-ref="connectionCacheDelegate" />
+    <bean id="connectionCacheDelegate" class="org.springframework.cache.ehcache.EhCacheFactoryBean"
+          p:cacheManager-ref="cacheManager" p:cacheName="connectionCache" />
+
+    <bean id="userVouchCache" class="org.yestech.cache.impl.EhCacheCacheManager" p:cache-ref="userVouchCacheDelegate" />
+    <bean id="userVouchCacheDelegate" class="org.springframework.cache.ehcache.EhCacheFactoryBean"
+          p:cacheManager-ref="cacheManager" p:cacheName="userVouchCache" />
+
+    <bean id="vouchCountCache" class="org.yestech.cache.impl.EhCacheCacheManager" p:cache-ref="vouchCountCacheDelegate" />
+    <bean id="vouchCountCacheDelegate" class="org.springframework.cache.ehcache.EhCacheFactoryBean"
+          p:cacheManager-ref="cacheManager" p:cacheName="vouchCountCache" />
+
+    <bean id="privacyCache" class="org.yestech.cache.impl.EhCacheCacheManager" p:cache-ref="privacyCacheDelegate" />
+    <bean id="privacyCacheDelegate" class="org.springframework.cache.ehcache.EhCacheFactoryBean"
+          p:cacheManager-ref="cacheManager" p:cacheName="privacyCache" />
+
+    <bean id="wishCountCache" class="org.yestech.cache.impl.EhCacheCacheManager" p:cache-ref="wishCountCacheDelegate" />
+    <bean id="wishCountCacheDelegate" class="org.springframework.cache.ehcache.EhCacheFactoryBean"
+          p:cacheManager-ref="cacheManager" p:cacheName="wishCountCache" />
+
+    <bean id="attendeeOccasionCache" class="org.yestech.cache.impl.EhCacheCacheManager" p:cache-ref="attendeeOccasionCacheDelegate" />
+    <bean id="attendeeOccasionCacheDelegate" class="org.springframework.cache.ehcache.EhCacheFactoryBean"
+          p:cacheManager-ref="cacheManager" p:cacheName="attendeeOccasionCache" />
+
+    <bean id="userWishCache" class="org.yestech.cache.impl.EhCacheCacheManager" p:cache-ref="userWishCacheDelegate" />
+    <bean id="userWishCacheDelegate" class="org.springframework.cache.ehcache.EhCacheFactoryBean"
+          p:cacheManager-ref="cacheManager" p:cacheName="userWishCache" />
+
+    <bean id="userExploreResultsCache" class="org.yestech.cache.impl.EhCacheCacheManager" p:cache-ref="userExploreResultsCacheDelegate" />
+    <bean id="userExploreResultsCacheDelegate" class="org.springframework.cache.ehcache.EhCacheFactoryBean"
+          p:cacheManager-ref="cacheManager" p:cacheName="userExploreResultsCache" />
+
+    <bean id="userLastExploreRequestCache" class="org.yestech.cache.impl.EhCacheCacheManager" p:cache-ref="userLastExploreRequestCacheDelegate" />
+    <bean id="userLastExploreRequestCacheDelegate" class="org.springframework.cache.ehcache.EhCacheFactoryBean"
+          p:cacheManager-ref="cacheManager" p:cacheName="userLastExploreRequestCache" />
+
+    <bean id="trainRockCommentCache" class="org.yestech.cache.impl.EhCacheCacheManager" p:cache-ref="trainRockCommentCacheDelegate" />
+    <bean id="trainRockCommentCacheDelegate" class="org.springframework.cache.ehcache.EhCacheFactoryBean"
+          p:cacheManager-ref="cacheManager" p:cacheName="trainRockCommentCache" />
+
+    <bean id="eventExploreResultsCache" class="org.yestech.cache.impl.EhCacheCacheManager" p:cache-ref="eventExploreResultsCacheDelegate" />
+    <bean id="eventExploreResultsCacheDelegate" class="org.springframework.cache.ehcache.EhCacheFactoryBean"
+          p:cacheManager-ref="cacheManager" p:cacheName="eventExploreResultsCache" />
+
+    <bean id="eventLastExploreRequestCache" class="org.yestech.cache.impl.EhCacheCacheManager" p:cache-ref="eventLastExploreRequestCacheDelegate" />
+    <bean id="eventLastExploreRequestCacheDelegate" class="org.springframework.cache.ehcache.EhCacheFactoryBean"
+          p:cacheManager-ref="cacheManager" p:cacheName="eventLastExploreRequestCache" />
+
+    <bean id="individualActivityThreadResultCache" class="org.yestech.cache.impl.EhCacheCacheManager" p:cache-ref="individualActivityThreadResultCacheDelegate" />
+    <bean id="individualActivityThreadResultCacheDelegate" class="org.springframework.cache.ehcache.EhCacheFactoryBean"
+          p:cacheManager-ref="cacheManager" p:cacheName="individualActivityThreadResultCache" />
+
+    <bean id="activityThreadChildrenResultCache" class="org.yestech.cache.impl.EhCacheCacheManager" p:cache-ref="activityThreadChildrenResultCacheDelegate" />
+    <bean id="activityThreadChildrenResultCacheDelegate" class="org.springframework.cache.ehcache.EhCacheFactoryBean"
+          p:cacheManager-ref="cacheManager" p:cacheName="activityThreadChildrenResultCache" />
+
+
+
+    <!--<bean id="cacheManager" class="org.yestech.cache.spring.InfinispanManagerFactoryBean" p:configLocation="classpath:/cache/infinispan.xml"/>-->
+</beans>

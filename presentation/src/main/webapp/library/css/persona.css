@@ -1,0 +1,663 @@
+#tab_Content_Activity, #tab_Content_Vouches {
+    padding-top:12px;
+}
+
+/* PICTURES TAB */
+#mini-bio {
+    background-color: #fff;
+    min-height: 80px;
+    padding-left: 20px;
+    padding-top: 10px;
+}
+
+#mini-bio .tiny-sliders {
+    border-right: 1px solid #f2f2f2;
+    float: left;
+    margin: 0 0 15px 10px;
+    padding-right: 10px;
+    position: inherit;
+    width: 138px;
+}
+
+.queued-image {
+    color:#000 !important;
+}
+
+span.load-message {
+    font-weight:normal;
+    display:block;
+    width:100px;
+    line-height:50px;
+    text-align:center;
+    color:#aaa;
+}
+
+#mini-bio h3 {
+    float: left;
+    font-size: 13px;
+    font-weight: bold;
+    height: 14px;
+    margin: 0 0 0 10px;
+    width: 50%;
+}
+
+#mini-bio p {
+    float: left;
+    margin-top: 2px;
+    margin-left: 10px;
+}
+
+#pictures-container {
+    background-color: #fafafa;
+    border-top: 1px solid #f1f1f1;
+    min-height: 500px;
+    width: 100%;
+}
+
+.pictures-header {
+    margin-bottom:10px;
+}
+
+.pictures-header * {
+    line-height:28px;
+}
+
+.pictures-header .left {
+    float:left;
+}
+
+
+.pictures-header .right {
+    float:right;
+}
+
+#pictures-container h3 {
+    color: #191919;
+    font-size: 13px;
+    font-weight: bold;
+    margin:0;
+}
+
+#pictures-container h3 span {
+    font-size: 11px;
+    font-weight: normal;
+}
+
+.pictures-header a {
+    font-size:11px;
+    font-weight:300;
+}
+
+#album-list {
+    margin: 10px 0 0 20px;
+}
+
+.photo-album {
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+    float: left;
+    margin: 0 5px 5px 0;
+    min-height: 116px;
+    padding: 5px;
+    width: 440px;
+}
+
+.photo-album img {
+/*float: left;*/
+/*margin-right: 5px;*/
+/*max-height: 118px;*/
+/*max-width: 165px;*/
+}
+
+.album-meta {
+    float: left;
+    width: 260px;
+}
+
+.album-meta2 {
+    float: left;
+    width: 380px;
+}
+
+p.album-desc {
+    overflow: hidden;
+    width: 260px;
+    height:32px;
+}
+
+.photo-album h4 {
+    font-size: 13px;
+    margin: 0 0 4px 0;
+}
+
+.photo-album h4 span {
+    color: #505050;
+    font-size: 11px;
+}
+
+.photo-album p {
+    color: #161616;
+    font-size: 11px;
+    margin: 0 0 4px 0;
+}
+
+.photo-album p.dates {
+    color: #a2a2a2;
+}
+
+.photo-album p.edit-album {
+    margin: 18px 0 0 0;
+}
+
+.photo-album p.edit-album a {
+    font-weight: normal;
+}
+
+.pictures-uploader, .pictures-uploader2, #album-overview {
+    float: left;
+    min-height: 500px;
+    width: 535px;
+}
+
+#upload-images-step {
+    display: none;
+}
+
+.pictures-uploader form {
+    display: block;
+    margin-left: 25px;
+    width: 460px;
+}
+
+.pictures-uploader form label {
+    display: block;
+    font-weight: bold;
+}
+
+.pictures-uploader form input,
+    .pictures-uploader form textarea {
+    background: #fff;
+    border: 1px solid #e1e1e1;
+    margin-bottom: 15px;
+    padding: 5px;
+    width: 100%;
+}
+
+.pictures-uploader form textarea {
+    height: 85px;
+}
+
+.pictures-uploader form .radio-button {
+    float: left;
+    margin-top: 8px;
+    margin-right:20px;
+}
+
+.pictures-uploader form .radio-button label {
+    display: block;
+    float: left;
+    font-weight: normal;
+    margin: 0;
+}
+
+.pictures-uploader form .radio-button input {
+	border: none;
+	background: transparent;
+    display: block;
+    float: left;
+    margin: 0;
+    width: 20px;
+}
+
+.pictures-uploader #permissions {
+    display: block;
+    width: 100%;
+}
+
+.pictures-uploader #upload-buttons {
+    border-top: 1px solid #eee;
+    display: block;
+    margin-top: 20px;
+    padding-top: 10px;
+    text-align: right;
+    width: 100%;
+}
+
+#ps_p_upload_file_album_zone {
+    display: block;
+    clear: both;
+}
+
+.pictures-uploader .uploadifyQueue {
+    max-height: 350px;
+    /*padding: 2px;*/
+    /*border: 1px solid #ccc;*/
+    margin: 0;
+    overflow: hidden;
+}
+
+.pictures-uploader .uploadifyQueueItem {
+    font: 11px Verdana, Geneva, sans-serif;
+    border: 2px solid #E5E5E5;
+    background-color: #F5F5F5;
+    margin-top: 5px;
+    padding: 1px;
+    width: 528px;
+}
+
+.pictures-uploader .uploadifyError {
+    display: none;
+}
+
+.pictures-uploader .uploadifyQueueItem .cancel {
+    display: none;
+}
+
+.pictures-uploader .uploadifyQueueItem .fileName {
+    display: none;
+}
+
+.pictures-uploader .uploadifyQueueItem .percentage {
+    display: none;
+}
+
+.pictures-uploader .uploadifyProgress {
+    background-color: #FFFFFF;
+    border: 1px solid #ccc;
+    margin: 0;
+    width: 100%;
+}
+
+.pictures-uploader .uploadifyProgressBar {
+    background-color: #0099FF;
+    width: 1px;
+    height: 3px;
+}
+
+.pictures-uploader #cancel-create {
+    float: right;
+}
+
+.pictures-uploader #cancel-create button {
+    background: transparent url(${library.prefix}/images/bg/grey-flat-button-l.png) left top no-repeat;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    height: 27px;
+    padding: 0 0 0 9px;
+}
+
+.pictures-uploader #cancel-create button span {
+    background: transparent url(${library.prefix}/images/bg/grey-flat-button-r.png) right top no-repeat;
+    display: block;
+    height: 27px;
+    padding: 6px 10px 0 0 !important;
+}
+
+.pictures-uploader #create-album button {
+    background: transparent url(${library.prefix}/images/bg/grey-flat-button-l.png) left top no-repeat;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    height: 27px;
+    padding: 0 0 0 9px;
+}
+
+.pictures-uploader #create-album button span {
+    background: transparent url(${library.prefix}/images/bg/grey-flat-button-r.png) right top no-repeat;
+    display: block;
+    height: 27px;
+    padding: 6px 10px 0 0 !important;
+}
+
+.album-image {
+    background-color: #fff;
+    border: 1px solid #c8c8c8;
+    display: block;
+    float: left;
+    margin: 0 3px 3px 0;
+    padding: 1px;
+    position: relative;
+    max-height: 130px;
+    min-height:54px;
+    overflow: hidden;
+}
+
+.album-image.row-start {
+    clear: left;
+}
+
+.album-image:hover {
+    border: 1px solid #666;
+}
+
+.single-thumb {
+    cursor:pointer;
+}
+
+.album-image .delete-image-link {
+    background: transparent url(${library.prefix}/images/controls/image-actions.png) left top no-repeat;
+    display: block;
+    height: 17px;
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    width: 17px;
+    z-index: 4;
+    display:none;
+    cursor:pointer;
+}
+
+.album-cover .image-action-link, .album-image .image-action-link {
+    background: transparent url(${library.prefix}/images/controls/image-actions.png) right top no-repeat;
+    display: block;
+    height: 17px;
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    width: 17px;
+    z-index: 4;
+    display:none;
+    cursor:pointer;
+}
+
+.album-cover .image-action-link {
+    top:0;
+    left:0;
+}
+
+
+.album-cover:hover .image-action-link, .album-image:hover .image-action-link {
+    background-position:right bottom
+}
+
+#view-create-album {
+    margin-right:20px;
+}
+
+
+.album-image:hover .delete-image-link {
+    background-position:left bottom
+}
+
+.image-action-menu {
+    display:none;
+    position:absolute;
+    left:-1px;
+    top:-1px;
+    list-style:none;
+    margin:0;
+    padding:0;
+    z-index:10;
+    border-right:1px solid #fff;
+    border-bottom:1px solid #fff;
+}
+
+.image-action-menu li {
+    margin:0;
+    padding:0;
+}
+
+.image-action-menu li.last {
+    border-bottom:1px solid #666;
+}
+
+.image-action-menu li a {
+    display:block;
+    padding:2px 4px 2px 16px;
+    background-color:#fff;
+    border-top:1px solid #c8c8c8;
+    border-left:1px solid #c8c8c8;
+    border-right:1px solid #666;
+    font-size:10px;
+    color:#777;
+    font-weight:900;
+}
+
+.image-action-menu li a:hover {
+    background-color:#f0f0f0;
+}
+
+.image-action-menu li a.active, .image-action-menu li a.active:hover {
+    background:#ccc url(${library.prefix}/images/icons/check2.png) no-repeat 5px center;
+    color:#000 !important;
+    
+}
+
+.album-image img {
+    display: block;
+    width: 100px;
+}
+
+.full-photo {
+    background-color: #fff;
+    border: 1px solid #c8c8c8;
+    display: block;
+    padding: 3px;
+    max-width: 524px;
+}
+
+.full-photo img {
+    display: block;
+    max-width: 524px;
+    max-height: 400px;
+}
+
+.album-info {
+    border-top: 1px solid #e1e1e1;
+    margin-top: 10px;
+    padding-top: 10px;
+}
+
+.album-info p {
+    font-size: 11px;
+    margin-top: 0;
+}
+
+.album-info p.date {
+    color: #b0b0b0;
+}
+
+.album-edit {
+    border-left: 1px solid #e1e1e1;
+    float: right;
+    padding-left: 10px;
+    width: 100px;
+}
+
+.album-edit a {
+    font-weight: normal;
+}
+
+#album-sidebar {
+    float: left;
+    margin-left: 16px;
+    width: 370px;
+}
+
+.sidebar-images {
+    height: 405px;
+}
+
+.photo-album-images {
+    height: 395px;
+}
+
+div.album-cover {
+    width: 165px;
+    height: 120px;
+    float: left;
+    background-color: #f0f0f0;
+    margin-right: 6px; /*text-align:center;*/
+    position:relative;
+}
+
+div.album-cover .album-link {
+    display:block;
+}
+
+div.album-cover img {
+    max-width: 165px;
+    max-height: 120px; /*vertical-align:middle;*/
+/*margin: auto auto;*/
+}
+
+#album-sidebar div.album-cover {
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+    display: block;
+    float: left;
+    margin: 0 6px 6px 0;
+    padding: 5px;
+}
+
+#tab_Content_Pictures .paging-right {
+    margin-right: 20px;
+}
+
+#gift-publisher-container {
+    width: 574px;
+}
+
+#gift-publisher-container .publisher-contents {
+    display: block;
+}
+
+#vouchForm textarea, #wishForm textarea {
+    font-size:12px;
+    font-family:inherit;
+    width:400px;
+    height:100px;
+    padding:4px;
+}
+
+/*
+This is a copy form the meBox. This should be standardized and consolidated to a core stylesheet
+*/
+
+
+.user-list-container table {
+    border-collapse:collapse;
+    width:100%;
+}
+
+.user-list-container table td {
+    padding: 5px;
+    border-bottom: 1px solid #ccc;
+    vertical-align: top;
+}
+
+.user-list-container .user-info .name {
+    color: #dc4a2d
+}
+
+.user-list-container td.user-info {
+    white-space: nowrap;
+    line-height: 12px;
+    font-size: 11px;
+    padding-right:6px;
+    background: url(${library.prefix}/images/bg/mbDivider.png) no-repeat right center;
+}
+
+.user-list-container td.user-avatar {
+    width: 106px;
+}
+
+.user-list-container td.user-info {
+    width: 133px;
+}
+
+.user-list-container td.connection-type {
+    width: 110px;
+    font-size:11px;
+    background: url(${library.prefix}/images/bg/mbDivider.png) no-repeat left center;
+}
+
+.user-list-container td.connection-type ul {
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+.user-list-container td.connection-type ul li{
+    margin:0 0 1px 0;
+}
+
+.user-list-container td.item-content {
+    font-size:11px;
+}
+
+.user-list-container td.item-content p {
+    margin-top:0;
+}
+
+.user-list-container td.item-select {
+    width: 20px;
+}
+
+.user-list-container td.item-select input {
+    border-left:1px solid #ccc;
+}
+
+
+.user-list-container .no-results {
+    margin-left:16px;
+    border-top:1px solid #ccc;
+    border-bottom:1px solid #ccc;
+    padding:8px 0;
+}
+
+/*
+Activities tab
+*/
+
+#tab_Content_Activity .filters-menu-container {
+    margin:10px 0;
+    padding-bottom:6px;
+    border-bottom:1px solid #e8e8e8;
+}
+
+#tab_Content_Activity .article p.create-update {
+    display:block;
+}
+
+#tab_Content_Activity .article {
+    border:0;
+    padding-bottom:8px;
+    padding-top:0;
+}
+
+#tab_Content_Activity .article.collapsed-post {
+    border-bottom:1px solid #ccc;
+    padding:16px 14px !important;
+}
+
+#tab_Content_Activity .article-content {
+    padding-bottom:0;
+}
+
+#tab_Content_Activity .collapsed-post .article-content {
+    padding-bottom:20px;
+}
+
+#tab_Content_Activity .article-meat, #tab_Content_Activity .comment-meat {
+    font-size:11px;
+}
+
+#tab_Content_Activity .no-results {
+    margin-left:16px;
+    border-top:1px solid #ccc;
+    border-bottom:1px solid #ccc;
+    padding:8px 0;
+}
+
+/*
+Show more dialog
+*/
+
+#persona-show-more {
+    width:800px;
+    height:300px;
+    overflow:auto;
+    
+}

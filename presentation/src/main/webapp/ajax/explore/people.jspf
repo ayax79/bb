@@ -1,0 +1,373 @@
+<%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
+<script type="text/javascript">
+    if("member-events" == $("#targetSearch").val() || "promoter-events" == $("#targetSearch").val()) {
+         $('#explore-tabs-top').tabs('option', 'selected', 1);
+    }
+
+</script>
+<s:form beanclass="com.blackbox.presentation.action.search.ExploreActionBean" id="peopleExplore" method="post" onsubmit="return false;">
+<%--@elvariable id="actionBean" type="com.blackbox.presentation.action.search.AjaxExploreActionBean"--%>
+
+<div id="quicksearch_form_container">
+        <span class="searchinput"><input type="text" name="explore.name" id="exp_query" value="${actionBean.explore.name}" autocomplete="off" /></span>
+</div>
+
+<div id="sort_options_container">
+    <span id="sort_order_label">Sort:</span><span id="sort_order_options"><img id="sort_by_time" src="${bb:libraryResource('/library/images/explore/sortorder_time.png')}" alt="Sort by recent">  <img id="sort_by_distance" src="${bb:libraryResource('/library/images/explore/sortorder_distance.png')}" alt="Sort by distance"></span>
+    <input type="hidden" name="sortorder" id="sortorder" value="" />
+</div>
+
+<div id="quicksearch_div" class='clearfix'>
+    <h2>Refine your search</h2>
+    <div id="quicksearch_opts" class="clearfix">
+        
+
+            <div class="quicksearch">
+                <a id='bonanza_search_link'href="#">Blackbox Bonanza</a>
+                <br />
+                Browse all Blackbox members
+            </div>
+            <div class="quicksearch">
+                <a id='perfect_search_link'href="#">Perfect Match</a>
+                <br />
+                View members that match what you're currently into
+            </div>
+            <div class="quicksearch">
+                <a id="latest_search_link" href="#">Latest and Greatest</a>
+                <br />
+                Browse the most recent members
+            </div>
+        
+    </div>
+
+    <div id="slidersearch_opts">
+        <div class="info-sliders mini-slider">
+			<ul>
+				<li class="slider_container clearfix">
+					<input type="hidden" name="explore.orientation.startIndex" class="slider-val-min" value=""/>
+					<input type="hidden" name="explore.orientation.lastIndex" class="slider-val-max" value=""/>
+					<label><span><fmt:message key="settings.field.orientation"/></span></label>
+					<ui:slider sliderId="orientation_slider" containerClass="sliderz" labelLeft="${bb:getBundleString('StripesResources', 'settings.field.orientation.leftLabel')}" labelCenter="${bb:getBundleString('StripesResources', 'settings.field.orientation.centerLabel')}" labelRight="${bb:getBundleString('StripesResources', 'settings.field.orientation.rightLabel')}" showQuarterTicks="true"/>
+
+				</li>
+				<li class="slider_container clearfix">
+					<input type="hidden" name="explore.relationshipStatus.startIndex" class="slider-val-min" value=""/>
+					<input type="hidden" name="explore.relationshipStatus.lastIndex" class="slider-val-max" value=""/>
+					<label><span><fmt:message key="settings.field.status"/></span></label>
+					<ui:slider sliderId="relationship_slider" containerClass="sliderz" labelLeft="${bb:getBundleString('StripesResources', 'settings.field.status.leftLabel')}" labelCenter="${bb:getBundleString('StripesResources', 'settings.field.status.centerLabel')}" labelRight="${bb:getBundleString('StripesResources', 'settings.field.status.rightLabel')}" showQuarterTicks="true"/>
+				</li>
+				<li class="slider_container clearfix">
+					<input type="hidden" name="explore.polyStatus.startIndex" class="slider-val-min" value=""/>
+					<input type="hidden" name="explore.polyStatus.lastIndex" class="slider-val-max" value=""/>
+					<label><span><fmt:message key="settings.field.addPartners"/></span></label>
+					<ui:slider sliderId="poly_slider" containerClass="sliderz" labelLeft="${bb:getBundleString('StripesResources', 'settings.field.addPartners.leftLabel')}" labelCenter="${bb:getBundleString('StripesResources', 'settings.field.addPartners.centerLabel')}" labelRight="${bb:getBundleString('StripesResources', 'settings.field.addPartners.rightLabel')}" showQuarterTicks="true"/>
+				</li>
+				<li class="slider_container clearfix">
+					<input type="hidden" name="explore.interestLevel.startIndex" class="slider-val-min" value=""/>
+					<input type="hidden" name="explore.interestLevel.lastIndex" class="slider-val-max" value=""/>
+					<label><span><fmt:message key="settings.field.lovin"/></span></label>
+					<ui:slider sliderId="interest_slider" containerClass="sliderz" labelLeft="${bb:getBundleString('StripesResources', 'settings.field.lovin.leftLabel')}" labelCenter="${bb:getBundleString('StripesResources', 'settings.field.lovin.centerLabel')}" labelRight="${bb:getBundleString('StripesResources', 'settings.field.lovin.rightLabel')}" showQuarterTicks="true"/>
+				</li>
+				<li class="slider_container clearfix">
+					<input type="hidden" name="explore.energyLevel.startIndex" class="slider-val-min" value=""/>
+					<input type="hidden" name="explore.energyLevel.lastIndex" class="slider-val-max" value=""/>
+					<label><span><fmt:message key="settings.field.vibe"/></span></label>
+					<ui:slider sliderId="energy_slider" containerClass="sliderz" labelLeft="${bb:getBundleString('StripesResources', 'settings.field.vibe.leftLabel')}" labelCenter="${bb:getBundleString('StripesResources', 'settings.field.vibe.centerLabel')}" labelRight="${bb:getBundleString('StripesResources', 'settings.field.vibe.rightLabel')}" showQuarterTicks="true"/>
+				</li>
+			</ul>
+		</div>
+    </div>
+
+    <div id="search_opts">
+
+        <table id="search_opts_toptable" cellpadding="0" cellspacing="0" border="0" width="100%">
+            <tr>
+                <td colspan="2"><b>Gender</b></td>
+            </tr>
+            <tr>
+                <td width="60%"><s:checkbox name="explore.genderMale" id="searchopt_male" /><label for="searchopt_male">Male</label></td>
+                <td width="40%"><s:checkbox name="explore.genderUnspecified" id="searchopt_unspecified" /><label for="searchopt_unspecified">Unspecified</label></td>
+            </tr>
+            <tr>
+                <td><s:checkbox name="explore.genderFemale" id="searchopt_female" /><label for="searchopt_female">Female</label></td>
+                <td></td>
+            </tr>
+        </table>
+        <div class="searchopt-rule">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                <td><b>Location</b></td>
+            </tr>
+            <tr>
+                <td>
+                    within
+                            <select id="max_distance" name="explore.maxDistance">
+                                <option value="5">5 mi</option>
+                                <option value="10">10 mi</option>
+                                <option value="25">25 mi</option>
+                                <option value="50">50 mi</option>
+                                <option value="100">100 mi</option>
+                                <option value="500">500 mi</option>
+                            </select>
+                    of <input type="text" name="explore.zipCode" id="searchopt_distance_center" size="12">
+                </td>
+            </tr>
+        </table>
+        </div>
+        <div class="searchopt-rule">
+        <table cellpadding="0" cellspacing="0" border="0" width="100%">
+            <tr>
+                <td colspan="2"><b>Interests</b></td>                             
+            </tr>
+            <tr>
+                <td><s:checkbox name="explore.seekingFriends" id="searchopt_interests_friends" /><label for="searchopt_interests_friends"><fmt:message key="LookingForEnum.friends" /></label></td>
+                <td><s:checkbox name="explore.seekingLove" id="searchopt_interests_love" /><label for="searchopt_interests_love"><fmt:message key="LookingForEnum.love" /></label></td>
+            </tr>
+            <tr>
+                <td><s:checkbox name="explore.seekingDating" id="searchopt_interests_dating" /><label for="searchopt_interests_dating"><fmt:message key="LookingForEnum.dates" /></label></td>
+                <td><s:checkbox name="explore.seekingSnuggling" id="searchopt_interests_snuggling"/><label for="searchopt_interests_snuggling"><fmt:message key="LookingForEnum.snuggling" /></label></td>
+            </tr>
+            <tr>
+                <td><s:checkbox name="explore.seekingRelationships" id="searchopt_interests_relationships"/><label for="searchopt_interests_relationships"><fmt:message key="LookingForEnum.donkeySex" /></label></td>
+                <td><s:checkbox name="explore.seekingHookups" id="searchopt_interests_hookups"/><label for="searchopt_interests_hookups"><fmt:message key="LookingForEnum.hookup" /></label></td>
+            </tr>
+
+        </table>
+        </div>
+        <div class="searchopt-rule" style='padding-top: 18px; padding-left: 8px; border-bottom: 1px solid #dadada;'>
+            <button class="grey2d bbbutton" id="exp_people_submit"><span>Search</span></button>
+        </div>
+    </div>
+
+
+</div>
+</s:form>
+
+<div id="search_container">
+    <div id="exp_results_container">
+        <div id="exp_results">&nbsp;</div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+//<![CDATA[
+
+
+	var search_alert;
+
+
+
+    bb.pageInit.bindSliders($(".info-sliders"));
+
+	
+	$("#exp_results_container").hide();
+
+	$("#exp_people_submit").click(function() {
+        $("#exp_results").empty();
+        $("#exp_results").load(bb.urls.search.explorerSearchUser, $("#peopleExplore").serializeArray(), function(result) {
+			$("#exp_search_container").hide();
+			$("#exp_results_container").show();
+			$(".collapse-button", this).unbind(".st");
+			$(".collapse-button", this).bind("click.st", function() {
+				$(".xplr-results-more", $(this).parent()).slideToggle(200);
+				$(this).find(".xplr-collapse").toggleClass("xplr-collapsed");
+			}).bind("mouseenter.st", function() {
+				$(this).find(".xplr-collapse").addClass("xplr-hover");
+			}).bind("mouseleave.st", function() {
+				$(this).find(".xplr-collapse").removeClass("xplr-hover");
+			});
+
+            var url = "<s:url beanclass="com.blackbox.presentation.action.search.ExploreActionBean" event="user"/>";
+            var exploreobj = new Explorer($("#exp_results"), url);
+
+		});
+		//$("#exp_people_submit span").text('Searching...');
+		return false;
+	});
+
+	$("#exp_new_search").click(function() {
+		$("#exp_results_container").hide();
+		$("#exp_search_container").show();
+		$("#exp_people_submit span").text('Search');
+	});
+
+    // populate the form and submit if there is a saved search...
+    //alert("${actionBean.explore}");
+
+    var orientationstart = "${actionBean.explore.orientation['startIndex']}";
+    var orientationend = "${actionBean.explore.orientation['lastIndex']}";
+    var relationshipstart = "${actionBean.explore.relationshipStatus['startIndex']}";
+    var relationshipend = "${actionBean.explore.relationshipStatus['lastIndex']}";
+    var polystart = "${actionBean.explore.polyStatus['startIndex']}";
+    var polyend = "${actionBean.explore.polyStatus['lastIndex']}";
+    var intereststart = "${actionBean.explore.interestLevel['startIndex']}";
+    var interestend = "${actionBean.explore.interestLevel['lastIndex']}";
+    var engergystart = "${actionBean.explore.energyLevel['startIndex']}";
+    var engergyend = "${actionBean.explore.energyLevel['lastIndex']}";
+    var zipCode = "${actionBean.explore.zipCode}";
+
+    $("#searchopt_distance_center").val(zipCode);
+
+
+    document.getElementById('searchopt_male').checked=${actionBean.genderMale};
+    document.getElementById('searchopt_female').checked=${actionBean.genderFemale};
+    document.getElementById('searchopt_unspecified').checked=${actionBean.genderUnspecified};
+    document.getElementById('searchopt_interests_friends').checked=${actionBean.seekingFriends};
+    document.getElementById('searchopt_interests_love').checked=${actionBean.seekingLove};
+    document.getElementById('searchopt_interests_dating').checked=${actionBean.seekingDating};
+    document.getElementById('searchopt_interests_snuggling').checked=${actionBean.seekingSnuggling};
+    document.getElementById('searchopt_interests_relationships').checked=${actionBean.seekingRelationships};
+    document.getElementById('searchopt_interests_hookups').checked=${actionBean.seekingHookups};
+
+    $("#exp_query").val("${actionBean.explore.name}");
+
+    $("#orientation_slider").slider('values', 0, orientationstart);
+    $("#orientation_slider").slider('values', 1, orientationend);
+
+    $("#relationship_slider").slider('values', 0, relationshipstart);
+    $("#relationship_slider").slider('values', 1, relationshipend);
+
+    $("#poly_slider").slider('values', 0, polystart);
+    $("#poly_slider").slider('values', 1, polyend);
+
+    $("#interest_slider").slider('values', 0, intereststart);
+    $("#interest_slider").slider('values', 1, interestend);
+
+    $("#energy_slider").slider('values', 0, engergystart);
+    $("#energy_slider").slider('values', 1, engergyend);
+
+    $("#max_distance").val("${actionBean.explore.maxDistance}");
+
+
+    // auto submit the search
+    $("#exp_people_submit").click();
+
+
+    $("#bonanza_search_link").click(
+        function() {
+            $('#orientation_slider').slider('values', 0, '-2');
+            $('#orientation_slider').slider('values', 1, '2');
+
+            $('#relationship_slider').slider('values', 0, '-2');
+            $('#relationship_slider').slider('values', 1, '2');
+
+            $('#poly_slider').slider('values', 0, '-2');
+            $('#poly_slider').slider('values', 1, '2');
+
+            $('#interest_slider').slider('values', 0, '-2');
+            $('#interest_slider').slider('values', 1, '2');
+
+            $('#energy_slider').slider('values', 0, '-2');
+            $('#energy_slider').slider('values', 1, '2');
+
+
+            document.getElementById('searchopt_interests_friends').checked=false;
+            document.getElementById('searchopt_interests_love').checked=false;
+            document.getElementById('searchopt_interests_dating').checked=false;
+            document.getElementById('searchopt_interests_snuggling').checked=false;
+            document.getElementById('searchopt_interests_relationships').checked=false;
+            document.getElementById('searchopt_interests_hookups').checked=false;
+            document.getElementById('searchopt_male').checked=false;
+            document.getElementById('searchopt_female').checked=false;
+            document.getElementById('searchopt_unspecified').checked=false;
+            $("#exp_query").val("");
+            $("#searchopt_distance_center").val("");
+
+            $("#exp_people_submit").click();
+
+
+        }
+    );
+
+    $("#perfect_search_link").click(
+        function() {
+
+            $('#orientation_slider').slider('values', 0, '${actionBean.viewer.profile.mood.orientation}');
+            $('#orientation_slider').slider('values', 1, '${actionBean.viewer.profile.mood.orientation}');
+
+            $('#relationship_slider').slider('values', 0, '${actionBean.viewer.profile.mood.relationshipStatus}');
+            $('#relationship_slider').slider('values', 1, '${actionBean.viewer.profile.mood.relationshipStatus}');
+
+            $('#poly_slider').slider('values', 0, '${actionBean.viewer.profile.mood.polyStatus}');
+            $('#poly_slider').slider('values', 1, '${actionBean.viewer.profile.mood.polyStatus}');
+
+            $('#interest_slider').slider('values', 0, '${actionBean.viewer.profile.mood.interestLevel}');
+            $('#interest_slider').slider('values', 1, '${actionBean.viewer.profile.mood.interestLevel}');
+
+            $('#energy_slider').slider('values', 0, '${actionBean.viewer.profile.mood.energyLevel}');
+            $('#energy_slider').slider('values', 1, '${actionBean.viewer.profile.mood.energyLevel}');
+
+
+            document.getElementById('searchopt_interests_friends').checked=false;
+            document.getElementById('searchopt_interests_love').checked=false;
+            document.getElementById('searchopt_interests_dating').checked=false;
+            document.getElementById('searchopt_interests_snuggling').checked=false;
+            document.getElementById('searchopt_interests_relationships').checked=false;
+            document.getElementById('searchopt_interests_hookups').checked=false;
+            
+            document.getElementById('searchopt_male').checked=false;
+            document.getElementById('searchopt_female').checked=false;
+            document.getElementById('searchopt_unspecified').checked=false;
+            
+            $("#exp_query").val("");
+            $("#searchopt_distance_center").val("");
+
+            $("#exp_people_submit").click();
+
+        }
+    );
+
+    $("#latest_search_link").click(
+        function() {
+            $("#sortorder").val('distance');
+            $("#exp_people_submit").click();
+        }
+    );
+
+    $("#sort_by_time").click(
+        function() {
+            $('#orientation_slider').slider('values', 0, '-2');
+            $('#orientation_slider').slider('values', 1, '2');
+
+            $('#relationship_slider').slider('values', 0, '-2');
+            $('#relationship_slider').slider('values', 1, '2');
+
+            $('#poly_slider').slider('values', 0, '-2');
+            $('#poly_slider').slider('values', 1, '2');
+
+            $('#interest_slider').slider('values', 0, '-2');
+            $('#interest_slider').slider('values', 1, '2');
+
+            $('#energy_slider').slider('values', 0, '-2');
+            $('#energy_slider').slider('values', 1, '2');
+
+
+            document.getElementById('searchopt_interests_friends').checked=false;
+            document.getElementById('searchopt_interests_love').checked=false;
+            document.getElementById('searchopt_interests_dating').checked=false;
+            document.getElementById('searchopt_interests_snuggling').checked=false;
+            document.getElementById('searchopt_interests_relationships').checked=false;
+            document.getElementById('searchopt_interests_hookups').checked=false;
+            document.getElementById('searchopt_male').checked=false;
+            document.getElementById('searchopt_female').checked=false;
+            document.getElementById('searchopt_unspecified').checked=false;
+            $("#exp_query").val("");
+            $("#searchopt_distance_center").val("");
+            
+            $("#sortorder").val('CHRONOLOGICAL_DESC');  //CHRONOLOGICAL_DESC, CHRONOLOGICAL_ASC, GEOLOCATION_DESC, GEOLOCATION_ASC
+            $("#exp_people_submit").click();
+        }
+    );
+
+    $("#sort_by_distance").click(
+        function() {
+            $("#sortorder").val('distance');
+            $("#exp_people_submit").click();
+        }
+    );
+    
+
+//]]>
+</script>
+

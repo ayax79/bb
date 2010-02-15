@@ -1,0 +1,375 @@
+#partner-resources h2 {
+    font: bold 18px/1em helvetica, arial, sans-serif;
+    color: #38B0E6;
+    margin-left: 0;
+    margin-top: 0;
+}
+
+#partner-resources h3 {
+	margin-top: 0;
+	}
+
+#partner-resources p {
+    line-height: 20px;
+}
+#partner-resources .left {
+    float: left;
+    width: 48%;
+}
+#partner-resources .right {
+    float: right;
+    width: 48%;
+}
+
+#partner-resources strong {
+	font-weight: bold!important;
+	}
+	
+#partner-resources .embed {
+	border-top: 1px solid #f2f2f1;
+	left: 0;
+	bottom: 0;
+	padding: 15px;
+	position: absolute;
+    width: 390px;
+	}
+
+#partner-resources .embed h4 {
+	color: #4a4a4a;
+	float:left;
+	font-size: 14px;
+	font-weight: bold;
+	margin-top: 0;
+	margin-bottom: 5px;
+	}
+	
+	
+#partner-resources .embed h4 span {
+	color: #38B0E6;
+	}
+	
+#partner-resources .embed button {
+	background-image: none;
+	border: 0;
+	float: right;
+	margin-right: -4px;
+	padding: 0;
+	
+	}
+	
+#partner-resources .embed textarea {
+	margin-bottom: 5px;
+	width: 100%;
+    height: 80px;
+	}
+	
+img.bbr-logo {
+	float: right;
+	margin: -10px -15px 20px 1px;
+	}
+	
+.left-narrow {
+	float: left;
+	width: 150px;
+	}
+	
+.right-basic {
+	float: right;
+	width: 650px;
+	}
+
+.partner-padding {
+	padding: 20px 40px;
+}
+p.orange-intro {
+	background: #89441b url(../images/partner/orange-gradient.png) top left no-repeat;
+	color: #fff;
+	font-size: 16px;
+	text-align: center;
+	margin-top:20px;
+	margin-bottom: 30px;
+	min-height: 63px;
+	line-height: 17px;
+	padding: 8px 30px;
+	width: 768px;
+	}
+ul.nomargin {
+	margin-top: 0;
+	margin-left: 0;
+	padding: 0 0 0 15px;
+	}
+ul.nomargin li {
+	margin-top: 6px;
+	}
+	
+h2.marketing-style {
+	background: url(../images/partner/marketing-style-bg.png) left top no-repeat;
+	min-height: 40px;
+	padding-top: 12px;
+	text-align: center;
+	width: 911px;
+	}
+p.action {
+    font: bold 14px/1em arial, helvetica, sans-serif;
+    color: #48c6ff;
+    text-transform: uppercase;
+}
+
+p.snippet-int {
+	color: #333;
+	font-size: 0.9em;
+	margin-top: 0;
+	}
+
+.snippet {
+	color: #48c6ff;
+    float: left;
+    margin-bottom: 0.25em;
+    padding: 10px;
+    border: 1px solid #dededb;
+    background: #fcfcfc;
+    width: 100%;
+}
+
+.buttons {
+	float: left;
+	margin-top: 10px;
+	}
+	
+.buttons button {
+	padding: 0;
+	border: none;
+	background: none;}
+	
+.fullwidth-bg {
+	background: #f8f8f8 url(../images/partner/gradient-bg.png) left top repeat-x;
+	margin-left: -20px;
+	min-height: 600px;
+	padding: 40px 0 20px 0;
+	width: 950px;;
+	}
+	
+.padding-l {
+	padding-left: 30px!important;
+	}
+	
+.paper-bg {
+	margin: 0 auto;
+	width: 802px;
+	}
+	
+.paper-bg-header {
+	background: transparent url(../images/partner/paper-bg-top.png) center top no-repeat;
+	display: block;
+	height: 44px;
+	padding: 60px 70px 0 100px;
+	width: 632px;
+	}
+	
+.paper-bg-body {
+	background: transparent url(../images/partner/paper-body-bg.png) center top repeat-y;
+	display: block;
+	padding: 0 70px 10px 100px;
+	width: 632px;
+	}
+	
+#partner-resources .paper-bg p {
+	line-height: 17px;
+	margin-top: 0;
+	margin-bottom: 15px;
+	}
+	
+.paper-bg-footer {
+	background: transparent url(../images/partner/paper-bg-bottom.png) -2px top no-repeat;
+	display: block;
+	height: 139px;
+	padding: 0 70px 0 100px;
+	width: 632px;
+	}
+
+#partner-assets {
+    background: #fff;
+    overflow: hidden;
+}
+
+#partner-badges {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+#partner-badges li {
+    list-style: none;
+    float: left;
+    margin: 0 10px 0 0;
+    padding: 0;
+    border: 1px solid #999;
+}
+
+.partner-content-main {
+    margin: 20px;
+}
+
+.partner-content-right {
+    float: right;
+    width: 140px;
+    padding: 20px 0;
+    position: relative;
+}
+
+ul.partner-callout {
+
+}
+
+#partner-url-uses {
+    position: absolute;
+    top: 120px;
+    left: 10px;
+}
+
+#partner-badge-uses {
+    position: absolute;
+    top: 320px;
+    left: 10px;
+}
+
+.partner-banner-download {
+    float: left;
+    display: block;
+    border: 1px solid #e6e6e3;
+    text-align: center;
+    width: 430px;
+    height: 350px;
+    margin: 20px 0;
+    vertical-align: middle;
+    position: relative;
+    padding: 20px 0;
+}
+
+.partner-banner-download.first {
+    margin-right: 30px;
+}
+
+.partner-banner-download img.asset-preview {
+    margin-top: 40px;
+}
+
+.asset-full-size {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.partner-banner-download ul.blue-buttons {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+}
+
+li.asset-info {
+
+}
+
+li.asset-download {
+    background: url(../images/partner/butn-bg-blue.png) top left no-repeat;
+    padding-left: 2px;
+
+}
+
+a.butn-asset-download {
+    height: 29px;
+    display: block;
+    background: url(../images/partner/butn-bg-blue-cap.png) top right no-repeat;
+    padding-right: 27px;
+
+}
+
+a.butn-asset-download span {
+    padding-left: 45px;
+    height: 29px;
+    line-height: 29px;
+    display: block;
+    float: left;
+    background: url(../images/partner/icon-asset-download.png) top left no-repeat;
+}
+
+li.asset-info {
+
+}
+
+li.clipboard-copy {
+    background: url(../images/partner/butn-bg-blue.png) top left no-repeat;
+    padding-left: 2px;
+}
+
+a.butn-clipboard-copy {
+    height: 29px;
+    display: block;
+    background: url(../images/partner/butn-bg-blue-cap.png) top right no-repeat;
+    padding-right: 27px;
+
+}
+
+a.butn-clipboard-copy span {
+    padding-left: 45px;
+    height: 29px;
+    line-height: 29px;
+    display: block;
+    float: left;
+    background: url(../images/partner/icon-asset-download.png) top left no-repeat;
+}
+
+li.email-me {
+    background: url(../images/partner/butn-bg-blue.png) top left no-repeat;
+    padding-left: 2px;
+}
+
+a.butn-email-me {
+    height: 29px;
+    display: block;
+    background: url(../images/partner/butn-bg-blue-cap.png) top right no-repeat;
+    padding-right: 27px;
+
+}
+
+a.butn-email-me span {
+    padding-left: 45px;
+    height: 29px;
+    line-height: 29px;
+    display: block;
+    float: left;
+    background: url(../images/partner/icon-asset-download.png) top left no-repeat;
+}
+
+ul.contacts {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+ul.contacts li {
+    height: 16px;
+    line-height: 16px;
+    padding-left: 20px;
+    margin-bottom: 1em;
+}
+ul.contacts a {
+    font: normal 12px/1em arial, helvetica, sans-serif;
+    color: #4a4a4a;
+}
+li.twitter {
+    background: url(../images/partner/icon-list-twitter.png) top left no-repeat;
+}
+
+li.email {
+    background: url(../images/partner/icon-list-email.png) top left no-repeat;
+}
+
+/* Temporary guardian page styles */
+label.guardian {
+    font: bold 14px/1em arial, helvetica, sans-serif;
+    color: #48c6ff;
+}
+input.guardian {
+    font: bold 14px/1em arial, helvetica, sans-serif;
+    color: #48c6ff;
+}

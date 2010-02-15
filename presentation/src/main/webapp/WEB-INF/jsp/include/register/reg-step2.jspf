@@ -1,0 +1,352 @@
+<%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
+
+<head>
+    <%@ include file="/WEB-INF/jsp/include/jcrop.jspf" %>
+
+    <script type="text/javascript">
+        //<![CDATA[
+        $(function() {
+            pageTracker._trackPageview("/goalfunnel/register/details");
+
+			$('#register_country').change(function() {
+				var $select = $(this);
+				$('#canada_provinces').hide().find("select").attr("disabled", "disabled");
+				$('#us_states').hide().find("select").attr("disabled", "disabled");
+				if ($select.val() == 'UNITED_STATES') {
+					$('#us_states').show().find("select").removeAttr("disabled");
+				} else if ($select.val() == 'CANADA') {
+					$('#canada_provinces').show().find("select").removeAttr("disabled");
+				}
+			});
+			$('#register_country').trigger("change");
+
+            $('#submit-button').click(function() {
+                if ($("#pc").attr("value") != '') {
+                    pageTracker._trackEvent('Registration', 'PromoCodes', $("#pc").attr("value"));
+                }
+                if ($("#avatar_image").attr("src") != '/community/library/images/spacer.gif') {
+                    pageTracker._trackEvent('Registration', 'Avatar', "AvatarCreated");
+                }
+                return true;
+            });
+
+            var openUploader = function() {
+                var win = bb.imageUploader.open("<%= request.getContextPath()%>");
+
+                $(window).unbind(".reg4").bind("loaderClose.reg4", function(event, avatarUrl, profileUrl) {
+
+                    $("#uploadStart").hide();
+                    $("#uploadComplete").show();
+                    $("#avatar_image").css({
+                        width :$("#avatar_previewImage").css("width"),
+                        height :$("#avatar_previewImage").css("height"),
+                        "margin-left":$("#avatar_previewImage").css("margin-left"),
+                        "margin-top" :$("#avatar_previewImage").css("margin-top")
+                    })
+                    $("#persona_image").css({
+                        width :$("#persona_previewImage").css("width"),
+                        height :$("#persona_previewImage").css("height"),
+                        "margin-left":$("#persona_previewImage").css("margin-left"),
+                        "margin-top" :$("#persona_previewImage").css("margin-top")
+                    })
+                    $("#avatar_image").attr("src", avatarUrl);
+                    $("#persona_image").attr("src", profileUrl);
+
+                    var avatar_v = $("#avatar").imageCropper("serialize");
+                    var persona_v = $("#persona").imageCropper("serialize");
+
+                    $("#avatarH").val(avatar_v.h);
+                    $("#avatarW").val(avatar_v.w);
+                    $("#avatarX").val(avatar_v.x);
+                    $("#avatarY").val(avatar_v.y);
+                    $("#personaH").val(persona_v.h);
+                    $("#personaW").val(persona_v.w);
+                    $("#personaX").val(persona_v.x);
+                    $("#personaY").val(persona_v.y);
+                    $(win).bbDialog('remove');
+                });
+                return false;
+            };
+
+            $("#create_avatar").click(function() {
+                openUploader();
+                return false;
+            });
+
+            $("#change_avatar").click(function() {
+                openUploader();
+                return false;
+            });
+
+            var endYear = (new Date().getFullYear() - 18);
+            $('#register_birthday').datepicker({
+                showOn: 'button',
+                buttonImage: '${bb:libraryResource('/library/images/nu-CalendarButton.png')}',
+                buttonImageOnly: true,
+                defaultDate: "-18y",
+                changeMonth: true,
+                changeYear: true,
+                dateFormat:'mm/dd/yy',
+                yearRange: '1900:' + endYear
+            });
+
+            $('#register_birthday').change(
+                    function() {
+                        var today = new Date();
+                        var todaydd = today.getDate();
+                        var todaymm = today.getMonth() + 1;
+                        var todayyyyy = today.getFullYear();
+                        var mindate = new Date(todaymm + "/" + todaydd + "/" + (todayyyyy - 18));
+
+                        var birthday = new Date($('#register_birthday').val());
+
+                        if (birthday > mindate) {
+                            $.bbDialog.info("You must be at least 18 years of age to be a Blackbox member.");
+                            $("#register_birthday").val('');
+                        }
+
+                    });
+
+        });
+
+        //]]>
+
+    </script>
+</head>
+
+<body class="register">
+<ul id="reg-nav" class="clearfix">
+    <li id="create" class="complete">1. Create your account</li>
+    <li id="setup" class="current">2. Set up your persona</li>
+    <li id="choose">3. Choose a plan</li>
+    <li id="payment">4. Payment</li>
+    <li id="confirmation">5. Confirmation</li>
+</ul>
+<%--<c:if test="${not empty actionBean.context.validationErrors}">
+    <div class="login-errors">
+        <ui:roundedBox className="rounded-comment xplr-results-container">
+            <s:errors/>
+            <s:messages/>
+        </ui:roundedBox>
+    </div>
+</c:if>--%>
+<s:form beanclass="com.blackbox.presentation.action.user.FullRegisterUserActionBean" class="bbform" method="post">
+
+    <div class="reg-col-l">
+
+        <h2 class="first">Create your avatar<em>*</em></h2>
+
+        <div id="uploadStart">
+            <button id="create_avatar"><span>UPLOAD A PHOTO</span></button>
+        </div>
+        <div id="uploadComplete" style="display:none;">
+            <div class="avatar-column-wrap">
+                <div class="avatar-column">
+                    <p>Your avatar</p>
+
+                    <div id="avatar_box" class="reg-avatar-image">
+                        <img src="${bb:libraryResource('/library/images/spacer.gif')}" alt="Your Avatar"
+                             id="avatar_image"/>
+                    </div>
+                    <s:hidden id="avatarH" name="avatarH"/>
+                    <s:hidden id="avatarW" name="avatarW"/>
+                    <s:hidden id="avatarX" name="avatarX"/>
+                    <s:hidden id="avatarY" name="avatarY"/>
+                </div>
+                <div class="avatar-column">
+                    <p>Your persona picture</p>
+
+                    <div id="persona_box" class="reg-persona-image">
+                        <img src="${bb:libraryResource('/library/images/spacer.gif')}" alt="Your Persona"
+                             id="persona_image"/>
+                    </div>
+                    <s:hidden id="personaH" name="personaH"/>
+                    <s:hidden id="personaW" name="personaW"/>
+                    <s:hidden id="personaX" name="personaX"/>
+                    <s:hidden id="personaY" name="personaY"/>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <button class="bbbutton grey27" id="change_avatar"><span>Select a new image</span></button>
+        </div>
+
+        <c:choose>
+            <c:when test="${local}">
+                <input type="hidden" name="CUSTOM_JAVASCRIPT_URL"
+                       value="http://localhost:8080/library/js/epx/paypage.js"/>
+                <input type="hidden" name="CUSTOM_CSS_URL"
+                       value="http://localhost:8080/library/css/epx/paypage.css"/>
+                <%--
+                @todo Create and implement a custom print css url for printing EPX receipt page
+                <input type="hidden" name="CUSTOM_CSS_URL"
+                       value="http://localhost:8080/library/css/epx/print.css"/>
+                --%>
+                <input type="hidden" name="CUSTOM_CSS_URL"
+                       value="http://localhost:8080/library/css/epx/paypage.css"/>
+            </c:when>
+            <c:otherwise>
+                <input type="hidden" name="CUSTOM_JAVASCRIPT_URL"
+                       value="${bb:libraryResource('/library/js/epx/paypage.js')}"/>
+                <input type="hidden" name="CUSTOM_CSS_URL"
+                       value="${bb:libraryResource('/library/css/epx/paypage.css')}"/>
+                <%--
+                @todo Copy print.css reference into prod condition
+                <input type="hidden" name="CUSTOM_CSS_URL"
+                       value="http://localhost:8080/library/css/epx/print.css"/>
+                --%>
+            </c:otherwise>
+        </c:choose>
+
+
+    </div>
+
+    <div class="reg-col-r">
+        <h2 class="first">It's all about you</h2>
+
+        <!-- actual name -->
+        <label class="sub textinput" for="register_firstname"><fmt:message key="register.field.firstName"/>*</label>
+        <s:text id="register_firstname" class="textinput" name="user.name"/>
+        <label class="sub textinput" for="register_lastname"><fmt:message key="register.field.lastName"/>*</label>
+        <s:text id="register_lastname" class="textinput" name="user.lastname"/>
+
+
+        <!-- Gender -->
+        <label for="register_sex_male"><fmt:message key="register.field.gender"/><em>*</em></label>
+
+        <div class="gender-selection">
+            <s:radio value="MALE" name="profile.sex" id="register_sex_male"/><label class="sub normal"
+                                                                                    for="register_sex_male"><fmt:message
+                key="SexEnum.MALE"/></label>
+            <s:radio value="FEMALE" name="profile.sex" id="register_sex_female"/><label class="sub normal"
+                                                                                        for="register_sex_female"><fmt:message
+                key="SexEnum.FEMALE"/></label>
+            <s:radio value="XXX" name="profile.sex" id="register_sex_complicated"/><label class="sub normal"
+                                                                                          for="register_sex_complicated"><fmt:message
+                key="SexEnum.XXX"/></label>
+        </div>
+
+        <!-- Birthday -->
+        <label for="register_birthday"><fmt:message key="register.field.birthday"/><em>*</em></label>
+        <s:text id="register_birthday" class="textinput" name="profile.birthday" value="MM/DD/YYYY"
+                onfocus="if(this.value=='MM/DD/YYYY'){this.value=''}"/>&nbsp;<br/>
+        <s:checkbox name="profile.birthdayInVisible" id="register_birthday_visible"/>
+        <label class="sub birthday-label" for="register_birthday_visible"><fmt:message
+                key="register.checkbox.birthday.visibility"/></label>
+
+        <h2>Where you stay.</h2>
+
+        <ul id="where-form">
+            <!-- Base city -->
+            <li>
+                <label for="register_city"><fmt:message key="register.field.city"/><em>*</em></label>
+                <s:text id="register_city" name="profile.location.city" class="textinput"/>
+            </li>
+
+            <!-- Base country -->
+            <li>
+                <label for="register_country"><fmt:message key="register.field.country"/><em>*</em></label>
+                <s:select id="register_country" name="profile.location.country">
+                    <s:option value="" disabled="disabled" selected="selected"><fmt:message
+                            key="register.select.country"/></s:option>
+                    <s:options-enumeration enum="org.yestech.lib.i18n.CountryEnum"/></s:select><br/>
+                <span class="note">(English is currently the only language supported)</span>
+            </li>
+
+			<li id="us_states" style="display: none;">
+				<label for="register_state"><fmt:message key="register.field.state"/></label>
+				<s:select id="register_state" name="user.profile.location.state">
+					<s:option value="" disabled="disabled" selected="selected"><fmt:message key="register.select.state"/></s:option>
+					<s:options-enumeration enum="org.yestech.lib.i18n.USStateEnum"/>
+				</s:select>
+			</li>
+			<li id="canada_provinces" style="display: none;">
+				<label for="register_province"><fmt:message key="register.field.province"/></label>
+				<s:select id="register_province" name="user.profile.location.state">
+					<s:option value="" disabled="disabled" selected="selected"><fmt:message key="register.select.province"/></s:option>
+					<s:options-enumeration enum="org.yestech.lib.i18n.CanadaProvinceEnum"/>
+				</s:select>
+			</li>
+
+            <!-- Base state or province -->
+            <%--<li id="us_states" style="display:none;">--%>
+                <%--<label for="register_state"><fmt:message key="register.field.state"/></label>--%>
+                <%--<s:select id="register_state" name="user.profile.location.state">--%>
+                    <%--<s:option value="" disabled="disabled" selected="selected"><fmt:message--%>
+                            <%--key="register.select.state"/></s:option>--%>
+                    <%--<s:options-enumeration enum="org.yestech.lib.i18n.USStateEnum"/>--%>
+                <%--</s:select>--%>
+            <%--</li>--%>
+
+            <%--<li id="canada_provinces" style="display:none;">--%>
+                <%--<label for="register_state"><fmt:message key="register.field.province"/></label>--%>
+                <%--<s:select id="register_state" name="user.profile.location.state">--%>
+                    <%--<s:option value="" disabled="disabled" selected="selected"><fmt:message--%>
+                            <%--key="register.select.state"/>--%>
+                    <%--</s:option>--%>
+                    <%--<s:options-enumeration enum="org.yestech.lib.i18n.CanadaProvinceEnum"/>--%>
+                <%--</s:select>--%>
+            <%--</li>--%>
+
+            <!-- Postal Code -->
+            <li>
+                <label for="register_zip"><fmt:message key="register.field.zipCode"/><em>*</em></label>
+                <s:text id="register_zip" name="profile.location.zipCode"></s:text>
+            </li>
+
+            <!-- Frequent cities -->
+            <li>
+                <label for="frequent_city1"><fmt:message key="register.field.frequentCities"/></label>
+                <s:text id="frequent_city1" name="profile.frequentCities1" value="" class="textinput"/>
+                <s:text id="frequent_city2" name="profile.frequentCities2" value="" class="textinput"/>
+                <s:text id="frequent_city3" name="profile.frequentCities3" value="" class="textinput"/>
+            </li>
+
+            <!-- Time zone -->
+            <li>
+                <label for="register_timezone"><fmt:message key="register.field.timezone"/><em>*</em></label>
+                <s:select name="profile.timeZone" id="register_timezone">
+                    <s:option value="" disabled="disabled" selected="selected"><fmt:message
+                            key="register.field.timezone.select"/> </s:option>
+                    <s:options-enumeration enum="com.blackbox.user.TimeZoneEnum"/>
+                </s:select>
+            </li>
+
+            <!-- promo code -->
+            <li style="margin-top:10px;">
+                <s:label for="pc">Got a promo code?</s:label>
+                <s:text name="pc" id="pc"/>
+            </li>
+        </ul>
+
+
+    </div>
+
+    <div class="clear"></div>
+
+    <div class="reg-footer">
+
+        <s:image class="submit-button" id="submit-button" name="step3"
+                 src="/library/images/register/next-step-button.png" alt="Next step"/>
+
+    </div>
+
+    <s:field-metadata var="fieldMetadata">
+        $(function(){
+        $.fn.stripesValidation('${fieldMetadata.formId}', ${fieldMetadata});
+
+		$.validator.addMethod("birthdayFormat", function(value, element, params) {
+			var date = $("#register_birthday").val();
+			var regEx = /^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/;
+			return regEx.test(date);
+		}, $.format("Please format as MM/DD/YYYY"));
+
+
+		$("#register_birthday").rules("add", {
+			birthdayFormat: true
+		});
+
+        });
+    </s:field-metadata>
+</s:form>
+<br/>
+</body>

@@ -1,0 +1,84 @@
+div.login-container {
+    width: 674px;
+	padding: 1px;
+    text-align:left;
+    position:absolute;
+    left:50%;
+    margin-left:-337px;
+    min-height:474px;
+    margin-top:60px;
+}
+
+div.login {
+    background: transparent url(${library.prefix}/images/containers/login.png) no-repeat;
+}
+
+.login-errors {
+	margin: 0px 30px;
+}
+.login-contents, .forgot-password-contents {
+    /*width: 674px; as far as I can tell, don't need this, adds unneccessary horizontal scroll in all browsers - am */
+    height:474px;
+	padding-top:60px;
+    padding-left:300px;
+}
+
+.forgot-password-contents.success {
+    padding-top: 170px;
+}
+
+.forgot-password-contents.success h1 {
+    color: #fff;
+}
+
+.forgot-password-contents.success {
+    color: #7B7B7B;
+}
+
+.login a {
+	font-weight:inherit;
+}
+
+.login a:focus, .login a:hover {
+	text-decoration: underline;
+	color: #DE3700;
+	}
+
+.login label {
+    color:#7b7b7b;
+    font-size:14px;
+}
+
+.login fieldset {
+    border:0;
+    padding:0;
+    margin:0 0 20px;
+}
+
+.login-container fieldset.errors {
+    padding:0;
+    font-size:120%;
+}
+.login-container .errors legend {
+    font-weight:bold;
+    color:#f00;
+}
+
+div.messages {
+    color: #fff;
+}
+
+.login li {
+    position:relative;
+}
+
+.login p.error-wrap {
+    position:absolute;
+    left:305px;
+    top:14px;
+    width:120px;
+}
+
+.login .textinput37 input {
+    width:282px;
+}

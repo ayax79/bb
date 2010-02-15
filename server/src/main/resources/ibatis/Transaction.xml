@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="Transaction">
+
+    <resultMap id="TransactionResult" type="com.blackbox.billing.Transaction" extends="BBPersistentObject.BBPersistentObjectResult">
+        <result property="amount.amount" column="amount" />
+        <result property="status" javaType="com.blackbox.billing.Transaction$TransactionStatus" jdbcType="INTEGER" />
+        <result property="user.guid" column="user_guid" />
+    </resultMap>
+
+
+    <insert id="insert">
+        insert into bb_transaction (amount, created, status, version, user_guid, id)
+        values
+        (#{amount.amount}, #{created,jdbcType=DATE}, #{status,jdbcType=INTEGER}, #{version,jdbcType=INTEGER}, #{user.guid,jdbcType=VARCHAR}, #{id,jdbcType=INTEGER})
+    </insert>
+
+    <select id="loadSequenceNextVal" resultType="long">
+        select nextval('transaction_sequence');
+    </select>
+
+    <select id="load" resultMap="TransactionResult" parameterType="long">
+        select * from bb_transaction where id = #{id}
+    </select>
+
+</mapper>

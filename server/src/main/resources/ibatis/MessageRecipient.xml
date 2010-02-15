@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="MessageRecipient">
+
+    <resultMap id="RecipientResult" type="com.blackbox.EntityReference">
+        <result property="guid" column="recipientGuid"/>
+        <result property="ownerType" column="recipientOwnerType" javaType="com.blackbox.EntityType" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <resultMap id="MessageRecipientResult" type="com.blackbox.message.MessageRecipient"
+               extends="BBPersistentObject.BBPersistentObjectResult">
+        <result property="messageGuid"/>
+        <result property="read" />
+        <result property="replyDate" javaType="jodaDate"/>
+        <result property="status" javaType="com.blackbox.activity.IRecipient$RecipientStatus" jdbcType="INTEGER"/>
+        <result property="messageMetaData.guid" column="messageMetaData_guid"/>
+        <association property="recipient" resultMap="RecipientResult"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.blackbox.message.MessageRecipient">
+        insert into bb_message_recipient (created, messageguid, modified, read, recipientguid, recipientownertype, replydate,
+        status, version, messagemetadata_guid, guid)
+        values
+        (
+        #{created,jdbcType=DATE}, #{messageGuid,jdbcType=VARCHAR}, #{modified,jdbcType=DATE},
+        #{read,jdbcType=BOOLEAN}, #{recipient.guid,jdbcType=VARCHAR}, #{recipient.ownerType,jdbcType=INTEGER},
+        #{replyDate,jdbcType=DATE}, #{status,jdbcType=INTEGER}, #{version,jdbcType=INTEGER},
+        #{messageMetaData.guid,jdbcType=VARCHAR}, #{guid}
+        )
+    </insert>
+
+    <update id="update" parameterType="com.blackbox.message.MessageRecipient">
+        update bb_message_recipient set
+        status = #{status,jdbcType=INTEGER},
+        read = #{read,jdbcType=BOOLEAN},
+        modified = #{modified,jdbcType=DATE},
+        version = #{version,jdbcType=INTEGER},
+        replyDate = #{replyDate,jdbcType=DATE}
+        where
+        guid = #{guid,jdbcType=VARCHAR}
+    </update>
+
+    <delete id="deleteByMetaDataGuid" parameterType="string">
+        delete from bb_message_recipient where messagemetadata_guid = #{value} 
+    </delete>
+
+    <select id="loadByMessageMetaDataGuid" resultMap="MessageRecipientResult" parameterType="string">
+        select * from bb_message_recipient where messagemetadata_guid = #{value}
+    </select>
+
+</mapper>

@@ -1,0 +1,24 @@
+<%@ page import="com.blackbox.presentation.action.persona.PersonaActionBean" %>
+<%@ include file="/WEB-INF/jsp/include/page_header.jspf" %>
+<%--@elvariable id="actionBean" type="com.blackbox.presentation.action.persona.PersonaActionBean"--%>
+<%--@elvariable id="user" type="com.blackbox.user.User"--%>
+
+<%@include file="/WEB-INF/jsp/include/taglibs.jspf" %>
+
+<c:choose>
+	<c:when test="${not empty actionBean.vouches.results}">
+		<table>
+			<tbody>
+			<c:forEach var="vouch" items="${actionBean.vouches.results}">
+				<%--@elvariable id="vouch" type="com.blackbox.social.UserVouch"--%>
+				<c:set var="user" value="${vouch.user}"/>
+				<%--@elvariable id="user" type="com.blackbox.user.User"--%>
+				<ui:meBoxUserRow user="${user}" type="vouches" vouch="${vouch}" hideActionMenu="true"/>
+			</c:forEach>
+			</tbody>
+		</table>
+	</c:when>
+	<c:otherwise>
+		<p class="no-results">No vouches</p>
+	</c:otherwise>
+</c:choose>

@@ -1,0 +1,151 @@
+<%--@elvariable id="actionBean" type="com.blackbox.presentation.action.activity.InboxActionBean"--%>
+<%@include file="/WEB-INF/jsp/include/taglibs.jspf" %>
+
+<c:set var="notifications" value="${actionBean.notifications}"/>
+<%--@elvariable id="notifications" type="com.blackbox.notification.Notifications"--%>
+<div id="notifications-col">
+
+	<%--<c:if test="${displayHeader ne 'false'}"><h2>Notifications</h2></c:if>--%>
+	<c:set var="displayedNotifications" value="false"/>
+	<c:if test="${hideSection ne 'follow' && notifications.follows.totalNotifications > 0}">
+		<c:set var="displayedNotifications" value="true"/>
+		<div class="section follow">
+			<div class="section-header clearfix">
+				<h3>Following <span class="counter"><span class="count">${notifications.follows.totalNotifications}</span></span></h3>
+
+				<div class="total-box">
+					<span class="total"><span class="totalcount"><span class="num">${notifications.follows.total}</span> total</span></span>
+				</div>
+			</div>
+
+			<div class="items">
+				<c:forEach var="notification" items="${notifications.follows.items}" begin="0" end="1">
+					<ui:notificationBlock type="follow" notification="${notification}"/>
+				</c:forEach>
+			</div>
+			
+			<p class="see-all">
+				<s:link class="see-all-link" beanclass="com.blackbox.presentation.action.notification.BaseNotificationActionBean"><s:param name="viewAllType" value="follow"/>See all</s:link>
+			</p>
+			<p class="noMoreNotifications" style="display:none;">You have no more follow notifications</p>
+		</div>
+	</c:if>
+
+	<c:if test="${hideSection ne 'friend' && notifications.friends.totalNotifications > 0}">
+		<c:set var="displayedNotifications" value="true"/>
+		<div class="section friend">
+			<div class="section-header clearfix">
+				<h3>Friends <span class="counter"><span class="count">${notifications.friends.totalNotifications}</span></span>
+				</h3>
+
+				<div class="total-box">
+					<span class="total"><span class="totalcount"><span class="num">${notifications.friends.total}</span> total</span></span>
+				</div>
+			</div>
+
+			<div class="items">
+				<c:forEach var="notification" items="${notifications.friends.items}" begin="0" end="1">
+					<ui:notificationBlock type="friend" notification="${notification}"/>
+				</c:forEach>
+			</div>
+			
+			<p class="see-all">
+				<s:link class="see-all-link"
+						beanclass="com.blackbox.presentation.action.notification.BaseNotificationActionBean"><s:param
+						name="viewAllType" value="friend"/>See all</s:link>
+			</p>
+			<p class="noMoreNotifications" style="display:none;">You have no more friend notifications</p>
+		</div>
+	</c:if>
+
+	<c:if test="${hideSection ne 'wish' && notifications.wishes.totalNotifications > 0}">
+		<c:set var="displayedNotifications" value="true"/>
+		<div class="section wish">
+			<div class="section-header clearfix">
+				<h3>Wishes <span class="counter"><span class="count">${notifications.wishes.totalNotifications}</span></span></h3>
+				<div class="total-box">
+					<span class="total"><span class="totalcount"><span class="num">${notifications.wishes.total}</span> total</span></span>
+				</div>
+			</div>
+			<div class="items">
+				<c:forEach var="notification" items="${notifications.wishes.items}" begin="0" end="1">
+					<ui:notificationBlock type="wish" notification="${notification}"/>
+				</c:forEach>
+			</div>
+			<p class="see-all">
+				<s:link class="see-all-link" beanclass="com.blackbox.presentation.action.notification.BaseNotificationActionBean"><s:param name="viewAllType" value="wish"/>See all</s:link>
+			</p>
+			<p class="noMoreNotifications" style="display:none;">You have no more wish notifications</p>
+		</div>
+	</c:if>
+
+	<c:if test="${hideSection ne 'gift' && notifications.gifts.totalNotifications > 0}">
+		<c:set var="displayedNotifications" value="true"/>
+		<div class="section gift">
+			<div class="section-header clearfix">
+				<h3>Gifts <span class="counter"><span class="count">${notifications.gifts.totalNotifications}</span></span></h3>
+				<div class="total-box">
+					<span class="total"><span class="totalcount"><span class="num">${notifications.gifts.total}</span> total</span></span>
+				</div>
+			</div>
+
+			<div class="items">
+				<c:forEach var="notification" items="${notifications.gifts.items}" begin="0" end="1">
+					<ui:notificationBlock type="gift" notification="${notification}"/>
+				</c:forEach>
+			</div>
+			
+			<p class="see-all">
+				<s:link class="see-all-link" beanclass="com.blackbox.presentation.action.notification.BaseNotificationActionBean"><s:param name="viewAllType" value="gift"/>See all</s:link>
+			</p>
+			<p class="noMoreNotifications" style="display:none;">You have no more gift notifications</p>
+		</div>
+	</c:if>
+
+	<c:if test="${hideSection ne 'vouch' && notifications.vouches.totalNotifications > 0}">
+		<c:set var="displayedNotifications" value="true"/>
+		<div class="section vouch">
+			<div class="section-header clearfix">
+				<h3>Vouches <span class="counter"><span class="count">${notifications.vouches.totalNotifications}</span></span></h3>
+				<div class="total-box">
+					<span class="total"><span class="totalcount"><span class="num">${notifications.vouches.total}</span> total</span></span>
+				</div>
+			</div>
+			<div class="items">
+				<c:forEach var="notification" items="${notifications.vouches.items}" begin="0" end="1">
+					<ui:notificationBlock type="vouch" notification="${notification}"/>
+				</c:forEach>
+			</div>
+			<p class="see-all">
+				<s:link class="see-all-link" beanclass="com.blackbox.presentation.action.notification.BaseNotificationActionBean"><s:param name="viewAllType" value="vouch"/>See all</s:link>
+			</p>
+			<p class="noMoreNotifications" style="display:none;">You have no more vouch notifications</p>
+		</div>
+	</c:if>
+
+	<c:if test="${hideSection ne 'occasion' && notifications.occasions.totalNotifications > 0}">
+		<c:set var="displayedNotifications" value="true"/>
+		<div class="section occasion">
+			<div class="section-header clearfix">
+				<h3>Events <span class="counter"><span class="count">${notifications.occasions.totalNotifications}</span></span></h3>
+				<div class="total-box">
+					<span class="total"><span class="totalcount"><span class="num">${notifications.occasions.total}</span> total</span></span>
+				</div>
+			</div>
+	
+			<div class="items">
+				<c:forEach var="notification" items="${notifications.occasions.items}" begin="0" end="1">
+					<ui:notificationBlock type="occasion" notification="${notification}"/>
+				</c:forEach>
+			</div>
+			<p class="see-all">
+				<s:link class="see-all-link" beanclass="com.blackbox.presentation.action.notification.BaseNotificationActionBean"><s:param name="viewAllType" value="occasion"/>See all</s:link>
+			</p>
+			<p class="noMoreNotifications" style="display:none;">You have no more event notifications</p>
+		</div>
+	</c:if>
+	
+	
+
+	<p id="noNotificationsMsg" <c:if test="${displayedNotifications}">style="display:none;"</c:if>>No notifications at this time.</p>
+</div>

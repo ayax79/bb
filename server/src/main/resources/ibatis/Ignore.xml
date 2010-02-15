@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="Ignore">
+
+    <resultMap id="IgnorerResult" type="com.blackbox.EntityReference" >
+        <result property="guid" column="ignorerguid" />
+        <result property="ownerType" column="ignorerownertype" javaType="com.blackbox.EntityType" jdbcType="INTEGER" />
+    </resultMap>
+
+    <resultMap id="TargetResult" type="com.blackbox.EntityReference" >
+        <result property="guid" column="targetguid" />
+        <result property="ownerType" column="targetOwnerType" javaType="com.blackbox.EntityType" jdbcType="INTEGER" />
+    </resultMap>
+
+    <resultMap id="IgnoreResult" type="com.blackbox.social.Ignore" extends="BBPersistentObject.BBPersistentObjectResult">
+        <result property="type" column="type" javaType="com.blackbox.social.Ignore$IgnoreType" jdbcType="INTEGER" />
+        <association property="target" resultMap="TargetResult" />
+        <association property="ignorer" resultMap="IgnorerResult" />
+    </resultMap>
+
+    <insert id="insert">
+        insert into bb_ignore
+        (created, ignorerguid, ignorerownertype, modified, targetguid, targetownertype, type, version, guid)
+        values
+        (#{created}, #{ignorer.guid}, #{ignorer.ownerType}, #{modified}, #{target.guid}, #{target.ownerType}, #{type}, #{version}, #{guid})
+    </insert>
+
+    <insert id="delete" parameterType="string">
+        delete from bb_ignore where guid = #{value}
+    </insert>
+
+    <select id="load" resultMap="Ignore.IgnoreResult" parameterType="string">
+        select * from bb_ignore where guid = #{value}
+    </select>
+
+    <select id="loadByIgnorer" resultMap="Ignore.TargetResult" parameterType="string">
+        select targetGuid,targetOwnerType from bb_ignore where ignorerGuid = #{value}
+    </select>
+
+    <select id="loadByIgnorerAndType" resultMap="Ignore.TargetResult" parameterType="map">
+        select targetGuid,targetOwnerType from bb_ignore where ignorerGuid = #{guid} and type = #{type}
+    </select>
+
+    <select id="loadByTarget" resultMap="Ignore.IgnorerResult" parameterType="string">
+        select ignorerGuid,ignorerOwnerType from bb_ignore where targetGuid = #{value}
+    </select>
+
+    <select id="loadByTargetAndType" resultMap="Ignore.IgnorerResult" parameterType="map">
+        select ignorerGuid,ignorerOwnerType from bb_ignore where targetGuid = #{guid} and type = #{type}
+    </select>
+
+    <select id="loadByIgnorerAndTarget" resultMap="Ignore.IgnoreResult" parameterType="map">
+        select * from bb_ignore where targetGuid = #{targetGuid} and ignorerGuid = #{ignorerGuid}
+    </select>
+
+</mapper>

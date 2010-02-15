@@ -1,0 +1,399 @@
+/***********************************************************************************************************************
+CONTAINERS / LAYOUT
+***********************************************************************************************************************/
+
+.bbform-container {
+    margin: 0 auto;
+    width: 676px;
+    text-align: left;
+}
+
+.bbform-header {
+    height: 138px;
+    padding-left: 60px;
+    background: transparent url(${library.prefix}/images/containers/register-header.png) no-repeat;
+}
+
+.bbform-header h1 {
+    padding-top: 55px;
+}
+
+.bbform-h1 {
+    font-size: 30px;
+    color: #fff;
+}
+
+.bbform-h1 span {
+    display: block;
+    font-size: 14px;
+    margin: 6px 0;
+}
+
+.bbform-body {
+    background: transparent url(${library.prefix}/images/containers/register-body.png) repeat-y;
+    padding: 30px 60px;
+}
+
+.bbform-footer {
+    height: 60px;
+    background: transparent url(${library.prefix}/images/containers/register-bottom.png) no-repeat;
+}
+
+.bbform h2 {
+    margin: 0;
+    padding: 0 0 5px 0;
+    border-bottom:1px solid #ccc;
+    font-size: 18px;
+    font-weight:bold;
+    color: #000;
+}
+
+.bbform fieldset {
+    margin: 0 0 30px;
+    padding: 0 0 30px;
+    border: 0;
+    border-bottom: 4px solid #e8e8e8;
+}
+
+.bbform legend {
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    color: #040404;
+}
+
+.bbform label {
+    display: block;
+    color: #000;
+    font-weight: 900;
+    margin-bottom: 6px;
+    margin-top: 12px;
+}
+
+.bbform ul {
+    margin: 0;
+    list-style: none;
+    padding: 0;
+}
+
+.bbform li {
+    margin: 12px 0;
+    /*position:relative;*/
+}
+
+.bbform label.sub {
+    color: #333;
+    font-size:12px;
+    font-weight: normal;
+    display:inline-block;
+    vertical-align:middle;
+    margin:0 0 0 8px;
+}
+
+.bbform .rounded-box.inline {
+    display:inline-block;
+}
+
+/*.bbsettings-header h1 {*/
+    /*padding-top: 55px;*/
+/*}*/
+
+/*.bbsettings li {*/
+    /*margin: 12px 0;*/
+/*}*/
+
+/*.bbsettings li input,*/
+/*.bbsettings li label*/
+/*{*/
+    /*vertical-align:middle;*/
+/*}*/
+
+
+
+
+/***********************************************************************************************************************
+VALIDATION / NOTES
+***********************************************************************************************************************/
+
+.bbform .note {
+    display: block;
+}
+
+.bbform .note, .bbform .note a {
+    font-size: 10px;
+    line-height: 1.875em;
+}
+
+p.error-wrap {
+    background:transparent url(${library.prefix}/images/containers/error-l2.png) no-repeat left;
+    /*display:inline-block;*/
+    padding-left:12px;
+    /*line-height:29px;*/
+    /*height:29px;*/
+    /*zoom:1;*/
+    clear:both;
+}
+
+label.error {
+    background:transparent url(${library.prefix}/images/containers/error-r.png) no-repeat right;
+    color:#fff !important;
+    font-size:11px !important;
+    /*font-weight:bold !important;*/
+    /*display:inline-block;*/
+    margin:2px 0px !important;
+    padding-right:10px;
+    line-height:29px;
+    /*height:29px;*/
+    zoom:1;
+}
+
+fieldset.errors {
+    border:0;
+}
+
+fieldset.errors legend {
+    margin:0;
+}
+
+fieldset.errors ul {
+    list-style:none;
+}
+
+/***********************************************************************************************************************
+CONTROLS
+***********************************************************************************************************************/
+
+
+/* DEPRECATED */
+/*.bbform .text-input {*/
+    /*background: transparent url(${library.prefix}/images/controls/login-field.png) no-repeat;*/
+    /*width: 292px;*/
+    /*padding: 9px 0 9px 10px;*/
+    /*border: 0;*/
+    /*margin: 0;*/
+    /*font-size: 18px;*/
+/*}*/
+
+
+
+.bbform-button {
+    background: transparent url(${library.prefix}/images/controls/login-button.png) no-repeat left top;
+    padding: 0 0 0 20px;
+    margin-right: 20px;
+    height: 41px;
+}
+
+.bbform-button span {
+    background: transparent url(${library.prefix}/images/controls/login-button.png) no-repeat right -41px;
+    padding: 0 20px 0 0;
+    height: 41px;
+    line-height: 41px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+}
+
+button.grey33 {
+    background: transparent url(${library.prefix}/images/controls/grey33.png) no-repeat left top;
+    padding: 0 0 0 8px;
+    margin-right: 20px;
+    height: 33px;
+}
+
+button.grey33 span {
+    background: transparent url(${library.prefix}/images/controls/grey33.png) no-repeat right -33px;
+    padding: 0 8px 0 0;
+    height: 33px;
+    line-height: 33px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #000;
+}
+
+button.grey2d {
+    background: transparent url(${library.prefix}/images/controls/grey2d.png) no-repeat left top;
+    padding: 0 0 0 8px;
+    margin-right: 20px;
+    height: 33px;
+}
+
+button.grey2d span {
+    background: transparent url(${library.prefix}/images/controls/grey2d.png) no-repeat right -33px;
+    padding: 0 8px 0 0;
+    height: 33px;
+    line-height: 33px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+}
+
+button.grey27 {
+    background: transparent url(${library.prefix}/images/controls/grey27.png) no-repeat left top;
+    padding: 0 0 0 8px;
+    height: 27px;
+}
+
+button.grey27 span {
+    background: transparent url(${library.prefix}/images/controls/grey27.png) no-repeat right -27px;
+    padding: 0 8px 0 0;
+    height: 27px;
+    line-height: 27px;
+    font-size: 11px !important;
+    font-weight: bold;
+    color: #000;
+}
+
+button.bbbutton {
+    border: 0;
+    cursor: pointer;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+    overflow: visible; /* removes extra side padding in IE */
+}
+
+button.bbbutton span {
+   position: relative;
+   display: block;
+   white-space: nowrap;
+
+}
+
+button::-moz-focus-inner {
+    border: none; /* overrides extra padding in Firefox */
+}
+
+
+
+.bbsettings .note {
+    display: block;
+}
+
+.bbsettings .note, .bbsettings .note a {
+    font-size: 10px;
+    margin-bottom: 1.875em;
+    line-height: 1.875em;
+}
+
+.searchinput {
+    background: transparent url(${library.prefix}/images/controls/search_input.png) no-repeat left top;
+    padding:0;
+    margin:4px 0 2px 0;
+    padding-left: 24px;
+    display: inline-block;
+    overflow:visible;
+    height:25px;
+    position:relative;
+    vertical-align:middle;
+}
+
+.searchinput input {
+    background: transparent url(${library.prefix}/images/controls/search_input.png) no-repeat right -25px;
+    padding: 3px 0;
+    width: 220px;
+    height: 20px;
+    border: 0;
+    margin: 0;
+    font-size: 11px;
+    float:left;
+    outline:none;
+}
+
+
+.textinput37 {
+    background: transparent url(${library.prefix}/images/controls/textinput37.png) no-repeat left top;
+    padding:0;
+    margin:0 0 2px 0;
+    padding-left: 10px;
+    display: inline-block;
+    overflow:visible;
+    height:37px;
+    position:relative;
+    vertical-align:middle;
+}
+
+.textinput37 input {
+    background: transparent url(${library.prefix}/images/controls/textinput37.png) no-repeat right -37px;
+    padding: 11px 0;
+    border: 0;
+    margin: 0;
+    font-size: 14px;
+    float:left;
+    outline:none;
+}
+
+.textinput30 {
+    background: transparent url(${library.prefix}/images/controls/textinput30.png) no-repeat left top;
+    padding-left: 10px;
+    display: inline-block;
+    height: 30px;
+    overflow: visible;
+    vertical-align:middle;
+    position:relative;
+}
+
+.textinput30 input {
+    background: transparent url(${library.prefix}/images/controls/textinput30.png) no-repeat right -30px;
+    padding: 7px 0;
+    border: 0;
+    margin: 0;
+    font-size: 14px;
+    float:left;
+    outline:none;
+}
+
+/* textarea */
+.textarea1 .rb-header, .textarea1 .rb-footer {
+    background-image: url('${library.prefix}/images/controls/textarea-l.png') !important;
+}
+
+.textarea1 .rb-header-r, .textarea1 .rb-footer-r {
+    background-image: url('${library.prefix}/images/controls/textarea-r.png') !important;
+}
+
+.textarea1 .rb-content {
+    background-image: url('${library.prefix}/images/controls/textarea-c.png') !important;
+}
+
+.textarea1 .rb-content-r {
+    background-image: url('${library.prefix}/images/controls/textarea-c.png') !important;
+}
+
+.textarea1 textarea {
+    border:0;
+    padding:0;
+    margin:0;
+    font-size:14px;
+    font-family:inherit;
+    outline:none;
+}
+
+.bbform button.grey {
+    background: transparent url(${library.prefix}/images/controls/btn-settings-grey.png) no-repeat left top;
+    border: 0;
+    cursor: pointer;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+    overflow: visible; /* removes extra side padding in IE */
+    margin:0;
+    height:33px;
+    padding:0 0 0 8px;
+}
+
+.bbform button.grey span {
+   background: transparent url(${library.prefix}/images/controls/btn-settings-grey.png) no-repeat right -33px;
+   position: relative;
+   display: block;
+   white-space: nowrap;
+   line-height:33px;
+   height:33px;
+   padding:0 10px 0 0;
+   margin:0;
+   font-size:14px;
+}
+
+.bbform .button-panel {
+    margin:10px 0;
+    text-align:right;
+}

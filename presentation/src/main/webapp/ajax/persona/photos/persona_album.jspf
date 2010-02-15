@@ -1,0 +1,74 @@
+<%@ include file="/WEB-INF/jsp/include/page_header.jspf" %>
+<%--@elvariable id="actionBean" type="com.blackbox.presentation.action.persona.PersonaActionBean"--%>
+
+<%--<ui:miniBio/>--%>
+<div style="display:none;"><input type="hidden" name="currentAlbumGuid" id="currentAlbumGuid" value="${actionBean.currentAlbum.guid}"/></div>
+
+<div id="pictures-container" class="clearfix">
+	<div id="album-list">
+		<div id="album-overview">
+			<div class="pictures-header clearfix">
+				<div class="left">
+					<h3>${actionBean.currentAlbum.name}<span> (<span class="total-images-${actionBean.currentAlbum.guid}">${f:length(actionBean.currentAlbum.media)}</span> photos)</span></h3>
+				</div>
+				<div class="right">
+					<span>
+						<a href="#" class="view-albums-link">Back to albums</a>
+						<c:if test="${actionBean.owner == 'true'}"> | <a href="#${actionBean.currentAlbum.guid}" class="add-more-link">+ Add more photos</a></c:if>
+					</span>
+				</div>
+			</div>
+			<div id="photo-album" class="clearfix">
+				<div class="photo-album-images">
+					<c:forEach var="image" items="${actionBean.currentAlbum.media}" varStatus="counter">
+						<%--@elvariable id="image" type="com.blackbox.media.MediaMetaData"--%>
+						<div class="album-image <c:if test="${(counter.index) mod 5 == 0}">row-start</c:if> image_${image.guid}">
+							<c:if test="${actionBean.owner}">
+								<a href="#${image.guid}" class="image-action-link">&nbsp;</a>
+								<a href="#${image.guid}" class="delete-image-link">&nbsp;</a>
+							</c:if>
+							<a href="${image.location}" class="view-image-link"><img class="single-thumb" src="${image.thumbnailLocation}" alt="queued..."/></a>
+							<c:if test="${actionBean.owner}">
+								<ul class="image-action-menu">
+									<li>
+										<a href="#&option=WORLD&mediaGuid=${image.guid}" class="media-permission <c:if test="${'WORLD' == s:enumName(image.recipientDepth)}">active</c:if>"><fmt:message key="PermissionsEnum.WORLD" /></a>
+									</li>
+									<li>
+										<a href="#&option=ALL_MEMBERS&mediaGuid=${image.guid}" class="media-permission <c:if test="${'ALL_MEMBERS' == s:enumName(image.recipientDepth)}">active</c:if>"><fmt:message key="PermissionsEnum.ALL_MEMBERS" /></a>
+									</li>
+									<li class="last">
+										<a href="#&option=FRIENDS&mediaGuid=${image.guid}" class="media-permission <c:if test="${'FRIENDS' == s:enumName(image.recipientDepth)}">active</c:if>"><fmt:message key="PermissionsEnum.FRIENDS" /></a>
+									</li>
+								</ul>
+							</c:if>
+						</div>
+					</c:forEach>
+					<div class="clear"></div>
+				</div>
+				<div class="paging-right">
+					<a href="#" class="paging-button previous"><span class="label">&nbsp;</span></a>
+					<a href="#" class="paging-button next"><span class="label">&nbsp;</span></a>
+				</div>
+			</div>
+			<div class="album-info clearfix">
+				<div class="album-meta2">
+					<p>${actionBean.currentAlbum.description}</p>
+
+					<p class="date">Created: ${bb:formatDate(actionBean.currentAlbum.created, "MMMM d")}<br/>Modified: ${bb:formatDate(actionBean.currentAlbum.modified, "MMMM d")}</p>
+				</div>
+				<c:if test="${actionBean.owner}">
+					<div class="album-edit">
+						<p>
+							<a href="#${actionBean.currentAlbum.guid}" class="delete-album-link">Delete album</a><br/>
+							<a href="#" id="show-permissions-link"><span class="hide-label" style="display:none;">Hide</span><span class="show-label">Show</span> permissions</a>
+						</p>
+					</div>
+				</c:if>
+			</div>
+		</div>
+
+		<%@include file="/WEB-INF/jsp/include/persona_albums_sidebar.jspf" %>
+
+	</div>
+
+</div>

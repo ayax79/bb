@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="Bookmark">
+
+    <resultMap id="TargetResult" type="com.blackbox.EntityReference">
+        <result property="guid" column="referenceguid"/>
+        <result property="ownerType" column="referencetype" javaType="com.blackbox.EntityType" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <resultMap id="BookmarkResult" type="com.blackbox.bookmark.Bookmark"
+               extends="BBPersistentObject.BBPersistentObjectResult">
+        <result property="owner.guid" column="owner_guid"/>
+        <result property="description"/>
+        <result property="type" javaType="com.blackbox.bookmark.Bookmark$BookmarkType" jdbcType="INTEGER"/>
+        <result property="acknowledged"/>
+        <association property="target" resultMap="TargetResult"/>
+    </resultMap>
+
+    <resultMap id="PartialBookmarkResult" type="com.blackbox.bookmark.Bookmark">
+        <result property="owner.guid" column="owner_guid"/>
+        <result property="target.guid" column="referenceguid"/>
+        <result property="description"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.blackbox.bookmark.Bookmark">
+        insert into bb_bookmark
+        (acknowledged, created, description, modified, referenceGuid, referenceType, type, version, owner_guid, guid)
+        values
+        (#{acknowledged,jdbcType=BOOLEAN},#{created,jdbcType=DATE},#{description,jdbcType=VARCHAR},#{modified,jdbcType=DATE},
+        #{target.guid,jdbcType=VARCHAR}, #{target.ownerType,jdbcType=INTEGER}, #{type,jdbcType=INTEGER},
+        #{version,jdbcType=INTEGER},#{owner.guid,jdbcType=VARCHAR},#{guid,jdbcType=VARCHAR})
+    </insert>
+
+    <update id="update" parameterType="com.blackbox.bookmark.Bookmark">
+        update bb_bookmark set
+        acknowledged = #{acknowledged,jdbcType=BOOLEAN},
+        description = #{description,jdbcType=VARCHAR},
+        modified = #{modified,jdbcType=DATE},
+        referenceGuid = #{target.guid,jdbcType=VARCHAR},
+        referenceType = #{target.ownerType,jdbcType=INTEGER},
+        type = #{type,jdbcType=INTEGER},
+        version = #{version,jdbcType=INTEGER},
+        owner_guid = #{owner.guid,jdbcType=VARCHAR}
+        where
+        guid = #{guid,jdbcType=VARCHAR}
+    </update>
+
+    <delete id="delete" parameterType="string">
+        delete from bb_bookmark where guid = #{value}
+    </delete>
+
+    <delete id="deleteByTargetAndOwner" parameterType="map">
+        delete from bb_bookmark where owner_guid = #{ownerGuid} and referenceguid = #{targetGuid}
+    </delete>
+
+    <select id="load" resultMap="Bookmark.BookmarkResult" parameterType="string">
+        select * from bb_bookmark where guid = #{value}
+    </select>
+
+    <select id="loadByUserGuid" resultMap="Bookmark.BookmarkResult" parameterType="string">
+        select * from bb_bookmark where owner_guid = #{value}
+    </select>
+
+    <select id="loadByUserGuidAndEntityType" resultMap="Bookmark.BookmarkResult" parameterType="map">
+        select * from bb_bookmark where owner_guid = #{userGuid} and referencetype = #{type}
+    </select>
+
+    <select id="loadAllRelated" resultMap="Bookmark.PartialBookmarkResult" parameterType="map">
+        select b.owner_guid, b.referenceguid, b.description from bb_bookmark b
+        where (b.owner_guid = #{guid} or b.referenceguid = #{guid}) and b.type = #{type}
+    </select>
+
+    <select id="loadByTargetGuidAndBookmarkType" resultMap="Bookmark.BookmarkResult" parameterType="map">
+        select * from bb_bookmark b where b.referenceGuid = #{guid} and b.type = #{type} order by b.created desc
+    </select>
+
+    <select id="loadByUserAndTargetGuidAndBookmarkType" resultMap="Bookmark.BookmarkResult" parameterType="map">
+        select * from bb_bookmark b where b.referenceGuid = #{guid} and b.type = #{type} and b.owner_guid = #{userGuid} order by b.created desc
+    </select>
+
+    <select id="loadWishStatus" parameterType="map" resultType="string">
+        select b.owner_guid from bb_bookmark b where
+        ((b.owner_guid = #{fromEntity} and b.referenceguid = #{toEntity}) or
+        (b.owner_guid = #{toEntity} and b.referenceguid = #{fromEntity}))
+        and b.type = #{type}
+    </select>
+
+    <select id="wishCount" parameterType="map" resultType="int">
+        <![CDATA[
+        select count(*) from bb_bookmark where guid = #{guid} and type = #{type} and created > #{created}
+        ]]>
+    </select>
+
+
+</mapper>

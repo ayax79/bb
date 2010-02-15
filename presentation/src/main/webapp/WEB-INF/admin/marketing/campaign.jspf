@@ -1,0 +1,166 @@
+<%@ taglib prefix="s" uri="http://stripes.sourceforge.net/stripes.tld" %>
+<%@ include file="/WEB-INF/jsp/include/taglibs.jspf" %>
+<style type="text/css">
+    .reg-name-taken {
+        -moz-background-clip: border;
+        -moz-background-inline-policy: continuous;
+        -moz-background-origin: padding;
+        background: transparent url(${bb:libraryResource('/library/images/icons/icons.png')}) no-repeat scroll left -288px;
+        display: none;
+        line-height: 16px;
+        padding-left: 21px;
+    }
+
+    .reg-name-avail {
+        -moz-background-clip: border;
+        -moz-background-inline-policy: continuous;
+        -moz-background-origin: padding;
+        background: transparent url(${bb:libraryResource('/library/images/icons/icons.png')}) no-repeat scroll left -269px;
+        display: none;
+        line-height: 16px;
+        padding-left: 21px;
+    }
+</style>
+<script type="text/javascript">
+    //<![CDATA[
+    $(function() {
+        var startYear = (new Date().getFullYear());
+        var endYear = (new Date().getFullYear() + 2);
+        $('#expirationDate').datepicker({
+            showOn: 'button',
+            buttonImage: '${bb:libraryResource('/library/images/nu-CalendarButton.png')}',
+            buttonImageOnly: true,
+            changeMonth: true,
+            changeYear: true,
+            dateFormat:'mm/dd/yy',
+            yearRange: startYear + ':' + endYear
+        });
+
+        $("#username").blur(function () {
+            var userName = $("#username").val();
+            var regex = /^([a-zA-Z0-9]+)$/;
+
+            if (regex.test(userName)) {
+                $.getJSON("<%= request.getContextPath()%>/action/ajax/useravailable", {_eventName: "availableByUsername", token: userName }, function(data) {
+                    if (data.success) {
+                        $("#reg-name-avail").hide();
+                        $("#reg-name-taken").hide();
+                    } else {
+                        $("#reg-name-taken").show();
+                        $("#reg-name-avail").hide();
+                        $("#username").val("");
+                    }
+                });
+            } else {
+                $("#reg-name-avail").hide();
+                $("#reg-name-taken").hide();
+            }
+        });
+    })
+
+
+</script>
+<h2>Create a new internal campaign</h2>
+
+<div class="clearfix"></div>
+<p>
+    For now, the campaign will be created with a "stub" user owned by the marketing admin who creates the campaign.
+    This is just for tracking purposes. The username will be used in the URL that is generated and used for access,
+    so be nice! Other auto-generated placeholder values include:
+</p>
+<ul>
+    <li>User status: DISABLED. Prevents login and profile views because this is not a community user.</li>
+    <li>Expiration date: Set to December 31, 2015 (not currently relevant).</li>
+    <li>Evaluation period: Set to 1 year (not currently relevant).</li>
+</ul>
+<span style="color: red; font-weight: bold;"><s:errors/></span>
+<span style="color: green; font-weight: bold;"><s:messages/></span>
+<s:form beanclass="com.blackbox.presentation.action.admin.CampaignCodeAdminActionBean" method="post">
+    <s:hidden name="user.status" value="DISABLED"/>
+    <table border="0" cellspacing="0" class="admin">
+
+        <tr>
+            <td>
+                    <%-- Username for new user --%>
+                <s:label for="username">Campaign username<br />
+                    <span>New stub user under which the campaign will run.</span></s:label>
+            </td>
+            <td>
+                <div stye="clear: both;">
+                    <p class="reg-name-avail clearfix" id="reg-name-avail">Username is available</p>
+
+                    <p class="reg-name-taken clearfix" id="reg-name-taken">Username is <strong>not</strong> available
+                    </p>
+                </div>
+                <s:text name="user.username" id="username"/>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                    <%-- Title of the campaign --%>
+                <s:label for="campaignName">Campaign name</s:label>
+            </td>
+            <td>
+                <s:text name="campaignName"/>
+            </td>
+        </tr>
+
+            <%--
+            <tr>
+                <td>
+
+                    <s:label for="user.type">User type</s:label>
+                </td>
+                <td>
+                    <s:select name="user.type">
+                        <s:options-collection collection="${actionBean.userLevels}"/>
+                    </s:select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+
+                    <s:label for="evaluationPeriod">Evaluation Period</s:label>
+                </td>
+
+                <td>
+
+                        <s:select name="evaluationPeriod">
+                        <s:option value="1">1 month</s:option>
+                        <s:option value="3">3 months</s:option>
+                        <s:option value="6">6 months</s:option>
+                        <s:option value="12">12 months</s:option>
+                    </s:select>
+                </td>
+            </tr>
+
+        <tr>
+            <td>
+                <s:label for="expirationDate">Campaign expires</s:label>
+            </td>
+            <td>
+                <s:text id="expirationDate" class="textinput" name="expirationDate" value="MM/DD/YYYY"
+                        onfocus="if(this.value=='MM/DD/YYYY'){this.value=''}"/>
+            </td>
+        </tr>
+
+            <tr>
+                <td colspan="2">
+
+                    <s:checkbox name="collectCC"/>
+                    <s:label for="collectCC">Collect payment information at registration?</s:label>
+                </td>
+            </tr>
+            --%>
+        <tr>
+            <td colspan="2">
+                <s:hidden name="user.type" value="LIMITED"/>
+                <s:hidden name="evaluationPeriod" value="12"/>
+                <s:hidden name="expirationDate" value="12/31/2015"/>
+                <s:submit name="createCampaign">Create Campaign</s:submit>
+            </td>
+        </tr>
+    </table>
+</s:form>

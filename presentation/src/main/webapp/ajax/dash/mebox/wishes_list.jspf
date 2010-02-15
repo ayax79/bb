@@ -1,0 +1,38 @@
+<%--@elvariable id="actionBean" type="com.blackbox.presentation.action.user.MePageActionBean"--%>
+<%@include file="/WEB-INF/jsp/include/taglibs.jspf" %>
+
+<div style="display:none;">
+	<input type="hidden" id="startIndex" value="${actionBean.wishes.startIndex}"/>
+	<input type="hidden" id="numResults" value="${actionBean.maxResults}"/>
+	<input type="hidden" id="totalResults" value="${actionBean.wishes.totalResults}"/>
+</div>
+
+<c:choose>
+	<c:when test="${not empty actionBean.wishes.results}">
+		<table class="me-table">
+			<tbody>
+			<c:forEach var="wish" items="${actionBean.wishes.results}">
+				<%--@elvariable id="wish" type="com.blackbox.bookmark.UserWish"--%>
+				<c:set var="user" value="${wish.user}"/>
+				<%--@elvariable id="user" type="com.blackbox.user.User"--%>
+				<ui:meBoxUserRow user="${user}" type="wishes" wish="${wish}"/>
+			</c:forEach>
+			</tbody>
+		</table>
+	</c:when>
+	<c:otherwise>
+		<p class="no-results">No wishes</p>
+	</c:otherwise>
+</c:choose>
+
+<c:if test="${not empty actionBean.wishes.results && actionBean.wishes.totalResults > actionBean.maxResults}">
+	<ui:pagingControls id="bottomPaging" items="${actionBean.wishes.results}"/>
+</c:if>
+
+<script type="text/javascript">
+	//<![CDATA[
+	(function () {
+		$(".gear-menu").gearMenu();
+	})();
+	//]]>
+</script>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2009. Blackbox, LLC
+  ~ All rights reserved.
+  -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jee="http://www.springframework.org/schema/jee" xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:compass="http://www.compass-project.org/schema/spring-core-config"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+        http://www.compass-project.org/schema/spring-core-config http://www.compass-project.org/schema/spring-compass-core-config-2.2.xsd"
+        >
+    <bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"/>
+
+    <aop:aspectj-autoproxy/>
+    <context:annotation-config/>
+    <context:component-scan base-package="com.blackbox"/>
+    <tx:annotation-driven transaction-manager="transactionManager"  />
+
+    <bean class="com.blackbox.server.user.aspect.PopulateImageUrlAspect"/>
+    <bean class="com.blackbox.server.occasion.aspect.PopulateOccasionTransientsAspect"/>
+
+    <bean class="com.blackbox.groovy.GroovyConsoleService" init-method="initialize"/>
+
+    <bean class="com.blackbox.util.ExternalConfigPropertyConfigurer"
+          p:systemPropertiesMode="2" p:external="/usr/local/jetty/server.properties">
+        <property name="locations">
+            <util:list>
+                <value>classpath:/jdbc.properties</value>
+                <value>classpath:/server.properties</value>
+            </util:list>
+        </property>
+    </bean>
+
+    <!--
+    END - Pre JPA Terracotta
+    -->
+
+    <!--
+    only add groups to this...  add concrete listeners and managers to there our config
+    or the generic-listener-config.xml
+    -->
+    <bean id="eventMulticaster" class="org.yestech.event.multicaster.DefaultOrderEventMulticaster" init-method="init"
+          p:maximumPoolSize="200">
+        <property name="listenerGroups">
+            <util:list>
+                <ref bean="createUserEventListeners"/>
+                <ref bean="updateUserEventListeners"/>
+                <ref bean="deleteUserEventListeners"/>
+                <ref bean="generalListeners"/>
+                <ref bean="securityListeners"/>
+                <ref bean="commerceEventListeners"/>
+                <ref bean="socialEventListeners"/>
+                <ref bean="occasionEventListeners"/>
+                <ref bean="emailListeners"/>
+            </util:list>
+        </property>
+    </bean>
+
+    <bean id="publishTempDir" class="java.io.File">
+        <constructor-arg value="${publish.tmp.directory}"/>
+    </bean>
+
+    <bean id="localPublishConsumerTempDir" class="java.io.File">
+        <constructor-arg value="${publish.download.tmp.directory}"/>
+    </bean>
+
+    <bean id="publisherProperties" class="org.yestech.publish.objectmodel.PublisherProperties">
+        <property name="properties">
+            <map>
+                <entry key="AUDIO">
+                    <map>
+                        <entry key="urlPrefix" value="http://cdn.blackboxrepublic.com/audio"/>
+                        <entry key="webDavPrefix" value="http://webdav.bitgravity.com/audio"/>
+                        <entry key="username" value="aj@blackboxrepublic.com"/>
+                        <entry key="password" value="99botb33r"/>
+                        <entry key="tempDirectory" value-ref="localPublishConsumerTempDir"/>
+                    </map>
+                </entry>
+                <entry key="IMAGE">
+                    <map>
+                        <entry key="urlPrefix" value="http://cdn.blackboxrepublic.com/images"/>
+                        <entry key="webDavPrefix" value="http://webdav.bitgravity.com/images"/>
+                        <entry key="username" value="aj@blackboxrepublic.com"/>
+                        <entry key="password" value="99botb33r"/>
+                        <entry key="tempDirectory" value-ref="localPublishConsumerTempDir"/>
+                    </map>
+                </entry>
+                <entry key="VIDEO">
+                    <map>
+                        <entry key="secret" value="180e0d16b400a1a7c3df921b861a88a9"/>
+                        <entry key="api_key" value="81a581f2ed613cf077fb71b730900624"/>
+                        <entry key="show_id" value="ozrrydcvgcub"/>
+                        <entry key="tempDirectory" value-ref="localPublishConsumerTempDir"/>
+                        <entry key="ping_url" value="${presentation.url}/media/EpisodicPing.action"/>
+                        <!-- uncomment for dev if you want to run with charles
+                        <entry key="proxy_host" value="localhost" />
+                        <entry key="proxy_port" value="8888" />
+                        -->
+                    </map>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="urlShortener" class="com.blackbox.server.external.VioletBlueUrlShortener"
+          p:presentationUrl="${blackbox.home.url}"/>
+
+    <bean id="adminManager" class="com.blackbox.server.system.AdminManager"
+          p:cacheManager-ref="cacheManager"/>
+
+    <bean id="remoteDelivery" class="com.blackbox.server.system.email.RemoteEmailDelivery"
+          init-method="init"
+          destroy-method="destroy"
+          p:emailHost="${email.host}"
+          p:defaultSender-ref="angelsSender"
+          p:authenticatorUserName="${email.authentication.username}"
+          p:authenticatorPassword="${email.authentication.password}"
+          p:presentationUrl="${presentation.url}"/>
+</beans>

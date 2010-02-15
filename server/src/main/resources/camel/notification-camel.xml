@@ -1,0 +1,71 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:camel="http://camel.apache.org/schema/spring"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring-2.0.0.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <camel:camelContext id="notificationContext">
+        <camel:route>
+            <camel:from uri="notificationBus:email?topologyName=${notify.queue}&amp;pipeName=${notify.queue}"/>
+            <camel:to uri="bean:camelNotifyConsumer?method=process"/>
+        </camel:route>
+    </camel:camelContext>
+
+    <bean id="notificationBus" class="org.yestech.lib.camel.TerracottaComponent"/>
+
+    <!-- begin notifications -->
+    <!-- this is the Message Driven POJO (MDP) -->
+    <bean id="camelNotifyConsumer" class="org.yestech.notify.service.CamelXmlNotificationConsumer"
+          p:processor-ref="defaultNotificationProcessor"/>
+    <bean id="defaultNotificationProcessor" class="org.yestech.notify.service.DefaultNotificationProcessor">
+        <property name="deliveries">
+            <util:map key-type="org.yestech.notify.constant.MessageTypeEnum">
+                <entry key="HTML_EMAIL" value-ref="remoteDelivery"/>
+                <entry key="TEXT_EMAIL" value-ref="remoteDelivery"/>
+                <entry key="MULTIPART_EMAIL" value-ref="remoteDelivery"/>
+            </util:map>
+        </property>
+    </bean>
+
+    <!-- end notifications -->
+
+    <!--
+    begin message notification
+    -->
+    <bean id="multimediaContentNotificationSender" class="org.yestech.notify.objectmodel.Sender"
+          p:displayName="${content.publish.sender.displayName}"
+          p:emailAddress="${content.publish.sender.emailAddress}"
+          p:replyAddress="${content.publish.sender.replyAddress}"/>
+
+    <bean id="asciiMessageNotificationSender" class="org.yestech.notify.objectmodel.Sender"
+          p:displayName="${message.publish.sender.displayName}"
+          p:emailAddress="${message.publish.sender.emailAddress}"
+          p:replyAddress="${message.publish.sender.replyAddress}"/>
+
+
+    <bean id="contentNotificationBridge" class="org.yestech.notify.client.NotificationBridge"
+          p:producer-ref="notifyProducer"/>
+    <bean id="binaryContentPublishTemplate" class="org.yestech.notify.template.VelocityTemplateLanguagePersistence"
+          p:filePath="${binary.content.publish.email.template}"/>
+    <bean id="binaryContentPublishVelocityTemplateLanguage"
+          class="org.yestech.notify.template.VelocityTemplateLanguage"
+          p:persistence-ref="binaryContentPublishTemplate"/>
+
+
+    <bean id="messageNotificationBridge" class="org.yestech.notify.client.NotificationBridge"
+          p:producer-ref="notifyProducer"/>
+    <bean id="asciiMessagePublishVelocityTemplateLanguage"
+          class="org.yestech.notify.template.VelocityTemplateLanguage" p:persistence-ref="asciiMessagePublishTemplate"/>
+    <bean id="asciiMessagePublishTemplate" class="org.yestech.notify.template.VelocityTemplateLanguagePersistence"
+          p:filePath="${ascii.message.publish.email.template}"/>
+
+
+    <!--
+    end message notification
+    -->
+</beans>

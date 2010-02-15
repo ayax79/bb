@@ -1,0 +1,45 @@
+<%@include file="/WEB-INF/jsp/include/taglibs.jspf"%>
+<script type="text/javascript">
+//<![CDATA[
+    $(document).ready(function(){
+        $(".wishlist_list").miniPersona({personaType:'member'});
+    });
+    var showWishlist=function(){
+        $.getJSON('<s:url beanclass="com.blackbox.presentation.action.persona.WishListActionBean" />', {'_eventName': 'getListAsJSON' }
+        ,function(data){
+            if(data.length==0){
+                $("#wishlist").replaceWith("<div id='wishlist' class='wis_con'><div style='width:540px;' class='but_cli_tex1'>You don't have any Wishes yet</div></div>");
+            }
+        });
+    };
+//]]>
+</script>
+<div class="wis_tab">
+    <ul>
+        <li class="wis_tab_peo">People</li>
+        <li class="wis_tab_eve">Events</li>
+        <li class="wis_tab_eve">Gifts</li>
+        <%--<li class="wis_tab_eve"><span style="color:#DBDBDB;">Camps</span></li>--%>
+    </ul>
+</div>
+        <div id="wishlist" class="wis_con">
+    <ul>
+        <li class="Conn_bg_red"><a class="wishlist_list" href="#"><img src="${bb:libraryResource('/library/images/persona/pic2.png')}" border="0" /></a></li>
+        <li class="Conn_bg_yel"><a class="wishlist_list" href="#"><img src="${bb:libraryResource('/library/images/persona/pic3.png')}" border="0" /></a></li>
+        <li class="Conn_bg_yel"><a class="wishlist_list"  href="#"><img src="${bb:libraryResource('/library/images/persona/pic4.png')}" border="0" /></a></li>
+        <li class="Conn_bg_red"><a class="wishlist_list"  href="#"><img src="${bb:libraryResource('/library/images/persona/pic2.png')}" border="0" /></a></li>
+        <li class="Conn_bg_yel"><a class="wishlist_list"  href="#"><img src="${bb:libraryResource('/library/images/persona/pic3.png')}" border="0" /></a></li>
+        <li class="Conn_bg_yel"><a class="wishlist_list"  href="#"><img src="${bb:libraryResource('/library/images/persona/pic4.png')}" border="0" /></a></li>
+        <li class="Conn_bg_red"><a class="wishlist_list"  href="#"><img src="${bb:libraryResource('/library/images/persona/pic2.png')}" border="0" /></a></li>
+        <li class="Conn_bg_yel"><a class="wishlist_list"  href="#"><img src="${bb:libraryResource('/library/images/persona/pic3.png')}" border="0" /></a></li>
+        <li class="Conn_bg_yel"><a class="wishlist_list"  href="#"><img src="${bb:libraryResource('/library/images/persona/pic4.png')}" border="0" /></a></li>
+        <li class="Conn_bg_red"><a class="wishlist_list"  href="#"><img src="${bb:libraryResource('/library/images/persona/pic2.png')}" border="0" /></a></li>
+        <li class="Conn_bg_yel"><a class="wishlist_list"  href="#"><img src="${bb:libraryResource('/library/images/persona/pic3.png')}" border="0" /></a></li>
+        <li class="Conn_bg_yel"><a class="wishlist_list"  href="#"><img src="${bb:libraryResource('/library/images/persona/pic4.png')}" border="0" /></a></li>
+    </ul>
+</div>
+<div>
+    <div class="wis_pre_but">Previous</div>
+    <div class="wis_nex_but">Next</div>
+    <div class="clear"></div>
+</div>

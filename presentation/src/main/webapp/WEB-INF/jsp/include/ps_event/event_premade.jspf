@@ -1,0 +1,15 @@
+<%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#event_category select").children("option").click(function(){
+            sessionValue.catalog=this.innerHTML})
+        })
+</script>
+
+<div id="event_category" class="cat_con"></div>
+<div id="" class="inv_main" style="height:240px;">
+    <ul>
+        <li class="pre_pic1 pre_pic_d"><a class="premade"  href="javascript:void(0)"><img id="event_layout_default2" class="event_media" alt="Red Glass Event" src="${bb:libraryResource('/library/images/psevent/event_icon.png')}" /></a></li>
+        <div class="clear"></div>
+    </ul>
+</div>

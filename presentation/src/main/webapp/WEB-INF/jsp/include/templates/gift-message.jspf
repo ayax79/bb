@@ -1,0 +1,48 @@
+<%@ page import="java.util.Arrays" %>
+<%@ page import="java.util.StringTokenizer" %>
+<%--@elvariable id="parent" type="com.blackbox.parent.parentThread"--%>
+<%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
+<c:set var="newLine" value="
+"/>
+
+<div class="article <c:if test="${not empty parent.guid}"> article_${parent.guid}</c:if> <c:if test="${not empty parent.artifactMetaData.artifactOwner.guid}"> UG${parent.artifactMetaData.artifactOwner.guid}</c:if> <c:if test="${bb:isCollapsedPost(cookie.cu.value, parent.artifactMetaData.artifactOwner.guid)}"> collapsed-post</c:if>">
+	<p class="create-update">
+		<s:link beanclass="com.blackbox.presentation.action.persona.PersonaActionBean" class="user-link thread-starter">
+			<s:param name="identifier" value="${parent.artifactMetaData.artifactOwner.guid}"/>
+			${bb:userName(parent.artifactMetaData.artifactOwner)}
+		</s:link>
+		started the conversation <span class="create-date">${bb:formatDate(parent.postDate, "MMMM d")}</span>
+	</p>
+	<div class="article-content clearfix">
+		<div class="article-left">
+			<div class="article-pict">
+				<ui:profileImage guid="${parent.artifactMetaData.artifactOwner.guid}" showMiniProfile="true" size="medium_large"/>
+			</div>
+			<ui:privacyControl guid="20" ownerType="" defaultValue="${parent.recipientDepth}" beanclass="com.blackbox.presentation.action.bookmark.BookmarkActionBean"/>
+		</div>
+		<div class="article-right">
+			<div class="article-body">
+				<div class="article-header">
+					<div class="article-meta">
+					<span class="article-user">
+                        <s:link beanclass="com.blackbox.presentation.action.persona.PersonaActionBean" class="user-link">
+							<s:param name="identifier" value="${parent.artifactMetaData.artifactOwner.guid}"/>
+							<c:set var="ao" value="${parent.artifactMetaData.artifactOwner}" scope="page"/>
+							${bb:userName(parent.artifactMetaData.artifactOwner)}
+						</s:link> gifted 
+                        <s:link beanclass="com.blackbox.presentation.action.persona.PersonaActionBean" class="user-link">
+							<s:param name="identifier" value="${parent.artifactMetaData.recipients[0].recipient.guid}"/>
+							${bb:userName(parent.artifactMetaData.recipients[0].recipient)}
+						</s:link>
+                    </span>
+						<span class="collapsed-message">sent a gift</span>
+						<span class="article-date"><abbr class="timeago" title="${parent.formattedPostDate}">${parent.formattedPostDate}</abbr></span>
+					</div>
+					<%--<%@include file="/WEB-INF/jsp/include/templates/article-actions.jspf" %>--%>
+					<div class="clear"></div>
+				</div>
+				<div class="article-meat">${f:replace(parent.body, newLine, "<br/>")}</div>
+			</div>
+		</div>
+	</div>
+</div>

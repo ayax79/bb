@@ -1,0 +1,113 @@
+<%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
+<s:form class="bbform bbsettings blarghyporkfat" id="notifications_settings_form" beanclass="com.blackbox.presentation.action.user.AccountSettingsActionBean" method="post">
+
+	<div class="hidden-fields">
+		<s:hidden name="_eventName" value="updateAccount"/>
+	</div>
+
+	<h2>Account settings</h2>
+
+	<div class="settings-col-left">
+		<fieldset>
+			<legend>User info</legend>
+			<ul>
+				<li>
+					<s:label for="user.name"><fmt:message key="register.field.firstName"/><em>*</em></s:label>
+					<s:text id="user_fname" name="user.name"/>
+				</li>
+				<li>
+					<label for="user.lastname"><fmt:message key="register.field.lastName"/><em>*</em></label>
+					<s:text id="user_lname" name="user.lastname"/>
+				</li>
+				<li>
+					<label for="user.email"><fmt:message key="register.field.email"/><em>*</em></label>
+					<s:text id="register_email" name="user.email"/>
+				</li>
+				<li>
+					<label for="new_password"><fmt:message key="register.field.password"/></label>
+					<s:password id="new_password" name="user.password" value=""/>
+				</li>
+
+				<li>
+					<label for="new_password_validate"><fmt:message key="register.field.password2"/></label>
+					<s:password id="new_password_validate" name="password2" value=""/>
+				</li>
+			</ul>
+		</fieldset>
+	</div>
+
+	<div class="settings-col-right">
+		<fieldset>
+			<legend>Location</legend>
+			<ul>
+				<li>
+					<label for="register_city"><fmt:message key="register.field.city"/><em>*</em><br/><span>ex. Philadelphia, London, Montreal</span></label>
+					<s:text id="register_city" name="user.profile.location.city"/>
+				</li>
+				<li>
+					<label for="register_country"><fmt:message key="register.field.country"/><em>*</em></label>
+					<s:select id="register_country" name="user.profile.location.country">
+						<s:option value="" disabled="disabled" selected="selected"><fmt:message key="register.select.country"/>
+						</s:option>
+						<s:options-enumeration enum="org.yestech.lib.i18n.CountryEnum"/>
+					</s:select><br/>
+					<span class="note">Note: English is currently the only language supported</span>
+				</li>
+				<li id="us_states" style="display: none;">
+					<label for="register_state"><fmt:message key="register.field.state"/></label>
+					<s:select id="register_state" name="user.profile.location.state">
+						<s:option value="" disabled="disabled" selected="selected"><fmt:message key="register.select.state"/></s:option>
+						<s:options-enumeration enum="org.yestech.lib.i18n.USStateEnum"/>
+					</s:select>
+				</li>
+				<li id="canada_provinces" style="display: none;">
+					<label for="register_province"><fmt:message key="register.field.province"/></label>
+					<s:select id="register_province" name="user.profile.location.state">
+						<s:option value="" disabled="disabled" selected="selected"><fmt:message key="register.select.province"/></s:option>
+						<s:options-enumeration enum="org.yestech.lib.i18n.CanadaProvinceEnum"/>
+					</s:select>
+				</li>
+				<li>
+					<label for="register_zip"><fmt:message key="register.field.zipCode"/><em>*</em></label>
+					<s:text id="register_zip" name="user.profile.location.zipCode"></s:text>
+				</li>
+				<li>
+					<label for="register_timezone"><fmt:message key="register.field.timezone"/><em>*</em></label>
+					<s:select name="user.profile.timeZone" id="register_timezone">
+						<s:option value="" disabled="disabled" selected="selected"><fmt:message
+								key="register.field.timezone.select"/></s:option>
+						<s:options-enumeration enum="com.blackbox.user.TimeZoneEnum"/>
+					</s:select>
+				</li>
+			</ul>
+		</fieldset>
+	</div>
+
+	<div class="clear"></div>
+
+	<div class="button-panel">
+		<button name="register" type="submit" class="bbform-button grey"><span>Save changes</span></button>
+	</div>
+
+	<s:field-metadata var="fieldMetadata">
+		$(function(){
+		$.fn.stripesValidation('${fieldMetadata.formId}', ${fieldMetadata});
+		});
+	</s:field-metadata>
+</s:form>
+
+<script type="text/javascript">
+	//<![CDATA[
+	$('#register_country').change(function() {
+		var $select = $(this);
+		$('#canada_provinces').hide().find("select").attr("disabled", "disabled");
+		$('#us_states').hide().find("select").attr("disabled", "disabled");
+		if ($select.val() == 'UNITED_STATES') {
+			$('#us_states').show().find("select").removeAttr("disabled");
+		} else if ($select.val() == 'CANADA') {
+			$('#canada_provinces').show().find("select").removeAttr("disabled");
+		}
+	});
+	$('#register_country').trigger("change");
+	//]]>
+</script>

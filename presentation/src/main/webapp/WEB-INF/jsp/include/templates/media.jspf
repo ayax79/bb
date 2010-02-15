@@ -1,0 +1,48 @@
+<%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
+<div class="article <c:if test="${not empty activity.parent.guid}"> article_${activity.parent.guid}</c:if> <c:if test="${not empty activity.parent.artifactOwner.guid}"> U${activity.parent.artifactOwner.guid}</c:if>  <c:if test="${bb:isCollapsedPost(cookie.cu.value, activity.parent.artifactOwner.guid)}"> collapsed-post</c:if>">
+	<p class="create-update">
+		<s:link beanclass="com.blackbox.presentation.action.persona.PersonaActionBean" class="user-link thread-starter">
+			<s:param name="identifier" value="${activity.parent.artifactOwner.guid}"/>
+			${bb:userName(activity.parent.artifactOwner)}
+		</s:link>
+		started the conversation ${bb:formatDate(activity.parent.postDate, "MMMM d")}
+	</p>
+	<div class="article-content clearfix">
+		<%@include file="/WEB-INF/jsp/include/templates/article-actions.jspf" %>
+		<div class="article-left">
+			<div class="article-pict">
+				<ui:profileImage guid="${activity.parent.artifactOwner.guid}" showMiniProfile="true" size="medium_large"/>
+			</div>
+			<ui:privacyControl guid="20" ownerType="" defaultValue="${activity.parent.recipientDepth}" beanclass="com.blackbox.presentation.action.bookmark.BookmarkActionBean"/>
+		</div>
+		<div class="article-right">
+			<div class="article-body">
+				<div class="article-header">
+					<div class="article-meta">
+						<span class="article-user"><s:link beanclass="com.blackbox.presentation.action.persona.PersonaActionBean" class="user-link"><s:param name="identifier" value="${activity.parent.artifactOwner.guid}"/>${bb:userName(activity.parent.artifactOwner)}</s:link></span>
+						<span class="collapsed-message">posted a message</span>
+						<span class="article-date"><abbr class="timeago" title="${activity.parent.formattedPostDate}">${activity.parent.formattedPostDate}</abbr></span>
+					</div>
+					<div class="clear"></div>
+				</div>
+
+				<c:set var="donkeySrc"><img src="${bb:libraryResource('/library/images/icons/donkey.jpg')}" alt="donkey"/></c:set>
+				<c:set var="cmnt">${f:replace(activity.parent.comment, "{DONKEY}", donkeySrc)}</c:set>
+				<div class="article-meat">${f:replace(cmnt, newLine, "<br/>")}</div>
+				<div class="article-media">
+					<c:if test="${not empty activity.parent.location}">
+						<c:choose>
+							<c:when test="${activity.parent.mimeType == 'application/octet-stream'}">
+								VIDEO NOT SUPPORTED YET
+							</c:when>
+							<c:otherwise>
+								<ui:streamImage msgObject="${activity.parent}"/>
+							</c:otherwise>
+						</c:choose>
+					</c:if>
+				</div>
+				<%@include file="/WEB-INF/jsp/include/templates/comments.jspf" %>
+			</div>
+		</div>
+	</div>
+</div>

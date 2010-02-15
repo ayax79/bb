@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+    <meta>
+        <filters directoryPatterns="CVS" filePatterns=""
+            positiveFilePatterns="" showHiddenFiles="false"/>
+        <options/>
+    </meta>
+    <projectTree name="sample.xpr">
+        <folder name="css">
+            <file
+                name="../../../../../../../../Applications/oxygen/samples/css/sample1.css"/>
+            <file
+                name="../../../../../../../../Applications/oxygen/samples/css/sample1.xhtml"/>
+            <file
+                name="../../../../../../../../Applications/oxygen/samples/css/sample2.css"/>
+            <file
+                name="../../../../../../../../Applications/oxygen/samples/css/sample2.xhtml"/>
+            <file
+                name="../../../../../../../../Applications/oxygen/samples/css/sample3.css"/>
+            <file
+                name="../../../../../../../../Applications/oxygen/samples/css/sample3.xhtml"
+            />
+        </folder>
+        <folder name="debugger">
+            <folder name="Axes">
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/Axes/sample1.xml"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/Axes/sample1.xsl"
+                />
+            </folder>
+            <folder name="Boolean functions">
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/Boolean%20functions/sample1.xml"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/Boolean%20functions/sample1.xsl"
+                />
+            </folder>
+            <folder name="Combining stylesheets">
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/Combining%20stylesheets/sample1.xml"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/Combining%20stylesheets/sample1.xsl"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/Combining%20stylesheets/sample2.xsl"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/Combining%20stylesheets/sample3.xml"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/Combining%20stylesheets/sample3.xsl"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/Combining%20stylesheets/sample4.xsl"
+                />
+            </folder>
+            <folder name="Conditional processing">
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/Conditional%20processing/sample1.xml"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/Conditional%20processing/sample1.xsl"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/Conditional%20processing/sample2.xml"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/Conditional%20processing/sample2.xsl"
+                />
+            </folder>
+            <folder name="Copying">
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/Copying/sample1.xml"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/Copying/sample1.xsl"
+                />
+            </folder>
+            <folder name="Creation of elements and attributes">
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/Creation%20of%20elements%20and%20attributes/sample1.xml"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/Creation%20of%20elements%20and%20attributes/sample1.xsl"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/Creation%20of%20elements%20and%20attributes/sample2.xml"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/Creation%20of%20elements%20and%20attributes/sample2.xsl"
+                />
+            </folder>
+            <folder name="Miscellaneous additional functions">
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/Miscellaneous%20additional%20functions/sample1.xml"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/Miscellaneous%20additional%20functions/sample1.xsl"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/Miscellaneous%20additional%20functions/sample2.xml"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/Miscellaneous%20additional%20functions/sample2.xsl"
+                />
+            </folder>
+            <folder name="Nodeset functions">
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/Nodeset%20functions/sample1.xml"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/Nodeset%20functions/sample1.xsl"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/Nodeset%20functions/sample2.dtd"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/Nodeset%20functions/sample2.xml"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/Nodeset%20functions/sample2.xsl"
+                />
+            </folder>
+            <folder name="Numbers and formatting">
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/Numbers%20and%20formatting/sample1.xml"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/Numbers%20and%20formatting/sample1.xsl"
+                />
+            </folder>
+            <folder name="Numeric calculations">
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/Numeric%20calculations/sample1.xml"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/Numeric%20calculations/sample1.xsl"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/Numeric%20calculations/sample2.xml"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/Numeric%20calculations/sample2.xsl"
+                />
+            </folder>
+            <folder name="Repetition and Sorting">
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/Repetition%20and%20Sorting/sample1.xml"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/Repetition%20and%20Sorting/sample1.xsl"
+                />
+            </folder>
+            <folder name="String functions">
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/String%20functions/sample1.xml"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/String%20functions/sample1.xsl"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/String%20functions/sample2.xml"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/String%20functions/sample2.xsl"
+                />
+            </folder>
+            <folder name="Templates">
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/Templates/sample1.xml"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/Templates/sample1.xsl"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/Templates/sample2.xml"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/Templates/sample2.xsl"
+                />
+            </folder>
+            <folder name="Variables">
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/Variables/sample1.xml"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/Variables/sample1.xsl"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/Variables/sample2.xml"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/Variables/sample2.xsl"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/Variables/sample3.xml"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/Variables/sample3.xsl"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/Variables/sample4.xml"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/Variables/sample4.xsl"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/Variables/sample5.xml"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/debugger/Variables/sample5.xsl"
+                />
+            </folder>
+        </folder>
+        <folder name="fo">
+            <folder name="Basic Font Attributes">
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/fo/Basic%20Font%20Attributes/bold.fo"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/fo/Basic%20Font%20Attributes/bold.xml"
+                />
+            </folder>
+            <folder name="Block Properties">
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/fo/Block%20Properties/borders.fo"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/fo/Block%20Properties/borders.xml"
+                />
+            </folder>
+            <folder name="Character Sets">
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/fo/Character%20Sets/adobe-standard.fo"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/fo/Character%20Sets/adobe-standard.xml"
+                />
+            </folder>
+            <folder name="Extended Font Attributes">
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/fo/Extended%20Font%20Attributes/aspect.fo"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/fo/Extended%20Font%20Attributes/aspect.xml"
+                />
+            </folder>
+            <folder name="Invoice">
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/fo/Invoice/invoice.xml"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/fo/Invoice/invoice.xsd"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/fo/Invoice/invoice.xsl"
+                />
+            </folder>
+            <folder name="Miscellaneous">
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/fo/Miscellaneous/fontAttributes.fo"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/fo/Miscellaneous/helloWorld.fo"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/fo/Miscellaneous/leaders.fo"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/fo/Miscellaneous/pageLayout.fo"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/fo/Miscellaneous/table.fo"
+                />
+            </folder>
+            <folder name="Paragraph Attributes">
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/fo/Paragraph%20Attributes/pagebreak.fo"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/fo/Paragraph%20Attributes/pagebreak.xml"
+                />
+            </folder>
+            <folder name="Text Block Attributes">
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/fo/Text%20Block%20Attributes/align.fo"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/fo/Text%20Block%20Attributes/align.xml"
+                />
+            </folder>
+            <file
+                name="../../../../../../../../Applications/oxygen/samples/fo/macro.xsl"
+            />
+        </folder>
+        <folder name="import">
+            <folder name="excel">
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/import/excel/sample.xls"
+                />
+            </folder>
+            <folder name="text">
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/import/text/sample.csv"
+                />
+            </folder>
+        </folder>
+        <folder name="jsp">
+            <file
+                name="../../../../../../../../Applications/oxygen/samples/jsp/jspsample.jspx"
+            />
+        </folder>
+        <folder name="nvdl">
+            <file
+                name="../../../../../../../../Applications/oxygen/samples/nvdl/xhtml-xforms.nvdl"/>
+            <file
+                name="../../../../../../../../Applications/oxygen/samples/nvdl/xhtml-xforms.xml"
+            />
+        </folder>
+        <folder name="relaxng">
+            <file
+                name="../../../../../../../../Applications/oxygen/samples/relaxng/personal.rnc"/>
+            <file
+                name="../../../../../../../../Applications/oxygen/samples/relaxng/personal.rng"/>
+            <file
+                name="../../../../../../../../Applications/oxygen/samples/relaxng/personal.xml"
+            />
+        </folder>
+        <folder name="schematron">
+            <folder name="1.5">
+                <folder name="attributes">
+                    <file
+                        name="../../../../../../../../Applications/oxygen/samples/schematron/1.5/attributes/followed-bad.xml"/>
+                    <file
+                        name="../../../../../../../../Applications/oxygen/samples/schematron/1.5/attributes/followed-good.xml"/>
+                    <file
+                        name="../../../../../../../../Applications/oxygen/samples/schematron/1.5/attributes/followed.dtd"/>
+                    <file
+                        name="../../../../../../../../Applications/oxygen/samples/schematron/1.5/attributes/followed.sch"/>
+                    <file
+                        name="../../../../../../../../Applications/oxygen/samples/schematron/1.5/attributes/length-bad.xml"/>
+                    <file
+                        name="../../../../../../../../Applications/oxygen/samples/schematron/1.5/attributes/length-bad1.xml"/>
+                    <file
+                        name="../../../../../../../../Applications/oxygen/samples/schematron/1.5/attributes/length-bad2.xml"/>
+                    <file
+                        name="../../../../../../../../Applications/oxygen/samples/schematron/1.5/attributes/length-good.xml"/>
+                    <file
+                        name="../../../../../../../../Applications/oxygen/samples/schematron/1.5/attributes/length.dtd"/>
+                    <file
+                        name="../../../../../../../../Applications/oxygen/samples/schematron/1.5/attributes/length.sch"/>
+                    <file
+                        name="../../../../../../../../Applications/oxygen/samples/schematron/1.5/attributes/name-bad.xml"/>
+                    <file
+                        name="../../../../../../../../Applications/oxygen/samples/schematron/1.5/attributes/name.dtd"/>
+                    <file
+                        name="../../../../../../../../Applications/oxygen/samples/schematron/1.5/attributes/name.sch"/>
+                    <file
+                        name="../../../../../../../../Applications/oxygen/samples/schematron/1.5/attributes/present-bad.xml"/>
+                    <file
+                        name="../../../../../../../../Applications/oxygen/samples/schematron/1.5/attributes/present.dtd"/>
+                    <file
+                        name="../../../../../../../../Applications/oxygen/samples/schematron/1.5/attributes/present.sch"/>
+                    <file
+                        name="../../../../../../../../Applications/oxygen/samples/schematron/1.5/attributes/required-bad1.xml"/>
+                    <file
+                        name="../../../../../../../../Applications/oxygen/samples/schematron/1.5/attributes/required-bad2.xml"/>
+                    <file
+                        name="../../../../../../../../Applications/oxygen/samples/schematron/1.5/attributes/required-good.xml"/>
+                    <file
+                        name="../../../../../../../../Applications/oxygen/samples/schematron/1.5/attributes/required.dtd"/>
+                    <file
+                        name="../../../../../../../../Applications/oxygen/samples/schematron/1.5/attributes/required.sch"
+                    />
+                </folder>
+                <folder name="author">
+                    <file
+                        name="../../../../../../../../Applications/oxygen/samples/schematron/1.5/author/author.sch"/>
+                    <file
+                        name="../../../../../../../../Applications/oxygen/samples/schematron/1.5/author/source1.xml"/>
+                    <file
+                        name="../../../../../../../../Applications/oxygen/samples/schematron/1.5/author/source2.xml"
+                    />
+                </folder>
+                <folder name="paragraph">
+                    <file
+                        name="../../../../../../../../Applications/oxygen/samples/schematron/1.5/paragraph/paragraph.sch"/>
+                    <file
+                        name="../../../../../../../../Applications/oxygen/samples/schematron/1.5/paragraph/source1.xml"/>
+                    <file
+                        name="../../../../../../../../Applications/oxygen/samples/schematron/1.5/paragraph/source2.xml"
+                    />
+                </folder>
+                <folder name="percent">
+                    <file
+                        name="../../../../../../../../Applications/oxygen/samples/schematron/1.5/percent/percent-bad1.xml"/>
+                    <file
+                        name="../../../../../../../../Applications/oxygen/samples/schematron/1.5/percent/percent-bad2.xml"/>
+                    <file
+                        name="../../../../../../../../Applications/oxygen/samples/schematron/1.5/percent/percent-good.xml"/>
+                    <file
+                        name="../../../../../../../../Applications/oxygen/samples/schematron/1.5/percent/percent.dtd"/>
+                    <file
+                        name="../../../../../../../../Applications/oxygen/samples/schematron/1.5/percent/percent.sch"
+                    />
+                </folder>
+                <folder name="po">
+                    <file
+                        name="../../../../../../../../Applications/oxygen/samples/schematron/1.5/po/po-bad.xml"/>
+                    <file
+                        name="../../../../../../../../Applications/oxygen/samples/schematron/1.5/po/po-schema.sch"/>
+                    <file
+                        name="../../../../../../../../Applications/oxygen/samples/schematron/1.5/po/po.xml"/>
+                    <file
+                        name="../../../../../../../../Applications/oxygen/samples/schematron/1.5/po/po.xsd"
+                    />
+                </folder>
+                <folder name="tournament">
+                    <file
+                        name="../../../../../../../../Applications/oxygen/samples/schematron/1.5/tournament/tournament-schema.sch"/>
+                    <file
+                        name="../../../../../../../../Applications/oxygen/samples/schematron/1.5/tournament/Tournament.rng"/>
+                    <file
+                        name="../../../../../../../../Applications/oxygen/samples/schematron/1.5/tournament/Tournament.xml"/>
+                    <file
+                        name="../../../../../../../../Applications/oxygen/samples/schematron/1.5/tournament/Tournament.xsd"
+                    />
+                </folder>
+            </folder>
+            <folder name="iso">
+                <folder name="tournament">
+                    <file
+                        name="../../../../../../../../Applications/oxygen/samples/schematron/iso/tournament/tournament-schema.sch"/>
+                    <file
+                        name="../../../../../../../../Applications/oxygen/samples/schematron/iso/tournament/Tournament.rng"/>
+                    <file
+                        name="../../../../../../../../Applications/oxygen/samples/schematron/iso/tournament/Tournament.xml"/>
+                    <file
+                        name="../../../../../../../../Applications/oxygen/samples/schematron/iso/tournament/Tournament.xsd"
+                    />
+                </folder>
+            </folder>
+        </folder>
+        <folder name="svg">
+            <file
+                name="../../../../../../../../Applications/oxygen/samples/svg/batik3D.svg"/>
+            <file
+                name="../../../../../../../../Applications/oxygen/samples/svg/sales.xml"/>
+            <file
+                name="../../../../../../../../Applications/oxygen/samples/svg/sales.xsl"
+            />
+        </folder>
+        <folder name="wsdl">
+            <file
+                name="../../../../../../../../Applications/oxygen/samples/wsdl/xCurrencies.wsdl"/>
+            <file
+                name="../../../../../../../../Applications/oxygen/samples/wsdl/xMetals.wsdl"/>
+            <file
+                name="../../../../../../../../Applications/oxygen/samples/wsdl/xStatistics.wsdl"/>
+            <file
+                name="../../../../../../../../Applications/oxygen/samples/wsdl/xStockNews.wsdl"/>
+            <file
+                name="../../../../../../../../Applications/oxygen/samples/wsdl/xWorldNews.wsdl"
+            />
+        </folder>
+        <folder name="xquery">
+            <folder name="Books">
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/xquery/Books/authors.xquery"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/xquery/Books/books.xml"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/xquery/Books/expensiveBooks.xquery"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/xquery/Books/sfBooks.xquery"
+                />
+            </folder>
+            <folder name="Movies">
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/xquery/Movies/movies.xml"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/xquery/Movies/movies.xquery"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/xquery/Movies/reviews.xml"
+                />
+            </folder>
+            <folder name="Personal">
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/xquery/Personal/personal.xml"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/xquery/Personal/personal.xquery"
+                />
+            </folder>
+            <folder name="Products">
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/xquery/Products/products.xml"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/xquery/Products/products.xquery"/>
+                <file
+                    name="../../../../../../../../Applications/oxygen/samples/xquery/Products/sales.xml"
+                />
+            </folder>
+        </folder>
+        <folder
+            path="../../../../../../../../Applications/oxygen/samples/dita/"/>
+        <folder
+            path="../../../../../../../../Applications/oxygen/samples/docbook/"/>
+        <folder
+            path="../../../../../../../../Applications/oxygen/samples/ooxml/"/>
+        <folder
+            path="../../../../../../../../Applications/oxygen/samples/tei/"/>
+        <folder
+            path="../../../../../../../../Applications/oxygen/samples/xhtml/"/>
+        <file
+            name="../../../../../../../../Applications/oxygen/samples/personal-schema.css"/>
+        <file
+            name="../../../../../../../../Applications/oxygen/samples/personal-schema.xml"/>
+        <file
+            name="../../../../../../../../Applications/oxygen/samples/personal.css"/>
+        <file
+            name="../../../../../../../../Applications/oxygen/samples/personal.dtd"/>
+        <file
+            name="../../../../../../../../Applications/oxygen/samples/personal.xml"/>
+        <file
+            name="../../../../../../../../Applications/oxygen/samples/personal.xsd"/>
+        <file
+            name="../../../../../../../../Applications/oxygen/samples/personal.xsl"/>
+        <file
+            name="../../../../../../../../Applications/oxygen/samples/simpleLayoutSample.xpr"
+        />
+    </projectTree>
+</project>

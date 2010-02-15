@@ -1,0 +1,535 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="User">
+
+    <!--
+    CREATE TABLE bb_user (
+        guid character varying(255) NOT NULL,
+        created timestamp with time zone NOT NULL,
+        modified timestamp with time zone NOT NULL,
+        version bigint,
+        name character varying(255),
+        status integer,
+        email character varying(255) NOT NULL,
+        epxid character varying(255),
+        lastonline timestamp with time zone,
+        lastname character varying(255),
+        maxpermanentvouches integer,
+        maxwishes integer,
+        password character varying(255) NOT NULL,
+        type integer,
+        username character varying(255) NOT NULL,
+        profile_guid character varying(255),
+        maxtemporaryvouches integer
+    );
+    -->
+    <resultMap id="UserResult" type="com.blackbox.user.User" extends="BaseEntity.BaseEntityResult">
+        <result property="email" column="email" javaType="string" jdbcType="VARCHAR"/>
+        <result property="lastOnline" column="lastonline" javaType="jodaDate" jdbcType="DATE"/>
+        <result property="lastname" column="lastname" javaType="string" jdbcType="VARCHAR"/>
+        <result property="maxPermanentVouches" column="maxPermanentVouches" javaType="integer" jdbcType="INTEGER"/>
+        <result property="maxWishes" column="maxWishes" javaType="integer" jdbcType="INTEGER"/>
+        <result property="password" column="password" javaType="string" jdbcType="VARCHAR"/>
+        <result property="type" column="type" javaType="com.blackbox.user.User$UserType" jdbcType="INTEGER"/>
+        <result property="username" column="username" javaType="string" jdbcType="VARCHAR"/>
+        <result property="maxTemporaryVouches" column="maxTemporaryVouches" javaType="integer" jdbcType="INTEGER"/>
+        <association property="profile" javaType="com.blackbox.user.Profile">
+            <id property="guid" jdbcType="VARCHAR" javaType="string" column="profile_guid"/>
+            <result property="created" jdbcType="DATE" javaType="jodaDate" column="profile_created"/>
+            <result property="modified" jdbcType="DATE" javaType="jodaDate" column="profile_modified"/>
+            <result property="version" column="profile_version"/>
+            <result property="acceptsGifts" javaType="boolean" jdbcType="BOOLEAN" column="acceptgifts"/>
+            <result property="birthday" javaType="jodaDate" jdbcType="DATE"/>
+            <result property="birthdayInVisible" javaType="boolean" jdbcType="BOOLEAN"/>
+            <result property="frequentCities1" javaType="string" jdbcType="VARCHAR"/>
+            <result property="frequentCities2" javaType="string" jdbcType="VARCHAR"/>
+            <result property="frequentCities3" javaType="string" jdbcType="VARCHAR"/>
+            <result property="limitedCanComment" javaType="boolean" jdbcType="BOOLEAN"/>
+            <result property="limitedCanFollow" javaType="boolean" jdbcType="BOOLEAN"/>
+            <result property="limitedCanPm" javaType="boolean" jdbcType="BOOLEAN"/>
+            <result property="limitedCanSearch" javaType="boolean" jdbcType="BOOLEAN"/>
+            <result property="limitedCanSeeActivity" javaType="boolean" jdbcType="BOOLEAN"/>
+            <result property="limitedCanSeeGifts" javaType="boolean" jdbcType="BOOLEAN"/>
+            <result property="limitedCanSeePictures" javaType="boolean" jdbcType="BOOLEAN"/>
+            <result property="phoneHome" javaType="string" jdbcType="VARCHAR"/>
+            <result property="phoneMobile" javaType="string" jdbcType="VARCHAR"/>
+            <result property="phoneOther" javaType="string" jdbcType="VARCHAR"/>
+            <result property="lookingForExplain" javaType="string" jdbcType="VARCHAR"/>
+            <result property="mostly" javaType="string" jdbcType="VARCHAR"/>
+            <result property="sex" javaType="com.blackbox.user.SexEnum" jdbcType="INTEGER"/>
+            <result property="website" javaType="string" jdbcType="VARCHAR"/>
+            <result property="visibleToPersona" column="visibleToPersona" javaType="boolean" jdbcType="BOOLEAN"/>
+            <result property="visibleToPubStream" column="visibleToPubStream" javaType="boolean" jdbcType="BOOLEAN"/>
+            <result property="visibleToSearch" column="visibleToSearch" javaType="boolean" jdbcType="BOOLEAN"/>
+            <result property="visibleToPubStream" column="visibleToPubStream" javaType="boolean" jdbcType="BOOLEAN"/>
+            <result property="visibleToTrialMember" column="visibleToTrialMember" javaType="boolean"
+                    jdbcType="BOOLEAN"/>
+            <association property="location" javaType="com.blackbox.social.Address">
+                <result property="address1" column="address1" javaType="string" jdbcType="VARCHAR"/>
+                <result property="address2" column="address2" javaType="string" jdbcType="VARCHAR"/>
+                <result property="city" column="city" javaType="string" jdbcType="VARCHAR"/>
+                <result property="country" column="country" jdbcType="VARCHAR"/>
+                <result property="county" column="county" javaType="string" jdbcType="VARCHAR"/>
+                <result property="state" column="state" javaType="string" jdbcType="VARCHAR"/>
+                <result property="zipCode" column="zipcode" javaType="string" jdbcType="VARCHAR"/>
+            </association>
+            <association property="lookingFor" javaType="com.blackbox.user.LookingFor">
+                <result property="dates" column="dates" javaType="boolean" jdbcType="BOOLEAN"/>
+                <result property="donkeySex" column="donkeySex" javaType="boolean" jdbcType="BOOLEAN"/>
+                <result property="friends" column="friends" javaType="boolean" jdbcType="BOOLEAN"/>
+                <result property="hookup" column="hookup" javaType="boolean" jdbcType="BOOLEAN"/>
+                <result property="dates" column="dates" javaType="boolean" jdbcType="BOOLEAN"/>
+                <result property="love" column="love" javaType="boolean" jdbcType="BOOLEAN"/>
+                <result property="snuggling" column="snuggling" javaType="boolean" jdbcType="BOOLEAN"/>
+            </association>
+            <association property="mood" javaType="com.blackbox.user.MoodThermometer">
+                <result property="energyLevel" column="energyLevel" javaType="int" jdbcType="INTEGER"/>
+                <result property="interestLevel" column="interestLevel" javaType="int" jdbcType="INTEGER"/>
+                <result property="makePrivate" column="makePrivate" javaType="boolean" jdbcType="BOOLEAN"/>
+                <result property="orientation" column="orientation" javaType="int" jdbcType="INTEGER"/>
+                <result property="polyStatus" column="polyStatus" javaType="int" jdbcType="INTEGER"/>
+                <result property="relationshipStatus" column="relationshipStatus" javaType="int" jdbcType="INTEGER"/>
+            </association>
+            <association property="currentAddress" javaType="com.blackbox.social.Address">
+                <result property="address1" column="current_address1" javaType="string" jdbcType="VARCHAR"/>
+                <result property="address2" column="current_address2" javaType="string" jdbcType="VARCHAR"/>
+                <result property="city" column="current_city" javaType="string" jdbcType="VARCHAR"/>
+                <result property="country" column="current_country" jdbcType="VARCHAR"/>
+                <result property="county" column="current_county" javaType="string" jdbcType="VARCHAR"/>
+                <result property="state" column="current_state" javaType="string" jdbcType="VARCHAR"/>
+                <result property="zipCode" column="current_zipcode" javaType="string" jdbcType="VARCHAR"/>
+            </association>
+        </association>
+    </resultMap>
+
+    <resultMap id="UserPartial" type="com.blackbox.user.User">
+        <result property="username" column="username" javaType="string" jdbcType="VARCHAR"/>
+        <result property="guid" jdbcType="VARCHAR" javaType="string" column="guid"/>
+        <result property="name" column="name" javaType="string" jdbcType="INTEGER"/>
+        <result property="lastname" column="lastname" javaType="string" jdbcType="VARCHAR"/>
+        <result property="username" column="username" javaType="string" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="MiniProfileResult" type="com.blackbox.user.MiniProfile">
+        <id property="guid"/>
+        <result property="username"/>
+        <result property="name"/>
+        <result property="lastname"/>
+        <result property="locationCity"/>
+        <result property="locationState"/>
+        <result property="currentCity"/>
+        <result property="lastOnline"/>
+        <result property="lookingForExplain"/>
+        <result property="totalVouches"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.blackbox.user.User">
+        INSERT INTO bb_user
+        (guid, created, modified, version, name, status, email, lastonline,
+        lastname, maxpermanentvouches, maxwishes, password, type, username, profile_guid, maxtemporaryvouches)
+        VALUES
+        (#{guid}, #{created}, #{modified}, #{version,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER},
+        #{email}, #{lastOnline,jdbcType=DATE}, #{lastname,jdbcType=VARCHAR}, #{maxPermanentVouches,jdbcType=INTEGER},
+        #{maxWishes,jdbcType=INTEGER}, #{password}, #{type,jdbcType=INTEGER}, #{username}, #{profile.guid,jdbcType=VARCHAR},
+        #{maxTemporaryVouches,jdbcType=INTEGER})
+    </insert>
+
+    <update id="update" parameterType="com.blackbox.user.User">
+        UPDATE bb_user SET
+        modified = #{modified,jdbcType=DATE},
+        version = #{version,jdbcType=INTEGER},
+        name = #{name,jdbcType=VARCHAR},
+        status = #{status,jdbcType=INTEGER},
+        email = #{email,jdbcType=VARCHAR},
+        lastonline = #{lastOnline,jdbcType=DATE},
+        lastname = #{lastname,jdbcType=VARCHAR},
+        maxPermanentVouches = #{maxPermanentVouches,jdbcType=INTEGER},
+        maxWishes = #{maxWishes,jdbcType=INTEGER},
+        password = #{password,jdbcType=VARCHAR},
+        type = #{type,jdbcType=INTEGER},
+        username = #{username,jdbcType=VARCHAR},
+        maxTemporaryVouches = #{maxTemporaryVouches,jdbcType=INTEGER}
+        WHERE
+        guid = #{guid,jdbcType=VARCHAR}
+    </update>
+
+    <delete id="delete" parameterType="string">
+        DELETE FROM bb_user WHERE guid = #{value}
+    </delete>
+
+    <sql id="partialSql">
+        username AS username,
+        guid AS guid,
+        name AS name,
+        lastname AS lastname,
+        type AS type,
+        status AS status,
+        password AS password
+    </sql>
+
+    <sql id="fullFromSql">
+        u.guid
+        ,u.created
+        ,u.modified
+        ,u.version
+        ,u.name
+        ,u.status
+        ,u.email
+        ,u.lastonline
+        ,u.lastname
+        ,u.maxpermanentvouches
+        ,u.maxwishes
+        ,u.password
+        ,u.type
+        ,u.username
+        ,u.maxtemporaryvouches
+        ,p.acceptsGifts
+        ,p.address1
+        ,p.address2
+        ,p.birthday
+        ,p.birthdayInVisible
+        ,p.bodymods
+        ,p.city
+        ,p.country
+        ,p.county
+        ,p.created as profile_created
+        ,p.current_address1
+        ,p.current_address2
+        ,p.current_city
+        ,p.current_country
+        ,p.current_county
+        ,p.current_latitude
+        ,p.current_longitude
+        ,p.current_state
+        ,p.current_zipcode
+        ,p.dates
+        ,p.description
+        ,p.donkeySex
+        ,p.energylevel
+        ,p.frequentcities1
+        ,p.frequentcities2
+        ,p.frequentcities3
+        ,p.friends
+        ,p.hookup
+        ,p.interestlevel
+        ,p.latitude
+        ,p.limitedcancomment
+        ,p.limitedcanfollow
+        ,p.limitedcanpm
+        ,p.limitedcansearch
+        ,p.limitedcanseeactivity
+        ,p.limitedcanseegifts
+        ,p.limitedcanseepictures
+        ,p.longitude
+        ,p.lookingforexplain
+        ,p.love
+        ,p.makeprivate
+        ,p.modified as profile_modified
+        ,p.mostly
+        ,p.nonFriendsCanComment
+        ,p.nonfriendscanfollow
+        ,p.nonfriendscanpm
+        ,p.nonfriendscansearch
+        ,p.orientation
+        ,p.phonehome
+        ,p.phonemobile
+        ,p.phoneother
+        ,p.politicalviews
+        ,p.polystatus
+        ,p.referfromtype
+        ,p.relationshipstatus
+        ,p.religiousviews
+        ,p.sex
+        ,p.snuggling
+        ,p.state
+        ,p.timeZone
+        ,p.version as profile_version
+        ,p.visibletopersona
+        ,p.visibleToPubStream
+        ,p.visibletosearch
+        ,p.visibletotrialmember
+        ,p.website
+        ,p.zipcode
+        ,p.guid as profile_guid
+    </sql>
+
+    <select id="loadSessionCacheUser" resultMap="User.UserPartial" parameterType="string">
+        SELECT
+        <include refid="User.partialSql"/>
+        FROM bb_user
+        WHERE guid = #{value}
+    </select>
+
+    <select id="loadMiniProfileByUsername" resultMap="MiniProfileResult" parameterType="map">
+        SELECT
+        u.username as username,
+        u.guid as guid,
+        u.name as name,
+        u.lastname as lastname,
+        p.city as locationCity,
+        p.state as locationState,
+        p.current_city as currentCity,
+        u.lastOnline as lastOnline,
+        p.lookingForExplain as lookingForExplain,
+        (
+        select count(v.guid) from bb_user u, bb_vouch v
+        where lower(u.username) = lower(#{username}) and u.guid = v.targetguid and v.expirationDate > #{date}
+
+        ) as totalVouches
+        FROM
+        bb_user u,
+        bb_profile p
+        WHERE
+        lower(u.username) = lower(#{username}) AND
+        u.profile_guid = p.guid
+    </select>
+
+    <select id="loadMiniProfileByGuid" resultMap="MiniProfileResult" parameterType="map">
+        SELECT
+        u.username as username,
+        u.guid as guid,
+        u.name as name,
+        u.lastname as lastname,
+        p.city as locationCity,
+        p.state as locationState,
+        p.current_city as currentCity,
+        u.lastOnline as lastOnline,
+        p.lookingForExplain as lookingForExplain,
+        (
+            select count(v.guid ) from bb_vouch v where v.targetguid = #{guid} and v.expirationDate > #{date}
+        ) as totalVouches
+        FROM
+        bb_user u,
+        bb_profile p
+        WHERE
+        u.guid = #{guid} AND
+        u.profile_guid = p.guid
+    </select>
+
+    <select id="loadByGuid" resultMap="User.UserResult" parameterType="string">
+        SELECT
+        <include refid="fullFromSql"/>
+        FROM
+        bb_user u,
+        bb_profile p
+        WHERE
+        u.guid = #{value} AND
+        u.profile_guid = p.guid
+    </select>
+
+    <select id="loadByUsername" resultMap="User.UserResult" parameterType="string">
+        SELECT
+        <include refid="fullFromSql"/>
+        FROM
+        bb_user u,
+        bb_profile p
+        WHERE
+        lower(username) = lower(#{value}) AND
+        u.profile_guid = p.guid
+    </select>
+
+    <select id="loadByUsernameAndPasswordAndStatus" resultMap="User.UserPartial" parameterType="map">
+        SELECT
+        <include refid="User.partialSql"/>
+        FROM
+        bb_user
+        WHERE
+        lower(username) = lower(#{username}) AND
+        password = #{password} AND
+        status = #{status}
+    </select>
+
+    <select id="explore" resultMap="User.UserResult" parameterType="map">
+        select distinct u.*, p.makeprivate, p.sex, p.orientation, p.polyStatus, p.relationshipStatus, p.interestLevel,
+        p.energyLevel, p.lookingForExplain
+        from bb_user u, bb_profile p
+        <if test="(er.isInRelationship() != null and er.isInRelationship()) or (er.isSingle() != null and er.isSingle())">
+            , bb_relationship r
+        </if>
+        <if test="er.isVouched() != null and er.isVouched()">, bb_vouch v</if>
+        <where>
+            u.profile_guid = p.guid
+            <if test="(er.isInRelationship() != null and er.isInRelationship())
+                and (er.isInRelationship() != null and er.isInRelationship())">
+                and ( u.guid = r.fromguid and r.weight &gt;= 50 )
+            </if>
+            <if test="er.isSingle() != null and er.isSingle()">and ( u.guid = r.fromguid and r.weight &gt;= 50 )</if>
+            <if test="er.isMappable()">
+                and (
+                p.latitude &lt;= #{er.neCorner.latitude, jdbcType=BIGINT}
+                and p.latitude &gt;= #{er.swCorner.latitude, jdbcType=BIGINT}
+                and p.longitude &lt;= #{er.neCorner.longitude, jdbcType=BIGINT}
+                and p.longitude &gt;= #{er.swCorner.longitude, jdbcType=BIGINT}
+                )
+            </if>
+            <if test="not genders.isEmpty">
+                and p.sex in
+                <foreach collection="genders" item="gender" open="(" close=")" separator=",">
+                    #{gender,jdbcType=VARCHAR}
+                </foreach>
+            </if>
+            <if test="er.orientation != null">
+                and (
+                p.orientation &gt;= #{er.orientation.startIndex}
+                and p.orientation &lt;= #{er.orientation.lastIndex}
+                )
+            </if>
+            <if test="er.polyStatus != null">
+                and (
+                p.polyStatus &gt;= #{er.polyStatus.startIndex}
+                and p.polyStatus &lt;= #{er.polyStatus.lastIndex}
+                )
+            </if>
+            <if test="er.relationshipStatus != null">
+                and (
+                p.relationshipStatus &gt;= #{er.relationshipStatus.startIndex}
+                and p.relationshipStatus &lt;= #{er.relationshipStatus.lastIndex}
+                )
+            </if>
+            <if test="er.interestLevel != null">
+                and (
+                p.interestLevel &gt;= #{er.interestLevel.startIndex}
+                and p.interestLevel &lt;= #{er.interestLevel.lastIndex}
+                )
+            </if>
+            <if test="er.energyLevel != null">
+                and (
+                p.energyLevel &gt;= #{er.energyLevel.startIndex}
+                and p.energyLevel &lt; #{er.energyLevel.lastIndex}
+                )
+            </if>
+            <if test="er.registrationDate != null">
+                and u.created &gt;= #{er.registrationDate}
+            </if>
+            <if test="er.lastOnline != null">
+                and u.lastOnline &gt;= #{er.lastOnline}
+            </if>
+            <if test="er.isVouched() != null and er.isVouched()">
+                and u.guid = v.targetguid
+            </if>
+            <if test="er.depth != null and er.depth.name() != 'ALL_MEMBERS'">
+                and u.guid in (
+                select r2.toguid from bb_relationship r2 where r2.fromguid = #{er.userGuid,jdbcType=VARCHAR}
+                <choose>
+                    <when test="er.depth.name() == 'FRIENDS'">
+                        and r2.weight &gt;= 10
+                    </when>
+                    <when test="er.depth.name() == 'FOLLOWING'">
+                        and r2.weight &gt;= 0 and r2.weight &lt; 10
+                    </when>
+                </choose>
+                )
+            </if>
+            <if test="er.name != null">
+                and (
+                lower(u.username) like lower(#{er.name,jdbcType=VARCHAR})
+                or lower(p.lookingForExplain) like lower(#{er.name,jdbcType=VARCHAR})
+                )
+            </if>
+            and (
+            <if test="er.isSeekingDating() == null">
+                (p.dates is null or p.dates = '1' or p.dates = '0')
+            </if>
+            <if test="er.isSeekingDating() != null and er.isSeekingDating()">
+                (p.dates = #{er.seekingDating,jdbcType=BOOLEAN})
+            </if>
+            <if test="er.isSeekingDating() != null and not er.isSeekingDating()">
+                (p.dates is null or p.dates = #{er.seekingDating,jdbcType=BOOLEAN})
+            </if>
+
+            <if test="er.isSeekingFriends() == null">
+                and (p.friends is null or p.friends = '1' or p.friends = '0')
+            </if>
+            <if test="er.isSeekingFriends() != null and er.isSeekingFriends()">
+                and (p.friends = #{er.seekingFriends,jdbcType=BOOLEAN})
+            </if>
+            <if test="er.isSeekingFriends() != null and not er.isSeekingFriends()">
+                and (p.friends is null or p.dates = #{er.seekingFriends,jdbcType=BOOLEAN})
+            </if>
+
+            <if test="er.isSeekingHookups() == null">
+                and (p.hookup is null or p.hookup = '1' or p.hookup = '0')
+            </if>
+            <if test="er.isSeekingHookups() != null and er.isSeekingHookups()">
+                and (p.hookup = #{er.seekingHookups,jdbcType=BOOLEAN})
+            </if>
+            <if test="er.isSeekingHookups() != null and not er.isSeekingHookups()">
+                and (p.hookup is null or p.hookup = #{er.seekingHookups,jdbcType=BOOLEAN})
+            </if>
+
+            <if test="er.isSeekingLove() == null">
+                and (p.love is null or p.love = '1' or p.love = '0')
+            </if>
+            <if test="er.isSeekingLove() != null and er.isSeekingLove()">
+                and (p.love = #{er.seekingLove,jdbcType=BOOLEAN})
+            </if>
+            <if test="er.isSeekingLove() != null and not er.isSeekingLove()">
+                and (p.love is null or p.love = #{er.seekingLove,jdbcType=BOOLEAN})
+            </if>
+
+            <if test="er.isSeekingRelationships() == null">
+                and (p.donkeysex is null or p.donkeysex = '1' or p.donkeysex = '0')
+            </if>
+            <if test="er.isSeekingRelationships() != null and er.isSeekingRelationships()">
+                and (p.donkeysex = #{er.seekingRelationships})
+            </if>
+            <if test="er.isSeekingRelationships() != null and not er.isSeekingRelationships()">
+                and (p.donkeysex is null or p.donkeysex = #{er.seekingRelationships,jdbcType=BOOLEAN})
+            </if>
+
+            <if test="er.isSeekingSnuggling() == null">
+                and (p.snuggling is null or p.snuggling = '1' or p.snuggling = '0')
+            </if>
+            <if test="er.isSeekingSnuggling() != null and er.isSeekingSnuggling()">
+                and (p.snuggling = #{er.seekingSnuggling})
+            </if>
+            <if test="er.isSeekingSnuggling() != null and not er.isSeekingSnuggling()">
+                and (p.snuggling is null or p.snuggling = #{er.seekingSnuggling,jdbcType=BOOLEAN})
+            </if>
+
+            )
+            <if test="er.hasAnySlidersSlided()">
+                and p.makePrivate = 'f'
+            </if>
+            and status = 0
+
+            <if test="er.sortType != null">
+                <choose>
+                    <when test="er.sortType.name() == 'CHRONOLOGICAL_DESC'">
+                        order by u.created desc
+                    </when>
+                    <when test="er.sortType.name() == 'CHRONOLOGICAL_ASC'">
+                        order by u.created asc
+                    </when>
+                </choose>
+            </if>
+
+        </where>
+    </select>
+
+    <select id="loadAll" resultMap="UserResult">
+        select * from bb_user;
+    </select>
+
+    <select id="countAllActive" resultType="int">
+        select count(*) from bb_user where status = 0;
+    </select>
+
+    <!-- where status is not incomplete -->
+    <select id="usernameAvailable" resultType="int" parameterType="string">
+        <![CDATA[
+        select count(*) from bb_user where
+            lower(username) = lower(#{username}) AND
+            status <> 6;
+        ]]>
+    </select>
+
+    <!-- where status is not incomplete -->
+    <select id="emailAvailable" resultType="int" parameterType="string">
+        <![CDATA[
+        select count(*) from bb_user where email = #{value} and status <> 6;
+        ]]>
+    </select>
+
+
+</mapper>

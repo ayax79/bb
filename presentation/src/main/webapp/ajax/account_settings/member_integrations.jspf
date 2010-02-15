@@ -1,0 +1,6 @@
+<%@include file="/WEB-INF/jsp/include/taglibs.jspf" %>
+<s:form class="bbform bbsettings" id="connections_settings_form"
+        beanclass="com.blackbox.presentation.action.user.AccountSettingsActionBean" method="post">
+<h2>Connection settings</h2>
+<p>Connection settings will go here</p>
+</s:form>

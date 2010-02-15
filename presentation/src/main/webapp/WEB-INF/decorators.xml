@@ -1,0 +1,61 @@
+<decorators defaultdir="/WEB-INF/decorators">
+    <decorator name="simple" page="simple.jsp">
+        <pattern>/login*</pattern>
+        <pattern>/forgot*</pattern>
+        <pattern>/register*</pattern>
+        <pattern>/verify*</pattern>
+        <pattern>/guardian*</pattern>
+        <pattern>/epx*</pattern>
+    </decorator>
+
+    <decorator name="error" page="error.jsp">
+        <pattern>/error*</pattern>
+    </decorator>
+
+    <decorator name="main" page="main.jsp">
+        <pattern>/*</pattern>
+    </decorator>
+
+    <decorator name="admin" page="admin.jsp">
+        <pattern>/admin*</pattern>
+    </decorator>
+
+    <decorator name="register" page="registration.jsp">
+        <pattern>/reg-step*</pattern>
+        <pattern>/register*</pattern>
+    </decorator>
+
+    <excludes>
+        <pattern>/explore*</pattern>
+        <pattern>/ajax/*</pattern>
+        <pattern>/action/ajax/*</pattern>
+        <pattern>/activity/Inbox.action?*</pattern>
+        <pattern>/media/Publish.action*</pattern>
+        <pattern>/activity/*Activity.action*</pattern>
+        <pattern>/chat*</pattern>
+        <pattern>/occasion/Occasions.action*</pattern>
+        <pattern>/persona/MiniPersona.action*</pattern>
+        <pattern>/persona/EditRelationships.action*</pattern>
+        <pattern>/persona*ajax=true*</pattern>
+
+        <pattern>/user/accountsetting/ajax*</pattern>
+        <pattern>/search/Explore.action?user*</pattern>
+        <pattern>/search/Explore.action?event*</pattern>
+        <pattern>/search/AutoComplete.action*</pattern>
+        <pattern>/search/UserChooser.action*</pattern>
+        <pattern>/search/ShowMore.action*</pattern>
+        <pattern>/notification/AjaxNotification.action*</pattern>
+        <pattern>/uploadTarget.html</pattern>
+        
+        <!-- testing pages -->
+        <pattern>/test.jsp</pattern>
+        <pattern>/terms.jsp*</pattern>
+        <pattern>/terms-lightbox-test.jsp</pattern>
+        <pattern>/user/MePage.action*</pattern>
+        <pattern>/user/Scene.action*</pattern>
+        <pattern>/search/LiveSearch.action*</pattern>
+        <pattern>/dialogExampleForm.jspf</pattern>
+        <pattern>/dialogExampleResponse.jspf*</pattern>
+        <pattern>/search/AjaxExplore*</pattern>
+    </excludes>
+</decorators>

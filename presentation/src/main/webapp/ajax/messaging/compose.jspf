@@ -1,0 +1,63 @@
+<%--@elvariable id="actionBean" type="com.blackbox.presentation.action.activity.InboxActionBean"--%>
+<%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
+
+<div class="compose-container">
+	<div class="compose-avatar">
+		<c:choose>
+			<c:when test="${not empty actionBean.recipientUsers}">
+				<img src="${actionBean.recipientUsers[0].profile.avatarUrl}" width="120" height="120" id="recipient-avatar" alt="Profile Image"/>
+			</c:when>
+			<c:otherwise>
+				<img src="${bb:libraryResource('/library/images/spacer.gif')}" width="120" height="120" id="recipient-avatar" alt="Profile Image"/>
+			</c:otherwise>
+		</c:choose>
+	</div>
+	<div class="compose-form">
+		<s:form beanclass="com.blackbox.presentation.action.activity.InboxActionBean" method="post" class="compose-form">
+			<ul>
+				<li>
+					<label for="recipient-name">Recipient</label>
+
+					<c:choose>
+						<c:when test="${not empty actionBean.recipientUsers}">
+							<input type="text" readonly="readonly" value="${bb:displayName(actionBean.recipientUsers[0])}"/>
+							<s:hidden name="recipientGuid" id="recipient-guid" value="${actionBean.recipientUsers[0].guid}"/>
+						</c:when>
+						<c:otherwise>
+							<input type="text" id="recipient-name" readonly="readonly"/>
+							<s:hidden name="recipientGuid" id="recipient-guid"/>
+						</c:otherwise>
+					</c:choose>
+				</li>
+				<li>
+					<label for="msg_subject">Subject</label>
+					<s:text name="subject" id="msg_subject" value="${param.subject}"/>
+				</li>
+				<li>
+					<label for="msg_body">Message</label>
+					<s:textarea name="body" id="msg_body"></s:textarea>
+				</li>
+			</ul>
+			<div class="right"><a href="#" class="btnCancel grey-ds grey-ds-s"><span>Cancel</span></a> <a href="#" class="btnSend grey-ds grey-ds-s"><span>Send</span></a></div>
+			<%--<div class="right"><a href="#" class="btnCancel grey-ds grey-ds-l"><span>Cancel</span></a><a href="#" class="btnSave grey-ds grey-ds-r"><span>Save Draft</span></a></div>--%>
+			<div class="clear"></div>
+		</s:form>
+
+	</div>
+	<div class="clear"></div>
+</div>
+
+<script type="text/javascript">
+	//<![CDATA[
+	$("#recipient-name").click(function() {
+		var userPicker = bb.userPicker.open();
+		userPicker.bind("selectUser", function(event, user) {
+			$("#recipient-name").val(user.username);
+			$("#recipient-guid").val(user.guid);
+			$("#recipient-avatar").attr("src", user.avatarUrl);
+			userPicker.userChooser('close');
+		});
+		return false;
+	});
+	//]]>
+</script>

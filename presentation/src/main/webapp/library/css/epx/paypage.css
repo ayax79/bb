@@ -1,0 +1,983 @@
+html {
+    overflow: auto
+}
+
+html, body {
+    background: transparent url(../../images/bg/dirty-wood.jpg) repeat scroll 0 0;
+    color: #222222;
+    font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+    font-size: 75%;
+    text-align: left;
+}
+
+* {
+    font-family: verdana, arial, sans-serif;
+    font-size: 10pt;
+}
+
+a {
+    color: #DE3700;
+    font-weight: bold;
+    outline-color: -moz-use-text-color;
+    outline-style: none;
+    outline-width: medium;
+    text-decoration: none;
+}
+
+/*  //////////////////////////////////////
+	Header/Footer CSS
+////////////////////////////////////////// */
+
+table {
+    border-collapse: collapse;
+}
+
+table td {
+    border-collapse: collapse;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    vertical-align: top;
+}
+
+#processForm {
+    margin: 0;
+    border: 0;
+    padding-top: 20px;
+    background: none;
+}
+
+#mainTable {
+    margin: 0 auto;
+    text-align: left;
+    width: 616px;
+}
+
+#headerTable {
+    width: 100%;
+}
+
+#headerRow > td, #headerDivRowRcpt > td  {
+    background: transparent url(../../images/containers/register-header.png) no-repeat scroll 0 0;
+    width: 617px;
+    height: 98px;
+}
+
+
+#footerCol, #footerRowRcpt {
+    margin: 0;
+    padding: 0;
+    background: transparent url(../../images/epx/register-bottom.png) no-repeat scroll 0 0;
+    height: 60px;
+}
+
+#purchCol, #resultsDiv, #RecptBtnRow, #receiptRow {
+    padding: 15px 15px 0 15px;
+    margin: 0;
+    background: #fff;
+}
+
+.mainTextBox {
+    border-color: #BBBBBB #E9E8ED #E9E8ED;
+    border-style: solid;
+    border-width: 1px;
+    height: 20px;
+    margin-bottom: 10px;
+    padding: 5px 0 0 5px;
+    font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    color: #333;
+}
+
+.miscLabel {
+    border: none;
+    background: none;
+    color: #E7512C;
+    font-style: italic;
+    font-weight: normal;
+    margin: 12px 0 2px;
+    font-family: cambria, palatino, georgia, times new roman, serif;
+    font-size: 18px;
+    display: block;
+}
+
+.mainLabel {
+    display: block;
+    border: none;
+    background: none;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.spacerRow {
+    display: none;
+}
+
+.horzRule {
+    display: none;
+}
+
+#miscInvRow, #invoiceNumRow, #miscPhoneRow, #userdataSpaceRow, #miscCardRow, #phoneCellRow, #phoneWKRow, #miscUD1Row, #miscUD2Row, #miscUD3Row,
+    #miscUD4Row, #miscUD5Row, #miscUD6Row, #miscUD7Row, #miscUD8Row, #miscUD9Row,
+    #miscUD10Row, #userData1Row, #userData2Row, #userData3Row,
+    #userData4Row, #userData5Row, #userData6Row, #userData7Row, #userData8Row,
+    #userData9Row, #userData10Row, #radio3Row, #cardImageLbl, #swipeCmd, #radioButtonRow {
+    display: none;
+}
+
+#miscNameRow {
+    display: block;
+    clear: both;
+}
+
+#firstNameRow, #lastNameRow {
+    display: block;
+}
+
+#addressRow {
+    display: block;
+}
+
+#cityStZipRow {
+    clear: both;
+}
+
+#cityStZipLbl {
+    display: none;
+}
+
+#city, #state, #zip {
+    display: block;
+}
+
+#amountRow {
+    clear: both;
+    display: block;
+    float: left;
+    vertical-align: middle;
+}
+
+#amountLbl {
+    float: left;
+    width: auto;
+}
+
+#amount {
+    float: left;
+    border: 0;
+    background: #FDFCD6 none repeat scroll 0 0;
+    border: 0;
+    display: inline-block;
+    margin: 0;
+}
+
+#ccGroupDiv {
+    clear: both;
+    display: block;
+    vertical-align: middle;
+}
+
+#creditCardRow, #expDateRow, #cvv2Row {
+    clear: both;
+}
+
+#cvv2 {
+    width: 50px;
+}
+
+#disclaimerDiv {
+    clear: both;
+}
+
+/* Hide ACH */
+#achGroupDiv {
+    display: none;
+}
+
+/* Hide unused card types */
+#imgAMEX {
+    display: none;
+}
+
+#imgDiscover {
+    display: none;
+}
+
+#imgSTAR {
+    display: none;
+}
+
+#imgPulse {
+    display: none;
+}
+
+#imgNYCE {
+    display: none;
+}
+
+/* Hide the top button row */
+#button2Row {
+    clear: both;
+    margin-bottom: 1.5em;
+}
+
+#buttonRow {
+    margin: 0;
+    float: right;
+}
+
+#RecptBtnRow > td {
+    text-align: right;
+    padding: 15px 15px 0 0;
+}
+
+#miscCardImageRow {
+    display: none;
+}
+
+#headerDiv, #headerDivRcpt {
+    padding: 25px 0 0 15px;
+}
+
+#hdr0Lbl, #hdr0LblRcpt {
+    -moz-background-clip: border;
+    -moz-background-inline-policy: continuous;
+    -moz-background-origin: padding;
+    background: transparent url(../../images/register/register-header-logo.png) no-repeat scroll left bottom;
+    font-family: cambria, palatino, georgia, times new roman, serif;;
+    padding-left: 55px;
+    color: #FFFFFF;
+    font-size: 30px;
+    font-weight: normal;
+    line-height: 1;
+}
+
+/* This is the cancel button */
+#hdrHprLnk, #hdrHprLnkRcpt {
+    display: none;
+}
+
+/* Error styles */
+#miscMessageRow, .mainValidationLbl, #amountRow {
+    -moz-background-clip: border;
+    -moz-background-inline-policy: continuous;
+    -moz-background-origin: padding;
+    background: #FDFCD6 none repeat scroll 0 0;
+    border: 1px solid #F1F0CC;
+    clear: both;
+    display: inline-block;
+    margin: 0;
+    padding: 8px;
+}
+
+#miscMessageRow span {
+    -moz-background-clip: border;
+    -moz-background-inline-policy: continuous;
+    -moz-background-origin: padding;
+    background: transparent none repeat scroll 0 0;
+    color: #DD3B26 !important;
+    display: inline-block;
+    font-size: 11px !important;
+    font-weight: normal !important;
+    line-height: 12px;
+    margin: 2px 0 !important;
+    padding: 3px 3px 3px 5px;
+}
+
+/* Disclaimer row */
+#debitDisclaimerRow span {
+    font: italic 11px / 1.2em georgia, 'times new roman', times, serif;
+    color: #333;
+    padding: 20px 0;
+}
+
+/* Specific to response row */
+.respLabel {
+    border: none;
+    background: none;
+    font-weight: bold;
+    font-size: 12px;
+}
+#resultImgRow {
+    float: left;
+    width: 60px;
+}
+#respTextRow {
+    float: left;
+    width: 60%;
+    vertical-align: middle;
+}
+#responseTextLbl {
+    border: 0;
+    background: none;
+    width: 450px;
+    vertical-align: middle;
+}
+#respMsgRow {
+    clear: both;
+}
+#respMsgLbl, #respMsgTB {
+    display: none;
+}
+#respCodeRow {
+    display: none;
+}
+
+#RecptPad {
+    display: none;
+}
+
+#footerDivRcpt {
+    display: none;
+}
+
+/*
+#headerBar {
+  background: url(images/topbarspn.gif) center left repeat-x;
+  height: 6px;
+  vertical-align: middle;
+}
+
+#hdrLogoImg {
+  position: absolute;
+  left: 5px;
+  top: 0px;
+  background: url(images/slogo.gif) center left no-repeat;
+  height: 75px;
+  width: 150px;
+}
+
+#hdrHprLnk {
+  position: absolute;
+  top: 0px;
+  right: 30px;
+  color: #1834C4;
+  text-decoration: none;
+}
+
+#hdrHprLnk:hover {
+  color: #009900;
+  text-decoration: underline;
+}
+
+#footerTable {
+  width: 100%;
+}
+
+#footerDiv {
+  text-align: right;
+  background: url(../../images/containers/register-bottom.png) top left no-repeat;
+  padding-bottom: 100px;
+}
+
+#footerCol {
+  height: 30px;
+  vertical-align: bottom;
+}
+
+#ftr0Lbl {
+  position: relative;
+  bottom: 5px;
+  right: 5px;
+  color: #11278F;
+  font-size: 8pt;
+}
+
+#footerBarRow {
+  background-image: url(images/bbarslice.gif);
+  width: 100%;
+}
+
+#footerBar {
+  background: url(images/bottombar-nohome.gif) center right no-repeat;
+  height: 20px;
+  width: 742px;
+}
+
+/*  //////////////////////////////////////
+ PayPage CSS
+//////////////////////////////////////////
+
+#mainDiv {
+  width: 550px;
+  margin: 0 30px;
+  padding: 0;
+}
+
+td#purchCol {
+  margin: 0;
+  padding: 0;
+  background: url(../../images/containers/register-body.png) top left repeat-y;
+}
+
+.hidden {
+  display: none;
+  visibility: hidden;
+}
+
+#processForm {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+#headerSpaceRow {
+  display: inline;
+  height: 5px;
+}
+
+#first_name, #last_name, #address, #invoice_nbr {
+  width: 20em;
+}
+
+#city {
+  width: 10em;
+}
+
+#state {
+  width: 2em;
+}
+
+#amount, #zip, #check_nbr {
+  width: 8em;
+}
+
+#amount {
+  border: 0;
+}
+
+#account_nbr {
+  width: 14em;
+}
+
+#cvv2 {
+  width: 4em;
+}
+
+#phone_hm, #phone_cell, #phone_wk {
+  width: 8em;
+}
+
+#user_data_1, #user_data_2, #user_data_3, #user_data_4, #user_data_5,
+  #user_data_6, #user_data_7, #user_data_8, #user_data_9, #user_data_10 {
+  width: 25em;
+}
+
+
+
+#amountSpaceRow, #trantypeSpaceRow, #button2SpaceRow {
+  display: inline;
+}
+
+#monthDDL, #yearDDL {
+  left: 5px;
+}
+
+.hyprLink {
+  position: relative;
+  left: 10px;
+  color: #11278F;
+  font-size: 8pt;
+}
+
+#acctTypeSLbl, #acctTypeCLbl {
+  text-align: left;
+  width: 75px;
+}
+
+.horzRule {
+  position: relative;
+  height: 20px;
+}
+
+.Row {
+  position: relative;
+  margin-top: 5px;
+}
+
+ */
+.miscRow {
+  position: relative;
+  height: 25px;
+}
+/*
+.spacerRow {
+  display: none;
+  height: 25px;
+}
+
+.mainLabel {
+  color: #DE3700;
+  font-weight: bold;
+  background-color: #fff;
+  border: 0;
+  text-decoration: none;
+  display: block;
+  clear: both;
+}
+
+.mainTextBox {
+  position: relative;
+  left: 5px;
+  color: #000000;
+  background-color: #FFFFFF;
+  text-align: left;
+  border: 1px solid #000000;
+}
+
+#miscMessageRow {
+  background-color: #E0E0E0;
+  border-color: #880000;
+  border-style: solid;
+  border-width: 2px;
+  width: 900px;
+  left: 10px;
+  position: relative;
+}
+
+#imgMessage {
+  width: 12pt;
+  height: 12pt;
+}
+
+#miscMessage1 {
+  font-size: 12pt;
+  padding: 5px;
+}
+
+#miscAppMessage, #miscMessage2 {
+  padding: 5px;
+}
+
+#miscSpaceRow2 {
+  height: 8px;
+}
+
+#miscMessageSpacerRow {
+  height: 10px;
+}
+
+.mainValidationLbl {
+  left: 155px;
+  width: 500px;
+  color: #FF0000;
+  padding: 3px;
+  height: 1em;
+  position: relative;
+}
+
+#miscCardImageRow {
+  display: inline;
+}
+
+#miscCardImageLbl {
+  left: 10px;
+  font-weight: normal;
+  font-size: 10pt;
+}
+
+#cardImageRow {
+  position: relative;
+  margin-left: 20px;
+  white-space: nowrap;
+}
+
+#imgAMEX, #imgDiscover, #imgSTAR, #imgPulse, #imgNYCE {
+  display: none;
+}
+
+{
+
+}
+
+.cardImage {
+  position: relative;
+  width: 45pt;
+}
+
+#disclaimerSpaceRow {
+  display: inline;
+  height: 3px;
+}
+
+#achDisclaimerRow > div {
+  width: 400px;
+}
+
+#achDisclaimerPrint {
+  left: 160px;
+}
+
+#achDisclaimerTxt {
+  position: relative;
+  left: 160px;
+  width: 700px;
+  height: 50px;
+}
+
+#debitDisclaimerTxt {
+  position: relative;
+  display: block;
+  left: 160px;
+  width: 700px;
+  height: 50px;
+  text-align: left;
+}
+
+.miscLabel {
+  position: relative;
+  font-size: 12pt;
+  font-weight: bold;
+  color: #11278F;
+  border: 0px;
+  width: 25em;
+}
+
+#buttonRow, #button2Row {
+  top: 0px;
+  left: 0px;
+  height: 30px;
+  position: relative;
+}
+
+#submitBtn, #submit2Btn {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+#resetBtn, #reset2Btn {
+  position: absolute;
+  top: 10px;
+  left: 100px;
+}
+
+#cancelBtn, #cancel2Btn {
+  position: absolute;
+  top: 10px;
+  right: 30px;
+}
+
+.mainButton {
+  width: 75px;
+  color: #3366cc;
+  background-color: #eeeeee;
+  font-weight: bold;
+  font-size: 9px;
+  border: 1px solid #000000;
+}
+
+/*  //////////////////////////////////////
+  Receipt Header/Footer CSS
+//////////////////////////////////////////
+
+#headerRowRcpt > td {
+  height: 85px;
+}
+
+#headerTableRcpt {
+  width: 100%;
+}
+
+#headerDivRcpt {
+  width: 100%;
+  text-align: center;
+  height: 79px;
+  background: url(images/headerbkgnd.gif) center right no-repeat;
+}
+
+#headerBarRcpt {
+  background: url(images/topbarspn.gif) center left repeat-x;
+  height: 6px;
+  vertical-align: middle;
+}
+
+#hdrLogoImgRcpt {
+  position: absolute;
+  left: 5px;
+  top: 0px;
+  height: 75px;
+  width: 150px;
+  background: url(images/slogo.gif) center left no-repeat;
+}
+
+#hdr0LblRcpt {
+  color: #1834C4;
+  font-size: 12pt;
+  font-weight: bold;
+  line-height: 79px;
+}
+
+#hdrHprLnkRcpt {
+  position: absolute;
+  top: 0px;
+  right: 30px;
+  color: #1834C4;
+  text-decoration: none;
+}
+
+#hdrHprLnkRcpt:hover {
+  color: #009900;
+  text-decoration: underline;
+}
+
+#footerTableRcpt {
+  width: 100%;
+}
+
+#footerDivRcpt {
+  text-align: right;
+}
+
+#footerColRcpt {
+  height: 30px;
+  vertical-align: bottom;
+}
+
+#ftr0LblRcpt {
+  position: relative;
+  bottom: 5px;
+  right: 5px;
+  color: #11278F;
+  font-size: 8pt;
+}
+
+#footerBarRowRcpt {
+  background-image: url(images/bbarslice.gif);
+  width: 100%;
+}
+
+#footerBarRcpt {
+  background: url(images/bottombar-nohome.gif) center right no-repeat;
+  height: 20px;
+  width: 742px;
+}
+
+/*  //////////////////////////////////////
+  End Receipt Header/Footer CSS
+////////////////////////////////////////// */
+
+/*  //////////////////////////////////////
+   Receipt CSS
+////////////////////////////////////////// 
+
+#RcptRowHidden {
+    height: 5px;
+}
+
+#RecptBtnRow {
+    text-align: center;
+    height: 70px;
+}
+
+#RecptBtnRow > td {
+    vertical-align: middle;
+}
+
+.RecptBtn {
+    position: relative;
+    font-weight: bold;
+    width: 110px;
+    height: 35px;
+    background-color: #eeeeee;
+    color: #3366cc;
+    border: 1px solid #000000;
+    font-size: 10px;
+}
+
+#resultsDiv {
+    position: relative;
+    width: 400px;
+    height: 175px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+}
+
+#resultImgRow {
+    position: relative;
+    height: 40px;
+}
+
+#respTxtRow {
+    height: 30px;
+}
+
+#responseTextLbl {
+    position: relative;
+    width: 350px;
+    color: #1834C4;
+    font-size: 12pt;
+    font-weight: bold;
+    border: 0px;
+    text-align: center;
+}
+
+.mainRow {
+    position: relative;
+    height: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+.respLabel {
+    position: relative;
+    width: 190px;
+    text-align: right;
+    color: #11278F;
+    border: 0px;
+}
+
+.respTextBox {
+    position: relative;
+    left: 5px;
+    width: 188px;
+    color: #11278F;
+    text-align: left;
+    border: 0px;
+}
+
+#respAmountLbl, #respAmountTB {
+    font-weight: bold;
+}
+
+.SpaceRow {
+    height: 5px;
+}
+
+.RecptSpaceRow {
+    height: 10px;
+}
+
+#receiptRow {
+    vertical-align: top;
+}
+
+.RecptRow {
+    position: relative;
+    height: 15px;
+    width: 100%;
+}
+
+#RecptPad {
+    position: relative;
+    width: 200px;
+    border: 1px solid #000000;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.RecptLeft {
+    position: absolute;
+    text-align: left;
+    background-color: Transparent;
+    color: #11278F;
+    left: 4px;
+    width: 80px;
+    font-size: 8pt;
+    border: 0px;
+    top: 0px;
+}
+
+.RecptCenter {
+    position: absolute;
+    text-align: center;
+    background-color: Transparent;
+    color: #11278F;
+    width: 100%;
+    border: 0px;
+    left: 0px;
+}
+
+.RecptRight {
+    position: absolute;
+    text-align: right;
+    background-color: Transparent;
+    color: #11278F;
+    right: 4px;
+    width: 120px;
+    font-size: 8pt;
+    border: 0px;
+    top: 0px;
+}
+
+#guid {
+    width: 174px;
+}
+
+#usrData1Row, #usrData2Row, #usrData3Row, #usrData4Row, #usrData5Row,
+    #usrData6Row, #usrData7Row, #usrData8Row, #usrData9Row, #usrData10Row {
+    display: none;
+}
+
+#tran_amountLbl, #tran_amount {
+    font-weight: bold;
+    font-size: 10pt;
+}
+
+#signatureLblRow {
+    text-align: center;
+}
+
+#signatureLineRow {
+    height: 5px;
+    width: 100%;
+}
+
+#signatureLine {
+    position: relative;
+    border-top: 1px dashed #3366cc;
+    border-bottom: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    height: 2px;
+    width: 90%
+}
+
+#signature {
+    font-size: 8pt;
+}
+
+/*  //////////////////////////////////////
+	End Receipt CSS
+////////////////////////////////////////// */
+
+ul#reg-nav {
+	border-bottom: 1px solid #60c2f3;
+    font-family: Helvetica, Arial, Verdana, sans-serif!important;
+	margin: 15px 0;
+	padding: 0;
+	width: 583px;
+    clear: both;
+    display: block;
+	}
+	
+ul#reg-nav li {
+	color: #60c2f3;
+	display: block;
+	float: left;
+    font-family: Helvetica, Arial, Verdana, sans-serif!important;
+    font-size: 12px!important;
+	padding: 4px 3px;
+	margin-right: 10px;
+	}
+	
+ul#reg-nav li.current {
+	background-color: #60c2f3;
+	color: #fff;
+	}
+	
+ul#reg-nav li.complete {
+	color: #ccc;
+	}
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+    }

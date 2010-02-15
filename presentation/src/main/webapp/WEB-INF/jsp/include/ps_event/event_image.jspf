@@ -1,0 +1,21 @@
+<%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
+<script type="text/javascript">
+    var selected_image={guid:null,src:null};
+    var select_image=function(id,src){
+        $(".event_media").removeClass("event_activity")
+        $("#"+id).addClass("event_activity")
+        selected_image.src=src;
+        selected_image.guid=id;
+    }
+</script>
+<div id="event_image" class="inv_main">
+    <ul>
+        <c:forEach var="media" items="${actionBean.personalImages}">
+            <li class="pre_pic1 pre_pic_d">
+                <a class="media" href="javascript:void(0);" onclick="javascript:select_image('${media.guid}','${media.location}')"><img id="${media.guid}"  class="event_media" src="${media.location}"  alt="${media.fileName}" onerror='Activity.Utils.imgPoll(event, this);'  /></a>
+            </li>
+        </c:forEach>
+        <div class="clear"></div>
+    </ul>
+
+</div>

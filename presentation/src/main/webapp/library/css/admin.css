@@ -1,0 +1,107 @@
+h2 {
+    margin: 0 0 2em 0;
+}
+label {
+    font-weight: bold;
+    margin-right: .5em;
+}
+table.admin {
+   margin: 0;
+}
+table.admin thead {
+    background: #000;
+    color: #fff;
+}
+table.admin th {
+   padding: 8px;
+}
+table.admin td {
+   padding: 8px;
+}
+table.admin td.actions {
+    border-left: 1px dotted #999;
+    background: #eee;
+}
+table.admin td.actions ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+table.admin td.actions li {
+    margin:  0 0 1.4em 0;
+}
+.menu {
+    margin-bottom:3px;
+
+}
+.success {
+    font-weight: bold;
+    color: #33cc00;
+    margin-bottom: 10px;
+}
+
+.admin-menu {
+    float: right;
+    text-align: right;
+    width: 30%;
+}
+
+.admin-menu ul li {
+    display: block;
+    float: none;
+
+}
+
+.admin-content h2 {
+    float: left;
+    width: 60%;
+}
+
+.admin-content ol li {
+    padding-bottom: 1.5em;
+}
+
+.admin-content ol li span {
+    font: italic 100%/1.3em georgia, times, "times new roman", serif;
+    color: #888;
+    display: block;
+}
+
+.admin-content ol ul {
+    padding: 0;
+    margin: 0;
+}
+
+.admin-content ol ul li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.admin-content ol ul li a {
+    font-weight: normal;
+}
+
+legend {
+    font: bold italic 120%/1em georgia, "times new roman", times, serif;
+    color: #222;
+}
+form {
+    margin-bottom: 2em;
+}
+
+.admin-message {
+    border: 1px dotted green;
+    background-color: #ccfecc;
+    padding: 10px;
+}
+
+fieldset.errors {
+    border: 1px dotted red;
+    background-color: #ffc0cb;
+    padding: 2px;
+    margin-bottom: 1.5em;
+}
+fieldset.errors legend {
+    color: red;
+}

@@ -1,0 +1,9 @@
+#parse("/velocity/html-email-header.vm")
+What?!,<br /><br />
+
+Ok, $recipient_name, this just in: $requesting_username wants to be your friend.<br />
+If you two agree it means that you're cool disclosing your real name to each other.<br />
+It also means that when you post content just to "Friends" that $requesting_username will see those posts.<br /><br />
+
+So. Whatcha think? <a href="$presentation_url">Login</a> now and click on your messages tab to check them out and see if you want to accept. Wheeee!
+#parse('/velocity/html-email-footer.vm')

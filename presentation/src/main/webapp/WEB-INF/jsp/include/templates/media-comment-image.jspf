@@ -1,0 +1,12 @@
+<%@ include file="/WEB-INF/jsp/include/taglibs.jspf" %>
+<a href="${childActivity.location}">
+	<c:choose>
+		<c:when test="${empty childActivity.location}">
+			<%-- because the file transfer to S3 is asynchronous, we need to poll the image until it loads :( --%>
+			<img src="${bb:libraryResource('/library/images/spacer.gif')}" alt="loading image..." onerror="Activity.Utils.imgPoll(event, this);" class="lightbox"/>
+		</c:when>
+		<c:otherwise>
+			<img src="${childActivity.thumbnailLocation}" alt="" class="lightbox"/>
+		</c:otherwise>
+	</c:choose>
+</a>

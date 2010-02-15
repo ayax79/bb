@@ -1,0 +1,42 @@
+<%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
+<div class="mini-slider" id="mailbox-sliders" style="width:300px;">
+
+	<div class ="banana filter-criteria slider_container">
+		<input type="hidden" name="explore.orientation.startIndex" class="slider-val-min"/>
+		<input type="hidden" name="explore.orientation.lastIndex" class="slider-val-max"/>
+		<label><fmt:message key="settings.field.orientation"/></label>
+		<ui:slider containerClass="testSlider" labelLeft="Gay" labelCenter="Bi" labelRight="Hetero"/>
+	</div>
+
+	<div class ="banana filter-criteria slider_container">
+		<input type="hidden" name="explore.polyStatus.startIndex" class="slider-val-min"/>
+		<input type="hidden" name="explore.polyStatus.lastIndex" class="slider-val-max"/>
+		<label><fmt:message key="settings.field.addPartners"/></label>
+		<ui:slider containerClass="testSlider" labelLeft="Room for more" labelCenter="It fluctuates" labelRight="Not right now"/>
+	</div>
+
+	<div class ="banana filter-criteria slider_container">
+		<input type="hidden" name="explore.relationshipStatus.startIndex" class="slider-val-min"/>
+		<input type="hidden" name="explore.relationshipStatus.lastIndex" class="slider-val-max"/>
+		<label><fmt:message key="settings.field.status"/></label>
+		<ui:slider containerClass="testSlider" labelLeft="Unattached" labelCenter="It's complicated" labelRight="Attached"/>
+	</div>
+
+	<div class ="banana filter-criteria slider_container">
+		<input type="hidden" name="explore.interestLevel.startIndex" class="slider-val-min"/>
+		<input type="hidden" name="explore.interestLevel.lastIndex" class="slider-val-max"/>
+		<label><fmt:message key="settings.field.lovin"/></label>
+		<ui:slider containerClass="testSlider" labelLeft="Going slow" labelCenter="If it happens, it happens" labelRight="Gotta have it"/>
+	</div>
+
+	<div class ="banana filter-criteria slider_container">
+		<input type="hidden" name="explore.energyLevel.startIndex" class="slider-val-min"/>
+		<input type="hidden" name="explore.energyLevel.lastIndex" class="slider-val-max"/>
+		<label><fmt:message key="settings.field.vibe"/></label>
+		<ui:slider containerClass="testSlider" labelLeft="Party mode" labelCenter="Let's hang" labelRight="Lying low"/>
+	</div>
+
+	<a href="#" class="btnCompose grey-ds grey-ds-s"><span>Search</span></a>
+
+</div>
+

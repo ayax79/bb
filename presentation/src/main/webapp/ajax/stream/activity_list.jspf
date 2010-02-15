@@ -1,0 +1,72 @@
+<%@ page import="com.blackbox.activity.ActivityTypeEnum" %>
+<%@ page import="com.blackbox.activity.IActivityThread" %>
+<%@ page import="com.blackbox.activity.IActivity" %>
+<%@ page import="com.blackbox.presentation.action.util.JSONUtil" %>
+
+<%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
+<%--@elvariable id="actionBean" type="com.blackbox.presentation.action.user.MePageActionBean"--%>
+<c:choose>
+	<c:when test="${not empty actionBean.threads}">
+
+		<%------------------------------------------------------------------------------
+		TODO:
+		All of the template JSPs should probably just be turned into custom jsp tags so
+		we can pass the activity thread  and children explicitly, rather than putting
+		them in the request. This would also make it nicer for embedding the templates
+		in the html page as we could structure them differently.
+		------------------------------------------------------------------------------%>
+
+		<%------------------------------------------------------------------------------
+		Creates the appropriate HTML for each Activity object, depending on type
+		------------------------------------------------------------------------------%>
+		<c:forEach var="activityThread" items="${actionBean.threads}">
+			<c:set var="parent" scope="page" value="${activityThread.parent}" />
+			<c:set var="activity" scope="request" value="${activityThread}" />
+			<c:choose>
+				<c:when test="${bb:isMessage(parent)}">
+					<%-- MESSAGE --%>
+					<%@include file="/WEB-INF/jsp/include/templates/message.jspf"%>
+				</c:when>
+				<c:when test="${bb:isMedia(parent)}">
+					<%-- MEDIA --%>
+					<%@include file="/WEB-INF/jsp/include/templates/media.jspf" %>
+				</c:when>
+				<c:when test="${bb:isOccasion(parent)}">
+					<%-- OCCASION --%>
+					<p>THIS IS AN EVENT - TEMPLATE NOT COMPLETE</p>
+					<%--<%@include file="/WEB-INF/jsp/include/templates/events.jspf" %>--%>
+				</c:when>
+			</c:choose>
+		</c:forEach>
+
+		<%------------------------------------------------------------------------------
+		Creates the javascript that is required to register each activity object.
+		By registering an object, the front end associates a data publish with the dom
+		node using jQuery's data object.
+		------------------------------------------------------------------------------%>
+		<c:if test="${not empty actionBean.threads}">
+		<script type="text/javascript">
+		//<![CDATA[
+		Activity.registerObject([
+		<c:forEach var="activityThread" items="${actionBean.threads}" varStatus="index">
+			${bb:activityThreadToJson(activityThread)}<c:if test="${!index.last}" >, </c:if>
+		</c:forEach>
+			]);
+		//]]>
+		</script>
+		</c:if>
+
+	</c:when>
+	<c:otherwise>
+		<p class="no-results">No posts</p>
+	</c:otherwise>
+</c:choose>
+<script type="text/javascript">
+//<![CDATA[
+(function () {
+
+	// update paging info counts, whateva
+
+})();
+//]]>
+</script>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="Privacy">
+
+    <select id="load" resultType="com.blackbox.security.Privacy" parameterType="string">
+        select
+        p.nonFriendsCanPm as nonFriendsCanPm,
+        p.nonFriendsCanFollow as nonFriendsCanFollow,
+        p.nonFriendsCanComment as nonFriendsCanComment,
+        p.nonFriendsCanSearch as nonFriendsCanSearch,
+        p.limitedCanPm as limitedCanPm,
+        p.limitedCanFollow as limitedCanFollow,
+        p.limitedCanComment as limitedCanComment,
+        p.limitedCanSearch as limitedCanSearch,
+        p.limitedCanSeePictures as limitedCanSeePictures,
+        p.limitedCanSeeActivity as limitedCanSeeActivity,
+        p.limitedCanSeeGifts as limitedCanSeeGifts
+        from
+        bb_profile p where p.user_guid = #{value}
+    </select>
+
+</mapper>

@@ -1,0 +1,46 @@
+<%--@elvariable id="actionBean" type="com.blackbox.presentation.action.user.MePageActionBean"--%>
+<%@include file="/WEB-INF/jsp/include/taglibs.jspf"%>
+
+<%--<div class="filters-menu-container">--%>
+	<%--<ul class="filters-menu">--%>
+		<%--<c:set var="actionUrl"><s:url beanclass="com.blackbox.presentation.action.user.MePageActionBean" event="activity_list"/></c:set>--%>
+		<%--<li><ui:anchorButton href="${actionUrl}&activityFilterType=ALL" typeClass="smlbtn" styleClass="grey-blue btnFilterEveryone filterButton">All conversations</ui:anchorButton></li>--%>
+		<%--<li><ui:anchorButton href="${actionUrl}&activityFilterType=OWNER" typeClass="smlbtn" styleClass="grey-blue btnFilterFriend filterButton">Started by me</ui:anchorButton></li>--%>
+		<%--<li><ui:anchorButton href="${actionUrl}&activityFilterType=PARTICIPANT" typeClass="smlbtn" styleClass="grey-blue btnFilterFollower filterButton">Participating in</ui:anchorButton></li>--%>
+	<%--</ul>--%>
+	<%--<div class="clear"></div>--%>
+<%--</div>--%>
+
+<div id="personaStream">
+	<%@ include file="/ajax/stream/activity_list.jspf"%>
+</div>
+
+<ui:publisher id="miniPublisher" className="mini" config="mini"/>
+
+<c:if test="${not empty actionBean.threads}">
+	<a href="#" id="persona-more-link" class="more-activity"><span>Load 10 more</span></a>
+</c:if>
+
+<script type="text/javascript">
+//<![CDATA[
+	var personaStream = new Activity.Stream("#personaStream");
+	personaStream.addEventTypes([
+		Activity.Event.MESSAGE_EVENT,
+		Activity.Event.MEDIA_EVENT,
+		Activity.Event.OCCASION_EVENT
+	], "scene");
+	personaStream.activate();
+
+	personaStream.bindFilterButtons($(".filters-menu"));
+	personaStream.setFilterParamName("activityFilterType");
+	personaStream.setStartIndexParamName("startIndex");
+	personaStream.setMaxResultsParamName("maxResults");
+
+	personaStream.bindShowMore($("#persona-more-link"), '<s:url beanclass="com.blackbox.presentation.action.persona.PersonaActionBean" event="activity_list" ><s:param name="identifier" value="${actionBean.user.guid}"/></s:url>');
+
+	bb.widgets.createMiniPublisher();
+	bb.pageInit.bindArticleEvents($("#personaStream"));
+
+
+//]]>
+</script>

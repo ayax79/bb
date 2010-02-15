@@ -1,0 +1,20 @@
+<div id="fctop"></div>
+	<div id="footer-container">
+	<div id="footer" class="clearfix">
+		<div class="footer-list first">
+			<img src="${bb:libraryResource('/library/images/footer/bb-logo-footer.png')}" alt="Blackbox Republic is made with love"/>
+			<p>Blackbox Republic is an online social dating site <br/>for different people like you.</p>
+ 			<p>Welcome to <em>less complicated</em>. Welcome to Blackbox Republic.</p>
+			<p class="footer-links"><a href='http://www.blackboxrepublic.com/tos' target="_blank" title="Terms of Service - opens in new browser window">Terms</a>&nbsp;|&nbsp;<a href='http://www.blackboxrepublic.com/privacy' target="_blank" title="Privacy - opens in new browser window">Privacy</a>&nbsp;|&nbsp;<a href='http://www.blackboxrepublic.com/faq' target="_blank" title="Frequently Asked Questions - opens in new browser window">FAQ</a></p>
+			<p class="footer-copyright">&copy; 2009 BlackBox Universe, LLC. All rights reserved.</p>
+		</div>
+		<div class="footer-list">
+			<ul>
+				<li><a href="http://www.blackboxrepublic.com/community/register">Sign up</a></li>
+				<li><a href="http://www.blackboxrepublic.com/private-and-social">How we&#8217;re different</a></li>
+				<li><a href="http://www.blackboxrepublic.com/dues">Republic dues</a></li>
+				<li class="last"><a href="http://www.blackboxrepublic.com/about">Company</a></li>
+			</ul>
+		</div>
+	</div>
+</div>

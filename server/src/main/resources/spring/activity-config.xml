@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2009. Blackbox, LLC
+  ~ All rights reserved.
+  -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd"
+        >
+
+    <bean id="loadAssociateActivityThreadListener" class="com.blackbox.server.activity.listener.LoadAssociatedActivityThreadListener"/>
+    <bean id="loadActivityThreadListener" class="com.blackbox.server.activity.listener.LoadActivityThreadListener"/>
+    <bean id="loadLastActivityListener" class="com.blackbox.server.activity.listener.LoadLastActivityListener"/>
+
+    <bean id="activityStreamEngineFactory" class="com.blackbox.server.activity.engine.EngineFactory"
+          p:engines-ref="activityStreamEngines"/>
+    <util:map id="activityStreamEngines">
+        <entry key="PERSONAL" value-ref="personnalActivityStreamEngine"/>
+        <entry key="FRIEND" value-ref="privateFriendActivityStreamEngine"/>
+        <entry key="GLOBAL" value-ref="globalActivityStreamEngine"/>
+        <entry key="EVERYONE_FILTER" value-ref="everyoneFilterActivityStreamEngine"/>
+        <entry key="FOLLOW" value-ref="privateFollowActivityStreamEngine"/>
+    </util:map>
+</beans>

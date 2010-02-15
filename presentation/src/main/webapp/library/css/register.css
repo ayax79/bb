@@ -1,0 +1,786 @@
+.guardian-message {
+
+}
+
+.reg-step-section {
+    width: 556px;
+    float: left;
+    margin-right: 30px;
+}
+
+.bbform-container {
+/*height: 1400px;*/
+}
+
+.reg-steps-mask {
+    width: 556px;
+    overflow: hidden;
+    position: relative;
+}
+
+.reg-steps-container {
+    width: 2000px;
+    position: relative;
+    min-height: 330px;
+}
+
+.register .bbform-header {
+    height: 98px;
+    padding-left: 48px;
+    background: transparent url(${library.prefix}/images/containers/register-header.png) center bottom no-repeat;
+}
+
+.register .bbform-header h1 {
+    background: transparent url(${library.prefix}/images/register/register-header-logo.png) left bottom no-repeat;
+    padding-top: 40px;
+    padding-left: 55px;
+    font-family: cambria, palatino, georgia, times new roman, serif;
+}
+
+.register .bbform-header h1 a:hover {
+	color: #DE3700;
+	text-decoration: underline;
+	}
+
+.register .bbform-h1 {
+    font-size: 30px;
+    font-weight: normal;
+    color: #fff;
+}
+
+.register .bbform-h1 span {
+    display: inline;
+    font-size: 13px;
+    font-family: "Helvetica Neue", Helvetica, arial, verdana, sans-serif;
+    margin: 6px 0;
+}
+
+.bbform-body {
+    padding-bottom: 0 !important;
+}
+
+.bbform-body {
+    background: transparent url(${library.prefix}/images/containers/register-body.png) repeat-y;
+    padding: 1px 45px;
+}
+
+.bbform-body h2, .reg-col-l .bbform h2 {
+    border: 0;
+    color: #e7512c;
+    font-style: italic;
+    font-weight: normal;
+    margin: 12px 0 2px 0;
+}
+
+.bbform-body h2.first {
+    margin-top: 0;
+}
+
+.bbform-body h2.welcome {
+	margin-top: 0;
+	margin-bottom: 0;
+	color: #000;
+	font-style: normal;
+	font-size: 20px;
+	}
+
+ul#reg-nav {
+    border-bottom: 1px solid #60c2f3;
+    font-size: 12px;
+    margin: 15px 0;
+    padding: 0;
+    width: 583px;
+}
+
+ul#reg-nav li {
+    color: #60c2f3;
+    display: block;
+    float: left;
+    padding: 4px 3px;
+    margin-right: 10px;
+}
+
+ul#reg-nav li.current {
+    background-color: #60c2f3;
+    color: #fff;
+}
+
+ul#reg-nav li.complete {
+    color: #ccc;
+}
+
+.reg-col-l {
+    float: left;
+    width: 314px;
+}
+
+.reg-col-r {
+    float: right !important;
+    margin-right: 5px;
+    width: 252px;
+}
+
+.register .movie-box {
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+    line-height: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.register .bbform li.slider_container {
+    margin-bottom: 4px;
+    padding-right: 14px;
+}
+
+.register .info-sliders {
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+.register label, .register .bbform label.textinput {
+    font-style: normal;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 1px;
+}
+
+.register input#register_zip {
+    margin-bottom: 10px !important;
+}
+
+.register label.normal {
+    font-weight: normal;
+}
+
+.register .bbform label.sub {
+    margin-left: 0;
+}
+
+.register input.textinput {
+    border: 1px solid #e9e8ed;
+    border-top: 1px solid #bbb;
+    height: 20px;
+    margin-bottom: 10px;
+    padding: 5px 0 0 5px;
+    width: 99%;
+}
+
+.register input#register_birthday.textinput {
+    width: 230px;
+    margin-bottom: 1px;
+}
+
+.register .bbform label.birthday-label {
+    font-weight: normal;
+    font-size: 10px;
+}
+
+.register .gender-selection {
+    margin-bottom: 10px;
+}
+
+.slider_privacy {
+    display: block;
+    margin-top: -12px;
+}
+
+.register input#mood_private {
+}
+
+.register label.mood_private_label {
+    font-size: 11px;
+    margin: 12px 0 0 5px;
+    width: 90%;
+    color: #333;
+}
+
+.register label.mood_private_label em {
+    font-size: 10px;
+}
+
+.referral, .agecheck {
+    float: left;
+    width: 45%;
+}
+
+.referral {
+    margin-right: 10px;
+}
+
+.referral label, .agecheck label {
+    display: block;
+}
+
+.agecheck label.sub {
+    display: inline;
+}
+
+.register .submit-button {
+    float: right;
+    margin-top: 10px;
+}
+
+.register .captcha {
+    float: left;
+    margin-top: 12px !important;
+}
+
+.register .captcha .captcha-image {
+    display: block;
+    float: left;
+    margin-right: 10px;
+}
+
+.register input#kaptcha {
+    border: 1px solid #ddd;
+    color: #999;
+    display: block;
+    float: left;
+    font-size: 30px;
+    height: 38px;
+    padding: 5px;
+    width: 186px;
+}
+
+.register .bbform label.captcha_label {
+    margin-bottom: 1px !important;
+}
+
+ul.looking-for {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+ul.looking-for li {
+    margin: 0 !important;
+    padding: 0;
+}
+
+ul.looking-for span {
+    width: 120px;
+    float: left;
+}
+
+ul#where-form {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+ul#where-form li {
+    margin: 0;
+    padding: 0;
+}
+
+ul#where-form li select {
+    width: 250px !important;
+}
+
+ul#where-form li#us_states,
+    ul#where-form li#canada_provinces {
+    margin-bottom: 10px;
+}
+
+ul#where-form li label {
+
+}
+
+span.note {
+    display: block;
+    font-size: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+label#avatar-label {
+    margin-top: 15px;
+}
+
+button#create_avatar {
+    background: transparent url(${library.prefix}/images/register/upload_photo_bg.png) left top no-repeat;
+    border: none;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    height: 59px;
+    width: 314px;
+}
+
+button#create_avatar span {
+    background: transparent url(${library.prefix}/images/register/upload_photo_icon.png) right top no-repeat;
+    display: inline-block;
+    line-height: 28px;
+    min-height: 28px;
+    padding-right: 34px;
+
+}
+
+.register .bbform fieldset {
+    background: #fdfcd6 !important;
+    border: 1px solid #f1f0cc !important;
+    display: block;
+    margin: 0 0 15px 0;
+    padding: 20px 10px 10px 10px;
+}
+
+.register .bbform fieldset legend {
+    display: block;
+    margin-bottom: -25px;
+    margin-top: 10px;
+}
+
+.register .bbform .errors li {
+    color: #dd3b26;
+    margin-bottom: 1px;
+}
+
+.register p.error-wrap {
+    background: #fdfcd6;
+    border: 1px solid #f1f0cc;
+    display: inline-block;
+    padding: 2px 0 2px 2px;
+    margin: 0;
+    width: 100%;
+    zoom: 1;
+    clear: both;
+}
+
+.register label.error {
+    background: transparent;
+    color: #dd3b26 !important;
+    padding: 3px 3px 3px 5px;
+    font-size: 11px !important;
+    font-weight: normal !important;
+    display: inline-block;
+    line-height: 12px;
+    margin: 2px 0px !important;
+    zoom: 1;
+}
+
+.register span.error {
+    background: transparent;
+    color: #dd3b26 !important;
+    padding: 3px 3px 3px 5px;
+    font-size: 11px !important;
+    font-weight: normal !important;
+    display: inline-block;
+    line-height: 12px;
+    margin: 2px 0px !important;
+    zoom: 1;
+}
+
+/*.recaptchatable {
+	width: 100%;
+	}*/
+
+input.step1_submit {
+}
+
+.sliderz {
+    padding-bottom: 10px;
+}
+
+.textinput37 input {
+    width: 240px;
+}
+
+.over-count {
+    color: #f00;
+    background-color: #f0f0f0;
+}
+
+.chars-remaining {
+    color: #333;
+    display: inline-block;
+    font-size: 10px;
+    text-align: right;
+    width: 100%;
+}
+
+.span-5 {
+    width: 112px;
+}
+
+.register .span-5 label {
+    font-weight: normal;
+}
+
+#explain {
+    border: 1px solid #e9e8ed;
+    border-top: 1px solid #bbb;
+    width: 100%;
+    height: 120px;
+    font-size: 11px;
+    font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+    padding: 1px;
+}
+
+.step-buttons {
+    margin-top: 10px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+
+.step-buttons .next, .step-buttons .step {
+    float: right;
+}
+
+.step-buttons .previous {
+    float: left;
+}
+
+.register .orange-button {
+    float: right;
+    font-size: 14px !important;
+    font-weight: bold !important;
+}
+
+.register .grey33 {
+    margin-right: 0 !important;
+}
+
+.dialogMsg {
+    max-width: 550px;
+    font-size: 15px;
+    line-height: 18px;
+}
+
+/*
+
+.account-table {
+    margin-top: 20px;
+    border-spacing: 1px;
+    width: 100%;
+}
+
+.account-table thead th, .account-table tbody td, .account-table tbody th {
+    padding: 3px 12px;
+}
+
+.account-table thead th {
+    font-size: 22px;
+    text-align: center;
+    line-height: 13px;
+}
+
+.account-table thead th span {
+    font-size: 11px;
+    color: #666;
+}
+
+.account-table tbody td {
+    text-align: center;
+}
+
+.account-table tbody th {
+    font-weight: bold;
+}
+
+.account-table tbody tr.odd th {
+    background-color: #f5f5f5;
+}
+
+.account-table tbody tr.odd td {
+    background-color: #f5f5f5;
+}
+
+.account-table thead th {
+    font-weight: bold;
+}
+
+*/
+
+.reg-avatar-image {
+    padding: 2px;
+    border: 1px solid #ccc;
+    width: 120px;
+    height: 120px;
+    position: relative;
+    overflow: hidden;
+}
+
+.reg-persona-image {
+    padding: 2px;
+    border: 1px solid #ccc;
+    width: 207px;
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+}
+
+.avatar-column-wrap {
+    margin-bottom: 10px;
+}
+
+.avatar-column {
+    float: left;
+    margin-right: 10px;
+}
+
+.avatar-column p {
+    font-weight: bold;
+}
+
+.reg-video {
+    margin-left: -17px;
+    margin-top: 0;
+}
+
+.reg-name-avail {
+    display: none;
+    padding-left: 21px;
+    line-height: 16px;
+    background: transparent url(${library.prefix}/images/icons/icons.png) no-repeat left -269px;
+}
+
+.reg-name-taken {
+    display: none;
+    padding-left: 21px;
+    line-height: 16px;
+    background: transparent url(${library.prefix}/images/icons/icons.png) no-repeat left -288px;
+}
+
+.ui-datepicker-trigger {
+    padding: 6px 0 6px 0;
+    float: right;
+    display: inline;
+    cursor: pointer;
+    position: relative;
+    left: 5px;
+    top: -30px;
+}
+
+.reg-footer {
+    border-top: 1px solid #ddd;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.reg-footer h2 {
+    margin-top: 0;
+}
+
+#reg-submit {
+    margin-top: 60px;
+}
+
+table#dues {
+    border-collapse: collapse;
+    left: -177px;
+    position: relative;
+    width: 765px;
+}
+
+table#dues th, td {
+    padding: 0;
+}
+
+table#dues tbody td {
+    padding-bottom: 2px;
+    text-align: center;
+}
+
+table#dues thead th {
+    text-align: center;
+    width: 200px;
+}
+
+table#dues tbody th {
+    background: transparent url(${library.prefix}/images/register/table-col1-bg.png) right top no-repeat;
+    color: #fff;
+    font-size: 0.9em;
+    font-weight: normal;
+    height: 44px;
+    padding-left: 28px;
+    padding-right: 8px;
+    text-align: right;
+    width: 138px;
+}
+
+table#dues tbody th.nobg {
+    background-image: none;
+}
+
+table#dues td.limited, table#dues td.unlimited, table#dues td.group {
+    background: transparent url(${library.prefix}/images/register/table-cell-bg-btm.png) 2px bottom no-repeat;
+    border-right: 1px solid #f0f0f0;
+    color: #000;
+    font-size: 1.2em;
+    height: 44px;
+    text-align: center;
+    vertical-align: middle;
+    width: 200px;
+}
+
+table#dues td.group {
+    border-right: none;
+}
+
+table#dues td.limited img, table#dues td.unlimited img, table#dues td.group img {
+    display: inline;
+}
+
+table#dues td span {
+    display: block;
+    font-size: 0.8em;
+    margin-top: -3px;
+}
+
+table#dues td em {
+    font-size: 1.6em;
+    font-style: normal;
+}
+
+table#dues td.limited {
+    height: 44px;
+}
+
+table#dues td.unlimited, table#dues td.group {
+    height: 44px;
+}
+
+table#dues td.alternatives {
+    background: transparent url(${library.prefix}/images/register/table-col5-bg.png) right top no-repeat;
+    height: 44px;
+}
+
+table#dues td.limited-footer {
+    background: transparent url(${library.prefix}/images/register/limited-col-bottom.png) right top no-repeat;
+    height: 103px;
+    width: 200px;
+}
+
+table#dues td.unlimited-footer {
+    background: transparent url(${library.prefix}/images/register/unlimited-col-bottom.png) left top no-repeat;
+    border-right: none;
+    height: 103px;
+    width: 200px;
+}
+
+table#dues td.group-footer {
+    background: transparent url(${library.prefix}/images/register/group-col-bottom.png) left top no-repeat;
+    height: 103px;
+    width: 200px;
+}
+
+table#dues td.alt-footer {
+    background: transparent url(${library.prefix}/images/register/alternatives-footer-bg.png) right top no-repeat !important;
+}
+
+table#dues td.limited-footer img, table#dues td.unlimited-footer img, table#dues td.group-footer img {
+    margin-left: 10px;
+}
+
+table#dues td.limited-footer img {
+    margin-top: -18px;
+}
+
+table#dues td div.alt {
+    color: #4b4b4b;
+    font-size: 1.1em;
+    font-weight: bold;
+    float: left;
+    margin-left: 15px;
+    width: 48%;
+}
+
+table#dues td div.alt span {
+    color: #dd3b26;
+    font-size: 1em;
+    margin-top: -1px;
+}
+
+table#dues td div.cost {
+    color: #4b4b4b;
+    font-size: 1.2em;
+    font-weight: normal;
+    float: right;
+    margin-right: 4px;
+    text-align: right;
+    width: 35%;
+}
+
+table#dues td div.cost span {
+    font-size: 1.6em;
+    display: inline;
+}
+
+table#dues button {
+    background-color: transparent !important;
+    background-image: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    cursor: pointer;
+    position: relative;
+}
+
+table#dues button:hover {
+    left: 1px;
+    top: 1px;
+}
+
+table#dues button:active {
+    left: 2px;
+    top: 2px;
+}
+
+table#dues button span {
+    text-indent: -9999px;
+}
+
+.tnc {
+    display: block;
+    clear: both;
+    float: none;
+    margin: 10px 0;
+    padding-top: 12px;
+}
+.tnc input {
+    margin: 0;
+    padding: 0;
+    clear: none;
+    display: block;
+    float: left;
+    margin-right: 5px;
+    width: 20px;
+}
+.tnc label {
+    margin: 0;
+    padding: 0;
+    clear: none;
+    display: block;
+    float: left;
+    width: 200px;
+}
+.fin-info {
+	background-color: #fdfcd6;
+	border: 1px solid #ccc;
+	-webkit-border-radius: 7px;
+	-moz-border-radius: 7px;
+	border-radius: 7px;
+	padding: 10px;
+	}
+.fin-info p {
+	font-size: 10px;
+	border-top: 1px solid #eee;
+	padding-top: 10px;
+	}
+	
+.step5 .bbform-footer {
+	background: transparent url(/community/library/images/containers/register-bottom-black.png) no-repeat scroll 0 0;
+	padding-top: 12px;
+	}
+	
+p.notify {
+	float: left;
+	font-size: 11px;
+	width: 350px;
+	}
+	
+#take-me {
+	float: right;
+	margin-top: 12px;
+	}

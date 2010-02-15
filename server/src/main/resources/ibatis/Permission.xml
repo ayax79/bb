@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="Permission">
+
+    <resultMap id="BasePermissionResult" type="com.blackbox.security.BaseBBPermission" extends="BBPersistentObject.BBPersistentObjectResult">
+        <result property="type" javaType="com.blackbox.security.PermissionTypeEnum" jdbcType="INTEGER" />
+        <result property="key" />
+        <result property="artifactType" />
+    </resultMap>
+
+    <resultMap id="SocialPermissionResult" type="com.blackbox.security.SocialPermission" extends="BasePermissionResult">
+        <result property="trustLevel" />
+        <result property="depth" />
+        <result property="relationshipType" />
+    </resultMap>
+
+    <resultMap id="ApplicationPermissionResult" type="com.blackbox.security.ApplicationPermission" extends="BasePermissionResult">
+        <result property="category" />
+        <result property="access" />
+        <result property="field" />
+    </resultMap>
+
+    <insert id="insertSocialPermission" parameterType="com.blackbox.security.SocialPermission">
+        insert into bb_social_permission
+        (guid, version, created, modified, type, key, trustLevel, depth, relationshipType)
+        values
+        (#{guid}, #{version}, #{created}, #{modified}, #{type}, #{key}, #{trustLevel}, #{depth}, #{relationshipType})
+    </insert>
+
+    <insert id="insertApplicationPermission" parameterType="com.blackbox.security.ApplicationPermission">
+        insert into bb_application_permission
+        (guid, version,created, modified, type, key, category, access, field)
+        values
+        (#{guid}, #{version}, #{created}, #{modified}, #{type}, #{key}, #{category}, #{access}, #{field})
+    </insert>
+
+    <update id="updateSocialPermission" parameterType="com.blackbox.security.SocialPermission">
+        update bb_social_permission set
+        version = #{version},
+        modified = #{modified},
+        type = #{type},
+        key = #{key},
+        trustLevel = #{trustLevel},
+        depth = #{depth},
+        relationshipType = #{relationshipType}
+        where
+        guid = #{guid}
+    </update>
+
+    <update id="updateApplicationPermission" parameterType="com.blackbox.security.ApplicationPermission">
+        update bb_social_permission set
+        version = #{version},
+        modified = #{modified},
+        type = #{type},
+        key = #{key},
+        category = #{category},
+        access = #{access},
+        field = #{field}
+        where
+        guid = #{guid}
+    </update>
+
+    <select id="loadSocialPermissionByGuid" parameterType="string" resultMap="SocialPermissionResult">
+        select * from bb_social_permission by guid = #{value}
+    </select>
+
+    <select id="loadApplicationPermissionByGuid" parameterType="string" resultMap="ApplicationPermissionResult">
+        select * from bb_application_permission by guid = #{value}
+    </select>
+
+</mapper>

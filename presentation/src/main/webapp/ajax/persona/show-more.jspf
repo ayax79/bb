@@ -1,0 +1,30 @@
+<%@ include file="/WEB-INF/jsp/include/page_header.jspf" %>
+<%--@elvariable id="actionBean" type="com.blackbox.presentation.action.search.ShowMoreActionBean"--%>
+
+<div style="display:none;">
+	<input type="hidden" id="startIndex" value="${actionBean.paginationResults.startIndex}"/>
+	<input type="hidden" id="numResults" value="${actionBean.maxResults}"/>
+	<input type="hidden" id="totalResults" value="${actionBean.paginationResults.totalResults}"/>
+</div>
+
+<div id="persona-show-more" class="user-list-container">
+<c:choose>
+	<c:when test="${not empty actionBean.paginationResults.results}">
+		<table>
+			<tbody>
+				<c:forEach var="user" items="${actionBean.paginationResults.results}">
+				<%--@elvariable id="user" type="com.blackbox.user.User"--%>
+					<ui:meBoxUserRow user="${user}" type="connection"  hideActionMenu="true"/>
+				</c:forEach>
+			</tbody>
+		</table>
+	</c:when>
+	<c:otherwise>
+		<p class="no-results">No connections</p>
+	</c:otherwise>
+</c:choose>
+</div>
+
+<c:if test="${not empty actionBean.paginationResults.results && actionBean.paginationResults.totalResults > actionBean.maxResults}">
+	<ui:pagingControls id="bottomPaging" items="${actionBean.paginationResults.results}"/>
+</c:if>

@@ -1,0 +1,23 @@
+<%@include file="/WEB-INF/jsp/include/taglibs.jspf" %>
+
+<h2>Recent gift love</h2>
+
+<div class="events-container section">
+	<span>You have 1000 points. <a href="#">Add More</a></span>
+</div>
+
+<div class="events-container section">
+	<ul class="menu">
+		<li><a href="#">Most vouches</a></li>
+		<li><a href="#">Popular today</a></li>
+		<li><a href="#">Best of this week</a></li>
+	</ul>
+</div>
+
+<div class="events-container section">
+	<ul class="menu">
+		<li><a href="#">From friends</a></li>
+		<li><a href="#">From followers</a></li>
+		<li><a href="#">From all</a></li>
+	</ul>
+</div>

@@ -1,0 +1,170 @@
+<%--
+
+NOTE: Due to some bugs in Safari, the Jcrop includes need to be embeded directly in the calling page,
+and not in this file. Safari will not load and apply the style sheets properly
+
+NOTE: Originally, the idea was that the backend would handle the image uploads on step4, allowing time
+for the CDN to populate. Then broadcast an event to the UI that stuff was done. This way all of that code
+was implemented in one spot, rather than spread out all over the place... It would also allow us an easier
+way to display an uploading/please hold message rather than just closing the window and leaving the user
+wondering if it really worked.
+
+--%>
+
+<%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
+<%--Removed head tags due to bug in Safari which prevented JS from executing.--%>
+<%--<head>--%>
+
+	<link rel="stylesheet" href="${bb:libraryResource('/library/uploadify/uploadify.css')}" type="text/css"/>
+
+
+
+	<script type="text/javascript">
+	//<![CDATA[
+		$(function() {
+
+			$("#avatar").imageCropper({
+				ratio:1,
+				previewMaxSize: 120
+			});
+
+			$("#persona").imageCropper({
+				ratio:.69,
+				previewMaxSize: 300
+			});
+
+			$('#pancakes').uploadify({
+				'uploader': '${bb:libraryResource("/library/uploadify/uploadify.swf")}',
+				'cancelImg': '${bb:libraryResource('/library/uploadify/cancel.png')}',
+				'buttonImg': '${bb:libraryResource('/library/images/controls/upload-btn.png')}',
+				'fileDesc' : 'User Image File',
+				'fileExt': '*.jpg;*.jpeg;*.gif;*.png',
+				'buttonText': 'Upload and continue',
+				'displayData': 'speed',
+				'script'	: '<s:url beanclass="com.blackbox.presentation.action.user.ProfileImageUploadActionBean" />;jsessionid=<%=session.getId()%>',
+				'auto'	  : true,
+				'fileDataName' : 'userImage', /* maps to the field in the action */
+				'width': 161,
+				'height':33,
+				'onError'   : function(event, queueID, fileObj, errorObj) {
+					alert('error' + errorObj.type + ' status: ' + errorObj.status, ' text: ' + errorObj.text);
+				},
+				'onAllComplete' : function() {
+					setStep(1);
+					$("#uploadify-content").hide();
+					$("#avatar").imageCropper('setImage', '<s:url beanclass="com.blackbox.presentation.action.media.SessionImageActionBean"/>?ch=' + new Date().getTime());
+					$("#persona").imageCropper('setImage', '<s:url beanclass="com.blackbox.presentation.action.media.SessionImageActionBean"/>?ch=' + new Date().getTime());
+				},
+				'multi' : false
+			});
+
+			var currentStep = 0;
+			setStep(currentStep);
+
+			function setStep(step) {
+				$(".steps-nav li:eq(" + currentStep + ")").removeClass("selected");
+				$(".steps-nav li:eq(" + step + ")").addClass("selected");
+				$(".step-container").addClass("step-container-collapsed");
+				$(".step-container:eq(" + step + ")").removeClass("step-container-collapsed");
+				currentStep = step;
+			}
+
+			$("#step2").click(function() {
+				setStep(2);
+				return false;
+			});
+
+			$("#step3").click(function() {
+//				setStep(3);
+//				return false;
+				/** This is actually what should happen on step 4, if things were done
+				 * correctly...
+				 */
+				//This is temporary. Should call the action for updating images
+				//and then call the event using the urls returned as args...
+				var url = $("#avatar_cropImage").attr("src");
+				$(window).trigger("loaderClose", [url, url]);
+				return false;
+
+			});
+
+//			$("#step4").click(function() {
+//				//This is temporary. Should call the action for updating images
+//				//and then call the event using the urls returned as args...
+//				var url = $("#avatar_cropImage").attr("src");
+//				$(window).trigger("loaderClose", [url, url]);
+//				return false;
+//			});
+
+			$('.crop-cancel-link').click(function() {
+				$('#uploadify-content').show();
+				$("#avatar").imageCropper('destroyCrop');
+				$("#persona").imageCropper('destroyCrop');
+				setStep(0);
+				return false;
+			});
+
+		});
+
+	//]]>
+	</script>
+
+<%--</head>--%>
+
+<body>
+
+<s:form action="" method="put">
+
+	<div style="background-color:#fff;padding:20px;margin:20px;position:relative;">
+
+		<div class="steps-nav">
+			<ul>
+				<li>1. Choose a picture to upload</li>
+				<li>2. Crop your avatar picture</li>
+				<li>3. Crop your persona picture and finish</li>
+				<%--<li>4. Review and finish</li>--%>
+			</ul>
+			<div class="clear"></div>
+		</div>
+
+		<div class="step-container">
+			<ui:roundedBox className="grey-inline">
+				<s:file id="pancakes" name="userImage"/>
+			</ui:roundedBox>
+		</div>
+
+		<div class="step-container">
+			<ui:roundedBox className="grey-inline">
+				<p>Now you've uploaded your picture, select an area that will be used as your avatar around Blackbox Republic.</p>
+				<ui:jCropper id="avatar" xname="avatarX" yname="avatarY" wname="avatarW" hname="avatarH" prevTitle="Avatar preview"/>
+				<br/>
+				<button id="step2" class="orange-button bbbutton"><span>Crop and continue</span></button>
+				<a href="#" class="crop-cancel-link">or upload a different picture</a>
+				<div class="clear"></div>
+			</ui:roundedBox>
+		</div>
+
+		<div class="step-container">
+			<ui:roundedBox className="grey-inline">
+				<p>Cool, now just select an area to use as your picture on your persona page.</p>
+				<ui:jCropper id="persona" xname="personaX" yname="personaY" wname="personaW" hname="personaH" prevTitle="Persona picture preview"/>
+				<br/>
+				<button id="step3" class="orange-button bbbutton"><span>Crop and finish</span></button>
+				<a href="#" class="crop-cancel-link">or upload a different picture</a>
+				<div class="clear"></div>
+			</ui:roundedBox>
+		</div>
+
+		<%-- Removed last step, since the back end wasn't implemented properly... --%>
+		<%--<div class="step-container">--%>
+			<%--<ui:roundedBox className="grey-inline">--%>
+				<%--<p>Rad, you're done. We should show you the results of all of this here, huh?</p>--%>
+				<%--<button id="step4" class="orange-button bbbutton"><span>Finish</span></button>--%>
+				<%--<a href="#" class="crop-cancel-link">or start again</a>--%>
+			<%--</ui:roundedBox>--%>
+		<%--</div>--%>
+
+	</div>
+
+</s:form>
+</body>

@@ -1,0 +1,131 @@
+<%--@elvariable id="actionBean" type="com.blackbox.presentation.action.activity.InboxActionBean"--%>
+<%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
+
+<c:set var="thread" value="${actionBean.thread}"/>
+<%--@elvariable id="thread" type="com.blackbox.activity.ActivityThread"--%>
+<c:set var="sender" value="${actionBean.userGuidMap[thread.parent.artifactMetaData.artifactOwner.guid]}"/>
+<%--@elvariable id="sender" type="com.blackbox.user.User"--%>
+
+<c:set var="newLine" value="
+"/>
+<div class="mailbox-filters">
+	<div class="message-actions">
+		<a href="#" class="btnCompose grey-ds grey-ds-s"><span>Compose</span></a>
+		<a href="#" class="btnMarkUnread grey-ds grey-ds-s disabled"><span>Mark Unread</span></a>
+		<%--<a href="#" class="btnReportAbuse grey-ds grey-ds-r"><span>Report Abuse</span></a>--%>
+		<%--<a href="#" class="btnArchive grey-ds grey-ds-l"><span>Archive</span></a><a href="#" class="btnDelete grey-ds grey-ds-r"><span>Delete</span></a>--%>
+	</div>
+	<div class="mailbox-paging">
+		<%--<a href="#" class="grey-paging grey-paging-prev btnPrevPage disabled"><span>&nbsp;</span></a>--%>
+		<%--<a href="#" class="grey-paging grey-paging-next btnNextPage disabled"><span>&nbsp;</span></a>--%>
+	</div>
+	<div class="clear"></div>
+</div>
+<div id="message-pane">
+	<div class="message-container clearfix">
+		<div class="message-leftcol">
+
+
+
+			<ui:profileImage guid="${thread.parent.sender.guid}" size="medium" color="white" linkToProfile="true" showMiniProfile="true" showUserType="true"/>
+			<p><a href="#">${bb:displayName(sender)}</a><br/>
+				<c:set var="prevToken" value="false"/>
+				<c:if test="${not empty sender.profile.location.city or not empty sender.profile.location.state or not empty sender.profile.location.country}">
+					<c:if test="${not empty sender.profile.location.city}">
+						${sender.profile.location.city}
+						<c:set var="prevToken" value="true"/>
+					</c:if>
+					<c:if test="${prevToken}">, </c:if>
+					<c:if test="${not empty sender.profile.location.state}">
+						${bb:stateAbv(sender.profile.location.state)}
+					</c:if>
+					<br/>
+				</c:if>
+				<c:if test="${not sender.profile.birthdayInVisible and not empty sender.profile.birthday}">
+					${bb:age(sender.profile.birthday)} /
+				</c:if>
+				<c:if test="${not empty sender.profile.sex}">
+					<c:choose>
+						<c:when test="${sender.profile.sex == 'MALE'}">Male</c:when>
+						<c:when test="${sender.profile.sex == 'FEMALE'}">Female</c:when>
+						<c:when test="${sender.profile.sex == 'XXX'}">Not specified</c:when>
+					</c:choose>
+					<c:set var="previousValue" value="true"/>
+				</c:if>
+			</p>
+			<p class="date">${bb:formatDate(thread.parent.postDate, "MMM d, h:MM:sa")}
+				<%--<span class="message-reply"></span>--%></p>
+			<div class="clear"></div>
+			<ui:tinySliders user="${actionBean.userGuidMap[thread.parent.artifactMetaData.artifactOwner.guid]}" className="msg-sliders"/>
+		</div>
+		<div class="message-bodycol">
+			<a class="message-delete" href="#${thread.parent.guid}"></a>
+			<h2>${thread.parent.subject}</h2>
+			<p>${f:replace(thread.parent.body, newLine, "<br/>")}</p>
+		</div>
+	</div>
+	<div class="clear"></div>
+	<c:forEach var="child" items="${thread.children}">
+		<%--@elvariable id="child" type="com.blackbox.activity.ActivityThread"--%>
+		<c:set var="sender" value="${actionBean.userGuidMap[child.artifactMetaData.artifactOwner.guid]}"/>
+		<div class="message-container clearfix">
+			<div class="message-leftcol reply-leftcol">
+				<ui:profileImage guid="${child.sender.guid}" size="medium" color="white" linkToProfile="true" showMiniProfile="true" showUserType="true"/>
+				<p><a href="#">${bb:displayName(sender)}</a><br/>
+					<c:set var="prevToken" value="false"/>
+					<c:if test="${not empty sender.profile.location.city or not empty sender.profile.location.state or not empty sender.profile.location.country}">
+						<c:if test="${not empty sender.profile.location.city}">
+							${sender.profile.location.city}
+							<c:set var="prevToken" value="true"/>
+						</c:if>
+						<c:if test="${prevToken}">, </c:if>
+						<c:if test="${not empty sender.profile.location.state}">
+							${bb:stateAbv(sender.profile.location.state)}
+						</c:if>
+						<br/>
+					</c:if>
+					<c:if test="${not sender.profile.birthdayInVisible and not empty sender.profile.birthday}">
+						${bb:age(sender.profile.birthday)} /
+					</c:if>
+					<c:if test="${not empty sender.profile.sex}">
+						<c:choose>
+							<c:when test="${sender.profile.sex == 'MALE'}">Male</c:when>
+							<c:when test="${sender.profile.sex == 'FEMALE'}">Female</c:when>
+							<c:when test="${sender.profile.sex == 'XXX'}">Not specified</c:when>
+						</c:choose>
+						<c:set var="previousValue" value="true"/>
+					</c:if>
+				</p>
+
+				<p class="date">${bb:formatDate(child.postDate, "MMM d, h:MM:sa")}</p>
+				<div class="clear"></div>
+				<ui:tinySliders user="${sender}" className="msg-sliders"/>
+			</div>
+			<div class="message-bodycol">
+				<span class="message-delete"></span>
+
+				<p>${f:replace(child.body, newLine, "<br/>")}</p>
+			</div>
+		</div>
+	</c:forEach>
+
+	<div class="message-container clearfix">
+		<div class="message-leftcol reply-leftcol">&nbsp;</div>
+		<div class="message-bodycol">
+			<s:form beanclass="com.blackbox.presentation.action.activity.InboxActionBean" id="replyForm" class="message-reply">
+				<s:textarea name="body"></s:textarea>
+				<s:hidden name="parentGuid" value="${thread.parent.guid}"/>
+				<div class="message-reply-button">
+					<button class="btnSendMsg grey-ds grey-ds-s"><span>Send message</span></button>
+				</div>
+			</s:form>
+		</div>
+	</div>
+
+	<div class="message-nav">
+		<div style="float:left;">
+			<a href="#" class="return-inbox"><span>Return to Inbox</span></a>
+		</div>
+
+	</div>
+</div>

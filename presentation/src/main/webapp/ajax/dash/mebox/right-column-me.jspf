@@ -1,0 +1,304 @@
+<%--@elvariable id="actionBean" type="com.blackbox.presentation.action.user.MePageActionBean"--%>
+<%@include file="/WEB-INF/jsp/include/taglibs.jspf" %>
+<div class="section">
+	<h3>Fanny Pack</h3>
+
+	<div class="section-content fannypack">
+		<table>
+			<colgroup>
+				<col width="40%"/>
+				<col width="30%"/>
+				<col width="30%"/>
+			</colgroup>
+			<thead>
+				<tr>
+					<th>Item</th>
+					<th>Used</th>
+					<th>Remaining</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Vouches</td>
+					<td>${actionBean.permanentVouchCount}</td>
+					<td class="last">${actionBean.maxPermanentVouches}</td>
+				</tr>
+				<tr>
+					<td>Wishes</td>
+					<td>${actionBean.wishCount}</td>
+					<td class="last">
+						<c:choose>
+							<c:when test="${actionBean.maxWishCount > 1000}">
+								Unlimited	
+							</c:when>
+							<c:otherwise>
+								${actionBean.maxWishCount}
+							</c:otherwise>
+						</c:choose>
+
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div class="section" id="connections_column">
+	<h3>Connections</h3>
+
+	<div class="section-content">
+		<c:if test="${not empty actionBean.connections.results}">
+
+		<div class="section-list">
+			
+			<c:forEach var="connection" items="${actionBean.connections.results}">
+			<%--@elvariable id="connection" type="com.blackbox.social.Connection"--%>
+			<c:set var="user" value="${connection.user}"/>
+			<%--@elvariable id="user" type="com.blackbox.user.User"--%>
+
+			<div class="clearfix list-item user_connection">
+				<ui:profileImage guid="${user.guid}" size="small" linkToProfile="true" showMiniProfile="true" showUserType="true"/>
+			    <p>
+					<ui:entitylink entity="${user}">${bb:displayName(user)}</ui:entitylink><br/>
+					<c:set var="previousValue" value="false"/>
+					<c:if test="${!user.profile.birthdayInVisible && not empty user.profile.birthday}">
+						${bb:age(user.profile.birthday)}
+						<c:set var="previousValue" value="true"/>
+					</c:if>
+					<c:if test="${not empty user.profile.sex}">
+						<c:if test="${previousValue}"> | </c:if>
+						<c:choose>
+							<c:when test="${user.profile.sex == 'MALE'}">Male</c:when>
+							<c:when test="${user.profile.sex == 'FEMALE'}">Female</c:when>
+							<c:when test="${user.profile.sex == 'XXX'}">Not specified</c:when>
+						</c:choose>
+						<c:set var="previousValue" value="true"/>
+					</c:if>
+					<c:if test="${!empty user.profile.location.city}">
+						<c:if test="${previousValue}"> | </c:if>
+						<c:if test="${!empty user.profile.location.city}">${user.profile.location.city}</c:if>
+						<c:if test="${!empty bb:stateAbv(user.profile.location.state)}">, ${bb:stateAbv(user.profile.location.state)}</c:if>
+					</c:if>
+
+				<br/>
+				<c:set var="previousValue" value="false"/>
+				<c:if test="${bb:isFriend(user)}">
+					<c:set var="previousValue" value="true"/>
+					Friend
+				</c:if>
+				<c:if test="${bb:isFollowing(user)}">
+					<c:if test="${previousValue}"> | </c:if>
+					<c:set var="previousValue" value="true"/>
+					Following
+				</c:if>
+				<c:if test="${bb:isFollowedBy(user)}">
+					<c:if test="${previousValue}"> | </c:if>
+					Follower
+				</c:if>
+
+
+				</p>
+			</div>
+			</c:forEach>
+		</div>
+		</c:if>
+	</div>
+	<c:choose>
+		<c:when test="${not empty actionBean.connections.results}">
+			<p class="see-all-link"><a href="#">See all</a></p>
+		</c:when>
+		<c:otherwise>
+			<p class="no-results">No connections to report</p>
+		</c:otherwise>
+	</c:choose>
+</div>
+
+<div class="section" id="wishes_column">
+	<h3>Wishes</h3>
+	<div class="section-content">
+		<c:if test="${not empty actionBean.wishes.results}">
+
+		<div class="section-list">
+			<c:forEach var="wish" items="${actionBean.wishes.results}">
+			<%--@elvariable id="wish" type="com.blackbox.bookmark.UserWish"--%>
+			<c:set var="user" value="${wish.user}"/>
+			<%--@elvariable id="user" type="com.blackbox.user.User"--%>
+			<div class="clearfix list-item user_connection">
+				<ui:profileImage guid="${user.guid}" size="small" linkToProfile="true" showMiniProfile="true" showUserType="true"/>
+			    <p>
+					<ui:entitylink entity="${user}">${bb:displayName(user)}</ui:entitylink>
+					<c:choose>
+						<c:when test="${s:enumName(wish.status) == 'WISHED'}">
+							is wished by you
+						</c:when>
+						<c:when test="${s:enumName(wish.status) == 'WISHED_BY'}">
+							sent you a wish
+						</c:when>
+						<c:when test="${s:enumName(wish.status) == 'MUTUAL'}">
+							is mutually wished
+						</c:when>
+					</c:choose>
+				</p>
+			</div>
+			</c:forEach>
+		</div>
+		</c:if>
+	</div>
+	<c:choose>
+		<c:when test="${not empty actionBean.wishes.results}">
+			<p class="see-all-link"><a href="#">See all</a></p>
+		</c:when>
+		<c:otherwise>
+			<p class="no-results">No wishes to report</p>
+		</c:otherwise>
+	</c:choose>
+</div>
+
+<div class="section" id="events_column">
+	<h3>Events</h3>
+	<div class="section-content">
+		<c:if test="${not empty actionBean.occasions.results}">
+		<div class="section-list">
+			<c:forEach var="occasion" items="${actionBean.occasions.results}">
+                <c:set var="guid" value="${occasion.guid}" />
+            <c:set var="hostby" value="${occasion.hostBy}" />
+            <c:set var="name" value="${occasion.name}" />
+            <c:set var="description" value="${occasion.description}" />
+            <c:set var="startTime" value="${occasion.eventTime}" />
+            <c:set var="endTime" value="${occasion.eventEndTime}" />
+            <c:set var="location" value="${occasion.location}" />
+            <c:set var="imageurl" value="${occasion.layout.transiantImage.location}" />
+            <c:set var="address1" value="${occasion.address.address1}" />
+            <c:set var="address2" value="${occasion.address.address2}" />
+            <c:set var="city" value="${occasion.address.city}" />
+            <c:set var="state" value="${occasion.address.state}" />
+            <c:set var="zip" value="${occasion.address.zipCode}" />
+            <c:set var="totalAttendees" value="${occasion.totalAttendees}" />
+
+                <div class="event-notification-container">
+
+                    <div class="event-image-container"><img src='${imageurl}'></div>
+                    <div class="event-notification-fields">
+                        <s:link beanclass="com.blackbox.presentation.action.psevent.PSShowEventActionBean"><s:param name="eventParam" value="${guid}"/>${name}</s:link><br />
+                        <c:set var="prevToken" value="false" />
+                        <c:if test="${not empty address1}">
+                            ${address1}
+                            <c:if test="${empty address2}">, </c:if>
+                        </c:if>
+                        <c:if test="${not empty address2}">
+                            &nbsp;${address2},
+                        </c:if>
+                        <c:if test="${not empty city}">
+                            ${city},
+                        </c:if>
+                        <c:if test="${not empty state}">
+                            ${state}
+                        </c:if>
+                        <c:if test="${zipCode}">
+                            ${zipCode}
+                        </c:if>
+                        <br />
+                        ${bb:formatDate(occasion.eventTime, "EEEE MMMM d, yyyy")}
+                        @
+                        ${bb:formatDate(occasion.eventTime, "h:mm a")}
+                        <br />
+                    </div>
+
+                </div>
+			</c:forEach>
+		</div>
+		</c:if>
+	</div>
+	<c:choose>
+		<c:when test="${not empty actionBean.occasions.results}">
+			<p class="see-all-link"><a href="#">See all</a></p>
+		</c:when>
+		<c:otherwise>
+			<p class="no-results">No events to report</p>
+		</c:otherwise>
+	</c:choose>
+</div>
+
+<div class="section" id="vouches_column">
+	<h3>Vouches</h3>
+
+	<div class="section-content">
+		<c:if test="${not empty actionBean.vouches.results}">
+		<div class="section-list">
+			<c:forEach var="vouch" items="${actionBean.vouches.results}">
+			<%--@elvariable id="vouch" type="com.blackbox.social.UserVouch"--%>
+			<c:set var="user" value="${vouch.user}"/>
+			<%--@elvariable id="user" type="com.blackbox.user.User"--%>
+			<div class="clearfix list-item user_connection">
+				<ui:profileImage guid="${user.guid}" size="small" linkToProfile="true" showMiniProfile="true" showUserType="true"/>
+			    <p>
+					<ui:entitylink entity="${user}">${bb:displayName(user)}</ui:entitylink>
+					<c:choose>
+						<c:when test="${s:enumName(vouch.direction) == 'OUTGOING'}">
+							is vouched by you
+						</c:when>
+						<c:when test="${s:enumName(vouch.direction) == 'INCOMING'}">
+							vouched you
+						</c:when>
+						<c:when test="${s:enumName(vouch.direction) == 'MUTUAL'}">
+							is mutually vouched
+						</c:when>
+					</c:choose>
+				</p>
+			</div>
+			</c:forEach>
+		</div>
+		</c:if>
+	</div>
+	<c:choose>
+		<c:when test="${not empty actionBean.vouches.results}">
+			<p class="see-all-link"><a href="#">See all</a></p>
+		</c:when>
+		<c:otherwise>
+			<p class="no-results">No vouches to report</p>
+		</c:otherwise>
+	</c:choose>
+</div>
+<div class="section" id="gifts_column">
+	<h3>Gifts</h3>
+	<div class="section-content">
+		<c:if test="${not empty actionBean.gifts.results}">
+		<div class="section-list">
+			<c:forEach var="gift" items="${actionBean.gifts.results}">
+				<div class="clearfix list-item user_connection">
+					<ui:profileImage guid="${gift.sender.guid}" size="small" linkToProfile="true" showMiniProfile="true" showUserType="true"/>
+					<p>
+						<%--<ui:entitylink entity="${user}">${bb:displayName(user)}</ui:entitylink>--%>
+						<a href="#">${gift.senderProfile.senderDisplayName}</a> sent you a gift.
+						
+					</p>
+				</div>
+			</c:forEach>
+		</div>
+		</c:if>
+	</div>
+	<c:choose>
+		<c:when test="${not empty actionBean.gifts.results}">
+			<p class="see-all-link"><a href="#">See all</a></p>
+		</c:when>
+		<c:otherwise>
+			<p class="no-results">No gifts to report</p>
+		</c:otherwise>
+	</c:choose>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		//Switch the "Open" and "Close" state per click
+		$("#me_container .bb-right .section h3").toggle(function(){
+			$(this).addClass("closed");
+			}, function () {
+			$(this).removeClass("closed");
+		});
+
+		//Slide up and down on click
+		$("#me_container .bb-right .section h3").click(function(){
+			$(this).next(".section-content").slideToggle("medium");
+		});
+	});
+</script>

@@ -1,0 +1,184 @@
+<script type="text/javascript" src="${bb:libraryResource('/library/js/bb.activity.js')}"></script>
+<script type="text/javascript">
+//<![CDATA[
+
+	var BB_BASE_PATH = "<%=request.getContextPath()%>";
+	var BB_BASE_LIBRARY_PATH = "${bb:libraryResource('/library/')}";
+	var CURRENT_SESSION_ID = "<%=session.getId()%>";
+
+	var bb = {
+		page:{},
+		widgets:{},
+		urls:{},
+		activity:{},
+		utils:{}
+	};
+
+    // URLS
+
+	bb.urls.mailbox = {};
+	bb.urls.mebox = {};
+	bb.urls.persona = {};
+	bb.urls.notifications = {};
+	bb.urls.photos = {};
+	bb.urls.message  = {};
+	bb.urls.user     = {};
+	bb.urls.activity = {};
+	bb.urls.activity.message = {};
+	bb.urls.bookmark = {};
+	bb.urls.search  = {};
+	bb.urls.social = {};
+	bb.urls.social.vouch = {};
+	bb.urls.social.relationship = {};
+	bb.urls.activity.read = '<s:url beanclass="com.blackbox.presentation.action.activity.SceneActivityActionBean" event="loadPartial"/>';
+	bb.urls.activity.message.create = '<s:url beanclass="com.blackbox.presentation.action.media.PublishActionBean"/>';
+	bb.urls.activity.message.deleteMessage = '<s:url beanclass="com.blackbox.presentation.action.media.PublishActionBean" event="deleteMessage"><s:param name="view" value="json"/></s:url>';
+	bb.urls.activity.message.deleteMedia = '<s:url beanclass="com.blackbox.presentation.action.media.PublishActionBean" event="deleteMedia"><s:param name="view" value="json"/></s:url>';
+
+    bb.urls.user.home = '<s:url beanclass="com.blackbox.presentation.action.user.DashBoardActionBean"/>';
+	bb.urls.user.read = '<s:url beanclass="com.blackbox.presentation.action.user.UserJsonActionBean" event="json" />';
+    bb.urls.user.miniProfile = '<s:url beanclass="com.blackbox.presentation.action.persona.MiniPersonaActionBean" />';
+    bb.urls.user.relationshipsAddUrl = '<s:url beanclass="com.blackbox.presentation.action.persona.EditRelationshipsActionBean" event="add"/>';
+	bb.urls.user.uploadActionBean = "<s:url beanclass="com.blackbox.presentation.action.persona.PSUploadActionBean" />";
+
+	bb.urls.search.explorerOpen = '<s:url beanclass="com.blackbox.presentation.action.search.ExploreActionBean"/>';
+	bb.urls.search.explorerSearchUser = '<s:url beanclass="com.blackbox.presentation.action.search.ExploreActionBean" event="user"/>';
+	bb.urls.search.explorerSearchEvent = '<s:url beanclass="com.blackbox.presentation.action.search.ExploreActionBean" event="event"/>';
+	bb.urls.search.autocomplete = '<s:url beanclass="com.blackbox.presentation.action.search.AutoCompleteActionBean"/>';
+	bb.urls.search.userPicker = '<s:url beanclass="com.blackbox.presentation.action.search.UserChooserActionBean"/>';
+
+	bb.urls.social.vouch.create = '<s:url beanclass="com.blackbox.presentation.action.persona.PersonaActionBean" event="vouch" />';
+	bb.urls.social.vouch.remove = '<s:url beanclass="com.blackbox.presentation.action.persona.PersonaActionBean" event="unVouch" />';
+	bb.urls.social.vouch.delet3 = '<s:url beanclass="com.blackbox.presentation.action.persona.PersonaActionBean" event="deleteVouch" />';
+
+	bb.urls.social.relationship.remove = '<s:url beanclass="com.blackbox.presentation.action.persona.EditRelationshipsActionBean" event="delete"/>';
+	bb.urls.social.relationship.edit = '<s:url beanclass="com.blackbox.presentation.action.persona.EditRelationshipsActionBean" event="begin" />';
+	bb.urls.social.relationship.load = '<s:url beanclass="com.blackbox.presentation.action.persona.EditRelationshipsActionBean" event="loadRelationships"/>';
+	bb.urls.social.relationship.setFriend = '<s:url beanclass="com.blackbox.presentation.action.persona.PersonaActionBean" event="friend"/>';
+	bb.urls.social.relationship.unsetFriend = '<s:url beanclass="com.blackbox.presentation.action.persona.PersonaActionBean" event="unfriend"/>';
+	bb.urls.social.relationship.setFollow = '<s:url beanclass="com.blackbox.presentation.action.persona.PersonaActionBean" event="follow"/>';
+	bb.urls.social.relationship.unsetFollow = '<s:url beanclass="com.blackbox.presentation.action.persona.PersonaActionBean" event="unfriend"/>';
+	bb.urls.social.relationship.setBlock = '<s:url beanclass="com.blackbox.presentation.action.persona.PersonaActionBean" event="block"/>';
+	bb.urls.social.relationship.unsetBlock = '<s:url beanclass="com.blackbox.presentation.action.persona.PersonaActionBean" event="unblock"/>';
+	bb.urls.social.relationship.wish = '<s:url beanclass="com.blackbox.presentation.action.persona.PersonaActionBean" event="wish"/>';
+	bb.urls.social.relationship.unwish = '<s:url beanclass="com.blackbox.presentation.action.persona.PersonaActionBean" event="unWish"/>';
+
+	bb.urls.bookmark.create = '<s:url beanclass="com.blackbox.presentation.action.persona.PersonaActionBean" event="wish"/>';
+
+	bb.urls.mailbox.load = '<s:url beanclass="com.blackbox.presentation.action.activity.InboxActionBean" event="load" />';
+	bb.urls.mailbox.compose = '<s:url beanclass="com.blackbox.presentation.action.activity.InboxActionBean" event="compose" />';
+	bb.urls.mailbox.publish = '<s:url beanclass="com.blackbox.presentation.action.activity.InboxActionBean" event="publish" />';
+	bb.urls.mailbox.read = '<s:url beanclass="com.blackbox.presentation.action.activity.InboxActionBean" event="read" />';
+	bb.urls.mailbox.reply = '<s:url beanclass="com.blackbox.presentation.action.activity.InboxActionBean" event="reply" />';
+
+	bb.urls.mailbox.markUnread = '<s:url beanclass="com.blackbox.presentation.action.activity.InboxActionBean" event="markUnread" />';
+	bb.urls.mailbox.delet3 = '<s:url beanclass="com.blackbox.presentation.action.activity.InboxActionBean" event="delete" />';
+	bb.urls.mailbox.archive = '<s:url beanclass="com.blackbox.presentation.action.activity.InboxActionBean" event="archive" />';
+	bb.urls.mailbox.draft = '<s:url beanclass="com.blackbox.presentation.action.activity.InboxActionBean" event="draft" />';
+
+	bb.urls.mebox.activity = '<s:url beanclass="com.blackbox.presentation.action.user.MePageActionBean" event="activity_list" />';
+	bb.urls.mebox.vouches = '<s:url beanclass="com.blackbox.presentation.action.user.MePageActionBean" event="vouches_list" />';
+	bb.urls.mebox.wishes = '<s:url beanclass="com.blackbox.presentation.action.user.MePageActionBean" event="wishes_list" />';
+	bb.urls.mebox.connections = '<s:url beanclass="com.blackbox.presentation.action.user.MePageActionBean" event="connections_list" />';
+	bb.urls.mebox.events = '<s:url beanclass="com.blackbox.presentation.action.user.MePageActionBean" event="events_list" />';
+	bb.urls.mebox.gifts = '<s:url beanclass="com.blackbox.presentation.action.user.MePageActionBean" event="gifts_list" />';
+
+	bb.urls.persona.activity = '<s:url beanclass="com.blackbox.presentation.action.persona.PersonaActionBean" event="activity_list" />';
+	bb.urls.persona.showmore = '<s:url beanclass="com.blackbox.presentation.action.search.ShowMoreActionBean"/>';
+
+	bb.urls.notifications.friendIgnore = '<s:url beanclass="com.blackbox.presentation.action.notification.AjaxNotificationActionBean" event="ignored" />';
+	bb.urls.notifications.friendAccept = '<s:url beanclass="com.blackbox.presentation.action.notification.AjaxNotificationActionBean" event="accept" />';
+
+	bb.urls.notifications.follow = '<s:url beanclass="com.blackbox.presentation.action.notification.AjaxNotificationActionBean" event="follow" />';
+	bb.urls.notifications.followAck = '<s:url beanclass="com.blackbox.presentation.action.notification.AjaxNotificationActionBean" event="followack" />';
+
+	bb.urls.notifications.wish = '<s:url beanclass="com.blackbox.presentation.action.notification.AjaxNotificationActionBean" event="wish" />';
+	bb.urls.notifications.wishAck = '<s:url beanclass="com.blackbox.presentation.action.notification.AjaxNotificationActionBean" event="wishack" />';
+
+	bb.urls.notifications.wishAccept = '<s:url beanclass="com.blackbox.presentation.action.notification.AjaxNotificationActionBean" event="wishack" />';
+	bb.urls.notifications.wishReject = '<s:url beanclass="com.blackbox.presentation.action.notification.AjaxNotificationActionBean" event="rejectWish" />';
+
+	bb.urls.notifications.vouchAccept = '<s:url beanclass="com.blackbox.presentation.action.notification.AjaxNotificationActionBean" event="acceptVouch" />';
+	bb.urls.notifications.vouchReject = '<s:url beanclass="com.blackbox.presentation.action.notification.AjaxNotificationActionBean" event="rejectVouch" />';
+
+	bb.urls.notifications.giftAccept = '<s:url beanclass="com.blackbox.presentation.action.notification.AjaxNotificationActionBean" event="acceptVirtualGift" />';
+	bb.urls.notifications.giftReject = '<s:url beanclass="com.blackbox.presentation.action.notification.AjaxNotificationActionBean" event="rejectVirtualGift" />';
+
+    bb.urls.notifications.occasionAccept = '<s:url beanclass="com.blackbox.presentation.action.notification.AjaxNotificationActionBean" event="attendOccasionRequest" />';
+	bb.urls.notifications.occasionReject = '<s:url beanclass="com.blackbox.presentation.action.notification.AjaxNotificationActionBean" event="maybeOccasionRequest" />';
+	bb.urls.notifications.occasionMaybe = '<s:url beanclass="com.blackbox.presentation.action.notification.AjaxNotificationActionBean" event="cantOccasionRequest" />';
+
+
+	bb.urls.checkUrl = '<s:url beanclass="com.blackbox.presentation.action.util.UtilActionBean" event="checkUrl"/>';
+
+	bb.urls.photos.addToAlbum = '<s:url beanclass="com.blackbox.presentation.action.persona.PersonaActionBean" event="addToAlbum"><s:param name="ajax" value="true"/><s:param name="addTo" value="true"/><s:param name="identifier" value="${actionBean.currentUser.username}"/></s:url>';
+	bb.urls.photos.createAlbum = '<s:url beanclass="com.blackbox.presentation.action.persona.PersonaActionBean" event="createAlbum"><s:param name="ajax" value="true"/><s:param name="identifier" value="${actionBean.currentUser.username}"/></s:url>';
+	bb.urls.photos.deleteAlbum = '<s:url beanclass="com.blackbox.presentation.action.persona.PersonaActionBean" event="deleteAlbum"><s:param name="ajax" value="true"/><s:param name="identifier" value="${actionBean.currentUser.username}"/></s:url>';
+	bb.urls.photos.viewAlbums = '<s:url beanclass="com.blackbox.presentation.action.persona.PersonaActionBean" event="viewAlbums"><s:param name="ajax" value="true"/></s:url>';
+	bb.urls.photos.viewAlbum = '<s:url beanclass="com.blackbox.presentation.action.persona.PersonaActionBean" event="viewAlbum"><s:param name="ajax" value="true"/></s:url>';
+	bb.urls.photos.deleteImage = '<s:url beanclass="com.blackbox.presentation.action.persona.PersonaActionBean" event="deleteImage"><s:param name="ajax" value="true"/></s:url>';
+	bb.urls.photos.setPermissions = '<s:url beanclass="com.blackbox.presentation.action.persona.PSMediaOptActionBean" event="changeMediaOption"><s:param name="ajax" value="true"/></s:url>';
+	bb.urls.photos.setAlbumPermissions = '<s:url beanclass="com.blackbox.presentation.action.persona.MediaLibraryPrivacyActionBean" event="changeMediaOption"><s:param name="ajax" value="true"/></s:url>';
+    bb.urls.search.quick = '<s:url beanclass="com.blackbox.presentation.action.search.LiveSearchActionBean"/>';
+
+	FeedBackPostURL = '<s:url beanclass="com.blackbox.presentation.action.feedback.FeedbackActionBean" />;jsessionid=<%=session.getId()%>';
+	FeedBackLoadURL = '<s:url beanclass="com.blackbox.presentation.action.feedback.FeedbackActionBean" />';
+
+	ReportAbusePostURL = '<s:url beanclass="com.blackbox.presentation.action.feedback.ReportAbuseActionBean" />';
+	ReportAbuseLoadURL = '<s:url beanclass="com.blackbox.presentation.action.feedback.ReportAbuseActionBean" event="submit"/>';
+
+    // RESOURCES
+
+	$.extend(bb, {
+		resources: {
+			friend: {
+				label: "<fmt:message key="network.friend.label"/>",
+				pending: "<fmt:message key="network.friend.pending"/>",
+				active: "<fmt:message key="network.friend.active"/>",
+				setMessage: "<fmt:message key="network.friend.setMessage"/>",
+				unsetMessage: "<fmt:message key="network.friend.unsetMessage"/>",
+				unVouchedMessage: "<fmt:message key="network.friend.unVouchedMessage"/>",
+				blockedMessage: "<fmt:message key="network.friend.blockedMessage"/>"
+			},
+			follow: {
+				label: "<fmt:message key="network.follow.label"/>",
+				active: "<fmt:message key="network.follow.active"/>",
+				setMessage: "<fmt:message key="network.follow.setMessage"/>",
+				unsetMessage: "<fmt:message key="network.follow.unsetMessage"/>",
+				blockedMessage: "<fmt:message key="network.follow.blockedMessage"/>",
+				unfollowFriend: "<fmt:message key="network.follow.unfollowFriend"/>"
+			},
+			donkey: {
+				label: "<fmt:message key="network.donkey.label"/>",
+				active: "<fmt:message key="network.donkey.active"/>",
+				setMessage: "<fmt:message key="network.donkey.setMessage"/>",
+				unsetMessage: "<fmt:message key="network.donkey.unsetMessage"/>"
+			},
+			messaging: {
+				confirmDelete: "<fmt:message key="messaging.confirm.delete"/>",
+				requiredError: "<fmt:message key="messaging.validation.required"/>",
+				unVouchedMessage: "<fmt:message key="messaging.unVouchedMessage"/>",
+				blockedMessage: "<fmt:message key="messaging.blockedMessage"/>"
+			},
+			wish: {
+				unsetMessage: "<fmt:message key="network.wish.unsetMessage"/>",
+				unVouchedMessage: "<fmt:message key="network.wish.unVouchedMessage"/>",
+				blockedMessage: "<fmt:message key="network.wish.blockedMessage"/>"
+
+			},
+			vouch: {
+				unsetMessage: "<fmt:message key="network.vouch.unsetMessage"/>",
+				deleteMessage: "<fmt:message key="network.vouch.deleteMessage"/>",
+				unVouchedMessage: "<fmt:message key="network.vouch.unVouchedMessage"/>",
+				blockedMessage: "<fmt:message key="network.vouch.blockedMessage"/>"
+			},
+			gifting: {
+				unVouchedMessage: "<fmt:message key="gifting.unVouchedMessage"/>",
+				blockedMessage: "<fmt:message key="gifting.blockedMessage"/>"
+			}
+		}
+	});
+
+
+//]]>
+</script>

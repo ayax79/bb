@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="MediaMetaData">
+
+    <resultMap id="OwnerResult" type="com.blackbox.EntityReference">
+        <result property="guid" column="ownerGuid"/>
+        <result property="ownerType" column="ownerOwnerType" javaType="com.blackbox.EntityType" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <resultMap id="ParentActivityResult" type="com.blackbox.activity.ActivityReference">
+        <result property="activityType" column="parentActivityType" javaType="com.blackbox.activity.ActivityTypeEnum"
+                jdbcType="INTEGER"/>
+        <result property="guid" column="parentGuid"/>
+        <result property="ownerType" column="parentOwnerType" javaType="com.blackbox.EntityType" jdbcType="INTEGER"/>
+        <result property="postDate" column="parentActivityType" javaType="jodaDate"/>
+    </resultMap>
+
+    <resultMap id="SenderProfileResult" type="com.blackbox.activity.ActivityProfile">
+        <result property="senderAvatarImage"/>
+        <result property="senderDisplayName"/>
+        <result property="senderProfileImage"/>
+    </resultMap>
+
+    <resultMap id="MediaMetaDataResult" type="com.blackbox.media.MediaMetaData" extends="BaseEntity.BaseEntityResult">
+        <result property="acknowledged"/>
+        <result property="artifactType" typeHandler="com.blackbox.server.system.ibatis.enumimpl.ArtifactTypeHandler"
+                javaType="artifactType" jdbcType="INTEGER"/>
+        <result property="aspect"/>
+        <result property="assetId"/>
+        <result property="avatar"/>
+        <result property="comment"/>
+        <result property="episodeId"/>
+        <result property="fileName"/>
+        <result property="library" column="libraryMedia"/>
+        <result property="location"/>
+        <result property="loosePic"/>
+        <result property="mimeType"/>
+        <result property="passwordProtect"/>
+        <result property="postDate" javaType="jodaDate"/>
+        <result property="profile"/>
+        <result property="recipientDepth" javaType="com.blackbox.social.NetworkTypeEnum" jdbcType="INTEGER"/>
+        <result property="virtualGift"/>
+        <association property="senderProfile" resultMap="MediaMetaData.SenderProfileResult"/>
+        <association property="artifactOwner" resultMap="OwnerResult"/>
+    </resultMap>
+
+    <delete id="delete" parameterType="string">
+        delete from bb_media_meta_data where guid = #{value}
+    </delete>
+
+    <insert id="insert" parameterType="com.blackbox.media.MediaMetaData">
+        insert into bb_media_meta_data
+        (acknowledged, artifactType, aspect, assetId, avatar, comment, contentSize, created, episodeId, fileName,
+        libraryMedia, location, loosePic, mimeType, modified, ownerGuid, ownerOwnerType, parentActivityPostDate,
+        parentActivityType, parentGuid, parentOwnerType, passwordProtect, postDate, profile, recipientDepth,
+        senderAvatarImage, senderDisplayName, senderProfileImage, thumbnailLocation, version, virtualGift, guid)
+        values
+        (#{acknowledged,jdbcType=BOOLEAN},
+        #{artifactType,javaType=artifactType,jdbcType=INTEGER},
+        #{aspect,jdbcType=DOUBLE}, #{assetId,jdbcType=VARCHAR},
+        #{avatar,jdbcType=BOOLEAN}, #{comment,jdbcType=VARCHAR},
+        #{size,jdbcType=INTEGER}, #{created,jdbcType=DATE},
+        #{episodeId,jdbcType=VARCHAR}, #{fileName,jdbcType=VARCHAR}, #{library,jdbcType=BOOLEAN},
+        #{location,jdbcType=VARCHAR}, #{loosePic,jdbcType=BOOLEAN}, #{mimeType,jdbcType=VARCHAR}, #{modified,jdbcType=DATE},
+        #{owner.guid,jdbcType=VARCHAR},
+        #{owner.ownerType,javaType=entityType,jdbcType=INTEGER},
+        #{parentActivity.postDate,jdbcType=DATE}, #{parentActivity.activityType,jdbcType=INTEGER},
+        #{parentActivity.guid,jdbcType=VARCHAR}, #{parentActivity.ownerType,jdbcType=INTEGER},
+        #{passwordProtect,jdbcType=BOOLEAN},
+        #{postDate,jdbcType=DATE}, #{profile,jdbcType=BOOLEAN},
+        #{recipientDepth,jdbcType=INTEGER},
+        #{senderProfile.senderAvatarImage,jdbcType=VARCHAR},
+        #{senderProfile.senderDisplayName,jdbcType=VARCHAR}, #{senderProfile.senderProfileImage,jdbcType=VARCHAR},
+        #{thumbnailLocation,jdbcType=VARCHAR},
+        #{version,jdbcType=INTEGER}, #{virtualGift,jdbcType=BOOLEAN},
+        #{guid,jdbcType=VARCHAR})
+    </insert>
+
+    <update id="update" parameterType="com.blackbox.media.MediaMetaData">
+        update bb_media_meta_data set
+        acknowledged = #{acknowledged,jdbcType=BOOLEAN},
+        artifactType = #{artifactType,javaType=artifactType,jdbcType=INTEGER},
+        aspect = #{aspect,jdbcType=DOUBLE},
+        assetId = #{assetId,jdbcType=VARCHAR},
+        avatar = #{avatar,jdbcType=BOOLEAN},
+        comment = #{comment,jdbcType=VARCHAR},
+        contentSize = #{size,jdbcType=INTEGER},
+        episodeId = #{episodeId,jdbcType=VARCHAR},
+        fileName = #{fileName,jdbcType=VARCHAR},
+        libraryMedia = #{library,jdbcType=BOOLEAN},
+        location = #{location,jdbcType=VARCHAR},
+        loosePic = #{loosePic,jdbcType=BOOLEAN},
+        mimeType = #{mimeType,jdbcType=VARCHAR},
+        modified = #{modified,jdbcType=DATE},
+        ownerGuid = #{owner.guid,jdbcType=VARCHAR},
+        ownerOwnerType = #{owner.ownerType,jdbcType=INTEGER},
+        parentActivityPostDate = #{parentActivity.postDate,jdbcType=DATE},
+        parentActivityType = #{parentActivity.activityType,jdbcType=INTEGER},
+        parentGuid = #{parentActivity.guid,jdbcType=VARCHAR},
+        parentOwnerType = #{parentActivity.ownerType,jdbcType=INTEGER},
+        passwordProtect = #{passwordProtect,jdbcType=BOOLEAN},
+        postDate = #{postDate,jdbcType=DATE},
+        profile = #{profile,jdbcType=BOOLEAN},
+        recipientDepth = #{recipientDepth,jdbcType=INTEGER},
+        senderAvatarImage = #{senderProfile.senderAvatarImage,jdbcType=VARCHAR},
+        senderDisplayName = #{senderProfile.senderDisplayName,jdbcType=VARCHAR},
+        senderProfileImage = #{senderProfile.senderProfileImage,jdbcType=VARCHAR},
+        thumbnailLocation = #{thumbnailLocation,jdbcType=VARCHAR},
+        version = #{version,jdbcType=INTEGER},
+        virtualGift = #{virtualGift,jdbcType=BOOLEAN}
+        where
+        guid = #{guid,jdbcType=VARCHAR}
+    </update>
+
+    <select id="load" parameterType="string" resultMap="MediaMetaData.MediaMetaDataResult">
+        select * from bb_media_meta_data where guid = #{value}
+    </select>
+
+    <select id="loadProfileAvatar" parameterType="map" resultMap="MediaMetaDataResult">
+        select * from bb_media_meta_data where
+        avatar = #{avatar}
+        and profile = #{profile}
+        and ownerguid = #{guid}
+        order by postDate desc
+        limit 1
+    </select>
+
+    <select id="loadByEpisodeId" parameterType="string" resultMap="MediaMetaDataResult">
+        select * from bb_media_meta_data where episodeId = #{value} order by postDate desc
+    </select>
+
+    <select id="loadLast" parameterType="map" resultMap="MediaMetaDataResult">
+        select * from bb_media_meta_data where
+        librarymedia = false
+        and ownerGuid = #{guid}
+        and recipientDepth in
+        <foreach item="item" collection="recipientDepth" open="(" close=")" separator=",">#{item}</foreach>
+        order by postDate
+        limit 1
+    </select>
+
+    <select id="loadAssociated" parameterType="map" resultMap="MediaMetaDataResult">
+        select * from bb_media_meta_data where
+        acknowledged = true
+        and virtualGift = false
+        and librarymedia = false
+        and loosePic = false
+        and ownerguid = #{guid}
+        <if test="recipientDepth != null">
+            and recipientDepth in
+            <foreach collection="recipientDepth" item="depth" open="(" close=")" separator=",">#{depth}</foreach>
+        </if>
+        order by postDate desc
+    </select>
+
+    <select id="loadMedia" parameterType="map" resultMap="MediaMetaDataResult">
+        select m.* from
+        bb_media_meta_data m
+        <choose>
+            <when test="recipients != null and !recipients.isEmpty">
+                left join bb_media_recipient r on (m.guid = r.media_guid)
+                where
+                r.recipientGuid in
+                <foreach collection="recipients" item="recipient" open="(" close=")" separator=",">
+                    #{recipient}
+                </foreach>
+                and
+            </when>
+            <otherwise>
+                where
+            </otherwise>
+        </choose>
+        m.librarymedia = false
+        and m.profile = false
+        <if test="owner != null || (recipients != null and !recipients.isEmpty) || (types != null and !types.isEmpty)">
+            and (
+            <if test="types != null and !types.isEmpty">
+                recipientDepth in
+                <foreach collection="types" item="type" open="(" close=")" separator=",">
+                    #{type,javaType=networkType,jdbcType=INTEGER}
+                </foreach>
+                and
+            </if>
+            <if test="owners != null and not owners.isEmpty">
+                ownerGuid in
+                <foreach collection="owners" item="owner" open="(" close=")" separator=",">#{owner}</foreach>
+            </if>
+            )
+        </if>
+        <if test="publicNetworkTypes != null and !publicNetworkTypes.isEmpty">
+            and recipientDepth in
+            <foreach collection="publicNetworkTypes" item="type" open="(" close=")" separator=",">
+                #{type,javaType=networkType,jdbcType=INTEGER}
+            </foreach>
+        </if>
+        <if test="bounds != null and bounds.endDate != null">
+            and m.postDate &lt; #{bounds.endDate}
+        </if>
+        <if test="bounds != null and bounds.startDate != null">
+            and m.postDate &gt; #{bounds.startDate)
+        </if>
+        order by m.postDate desc
+    </select>
+
+    <select id="loadAll" resultMap="MediaMetaDataResult">
+        select * from bb_media_meta_data
+    </select>
+
+</mapper>

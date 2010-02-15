@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2009. Blackbox, LLC
+  ~ All rights reserved.
+  -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"
+        >
+
+    <bean id="persistLastLoginListener" class="com.blackbox.server.user.listener.PersistLastLoginListener"/>
+    
+    <bean id="accessControlCache" class="org.yestech.cache.impl.TerracottaDistributedCacheManager" />
+    <!--<bean id="accessControlCache" class="org.yestech.cache.impl.TerracottaCacheManager" p:fqn="bbaccessList"-->
+          <!--p:cache-ref="terracottaCache"/>-->
+
+</beans>

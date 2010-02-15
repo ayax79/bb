@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="VirtualGift">
+    
+    <select id="loadMessageVirtualGiftForRecipient" resultMap="Message.MessageResult" parameterType="map">
+        select m.*, md.*
+        from 
+        bb_message m, bb_message_meta_data md, bb_message_recipient r
+        where
+        m.artifactMetaData_guid = md.guid
+        and md.guid = r.messagemetadata_guid
+        and m.virtualgift = true
+        and m.acknowledged = #{acknowledged,jdbcType=BOOLEAN}
+        and r.recipientguid = #{guid,jdbcType=VARCHAR}
+        order by m.postDate desc
+    </select>
+
+    <select id="loadMediaVirtualGiftForRecipient" resultMap="MediaMetaData.MediaMetaDataResult" parameterType="map">
+        select m.*
+        from
+        bb_media_meta_data m, bb_media_recipient r
+        where
+        r.media_guid = m.guid
+        and m.virtualGift = true
+        and m.acknowledged = #{acknowledged,jdbcType=BOOLEAN}
+        and r.recipientguid = #{guid,jdbcType=VARCHAR}
+        order by m.postDate desc
+    </select>
+
+    <select id="countMessageGiftsForRecipient" resultType="int" parameterType="string">
+        select count(*)
+        from
+        bb_message m, bb_message_meta_data md, bb_message_recipient r
+        where
+        md.guid = r.messagemetadata_guid
+        and m.virtualgift = true
+        and m.acknowledged = #{acknowledged,jdbcType=BOOLEAN}
+        and r.recipientguid = #{guid,jdbcType=VARCHAR}
+    </select>
+
+    <select id="countMediaGiftsForRecipient" resultType="int" parameterType="string">
+        select count(*)
+        from
+        bb_message m, bb_message_meta_data md, bb_message_recipient r
+        where
+        m.artifactMetaData_guid = md.guid
+        and md.guid = r.messagemetadata_guid
+        and m.virtualgift = true
+        and m.acknowledged = #{acknowledged,jdbcType=BOOLEAN}
+            and r.recipientguid = #{guid,jdbcType=VARCHAR}
+    </select>
+
+    <select id="loadMessageVirtualGiftForOwner" parameterType="map" resultMap="Message.MessageResult">
+        <include refid="Message.defaultSelectAndJoins" />
+        and m.virtualGift = true
+        and md.ownerGuid = #{guid}
+        and m.acknowledged = #{acknowledged}
+        order by m.postDate desc
+    </select>
+    
+    <select id="loadMediaVirtualGiftForOwner" parameterType="map" resultMap="MediaMetaData.MediaMetaDataResult">
+        select m.* from bb_media_meta_data m where
+        m.ownerguid = #{guid} and m.acknowledged = #{acknowledged}
+    </select>
+    
+    
+</mapper>

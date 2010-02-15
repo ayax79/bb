@@ -1,0 +1,444 @@
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+    }
+
+#notifications .filters-menu {
+    margin: 15px 0 0 15px;
+}
+
+#notifications-col {
+    width: 289px;
+    overflow: hidden;
+}
+
+#notifications-col h2 {
+    width: 272px;
+    padding: 20px 10px 10px 8px;
+    margin: 0;
+    background: url("${library.prefix}/images/bg/notif-col-header.png") left bottom repeat-x;
+    font-family: Cambria, palatino, georgia, times new roman, serif;
+    font-size: 18px;
+    font-weight: normal;
+    color: #272727;
+}
+
+#notifications-col .section {
+    padding: 0;
+    margin-bottom: 1px;
+    position: relative;
+    margin:10px 0 0 0;
+}
+
+#notifications-col .section-header {
+	background: transparent url(${library.prefix}/images/bg/inbox-notif-header-bg.png) left top no-repeat;
+    width: 269px;
+    padding: 8px 8px 0 8px;
+    color: #fff;
+    height: 20px;
+}
+
+#notifications-col .disabled .section-header {
+    background-color: #666;
+}
+
+#notifications-col .section h3 {
+    width: 50%;
+    float: left;
+    padding: 0;
+    margin: 0;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: normal;
+    color: #fff !important;
+}
+
+#notifications-col .disabled h3 {
+    color: #aaa !important;
+    font-style: italic;
+}
+
+#notifications-col h3 span.counter {
+    font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    padding-left: 7px;
+    line-height: 15px;
+    position: relative;
+    top: -2px;
+    background: transparent url("${library.prefix}/images/containers/messages-num-left.png") left no-repeat;
+    display:inline-block;
+    margin:0 !important;
+}
+
+#notifications-col h3 span.counter span.count {
+    padding-right: 5px;
+    background: transparent url("${library.prefix}/images/containers/messages-num-right.png") right no-repeat;
+    line-height:15px;
+    display:inline-block;
+    text-indent:-1px;
+    margin:0 !important;
+}
+
+#notifications-col .total-box {
+    float: right;
+    font-size: 11px;
+    white-space: nowrap;
+}
+
+#notifications-col span.total {
+    height: 14px;
+    padding: 1px 0 2px 0;
+    margin: 0;
+}
+
+#notifications-col span.total span.totalcount {
+    padding: 1px 0 2px 0;
+    margin: 0;
+    height: 14px;
+    font-size: 11px;
+}
+
+#notifications-col .items {
+	background: #fff url("${library.prefix}/images/bg/mebox-rightcol-bg.png") repeat-y scroll left top;
+	width: 285px;
+	padding: 0;
+	}
+	
+#notifications-col .user {
+    padding: 8px;
+    border-bottom: 1px solid #e9e9e9;
+}
+
+#notifications-col p.see-all, #notifications-col p.noMoreNotifications {
+	background: url(${library.prefix}/images/bg/right-col-seeall-bg.png) left bottom no-repeat;
+	font-size: 11px;
+	margin-top: 0;
+	padding: 3px 12px 5px 5px;
+	text-align: right;
+	font-weight: normal;
+	}
+
+#notifications-col p.see-all a {
+	font-weight: normal;
+	}
+	
+#notifications-col .profile-image-container {
+    margin-right: 6px;
+}
+
+#notifications-col .user p {
+    font-size: 11px;
+    margin: 0;
+    padding: 0;
+    color: #000;
+    float: left;
+    width: 200px;
+}
+
+#notifications-col .user ul {
+    padding: 0;
+    margin: 32px 0 0 0;
+    font-size: 10px;
+    display: block;
+}
+
+#notifications-col .user ul li {
+    list-style: none;
+    display: block;
+    float: left;
+    color: #dcdcb9;
+}
+
+#notifications-col .user ul li span {
+    border-right: 1px solid #464646;
+    padding: 0 3px;
+}
+
+#notifications-col .user ul li.noborder span {
+    border:none;
+    padding-right:0;
+}
+
+#notifications-col .user ul li:first-child a {
+	padding-left: 0;}
+
+#notifications-col .user ul li a {
+    color: #DE3700;
+    border-right: 1px solid #DE3700;
+    padding: 0 3px;
+    font-weight: normal;
+}
+
+#notifications-col .user ul li.noborder a {
+    border: none;
+    padding-right: 0;
+}
+
+#notifications-col .user ul li a:hover {
+    text-decoration: underline;
+}
+
+#notifications {
+    padding: 10px;
+    padding-left: 25px;
+}
+
+#notifications h3.date-line {
+    font-size: 11px;
+    font-weight: normal;
+    border-bottom: 1px solid #000;
+    padding-bottom: 3px;
+    margin-bottom: 0;
+}
+
+.notifications-select {
+    background-color: #f6f6f6;
+    padding: 5px;
+    border-bottom: 1px solid #ededed;
+    font-size: 11px;
+    margin-bottom: 20px;
+}
+
+.notifications-select p {
+    float: left;
+    width: 35px;
+    margin: 0;
+    padding: 0;
+}
+
+.notifications-select span.select {
+    float: left;
+    width: 200px;
+}
+
+.notifications-select span.action {
+    float: right;
+    width: 200px;
+}
+
+.notifications-select ul {
+    margin: 0;
+    padding: 0;
+    font-size: 11px;
+    width: 100%;
+}
+
+.notifications-select ul li {
+    list-style: none;
+    display: block;
+    float: left;
+}
+
+.notifications-select span.action ul li {
+    float: right;
+}
+
+.notifications-select ul li span {
+    border-right: 1px solid #a3a3a3;
+    padding: 0 3px;
+}
+
+.notifications-select ul li a {
+    color: #a3a3a3;
+    border-right: 1px solid #a3a3a3;
+    padding: 0 3px;
+    font-weight: normal;
+}
+
+.notifications-select ul li.noborder a {
+    border: none;
+    padding-right: 0;
+}
+
+.notifications-select ul li a:hover {
+    text-decoration: underline;
+}
+
+#notifications .user {
+    padding: 6px 6px 6px 0;
+    border-top: 1px solid #e9e9e9;
+}
+
+#notifications .user input.notification-checkbox {
+    float: left;
+    display: block;
+    margin: 6px 8px 0 -15px;
+}
+
+#notifications .profile-image-container {
+    margin-right: 0px;
+}
+
+#notifications .profile-image-container.s_small {
+    width: auto;
+}
+
+#notifications .user img {
+
+}
+
+#notifications .user p {
+    font-size: 11px;
+    margin: 0;
+    padding: 0;
+    color: #999;
+    float: left;
+}
+
+#notifications .profile-image-container {
+    margin-right: 6px;
+}
+
+#notifications .user ul {
+	float: right;
+	margin: 0;
+	padding: 0;
+	max-width: 90px;
+}
+	
+#notifications .user ul li {
+    list-style: none;
+    display: block;
+    float: left;
+    color: #dcdcb9;
+    font-size: 11px;
+}
+
+#notifications .user ul li span {
+    border-right: 1px solid #464646;
+    padding: 0 3px;
+}
+
+#notifications .user ul li.noborder span {
+    border:none;
+    padding-right:0;
+}
+
+#notifications .user ul li a {
+    color: #464646;
+    border-right: 1px solid #464646;
+    padding: 0 3px;
+    font-weight: normal;
+}
+
+#notifications .user ul li.noborder a {
+    border: none;
+    padding-right: 0;
+}
+
+#notifications .user ul li a:hover {
+    text-decoration: underline;
+}
+
+#following_container .two-column-bg, #friends_container .two-column-bg, #wishes_container .two-column-bg,#gifts_container .two-column-bg,#vouches_container .two-column-bg,#occasions_container .two-column-bg {
+	background-image: none;
+	}
+
+#gifts {
+    margin-left: -10px;
+}
+
+#gifts .gift-row {
+    padding: 4px;
+    border-bottom: 1px solid #ccc;
+    font-size: 11px;
+}
+
+#gifts .gift-avatar {
+    margin-right:4px;
+    float: left;
+}
+
+#gifts .gift-checkbox {
+    float: left;
+    margin-right:4px;
+}
+
+#gifts .gift-checkbox input {
+   margin:0;
+
+}
+
+#gifts .gift-body {
+    float: left;
+    border-right: 1px solid #eee;
+    width:420px;
+    overflow:hidden;
+    padding-right:10px;
+}
+
+#gifts .gift-status {
+    float: right;
+    height:100%;
+}
+
+#gifts .gift-status p {
+    margin:0 0 4px;
+    font-weight:900;
+}
+
+#notifications .gift-status ul {
+    margin:0;
+    padding:0;
+    max-width:90px;
+    float:right;
+}
+
+#notifications .gift-status ul li {
+    list-style: none;
+    display: block;
+    float: right;
+    color: #dcdcb9;
+    font-size: 11px;
+}
+
+#gifts .gift-status ul li span {
+    border-right: 1px solid #464646;
+    padding: 0 3px;
+}
+
+#gifts .gift-status ul li a {
+    color: #464646;
+    border-right: 1px solid #464646;
+    padding: 0 3px;
+    font-weight: normal;
+}
+
+#gifts .gift-status ul li.noborder a {
+    border: none;
+    padding-right: 0;
+}
+
+#gifts .gift-status ul li a:hover {
+    text-decoration: underline;
+}
+
+#gifts .gift-body p {
+    margin: 0 0 3px;
+    font-size: 11px;
+}
+
+#gifts .gift-body p a {
+    font-weight: 300;
+}
+
+#gifts p.date-received {
+    font-style:italic;
+    color:#666;
+}
+
+#gifts a.delete-button {
+    display:block;
+    padding-left:18px;
+    background:transparent url(/community/library/images/icons/delete-icon.png) no-repeat 3px center;
+    font-weight:300;
+    color:#000;
+}
+
+#gifts a.delete-button span {
+    line-height:14px;
+}

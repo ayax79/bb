@@ -1,0 +1,3 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" trimDirectiveWhitespaces="true" %>
+<%@include file="taglibs.jspf"%>
+<fmt:setBundle basename="StripesResources"/>

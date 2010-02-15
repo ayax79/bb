@@ -1,0 +1,85 @@
+<%@include file="/WEB-INF/jsp/include/taglibs.jspf" %>
+
+<%--@elvariable id="actionBean" type="com.blackbox.presentation.action.search.LiveSearchActionBean"--%>
+<div class="ls-section">
+    <h3>People</h3>
+
+    <div class="ls-list">
+        <c:choose>
+            <c:when test="${not empty actionBean.users}">
+                <ul>
+                    <c:forEach var="r" items="${actionBean.users}" varStatus="status" begin="0" end="14">
+                        <%--@elvariable id="r" type="com.blackbox.user.User"--%>
+                        <li class="ls-result <c:if test='${status.first}'>first</c:if><c:if test='${status.last}'>last</c:if>">
+							<span class="meta">
+									${bb:limitString(r.profile.location.city, 20)},
+								<c:choose>
+                                    <c:when test="${not empty r.profile.birthday}">
+                                        ${bb:age(r.profile.birthday)}
+                                    </c:when>
+                                    <c:otherwise>
+                                        N/A
+                                    </c:otherwise>
+                                </c:choose>
+							</span>
+                            <ui:entitylink entity="${r}" classClass="slink">
+                                <span>${bb:displayName(r)}</span>
+                            </ui:entitylink>
+
+                        </li>
+                    </c:forEach>
+                </ul>
+            </c:when>
+            <c:otherwise>
+                <span>No results found within your network.</span>
+            </c:otherwise>
+
+        </c:choose>
+
+		<c:if test="${not empty actionBean.users && f:length(actionBean.users) > 15}">
+				<p>Top 15 results displayed</p>
+		</c:if>
+    </div>
+    <div class="clear"></div>
+</div>
+
+<%--<div class="ls-section">--%>
+    <%--<h3>Gifts</h3>--%>
+
+    <%--<div class="ls-list">--%>
+        <%--<span>Coming Soon...</span>--%>
+    <%--</div>--%>
+    <%--<div class="clear"></div>--%>
+<%--</div>--%>
+
+<%--<div class="ls-section">--%>
+    <%--<h3>Events</h3>--%>
+
+    <%--<div class="ls-list">--%>
+        <%--<c:choose>--%>
+            <%--<c:when test="${f:length(actionBean.occasions) > 0}">--%>
+                <%--<ul>--%>
+                    <%--<c:forEach var="r" items="${actionBean.occasions}" varStatus="status">--%>
+                        <%--@elvariable id="r" type="com.blackbox.occasion.Occasion"--%>
+                        <%--<li class="ls-result <c:if test='${status.first}'>first</c:if><c:if test='${status.last}'>last</c:if>">--%>
+							<%--<span class="meta">--%>
+                                <%--${r.address.city},--%>
+                                <%--${bb:formatDate(r.eventTime, "long")}--%>
+							<%--</span>--%>
+                            <%--<ui:entitylink entity="${r}" classClass="slink">--%>
+                                <%--<span>${bb:displayName(r)}</span>--%>
+                            <%--</ui:entitylink>--%>
+
+                        <%--</li>--%>
+                    <%--</c:forEach>--%>
+                <%--</ul>--%>
+            <%--</c:when>--%>
+            <%--<c:otherwise>--%>
+                <%--<span>No results found within your network.</span>--%>
+            <%--</c:otherwise>--%>
+        <%--</c:choose>--%>
+    <%--</div>--%>
+    <%--<div class="clear"></div>--%>
+<%--</div>--%>
+
+<div class="clear"></div>

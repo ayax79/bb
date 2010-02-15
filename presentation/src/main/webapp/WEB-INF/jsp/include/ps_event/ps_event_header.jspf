@@ -1,0 +1,26 @@
+<%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="${bb:libraryResource('/library/css/my_n.css')}" type="text/css" media="screen, projection" />
+<link rel="stylesheet" href="${bb:libraryResource('/library/css/jquery.lightbox-0.5.css')}" type="text/css" />
+<link href="${bb:libraryResource('/library/css/psevent.css')}" rel="stylesheet" type="text/css" />
+<link href="${bb:libraryResource('/library/css/ps_dialog.css')}" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="${bb:libraryResource('/library/css/jquery.colorpicker/css/colorpicker.css')}" type="text/css" />
+<link rel="stylesheet" href="${bb:libraryResource('/library/css/events.css')}" type="text/css" media="screen, projection" />
+<link rel="stylesheet" href="${bb:libraryResource('/library/css/my_n.css')}" type="text/css" media="screen, projection" />
+<link rel="stylesheet" href="${bb:libraryResource('/library/css/jquery.Jcrop.css')}" type="text/css" />
+
+
+<script src="${bb:libraryResource('/library/js/jquery.lightbox-0.5.js')}" type="text/javascript"></script>
+<script src="${bb:libraryResource('/library/js/jquery.bbdialog.js')}" type="text/javascript"></script>
+
+<script type="text/javascript"  src="${bb:libraryResource('/library/js/colorpicker.js')}" ></script>
+<script type="text/javascript" src="${bb:libraryResource('/library/js/psevent.js')}" ></script>
+<script src="${bb:libraryResource('/library/js/ui.core.js')}" type="text/javascript"></script>
+<script src="${bb:libraryResource('/library/js/ui.tabs.js')}" type="text/javascript"></script>
+<script src="${bb:libraryResource('/library/js/jquery.json-2.2.min.js')}" type="text/javascript"></script>
+<script type="text/javascript"  src="${bb:libraryResource('/library/js/jquery.Jcrop.min.js')}" ></script>
+<style>
+    .bottom_btn{
+        float:right;margin:15px;
+    }
+</style>

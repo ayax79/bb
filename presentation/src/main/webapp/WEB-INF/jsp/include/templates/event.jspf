@@ -1,0 +1,20 @@
+<%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
+<div class="article" id="article_${guid}">
+	<a href="#">${name}</a><br />
+	<p>${description}</p>
+
+	<p>
+		${address1}<br/>
+		${address2}<br/>
+		${city}
+		${state}
+		${country}
+		${zipCode}
+	</p>
+
+	<c:if test="${!param.suppressComments == true}">
+		<div class="article-comments">
+			<%@include file="/WEB-INF/jsp/include/templates/add-comment.jspf" %>
+		</div>
+	</c:if>
+</div>

@@ -1,0 +1,115 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:camel="http://camel.apache.org/schema/spring"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring-2.0.0.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <!--
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
+    -->
+    <camel:camelContext id="multimediaContentPublishContext">
+        <camel:route>
+            <camel:from
+                    uri="audioMultimediaContentPublishBus:audioMultimediaContentPublishBus?topologyName=audio.multimedia.content.publish.queue&amp;pipeName=audio.multimedia.content.publish.queue"/>
+            <camel:pipeline>
+                <camel:to uri="bean:camelConsumerMultimediaContentPublish?method=process"/>
+                <camel:multicast parallelProcessing="true">
+                    <camel:to uri="bean:binaryContentMemberNotification?method=notify"/>
+                    <camel:to uri="bean:contentPersistSenderMediaToDatabase?method=save"/>
+                    <camel:to uri="bean:persistActivityToDatabase?method=save"/>
+                </camel:multicast>
+            </camel:pipeline>
+        </camel:route>
+        <camel:route>
+            <camel:from
+                    uri="imageMultimediaContentPublishBus:imageMultimediaContentPublishBus?topologyName=image.multimedia.content.publish.queue&amp;pipeName=image.multimedia.content.publish.queue"/>
+            <camel:pipeline>
+                <camel:to uri="bean:camelConsumerMultimediaContentPublish?method=process"/>
+                <camel:multicast parallelProcessing="true">
+                    <camel:to uri="bean:binaryContentMemberNotification?method=notify"/>
+                    <camel:to uri="bean:contentPersistSenderMediaToDatabase?method=save"/>
+                    <camel:to uri="bean:persistActivityToDatabase?method=save"/>
+                </camel:multicast>
+            </camel:pipeline>
+        </camel:route>
+        <camel:route>
+            <camel:from
+                    uri="videoMultimediaContentPublishBus:videoMultimediaContentPublishBus?topologyName=video.multimedia.content.publish.queue&amp;pipeName=video.multimedia.content.publish.queue"/>
+            <camel:pipeline>
+                <camel:to uri="bean:camelConsumerMultimediaContentPublish?method=process"/>
+                <camel:multicast parallelProcessing="true">
+                    <camel:to uri="bean:binaryContentMemberNotification?method=notify"/>
+                    <camel:to uri="bean:contentPersistSenderMediaToDatabase?method=save"/>
+                    <!-- This will be saved in Episodic Publisher. -->
+                    <!--<camel:to uri="bean:persistActivityToDatabase?method=save"/>-->
+                </camel:multicast>
+            </camel:pipeline>
+        </camel:route>
+    </camel:camelContext>
+    <bean id="audioMultimediaContentPublishBus" class="org.yestech.lib.camel.TerracottaComponent"/>
+    <bean id="imageMultimediaContentPublishBus" class="org.yestech.lib.camel.TerracottaComponent"/>
+    <bean id="videoMultimediaContentPublishBus" class="org.yestech.lib.camel.TerracottaComponent"/>
+
+    <bean id="camelConsumerMultimediaContentPublish" class="org.yestech.publish.service.CamelXmlPublishConsumer"
+          p:processor-ref="defaultMultimediaContentPublishProcessor" p:tempDirectory-ref="localPublishConsumerTempDir"/>
+
+    <bean id="defaultMultimediaContentPublishProcessor" class="org.yestech.publish.service.DefaultPublishProcessor">
+        <property name="processorList">
+            <util:list>
+                <ref bean="multimediaContentAdapterPublisher"/>
+            </util:list>
+        </property>
+    </bean>
+
+    <bean id="multimediaContentAdapterPublisher" class="com.blackbox.server.media.publisher.MultimediaAdapterPublisher">
+        <property name="adaptees">
+            <map>
+                <entry key="AUDIO" value-ref="audioContentPublishProcessor"/>
+                <entry key="VIDEO" value-ref="videoContentPublishProcessor"/>
+                <entry key="IMAGE" value-ref="imagePublisherAdapter"/>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="imagePublisherAdapter" class="com.blackbox.server.media.publisher.ImagePublisherAdapter"
+          p:tempdir="${publish.tmp.directory}"
+          p:maxSize="${image.max.size}" p:maxThumbnailSize="${image.maxThumbnail.size}"
+          p:delegate-ref="imageContentPublishProcessor"/>
+
+
+    <bean id="audioContentPublishProcessor" class="org.yestech.publish.publisher.BitgravityWebdavPublisher"
+          p:artifactType="AUDIO"
+          p:properties-ref="publisherProperties"/>
+
+    <bean id="videoContentPublishProcessor" class="org.yestech.publish.publisher.EpisodicPublisher"
+          p:artifactType="VIDEO"
+          p:properties-ref="publisherProperties" 
+          p:persister-ref="mediaDao"/>
+
+    <bean id="imageContentPublishProcessor" class="org.yestech.publish.publisher.BitgravityWebdavPublisher"
+          p:artifactType="IMAGE"
+          p:properties-ref="publisherProperties"/>
+
+    <bean id="persistActivityToDatabase" class="com.blackbox.server.activity.publisher.SaveActivityToDatabase"/>
+    <bean id="contentPersistSenderMediaToDatabase"
+          class="com.blackbox.server.media.publisher.SaveSenderMediaToDatabase"/>
+    <bean id="contentPersistSenderLastActivityMedia"
+          class="com.blackbox.server.media.publisher.SaveSenderLastActivityMedia"/>
+    <bean id="contentPersistSenderMediaToActivityStream"
+          class="com.blackbox.server.media.publisher.SaveSenderMediaToActivityStream"/>
+    <bean id="contentPersistFollowersMedias"
+          class="com.blackbox.server.media.publisher.SaveFollowersMediasToActivityStreams"/>
+    <bean id="contentPersistFriendsMedias"
+          class="com.blackbox.server.media.publisher.SaveFriendsMediasToActivityStreams"/>
+
+    <bean id="binaryContentMemberNotification" class="com.blackbox.server.notification.MediaMemberNotification"
+          p:sender-ref="multimediaContentNotificationSender" p:subject="${content.publish.subject}"
+          p:notificationBridge-ref="messageNotificationBridge"
+          p:presentationUrl="${presentation.url}"
+          p:templateLanguage-ref="binaryContentPublishVelocityTemplateLanguage"/>
+</beans>

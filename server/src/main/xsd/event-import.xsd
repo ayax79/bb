@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="events" type="eventsType"/>
+    <xs:complexType name="eventType">
+        <xs:sequence>
+            <xs:element type="xs:string" name="guid" maxOccurs="1" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        The unique identifier requested in the system. The identifier will be honored if it does not
+                        already exist in the system.
+                        If no identifier is specified one will be generated.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element type="xs:string" name="owner">
+                <xs:annotation>
+                    <xs:documentation>
+                        Must be a real username in the system.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element type="xs:string" name="name"/>
+            <xs:element type="xs:string" name="address1"/>
+            <xs:element type="xs:string" name="city"/>
+            <xs:element type="xs:string" name="state"/>
+            <xs:element type="xs:string" name="zipcode"/>
+            <xs:element type="xs:string" name="description"/>
+            <xs:element type="longdate" name="eventtime"/>
+            <xs:element type="longdate" name="eventendtime" maxOccurs="1" minOccurs="0"/>
+            <xs:element type="xs:anyURI" name="eventurl"/>
+            <xs:element type="xs:string" name="imageLocation">
+                <xs:annotation>
+                    <xs:documentation>
+                        The location of the main image for the event
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element type="xs:string" name="avatarlocation" maxOccurs="1" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        The location of the smaller avatar image for the event. If one is not specified,
+                        the imageLocation will be used in a scaled down version.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="eventsType">
+        <xs:sequence>
+            <xs:element type="eventType" name="event" maxOccurs="unbounded" minOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="longdate" >
+        <xs:annotation>
+            <xs:documentation>
+                A date expressed as a long value from the epoch. (jan 1. 1970).
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction xml:base="xs:long" />
+    </xs:simpleType>
+</xs:schema>

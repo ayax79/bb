@@ -1,0 +1,24 @@
+<%@ page import="com.blackbox.presentation.action.util.JSONUtil" %>
+<%@ page import="com.blackbox.media.MediaMetaData" %>
+<%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
+<%--@elvariable id="actionBean" type="com.blackbox.presentation.action.media.PublishActionBean"--%>
+<c:set var="mmd" value="${actionBean.mediaMetaData}" />
+<%MediaMetaData mmd = (MediaMetaData) pageContext.getAttribute("mmd");%>
+<c:choose>
+	<c:when test="${mmd.mimeType == 'application/octet-stream'}">
+		<script type="text/javascript">
+		//<![CDATA[
+			window.opener.Publisher.getInstance('${param.pubId}').close();
+			window.opener.Activity.processUpdate(<%= JSONUtil.toJSON(mmd) %>);
+			window.close();
+		//]]>
+		</script>
+	</c:when>
+	<c:otherwise>
+		<script type="text/javascript">
+		//<![CDATA[
+			parent.Activity.processUpdate(<%= JSONUtil.toJSON(mmd) %>);
+		//]]>
+		</script>
+	</c:otherwise>
+</c:choose>

@@ -1,0 +1,79 @@
+<%--@elvariable id="activity" type="com.blackbox.activity.ActivityThread"--%>
+<%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
+<c:set var="newLine" value="
+" />
+
+
+<style type="text/css">
+
+	.ElvHrBg {
+		background: transparent url(${bb:libraryResource('/library/images/bg/bg-11hr.png')}) no-repeat;
+		width: 564px;
+		height: 287px;
+		position: absolute;
+		top: -14px;
+		left: -38px;
+		z-index: 300;
+	}
+
+	.ElvHrBody {
+		width: 480px;
+		height: 250px;
+		z-index: 301;
+		padding: 34px 0 0 8px;
+		position: relative;
+	}
+
+	.ElvHrTimeLeft {
+		background: transparent url(${bb:libraryResource('/library/images/containers/11hrTime.png')}) no-repeat;
+		position:absolute;
+		top:117px;
+		width:100%;
+	}
+
+	.ElvHrTimeLeft span {
+		display:block;
+		text-align:center;
+		line-height:41px;
+		font-size:16px;
+		color:#525252;
+		font-weight:bold;
+	}
+
+	.ElevenHr .article-pict {
+		z-index:302;
+	}
+
+	.ElevenHr .article-meat {
+		margin-top:5px;
+	}
+
+</style>
+<div class="article ElevenHr" id="article_">
+	<div class="article-content">
+		<div class="article-pict">
+			<img src="${bb:libraryResource('/library/images/icons/clock.png')}" alt="11th Hour" />
+		</div>
+		<div class="article-body">
+			<div class="article-header">
+				<div class="ElvHrBg">&nbsp;</div>
+				<div class="ElvHrBody">
+					<div style="float:left;margin-right:20px;">
+						<%--<ui:roundedImage size="small" color="white" url="http://a284.ac-images.myspacecdn.com/images01/1/l_e4a3be4565607ffabe9c5e7911d5b34b.jpg" />--%>
+					</div>
+					<div style="float:left;width:370px;">
+						<div class="article-meta">
+							<span class="article-user"><a href="#">Yo Mama</a></span>
+							<span class="article-date"><abbr class="timeago" title="">Years ago</abbr></span>
+						</div>
+						<div class="article-meat">I'm going to be in Portland tonight at 11. Anyone up for drinks?</div>
+					</div>
+					<div class="clear"></div>
+					<div class="ElvHrTimeLeft"><span>10 Hours 15 mins and 27 seconds remaining.</span></div>
+				</div>
+			</div>
+			<hr />
+			<%@include file="/WEB-INF/jsp/include/templates/comments.jspf" %>
+		</div>
+	</div>
+</div>

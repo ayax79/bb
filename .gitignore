@@ -1,0 +1,11 @@
+*.iml
+*.iws
+*.ipr
+*.tmp
+*.log
+*~
+*.ids
+*.swp
+.idea
+target
+dbdump.dmp

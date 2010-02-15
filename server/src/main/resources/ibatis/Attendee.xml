@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="Attendee">
+
+    <resultMap id="AttendeeResult" type="com.blackbox.occasion.Attendee"
+               extends="BBPersistentObject.BBPersistentObjectResult">
+        <result property="acknowledged" />
+        <result property="attendingStatus" javaType="com.blackbox.occasion.AttendingStatus" jdbcType="INTEGER"/>
+        <result property="attendeeSource" javaType="com.blackbox.occasion.AttendeeSource" jdbcType="INTEGER"/>
+        <result property="bbxUserGuid"/>
+        <result property="bbxUserName"/>
+        <result property="password"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.blackbox.occasion.Attendee">
+        insert into bb_occasion_attendee
+        (acknowledged, attendeeSource, attendingStatus, bbxUserGuid, bbxUsername, created, email, modified,
+        password, version, guid)
+        values
+        (#{acknowledged,jdbcType=BOOLEAN}, #{attendeeSource,jdbcType=INTEGER}, #{attendingStatus,jdbcType=INTEGER},
+        #{bbxUserGuid,jdbcType=VARCHAR}, #{bbxUserName,jdbcType=VARCHAR}, #{created,jdbcType=DATE},
+        #{email,jdbcType=VARCHAR}, #{modified,jdbcType=DATE}, #{password,jdbcType=VARCHAR}, #{version,jdbcType=INTEGER},
+        #{guid,jdbcType=VARCHAR})
+    </insert>
+
+    <update id="update" parameterType="com.blackbox.occasion.Attendee">
+        update bb_occasion_attendee set
+        acknowledged = #{acknowledged,jdbcType=BOOLEAN},
+        attendeeSource = #{attendeeSource,jdbcType=INTEGER},
+        attendingStatus = #{attendingStatus,jdbcType=INTEGER},
+        bbxUserGuid = #{bbxUserGuid,jdbcType=VARCHAR},
+        bbxUsername = #{bbxUserName,jdbcType=VARCHAR},
+        email = #{email,jdbcType=VARCHAR},
+        modified = #{modified,jdbcType=DATE},
+        password = #{password,jdbcType=VARCHAR},
+        version = #{version,jdbcType=INTEGER}
+        where
+        guid = #{guid,jdbcType=VARCHAR}
+    </update>
+
+    <insert id="insertJoin" parameterType="map">
+        insert into bb_occasion_bb_occasion_attendee
+        (attendees_guid, occasions_guid)
+        values
+        (#{attendees_guid,jdbcType=VARCHAR}, #{occasions_guid,jdbcType=VARCHAR})
+    </insert>
+
+    <delete id="deleteJoinByOccasionsGuid" parameterType="string">
+        delete from bb_occasion_bb_occasion_attendee where occasions_guid = #{value}
+    </delete>
+
+    <delete id="deleteByOccasionsGuid" parameterType="string">
+        delete from bb_occasion_attendee where guid in (select attendees_guid from bb_occasion_bb_occasion_attendee where occasions_guid = #{value})
+    </delete>
+
+    <select id="loadByOccasionGuid" resultMap="Attendee.AttendeeResult" parameterType="string">
+        select
+        a.*
+        from bb_occasion_attendee a, bb_occasion_bb_occasion_attendee ooa
+        where
+        a.guid = ooa.attendees_guid
+        and ooa.occasions_guid = #{value}
+    </select>
+
+    <select id="countAttendees" parameterType="map" resultType="int">
+        select count(*) from
+        bb_occasion_attendee a, bb_occasion_bb_occasion_attendee booa
+        where
+        a.guid = booa.attendees_guid
+        and booa.occasions_guid = #{guid}
+        and a.attendingstatus = #{status}
+    </select>
+
+    <select id="loadAttendeeByGidAndOccasionAndOccasionOwner" parameterType="map" resultMap="Attendee.AttendeeResult">
+        select a.* from
+        bb_occasion_attendee a, bb_occasion o, bb_occasion_bb_occasion_attendee oa
+        where
+        oa.attendees_guid = a.guid
+        and oa.occasions_guid = o.guid
+        and a.bbxUserGuid = #{attendeeUserGuid,jdbcType=VARCHAR}
+        and o.guid = #{occasionGuid,jdbcType=VARCHAR}
+        and o.owner_guid = #{ownerGuid,jdbcType=VARCHAR}
+        order by a.modified desc
+        limit 1
+    </select>
+
+    <select id="loadAttendeeByGidAndOccasion" parameterType="map" resultMap="Attendee.AttendeeResult">
+        select a.*
+        from
+        bb_occasion_attendee a, bb_occasion o, bb_occasion_bb_occasion_attendee oa
+        where
+        oa.attendees_guid = a.guid
+        and oa.occasions_guid = o.guid
+        and a.bbxUserGuid = #{attendeeUserGuid,jdbcType=VARCHAR}
+        and o.guid = #{occasionGuid,jdbcType=VARCHAR}
+        order by a.modified desc
+        limit 1
+    </select>
+
+</mapper>

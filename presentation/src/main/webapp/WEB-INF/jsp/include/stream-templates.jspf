@@ -1,0 +1,59 @@
+<%@ include file="/WEB-INF/jsp/include/taglibs.jspf" %>
+<c:set var="exludeJS" value="true"/>
+<div id="stream-templates">
+
+	<%-- MESSAGE --%>
+	<div id="message-template">
+		<%@include file="/WEB-INF/jsp/include/templates/message.jspf" %>
+	</div>
+
+	<%-- MEDIA --%>
+	<div id="media-template">
+		<%@include file="/WEB-INF/jsp/include/templates/media.jspf" %>
+	</div>
+
+	<%-- GIFT MESSAGE --%>
+	<div id="gift-message-template">
+		<%@include file="/WEB-INF/jsp/include/templates/gift-message.jspf" %>
+	</div>
+
+	<%-- GIFT MEDIA --%>
+	<div id="gift-media-template">
+		<%@include file="/WEB-INF/jsp/include/templates/gift-media.jspf" %>
+	</div>
+
+	<%-- VIDEO --%>
+	<div id="video-template">
+		VIDEO NOT SUPPORTED YET
+	</div>
+
+	<div id="comment-video-template">
+		<%@include file="/WEB-INF/jsp/include/templates/media-comment-video.jspf"%>
+	</div>
+
+	<%-- IMAGE --%>
+	<div id="image-template">
+		<ui:streamImage/>
+	</div>
+
+	<%-- EVENT --%>
+	<div id="event-template">
+		<%@include file="/WEB-INF/jsp/include/templates/event.jspf" %>
+	</div>
+
+	<%-- MESSAGE COMMENT --%>
+	<div id="message-comment-template">
+		<%@include file="/WEB-INF/jsp/include/templates/message-comment.jspf" %>
+	</div>
+
+	<%-- MEDIA COMMENT --%>
+	<div id="media-comment-template">
+		<%@include file="/WEB-INF/jsp/include/templates/media-comment.jspf" %>
+	</div>
+
+	<%-- ADD COMMENT --%>
+	<div id="add-comment-template">
+		<%@include file="/WEB-INF/jsp/include/templates/add-comment.jspf" %>
+	</div>
+
+</div>

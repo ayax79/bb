@@ -1,0 +1,247 @@
+<%@ include file="/WEB-INF/jsp/include/page_header.jspf" %>
+<%--@elvariable id="actionBean" type="com.blackbox.presentation.action.persona.PersonaActionBean"--%>
+<%--@elvariable id="user" type="com.blackbox.user.User"--%>
+<c:set var="friends" value="${actionBean.persona.friends}"/>
+<c:set var="following" value="${actionBean.persona.following}"/>
+<c:set var="viewedByUsers" value="${actionBean.viewedBy}"/>
+
+	<div class="main_con_lef">
+		<div id="profile_div_id" class="upload_container">
+			<c:choose>
+				<c:when test="${not empty actionBean.ownerProfileImage}">
+					<img id="profile_img_id" src="${actionBean.ownerProfileImage}" alt="Loading..."/>
+				</c:when>
+				<c:otherwise>
+					<img id="profile_img_id" src="${bb:libraryResource('/library/images/icons/profile_person_large.png')}" alt="Loading..."/>
+				</c:otherwise>
+			</c:choose>
+			<c:if test="${actionBean.owner == 'true'}">
+				<div id="profile_upload_id" onclick="popUpProfileUploadDialog();return false;" class="upload_zone" style="position:absolute;  z-index:100; display:none;">
+					<a class="upload_dialog_link" title="Upload new persona pic" href="#">
+						<img style="width:23px;height:23px;" src="${bb:libraryResource('/library/images/persona/upl_pic.png')}"/>
+					</a>
+				</div>
+			</c:if>
+		</div>
+	</div>
+<div class="user-info-tab clearfix">
+
+	<div class="column-l">
+		<%--<ui:roundedBox className="grey-inline column-l-head">--%>
+			<h3>Hey, I&#8217;m ${bb:displayName(actionBean.user)}</h3>
+				<%-- This is a seriously rediculous amount of code just to display 4 values... --%>
+
+				<%--<c:choose>--%>
+					<%--<c:when test="${not empty actionBean.profile.currentAddress.city || not empty actionBean.profile.currentAddress.state}">--%>
+						<%--<c:if test="${previousValue}">/</c:if>--%>
+						<%--<c:if test="${not empty actionBean.profile.currentAddress.city}">${actionBean.profile.currentAddress.city}</c:if>--%>
+						<%--<c:if test="${not empty actionBean.profile.currentAddress.city && not empty actionBean.profile.currentAddress.state}">, </c:if>--%>
+						<%--<c:if test="${not empty actionBean.profile.currentAddress.state}">${actionBean.profile.currentAddress.state}</c:if>--%>
+					<%--</c:when>--%>
+				<%--</c:choose>--%>
+
+			<c:if test="${not empty lookingFor}">
+				<p><strong>Right now I&#8217;m looking for
+					<c:forEach var="thang" items="${lookingFor}" varStatus="index">
+						${thang}
+						<c:choose>
+							<c:when test="${index.last}">.</c:when>
+							<c:when test="${index.count == (f:length(lookingFor) - 1)}">, and </c:when>
+							<c:when test="${index.count != (f:length(lookingFor) - 1) && !index.last}">, </c:when>
+						</c:choose>
+					</c:forEach>
+				</strong></p>
+			</c:if>
+			<p>${actionBean.user.profile.lookingForExplain}</p>
+		<%--</ui:roundedBox>--%>
+		<div class="user-data">
+			<h4>Basic information</h4>
+			<table>
+				<colgroup>
+					<col width="30%"/>
+					<col width="70%"/>
+				</colgroup>
+				<tbody>
+				<c:if test="${!actionBean.profile.birthdayInVisible && not empty actionBean.profile.birthday}">
+					<tr class="top-row">
+						<th>Age</th>
+						<td>${bb:age(actionBean.profile.birthday)}</td>
+					</tr>
+					<c:set var="previousValue" value="true"/>
+				</c:if>
+				
+				<c:set var="previousValue" value="false"/>
+				<c:if test="${not empty actionBean.profile.sex}">
+					<tr>
+						<th>Gender</th>
+					<c:if test="${previousValue}">/</c:if>
+						<td>
+					<c:choose>
+						<c:when test="${actionBean.profile.sex == 'MALE'}">Male</c:when>
+						<c:when test="${actionBean.profile.sex == 'FEMALE'}">Female</c:when>
+						<c:when test="${actionBean.profile.sex == 'XXX'}">Not specified</c:when>
+					</c:choose>
+						</td>
+					<c:set var="previousValue" value="true"/>
+				</c:if>
+				
+				<c:if test="${not empty actionBean.user.profile.created}">
+					<tr>
+						<th>Member since</th>
+						<td>${bb:formatDate(actionBean.user.profile.created, "MM/dd/YYYY")}</td>
+					</tr>
+				</c:if>
+				<c:if test="${not empty actionBean.user.type}">
+					<tr>
+						<th>Member type</th>
+						<td><fmt:message key="UserTypeEnum.${s:enumName(actionBean.user.type)}"/></td>
+					</tr>
+				</c:if>
+
+				<c:if test="${not (empty actionBean.user.profile.frequentCities1 && empty actionBean.user.profile.frequentCities2 && empty actionBean.user.profile.frequentCities3)}">
+					<tr>
+						<th>Frequent cities</th>
+						<td>
+								${actionBean.user.profile.frequentCities1}
+							<c:if test="${!empty actionBean.user.profile.frequentCities2}">, ${actionBean.user.profile.frequentCities2}</c:if>
+							<c:if test="${!empty actionBean.user.profile.frequentCities3}">, ${actionBean.user.profile.frequentCities3}</c:if>
+						</td>
+					</tr>
+				</c:if>
+
+				<c:if test="${not empty actionBean.user.profile.location.city}">
+					<tr>
+						<th>Living in</th>
+						<td>${actionBean.user.profile.location.city}</td>
+					</tr>
+				</c:if>
+
+				<c:if test="${not empty actionBean.user.profile.currentAddress.city}">
+					<tr>
+						<th>Currently in</th>
+						<td>${actionBean.user.profile.currentAddress.city}</td>
+					</tr>
+				</c:if>
+
+				<c:if test="${not empty actionBean.user.lastOnline}">
+					<tr>
+						<th>Last login</th>
+						<td>${bb:formatDate(actionBean.user.lastOnline, "MM/dd/YYYY")}</td>
+					</tr>
+				</c:if>
+
+				</tbody>
+			</table>
+
+
+		</div>
+	</div>
+
+
+	<div class="column-r">
+		<h3>Today I&#8217;m</h3>
+
+		<div class="info-sliders mini-slider <c:if test="${actionBean.profile.mood.makePrivate}"> private </c:if>">
+			<ul>
+				<li class="slider_container clearfix">
+					<c:if test="${!actionBean.profile.mood.makePrivate}">
+						<input type="hidden" name="orientation" class="slider-val" value="${actionBean.user.profile.mood.orientation}"/>
+					</c:if>
+					<label><span><fmt:message key="settings.field.orientation"/></span></label>
+					<ui:slider containerClass="sliderz" labelLeft="${bb:getBundleString('StripesResources', 'settings.field.orientation.leftLabel')}" labelCenter="${bb:getBundleString('StripesResources', 'settings.field.orientation.centerLabel')}" labelRight="${bb:getBundleString('StripesResources', 'settings.field.orientation.rightLabel')}" showQuarterTicks="true"/>
+				</li>
+				<li class="slider_container clearfix">
+					<c:if test="${!actionBean.profile.mood.makePrivate}">
+						<input type="hidden" name="relationshipStatus" class="slider-val" value="${actionBean.user.profile.mood.relationshipStatus}"/>
+					</c:if>
+					<label><span><fmt:message key="settings.field.status"/></span></label>
+					<ui:slider containerClass="sliderz" labelLeft="${bb:getBundleString('StripesResources', 'settings.field.status.leftLabel')}" labelCenter="${bb:getBundleString('StripesResources', 'settings.field.status.centerLabel')}" labelRight="${bb:getBundleString('StripesResources', 'settings.field.status.rightLabel')}" showQuarterTicks="true"/>
+				</li>
+				<li class="slider_container clearfix">
+					<c:if test="${!actionBean.profile.mood.makePrivate}">
+						<input type="hidden" name="polyStatus" class="slider-val" value="${actionBean.user.profile.mood.polyStatus}"/>
+					</c:if>
+					<label><span><fmt:message key="settings.field.addPartners"/></span></label>
+					<ui:slider containerClass="sliderz" labelLeft="${bb:getBundleString('StripesResources', 'settings.field.addPartners.leftLabel')}" labelCenter="${bb:getBundleString('StripesResources', 'settings.field.addPartners.centerLabel')}" labelRight="${bb:getBundleString('StripesResources', 'settings.field.addPartners.rightLabel')}" showQuarterTicks="true"/>
+				</li>
+				<li class="slider_container clearfix">
+					<c:if test="${!actionBean.profile.mood.makePrivate}">
+						<input type="hidden" name="interestLevel" class="slider-val" value="${actionBean.user.profile.mood.interestLevel}"/>
+					</c:if>
+					<label><span><fmt:message key="settings.field.lovin"/></span></label>
+					<ui:slider containerClass="sliderz" labelLeft="${bb:getBundleString('StripesResources', 'settings.field.lovin.leftLabel')}" labelCenter="${bb:getBundleString('StripesResources', 'settings.field.lovin.centerLabel')}" labelRight="${bb:getBundleString('StripesResources', 'settings.field.lovin.rightLabel')}" showQuarterTicks="true"/>
+				</li>
+				<li class="slider_container clearfix">
+					<c:if test="${!actionBean.profile.mood.makePrivate}">
+						<input type="hidden" name="energyLevel" class="slider-val" value="${actionBean.user.profile.mood.energyLevel}"/>
+					</c:if>
+					<label><span><fmt:message key="settings.field.vibe"/></span></label>
+					<ui:slider containerClass="sliderz" labelLeft="${bb:getBundleString('StripesResources', 'settings.field.vibe.leftLabel')}" labelCenter="${bb:getBundleString('StripesResources', 'settings.field.vibe.centerLabel')}" labelRight="${bb:getBundleString('StripesResources', 'settings.field.vibe.rightLabel')}" showQuarterTicks="true"/>
+				</li>
+			</ul>
+		</div>
+		
+		<div style="text-align:right;">
+			<c:if test="${actionBean.owner == 'true'}">
+				<ui:anchorButton beanclass="com.blackbox.presentation.action.user.AccountSettingsActionBean" typeClass="smlbtn" styleClass="grey-s">Edit</ui:anchorButton>
+			</c:if>
+		</div>
+	
+	</div>
+
+</div>
+
+<div class="clear"></div>
+<c:if test="${not bb:isLimited(actionBean.currentUser) or actionBean.owner}">
+<div id="relations" class="clearfix">
+	<div id="relationship-row" class="clearfix">
+		<h3>Relationships <c:if test="${actionBean.owner == 'true'}">
+			<span class="tog_but"><a href="#" id="edit-relationships">Edit relationships</a></span>
+		</c:if></h3>
+		<div id="tog_list_container">
+			<c:set var="displayMode" value="horizontal"/>
+			<%@include file="/ajax/relationships/list-relationships.jspf"%>
+		</div>
+
+	</div>
+	
+	<div id="friends-row" class="clearfix">
+		<div id="friends-panel" class="panel">
+			<%--<h3>Friends (${f:length(friends)})</h3>--%>
+			<h3>Friends (<a class="viewMoreLink more-friends-link" href="#${actionBean.user.guid}" title="View all friends">${f:length(friends)}</a>)</h3>
+			<div class="box clearfix">
+				<c:forEach var="relationship" items="${friends}" varStatus="i">
+					<%--@elvariable id="actionBean" type="com.blackbox.social.Relationship"--%>
+                     <c:if test="${i.index<10}">
+						<ui:profileImage guid="${relationship.toEntity.guid}" size="small" color="white" linkToProfile="true" showMiniProfile="true" showUserType="true"/>
+					</c:if>
+				</c:forEach>
+			</div>
+		</div>
+		
+		<div id="following-panel" class="panel">
+			<%--<h3>Following (${f:length(following)})</h3>--%>
+			<h3>Following (<a class="viewMoreLink more-following-link" href="#${actionBean.user.guid}" title="View all">${f:length(following)}</a>)</h3>
+			<div class="box clearfix">
+				<c:forEach var="relationship" items="${following}" varStatus="i">
+                    <c:if test="${i.index<10}">
+						<ui:profileImage guid="${relationship.toEntity.guid}" size="small" color="white" linkToProfile="true" showMiniProfile="true" showUserType="true"/>
+                    </c:if>
+				</c:forEach>
+			</div>
+		</div>
+		
+		<div id="viewed-panel" class="panel">
+			<%--<h3>Recently viewed (${f:length(viewedByUsers)})</h3>--%>
+			<h3>Recently viewed (<a class="viewMoreLink more-viewedBy-link" href="#${actionBean.user.guid}" title="View more">${f:length(viewedByUsers)}</a>)</h3>
+			<div class="box clearfix">
+				<c:forEach var="user" items="${viewedByUsers}" varStatus="i">
+                     <c:if test="${i.index<10}">
+						<ui:profileImage guid="${user.user.guid}" size="small" color="white" linkToProfile="true" showMiniProfile="true" showUserType="true"/>
+                     </c:if>
+				</c:forEach>
+			</div>
+		</div>
+	</div>
+</div>
+    </c:if>

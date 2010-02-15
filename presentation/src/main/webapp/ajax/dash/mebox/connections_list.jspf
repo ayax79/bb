@@ -1,0 +1,38 @@
+<%--@elvariable id="actionBean" type="com.blackbox.presentation.action.user.MePageActionBean"--%>
+<%@include file="/WEB-INF/jsp/include/taglibs.jspf" %>
+
+<div style="display:none;">
+	<input type="hidden" id="startIndex" value="${actionBean.connections.startIndex}"/>
+	<input type="hidden" id="numResults" value="${actionBean.maxResults}"/>
+	<input type="hidden" id="totalResults" value="${actionBean.connections.totalResults}"/>
+</div>
+
+<c:choose>
+	<c:when test="${not empty actionBean.connections.results}">
+		<table class="me-table">
+			<tbody>
+			<c:forEach var="connection" items="${actionBean.connections.results}">
+				<%--@elvariable id="connection" type="com.blackbox.social.Connection"--%>
+				<c:set var="user" value="${connection.user}"/>
+				<%--@elvariable id="user" type="com.blackbox.user.User"--%>
+				<ui:meBoxUserRow user="${user}" type="connection"/>
+			</c:forEach>
+			</tbody>
+		</table>
+	</c:when>
+	<c:otherwise>
+		<p class="no-results">No connections</p>
+	</c:otherwise>
+</c:choose>
+
+<c:if test="${not empty actionBean.connections.results && actionBean.connections.totalResults > actionBean.maxResults}">
+	<ui:pagingControls id="bottomPaging" items="${actionBean.connections.results}"/>
+</c:if>
+
+<script type="text/javascript">
+	//<![CDATA[
+	(function () {
+		$(".gear-menu").gearMenu();
+	})();
+	//]]>
+</script>

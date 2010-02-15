@@ -1,0 +1,16 @@
+<%@ taglib prefix="s" uri="http://stripes.sourceforge.net/stripes.tld" %>
+<h2>Search for a user to administer</h2>
+<s:errors/>
+<s:messages/>
+<div class="clearfix"></div>
+<s:form beanclass="com.blackbox.presentation.action.admin.SystemAdminActionBean" method="post">
+    <s:label for="user.username">Username</s:label>
+    <s:text name="user.username"></s:text>
+    <s:submit name="show_user">Show User</s:submit>
+</s:form>
+<p><strong><em>--or--</em></strong></p>
+<s:form beanclass="com.blackbox.presentation.action.admin.SystemAdminActionBean" method="post">
+    <s:label for="user.email">Email</s:label>
+    <s:text name="user.email"></s:text>
+    <s:submit name="show_user">Show User</s:submit>
+</s:form>

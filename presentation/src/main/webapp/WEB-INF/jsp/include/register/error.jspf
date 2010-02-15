@@ -1,0 +1,59 @@
+<%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
+<html>
+<body class="register">
+<script type="text/javascript">
+    //<![CDATA[
+    $(function() {
+        pageTracker._trackPageview("/goalfunnel/register/error/payment_failure");
+        pageTracker._trackEvent('Registration', 'Error', 'Payment Failed');
+    });
+    //]]>
+</script>
+
+
+<div class="reg-col-l">
+
+    <h2 class="welcome">Hmm, something didn't work out.</h2>
+
+    <p>Our billing provider was unable to complete the payment process. Your credit card information may have been
+        entered incorrectly, or the transaction may have been declined.</p>
+
+    <p>Please continue to registration and re-check your information. So sorry!</p>
+</div>
+
+
+<div class="reg-col-r">
+
+    <div class="fin-info" style="margin-top: 4em;">
+        <table>
+            <colgroup>
+                <col width="200"/>
+                <col width="50%"/>
+            </colgroup>
+            <tr>
+                <td><strong>Attempted Charge</strong></td>
+                <td>${sessionScope.billing.lastAmount}</td>
+            </tr>
+            <tr>
+                <td><strong>Credit Card</strong></td>
+                <td>**** **** **** ${sessionScope.billing.lastCardNum}</td>
+            </tr>
+            <tr>
+                <td><strong>Authorization</strong></td>
+                <td>Failed</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="clear"></div>
+
+<div class="reg-footer clearfix">
+    <a href="<s:url beanclass="com.blackbox.presentation.action.user.FullRegisterUserActionBean" event="begin"/>"
+       style="float: right; margin-top: 12px;"><img
+            src="${bb:libraryResource('/library/images/register/next-step-button.png')}" alt="Next step"/></a>
+
+</div>
+
+</body>
+</html>

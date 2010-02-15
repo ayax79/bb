@@ -1,0 +1,21 @@
+<%@include file="/WEB-INF/jsp/include/taglibs.jspf" %>
+
+<div class="feedback-content">
+    <s:form class="bbform abuseForm bbsettings" beanclass="com.blackbox.presentation.action.feedback.ReportAbuseActionBean">
+		<p>Please use the form below to send an abuse report to the administrators</p>
+		<ul>
+			<li>
+				<label for="abuse_subject">Subject</label>
+				<span class="textinput37"><s:text id="abuse_subject" name="subject" /></span>
+			</li>
+			<li>
+				<label for="abuse_description">Description</label>
+				<ui:roundedBox className="textarea1">
+					<s:textarea name="description" id="abuse_description" />
+				</ui:roundedBox>
+			</li>
+		</ul>
+    </s:form>
+	<p class="success_message" style="display:none;">Your report has submitted successfully.</p>
+	<p class="fail_message" style="display:none;">There was a problem submitting your report. Please try again later.</p>
+</div>

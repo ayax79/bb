@@ -1,0 +1,437 @@
+/***********************************************************************************************************************
+publisher.css
+
+Contains styles for the publisher widget
+***********************************************************************************************************************/
+
+.publisher-contents {
+    display:none;
+}
+
+.publisher-controls {
+    display: none;
+    min-height: 1px; /* holly hack IE7 */
+}
+
+.publisher-button-bar {
+    margin: 10px 0;
+    clear:both;
+}
+
+.publish-media-button {
+    width: 257px;
+    background-color:#1c1c1c;
+    float: left;
+    position: relative;
+    margin-right:1px;
+    padding:10px;
+}
+
+.publish-media-button ul {
+    list-style:none;
+    margin:4px 0;
+    padding:0;
+    clear:both;
+}
+
+.publish-media-button li {
+    float:left;
+    border-right:1px solid #666;
+    padding-right:4px;
+}
+
+.publish-media-button li.last {
+    border-right:0;
+    padding-right:0;
+    padding-left:4px;
+}
+
+.publish-media-button.last {
+    margin-right:0;
+}
+
+.publish-media-button p {
+    float:left;
+    color:#fff;
+    margin: 0;
+    font-weight:900;
+}
+
+.publish-media-button li a {
+    color:#55b4ed;
+    font-weight:300;
+    font-size:11px;
+}
+
+.mini .publisher-button-bar {
+    margin: 10px 0;
+    padding-bottom:1px /* collapse margins */
+}
+
+.mini .publish-media-button {
+    width: 209px;
+    background-color:#d1ecf8;
+    float: left;
+    position: relative;
+    margin-right:1px;
+    padding:10px;
+}
+
+.publish-media-button li {
+    border-right:1px solid #ccc;
+}
+
+.mini .publish-media-button p {
+    float:left;
+    color:#000;
+    margin: 0;
+    font-weight:900;
+}
+
+.mini .publisher-media-txt-label {
+    color: #444;
+}
+
+.mini .media-type-inputs {
+    border:1px solid #EBF7FC;
+}
+
+.mini .post-to {
+    background: transparent url("${library.prefix}/images/containers/minipostto-left-bg.png") no-repeat left top;
+}
+
+.mini .post-to span {
+    background: transparent url("${library.prefix}/images/containers/minipostto-right-bg.png") no-repeat right top;
+}
+
+.mini .post-to label {
+    color: #444;
+}
+
+
+#gift-publisher-container .publisher-msg-source {
+    border:1px solid #bfbfbf;
+    width:508px;
+}
+
+#gift-publisher-container .bubble-arrow {
+    background: transparent url(${library.prefix}/images/containers/bubble-arrow2.png) no-repeat;
+}
+
+.gift .publisher-button-bar {
+    margin:4px 0;
+}
+
+.gift .publish-media-button {
+    width: 231px;
+    background-color:#fff;
+    float: left;
+    position: relative;
+    margin-right:1px;
+    padding:10px;
+}
+
+.gift .publish-media-button p {
+    float:left;
+    color:#000;
+    margin: 0;
+    font-weight:900;
+}
+
+.gift .media-type-inputs {
+    margin:6px 0;
+    border:1px solid #ccc;
+}
+
+
+
+.publisher-media-icon {
+    float:left;
+    margin-right:4px;
+}
+
+.publisher-media-txt-desc {
+    display: block;
+    color: #777;
+    font-size: 10px;
+    padding-left: 20px;
+    margin-bottom: 0;
+}
+
+.active .pointer {
+    display: block !important;
+}
+
+.media-source, .select-media-source {
+    display: none;
+    position: relative;
+    background-color:#fff;
+    padding:10px;
+
+}
+
+.select-media-source {
+    height:55px;
+}
+
+.media-type-inputs {
+    min-height: 1px;
+    z-index: 0;
+    position: relative;
+    display:none;
+    border:1px solid #333;
+}
+
+.col-left, .col-right {
+    float: left;
+    font-size: 13px;
+    width: 50%;
+    text-align: center;
+}
+
+.col-left {
+    background: transparent url(${library.prefix}/images/bg/CCCCCC.png) repeat-y right;
+}
+
+.option-close {
+    display: block;
+    position: absolute;
+    top: 9px;
+    right: 4px;
+}
+
+.media-type-label {
+    font-weight: bold;
+    padding: 3px 0px 2px 20px;
+    margin-bottom: 8px;
+    line-height: 18px;
+    padding-top: 3px;
+    position: relative;
+    display: block;
+    border-bottom: 1px solid #ccc;
+}
+
+.media-type-label .publisher-media-icon {
+    top: 0;
+    left: 0;
+}
+
+.publisher_target {
+    display: none;
+}
+
+.post-to {
+    margin: 0 0 10px;
+}
+
+.post-to label {
+    color: #fff;
+    font-weight: normal;
+    margin-right: 6px;
+    float:left;
+    line-height:29px;
+}
+
+.post-to-button {
+    padding: 0 0 0 10px;
+    background: transparent url("${library.prefix}/images/controls/btn-post.png") no-repeat top left;
+    float: left;
+    height: 29px;
+    margin-left:2px;
+}
+
+.post-to-button span {
+    height: 29px;
+    padding-right: 10px;
+    line-height: 29px;
+    background: transparent url("${library.prefix}/images/controls/btn-post.png") no-repeat bottom right;
+    color: #fff;
+    font-size: 11px;
+}
+
+.post-to-button-disabled {
+    /*background-position: left -33px;*/
+}
+
+.post-to-button.disabled span {
+    color: #89cdec;
+    /*background-position: right -33px;*/
+}
+
+.direct-wrap {
+    display:inline-block;
+    padding:2px;
+    background-color:#fff;
+}
+
+
+input#direct {
+    border: 0;
+    background: transparent url("${library.prefix}/images/containers/posto-direct-bg.png") no-repeat;
+    width: 158px;
+    color: #ddd;
+    padding: 6px;
+}
+
+.publisher-controls-close {
+    font-weight:400;
+    display: block;
+    float: right;
+    padding-left: 10px;
+    line-height: 29px;
+    height: 29px;
+    background: transparent url(${library.prefix}/images/controls/publisher-cancel2.png) no-repeat center right;
+    color: #797979;
+    font-size: 11px;
+}
+
+.mini .publisher-controls-close {
+    background: transparent url(${library.prefix}/images/controls/publisher-cancel.png) no-repeat center right;
+    color: #b9d0da;
+}
+
+.publisher-controls-close span {
+    height: 100%;
+    padding-right: 21px;
+    display: block;
+    /*background: transparent url(${library.prefix}/images/controls/btn-pub-cancel-right.png) no-repeat center right;*/
+}
+
+#activity .mainpub-container {
+    border: 0 none;
+    margin: 10px;
+    padding:10px;
+    background-color:#333;
+}
+
+.mainpub-container .profile-image-container {
+    margin:0;
+}
+
+.bubble-arrow {
+    display: block;
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    top: 17px;
+    left: -14px;
+    z-index: 100;
+    background: transparent url(${library.prefix}/images/containers/bubble-arrow1.png) no-repeat;
+}
+
+.publisher-msg-source {
+    margin: 0;
+    border: 1px solid #000;
+    font-style: normal;
+    color: #000;
+    font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    width:541px;
+    height: 33px;
+    padding:6px;
+    outline:none;
+    /*max-width:540px;*/
+    resize:none;
+}
+
+.comment-publish {
+    /*max-width: 394px;*/
+    resize:none;
+    width: 446px;
+    border-color:#d1ecf8 !important;
+}
+
+.unselected {
+    font-style: italic;
+    color: #dadada;
+}
+
+.scene-activity {
+	float:left;
+	color:#727272;
+	line-height:24px;
+	font-size: 13px;
+	}
+	
+.scene-activity-bg {
+	background:#000;
+	padding:10px;
+	}
+	
+.post-to-public-confirm {
+	width: 660px;
+	}
+	
+.post-to-public-confirm h2 {
+	padding-left: 0;
+	margin-left: 0;
+	}
+
+.post-to-wrap {
+    margin-bottom:12px;
+}
+
+.post-to-check-row {
+    margin-bottom:3px;
+}
+
+.post-to-check-row input, .post-to-check-row label {
+    vertical-align:middle;
+}
+
+.fb_avatar {
+    float:left;
+    margin-right:10px;
+}
+
+.post-to-check-row label * {
+    font-weight:bold;
+    font-style:normal;
+    line-height:21px;
+    vertical-align:middle;
+    margin-right:4px;
+}
+
+.post-to-creds  {
+	background: #e1f5fd;
+	border-top: 1px solid #daecf3;
+	border-bottom: 1px solid #daecf3;
+	display: none;
+	margin: 5px 0 16px 18px;
+	padding: 10px 6px;
+}
+	
+.chars-remaining {
+	display: block;
+	font-size: 10px;
+	margin-bottom: 10px;
+	width: 505px;
+	text-align: right;
+	color: #333;
+	}
+	
+#publishertwitterMessageBody {
+	width: 500px;
+	height: 16px;
+	}
+	
+#publishertwitterUsername {
+	width: 150px;
+	height: 16px;
+	}
+	
+#publishertwitterPassword {
+	width: 150px;
+	height: 16px;
+	}
+	
+.public-post-form {
+	background-color: #f0faff;
+	border-top: 1px solid #e8f2f7;
+	padding: 15px;
+	width: 620px;
+	}
+	
+#facebook-form {
+	margin-top: 10px;
+	}

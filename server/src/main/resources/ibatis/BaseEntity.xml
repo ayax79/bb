@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="BaseEntity">
+
+    <resultMap id="BaseEntityResult" type="com.blackbox.BaseEntity" extends="BBPersistentObject.BBPersistentObjectResult">
+        <result property="name" column="name" javaType="string" jdbcType="INTEGER" />
+        <result property="ownerType" column="ownerType" javaType="com.blackbox.EntityType" jdbcType="INTEGER" />
+        <result property="status" column="status" javaType="com.blackbox.Status" jdbcType="INTEGER" />
+    </resultMap>
+
+</mapper>

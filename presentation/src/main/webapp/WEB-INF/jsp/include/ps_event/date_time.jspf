@@ -1,0 +1,5 @@
+<%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
+<c:forEach var="temp" begin="1" end="12" varStatus="tempStatus">
+    <option value="${temp}:00">${temp}:00</option>
+    <option value="${temp}:30">${temp}:30</option>
+</c:forEach>

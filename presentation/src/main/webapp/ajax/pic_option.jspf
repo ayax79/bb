@@ -1,0 +1,30 @@
+<%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
+
+<script type="text/javascript">
+    function changeMediaOpt(picGuid, option) {
+        $.get('<s:url beanclass="com.blackbox.presentation.action.persona.PSMediaOptActionBean" />', {'_eventName': 'changeMediaOption', 'option' : option, 'mediaGuid' : picGuid},
+            function(data) {
+            })
+    }
+    function deletePic(albumGuid, picGuid) {
+        $.get('<s:url beanclass="com.blackbox.presentation.action.persona.PSMediaOptActionBean" />', {'_eventName': 'deleteMediaFromLib', 'libGuid' : albumGuid, 'mediaGuid' : picGuid},
+            function(data) {
+                $("#vid_opt_but").html("pic Removed");
+                $("#picOption_dialog").bbDialog("remove");
+            });
+    }
+</script>
+<div class="vid_opt_mai">
+	<div class="vid_opt_mid">
+		<div class="vid_opt_tex">Who see this Pic?</div>
+		<div class="vid_opt_inp">
+		  <input type="radio" name="whosee" value="WORLD" onClick="javascript:changeMediaOpt(picGuid, 'WORLD'); return true;"/>World&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="radio" name="whosee" value="ALL_MEMBERS" onClick="javascript:changeMediaOpt(picGuid, 'ALL_MEMBERS'); return true;"/>BB<br />
+          <input type="radio" name="whosee" value="FRIENDS" onClick="javascript:changeMediaOpt(picGuid, 'FRIENDS'); return true;"/>Friends&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="radio" name="whosee" value="DIRECT" onClick="javascript:changeMediaOpt(picGuid, 'DIRECT'); return true;"/>Direct
+		</div>
+	</div>
+    <div class="vid_opt_bot">
+        <div class="vid_opt_but"><a style="color:white;" href="#" onclick="javascript:deletePic(albumGuid, picGuid);">Remove this Pic</a></div>
+	</div>
+</div>

@@ -1,0 +1,3 @@
+<%--@elvariable id="actionBean" type="com.blackbox.presentation.action.persona.EditRelationshipsActionBean"--%>
+<%@include file="/WEB-INF/jsp/include/taglibs.jspf" %>
+<ui:relationshipBlock user="${actionBean.user}" relationshipDescription="${actionBean.description}" />

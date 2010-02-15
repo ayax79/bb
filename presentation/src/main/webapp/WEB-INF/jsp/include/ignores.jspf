@@ -1,0 +1,6 @@
+<%@include file="/WEB-INF/jsp/include/taglibs.jspf"%>
+
+<%--@elvariable id="actionBean" type="com.blackbox.presentation.action.social.IgnoreActionBean"--%>
+<c:forEach var="ignore" items="${actionBean.ignores}">
+    ${ignore.target} <br />
+</c:forEach>

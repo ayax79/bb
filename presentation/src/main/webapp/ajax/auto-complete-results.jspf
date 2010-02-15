@@ -1,0 +1,11 @@
+<%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
+<%--@elvariable id="actionBean" type="com.blackbox.presentation.action.search.AutoCompleteActionBean"--%>
+<%--@elvariable id="r" type="com.blackbox.user.User"--%>
+[
+<c:forEach var="r" items="${actionBean.relationships}" varStatus="status" >
+	{
+		"id": "${r.guid}",
+		"name": "${bb:displayName(r)}"
+	}<c:if test="${!index.last}" >, </c:if>
+</c:forEach>
+]

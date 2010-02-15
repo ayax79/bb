@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="Profile">
+
+    <resultMap id="ProfileResult" type="com.blackbox.user.Profile">
+        <id property="guid" jdbcType="VARCHAR" javaType="string" column="guid"/>
+        <result property="created" jdbcType="DATE" javaType="jodaDate" column="created"/>
+        <result property="modified" jdbcType="DATE" javaType="jodaDate" column="modified"/>
+        <result property="version" column="version"/>
+        <result property="acceptsGifts" javaType="boolean" jdbcType="BOOLEAN" column="acceptgifts"/>
+        <result property="birthday" javaType="jodaDate" jdbcType="DATE"/>
+        <result property="birthdayInVisible" javaType="boolean" jdbcType="BOOLEAN"/>
+        <result property="frequentCities1" javaType="string" jdbcType="VARCHAR"/>
+        <result property="frequentCities2" javaType="string" jdbcType="VARCHAR"/>
+        <result property="frequentCities3" javaType="string" jdbcType="VARCHAR"/>
+        <result property="limitedCanComment" javaType="boolean" jdbcType="BOOLEAN"/>
+        <result property="limitedCanFollow" javaType="boolean" jdbcType="BOOLEAN"/>
+        <result property="limitedCanPm" javaType="boolean" jdbcType="BOOLEAN"/>
+        <result property="limitedCanSearch" javaType="boolean" jdbcType="BOOLEAN"/>
+        <result property="limitedCanSeeActivity" javaType="boolean" jdbcType="BOOLEAN"/>
+        <result property="limitedCanSeeGifts" javaType="boolean" jdbcType="BOOLEAN"/>
+        <result property="limitedCanSeePictures" javaType="boolean" jdbcType="BOOLEAN"/>
+        <result property="phoneHome" javaType="string" jdbcType="VARCHAR"/>
+        <result property="phoneMobile" javaType="string" jdbcType="VARCHAR"/>
+        <result property="phoneOther" javaType="string" jdbcType="VARCHAR"/>
+        <result property="lookingForExplain" javaType="string" jdbcType="VARCHAR"/>
+        <result property="mostly" javaType="string" jdbcType="VARCHAR"/>
+        <result property="sex" javaType="com.blackbox.user.SexEnum" jdbcType="INTEGER"/>
+        <result property="website" javaType="string" jdbcType="VARCHAR"/>
+        <result property="visibleToPersona" column="visibleToPersona" javaType="boolean" jdbcType="BOOLEAN"/>
+        <result property="visibleToPubStream" column="visibleToPubStream" javaType="boolean" jdbcType="BOOLEAN"/>
+        <result property="visibleToSearch" column="visibleToSearch" javaType="boolean" jdbcType="BOOLEAN"/>
+        <result property="visibleToPubStream" column="visibleToPubStream" javaType="boolean" jdbcType="BOOLEAN"/>
+        <result property="visibleToTrialMember" column="visibleToTrialMember" javaType="boolean" jdbcType="BOOLEAN"/>
+        <association property="location" javaType="com.blackbox.social.Address">
+            <result property="address1" column="address1" javaType="string" jdbcType="VARCHAR"/>
+            <result property="address2" column="address2" javaType="string" jdbcType="VARCHAR"/>
+            <result property="city" column="city" javaType="string" jdbcType="VARCHAR"/>
+            <result property="country" column="country" jdbcType="VARCHAR"/>
+            <result property="county" column="county" javaType="string" jdbcType="VARCHAR"/>
+            <result property="state" column="state" javaType="string" jdbcType="VARCHAR"/>
+            <result property="zipCode" column="zipcode" javaType="string" jdbcType="VARCHAR"/>
+            <result property="latitude" column="latitude" javaType="Long" jdbcType="BIGINT"/>
+            <result property="longitude" column="longitude" javaType="Long" jdbcType="VARCHAR"/>
+        </association>
+        <association property="lookingFor" javaType="com.blackbox.user.LookingFor">
+            <result property="dates" column="dates" javaType="boolean" jdbcType="BOOLEAN"/>
+            <result property="donkeySex" column="donkeySex" javaType="boolean" jdbcType="BOOLEAN"/>
+            <result property="friends" column="friends" javaType="boolean" jdbcType="BOOLEAN"/>
+            <result property="hookup" column="hookup" javaType="boolean" jdbcType="BOOLEAN"/>
+            <result property="dates" column="dates" javaType="boolean" jdbcType="BOOLEAN"/>
+            <result property="love" column="love" javaType="boolean" jdbcType="BOOLEAN"/>
+            <result property="snuggling" column="snuggling" javaType="boolean" jdbcType="BOOLEAN"/>
+        </association>
+        <association property="mood" javaType="com.blackbox.user.MoodThermometer">
+            <result property="energyLevel" column="energyLevel" javaType="int" jdbcType="INTEGER"/>
+            <result property="interestLevel" column="interestLevel" javaType="int" jdbcType="INTEGER"/>
+            <result property="makePrivate" column="makePrivate" javaType="boolean" jdbcType="BOOLEAN"/>
+            <result property="orientation" column="orientation" javaType="int" jdbcType="INTEGER"/>
+            <result property="polyStatus" column="polyStatus" javaType="int" jdbcType="INTEGER"/>
+            <result property="relationshipStatus" column="relationshipStatus" javaType="int" jdbcType="INTEGER"/>
+        </association>
+        <association property="currentAddress" javaType="com.blackbox.social.Address">
+            <result property="address1" column="current_address1" javaType="string" jdbcType="VARCHAR"/>
+            <result property="address2" column="current_address2" javaType="string" jdbcType="VARCHAR"/>
+            <result property="city" column="current_city" javaType="string" jdbcType="VARCHAR"/>
+            <result property="country" column="current_country" jdbcType="VARCHAR"/>
+            <result property="county" column="current_county" javaType="string" jdbcType="VARCHAR"/>
+            <result property="state" column="current_state" javaType="string" jdbcType="VARCHAR"/>
+            <result property="zipCode" column="current_zipcode" javaType="string" jdbcType="VARCHAR"/>
+            <result property="latitude" column="current_latitude" javaType="Long" jdbcType="BIGINT"/>
+            <result property="longitude" column="current_longitude" javaType="Long" jdbcType="VARCHAR"/>
+        </association>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.blackbox.user.Profile">
+        INSERT INTO bb_profile (
+            acceptsGifts ,address1 ,address2 ,birthday ,birthdayInVisible ,bodymods ,city ,country ,county ,created ,current_address1
+            ,current_address2 ,current_city ,current_country ,current_county ,current_latitude ,current_longitude ,current_state
+            ,current_zipcode ,dates ,description ,donkeySex ,energylevel ,frequentcities1 ,frequentcities2 ,frequentcities3
+            ,friends ,hookup ,interestlevel ,latitude ,limitedcancomment ,limitedcanfollow ,limitedcanpm ,limitedcansearch
+            ,limitedcanseeactivity ,limitedcanseegifts ,limitedcanseepictures ,longitude ,lookingforexplain ,love
+            ,makeprivate ,modified ,mostly ,nonFriendsCanComment ,nonfriendscanfollow ,nonfriendscanpm ,nonfriendscansearch
+            ,orientation ,phonehome ,phonemobile ,phoneother ,politicalviews ,polystatus ,referfromtype ,relationshipstatus
+            ,religiousviews ,sex ,snuggling ,state ,timeZone ,version ,visibletopersona ,visibleToPubStream ,visibletosearch
+            ,visibletotrialmember ,website ,zipcode, guid
+        ) VALUES (
+            #{acceptsGifts,jdbcType=BOOLEAN}, #{location.address1,jdbcType=VARCHAR}, #{location.address2,jdbcType=VARCHAR}
+            ,#{birthday,jdbcType=DATE} ,#{birthdayInVisible,jdbcType=BOOLEAN} ,#{bodyMods,jdbcType=VARCHAR}
+            ,#{location.city,jdbcType=VARCHAR} ,#{location.country,jdbcType=VARCHAR} ,#{location.county,jdbcType=VARCHAR}
+            ,#{created,jdbcType=DATE} ,#{currentAddress.address1,jdbcType=VARCHAR} ,#{currentAddress.address2,jdbcType=VARCHAR}
+            ,#{currentAddress.city,jdbcType=VARCHAR} ,#{currentAddress.country,jdbcType=VARCHAR} ,#{currentAddress.county,jdbcType=VARCHAR}
+            ,#{currentAddress.latitude,jdbcType=INTEGER} ,#{currentAddress.longitude,jdbcType=INTEGER} ,#{currentAddress.state,jdbcType=VARCHAR}
+            ,#{currentAddress.zipCode,jdbcType=VARCHAR} ,#{lookingFor.dates,jdbcType=BOOLEAN} ,#{referFrom.description,jdbcType=VARCHAR}
+            ,#{lookingFor.donkeySex,jdbcType=BOOLEAN} ,#{mood.energyLevel,jdbcType=INTEGER} ,#{frequentCities1,jdbcType=VARCHAR}
+            ,#{frequentCities2,jdbcType=VARCHAR} ,#{frequentCities3,jdbcType=VARCHAR} ,#{lookingFor.friends,jdbcType=BOOLEAN}
+            ,#{lookingFor.hookup,jdbcType=BOOLEAN} ,#{mood.interestLevel,jdbcType=INTEGER} ,#{location.latitude,jdbcType=INTEGER}
+            ,#{limitedCanComment,jdbcType=BOOLEAN} ,#{limitedCanFollow,jdbcType=BOOLEAN} ,#{limitedCanPm,jdbcType=BOOLEAN}
+            ,#{limitedCanSearch,jdbcType=BOOLEAN} ,#{limitedCanSeeActivity,jdbcType=BOOLEAN} ,#{limitedCanSeeGifts,jdbcType=BOOLEAN}
+            ,#{limitedCanSeePictures,jdbcType=BOOLEAN} ,#{location.longitude,jdbcType=INTEGER} ,#{lookingForExplain,jdbcType=VARCHAR}
+            ,#{lookingFor.love,jdbcType=BOOLEAN} ,#{mood.makePrivate,jdbcType=BOOLEAN} ,#{modified,jdbcType=DATE} ,#{mostly,jdbcType=VARCHAR}
+            ,#{nonFriendsCanComment,jdbcType=BOOLEAN} ,#{nonFriendsCanFollow,jdbcType=BOOLEAN} ,#{nonFriendsCanPm,jdbcType=BOOLEAN}
+            ,#{nonFriendsCanSearch,jdbcType=BOOLEAN} ,#{mood.orientation,jdbcType=INTEGER} ,#{phoneHome,jdbcType=VARCHAR}
+            ,#{phoneMobile,jdbcType=VARCHAR} ,#{phoneOther,jdbcType=VARCHAR} ,#{politicalViews,jdbcType=VARCHAR} ,#{mood.polyStatus,jdbcType=INTEGER}
+            ,#{referFrom.referFromType,jdbcType=INTEGER} ,#{mood.relationshipStatus,jdbcType=INTEGER} ,#{religiousViews,jdbcType=VARCHAR} ,#{sex,jdbcType=INTEGER}
+            ,#{lookingFor.snuggling,jdbcType=BOOLEAN} ,#{location.state,jdbcType=VARCHAR} ,#{timeZone,jdbcType=VARCHAR} ,#{version,jdbcType=INTEGER}
+            ,#{visibleToPersona,jdbcType=BOOLEAN} ,#{visibleToPubStream,jdbcType=BOOLEAN} ,#{visibleToSearch,jdbcType=BOOLEAN}
+            ,#{visibleToTrialMember,jdbcType=BOOLEAN} ,#{website,jdbcType=VARCHAR} ,#{location.zipCode,jdbcType=VARCHAR}, #{guid,jdbcType=VARCHAR}
+            )
+    </insert>
+
+    <update id="update" parameterType="com.blackbox.user.Profile">
+            update bb_profile set
+            acceptsGifts=#{acceptsGifts,jdbcType=BOOLEAN},
+            address1=#{location.address1,jdbcType=VARCHAR},
+            address2=#{location.address2,jdbcType=VARCHAR},
+            birthday=#{birthday,jdbcType=DATE},
+            birthdayInVisible=#{birthdayInVisible,jdbcType=BOOLEAN},
+            bodymods=#{bodyMods,jdbcType=VARCHAR},
+            city=#{location.city,jdbcType=VARCHAR},
+            country=#{location.country,jdbcType=VARCHAR},
+            county=#{location.county,jdbcType=VARCHAR},
+            created=#{created,jdbcType=DATE},
+            current_address1=#{currentAddress.address1,jdbcType=VARCHAR},
+            current_address2=#{currentAddress.address2,jdbcType=VARCHAR},
+            current_city=#{currentAddress.city,jdbcType=VARCHAR},
+            current_country=#{currentAddress.country,jdbcType=VARCHAR},
+            current_county=#{currentAddress.county,jdbcType=VARCHAR},
+            current_latitude=#{currentAddress.latitude,jdbcType=INTEGER},
+            current_longitude=#{currentAddress.longitude,jdbcType=INTEGER},
+            current_state=#{currentAddress.state,jdbcType=VARCHAR},
+            current_zipcode=#{currentAddress.zipCode,jdbcType=VARCHAR},
+            dates=#{lookingFor.dates,jdbcType=BOOLEAN},
+            description=#{referFrom.description,jdbcType=VARCHAR},
+            donkeySex=#{lookingFor.donkeySex,jdbcType=BOOLEAN},
+            energylevel=#{mood.energyLevel,jdbcType=INTEGER},
+            frequentcities1=#{frequentCities1,jdbcType=VARCHAR},
+            frequentcities2=#{frequentCities2,jdbcType=VARCHAR},
+            frequentcities3=#{frequentCities3,jdbcType=VARCHAR},
+            friends=#{lookingFor.friends,jdbcType=BOOLEAN},
+            hookup=#{lookingFor.hookup,jdbcType=BOOLEAN},
+            interestlevel=#{mood.interestLevel,jdbcType=INTEGER},
+            latitude=#{location.latitude,jdbcType=INTEGER},
+            limitedcancomment=#{limitedCanComment,jdbcType=BOOLEAN},
+            limitedcanfollow=#{limitedCanFollow,jdbcType=BOOLEAN},
+            limitedcanpm=#{limitedCanPm,jdbcType=BOOLEAN},
+            limitedcansearch=#{limitedCanSearch,jdbcType=BOOLEAN},
+            limitedcanseeactivity=#{limitedCanSeeActivity,jdbcType=BOOLEAN},
+            limitedcanseegifts=#{limitedCanSeeGifts,jdbcType=BOOLEAN},
+            limitedcanseepictures=#{limitedCanSeePictures,jdbcType=BOOLEAN},
+            longitude=#{location.longitude,jdbcType=INTEGER},
+            lookingforexplain=#{lookingForExplain,jdbcType=VARCHAR},
+            love=#{lookingFor.love,jdbcType=BOOLEAN},
+            makeprivate=#{mood.makePrivate,jdbcType=BOOLEAN},
+            modified=#{modified,jdbcType=DATE},
+            mostly=#{mostly,jdbcType=VARCHAR},
+            nonFriendsCanComment=#{nonFriendsCanComment,jdbcType=BOOLEAN},
+            nonfriendscanfollow=#{nonFriendsCanFollow,jdbcType=BOOLEAN},
+            nonfriendscanpm=#{nonFriendsCanPm,jdbcType=BOOLEAN},
+            nonfriendscansearch=#{nonFriendsCanSearch,jdbcType=BOOLEAN},
+            orientation=#{mood.orientation,jdbcType=INTEGER},
+            phonehome=#{phoneHome,jdbcType=VARCHAR},
+            phonemobile=#{phoneMobile,jdbcType=VARCHAR},
+            phoneother=#{phoneOther,jdbcType=VARCHAR},
+            politicalviews=#{politicalViews,jdbcType=VARCHAR},
+            polystatus=#{mood.polyStatus,jdbcType=INTEGER},
+            referfromtype=#{referFrom.referFromType,jdbcType=INTEGER},
+            relationshipstatus=#{mood.relationshipStatus,jdbcType=INTEGER},
+            religiousviews=#{religiousViews,jdbcType=VARCHAR},
+            sex=#{sex,jdbcType=INTEGER},
+            snuggling=#{lookingFor.snuggling,jdbcType=BOOLEAN},
+            state=#{location.state,jdbcType=VARCHAR},
+            timeZone=#{timeZone,jdbcType=VARCHAR},
+            version=#{version,jdbcType=INTEGER},
+            visibletopersona=#{visibleToPersona,jdbcType=BOOLEAN},
+            visibleToPubStream=#{visibleToPubStream,jdbcType=BOOLEAN},
+            visibletosearch=#{visibleToSearch,jdbcType=BOOLEAN},
+            visibletotrialmember=#{visibleToTrialMember,jdbcType=BOOLEAN},
+            website=#{website,jdbcType=VARCHAR},
+            zipcode=#{location.zipCode,jdbcType=VARCHAR}
+        WHERE
+            guid = #{guid,jdbcType=VARCHAR}
+    </update>
+
+    <select id="loadByUserGuid" resultMap="ProfileResult" parameterType="string">
+        select * from bb_profile where user_guid = #{value}
+    </select>
+
+    <select id="load" resultMap="ProfileResult" parameterType="string">
+        select * from bb_profile where guid = #{value}
+    </select>
+
+    <select id="loadAll" resultMap="ProfileResult">
+        select * from bb_profile;
+    </select>
+
+</mapper>

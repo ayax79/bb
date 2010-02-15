@@ -1,0 +1,124 @@
+<%--@elvariable id="actionBean" type="com.blackbox.presentation.action.user.MePageActionBean"--%>
+<%@include file="/WEB-INF/jsp/include/taglibs.jspf" %>
+
+<div style="display:none;">
+	<input type="hidden" id="startIndex" value="${actionBean.occasions.startIndex}"/>
+	<input type="hidden" id="numResults" value="${actionBean.maxResults}"/>
+	<input type="hidden" id="totalResults" value="${actionBean.occasions.totalResults}"/>
+</div>
+
+<c:choose>
+	<c:when test="${not empty actionBean.occasions.results}">
+
+			<c:forEach var="occasion" items="${actionBean.occasions.results}">
+				<%--@elvariable id="occasion" type="com.blackbox.occasion.Occasion"--%>
+                <c:set var="guid" value="${occasion.guid}" />
+                <c:set var="hostby" value="${occasion.hostBy}" />
+                <c:set var="name" value="${occasion.name}" />
+                <c:set var="description" value="${occasion.description}" />
+                <c:set var="startTime" value="${occasion.eventTime}" />
+                <c:set var="endTime" value="${occasion.eventEndTime}" />
+                <c:set var="location" value="${occasion.location}" />
+                <c:set var="imageurl" value="${occasion.layout.transiantImage.location}" />
+                <c:set var="address1" value="${occasion.address.address1}" />
+                <c:set var="address2" value="${occasion.address.address2}" />
+                <c:set var="city" value="${occasion.address.city}" />
+                <c:set var="state" value="${occasion.address.state}" />
+                <c:set var="zip" value="${occasion.address.zipCode}" />
+                <c:set var="totalAttendees" value="${occasion.totalAttendees}" />
+
+
+
+
+            <table cellpadding="0" cellspacing="0" border="0" class="mebox-event-table">
+			    <tbody>
+                    <tr>
+                        <td valign="top" class="results-col-1" style="padding:0px;">
+                            <ui:roughBorderedImage url="${imageurl}" alt="" className="event-image" />
+                            <%--                            
+                            <div class="results-padding">
+                                <div style='border: 4px solid #7fc34b; width: 98px; height: 98px;'>
+                                    <img src="${imageurl}" alt="Event Image" width="96" height="96" style='border: 1px solid #fff;'/>
+                                </div>
+                            </div>
+                            --%>
+
+                        </td>
+                        <td valign="top" style="padding-top: 5px;">
+                            <table cellpadding="0" cellspacing="0" border="0">
+                                <tr>
+                                    <td class="event_result_label">Event</td>
+                                    <td class="event_result_data"><s:link beanclass="com.blackbox.presentation.action.psevent.PSShowEventActionBean"><s:param name="eventParam" value="${guid}"/>${name}</s:link></td>
+                                </tr>
+                                <tr>
+                                    <td class="event_result_label">Location</td>
+                                    <td class="event_result_data">
+                                        <c:set var="prevToken" value="false" />
+                                        <c:if test="${not empty address1}">
+                                            ${address1}
+                                            <c:if test="${empty address2}">, </c:if>
+                                        </c:if>
+                                        <c:if test="${not empty address2}">
+                                            &nbsp;${address2},
+                                        </c:if>
+                                        <c:if test="${not empty city}">
+                                            ${city},
+                                        </c:if>
+                                        <c:if test="${not empty state}">
+                                            ${state}
+                                        </c:if>
+                                        <c:if test="${zipCode}">
+                                            ${zipCode}
+                                        </c:if>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="event_result_label">Date</td>
+                                    <td class="event_result_data">
+                                    ${bb:formatDate(occasion.eventTime, "EEEE MMMM d, yyyy")}
+                                    @
+                                    ${bb:formatDate(occasion.eventTime, "h:mm a")}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="event_result_label" valign="top">Details</td>
+                                    <td class="event_result_data"><div style='width: 300px; height: 28px; overflow: hidden;'>${description}</div></td>
+                                </tr>
+                                <tr>
+                                    <td class="event_result_label">Guests</td>
+                                    <td class="event_result_data">
+                                        ${totalAttendees} attendees
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td width="1">
+                           <div class="user_table_vert_line"></div>
+                        </td>
+                        <td class="event_result_link">
+                            <s:link beanclass="com.blackbox.presentation.action.psevent.PSShowEventActionBean"><s:param name="eventParam" value="${guid}"/>Visit event page</s:link>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+			</c:forEach>
+	</c:when>
+	<c:otherwise>
+		<p class="no-results">No events yet...</p>
+	</c:otherwise>
+</c:choose>
+
+<c:if test="${not empty actionBean.occasions.results && actionBean.occasions.totalResults > actionBean.maxResults}">
+	<ui:pagingControls id="bottomPaging" items="${actionBean.occasions.results}"/>
+</c:if>
+
+<script type="text/javascript">
+	//<![CDATA[
+	(function () {
+
+		
+
+	})();
+	//]]>
+</script>

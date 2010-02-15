@@ -1,0 +1,44 @@
+<%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
+<div class="article gift" id="article_">
+	<div class="article-content">
+		<div class="article-pict">
+			<ui:profileImage guid="${actionBean.currentUser.guid}" showMiniProfile="true" size="medium_large" />
+		</div>
+		<div class="article-body">
+			<div class="article-header">
+				<div class="article-meta">
+					<h1>
+						<img class="gift-tag-large" src="${bb:libraryResource('/library/images/icons/gift-tag-blue.png')}" alt="" />
+						<span class="wrap">
+							<span class="article-user"><a href="#">You</a></span> gifted <span class="article-recipient"><a href="#">Yourself</a></span>
+							<span class="article-date"><abbr class="timeago" title="DATE">10 hours ago</abbr></span>
+						</span>
+					</h1>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="gift-bg-container">
+				<ui:roundedBox className="black40">
+					<div class="article-meat">Thanks for the great night :)</div>
+				</ui:roundedBox>
+				<div class="article-media">
+					<ui:roughBorderedImage url="${bb:libraryResource('/library/images/dummy/rose.jpg')}" alt="" onError="Activity.Utils.imgPoll(event, this);" className="lightbox" />
+				</div>
+			</div>
+			<div class="article-footer">
+				<div class="article-footer-right">
+					<a class="wish" href="#"><span>Wish this</span></a>
+				</div>
+				<div class="article-footer-left">
+					<ui:profileImage guid="${actionBean.currentUser.guid}" showMiniProfile="true" size="small" /></div>
+				<div class="article-footer-center">
+					<span><a href="#">You</a></span><br />
+					<span>have received <a href="#">42 gifts</a></span>
+				</div>
+				<br class="clear" />
+			</div>
+			<div class="article-footer-bottom"><span>&nbsp;</span></div>
+			<%--<%@include file="/WEB-INF/jsp/include/templates/comments.jspf" %>--%>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,42 @@
+.zip-input {
+    background: transparent url(${library.prefix}/images/controls/login-zip.png) no-repeat;
+    width: 108px;
+    padding: 9px 0 9px 10px;
+    border: 0;
+    margin: 0;
+    font-size: 18px;
+}
+.login_tex{
+    background: transparent url(${library.prefix}/images/controls/login-tex.png) no-repeat;
+    width: 290px;
+	height:69px;
+    padding: 9px 0 9px 10px;
+    border: 0;
+    margin: 0;
+    font-size: 18px;
+}
+.login_moo{
+    background: transparent url(${library.prefix}/images/controls/login-moo.png) no-repeat;
+    width: 574px;
+	height:21px;
+}
+.login_icon{
+    background: url(${library.prefix}/images/controls/login_icon.png) no-repeat left center;
+	float:left;
+	width:220px; 
+	height:18px;
+	padding-left:15px; 
+	font-size:11px; 
+	color:#00B813;
+	margin-top:13px;
+	margin-left:15px;
+	text-indent:5px;
+}
+.text-input{ 
+    background: transparent url(${library.prefix}/images/controls/login-field.png) no-repeat;
+    width: 292px; 
+    padding: 9px 0 9px 10px; 
+    border: 0; 
+    margin: 0; 
+    font-size: 18px; 
+}

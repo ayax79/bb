@@ -1,0 +1,7 @@
+<%@include file="/WEB-INF/jsp/include/taglibs.jspf" %>
+<p>To find a user, begin typing their name in the textbox.<br/>Results will be shown and you can select their name from the list.
+<div style="width:200px;">
+<s:form beanclass="com.blackbox.presentation.action.search.AutoCompleteActionBean" method="post" class="find-user-form">
+	<span class="textinput37"><s:text name="q" class="direct-autocomplete"/></span>
+</s:form>
+</div>

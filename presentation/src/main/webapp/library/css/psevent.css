@@ -1,0 +1,2740 @@
+.clea_tit {
+    width: 941px;
+    margin: 0 auto;
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    padding-bottom: 30px;
+}
+
+.clea_tit img {
+    padding-left: 14px;
+}
+
+.clea_eve {
+    width: 941px;
+    margin: 0 auto;
+}
+
+.clea_eve_lef {
+    width: 7px;
+    height: 57px;
+    float: left;
+    background: transparent url(../images/psevent/eve_nam_lef.png) no-repeat left bottom;
+}
+
+.clea_eve_mid {
+    width: 927px;
+    height: 57px;
+    float: left;
+    background: transparent url(../images/psevent/eve_nam_mid.png) repeat-x left bottom;
+}
+
+.eve_inp_tit {
+    float: left;
+    width: 147px;
+    padding-left: 5px;
+    height: 57px;
+    line-height: 57px;
+    font-size: 17px;
+    font-weight: bold;
+    color: #000;
+}
+
+.eve_inp_con {
+    width: 560px;
+    padding-top: 11px;
+    float: left;
+}
+
+.clea_eve_rig {
+    width: 7px;
+    height: 57px;
+    float: left;
+    background: transparent url(../images/psevent/eve_nam_rig.png) no-repeat left bottom;
+}
+
+.cre_con {
+    width: 941px;
+    margin: 0 auto;
+}
+
+.inv_con {
+    width: 941px;
+    margin: 0 auto;
+}
+
+.inv_conlef {
+    float: left;
+    width: 9px;
+    height: 36px;
+    background: transparent url(../images/psevent/crea_1_lm1.png) no-repeat left bottom;
+}
+
+.inv_conmid {
+    float: left;
+    width: 890px;
+    height: 36px;
+    line-height: 36px;
+    padding-left: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background: transparent url(../images/psevent/crea_1_lm2.png) repeat-x left top;
+}
+
+.inv_conrig {
+    float: left;
+    width: 32px;
+    height: 36px;
+    background: transparent url(../images/psevent/crea_1_lm3.png) no-repeat left top;
+}
+
+.inv_conrig_bg {
+    float: left;
+    width: 44px;
+    height: 55px;
+    background: transparent url(../images/psevent/crea_lm3_bg.png) no-repeat left top;
+}
+
+.inv_men {
+    width: 933px;
+    height: 65px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding-left: 8px;
+    background: transparent url(../images/psevent/cre_menbg.jpg) repeat-x left top;
+}
+
+.inv_men11 {
+    width: 933px;
+    height: 65px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding-left: 8px;
+    background: transparent url(../images/psevent/cre_menbg_11.jpg) repeat-x left top;
+}
+
+.inv_pre {
+    width: 187px;
+    margin-top: 6px;
+    margin-right: 9px;
+    height: 47px;
+    padding-top: 12px;
+    padding-left: 10px;
+    background: transparent url(../images/psevent/prebg2.png) repeat-x left bottom;
+    float: left;
+    text-align: left;
+    color: #FF4E00;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.pre_men_tex {
+    color: #757070;
+    font-size: 10px;
+}
+
+.inv_pre1 {
+    width: 187px;
+    margin-top: 6px;
+    margin-right: 9px;
+    height: 47px;
+    padding-top: 12px;
+    padding-left: 10px;
+    float: left;
+    text-align: left;
+    color: #2E2E2E;
+    font-size: 14px;
+    font-weight: bold;
+    background: transparent url(../images/psevent/prebg.png) repeat-x left bottom;
+}
+
+.pre_men_tex1 {
+    color: #6D6D6D;
+    font-size: 10px;
+}
+
+.cat_con {
+    width: 920px;
+    height: 32px;
+    background-color: #fff;
+    text-align: left;
+    padding-left: 21px;
+    border-bottom: #232524 1px solid;
+}
+
+.upl_con {
+    width: 929px;
+    height: 55px;
+    padding-left: 12px;
+    background-color: #fff;
+    border-bottom: #232524 1px solid;
+    text-align: left;
+}
+
+.vid_rec {
+    width: 143px;
+    padding-top: 13px;
+    float: left;
+}
+
+.ima_fro {
+    width: 125px;
+    padding-top: 17px;
+    float: left;
+    color: #595959;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.vid_fro {
+    width: 108px;
+    padding-top: 17px;
+    float: left;
+    color: #595959;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.vid_ico {
+    width: 129px;
+    float: left;
+    color: #fff;
+    font-size: 11px;
+    font-weight: bold;
+    padding-top: 4px;
+}
+
+.ima_ico {
+    width: 129px;
+    float: left;
+    color: #fff;
+    font-size: 11px;
+    font-weight: bold;
+    padding-top: 11px;
+}
+
+.cat_con select {
+    width: 156px;
+    margin-top: 7px;
+    margin-right: 7px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    height: 18px;
+    line-height: 18px;
+}
+
+.inv_main {
+    width: 873px;
+    height: 317px;
+    padding: 20px 50px 0 18px;
+    overflow-y: auto;
+    background-color: #202121;
+    text-align: left;
+}
+
+.inv_main ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.pre_pic1 {
+    float: left;
+    width: 153px;
+    height: 173px;
+    margin-right: 49px;
+    margin-bottom: 13px;
+}
+
+.pre_pic1 img {
+    width: 153px;
+    height: 173px;
+    border: #353030 9px solid;
+}
+
+.pre_pic2 {
+    float: left;
+    width: 171px;
+    height: 123px;
+    margin-right: 39px;
+    padding-top: 24px;
+}
+
+.pre_pic2 img {
+    width: 171px;
+    height: 123px;
+    border: #353030 9px solid;
+}
+
+.img_pic1 {
+    float: left;
+    width: 100px;
+    height: 141px;
+    margin-right: 29px;
+    margin-bottom: 13px;
+}
+
+.img_pic1 img {
+    width: 90px;
+    height: 131px;
+    border: #353030 5px solid;
+}
+
+.img_pic1_bor {
+    width: 90px;
+    height: 131px;
+    border: #02BFF6 5px solid;
+}
+
+.img_pic2 {
+    float: left;
+    width: 141px;
+    height: 100px;
+    margin-right: 39px;
+    padding-top: 14px;
+}
+
+.img_pic2 img {
+    width: 131px;
+    height: 90px;
+    border: #353030 5px solid;
+}
+
+.img_pic2_bor {
+    width: 131px;
+    height: 90px;
+    border: #02BFF6 5px solid;
+}
+
+.inv_bot {
+    width: 941px;
+    margin: 0 auto;
+}
+
+.inv_bot_lef {
+    width: 7px;
+    height: 42px;
+    background: transparent url(../images/psevent/prebotbg1.png) no-repeat left top;
+    float: left;
+}
+
+.inv_bot_mid {
+    width: 917px;
+    height: 42px;
+    line-height: 42px;
+    background-color: #FFFFFF;
+    float: left;
+    color: #000;
+    font-size: 12px;
+    font-weight: bold;
+    padding-left: 11px;
+}
+
+.inv_bot_rig {
+    width: 6px;
+    height: 42px;
+    background: transparent url(../images/psevent/prebotbg2.png) no-repeat left top;
+    float: left;
+}
+
+.vid_pic1 {
+    float: left;
+    width: 248px;
+    height: 154px;
+    margin-right: 25px;
+    margin-bottom: 18px;
+    border: #2F2E31 4px solid;
+}
+
+.vid_pic2 {
+    float: left;
+    width: 200px;
+    height: 154px;
+    margin-right: 25px;
+    margin-bottom: 18px;
+    border: #2F2E31 4px solid;
+}
+
+.eve_con {
+    margin: 0 auto;
+    width: 941px;
+    background: url(../images/psevent/inv_lay_bg2.png) repeat-y left bottom;
+}
+
+.eve_con_lef {
+    width: 269px;
+    float: left;
+}
+
+.mai_con_lef {
+    background-color: #fff;
+}
+
+.sel_vid {
+    font-size: 11px;
+    color: #515151;
+    text-align: left;
+    padding-top: 9px;
+}
+
+.eve_con_rig {
+    width: 672px;
+    float: left;
+}
+
+.inv_lay {
+    padding: 17px 17px 27px 17px;
+    border-bottom: #CCC 1px solid;
+}
+
+.inv_lay1 {
+    padding: 17px 17px 27px 17px;
+}
+
+.inv_lay_men {
+    font-size: 14px;
+    font-weight: bold;
+    color: #424242;
+    padding-bottom: 12px;
+}
+
+.lay_men_con ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.lay_men_con ul li {
+    float: left;
+}
+
+.col_bac {
+    height: 23px;
+    line-height: 23px;
+    margin-bottom: 7px;
+    margin-left: 6px;
+    font-size: 12px;
+    color: #424242;
+    font-weight: bold;
+    padding-left: 33px;
+    background: transparent url(../images/psevent/cor_ico.jpg) no-repeat left top;
+}
+
+.mai_con_rig {
+    padding: 25px 32px 33px 36px;
+}
+
+.mai_con_rig2 {
+    padding: 13px;
+    background-color: #120F10;
+}
+
+.con_rig_pic {
+    padding: 14px 14px 28px 14px;
+    background-color: #fff;
+}
+
+.con_rig_vid {
+    padding: 14px 14px 0 14px;
+    background-color: #fff;
+}
+
+.event_layout_main_landscape {
+    padding: 14px 14px 28px 14px; /*background-color:#fff;*/
+}
+
+.event_background_color_white {
+    background-color: #fff;
+}
+
+.event_background_color_black {
+    background-color: black;
+}
+
+.event_background_color_red {
+    background-color: red;
+}
+
+.event_background_color_blue {
+    background-color: blue;
+}
+
+.event_layout_main_protrait {
+/*background-color:#fff;*/
+}
+
+.event_text_color_white {
+    color: #fff;
+}
+
+.event_text_color_black {
+    color: black;
+}
+
+.event_text_color_red {
+    color: red;
+}
+
+.event_text_color_blue {
+    color: blue;
+}
+
+.event_text_align_left {
+    text-align: left;
+}
+
+.event_text_align_center {
+    text-align: center;
+}
+
+.event_text_align_right {
+    text-align: right;
+}
+
+.event_font_arial {
+    font-family: Arial;
+}
+
+.event_font_tahoma {
+    font-family: Tahoma;
+}
+
+.event_font_courier {
+    font-family: Courier;
+}
+
+.event_background_color_white {
+    background-color: white;
+}
+
+.event_layout_main_protrait .event_media {
+    padding: 14px 14px 28px 14px;
+}
+
+.event_layout_main_protrait .event_media .event_media_pic {
+    overflow: hidden;
+    width: 598px;
+    height: 390px;
+    padding: 0px;
+}
+
+.event_layout_main_protrait .event_media .event_media_pic img {
+    width: 598px;
+    height: 390px;
+}
+
+.event_layout_main_protrait .event_media .event_media_video {
+    padding: 14px 14px 0 14px;
+}
+
+.event_layout_main_protrait .event_media .event_media_video img {
+    width: 598px;
+    height: 353px;
+}
+
+.event_layout_main_protrait .event_content .field {
+    padding: 0 14px 28px 14px;
+}
+
+.event_layout_main_landscape .event_media {
+    width: 328px;
+    padding-right: 19px;
+    float: left;
+}
+
+.event_layout_main_landscape .event_media .event_media_pic {
+    overflow: hidden;
+    width: 328px;
+    height: 578px;
+    padding: 0px;
+}
+
+.event_layout_main_landscape .event_media  .event_media_pic img {
+    width: 328px;
+    height: 578px;
+}
+
+.event_layout_main_landscape .event_content {
+    width: 271px;
+    float: right;
+    text-align: right;
+}
+
+.event_layout_main_landscape .event_content .field {
+    width: 271px;
+    padding-bottom: 10px;
+}
+
+.event_layout_main_landscape .event_content .field .map .txt {
+    width: 161px;
+    float: left;
+    padding-right: 18px;
+}
+
+.event_layout_main_landscape .event_content .field .map .map_pic {
+    float: right;
+    width: 92px;
+}
+
+.event_layout_main_protrait .event_content .field .map .map_pic {
+    float: left;
+    width: 92px;
+    padding-right: 18px;
+}
+
+.event_content .field .map .map_pic img {
+    width: 92px;
+    height: 92px;
+}
+
+.event_content .field .name {
+    font-size: 22px;
+    color: #000;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+
+.event_content .field .txt {
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 20px;
+}
+
+.event_content .field .title {
+    font-size: 18px;
+    color: #000;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+
+.con_rig_map {
+    float: left;
+    width: 92px;
+    padding-right: 18px;
+}
+
+.con_rig_map img {
+    width: 92px;
+    height: 92px;
+}
+
+.rig_map_tex {
+    float: left;
+}
+
+.con_rig_map1 {
+    float: left;
+    width: 92px;
+}
+
+.con_rig_map1 img {
+    width: 92px;
+    height: 92px;
+}
+
+.rig_map_tex1 {
+    width: 161px;
+    float: left;
+    padding-right: 18px;
+}
+
+.rig_bot_tex {
+    padding: 14px;
+    background-color: #fff;
+}
+
+.bot_tex {
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #E6E6E6;
+}
+
+/*eve_det*/
+.eve_det {
+    width: 941px;
+    margin: 0 auto;
+}
+
+.eve_det_bg {
+    width: 925px;
+    height: 60px;
+    padding-left: 16px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #ccc; /* background:url(../images/psevent/eve_det_bg.jpg) repeat-x left top; */
+}
+
+.det_bg_tit {
+    font-size: 18px;
+    font-weight: bold;
+    color: #262626;
+}
+
+.ope_eve {
+    float: left;
+    width: 232px;
+    height: 49px;
+    background: url(../images/psevent/ope_eve_01.jpg) no-repeat left top;
+    margin-right: 26px;
+}
+
+.pri_eve1 {
+    float: left;
+    width: 342px;
+    height: 49px;
+    margin-right: 26px;
+}
+
+.pri_eve {
+    float: left;
+    width: 342px;
+    height: 49px;
+    background: url(../images/psevent/ope_eve_01.jpg) no-repeat left top;
+    margin-right: 26px;
+}
+
+.sem_pri {
+    float: left;
+    width: 257px;
+    height: 49px;
+    background: url(../images/psevent/ope_eve_01.jpg) no-repeat left top;
+    margin-right: 26px;
+}
+
+.sem_pri1 {
+    float: left;
+    width: 257px;
+    height: 49px;
+    margin-right: 26px;
+}
+
+.ope_eve1 {
+    float: left;
+    width: 232px;
+    height: 49px;
+    margin-right: 26px;
+}
+
+.ope_eve_lef {
+    width: 24px;
+    height: 54px;
+    float: left;
+    padding-top: 9px;
+    padding-left: 6px;
+}
+
+.ope_eve_rig {
+    width: 195px;
+    height: 54px;
+    padding-top: 9px;
+    padding-left: 7px;
+    float: right;
+    font-size: 12px;
+    font-weight: bold;
+    color: #262626;
+    background: url(../images/psevent/ope_eve_02.jpg) repeat-x right top;
+}
+
+.pri_eve_rig {
+    width: 305px;
+    height: 54px;
+    padding-top: 9px;
+    padding-left: 7px;
+    float: right;
+    font-size: 12px;
+    font-weight: bold;
+    color: #262626;
+    background: url(../images/psevent/ope_eve_02.jpg) repeat-x right top;
+}
+
+.pri_eve_rig1 {
+    width: 305px;
+    height: 54px;
+    padding-top: 9px;
+    padding-left: 7px;
+    float: right;
+    font-size: 12px;
+    font-weight: bold;
+    color: #262626;
+}
+
+.sem_pri_rig {
+    width: 220px;
+    height: 54px;
+    padding-top: 9px;
+    padding-left: 7px;
+    float: right;
+    font-size: 12px;
+    font-weight: bold;
+    color: #262626;
+    background: url(../images/psevent/ope_eve_02.jpg) repeat-x right top;
+}
+
+.sem_pri_rig1 {
+    width: 220px;
+    height: 54px;
+    padding-top: 9px;
+    padding-left: 7px;
+    float: right;
+    font-size: 12px;
+    font-weight: bold;
+    color: #262626;
+}
+
+.ope_eve_rig1 {
+    width: 195px;
+    height: 54px;
+    padding-top: 9px;
+    padding-left: 7px;
+    float: right;
+    font-size: 12px;
+    font-weight: bold;
+    color: #262626;
+}
+
+.eve_det_lef {
+    width: 916px;
+    float: left;
+    padding: 0 11px 30px 14px;
+    background-color: #FFF;
+}
+
+.eve_det_lef1 {
+    width: 432px;
+    float: left;
+    padding: 0 11px 30px 14px;
+}
+
+.eve_det_rig {
+    width: 425px;
+    float: left;
+    padding: 0px 39px 0px 18px;
+    background-color: #FBFBFB;
+}
+
+.det_lef_tit {
+    font-size: 14px;
+    font-weight: bold;
+    color: #000;
+    padding-bottom: 8px;
+    padding-top: 20px;
+}
+
+.det_lef_tit2 {
+    font-size: 14px;
+    font-weight: bold;
+    color: #000;
+    padding-bottom: 8px;
+}
+
+.det_lef_tit1 {
+    font-size: 14px;
+    font-weight: bold;
+    color: #000;
+    padding-bottom: 8px;
+    padding-top: 30px;
+}
+
+.det_lef_tex {
+    padding-top: 15px;
+    font-size: 10px;
+    color: #787878;
+}
+
+.eve_det_bot {
+    width: 941px;
+    height: 6px;
+    background: url(../images/psevent/eve_bot_bg.png) no-repeat left top;
+}
+
+.eve_cus {
+    width: 427px;
+    height: 37px;
+    background: url(../images/psevent/eve_cus_bg.jpg) no-repeat right center;
+}
+
+.eve_main {
+    background-color: #fff;
+}
+
+.eve_main1 {
+    background: url(../images/psevent/eve_main1_bg.jpg) repeat-y right top;
+}
+
+.eve_cus_lef {
+    width: 136px;
+    float: left;
+    font-size: 12px;
+    color: #575757;
+    line-height: 37px;
+}
+
+.eve_cus_rig {
+    width: 288px;
+    float: left;
+}
+
+/*Choose people to invite*/
+.cho_pep_men {
+    width: 797px;
+    height: 37px;
+    padding-left: 12px;
+    line-height: 37px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    margin: 0 auto;
+    background: url(../images/psevent/cho_pep_bg.png) no-repeat left top;
+}
+
+.cho_men_bg {
+    width: 801px;
+    height: 65px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding-left: 8px;
+    background: transparent url(../images/psevent/cre_menbg.jpg) repeat-x left top;
+}
+
+.pre_eve_bg1 {
+    width: 123px;
+    margin-top: 8px;
+    margin-right: 9px;
+    height: 45px;
+    padding-top: 12px;
+    padding-left: 10px;
+    background: transparent url(../images/psevent/pre_eve_bg1.jpg) no-repeat left bottom;
+    float: left;
+    text-align: left;
+    color: #000;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.pre_eve_bg2 {
+    width: 123px;
+    margin-top: 8px;
+    margin-right: 9px;
+    height: 45px;
+    padding-top: 12px;
+    padding-left: 10px;
+    background: transparent url(../images/psevent/pre_eve_bg2.jpg) no-repeat left bottom;
+    float: left;
+    text-align: left;
+    color: #FF4E00;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.bla_box_bg1 {
+    width: 104px;
+    margin-top: 8px;
+    margin-right: 9px;
+    height: 45px;
+    padding-top: 12px;
+    padding-left: 10px;
+    background: transparent url(../images/psevent/bla_box_bg1.jpg) no-repeat left bottom;
+    float: left;
+    text-align: left;
+    color: #000;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.bla_box_bg2 {
+    width: 104px;
+    margin-top: 8px;
+    margin-right: 9px;
+    height: 45px;
+    padding-top: 12px;
+    padding-left: 10px;
+    background: transparent url(../images/psevent/bla_box_bg2.jpg) no-repeat left bottom;
+    float: left;
+    text-align: left;
+    color: #FF4E00;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.ema_add_bg1 {
+    width: 182px;
+    margin-top: 8px;
+    margin-right: 9px;
+    height: 45px;
+    padding-top: 12px;
+    padding-left: 10px;
+    background: transparent url(../images/psevent/ema_add_bg1.jpg) no-repeat left bottom;
+    float: left;
+    text-align: left;
+    color: #000;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.ema_add_bg2 {
+    width: 182px;
+    margin-top: 8px;
+    margin-right: 9px;
+    height: 45px;
+    padding-top: 12px;
+    padding-left: 10px;
+    background: transparent url(../images/psevent/ema_add_bg2.jpg) no-repeat left bottom;
+    float: left;
+    text-align: left;
+    color: #FF4E00;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.imp_bg1 {
+    width: 164px;
+    margin-top: 8px;
+    margin-right: 9px;
+    height: 45px;
+    padding-top: 12px;
+    padding-left: 10px;
+    background: transparent url(../images/psevent/imp_bg1.jpg) no-repeat left bottom;
+    float: left;
+    text-align: left;
+    color: #000;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.imp_bg2 {
+    width: 164px;
+    margin-top: 8px;
+    margin-right: 9px;
+    height: 45px;
+    padding-top: 12px;
+    padding-left: 10px;
+    background: transparent url(../images/psevent/imp_bg2.jpg) no-repeat left bottom;
+    float: left;
+    text-align: left;
+    color: #FF4E00;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.cho_pep_sel {
+    width: 787px;
+    height: 41px;
+    padding: 0 11px 0 11px;
+    margin: 0 auto;
+    background: url(../images/persona/solid3.png) repeat-x left bottom #fff;
+}
+
+.emd_add_con {
+    width: 777px;
+    padding-left: 12px;
+    padding-right: 20px;
+    padding-bottom: 25px;
+    background-color: #fff;
+    border-bottom: #E1E1E1 1px solid;
+}
+
+.add_con_bg textarea {
+    width: 747px;
+    height: 270px;
+    padding: 15px;
+    line-height: 25px;
+    color: #252525;
+    background: transparent url(../images/psevent/ema_add_con.jpg) no-repeat left top;
+    border: 0;
+    font-size: 12px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.cho_pep_sel1 {
+    width: 787px;
+    height: 41px;
+    padding: 0 11px 0 11px;
+    font-size: 12px;
+    color: #000;
+    font-weight: bold;
+    line-height: 41px;
+    margin: 0 auto;
+    background-color: #fff;
+}
+
+.pep_sel_lef {
+    width: 540px;
+    padding-top: 11px;
+    float: left;
+}
+
+.pep_sel_lef select {
+    width: 158px;
+    height: 20px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+}
+
+.pep_sel_mid {
+    width: 85px;
+    float: left;
+    color: #787878;
+    font-size: 10px;
+    padding-top: 14px;
+}
+
+.pep_sel_rig {
+    width: 157px;
+    float: left;
+    padding-top: 12px;
+}
+
+.pep_sel_rig input {
+    width: 152px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 12px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    padding-left: 5px;
+    border: 0;
+    background: transparent url(../images/psevent/ser_pep_inp.jpg) no-repeat left top;
+}
+
+.bla_box {
+    width: 809px;
+    margin: 0 auto;
+}
+
+.bla_box_con {
+    height: 315px;
+    padding-left: 14px;
+    padding-top: 14px;
+    border-bottom: #E1E1E1 1px solid;
+    background-color: #fff;
+    overflow-y: auto;
+}
+
+.bla_box_con ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.bla_box_li1 {
+    width: 166px;
+    height: 51px;
+    padding: 7px;
+    margin-right: 13px;
+    margin-bottom: 12px;
+    float: left;
+}
+
+.bla_box_li2 {
+    width: 166px;
+    height: 51px;
+    padding: 7px;
+    margin-right: 13px;
+    margin-bottom: 12px;
+    float: left;
+    background: transparent url(../images/psevent/bla_box_yel.jpg) no-repeat left top;
+}
+
+.bla_lis_lef {
+    width: 46px;
+    height: 52px;
+    float: left;
+    background: transparent url(../images/psevent/bla_box_picbg.jpg) no-repeat left bottom;
+}
+
+.bla_lis_rig {
+    float: left;
+    width: 110px;
+    padding-left: 10px;
+}
+
+.bla_tex1 {
+    padding-top: 4px;
+    font-size: 14px;
+    color: #FF3F00;
+    font-weight: bold;
+}
+
+.bla_tex2 {
+    font-size: 12px;
+    color: #000;
+    font-weight: bold;
+}
+
+.bla_tex3 {
+    width: 80px;
+    float: left;
+    font-size: 10px;
+    color: #979797;
+    font-weight: bold;
+    padding-left: 12px;
+    background: transparent url(../images/psevent/bla_ico.png) no-repeat left center;
+}
+
+.bla_tex4 {
+    width: 80px;
+    float: left;
+    font-size: 10px;
+    color: #979797;
+    font-weight: bold;
+}
+
+.bla_che {
+    width: 15px;
+    float: left;
+}
+
+.bla_box_con img {
+    width: 46px;
+    height: 46px;
+}
+
+.bla_lis_rig input {
+    margin: 0;
+    padding: 0;
+}
+
+.bla_box_but {
+    width: 777px;
+    padding: 0 16px 0 16px;
+    height: 55px;
+    background-color: #fff;
+}
+
+.box_but_lef {
+    width: 577px;
+    float: left;
+    line-height: 55px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #2e2e2e;
+}
+
+.box_but_rig {
+    width: 200px;
+    padding-top: 13px;
+    float: right;
+    text-align: right;
+}
+
+.cho_pep_bot {
+    width: 809px;
+    height: 6px;
+    margin: 0 auto;
+    background: url(../images/psevent/cho_pep_bot.png) no-repeat left bottom;
+}
+
+.imp_con {
+    width: 809px;
+    background-color: #fff;
+    border-bottom: #eee 1px solid;
+}
+
+.imp_con_lef {
+    width: 195px;
+    float: left;
+    padding-top: 13px;
+    padding-left: 9px;
+    background: url(../images/psevent/imp_lefbg.jpg) repeat-y left top;
+}
+
+.imp_con_rig {
+    width: 570px;
+    padding: 25px 0 0 35px;
+    float: right;
+}
+
+.loa_con_rig {
+    width: 605px;
+    float: left;
+    padding-top: 150px;
+}
+
+.sel_con_rig {
+    width: 560px;
+    height: 363px;
+    padding: 15px 26px 20px 19px;
+    float: left;
+    overflow-y: auto;
+}
+
+.imp_con_lef ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.imp_tit {
+    font-size: 12px;
+    font-weight: bold;
+    color: #000;
+    padding-bottom: 7px;
+    padding-top: 12px;
+}
+
+.imp_but {
+    padding-top: 20px;
+}
+
+.imp_loa {
+    text-align: center;
+    color: #9D9D9D;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 30px;
+}
+
+.sel_all {
+    width: 56px;
+    float: left;
+    margin-right: 10px;
+}
+
+.sel_non {
+    width: 72px;
+    float: left;
+    margin-right: 20px;
+}
+
+.sel_tot {
+    width: 200px;
+    float: left;
+    color: #2E2E2E;
+    font-size: 11px;
+}
+
+.sel_list {
+    width: 560px;
+    height: 30px;
+    background: url(../images/persona/solid3.png) repeat-x left bottom;
+}
+
+.sel_but_lis {
+    padding-bottom: 10px;
+}
+
+.sel_lis_box {
+    width: 27px;
+    float: left;
+    padding-top: 6px;
+}
+
+.sel_lis_nam {
+    width: 267px;
+    height: 30px;
+    line-height: 30px;
+    float: left;
+    font-size: 11px;
+    font-weight: bold;
+    color: #2E2E2E;
+}
+
+.sel_lis_mai {
+    width: 266px;
+    height: 30px;
+    line-height: 30px;
+    float: left;
+    font-size: 11px;
+    color: #6D6D6D;
+}
+
+.but_gre {
+    width: 186px;
+    height: 34px;
+    background: url(../images/psevent/but_gre_bg1.jpg) no-repeat left top;
+}
+
+.but_gre_pre {
+    width: 141px;
+    height: 34px;
+    background: url(../images/psevent/but_gre_bg1.jpg) no-repeat left top;
+    margin-top: 15px;
+}
+
+.but_gre4 {
+    width: 245px;
+    height: 34px;
+    background: url(../images/psevent/but_gre_bg1.jpg) no-repeat left top;
+    float: right;
+}
+
+.but_gre_rig {
+    text-align: center;
+    color: #fff;
+    font-size: 11px;
+    font-weight: bold;
+    margin-left: 5px;
+    height: 34px;
+    line-height: 34px;
+    background: url(../images/psevent/but_gre_bg2.jpg) repeat-x right top;
+}
+
+.eve_web_lef {
+    width: 6px;
+    height: 317px;
+    float: left;
+    background: url(../images/psevent/eve_mes_lef.jpg) no-repeat left top;
+}
+
+.eve_web_rig {
+    width: 6px;
+    height: 317px;
+    float: left;
+    background: url(../images/psevent/eve_mes_rig.jpg) no-repeat left top;
+}
+
+.eve_web_mid {
+    width: 415px;
+    height: 317px;
+    float: left;
+    background: url(../images/psevent/eve_mes_mid.jpg) repeat-x left top;
+}
+
+.eve_web_mid textarea {
+    width: 395px;
+    height: 297px;
+    padding: 10px;
+    border: 0;
+    background: url(../images/psevent/eve_mes_mid.jpg) repeat-x left bottom;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    margin: 0;
+    word-wrap: break-word;
+    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    font-size: 12px;
+}
+
+.eve_web_tex {
+    color: #787878;
+    font-size: 12px;
+    padding-bottom: 10px;
+}
+
+.but_eve_web {
+    width: 81px;
+    height: 27px;
+    background: url(../images/psevent/but_eve_web1.jpg) no-repeat left top;
+}
+
+.but_eve_web1 {
+    width: 108px;
+    height: 27px;
+    background: url(../images/psevent/but_eve_web1.jpg) no-repeat left top;
+}
+
+.but_eve_web_rig {
+    text-align: center;
+    color: #000;
+    font-size: 12px;
+    font-weight: bold;
+    margin-left: 4px;
+    height: 27px;
+    line-height: 27px;
+    background: url(../images/psevent/but_eve_web2.jpg) repeat-x right top;
+}
+
+.eve_web_lin {
+    width: 917px;
+    margin: 0 auto;
+    height: 112px;
+    border-top: 1px solid #ccc;
+    background-color: #fff;
+    padding: 30px 0 0 24px;
+}
+
+.eve_web_tit {
+    font-size: 14px;
+    font-weight: bold;
+    color: #000;
+    padding-bottom: 5px;
+}
+
+.eve_web_tex1 {
+    color: #787878;
+    font-size: 12px;
+    padding-bottom: 15px;
+}
+
+.eve_web_upl {
+    float: left;
+    width: 200px;
+    padding-right: 75px;
+}
+
+.eve_web_sel {
+    float: left;
+    width: 200px;
+    padding-right: 75px;
+}
+
+.eve_web_add {
+    float: left;
+    width: 280px;
+}
+
+.eve_lin {
+    width: 429px;
+    margin: 0 auto;
+}
+
+.eve_lin_tit_lef {
+    width: 367px;
+    height: 36px;
+    line-height: 36px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    background: url(../images/psevent/eve_lin_men1.png) repeat-x left top;
+    float: left;
+    padding-left: 17px;
+}
+
+.eve_lin_tit_rig {
+    width: 45px;
+    float: left;
+}
+
+.eve_lin_con {
+    padding-left: 17px;
+    padding-bottom: 10px;
+    width: 412px;
+    background-color: #fff;
+}
+
+.eve_lin_con1 {
+    padding-bottom: 10px;
+    width: 429px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.edit_inp_mid6 {
+    width: 383px;
+    height: 37px;
+    float: left;
+}
+
+.edit_inp_mid6 input {
+    width: 383px;
+    height: 27px;
+    padding-top: 10px;
+    border: 0;
+    background: url(../images/persona/edit_pro_ipu2.jpg) repeat-x left top;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.but_gre1 {
+    width: 109px;
+    height: 34px;
+    background: url(../images/psevent/but_gre_bg1.jpg) no-repeat left top;
+    margin-top: 16px;
+}
+
+.but_gre2 {
+    width: 109px;
+    height: 34px;
+    background: url(../images/psevent/but_gre_bg1.jpg) no-repeat left top;
+    margin-top: 16px;
+    margin-left: 170px;
+}
+
+.eve_lin_bot {
+    background: url(../images/psevent/eve_lin_bot.png) no-repeat left bottom;
+    width: 429px;
+    height: 8px;
+}
+
+.eve_sel_fro {
+    width: 809px;
+    background-color: #fff;
+    margin: 0 auto;
+}
+
+.sel_fro_but {
+    width: 795px;
+    height: 41px;
+    padding-top: 12px;
+    margin: 0 auto;
+    padding-right: 14px;
+    background-color: #fff;
+}
+
+.sel_fro_box {
+    padding-top: 12px;
+}
+
+.sel_fro_box input {
+    margin: 0;
+    padding: 0;
+}
+
+.eve_mai_bot {
+    width: 901px;
+    border-top: 1px solid #cccccc;
+    padding: 30px 20px 30px 20px;
+    background-color: #FFF;
+}
+
+.eve_mai_pro {
+    color: #262626;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.eve_pro_lef {
+    width: 427px;
+    padding-right: 47px;
+    float: left;
+}
+
+.eve_pro_rig {
+    width: 427px;
+    float: right;
+}
+
+.eve_twi_che {
+    float: left;
+    width: 27px;
+    padding-top: 26px;
+}
+
+.eve_twi_pic {
+    float: left;
+    width: 27px;
+    padding-top: 13px;
+}
+
+.eve_twi_tex {
+    color: #262626;
+    font-size: 14px;
+    font-weight: bold;
+    float: left;
+    padding-right: 200px;
+    padding-bottom: 12px;
+    padding-top: 9px;
+}
+
+.eve_twi_tex1 {
+    color: #262626;
+    font-size: 14px;
+    font-weight: bold;
+    float: left;
+    padding-right: 100px;
+    padding-bottom: 12px;
+    padding-top: 9px;
+}
+
+.eve_twi_tex_rig {
+    color: #787878;
+    font-size: 12px;
+    font-weight: normal;
+    float: left;
+}
+
+.eve_twi_are {
+    width: 414px;
+    height: 120px;
+    float: left;
+}
+
+.eve_twi_are textarea {
+    width: 394px;
+    height: 100px;
+    padding: 10px;
+    border: 0;
+    background: url(../images/psevent/add_midbg.jpg) repeat-x left bottom;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    margin: 0;
+    word-wrap: break-word;
+    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    font-size: 12px;
+}
+
+.eve_twi_bot {
+    color: #787878;
+    font-size: 10px;
+    padding-top: 11px;
+}
+
+.eve_con1_top {
+    background: url(../images/psevent/confirm_top.png) repeat-x left bottom;
+    width: 940px;
+    height: 6px;
+    margin-top: 7px;
+}
+
+.eve_con1_bot {
+    background: url(../images/psevent/confirm_bot.png) repeat-x left bottom;
+    width: 940px;
+    height: 6px;
+}
+
+.eve_con1_mid {
+    width: 906px;
+    background: #000;
+    padding: 0 17px 0 17px;
+}
+
+.eve_con1_mid_lef {
+    width: 586px;
+    float: left;
+}
+
+.eve_con1_mid_rig {
+    width: 320px;
+    float: right;
+}
+
+.eve_con1_tex_tit {
+    font-size: 22px;
+    font-weight: bold;
+    color: #fff;
+    padding-top: 20px;
+}
+
+.eve_con1_tex_bod {
+    font-size: 12px;
+    color: #9A9A9A;
+    width: 345px;
+    line-height: 19px;
+    padding-top: 5px;
+    padding-bottom: 21px;
+}
+
+.but_gre5 {
+    width: 289px;
+    height: 33px;
+    background: url(../images/psevent/but_eve_web_l.png) no-repeat left top;
+    margin-top: 36px;
+}
+
+.but_gre5_rig {
+    text-align: center;
+    color: #fff;
+    font-size: 11px;
+    font-weight: bold;
+    margin-left: 10px;
+    height: 33px;
+    line-height: 34px;
+    background: url(../images/psevent/but_eve_web_r.png) repeat-x right top;
+}
+
+.but_gre8 {
+    width: 90px;
+    height: 33px;
+    background: url(../images/psevent/but_eve_web_l.png) no-repeat left top;
+    margin-top: 36px;
+    margin: 0 auto;
+}
+
+.but_gre8_rig {
+    text-align: center;
+    color: #fff;
+    font-size: 11px;
+    font-weight: bold;
+    margin-left: 10px;
+    height: 33px;
+    line-height: 34px;
+    background: url(../images/psevent/but_eve_web_r.png) repeat-x right top;
+}
+
+.inv_lay_bot {
+    width: 941px;
+    height: 69px;
+    margin: 0 auto;
+    background: url(../images/psevent/inv_lay_bg.png) no-repeat left top;
+}
+
+.eve_con_rig_mar {
+    width: 604px;
+    margin: 33px;
+}
+
+.eve_con_rig_mar1 {
+    width: 604px;
+    margin: 0 auto;
+    padding-top: 50px;
+}
+
+.sel_vid_but {
+    text-align: center;
+    color: #FF3C00;
+    font-size: 14px;
+    font-weight: bold;
+    width: 297px;
+    height: 66px;
+    line-height: 66px;
+    background: url(../images/psevent/sel_vid_bg1.png) no-repeat left top;
+}
+
+.event_content_left {
+    float: left;
+}
+
+.event_content_right {
+    float: right;
+}
+
+/*member_per_own*/
+.pro_con {
+    width: 941px;
+    margin: 0 auto;
+}
+
+.pro_con_tit {
+    width: 941px;
+    margin: 0 auto;
+}
+
+.pro_con_tit_lef {
+    float: left;
+    width: 9px;
+    height: 36px;
+    background: transparent url(../images/psevent/crea_1_lm1.png) no-repeat left bottom;
+}
+
+.pro_con_tit_mid {
+    float: left;
+    width: 890px;
+    height: 36px;
+    line-height: 36px;
+    padding-left: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    background: transparent url(../images/psevent/crea_1_lm2.png) repeat-x left top;
+}
+
+.pro_con_tit_rig {
+    float: left;
+    width: 32px;
+    height: 36px;
+    background: transparent url(../images/psevent/crea_1_lm3.png) no-repeat left top;
+}
+
+.pro_con_men {
+    width: 933px;
+    height: 45px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding-left: 6px;
+    background: transparent url(../images/psevent/member/mem_bg.jpg) repeat-x left top;
+}
+
+.pro_con_men_but {
+    width: 86px;
+    height: 36px;
+    line-height: 36px;
+    padding-top: 9px;
+    background: transparent url(../images/psevent/member/mem_but1.jpg) repeat-x left bottom;
+    float: left;
+    text-align: center;
+    color: #FF4E00;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.pro_con_men_but span {
+    font-size: 10px;
+    color: #8c8c8c;
+    font-weight: normal;
+    margin-left: 3px;
+}
+
+.pro_con_men_but1 {
+    width: 86px;
+    margin-left: 3px;
+    height: 36px;
+    line-height: 36px;
+    padding-top: 9px;
+    float: left;
+    text-align: center;
+    color: #2E2E2E;
+    font-size: 12px;
+    font-weight: bold;
+    background: transparent url(../images/psevent/member/mem_but2.jpg) repeat-x left bottom;
+}
+
+.pro_con_bot {
+    width: 939px;
+    height: 42px;
+    padding-top: 1px;
+    margin: 0 auto;
+    background: url(../images/persona/solid3.png) repeat-x left top;
+}
+
+.pro_con_bot_lef {
+    width: 6px;
+    height: 57px;
+    background: transparent url(../images/psevent/member/pro_bot_l.png) no-repeat left top;
+    float: left;
+}
+
+.pro_con_bot_mid {
+    width: 916px;
+    height: 57px;
+    background-color: #FFFFFF;
+    float: left;
+    padding-left: 11px;
+}
+
+.pro_con_bot_rig {
+    width: 6px;
+    height: 57px;
+    background: transparent url(../images/psevent/member/pro_bot_r.png) no-repeat left top;
+    float: left;
+}
+
+.pro_con_bot1 {
+    width: 939px;
+    height: 4px;
+    margin: 0 auto;
+}
+
+.pro_con_bot1_lef {
+    width: 6px;
+    height: 4px;
+    background: transparent url(../images/psevent/member/pro_bot_l.png) no-repeat left bottom;
+    float: left;
+}
+
+.pro_con_bot1_mid {
+    width: 916px;
+    height: 4px;
+    background-color: #FFFFFF;
+    float: left;
+    padding-left: 11px;
+}
+
+.pro_con_bot1_rig {
+    width: 6px;
+    height: 4px;
+    background: transparent url(../images/psevent/member/pro_bot_r.png) no-repeat left bottom;
+    float: left;
+}
+
+.pro_con_main {
+    width: 921px;
+    margin: 0 auto;
+    height: 298px;
+    padding: 35px 0 0 18px;
+    overflow-y: auto;
+    background-color: #fff;
+    text-align: left;
+}
+
+.pro_con_main1 {
+    width: 912px;
+    margin: 0 auto;
+    height: 380px;
+    padding: 0 0 0 27px;
+    overflow-y: auto;
+    background-color: #fff;
+    text-align: left;
+    background: url(../images/psevent/con_solid.jpg) repeat-y left top;
+}
+
+.pro_con_main_pic {
+    float: left;
+    width: 277px;
+    height: 253px;
+    background: transparent url(../images/psevent/member/mem_vid_bg.jpg) no-repeat left top;
+    padding-top: 39px;
+    padding-left: 4px;
+}
+
+.right_30 {
+    margin-right: 30px;
+}
+
+.left_43 {
+    margin-left: 43px;
+}
+
+.but_prev {
+    float: left;
+    width: 50px;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.but_next {
+    float: right;
+    width: 50px;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.but_gre_member {
+    float: left;
+    width: 141px;
+    height: 34px;
+    background: url(../images/psevent/but_gre_bg1.jpg) no-repeat left top;
+    margin-top: 12px;
+    margin-left: 345px;
+}
+
+.but_gre_member_rig {
+    text-align: center;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 5px;
+    height: 34px;
+    line-height: 34px;
+    background: url(../images/psevent/but_gre_bg2.jpg) repeat-x right top;
+}
+
+.but_gre_member1 {
+    float: right;
+    width: 141px;
+    height: 34px;
+    background: url(../images/psevent/but_gre_bg1.jpg) no-repeat left top;
+    margin-top: 5px;
+    margin-right: 6px;
+    margin-left: 345px;
+}
+
+.but_gre_member1_rig {
+    text-align: center;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 5px;
+    height: 34px;
+    line-height: 34px;
+    background: url(../images/psevent/but_gre_bg2.jpg) repeat-x right top;
+}
+
+.pro_con_lef {
+    width: 268px;
+    height: 380px;
+    float: left;
+}
+
+.pro_con_main_lis ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.pro_con_main_lis ul li {
+    float: left; /*width:66px;*/
+/*height:71px;*/
+    margin-right: 9px;
+    margin-bottom: 5px;
+}
+
+.pro_con_main_lis img {
+/*width:66px;*/
+/*height:66px;*/
+}
+
+.dot_line {
+    background: url(../images/persona/solid.png) repeat-y right top;
+}
+
+.dot_line4 {
+    background: url(../images/psevent/member/dot.png) repeat-x left top;
+}
+
+.pro_con_main_tit {
+    font-size: 12px;
+    color: #FF3F00;
+    font-weight: bold;
+    margin-bottom: 21px;
+    margin-top: 30px;
+}
+
+.pro_con_main_tit span {
+    font-size: 12px;
+    color: #898989;
+    font-weight: bold;
+    padding-left: 3px;
+}
+
+.mem_exo {
+    margin: 0 auto;
+    width: 937px;
+    height: 1215px;
+    background: url(../images/psevent/member/mem_exo_bg.jpg) no-repeat left top;
+}
+
+.mem_exo1 {
+    margin: 0 auto;
+    width: 937px;
+    height: 890px;
+}
+
+.mem_exo_con {
+    width: 604px;
+    margin: 0 auto;
+    padding-top: 59px;
+}
+
+.eve_img_pic {
+    width: 577px;
+    height: 188px;
+    padding-bottom: 10px;
+}
+
+.eve_img_pic img {
+    width: 577px;
+    height: 188px;
+}
+
+.mem_men_bot {
+    width: 265px;
+    height: 40px;
+    float: right;
+    background: transparent url(../images/psevent/member/but_bg1.png) no-repeat left top;
+}
+
+.mem_men_bot ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.mem_men_bot ul li {
+    float: right;
+    font-size: 12px;
+}
+
+.mem_men_bot a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.mem_men_bot1 {
+    width: 259px;
+    height: 40px;
+    float: right;
+}
+
+.mem_men_bot1 ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.mem_men_bot1 ul li {
+    float: right;
+    font-size: 12px;
+}
+
+.mem_men_bot1 a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.mem_men_bot a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+.mem_men_bot_bg {
+    margin-left: 20px;
+    margin-top: 7px;
+    width: 48px;
+    height: 26px;
+    line-height: 26px;
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+    background: url(../images/psevent/member/but_bg2.png) repeat-x left top;
+}
+
+.mem_men_bot_bg1 {
+    margin-left: 8px;
+    margin-top: 9px;
+    width: 64px;
+    height: 22px;
+    line-height: 22px;
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+    background: url(../images/psevent/member/but_bg3.png) repeat-x left top;
+}
+
+.mem_men_bot_bg2 {
+    margin-left: 5px;
+    margin-right: 12px;
+    margin-top: 9px;
+    width: 47px;
+    height: 22px;
+    line-height: 22px;
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+    background: url(../images/psevent/member/but_bg4.png) repeat-x left top;
+}
+
+.mem_men_bot_bg3 {
+    margin-left: 5px;
+    margin-right: 12px;
+    margin-top: 9px;
+    width: 47px;
+    height: 22px;
+    line-height: 22px;
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+}
+
+.con_min6 {
+    width: 937px;
+    margin: 0 auto;
+}
+
+.con_top6 {
+    width: 904px;
+    height: 107px;
+    padding: 12px;
+    float: left;
+    margin: 0 auto;
+    background: transparent url(../images/containers/container-bg.png) repeat;
+}
+
+.con_top_lef6 {
+    float: left;
+    width: 305px;
+    text-align: left;
+}
+
+.mem_men_bot_bg5 {
+    width: 148px;
+    height: 30px;
+    line-height: 30px;
+    text-align: left;
+    text-indent: 30px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    background: url(../images/psevent/member/but_bg5.png) repeat-x left top;
+}
+
+.mem_men_bot_bg8 {
+    width: 135px;
+    height: 30px;
+    line-height: 30px;
+    text-align: left;
+    text-indent: 30px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    background: url(../images/psevent/member/but_bg8.png) repeat-x left top;
+}
+
+.mem_men_bot_bg6 {
+    width: 204px;
+    height: 35px;
+    line-height: 35px;
+    text-align: left;
+    text-indent: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    background: url(../images/psevent/member/but_bg6.png) repeat-x left top;
+}
+
+.mem_men_bot_bg7 {
+    width: 204px;
+    height: 34px;
+    padding-top: 1px;
+    line-height: 34px;
+    text-align: left;
+    text-indent: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    background: url(../images/psevent/member/but_bg7.png) repeat-x left bottom;
+}
+
+.con_top_rig6 {
+    float: right;
+    width: 280px;
+}
+
+.mem_eve_med {
+    width: 581px;
+    height: 350px;
+    background: url(../images/psevent/member/member_event_bg.jpg) repeat-x left bottom;
+}
+
+.mem_eve_med img {
+    width: 560px;
+    height: 318px;
+    margin-left: 9px;
+    margin-top: 16px;
+}
+
+.mem_per_bot {
+    width: 936px;
+    margin: 0 auto;
+}
+
+.mem_per_bot_lef {
+    float: left;
+    width: 647px;
+    margin-right: 8px;
+}
+
+.mem_per_bot_rig {
+    float: right;
+    width: 281px;
+}
+
+.pro_con_tit2 {
+    width: 281px;
+    margin: 0 auto;
+}
+
+.pro_con_tit2_lef {
+    float: left;
+    width: 9px;
+    height: 36px;
+    background: transparent url(../images/psevent/crea_1_lm1.png) no-repeat left bottom;
+}
+
+.pro_con_tit2_mid {
+    float: left;
+    width: 230px;
+    height: 36px;
+    line-height: 36px;
+    padding-left: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    background: transparent url(../images/psevent/crea_1_lm2.png) repeat-x left top;
+}
+
+.pro_con_tit2_rig {
+    float: left;
+    width: 32px;
+    height: 36px;
+    background: transparent url(../images/psevent/crea_1_lm3.png) no-repeat left top;
+}
+
+.mem_per_bot_rig_bod {
+    background: #fff;
+}
+
+.mem_per_bot_rig_bot {
+    width: 281px;
+    height: 4px;
+    background: transparent url(../images/psevent/member/mem_bot1.png) no-repeat left top;
+}
+
+.bla_box_con1 {
+    height: 75px;
+    padding-left: 14px;
+    padding-top: 14px;
+    background-color: #fff;
+    overflow-y: auto;
+    background: url(../images/persona/solid3.png) repeat-x left bottom;
+}
+
+.bla_box_con1 ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.bla_box_con1 img {
+    width: 46px;
+    height: 46px;
+}
+
+.mem_but4 {
+    text-align: right;
+    padding-right: 63px;
+}
+
+.mem_but5 {
+    widows: 280px;
+    height: 66px;
+    text-align: center;
+    margin: 14px auto 0 auto;
+    background: #fff;
+}
+
+.mai_con_rig {
+    padding: 0px;
+}
+
+.event_layout_main_protrait .event_media {
+    padding: 14px 5px 28px;
+}
+
+.event_layout_main_protrait .event_media .event_media_video {
+    display: none;
+}
+
+.event_layout_main_imageonly .event_media {
+
+    padding: 14px 5px 28px 5px;
+}
+
+.event_layout_main_imageonly .event_media .event_media_video {
+    padding: 0px;
+}
+
+.event_layout_main_videoonly .event_media {
+    padding: 14px 5px 28px 5px;
+}
+
+.event_layout_main_videoonly .event_media .event_media_video {
+    padding: 0px;
+}
+
+.event_layout_main_videoonly .event_content_left {
+    display: none;
+}
+
+.event_layout_main_videoonly .event_content_right {
+    display: none;
+}
+
+.event_layout_main_videoonly .event_media .event_media_pic {
+    display: none;
+}
+
+.event_layout_main_imageonly .event_content_left {
+    display: none;
+}
+
+.event_layout_main_imageonly .event_content_right {
+    display: none;
+}
+
+.event_layout_main_imageonly .event_media_video {
+    display: none;
+}
+
+.event_layout_main_imageonly .event_media .event_media_pic {
+    overflow: hidden;
+    width: 598px;
+    height: 390px;
+    padding: 0px;
+}
+
+.event_layout_main_imageonly .event_media .event_media_pic img {
+    width: 598px;
+    height: 390px;
+}
+
+.event_layout_main_videopic .event_media {
+    padding: 14px 5px 28px 5px;
+}
+
+.event_layout_main_videopic .event_media .event_media_pic {
+    overflow: hidden;
+    width: 598px;
+    height: 390px;
+    padding: 0px;
+}
+
+.event_layout_main_videopic .event_media .event_media_pic img {
+    width: 598px;
+    height: 390px;
+}
+
+.event_layout_main_videopic .event_media .event_media_video {
+    padding: 0px;
+}
+
+.event_layout_main_videopic .event_media .event_media_video img {
+    width: 598px;
+    height: 353px;
+}
+
+.event_layout_main_videopic .event_content .field {
+    padding: 0 14px 28px 14px;
+}
+
+.event_layout_main_videopic .event_content .field .map .map_pic {
+    float: left;
+    width: 92px;
+    padding-right: 18px;
+}
+
+.event_layout_main_videoportrait .event_media {
+    padding: 14px 5px 28px 5px;
+}
+
+.event_layout_main_videoportrait .event_media .event_media_pic {
+    display: none;
+}
+
+.event_layout_main_videoportrait .event_media .event_media_video {
+    padding: 0px;
+}
+
+.event_layout_main_videoportrait .event_media .event_media_video img {
+    width: 598px;
+    height: 353px;
+}
+
+.event_layout_main_videoportrait .event_content .field {
+    padding: 0 14px 28px 14px;
+}
+
+.event_layout_main_videoportrait .event_content .field .map .map_pic {
+    float: left;
+    width: 92px;
+    padding-right: 18px;
+}
+
+.nav_btn {
+    color: white;
+    margin-right: 7px;
+    display: block;
+}
+
+/************************************
+*
+*   Event inviation styles
+*
+************************************/
+#invite_right {
+    width: 285px;
+    float: right;
+}
+
+.widget-top {
+    margin-left: 11px;
+    margin-right: 11px;
+}
+
+#invite_link_glyph {
+    float: left;
+    padding-top: 10px;
+    margin-right: 5px;
+}
+
+#invite_image_glyph {
+    float: left;
+    padding-top: 9px;
+    margin-right: 5px;
+}
+
+.invite-field-label {
+    float: left;
+    padding-top: 8px;
+    font-weight: bold;
+}
+
+.c-vert-line {
+    width: 1px;
+    background: #ccc;
+}
+
+#event_preview_container {
+    width: 610px;
+    padding: 9px;
+    float: left;
+}
+
+#photo_background {
+    width: 591px;
+    padding: 10px;
+    background-color: #fff;
+}
+
+#image_zone {
+    position: relative;
+}
+
+#event_layout_box {
+    width: 591px;
+    overflow: auto;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+#event_layout_left {
+    width: 335px;
+    float: left;
+}
+
+#event_layout_title {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+#event_layout_body {
+    margin-top: 10px;
+    font-size: 12px;
+}
+
+#event_layout_sep {
+    padding-bottom: 10px;
+}
+
+.event_layout_label {
+    font-weight: bold;
+}
+
+#event_layout_right {
+    width: 245px;
+    float: right;
+}
+
+#map_preview {
+    height: 145px;
+    background-color: #fff;
+}
+
+#final_save_btn {
+    background: #ffffff;
+    float: right;
+    margin-right: 50px;
+    margin-top: 20px;
+}
+
+.blue-text {
+    color: #55b4ed;
+}
+
+/* guest list */
+.bottom_btn {
+    float: right;
+    margin: 15px;
+}
+
+#big_add_button {
+    position: relative;
+    left: 375px;
+    top: 20px;
+    padding-bottom: 10px;
+    cursor: pointer;
+}
+
+.gue_lis label {
+    font-size: 11px;
+}
+
+#guest_list_header {
+    margin-left: 4px;
+    margin-right: 3px;
+    margin-top: 8px;
+    height: 59px;
+    background: url(${library.prefix}/images/events/guest_list_header_grad.png);
+}
+
+#guest_list_blue_stripe {
+    background-color: #ecf7fb;
+    border-top: 1px solid #c8e8f5;
+    height: 20px;
+}
+
+#guest_list_opts {
+    width: 928px;
+    margin-top: 10px;
+    -moz-border-radius-topleft: 6px;
+    -moz-border-radius-bottomleft: 6px;
+    -moz-border-radius-topright: 6px;
+    -moz-border-radius-bottomright: 6px;
+    border: 1px solid #d0ecf7;
+    background:#ecf7fb url(${library.prefix}/images/events/bg-promote.png) repeat-y 301px center;
+}
+
+#guest_list_opts_alpha {
+    /*border-right: 1px solid #c5e2f0;*/
+    line-height: 20px;
+    width: 293px;
+    padding-left: 10px;
+    padding-top: 10px;
+    float: left;
+    padding-bottom:10px;
+}
+
+#guest_list_opts_bravo {
+    line-height: 20px;
+    width: 292px;
+    padding-left: 10px;
+    padding-top: 10px;
+    /*border-left: 1px solid #ffffff;*/
+    /*border-right: 1px solid #c5e2f0;*/
+    float: left;
+    padding-bottom:10px;
+}
+
+#guest_list_opts_charlie {
+    /*border-left: 1px solid #ffffff;*/
+    line-height: 20px;
+    width: 290px;
+    padding-left: 10px;
+    padding-top: 10px;
+    float: left;
+    padding-bottom:10px;
+}
+
+ml20 {
+    margin-left: 20px;
+}
+
+#guest_list_button_container {
+    float: right;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+#event_stream {
+    background: #fff;
+    margin-left: 11px;
+    margin-right: 11px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#right-col {
+    float: right;
+    margin-top: 40px;
+    width: 310px;
+}
+
+#right-col h2 {
+    background: transparent url(${library.prefix}/images/events/not-yet-member.png) left top no-repeat;
+    height: 63px;
+    left: 0;
+    position: relative;
+    text-indent: -9999px;
+    top: -5px;
+    width: 310px;
+}
+
+#right-col .top {
+    background: transparent url(${library.prefix}/images/events/rightcol-bg-top.png) left top no-repeat;
+    height: 120px;
+}
+
+#right-col .top p {
+    border-bottom: 1px solid #ccc;
+    font-family: Cambria, Palatino, Georgia, Times New Roman, serif;
+    font-size: 1.3em;
+    margin: 0 auto;
+    padding-bottom: 10px;
+    width: 90%;
+    text-align: center;
+}
+
+#right-col .top p span {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+#right-col .body {
+    background: transparent url(${library.prefix}/images/events/rightcol-bg-body.png) 4px top repeat-y;
+    text-align: center;
+}
+
+#right-col .body .info-sliders {
+    margin-left: 25px;
+}

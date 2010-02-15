@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:complexType name="communicationsuite">
+        <xs:sequence>
+            <xs:element type="xs:dateTime" name="time"/>
+            <xs:element type="domain" name="domain"/>
+            <xs:element type="user" name="user"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="communicationsuite" type="communicationsuite"/>
+    <xs:complexType name="maxUsers">
+        <xs:simpleContent>
+            <xs:extension base="xs:int">
+                <xs:attribute type="xs:string" name="includeAdmins"/>
+                <xs:attribute type="xs:string" name="includeSpeakers"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="chat">
+        <xs:sequence>
+            <xs:element type="allowModeratedRooms" name="allowModeratedRooms"/>
+            <xs:element type="xs:int" name="floodControlResetTime"/>
+            <xs:element type="xs:int" name="floodControlInterval"/>
+            <xs:element type="xs:int" name="floodControlMaxMessages"/>
+            <xs:element type="labels" name="labels"/>
+            <xs:element type="xs:int" name="maxroomusers"/>
+            <xs:element type="xs:int" name="maxdockitems"/>
+            <xs:element type="xs:int" name="characterlimit"/>
+            <xs:element type="xs:boolean" name="userroomcreate"/>
+            <xs:element type="xs:int" name="roomemptytimeout"/>
+            <xs:element type="xs:int" name="maxhistorymessages"/>
+            <xs:element type="xs:string" name="showJoinLeaveMessages"/>
+            <xs:element type="gui" name="gui"/>
+            <xs:element type="roomlist" name="roomlist"/>
+            <xs:element type="xs:int" name="getannouncementsinterval"/>
+            <xs:element type="xs:boolean" name="sendarchive"/>
+            <xs:element type="xs:string" name="banNotification"/>
+            <xs:element type="xs:int" name="sendConnectionListInterval"/>
+            <xs:element type="xs:boolean" name="conferenceCallEnabled"/>
+            <xs:element type="xs:string" name="conferenceCallText"/>
+            <xs:element type="userdatavalues" name="userdatavalues"/>
+            <xs:element type="xs:boolean" name="notextentry"/>
+            <xs:element type="xs:boolean" name="invisible"/>
+            <xs:element type="adminrooms" name="adminrooms"/>
+            <xs:element type="restrictedRooms" name="restrictedRooms"/>
+            <xs:element type="initialroom" name="initialroom"/>
+            <xs:element type="xs:string" name="permitCopy"/>
+            <xs:element type="xs:int" name="sessionTimeout"/>
+            <xs:element type="xs:string" name="sessionTimeoutMessage"/>
+            <xs:element type="xs:int" name="selecteduser"/>
+            <xs:element type="xs:int" name="inactivityTimeout"/>
+            <xs:element type="xs:string" name="inactivityTimeoutMessage"/>
+            <xs:element type="xs:boolean" name="permitWhisper"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="reportabuse">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute type="xs:int" name="textLines"/>
+                <xs:attribute type="xs:boolean" name="avEnabled"/>
+                <xs:attribute type="xs:boolean" name="avWebAccessible"/>
+                <xs:attribute type="xs:int" name="avSeconds"/>
+                <xs:attribute type="xs:string" name="avUserID"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="roomlist">
+        <xs:sequence>
+            <xs:element type="room" name="room" maxOccurs="unbounded" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Make as many as you want, these will always appear when the app reloads (even if
+                        deleted in the client)
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="domain">
+        <xs:sequence>
+            <xs:element type="xs:int" name="maxxmlretries"/>
+            <xs:element type="xs:boolean" name="avenabled"/>
+            <xs:element type="xs:string" name="forbiddenwordslist"/>
+            <xs:element type="xs:string" name="allowCalls"/>
+            <xs:element type="xs:int" name="domainPrefReloadInterval"/>
+            <xs:element type="maxUsers" name="maxUsers">
+                <xs:annotation>
+                    <xs:documentation>in minutes</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element type="xs:boolean" name="domainInvalid"/>
+            <xs:element type="xs:boolean" name="adminsRequired">
+                <xs:annotation>
+                    <xs:documentation>if true, users will not be allowed connection and all will be disconnected if
+                        connected already
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element type="xs:string" name="textColors">
+                <xs:annotation>
+                    <xs:documentation>if true, users will not be allowed connection if no admins connected and all will
+                        be disconnected when admin leaves
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element type="xs:string" name="smileys"/>
+            <xs:element type="chat" name="chat"/>
+        </xs:sequence>
+        <xs:attribute name="includeAdmins" type="xs:boolean" use="optional"/>
+    </xs:complexType>
+    <xs:complexType name="lobby">
+        <xs:sequence>
+            <xs:element type="xs:string" name="name"/>
+            <xs:element type="xs:string" name="description"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="watermark">
+        <xs:simpleContent>
+            <xs:extension base="xs:anyURI">
+                <xs:attribute type="xs:int" name="alpha"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="gui">
+        <xs:sequence>
+            <xs:element type="xs:boolean" name="viewprofile"/>
+            <xs:element type="xs:boolean" name="instantcommunicator"/>
+            <xs:element type="xs:boolean" name="addfriend" minOccurs="0"/>
+            <xs:element type="xs:boolean" name="block"/>
+            <xs:element type="reportabuse" name="reportabuse"/>
+            <xs:element type="xs:string" name="titleBarColor"/>
+            <xs:element type="xs:string" name="scrollTrackColor"/>
+            <xs:element type="xs:string" name="outerBackgroundColor"/>
+            <xs:element type="xs:string" name="innerBackgroundColor"/>
+            <xs:element type="xs:string" name="uiFontColor"/>
+            <xs:element type="xs:string" name="buttonColor"/>
+            <xs:element type="xs:boolean" name="leftPaneMinimized"/>
+            <xs:element type="xs:boolean" name="dockMinimized"/>
+            <xs:element type="images" name="images"/>
+            <xs:element type="xs:int" name="initialinputlines"/>
+            <xs:element type="xs:boolean" name="help"/>
+            <xs:element type="xs:string" name="modulelist" minOccurs="0"/>
+            <xs:element type="xs:string" name="search" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="room">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="description" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="images">
+        <xs:sequence>
+            <xs:element type="watermark" name="watermark" minOccurs="0"/>
+            <xs:element type="xs:anyURI" name="icon" minOccurs="0"/>
+            <xs:element type="xs:anyURI" name="thumbnail" minOccurs="0"/>
+            <xs:element type="xs:anyURI" name="fullsize" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="labels">
+        <xs:sequence>
+            <xs:element type="userdata" name="userdata"/>
+            <xs:element type="lobby" name="lobby"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="userdata">
+        <xs:sequence>
+            <xs:element name="line" maxOccurs="unbounded" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Age"/>
+                        <xs:enumeration value="Sex"/>
+                        <xs:enumeration value="Location"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute type="xs:int" name="initiallines"/>
+    </xs:complexType>
+    <xs:complexType name="allowModeratedRooms">
+        <xs:simpleContent>
+            <xs:extension base="xs:boolean">
+                <xs:attribute type="xs:boolean" name="autoOn"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="buddylist">
+        <xs:sequence>
+            <xs:element type="user" name="user" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="restrictedRooms">
+        <xs:sequence>
+            <xs:element type="room" name="room"/>
+        </xs:sequence>
+        <xs:attribute type="xs:boolean" name="allowRestricted"/>
+    </xs:complexType>
+    <xs:complexType name="userdatavalues">
+        <xs:sequence>
+            <xs:element type="xs:string" name="line" maxOccurs="unbounded" minOccurs="0" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="initialroom">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute type="xs:boolean" name="createOnLogin"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="avsettings">
+        <xs:sequence>
+            <xs:element type="xs:boolean" name="avEnabled"/>
+            <xs:element type="xs:boolean" name="audioSend"/>
+            <xs:element type="xs:boolean" name="videoSend"/>
+            <xs:element type="xs:boolean" name="audioReceive"/>
+            <xs:element type="xs:boolean" name="videoReceive"/>
+            <xs:element type="xs:int" name="audiokbps"/>
+            <xs:element name="videokbps">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:enumeration value="10"/>
+                        <xs:enumeration value="16"/>
+                        <xs:enumeration value="22"/>
+                        <xs:enumeration value="44"/>
+                        <xs:enumeration value="88"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element type="xs:int" name="videofps">
+                <xs:annotation>
+                    <xs:documentation>- recommended range: 10 - 200</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="videosize">
+                <xs:annotation>
+                    <xs:documentation>- acceptable range: 1 - 30</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:minInclusive value="1" />
+                        <xs:maxInclusive value="30" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="videoDisplaySize">
+                <xs:annotation>
+                    <xs:documentation>- acceptable values: 1, 2, 3</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:enumeration value="1"/>
+                        <xs:enumeration value="2"/>
+                        <xs:enumeration value="3"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="adminrooms">
+        <xs:sequence>
+            <xs:element type="room" name="room" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="user">
+        <xs:sequence>
+            <xs:element type="xs:string" name="userid"/>
+            <xs:element type="xs:boolean" name="admin" minOccurs="0"/>
+            <xs:element type="xs:boolean" name="speaker" minOccurs="0"/>
+            <xs:element type="xs:string" name="displayname"/>
+            <xs:element type="avsettings" name="avsettings" minOccurs="0"/>
+            <xs:element type="buddylist" name="buddylist" minOccurs="0"/>
+            <xs:element type="blocklist" name="blocklist" minOccurs="0"/>
+            <xs:element type="images" name="images"/>
+            <xs:element type="chat" name="chat" minOccurs="0"/>
+            <xs:element type="userlist" name="userlist" minOccurs="0"/>
+            <xs:element type="minichat" name="minichat" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="minichat">
+        <xs:sequence>
+            <xs:element type="xs:boolean" name="useAnonymousScreenNames"/>
+            <xs:element type="xs:boolean" name="showUserCount"/>
+            <xs:element type="xs:boolean" name="showWatcherUserCount"/>
+            <xs:element type="xs:boolean" name="allowTextInput"/>
+            <xs:element type="xs:boolean" name="allowRoomUserlist"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="blocklist">
+        <xs:sequence>
+            <xs:element type="xs:string" name="userid"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="userlist">
+        <xs:sequence>
+            <xs:element type="gui" name="gui"/>
+            <xs:element type="xs:string" name="buddyviewableonly"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

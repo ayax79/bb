@@ -1,0 +1,7 @@
+#!/bin/sh
+dropdb blackbox
+createdb -O blackbox blackbox
+psql blackbox < script/blackbox.ddl
+psql blackbox < script/dbdump.dmp
+psql blackbox < script/cleandbdump.sql
+groovy script/migration.groovy

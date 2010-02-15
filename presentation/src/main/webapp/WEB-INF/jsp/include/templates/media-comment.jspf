@@ -1,0 +1,39 @@
+<%@include file="/WEB-INF/jsp/include/taglibs.jspf" %>
+<c:set var="newLine" value="
+" />
+<div class="article-comment comment_${childActivity.guid} U${childActivity.artifactOwner.guid}  <c:if test="${bb:isCollapsedPost(cookie.cu.value, childActivity.artifactOwner.guid)}"> collapsed-post</c:if>">
+	<div class="article-comment-pict">
+		<ui:profileImage guid="${childActivity.sender.guid}" showUserType="true" linkToProfile="true" showMiniProfile="true" size="small"/>
+	</div>
+	<div class="article-comment-body">
+		<div class="article-comment-header">
+			<div class="article-comment-meta">
+				<span class="article-comment-user">
+					<s:link beanclass="com.blackbox.presentation.action.persona.PersonaActionBean" class="user-link">
+						<s:param name="identifier" value="${childActivity.artifactOwner.guid}"/>
+						${bb:userName(childActivity.sender)}
+					</s:link>
+				</span>
+				<span class="collapsed-message">posted a reply</span>
+				<span class="article-comment-date"><abbr class="timeago" title="${childActivity.formattedPostDate}">${childActivity.formattedPostDate}</abbr></span>
+			</div>
+			<%@include file="/WEB-INF/jsp/include/templates/comment-actions.jspf"%>
+			<div class="clear"></div>
+		</div>
+		<div class="article-comment-meat">
+			<div class="comment-meat">${f:replace(childActivity.comment, newLine, "<br/>")}</div>
+			<div class="article-media">
+				<c:if test="${not empty childActivity.location}">
+					<c:choose>
+						<c:when test="${childActivity.mimeType == 'application/octet-stream'}">
+							VIDEO NOT SUPPORTED YET
+						</c:when>
+						<c:otherwise>
+							<ui:streamImage msgObject="${childActivity}"/>
+						</c:otherwise>
+					</c:choose>
+				</c:if>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,165 @@
+<%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
+<c:choose>
+	<c:when test="${actionBean.viewAllType eq 'friend'}">
+		<c:set var="nlist" value="${actionBean.notifications.friends}"/>
+		<c:set var="listLabel" value="Friend"/>
+	</c:when>
+	<c:when test="${actionBean.viewAllType eq 'follow'}">
+		<c:set var="nlist" value="${actionBean.notifications.follows}"/>
+		<c:set var="listLabel" value="Follow"/>
+	</c:when>
+	<c:when test="${actionBean.viewAllType eq 'wish'}">
+		<c:set var="nlist" value="${actionBean.notifications.wishes}"/>
+		<c:set var="listLabel" value="Wish"/>
+	</c:when>
+	<c:when test="${actionBean.viewAllType eq 'gift'}">
+		<c:set var="nlist" value="${actionBean.notifications.gifts}"/>
+		<c:set var="listLabel" value="Gift"/>
+	</c:when>
+	<c:when test="${actionBean.viewAllType eq 'vouch'}">
+		<c:set var="nlist" value="${actionBean.notifications.vouches}"/>
+		<c:set var="listLabel" value="Vouches"/>
+	</c:when>
+	<c:when test="${actionBean.viewAllType eq 'occasion'}">
+		<c:set var="nlist" value="${actionBean.notifications.occasions}"/>
+		<c:set var="listLabel" value="Occasions"/>
+	</c:when>
+</c:choose>
+<div class="two-column-bg">
+	<div class="bb-left messages">
+		<div id="notifications">
+			<c:if test="${not empty nlist.items}">
+			<div class="notifications-select clearfix">
+				<p>Select:</p>
+				<span class="select">
+					<ul>
+						<li><a href="#" id="selectAll">All</a></li>
+						<li class="noborder"><a href="#" id="selectNone">None</a></li>
+					</ul>
+				</span>
+				<span class="action">
+					<c:choose>
+						<%-- FRIENDS --%>
+						<c:when test="${actionBean.viewAllType eq 'friend'}">
+							<ul>
+								<li class="noborder"><a href="#" class="ignore-all-friends-link">Ignore</a></li>
+								<li><a href="#" class="accept-all-friends-link">Accept</a></li>
+							</ul>
+						</c:when>
+						<%-- FOLLOWING --%>
+						<c:when test="${actionBean.viewAllType eq 'follow'}">
+							<ul>
+								<li class="noborder"><a href="#" class="follow-back-all-link">Follow back</a></li>
+								<li><a href="#" class="acknowledge-all-follow-link">OK</a></li>
+							</ul>
+						</c:when>
+						<%-- WISHES --%>
+						<c:when test="${actionBean.viewAllType eq 'wish'}">
+							<ul>
+								<li class="noborder"><a href="#" class="deny-all-wish-link">Ignore</a></li>
+								<li><a href="#" class="accept-all-wish-link">Accept</a></li>
+							</ul>
+						</c:when>
+
+						<%-- GIFTS --%>
+						<c:when test="${actionBean.viewAllType eq 'gift'}">
+							<ul>
+								<li class="noborder"><a href="#" class="deny-all-gift-link">Ignore</a></li>
+								<li><a href="#" class="accept-all-gift-link">Accept</a></li>
+							</ul>
+						</c:when>
+
+						<%-- VOUCHES --%>
+						<c:when test="${actionBean.viewAllType eq 'vouch'}">
+							<ul>
+								<li class="noborder"><a href="#" class="deny-all-vouch-link">Ignore</a></li>
+								<li><a href="#" class="accept-all-vouch-link">Accept</a></li>
+							</ul>
+						</c:when>
+
+                        <%-- OCCASIONS --%>
+						<c:when test="${actionBean.viewAllType eq 'occasion'}">
+							<ul>
+								<li class="noborder"><a href="#" class="decline-all-occasion-link">No</a></li>
+								<li><a href="#" class="maybe-all-occasion-link">Maybe</a></li>
+								<li><a href="#" class="accept-all-occasion-link">Yes</a></li>
+
+							</ul>
+						</c:when>
+
+					</c:choose>
+				</span>
+			</div>
+			</c:if>
+			<%--<h3 class="date-line">Today</h3>--%>
+			<div class="section ${actionBean.viewAllType}">
+				<div class="items" <c:if test="${actionBean.viewAllType eq 'gift'}"> id="gifts" </c:if>>
+				<c:forEach var="notification" items="${nlist.items}">
+					<%--@elvariable id="notification" type="com.blackbox.notification.Notification"--%>
+					  <c:choose>
+						<c:when test="${actionBean.viewAllType eq 'gift'}">
+
+						   <c:set var="gift" value="${actionBean.giftMap[notification.guid]}" />
+						   <div class="gift-row notification-item clearfix notification_${notification.guid}">
+							<div class="gift-checkbox"><input type="checkbox" class="notification-checkbox" value="${notification.guid}_${notification.fromEntityGuid}"/></div>
+							<div class="gift-avatar"><ui:profileImage guid="${gift.sender.guid}" size="medium" linkToProfile="true" showMiniProfile="true" showUserType="true"/></div>
+							<div class="gift-body">
+								<p class="gift-from"><strong>From:</strong> <s:link beanclass="com.blackbox.presentation.action.persona.PersonaActionBean" class="user-link">
+										<c:if test="${bb:isMessage(gift)}">
+											<s:param name="identifier" value="${gift.artifactMetaData.artifactOwner.guid}"/>${bb:userName(gift.artifactMetaData.artifactOwner)}
+										</c:if>
+										<c:if test="${bb:isMedia(gift)}">
+											<s:param name="identifier" value="${gift.artifactOwner.guid}"/>${bb:userName(gift.artifactOwner)}
+										</c:if>
+								</s:link></p>
+								<p class="gift-content">
+									<c:choose>
+									<c:when test="${bb:isMessage(gift)}">
+										${f:replace(gift.body, newLine, "<br/>")}
+									</c:when>
+									<c:when test="${bb:isMedia(gift)}">
+										${f:replace(gift.comment, newLine, "<br/>")}
+									</c:when>
+								   </c:choose>
+								</p>
+								<p class="article-media">
+									<c:if test="${bb:isMedia(gift)}">
+										<c:choose>
+											<c:when test="${gift.mimeType == 'application/octet-stream'}">
+												VIDEO NOT SUPPORTED YET
+											</c:when>
+											<c:otherwise>
+												<ui:streamImage msgObject="${gift}"/>
+											</c:otherwise>
+										</c:choose>
+									</c:if>
+								</p>
+								<p class="date-received">Received: ${gift.formattedPostDate}</p>
+							</div>
+							<div class="gift-status">
+								<ul>
+									<li class="noborder"><a href="#${notification.guid}_${notification.fromEntityGuid}" class="deny-gift-link">Ignore</a></li>
+									<li><a href="#${notification.guid}_${notification.fromEntityGuid}" class="accept-gift-link">Accept</a></li>
+								</ul>
+							</div>
+						</div>
+
+						</c:when>
+						<c:otherwise>
+							<ui:notificationBlock type="${actionBean.viewAllType}" notification="${notification}" includeCheck="true"/>
+						</c:otherwise>
+					</c:choose>
+						
+				</c:forEach>
+				</div>
+				<p class="noMoreNotifications" <c:if test="${not empty nlist.items}">style="display:none;"</c:if>>You have no more ${listLabel} notifications.</p>
+			</div>
+		</div>
+	</div>
+	<div class="bb-right right-col last">
+        <c:set var="hideSection" value="${actionBean.viewAllType}"/>
+        <c:set var="displayHeader" value="false"/>
+		<%@include file="/WEB-INF/jsp/include/notifications-column.jspf" %>
+	</div>
+	<div class="clear"></div>
+</div>

@@ -1,0 +1,49 @@
+<%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
+<div class="article <c:if test="${not empty parent.guid}"> article_${parent.guid}</c:if> <c:if test="${not empty parent.artifactOwner.guid}"> UG${parent.artifactOwner.guid}</c:if>  <c:if test="${bb:isCollapsedPost(cookie.cu.value, parent.artifactOwner.guid)}"> collapsed-post</c:if>">
+	<p class="create-update">
+		<s:link beanclass="com.blackbox.presentation.action.persona.PersonaActionBean" class="user-link thread-starter">
+			<s:param name="identifier" value="${parent.artifactOwner.guid}"/>
+			${bb:userName(parent.artifactOwner)}
+		</s:link>
+		started the conversation ${bb:formatDate(parent.postDate, "MMMM d")}
+	</p>
+
+
+	<div class="article-content clearfix">
+		<div class="article-left">
+			<div class="article-pict">
+				<ui:profileImage guid="${parent.artifactOwner.guid}" showMiniProfile="true" size="medium_large"/>
+			</div>
+			<ui:privacyControl guid="20" ownerType="" defaultValue="${parent.recipientDepth}" beanclass="com.blackbox.presentation.action.bookmark.BookmarkActionBean"/>
+		</div>
+		<div class="article-right">
+			<div class="article-body">
+				<div class="article-header">
+					<div class="article-meta">
+						<span class="article-user">
+                            <s:link beanclass="com.blackbox.presentation.action.persona.PersonaActionBean" class="user-link"><s:param name="identifier" value="${parent.artifactOwner.guid}"/>${bb:userName(parent.artifactOwner)}</s:link> gifted
+                            <s:link beanclass="com.blackbox.presentation.action.persona.PersonaActionBean" class="user-link"><s:param name="identifier" value="${parent.recipients[0].recipient.guid}"/>${bb:userName(parent.recipients[0].recipient)}</s:link>
+                        </span>
+						<span class="collapsed-message">sent a gift</span>
+						<span class="article-date"><abbr class="timeago" title="${parent.formattedPostDate}">${parent.formattedPostDate}</abbr></span>
+					</div>
+					<%--<%@include file="/WEB-INF/jsp/include/templates/article-actions.jspf"  %>--%>
+					<div class="clear"></div>
+				</div>
+				<div class="article-meat">${parent.comment}</div>
+				<div class="article-media">
+					<c:if test="${not empty parent.location}">
+						<c:choose>
+							<c:when test="${parent.mimeType == 'application/octet-stream'}">
+								VIDEO NOT SUPPORTED YET
+							</c:when>
+							<c:otherwise>
+								<ui:streamImage msgObject="${parent}"/>
+							</c:otherwise>
+						</c:choose>
+					</c:if>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

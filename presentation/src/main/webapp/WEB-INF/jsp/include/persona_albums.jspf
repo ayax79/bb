@@ -1,0 +1,59 @@
+<%@ include file="/WEB-INF/jsp/include/page_header.jspf" %>
+<%--@elvariable id="actionBean" type="com.blackbox.presentation.action.persona.PersonaActionBean"--%>
+
+<%--<ui:miniBio/>--%>
+
+<div id="pictures-container">
+	<div id="album-list" class="clearfix">
+
+		<div class="pictures-header clearfix">
+			<div class="left">
+			<h3>${bb:displayName(actionBean.user)}&#8217;s Albums &nbsp;<span> (<span class="total-number-albums">${f:length(actionBean.mediaLibList)}</span> albums | <span class="all-albums-total">${actionBean.totalImages}</span> photos)</span></h3>
+			</div>
+			<div class="right">
+				<c:if test="${actionBean.owner == 'true'}">
+					<a class="grey-ds grey-ds-s" href="#" id="view-create-album"><span>Create an album</span></a>
+				</c:if>
+			</div>
+		</div>
+		<div id="main-albums">
+			<c:forEach var="album" items="${actionBean.mediaLibList}" varStatus="albumLoopCount">
+			<%--@elvariable id="album" type="com.blackbox.media.MediaLibrary"--%>
+			<div class="album_${album.guid} photo-album clearfix">
+				<div class="album-cover">
+					<a href="#${album.guid}" class="album-link"><img src="<c:out value="${album.media[0].thumbnailLocation}" default="${bb:libraryResource('/library/images/default-album-cover.png')}"/>" alt="album-thumb-dummy"/></a>
+					<c:if test="${actionBean.owner}">
+						<a href="#${album.guid}" class="image-action-link">&nbsp;</a>
+						<ul class="image-action-menu">
+							<li>
+								<a href="#&option=WORLD&libGuid=${album.guid}" class="media-permission <c:if test="${'WORLD' == s:enumName(album.networkTypeEnum)}">active</c:if>"><fmt:message key="PermissionsEnum.WORLD" /></a>
+							</li>
+							<li>
+								<a href="#&option=ALL_MEMBERS&libGuid=${album.guid}" class="media-permission <c:if test="${'ALL_MEMBERS' == s:enumName(album.networkTypeEnum)}">active</c:if>"><fmt:message key="PermissionsEnum.ALL_MEMBERS" /></a>
+							</li>
+							<li class="last">
+								<a href="#&option=FRIENDS&libGuid=${album.guid}" class="media-permission <c:if test="${'FRIENDS' == s:enumName(album.networkTypeEnum)}">active</c:if>"><fmt:message key="PermissionsEnum.FRIENDS" /></a>
+							</li>
+						</ul>
+					</c:if>
+				</div>
+				<div class="album-meta">
+					<h4><a href="#${album.guid}" class="album-link">${album.name}</a> <span>(${f:length(album.media)} photos)</span></h4>
+					<p class="album-desc">
+						${bb:limitString(album.description, 100)}
+					</p>
+					<p class="dates">Created: ${bb:formatDate(album.created, "MMMM d")}<br/>Modified: ${bb:formatDate(album.modified, "MMMM d")}</p>
+					<c:if test="${actionBean.owner == 'true'}">
+						<p class="edit-album"><a href="#${album.guid}" class="album-link">View album</a> | <a href="#${album.guid}" class="delete-album-link">Delete album</a></p>
+					</c:if>
+				</div>
+			</div>
+			</c:forEach>
+			<br class="clear"/>
+			<div class="paging-right">
+				<a href="#" class="paging-button previous"><span class="label">&nbsp;</span></a>
+				<a href="#" class="paging-button next"><span class="label">&nbsp;</span></a>
+			</div>
+		</div>
+	</div>
+</div>

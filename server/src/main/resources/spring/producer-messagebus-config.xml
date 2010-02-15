@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2009. Blackbox, LLC
+  ~ All rights reserved.
+  -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--
+    Begin Producer
+    -->
+    <!-- begin notifications -->
+    <bean id="notificationPipe" class="org.yestech.lib.spring.TerracottaPipeFactoryBean"
+          p:topologyName="${notify.queue}" p:pipeName="${notify.queue}"/>
+    <bean id="notifyProducer" class="org.yestech.notify.service.TerracottaNotificationProducer"
+          p:pipe-ref="notificationPipe"/>
+        <!-- end notifications -->
+
+    <!-- begin content -->
+    <bean id="audioMultimediaContentPipe" class="org.yestech.lib.spring.TerracottaPipeFactoryBean"
+          p:topologyName="audio.multimedia.content.publish.queue" p:pipeName="audio.multimedia.content.publish.queue"/>
+
+    <bean id="jmsProducerAudioMultimediaContentPublish" class="org.yestech.publish.service.TerracottaPublishProducer"
+          p:url="${jms.content.publish.audio.download.url}" p:pipe-ref="audioMultimediaContentPipe"/>
+
+    <bean id="videoMultimediaContentPipe" class="org.yestech.lib.spring.TerracottaPipeFactoryBean"
+          p:topologyName="video.multimedia.content.publish.queue" p:pipeName="video.multimedia.content.publish.queue"/>
+
+    <bean id="jmsProducerVideoMultimediaContentPublish" class="org.yestech.publish.service.TerracottaPublishProducer"
+          p:url="${jms.content.publish.video.download.url}" p:pipe-ref="videoMultimediaContentPipe"/>
+
+    <bean id="imageMultimediaContentPipe" class="org.yestech.lib.spring.TerracottaPipeFactoryBean"
+          p:topologyName="image.multimedia.content.publish.queue" p:pipeName="image.multimedia.content.publish.queue"/>
+
+    <bean id="jmsProducerImageMultimediaContentPublish" class="org.yestech.publish.service.TerracottaPublishProducer"
+          p:url="${jms.content.publish.image.download.url}" p:pipe-ref="imageMultimediaContentPipe"/>
+
+    <!-- end content -->
+
+    <!-- begin messaging -->
+    <!-- text -->
+    <bean id="textMultimediaContentPipe" class="org.yestech.lib.spring.TerracottaPipeFactoryBean"
+          p:topologyName="text.message.publish.queue" p:pipeName="text.message.publish.queue"/>
+
+    <bean id="jmsProducerTextMessagePublish" class="org.yestech.publish.service.TerracottaPublishProducer"
+          p:pipe-ref="textMultimediaContentPipe"/>
+
+    <!-- end messaging -->
+
+    <!--
+    End Producer
+    -->
+</beans>

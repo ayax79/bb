@@ -1,0 +1,57 @@
+<%--@elvariable id="activity" type="com.blackbox.activity.ActivityThread"--%>
+<%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
+
+<c:if test="${hackfuckingtastic != 'hellsyeah'}">
+
+<c:choose>
+	<c:when test="${childActivity.activityType == 'MEDIA'}">
+		<c:set var="ownerGuid" value="${childActivity.artifactOwner.guid}"/>
+		<c:set var="deleteBeanEvent" value="deleteMedia"/>
+	</c:when>
+	<c:when test="${childActivity.activityType == 'MESSAGE'}">
+		<c:set var="ownerGuid" value="${childActivity.artifactMetaData.artifactOwner.guid}"/>
+		<c:set var="deleteBeanEvent" value="deleteMessage"/>
+	</c:when>
+</c:choose>
+
+<div class="comment-actions">
+
+	<div class="article-filter">
+		<ul>
+			<li class="article-filter-button">
+				<a href="#" class="article-filter-link"><span>Options</span></a>
+				<ul class="article-filter-menu">
+
+					<%--
+					Logic below for determining what menu items show is also in the javascript for dynamically created posts
+					It was moved here to reduce the amount of post processing on the client
+					--%>
+
+					<c:if test="${empty ownerGuid || ownerGuid == actionBean.currentUser.guid}">
+						<li>
+							<s:link class="delete-link tt-fm" beanclass="com.blackbox.presentation.action.media.PublishActionBean" event="${deleteBeanEvent}"><s:param name="view" value="json"/><s:param name="recipientDepth" value="${activity.parent.recipientDepth}"/><s:param name="parentGuid" value="${activity.parent.guid}"/><s:param name="guid" value="${childActivity.parentActivity.guid}"/><s:param name="guid" value="${childActivity.guid}"/>Delete</s:link>
+						</li>
+					</c:if>
+
+					<c:if test="${empty ownerGuid || ownerGuid != actionBean.currentUser.guid}">
+						<li>
+							<s:link class="ignore-link tt-fm" beanclass="com.blackbox.presentation.action.persona.PersonaActionBean" event="ignored"><s:param name="identifier" value="${ownerGuid}"/>Ignore</s:link>
+						</li>
+					</c:if>
+
+					<c:if test="${empty ownerGuid || ownerGuid != actionBean.currentUser.guid}">
+						<li>
+							<s:link class="block-link tt-fm" beanclass="com.blackbox.presentation.action.persona.PersonaActionBean" event="block"><s:param name="identifier" value="${ownerGuid}"/>Donkey Kick</s:link>
+						</li>
+					</c:if>
+
+					<li class="last collapse-link-li"><a href="#${ownerGuid}" class="collapse-link tt-fm">Collapse</a></li>
+					<li class="last expand-link-li"><a href="#${ownerGuid}" class="expand-link tt-fm">Expand</a></li>
+
+				</ul>
+			</li>
+		</ul>
+	</div>
+</div>
+
+</c:if>

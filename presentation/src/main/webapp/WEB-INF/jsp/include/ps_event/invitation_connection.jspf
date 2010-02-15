@@ -1,0 +1,68 @@
+<%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
+<script type="text/javascript">
+    function show_more_connections() {
+        $(".connection").css("height","auto");
+    }
+</script>
+<c:choose>
+    <c:when test="${OwnerEdit != 'Y' and occasion.occasionWebDetail.canViewGuestList eq 'VIEW_YESONLY'}">
+        <div  class="pro_con_main_tit">Attending<span>(${f:length(attending)})</span></div>
+        <div class="connection conn_con" style="height:285px;overflow:hidden;">
+            <ul>
+                <c:forEach var="user" items="${attending}" varStatus="attendeeStatus">
+                    <%@include file="/WEB-INF/jsp/include/ps_event/connection_profile.jspf" %>
+                </c:forEach>
+            </ul>
+        </div>
+    </c:when>
+    <c:otherwise>
+        <div style="padding:0;width:905px;height:auto;overflow-x:hidden;overflow-y:hidden" class="pro_con_main1">
+            <div class="connection pro_con_lef" style="height:315px;">
+                <div  class="pro_con_main_tit">Attending<span>(${f:length(attending)})</span></div>
+                <div class="pro_con_main_lis">
+                    <ul>
+                        <c:forEach var="user" items="${attending}" varStatus="attendeeStatus">
+                            
+                             <%@include file="/WEB-INF/jsp/include/ps_event/connection_profile.jspf" %>
+                        </c:forEach>
+                    </ul>
+                </div>
+                <div class="clear"></div>
+
+
+            </div>
+            <div class="connection pro_con_lef left_43" style="height:315px;">
+                <div  class="pro_con_main_tit">Maybe Attending<span>(${f:length(maybe)})</span></div>
+                <div class="pro_con_main_lis">
+                    <ul>
+                        <c:forEach var="user" items="${maybe}" varStatus="attendeeStatus">
+                             <%@include file="/WEB-INF/jsp/include/ps_event/connection_profile.jspf" %>
+
+                        </c:forEach>
+                    </ul>
+                </div>
+                <div class="clear"></div>
+
+            </div>
+            <div class="connection pro_con_lef left_43" style="height:315px;">
+                <div  class="pro_con_main_tit">Recently Viewed<span>(${f:length(viewed)})</span></div>
+                <div class="pro_con_main_lis">
+                    <ul>
+                        <c:forEach var="user" items="${viewed}" varStatus="attendeeStatus">
+                            <%@include file="/WEB-INF/jsp/include/ps_event/connection_profile.jspf" %>
+                        </c:forEach>
+                    </ul>
+                </div>
+                <div class="clear"></div>
+
+            </div>
+
+        </div>
+    </c:otherwise>
+</c:choose>
+<c:if test="${(f:length(viewed))>9 or (f:length(maybe))>9 or (f:length(attending))>9 }">
+    <div style="text-align:right; padding-right:63px;"><a onclick="show_more_connections();" href="javascript:void(0);"><img onmouseover="javascript:this.src='${bb:libraryResource('/library/images/persona/Conn_but2.png')}'"
+                                                                                                                             onmouseout="javascript:this.src='${bb:libraryResource('/library/images/persona/Conn_but1.png')}'" src="${bb:libraryResource('/library/images/persona/Conn_but1.png')}" border="0" /></a></div>
+        </c:if>
+
+

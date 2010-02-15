@@ -1,0 +1,17 @@
+#parse("/velocity/html-email-header.vm")
+Hey $firstname,<br /><br />
+
+You're now a part of the Republic and we couldn't be happier.<br /><br />
+
+Here are a few things you'll want at the ready:<br /><br />
+
+Your username is: $username<br />
+You'll notice that you're already connected to the Blackbox Angels. They're here to support you so feel free to send them a message if you ever need help.<br />
+You can change any of your account settings by either clicking "edit" on your Persona page or by clicking on your name in the upper right corner.<br />
+Since Blackbox Republic is new, we're learning all sorts of ways to get better. It's our goal to not be one of those super annoying companies that sends you too much shit. We'll be working over the next couple of months to give you the control you want to be able to get communication in a way that suits you. In the meantime, we'll eat up your feedback. To send it, just use the blue Feedback button in the main navigation bar.<br /><br />
+
+Thanks again for being a pioneering member of the Republic. We hope to build it in your image.<br /><br />
+
+Cheers,<br />
+Your entire Blackbox Republic team
+#parse('/velocity/html-email-footer.vm')

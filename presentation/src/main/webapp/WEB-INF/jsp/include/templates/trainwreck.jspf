@@ -1,0 +1,48 @@
+<%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
+<div class="article trainwreck" id="article_">
+	<div class="article-content">
+		<div class="article-pict">
+			<ui:profileImage guid="${actionBean.currentUser.guid}" showMiniProfile="true" size="large" />
+		</div>
+		<div class="article-body">
+			<div class="article-header">
+				<div class="article-meta">
+					<h1>
+						<span class="wrap">
+							<span class="article-user"><a href="">Matthew</a></span> posted a trainwreck
+							<span class="article-date"><abbr class="timeago" title="DATE">Years ago...</abbr></span>
+						</span>
+					</h1>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="trainwreck-body-container">
+				<div class="trainwreck-tag">&nbsp;</div>
+				<div class="trainwreck-bg-container">
+					<ui:roundedBox className="black84">
+						<div class="article-meat">Ooops.</div>
+					</ui:roundedBox>
+					<div class="article-media">
+						<ui:roughBorderedImage url="http://www.alien109.com/junk/images/train_wreck.jpg" alt="" className="lightbox" />
+						<%--<c:if test="${not empty activity.parent.location}">--%>
+						<%--<c:choose>--%>
+						<%--<c:when test="${activity.parent.mimeType == 'application/octet-stream'}">--%>
+						<%--<%@include file="/WEB-INF/jsp/include/templates/video.jspf" %>--%>
+						<%--</c:when>--%>
+						<%--<c:otherwise>--%>
+						<%--</c:otherwise>--%>
+						<%--</c:choose>--%>
+						<%--</c:if>--%>
+					</div>
+				</div>
+			</div>
+			<div class="article-footer">
+				<p></p>
+				<br class="clear" />
+			</div>
+			<div class="article-footer-bottom"><span>&nbsp;</span></div>
+			<%--<%@include file="/WEB-INF/jsp/include/templates/comments.jspf" %>--%>
+
+		</div>
+	</div>
+</div>

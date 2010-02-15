@@ -1,0 +1,574 @@
+.bb-left.messages {
+    margin-right: 12px;
+    width: 647px;
+}
+
+.nomessages {
+    font-weight: 900;
+    font-size: 12px;
+    padding: 20px 0 20px 10px;
+    border-top: 1px solid #ddd;
+    margin-top: 6px;
+}
+
+/* Sliders */
+
+.msg-sliders li {
+    background:transparent;
+}
+
+.msg-sliders label {
+    width:64px;
+    border-right:1px solid #fff;
+    background-color:#EBEBEB;
+    vertical-align:middle;
+}
+
+.msg-sliders span {
+    vertical-align:middle;
+    background-color:#EBEBEB;
+}
+
+.msg-sliders .tiny-slider-gfx {
+    width:105px;
+}
+
+.msg-sliders .tiny-slider-pos {
+    background-position: 5px -12px;
+}
+
+.msg-sliders .tiny-slider-pos-2 {
+    background-position: -95px -12px;
+}
+
+.msg-sliders .tiny-slider-pos-1 {
+    background-position: -195px -12px;
+}
+
+.msg-sliders .tiny-slider-pos0 {
+    background-position: -295px -12px;
+}
+
+.msg-sliders .tiny-slider-pos1 {
+    background-position: -395px -12px;
+}
+
+.msg-sliders .tiny-slider-pos2 {
+    background-position: -495px -12px;
+}
+
+/***********************************************************************************************************************
+ TABS
+***********************************************************************************************************************/
+
+#mailbox-tabs {
+    padding-left: 4px;
+}
+
+#mailbox-tabs .sub-tabs {
+    padding:25px 0 0;
+}
+
+
+.ui-tabs-hide {
+    display: none;
+}
+
+.messages-container {
+	padding-left: 10px;
+    width: 637px;
+    overflow: hidden;
+}
+
+.messages-container ul.filters-menu {
+	margin-top: 3px;
+	margin-left: 5px;
+	}
+
+/***********************************************************************************************************************
+ TABS
+***********************************************************************************************************************/
+
+.mb-search {
+/*margin-top: 7px;*/
+    display: inline-block;
+    background: transparent url(${library.prefix}/images/controls/mail-search.png) no-repeat left 0;
+    height: 40px;
+    padding-left: 33px; /*margin-right:10px;*/
+    position: absolute;
+    right: 7px;
+    top: 7px;
+}
+
+.mb-search-r {
+    display: inline-block;
+    background: transparent url(${library.prefix}/images/controls/mail-search.png) no-repeat right -40px;
+    line-height: 40px;
+    padding-right: 20px;
+    padding-left: 4px;
+}
+
+.mb-search input {
+    border: 0;
+    background: transparent;
+    height: 40px;
+    position: relative;
+    top: -1px;
+    outline: none;
+}
+
+#mailbox-slider-search {
+    display: block;
+    background: transparent url(${library.prefix}/images/controls/mb-slider-search.png) no-repeat left 0;
+    padding-left: 31px;
+}
+
+#mailbox-slider-search span {
+    display: block;
+    background: transparent url(${library.prefix}/images/controls/mb-slider-search.png) no-repeat right -26px;
+    line-height: 26px;
+    padding-right: 8px;
+    color: #555;
+    font-weight: 400;
+    font-size: 11px;
+}
+
+.slider-search-menu {
+/*display: inline-block;*/
+    position: absolute;
+    right: 290px;
+    top: 26px;
+}
+
+.slider-search-sliders {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    padding: 20px;
+    border-bottom: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    z-index: 3;
+}
+
+/* Mailbox */
+
+.mailbox-actions {
+	font-size: 12px;
+    border-bottom: 1px solid #c6c6c6;
+    padding: 8px 1px 4px 8px;
+}
+
+.mailbox-actions .actions-label {
+    line-height: 25px;
+    color: #3F3F3F;
+    font-size: 11px;
+}
+
+.mailbox-actions a.btnCompose{
+	color: #000!important;
+	}
+
+.mailbox-actions a.btnCompose:hover{
+	text-decoration: underline;
+	}
+	
+.actions-label {
+    color: #3f3f3f;
+}
+
+.mailbox-filters {
+/*background: transparent url(${library.prefix}/images/bg/ib-afade.png) repeat-x;*/
+    height: 34px;
+    padding: 8px 10px 0 10px;
+}
+
+.message-actions {
+    float: left;
+}
+
+.mailbox-paging {
+    margin-top: 10px;
+}
+
+.grey-paging-prev.disabled {
+    background-position: left -192px;
+    cursor: default;
+    color: #ddd;
+}
+
+.grey-ds.disabled {
+    color: #ddd;
+    font-style: italic;
+    cursor: default;
+}
+
+.grey-paging-prev.disabled span {
+    background-position: right -216px;
+}
+
+.grey-paging-next.disabled {
+    background-position: left -264px;
+    cursor: default;
+    color: #ddd;
+}
+
+.grey-paging-next.disabled span {
+    background-position: right -240px;
+}
+
+.grey-paging {
+    display: inline-block;
+    font-weight: 400;
+    font-size: 11px;
+    color: #999;
+    background: transparent url(${library.prefix}/images/controls/btn-paging.png) no-repeat;
+    line-height: 24px;
+    padding-left: 16px;
+}
+
+.grey-paging span {
+    display: block;
+    background: transparent url(${library.prefix}/images/controls/btn-paging.png) no-repeat;
+    padding-right: 12px;
+    text-indent: -4px;
+}
+
+.grey-paging-next {
+    background-position: left -96px;
+}
+
+.grey-paging-next span {
+    background-position: right -120px;
+}
+
+.grey-paging-prev {
+    background-position: left 0;
+}
+
+.grey-paging-prev span {
+    background-position: right -24px;
+}
+
+.grey-paging-next.hover {
+    background-position: left -144px;
+}
+
+.grey-paging-next.hover span {
+    background-position: right -168px;
+}
+
+.grey-paging-prev.hover {
+    background-position: left -48px;
+}
+
+.grey-paging-prev.hover span {
+    background-position: right -72px;
+}
+
+.mailbox-view {
+    padding: 8px 8px 1px 8px;
+    font-size: 11px;
+    margin-bottom: 0;
+}
+
+.mailbox-view a {
+	color: #55b4ed;
+	font-weight: normal;
+	border-right: 1px solid #d5d5d5;
+	padding: 0 5px;
+	}
+	
+.mailbox-view a:hover {
+	text-decoration: underline;
+	}
+	
+.mailbox-view a.last {
+	border-right: none;
+	}
+
+.btnMessageStatus, .btnMessageSelect, .btnMessageSelectNone {
+}
+
+input.btnMessageSelect {
+	margin: 0;
+	padding: 0;
+	float: right;
+	}
+
+.btnMessageSelectNone {
+    display: none;
+}
+
+/***********************************************************************************************************************
+ Message List
+***********************************************************************************************************************/
+
+/* note if no override class, icon should be hidden */
+.msg-status-icon {
+    background: transparent url(${library.prefix}/images/icons/messaging.png) no-repeat 40px;
+    width: 10px;
+    height: 12px;
+}
+
+.message-list .status-unread {
+    background-color: #f3fafe;
+}
+
+tr.status-read .msg-status-icon {
+    background-position: left -24px;
+}
+
+tr.status-unread .msg-status-icon {
+    background-position: left -12px;
+}
+
+tr.status-replied .msg-status-icon {
+    background-position: left 0;
+}
+
+table.message-list {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 7px;
+}
+
+.message-list tr.messageOver {
+    background-image: url(${library.prefix}/images/bg/b2.png);
+}
+
+table.message-list td {
+    padding: 5px;
+    border-top: 1px solid #e1e1e1;
+    border-bottom: 1px solid #e1e1e1;
+    vertical-align: top;
+}
+
+.read-message-link-div {
+    cursor:pointer;
+}
+
+.message-list td.user-info {
+    width: 133px;
+    white-space: nowrap;
+    line-height: 12px;
+    font-size: 11px;
+    background: url(${library.prefix}/images/bg/mbDivider.png) no-repeat right 6px;
+    padding-left:0;
+}
+
+.user-info .name {
+    color: #dc4a2d
+}
+
+.message-list td.user-avatar {
+    width: 1px;
+    padding-left: 3px;
+}
+
+.message-list td.status-icon {
+    width: 1px;
+    padding-right: 0;
+}
+
+.message-list td.msg-select {
+    width: 20px;
+}
+
+.msg-content div {
+    height: 100px;
+    position: relative;
+}
+
+.msg-content h4 {
+    margin: 0 0 4px;
+    font-size: 11px;
+    color: #dc4a2d;
+}
+
+.msg-content p {
+    font-size: 11px;
+    margin: 0;
+    line-height: 17px;
+    max-width: 369px;
+    overflow: hidden;
+}
+
+p.message-action-meta {
+    margin: 0;
+    font-style: italic;
+    color: #c3c3c3;
+    font-size: 11px;
+    position: absolute;
+    bottom: 0px;
+}
+
+.msg-select input {
+	float: right;
+	clear: none;
+	}
+td.user-info, td.user-avatar {
+    /*background: url(${library.prefix}/images/bg/mbDivider.png) no-repeat right 6px;*/
+}
+
+/***********************************************************************************************************************
+ Message Pane
+***********************************************************************************************************************/
+#message-pane {
+    background: #ffffff;
+    min-height: 800px;
+}
+
+.message-container {
+    margin: 0 10px 10px 10px;
+    padding: 0 0 10px 0;
+    border-bottom: 1px solid #f4f4f4;
+}
+
+.message-leftcol {
+    width: 190px;
+    float: left;
+    padding-top: 54px;
+}
+
+.reply-leftcol {
+    padding-top: 12px !important;
+}
+
+.message-leftcol .profile-image-container {
+    margin-right: 10px;
+}
+
+.message-leftcol p {
+    margin: 0 0 3px;
+    font-size: 11px;
+    float:left;
+}
+
+.message-leftcol p img {
+    border: 0;
+    float: none;
+    margin: 0;
+    padding: 0;
+}
+
+.message-leftcol p.date {
+    color: #999;
+}
+
+.message-leftcol p.date span.message-reply {
+    display: inline-block;
+    width: 10px;
+    height: 12px;
+    background: transparent url("${library.prefix}/images/icons/messaging.png") left top no-repeat;
+    cursor: pointer;
+}
+
+a.message-delete {
+    width: 14px;
+    height: 14px;
+    background: transparent url("${library.prefix}/images/icons/messaging.png") left -38px no-repeat;
+    text-indent: -9999px;
+    display: block;
+    position: relative;
+    left: 418px;
+    top: 20px;
+}
+
+.message-bodycol {
+    width: 426px;
+    float: left;
+    padding-top: 0px;
+}
+
+.message-bodycol img.border {
+    background-color: #f5f5f5;
+    padding: 5px;
+    border: 1px solid #e6e6e7;
+}
+
+.message-bodycol h2 {
+    margin: 1px 0 15px 0;
+    font-size: 15px;
+    padding: 0;
+    letter-spacing: normal;
+}
+
+form.message-reply {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+form.message-reply textarea {
+    border: 1px solid #c4c4c4;
+    width: 410px;
+    height: 125px;
+    margin-top: 20px;
+    padding: 8px;
+    font-size: 11px;
+    font-family: "Helvetica Neue", Arial, Helvetica, Verdana, sans-serif;
+}
+
+form.message-reply button {
+    border: 0 none;
+    height: 27px;
+    cursor: pointer;
+    margin: 8px 0 0 0;
+    padding: 0;
+    display: block;
+    font-size: 11px;
+}
+
+form.message-reply button.grey-ds-s {
+    padding-left: 28px;
+    margin: 0;
+}
+
+form.message-reply button span {
+    height: 27px;
+    display: block;
+    position: relative;
+    line-height: 27px;
+    padding-right: 10px;
+    margin: 0;
+}
+
+form.message-reply button:hover {
+    color: #000;
+}
+
+.message-reply-button {
+    display: block;
+    float: right;
+    margin-top: 8px;
+   /* margin-right: -15px !important;*/
+}
+
+.message-nav {
+    padding: 0 10px 0 10px;
+}
+
+a.return-inbox {
+    display: block;
+    height: 23px;
+    padding: 0 0 0 17px;
+    margin: 0;
+    background: transparent url("${library.prefix}/images/containers/return-inbox-l.png") left top no-repeat;
+    font-size: 11px;
+    font-weight: normal;
+    color: #999;
+}
+
+a.return-inbox:hover {
+    color: #000;
+}
+
+a.return-inbox span {
+    display: block;
+    position: relative;
+    height: 23px;
+    line-height: 23px;
+    padding: 0 10px 0 0;
+    background: transparent url("${library.prefix}/images/containers/return-inbox-r.png") right top no-repeat;
+}
+	

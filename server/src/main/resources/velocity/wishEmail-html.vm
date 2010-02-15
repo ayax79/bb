@@ -1,0 +1,7 @@
+#parse("/velocity/html-email-header.vm")
+We have good news. $wishing_username has wished you, $name!<br /><br />
+
+We won't tell, but how exciting! That means that $wishing_username is interested in you. What that means is up to the two of you. I mean, sheesh, do you want us to do ALL the work? ;)<br /><br />
+
+<a href="$presentation_url">Login</a>, check out their persona and find out for yourself!
+#parse("/velocity/html-email-footer.vm")

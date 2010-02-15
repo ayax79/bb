@@ -1,0 +1,13 @@
+<%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
+<li class="Conn_bg_red">
+	<c:choose>
+		<c:when test="${not empty user.username}">
+			<ui:profileImage guid="${user.guid}" size="medium" color="white" linkToProfile="true" showMiniProfile="true" showUserType="true"/>
+		</c:when>
+		<c:otherwise>
+			<a href="mailto:${user.email}">
+				<img src="${bb:libraryResource('/library/images/defaultplaceholder.jpg')}" alt="" width="66" height="66"/>
+			</a>
+		</c:otherwise>
+	</c:choose>
+</li>

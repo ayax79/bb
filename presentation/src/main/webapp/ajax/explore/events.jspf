@@ -1,0 +1,242 @@
+<%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
+
+
+<s:form beanclass="com.blackbox.presentation.action.search.ExploreActionBean" id="eventExplore" method="post" onsubmit="return false;">
+
+<div id="quicksearch_form_container">
+        <span class="searchinput"><input type="text" name="explore.name" id="exp_query" value="${actionBean.explore.name}" autocomplete="off" /></span>
+
+</div>
+
+<div id="quicksearch_div" class='clearfix'>
+    <h2>Refine your search</h2>
+    <div id="quicksearch_opts" class="clearfix">
+
+
+            <div class="quicksearch">
+                <a id='global_search_link'href="#">Global Search</a>
+                <br />
+                Browse all open and invitation only events
+            </div>
+            <div class="quicksearch">
+                <a id="latest_search_link" href="#">Latest and Greatest</a>
+                <br />
+                Browse the most recent events posted
+            </div>
+
+    </div>
+
+    <div id="search_opts">
+
+        <table id="search_opts_toptable" cellpadding="0" cellspacing="0" border="0" width="100%">
+            <tr>
+                <td colspan="2"><b>Event Status</b></td>
+            </tr>
+            <tr>
+                <td width="60%"><s:checkbox name="explore.publicEvent" id="searchopt_public" /><label for="searchopt_public">Public event</label></td>
+                <td width="40%"><s:checkbox name="explore.inviteOnlyEvent" id="searchopt_invite"/><label for="searchopt_invite">Invite only</label></td>
+            </tr>
+        </table>
+        <div class="searchopt-rule">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                <td><b>Location</b></td>
+            </tr>
+            <tr>
+                <td>
+                    within
+                            <select name="explore.maxDistance">
+                                <option value="5">5 mi</option>
+                                <option value="10">10 mi</option>
+                                <option value="25">25 mi</option>
+                                <option value="50">50 mi</option>
+                                <option value="100">100 mi</option>
+                                <option value="500">500 mi</option>
+                            </select>
+                    of <input type="text" name="explore.zipCode" id="searchopt_distance_center" size="12">
+                </td>
+            </tr>
+        </table>
+        </div>
+        <div class="searchopt-rule">
+        <table cellpadding="0" cellspacing="0" border="0" width="100%">
+            <tr>
+                <td colspan="2"><b>Interests</b></td>
+            </tr>
+            <tr>
+                <td><s:checkbox name="explore.promoter" id="searchopt_promoter"/><label for="searchopt_promoter">Promoter</label></td>
+                <td><s:checkbox name="explore.member" id="searchopt_member"/><label for="searchopt_member">Member</label></td>
+            </tr>
+        </table>
+        </div>
+        <div class="searchopt-rule" style='padding-top: 18px; padding-left: 8px; border-bottom: 1px solid #dadada;'>
+            <button class="grey2d bbbutton" name="search" id="exp_event_submit"><span>Search</span></button>
+            <br />
+        </div>
+    </div>
+
+
+</div>
+<input type="hidden" id='searchopt_sort_type'name='explore.sortType' value="CHRONOLOGICAL_DESC">
+</s:form>
+
+<div id="search_container">
+    <div id="exp_results_container">
+        <div id="exp_results">&nbsp;</div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+//<![CDATA[
+
+
+
+    var search_alert;
+<%--@elvariable id="actionBean" type="com.blackbox.presentation.action.search.AjaxExploreActionBean"--%>
+
+
+	$("#exp_results_container").hide();
+
+	$("#exp_event_submit").click(function() {
+        $("#exp_results").empty();
+        $("#exp_results").load(bb.urls.search.explorerSearchEvent, $("#eventExplore").serializeArray(), function(result) {
+			$("#exp_search_container").hide();
+			$("#exp_results_container").show();
+            var url = "<s:url beanclass="com.blackbox.presentation.action.search.ExploreActionBean" event="event"/>";
+            var exploreobj = new Explorer($("#exp_results"), url);
+
+		});
+        //$("#exp_event_submit span").text('Searching...');
+		return false;
+	});
+
+	$("#exp_new_search").click(function() {
+		$("#exp_results_container").hide();
+		$("#exp_search_container").show();
+		$("#exp_event_submit span").text('Search');
+	});
+
+
+    document.getElementById('searchopt_promoter').checked=${actionBean.explore.promoter};
+    document.getElementById('searchopt_member').checked=${actionBean.explore.member};
+    document.getElementById('searchopt_public').checked=${actionBean.explore.publicEvent};
+    document.getElementById('searchopt_invite').checked=${actionBean.explore.inviteOnlyEvent};
+
+    // auto submit the search
+    if("member-events" == $("#targetSearch").val()) {
+
+        document.getElementById('searchopt_promoter').checked=false;
+        document.getElementById('searchopt_member').checked=true;
+        document.getElementById('searchopt_public').checked=false;
+        document.getElementById('searchopt_invite').checked=false;
+        $("#exp_query").val("");
+        $("#searchopt_distance_center").val("");
+
+        $("#exp_event_submit").click();
+
+    } else if("promoter-events" == $("#targetSearch").val()) {
+        document.getElementById('searchopt_promoter').checked=true;
+        document.getElementById('searchopt_member').checked=false;
+        document.getElementById('searchopt_public').checked=false;
+        document.getElementById('searchopt_invite').checked=false;
+        $("#exp_query").val("");
+        $("#searchopt_distance_center").val("");
+
+        $("#exp_event_submit").click();
+    } else {
+
+        $("#exp_event_submit").click();
+    }
+
+    $("#global_search_link").click(
+        function() {
+
+            document.getElementById('searchopt_promoter').checked=false;
+            document.getElementById('searchopt_member').checked=false;
+            document.getElementById('searchopt_public').checked=false;
+            document.getElementById('searchopt_invite').checked=false;
+            $("#exp_query").val("");
+            $("#searchopt_distance_center").val("");
+
+            $("#exp_event_submit").click();
+
+
+        }
+    );
+
+
+    $("#latest_search_link").click(
+        function() {
+
+            document.getElementById('searchopt_promoter').checked=false;
+            document.getElementById('searchopt_member').checked=false;
+            document.getElementById('searchopt_public').checked=false;
+            document.getElementById('searchopt_invite').checked=false;
+            $("#exp_query").val("");
+            $("#searchopt_distance_center").val("");
+            $("#sortorder").val('CHRONOLOGICAL_DESC');  //CHRONOLOGICAL_DESC, CHRONOLOGICAL_ASC, GEOLOCATION_DESC, GEOLOCATION_ASC
+            $("#exp_event_submit").click();
+            
+        }
+    );
+
+
+    function setRSVP(evtguid,userguid,attendingstatus) {
+        //alert('setRSVP(' + evtguid + ', ' + userguid + ', ' + attendingstatus + ')');
+        // send the RSVP
+        $.post('<s:url beanclass="com.blackbox.presentation.action.occasion.RsvpActionBean" />', {'_eventName': 'attend', 'guid': evtguid, 'status' : attendingstatus },
+        function(data){
+            //alert(data);
+        });
+
+         if("ATTENDING" == attendingstatus) {
+            document.getElementById('statusradio_' + evtguid + '_attending').src = "${bb:libraryResource('/library/images/explore/rsvp_radio_on.png')}";
+            document.getElementById('statusradio_' + evtguid + '_tentative').src = "${bb:libraryResource('/library/images/explore/rsvp_radio_off.png')}";
+            document.getElementById('statusradio_' + evtguid + '_notattending').src = "${bb:libraryResource('/library/images/explore/rsvp_radio_off.png')}";
+        } else if ("TENATIVE" == attendingstatus) {
+            document.getElementById('statusradio_' + evtguid + '_attending').src = "${bb:libraryResource('/library/images/explore/rsvp_radio_off.png')}";
+            document.getElementById('statusradio_' + evtguid + '_tentative').src = "${bb:libraryResource('/library/images/explore/rsvp_radio_on.png')}";
+            document.getElementById('statusradio_' + evtguid + '_notattending').src = "${bb:libraryResource('/library/images/explore/rsvp_radio_off.png')}";
+
+        } else if ("NOT_ATTENDING" == attendingstatus) {
+            document.getElementById('statusradio_' + evtguid + '_attending').src = "${bb:libraryResource('/library/images/explore/rsvp_radio_off.png')}";
+            document.getElementById('statusradio_' + evtguid + '_tentative').src = "${bb:libraryResource('/library/images/explore/rsvp_radio_off.png')}";
+            document.getElementById('statusradio_' + evtguid + '_notattending').src = "${bb:libraryResource('/library/images/explore/rsvp_radio_on.png')}";
+        } else if ("REQUESTED_INVITATION" == attendingstatus) {
+            $("#req_inv_link_container_" + evtguid).html("<span style='font-weight: bold;'>Request Pending</span>");   
+         }
+
+
+    }
+
+    function populateRSVP(evtguid, attendingstatus) {
+        if("ATTENDING" == attendingstatus) {
+            document.getElementById('statusradio_' + evtguid + '_attending').src = "${bb:libraryResource('/library/images/explore/rsvp_radio_on.png')}";
+            document.getElementById('statusradio_' + evtguid + '_tentative').src = "${bb:libraryResource('/library/images/explore/rsvp_radio_off.png')}";
+            document.getElementById('statusradio_' + evtguid + '_notattending').src = "${bb:libraryResource('/library/images/explore/rsvp_radio_off.png')}";
+        } else if ("TENATIVE" == attendingstatus) {
+            document.getElementById('statusradio_' + evtguid + '_attending').src = "${bb:libraryResource('/library/images/explore/rsvp_radio_off.png')}";
+            document.getElementById('statusradio_' + evtguid + '_tentative').src = "${bb:libraryResource('/library/images/explore/rsvp_radio_on.png')}";
+            document.getElementById('statusradio_' + evtguid + '_notattending').src = "${bb:libraryResource('/library/images/explore/rsvp_radio_off.png')}";
+
+        } else if ("NOT_ATTENDING" == attendingstatus) {
+            document.getElementById('statusradio_' + evtguid + '_attending').src = "${bb:libraryResource('/library/images/explore/rsvp_radio_off.png')}";
+            document.getElementById('statusradio_' + evtguid + '_tentative').src = "${bb:libraryResource('/library/images/explore/rsvp_radio_off.png')}";
+            document.getElementById('statusradio_' + evtguid + '_notattending').src = "${bb:libraryResource('/library/images/explore/rsvp_radio_on.png')}";
+
+        }
+    }
+
+    var delete_event=function(guid){
+        $.bbDialog.confirm("Do you want to remove this event?",function(){
+            $.get('<s:url beanclass="com.blackbox.presentation.action.psevent.PSEventsActionBean"/>', {"_eventName":"delete","eventGuid":guid}, function(){
+
+            })
+        },function(){
+            this.close();
+        })
+    }
+//]]>
+</script>
+

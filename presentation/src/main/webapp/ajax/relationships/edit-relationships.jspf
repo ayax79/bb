@@ -1,0 +1,34 @@
+<%--@elvariable id="actionBean" type="com.blackbox.presentation.action.persona.EditRelationshipsActionBean"--%>
+<%@include file="/WEB-INF/jsp/include/taglibs.jspf" %>
+<div class="er-content">
+	<s:form beanclass="com.blackbox.presentation.action.persona.EditRelationshipsActionBean" method="post" class="bbform addRelationshipForm">
+		<div class="er-top">
+			<h3>How do you coin your relationship?<br/><span>For example, I'm "in a relationship with", "having fun with", "married to"</span></h3>
+			<span class="p00">I'm</span>
+			<span class="textinput37"><input type="text" id="rel_label" name="description" maxlength="30"/></span>
+			<br/><br/>
+			<span class="p00">Person: </span>
+			<div style="float:left;">
+				<ui:roundedBox className="textarea1">
+					<s:text name="guid" id="rel_guid" value=""/>
+				</ui:roundedBox>
+			</div>
+			<div class="clear"></div>
+			<button id="add-relationship" class="orange-button bbbutton"><span>Add Relationship</span></button>
+			<div class="clear"></div>
+		</div>
+	</s:form>
+	<div class="er-current">
+		<h3>Current relationships</h3>
+		<div class="relationships-container">
+			<c:choose>
+				<c:when test="${not empty actionBean.relationships}">
+					<%@include file="/ajax/relationships/list-relationships.jspf"%>
+				</c:when>
+				<c:otherwise>
+					<span class="no-relationships-message">Not currently listed as being in a relationship with anyone.</span>
+				</c:otherwise>
+			</c:choose>
+		</div>
+	</div>
+</div>

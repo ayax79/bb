@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="BBPersistentObject">
+
+    <resultMap id="BBPersistentObjectResult" type="com.blackbox.BBPersistentObject">
+        <id property="guid" jdbcType="VARCHAR" javaType="string" column="guid" />
+        <result property="created" jdbcType="DATE" javaType="jodaDate" column="created" />
+        <result property="modified" jdbcType="DATE" javaType="jodaDate" column="modified" />
+        <result property="version" column="version" />
+    </resultMap>
+
+    <sql id="boundsSql">
+        <if test="bounds != null">
+            <if test="bounds.maxResults != null">limit #{bounds.maxResults}</if>
+            <if test="bounds.startIndex != null">offset #{bounds.startIndex}</if>
+        </if>
+    </sql>
+
+</mapper>

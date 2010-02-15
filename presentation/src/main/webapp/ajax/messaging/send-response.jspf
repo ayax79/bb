@@ -1,0 +1,9 @@
+<%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
+<c:choose>
+	<c:when test="${param.isDraft ne 'true'}">
+		<p>Your message has been sent!</p>
+	</c:when>
+	<c:otherwise>
+		<p>Your message has been saved.</p>
+	</c:otherwise>
+</c:choose>

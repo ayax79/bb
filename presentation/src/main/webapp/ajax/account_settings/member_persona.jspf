@@ -1,0 +1,210 @@
+<%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
+
+<script type="text/javascript" src="${bb:libraryResource('/library/js/textarea-maxlength.js')}"></script>
+
+<s:form class="bbform bbsettings" id="member_persona_form" beanclass="com.blackbox.presentation.action.user.AccountSettingsActionBean" method="post">
+
+	<div class="hidden-fields">
+		<s:hidden name="_eventName" value="updatePersona"/>
+	</div>
+	
+	<h2>Persona settings</h2>
+
+	<div id="col1">
+		<div class="info-sliders mini-slider">
+			<ul>
+				<c:if test="${not empty actionBean.context.validationErrors}">
+					<div class="login-errors">
+						<ui:roundedBox className="rounded-comment xplr-results-container">
+							<s:errors/>
+							<s:messages/>
+						</ui:roundedBox>
+					</div>
+				</c:if>
+
+				<!-- Mood sliders -->
+				<li class="slider_container clearfix">
+					<s:hidden name="user.profile.mood.orientation" class="slider-val" value="${actionBean.user.profile.mood.orientation}"/>
+					<label><span><fmt:message key="settings.field.orientation"/></span></label>
+					<ui:slider containerClass="sliderz" labelLeft="Gay" labelCenter="Bi" labelRight="Hetero" showQuarterTicks="true"/>
+				</li>
+				<li class="slider_container clearfix">
+					<s:hidden name="user.profile.mood.relationshipStatus" class="slider-val" value="${actionBean.user.profile.mood.relationshipStatus}"/>
+					<label><span><fmt:message key="settings.field.status"/></span></label>
+					<ui:slider containerClass="sliderz" labelLeft="Unattached" labelCenter="It's complicated" labelRight="Attached" showQuarterTicks="true"/>
+				</li>
+				<li class="slider_container clearfix">
+					<s:hidden name="user.profile.mood.polyStatus" class="slider-val"/>
+					<label><span><fmt:message key="settings.field.addPartners"/></span></label>
+					<ui:slider containerClass="sliderz" labelLeft="Room for more" labelCenter="It fluctuates" labelRight="Not right now" showQuarterTicks="true"/>
+				</li>
+				<li class="slider_container clearfix">
+					<s:hidden name="user.profile.mood.interestLevel" class="slider-val"/>
+					<label><span><fmt:message key="settings.field.lovin"/></span></label>
+					<ui:slider containerClass="sliderz" labelLeft="Going slow" labelCenter="If it happens, it happens" labelRight="Gotta have it" showQuarterTicks="true"/>
+				</li>
+				<li class="slider_container clearfix">
+					<s:hidden name="user.profile.mood.energyLevel" class="slider-val"/>
+					<label><span><fmt:message key="settings.field.vibe"/></span></label>
+					<ui:slider containerClass="sliderz" labelLeft="Party mode" labelCenter="Let's hang" labelRight="Lying low" showQuarterTicks="true"/>
+				</li>
+			</ul>
+		</div>
+		<s:checkbox name="user.profile.mood.makePrivate" id="mood_private"/><label for="mood_private" class="sub">Make
+		these private on my page</label>
+	</div>
+
+	<div id="col2">
+		<label for="explain"><fmt:message key="register.textarea.lookingFor.explain"/></label>
+		<s:textarea name="user.profile.lookingForExplain" id="explain" rows="2" cols="50"></s:textarea>
+		<span class="chars-remaining"><span class="char-count">240</span> Characters remaining</span>
+
+		<label for="register_current_city"><fmt:message key="register.field.currentCity"/>
+			<span>ex. New York, Amsterdam, Doggie Heaven</span></label>
+		<s:text id="register_current_city" class="basic-textinput" name="user.profile.currentAddress.city" maxlength="40"/>
+
+		<label><fmt:message key="register.field.frequentCities"/></label>
+		<s:text name="user.profile.frequentCities1" class="basic-textinput margin" maxlength="40"/>
+		<s:label class="sub hidden" for="user.profile.frequentCities1"><fmt:message key="register.field.frequentCities.city"/></s:label><br/>
+		<s:text name="user.profile.frequentCities2" class="basic-textinput margin" maxlength="40"/>
+		<s:label class="sub hidden" for="user.profile.frequentCities2"><fmt:message key="register.field.frequentCities.city"/></s:label><br/>
+		<s:text name="user.profile.frequentCities3" class="basic-textinput margin" maxlength="40"/>
+		<s:label class="sub hidden" for="user.profile.frequentCities3"><fmt:message key="register.field.frequentCities.city"/></s:label><br/>
+	</div>
+
+	<div id="col3">
+		<label>What you want. Now.*</label>
+			<%-- since the validator wants to attach errors to the parent, we need a dummy field for placement
+					Janky, but it works. --%>
+		<input type="checkbox" class="lookingForCheck" name="dummyfield" style="display:none;"/>
+
+		<div class="span-5">
+			<s:checkbox class="lookingForCheck" name="user.profile.lookingFor.friends" id="real_friends"/><label for="real_friends" class="sub"><fmt:message key="register.checkbox.lookingFor.friends"/></label><br/>
+			<s:checkbox class="lookingForCheck" name="user.profile.lookingFor.dates" id="casual_dates"/><label for="casual_dates" class="sub"><fmt:message key="register.checkbox.lookingFor.dates"/></label><br/>
+			<s:checkbox class="lookingForCheck" name="user.profile.lookingFor.donkeySex" id="donkey_sex"/><label for="donkey_sex" class="sub"><fmt:message key="register.checkbox.lookingFor.relationships"/></label>
+		</div>
+		<div class="span-5">
+			<s:checkbox class="lookingForCheck" name="user.profile.lookingFor.love" id="love"/><label for="love" class="sub"><fmt:message key="register.checkbox.lookingFor.love"/></label><br/>
+			<s:checkbox class="lookingForCheck" name="user.profile.lookingFor.snuggling" id="parties"/><label for="parties" class="sub"><fmt:message key="register.checkbox.lookingFor.snuggling"/></label><br/>
+			<s:checkbox class="lookingForCheck" name="user.profile.lookingFor.hookup" id="hookups"/><label for="hookups" class="sub"><fmt:message key="register.checkbox.lookingFor.hookups"/></label><br/>
+		</div>
+		<div class="clear"></div>
+
+		<!-- Gender -->
+		<label>Gender<em>*</em></label>
+		<s:radio value="MALE" name="user.profile.sex" id="male_radio"/>
+		<label class="sub" for="male_radio"><fmt:message key="SexEnum.MALE"/></label><br/>
+		<s:radio value="FEMALE" name="user.profile.sex" id="female_radio"/>
+		<label class="sub" for="female_radio"><fmt:message key="SexEnum.FEMALE"/></label><br/>
+		<s:radio value="XXX" name="user.profile.sex" id="complicated_radio"/>
+		<label class="sub" for="complicated_radio"><fmt:message key="SexEnum.XXX"/></label>
+
+		<!--birthday-->
+
+		<label for="register_birthday"><fmt:message key="register.field.birthday"/><em>*</em></label>
+		<s:text id="register_birthday" class="textinput basic-textinput" name="user.profile.birthday" formatType="date" formatPattern="MM/dd/yyyy"/>
+		<s:checkbox name="user.profile.birthdayInVisible" id="register_birthday_visible" checked="${actionBean.user.profile.birthdayInVisible}"/>&nbsp;
+		<label class="sub" for="register_birthday_visible"><fmt:message key="register.checkbox.birthday.visibility"/></label>
+
+
+	</div>
+
+	<div class="clear"></div>
+
+	<div class="button-panel">
+		<button name="register" id="submitbutton" type="submit" class="bbform-button grey"><span><fmt:message key="register.edit.submit"/></span>
+		</button>
+		<!-- <s:submit  name="updatePersona"  class="persona-button grey"  style=""  value="Save changes"/> -->
+	</div>
+	<s:field-metadata var="fieldMetadata">
+		$(function(){
+		$.fn.stripesValidation('${fieldMetadata.formId}', ${fieldMetadata});
+		});
+	</s:field-metadata>
+</s:form>
+
+<c:if test="${actionBean.user.profile.location.country eq 'UNITED_STATES'}">
+	<script type="text/javascript">
+		$('#us_states').show().focus();
+	</script>
+</c:if>
+
+<c:if test="${actionBean.user.profile.location.country eq 'CANADA'}">
+	<script type="text/javascript">
+		$('#canada_provinces').show().focus();
+	</script>
+</c:if>
+
+<script type="text/javascript">
+	//<![CDATA[
+	bb.pageInit.bindSliders();
+
+	var endYear = (new Date().getFullYear() - 18);
+	$('#register_birthday').datepicker({
+		showOn: 'button',
+		buttonImage: '${bb:libraryResource('/library/images/CalendarButton.png')}',
+		buttonImageOnly: true,
+		defaultDate: "-18y",
+		changeMonth: true,
+		changeYear: true,
+		dateFormat:'mm/dd/yy',
+		yearRange: '1900:' + endYear
+	});
+
+	$("#explain").keyup(function() {
+		updateCharCount();
+	});
+
+	var updateCharCount = function () {
+		var maxChars = 240;
+		var charCount = $("#explain").val().length;
+		if (charCount > maxChars) {
+			$(".chars-remaining").addClass("over-count");
+		} else {
+			$(".chars-remaining").removeClass("over-count");
+		}
+		$(".char-count").text(maxChars - charCount);
+	};
+	updateCharCount();
+
+	$.validator.addMethod("lookingFor", function(value, element, params) {
+		return $(".lookingForCheck:checked").length > 0;
+	}, $.format("Please select at least one option."));
+
+
+	$(".lookingForCheck").rules("add", {
+		lookingFor: true
+	});
+
+	$.validator.addMethod("birthdayFormat", function(value, element, params) {
+		var date = $("#register_birthday").val();
+		var regEx = /^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/;
+		return regEx.test(date);
+	}, $.format("Please format as MM/DD/YYYY"));
+
+
+	$("#register_birthday").rules("add", {
+		birthdayFormat: true
+	});
+
+	//]]>
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

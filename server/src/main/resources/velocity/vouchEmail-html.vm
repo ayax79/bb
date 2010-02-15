@@ -1,0 +1,7 @@
+#parse("/velocity/html-email-header.vm")
+Damn, $name!<br /><br />
+
+$voucher_username just put their name on the line for you and used one of their limited number of vouches to tell the Republic you're someone who can be trusted.<br /><br />
+
+<a href="$presentation_url">Login</a> now to say thanks and, if this is your first vouch, check out everything you can see now as a vouched user, including photos and expanded personas. Shazam!
+#parse('/velocity/html-email-footer.vm')

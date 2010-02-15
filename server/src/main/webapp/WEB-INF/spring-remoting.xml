@@ -1,0 +1,97 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jee="http://www.springframework.org/schema/jee" xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd"
+        >
+
+    <bean id="jodaTimeSerializerFactory" class="org.yestech.lib.hessian.joda.JodaSerializerFactory"/>
+
+    <bean id="hessianSerializerFactory" class="org.yestech.lib.hessian.spring.SpringExtensibleSerializerFactory">
+        <property name="serializerFactories">
+            <util:list>
+                <ref bean="jodaTimeSerializerFactory"/>
+            </util:list>
+        </property>
+    </bean>
+
+    <bean id="baseHessianManager" class="org.springframework.remoting.caucho.HessianServiceExporter"
+          p:serializerFactory-ref="hessianSerializerFactory"
+          abstract="true"/>
+
+    <bean name="/AuthenticationManager" parent="baseHessianManager">
+        <property name="service" ref="authenticationManager"/>
+        <property name="serviceInterface" value="com.blackbox.security.IAuthenticationManager"/>
+    </bean>
+
+    <bean name="/AuthorizationManager" parent="baseHessianManager">
+        <property name="service" ref="authorizationManager"/>
+        <property name="serviceInterface" value="com.blackbox.security.IAuthorizationManager"/>
+    </bean>
+
+    <bean name="/UserManager" parent="baseHessianManager">
+        <property name="service" ref="userManager"/>
+        <property name="serviceInterface" value="com.blackbox.user.IUserManager"/>
+    </bean>
+
+    <bean name="/MediaManager" parent="baseHessianManager">
+        <property name="service" ref="mediaManager"/>
+        <property name="serviceInterface" value="com.blackbox.media.IMediaManager"/>
+    </bean>
+
+    <bean name="/SocialManager" parent="baseHessianManager">
+        <property name="service" ref="socialManager"/>
+        <property name="serviceInterface" value="com.blackbox.social.ISocialManager"/>
+    </bean>
+
+    <bean name="/EntityManager" parent="baseHessianManager">
+        <property name="service" ref="entityManager"/>
+        <property name="serviceInterface" value="com.blackbox.IEntityManager"/>
+    </bean>
+
+    <bean name="/OccasionManager" parent="baseHessianManager">
+        <property name="service" ref="occasionManager"/>
+        <property name="serviceInterface" value="com.blackbox.occasion.IOccasionManager"/>
+    </bean>
+
+    <bean name="/MessageManager" parent="baseHessianManager">
+        <property name="service" ref="messageManager"/>
+        <property name="serviceInterface" value="com.blackbox.message.IMessageManager"/>
+    </bean>
+
+    <bean name="/PointManager" parent="baseHessianManager">
+        <property name="service" ref="pointManager"/>
+        <property name="serviceInterface" value="com.blackbox.point.IPointManager"/>
+    </bean>
+
+    <bean name="/BookmarkManager" parent="baseHessianManager">
+        <property name="service" ref="bookmarkManager"/>
+        <property name="serviceInterface" value="com.blackbox.bookmark.IBookmarkManager"/>
+    </bean>
+
+    <bean name="/ActivityManager" parent="baseHessianManager">
+        <property name="service" ref="activityManager"/>
+        <property name="serviceInterface" value="com.blackbox.activity.IActivityManager"/>
+    </bean>
+
+    <bean name="/BillingManager" parent="baseHessianManager">
+        <property name="service" ref="billingManager"/>
+        <property name="serviceInterface" value="com.blackbox.billing.IBillingManager"/>
+    </bean>
+
+    <bean name="/GiftingManager" parent="baseHessianManager">
+        <property name="service" ref="giftingManager"/>
+        <property name="serviceInterface" value="com.blackbox.gifting.IGiftingManager"/>
+    </bean>
+
+    <bean name="/AdminManager" parent="baseHessianManager">
+        <property name="service" ref="adminManager" />
+        <property name="serviceInterface" value="com.blackbox.system.IAdminManager" />
+    </bean>
+
+</beans>

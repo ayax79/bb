@@ -1,0 +1,13 @@
+<%@include file="/WEB-INF/jsp/include/taglibs.jspf"%>
+<div id="wordcloudage"></div>
+<script type="text/javascript">
+	//swfobject.embedSWF("myContent.swf", "myContent", "300", "120", "9.0.0");
+	var flashvars = {
+	  wordle_url: "<%= request.getContextPath() %>/persona/${actionBean.user.guid}%3FwordCloud"
+	};
+	var params = {
+	  menu: "false",
+	  wmode: "opaque"
+	};
+	swfobject.embedSWF("<s:url value="${bb:libraryResource('/library/swf/wordCloud.swf')}" />", "wordcloudage", 939, 330,  "9.0.0","", flashvars, params);
+</script>

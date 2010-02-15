@@ -1,0 +1,19 @@
+<%@include file="/WEB-INF/jsp/include/taglibs.jspf"%>
+
+
+    <div class="prevbtn1"><img src="${bb:libraryResource('/library/images/persona/icon1.png')}" /></div>
+    <div class="con_img1_mid" style="overflow: hidden; visibility: visible; position: relative; z-index: 2; left: 0px; width: 567px;">
+    	
+        <ul style="margin: 0pt; padding: 0pt; position: relative; list-style-type: none;">
+    		<c:forEach var="album" items="${mediaLibList}" varStatus="albumLoopCount">
+    			<li>
+    			<div class="con_img1_bg1" onclick="javascript:highlightAndShowAlbum(${albumLoopCount.index})">
+    				<div class="img1_bg_pic"><img src="${actionBean.mediaLibCoverList[albumLoopCount.index]}" width="61" height="64"  onerror='Activity.Utils.imgPoll(event, this);'  /></div>
+    				<div class="img1_bg_tex"><span class="col_red"><c:out value="${album.name}"/></span><br /><span class="img1_bla1">${album.created.monthOfYear}/${album.created.dayOfMonth}/${album.created.year}</span><br /><span class="img1_bla2">${f:length(album.media)} Pictures</span></div>
+    			</div>
+    			</li>
+    		</c:forEach>
+    	</ul>
+    </div>
+    <div class="nextbtn1"><img src="${bb:libraryResource('/library/images/persona/icon2.png')}" /></div>
+    
