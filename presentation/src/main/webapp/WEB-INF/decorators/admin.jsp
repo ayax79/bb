@@ -35,16 +35,12 @@
     <script src="${bb:libraryResource('/library/js/autoresize.jquery.js')}" type="text/javascript"></script>
     <script src="${bb:libraryResource('/library/js/tooltip.js')}" type="text/javascript"></script>
     <script src="${bb:libraryResource('/library/js/jquery.autocomplete.js')}" type="text/javascript"></script>
-    <script src="${bb:libraryResource('/library/js/jquery.tokeninput.js')}" type="text/javascript"></script>
-
     <script src="${bb:libraryResource('/library/js/jquery.bbdialog.js')}" type="text/javascript"></script>
     <script src="${bb:libraryResource('/library/js/jquery.validate.pack.js')}" type="text/javascript"></script>
     <script src="${bb:libraryResource('/library/js/jquery.stripesValidation.js')}" type="text/javascript"></script>
     <script src="${bb:libraryResource('/library/js/stripes.jquery.validation.js')}" type="text/javascript"></script>
     <script src="${bb:libraryResource('/library/js/flowplayer-3.1.1.min.js')}" type="text/javascript"></script>
     <script src="${bb:libraryResource('/library/js/jquery.oembed.min.js')}" type="text/javascript"></script>
-    <%--<script src="${bb:libraryResource('/library/js/jquery.oembed.js')}" type="text/javascript"></script>--%>
-    <script src="${bb:libraryResource('/library/js/jquery.qtip-1.0.0-rc3.min.js')}" type="text/javascript"></script>
     <script src="${bb:libraryResource('/library/js/jquery.timeago.js')}" type="text/javascript"></script>
     <script src="${bb:libraryResource('/library/js/jquery.prettyPhoto.js')}" type="text/javascript"></script>
 

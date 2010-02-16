@@ -11,11 +11,8 @@
 	<link rel="stylesheet" href="${bb:libraryResource('/library/css/jquery.lightbox-0.5.css')}" type="text/css" />
 
 	<script src="${bb:libraryResource('/library/js/publisher.js')}" type="text/javascript"></script>
-	<%--<script src="${bb:libraryResource('/library/js/jquery.flot.js')}" type="text/javascript"></script>--%>
-	<%--<script src="${bb:libraryResource('/library/js/excanvas.pack.js')}" type="text/javascript"></script>--%>
 	<script src="${bb:libraryResource('/library/js/swfobject.js')}" type="text/javascript"></script>
 	<script src="${bb:libraryResource('/library/js/jquery.lightbox-0.5.js')}" type="text/javascript"></script>
-	<script src="${bb:libraryResource('/library/js/jquery.bbEventCalendar.js')}" type="text/javascript"></script>
 	<script src="${bb:libraryResource('/library/js/jquery.address-1.0.js')}" type="text/javascript"></script>
 	<script src="${bb:libraryResource('/library/js/meBox.js')}" type="text/javascript"></script>
 
@@ -23,9 +20,6 @@
 	//<![CDATA[
 
 		$(function() {
-
-<%-- This shouldn't be needed any more? --%>
-//			bb.pageInit.bindWidgetTabs();
 
 			$("#stream-tabs").bbTabs({
 				disableLoad:true,
@@ -37,12 +31,6 @@
 				$.address.value($(tab).data("url"));
 				Activity.Stream.unregisterStreams();
 				return false;
-			});
-
-			$("#stream-tabs").bind('tabLoaded', function(event, tab) {
-				if ($(tab).data("id") == "sceneTab") {
-	
-				}
 			});
 
 			$.address.init(function(event) {
@@ -57,9 +45,32 @@
 				document.title = tp.join(" : ");
             });
 
+
+			function updateChatCount() {
+				console.log("ASdfasdfasdf")
+				$.getJSON("http://api.chartbeat.com/recent/?host=app.blackboxrepublic.com&path=/community/dashboard&apikey=1e3163125f7cea893e8e62c7c55d84e1&jsonp=?", function(data) {
+					var count = 0;
+					var uuids = [];
+					for(var i = 0; i < data.length; i++) {
+						if(data[i].i.indexOf("Lounge") != -1) {
+							if($.inArray(data[i].u, uuids) == -1) {
+								count++;
+								uuids.push(data[i].u)
+							}
+						}
+					}
+					if(count > 0) {
+						$("#lounge-count").show().find("span").text(count);
+					} else {
+						$("#lounge-count").hide();
+					}
+				});
+				setTimeout(updateChatCount, 5000);
+			}
+//			updateChatCount();
 		});
-		
-		
+
+
 	//]]>
 	</script>
 </head>
@@ -92,6 +103,7 @@ TODO: Implement BB Admin messaging
 				</li>
 				<li id="loungeTab">
 					<s:link beanclass="com.blackbox.presentation.action.userplane.UserPlaneActionBean">
+						<span id="lounge-count" class="nav-counter"><span class="count"></span></span>
 						<span class="tabLabel">The Lounge</span><%--<span class="notify-number"><span class="count">25</span></span>--%>
 						<span class="tab-description">Chat with folks</span>
 					</s:link>

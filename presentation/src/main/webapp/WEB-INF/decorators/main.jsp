@@ -2,6 +2,7 @@
 <%--@elvariable id="actionBean" type="able.stripes.AbleActionBean"--%>
 <%@ include file="/WEB-INF/jsp/include/taglibs.jspf" %>
 <%--<decorator:usePage id="pageContent" />--%>
+<%@page import="com.blackbox.presentation.action.util.PresentationUtil" %>
 <fmt:setBundle basename="StripesResources" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -24,14 +25,9 @@
 	<script src="${bb:libraryResource('/library/js/autoresize.jquery.js')}" type="text/javascript"></script>
 	<script src="${bb:libraryResource('/library/js/tooltip.js')}" type="text/javascript"></script>
 	<script src="${bb:libraryResource('/library/js/jquery.autocomplete.js')}" type="text/javascript"></script>
-	<script src="${bb:libraryResource('/library/js/jquery.tokeninput.js')}" type="text/javascript"></script>
 	<script src="${bb:libraryResource('/library/js/jquery.bbdialog.js')}" type="text/javascript"></script>
-	<script src="${bb:libraryResource('/library/js/jquery.validate.pack.js')}" type="text/javascript"></script>
-	<script src="${bb:libraryResource('/library/js/jquery.stripesValidation.js')}" type="text/javascript"></script>
-	<script src="${bb:libraryResource('/library/js/stripes.jquery.validation.js')}" type="text/javascript"></script>
 	<script src="${bb:libraryResource('/library/js/flowplayer-3.1.1.min.js')}" type="text/javascript"></script>
 	<script src="${bb:libraryResource('/library/js/jquery.oembed.min.js')}" type="text/javascript"></script>
-	<script src="${bb:libraryResource('/library/js/jquery.qtip-1.0.0-rc3.min.js')}" type="text/javascript"></script>
     <script src="${bb:libraryResource('/library/js/jquery.timeago.js')}" type="text/javascript"></script>
     <script src="${bb:libraryResource('/library/js/jquery.prettyPhoto.js')}" type="text/javascript"></script>
 
@@ -59,7 +55,7 @@
 			callback: function(){} /* Called when prettyPhoto is closed */
 		});
 	});
-	
+
     //]]>
     </script>
 	<%@ include file="/WEB-INF/jsp/include/blackbox_js.jspf" %>
@@ -87,7 +83,23 @@
 
 <%@ include file="/WEB-INF/jsp/include/footer.jspf" %>
 
-<ui:chartbeat scriptLocation="foot"/>
+<c:set var="domain"><%=PresentationUtil.getProperty("presentation.domain") %></c:set>
+<c:choose>
+	<c:when test="${domain == 'localhost'}">
+		<c:set var="strDomainID" value="localhost.blackboxrepublic.com" />
+	</c:when>
+	<c:when test="${domain == 'dev.blackboxrepublic.com'}">
+		<c:set var="strDomainID" value="dev.blackboxrepublic.com" />
+	</c:when>
+	<c:when test="${domain == 'www.blackboxrepublic.com'}">
+		<c:set var="strDomainID" value="app.blackboxrepublic.com" />
+	</c:when>
+	<c:otherwise>
+		<c:set var="strDomainID" value="app.blackboxrepublic.com" />
+	</c:otherwise>
+</c:choose>
+
+<ui:chartbeat scriptLocation="foot" domainString="${strDomainID}"/>
 <ui:googleAnalytics scriptLocation="foot"/>
 </body>
 </html>
