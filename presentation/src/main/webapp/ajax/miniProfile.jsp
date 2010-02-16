@@ -45,9 +45,7 @@
 										${actionBean.profile.locationCity}
 									</c:if>
 									<c:if test="${not empty actionBean.profile.locationCity and not empty actionBean.profile.locationState}">, </c:if>
-									<c:if test="${not empty actionBean.profile.locationState}">
-										${actionBean.profile.locationState}
-									</c:if>
+                                    <c:if test="${!empty bb:stateAbv(actionBean.profile.locationState)}">${bb:stateAbv(actionBean.profile.locationState)}</c:if>
 									<br/>
 									<c:if test="${not empty actionBean.profile.currentCity}">
 										Currently in ${actionBean.profile.currentCity}
