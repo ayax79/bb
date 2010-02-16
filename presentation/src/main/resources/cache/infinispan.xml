@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<infinispan xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:infinispan:config:4.0">
+   <global>
+      <globalJmxStatistics enabled="true" jmxDomain="infinispan"/>
+
+      <!--
+         If the transport is omitted, there is no way to create distributed or clustered caches.
+         There is no added cost to defining a transport but not creating a cache that uses one, since the transport
+         is created and initialized lazily.
+      -->
+      <!--<transport clusterName="infinispan-cluster" distributedSyncTimeout="50000" nodeName="Jalapeno"/>-->
+         <!-- Note that the JGroups transport uses sensible defaults if no configuration property is defined. -->
+         <!-- See the JGroupsTransport javadocs for more flags -->
+
+      <!-- Again, sensible defaults are used here if this is omitted.  -->
+      <!--<serialization marshallerClass="org.infinispan.marshall.VersionAwareMarshaller" version="1.0"/>-->
+       <transport />
+
+      <!--
+         Used to register JVM shutdown hooks.
+         hookBehavior: DEFAULT, REGISTER, DONT_REGISTER
+      -->
+      <shutdown hookBehavior="DEFAULT"/>
+   </global>
+
+   <!-- *************************** -->
+   <!-- Default "template" settings -->
+   <!-- *************************** -->
+   <!-- this is used as a "template" configuration for all caches in the system. -->
+   <default>
+      <!--
+         isolation levels supported: READ_COMMITTED and REPEATABLE_READ
+      -->
+      <locking
+            isolationLevel="READ_COMMITTED"
+            lockAcquisitionTimeout="20000"
+            writeSkewCheck="false"
+            concurrencyLevel="500"
+            useLockStriping="true"
+            />
+
+      <!--
+      Used to register a transaction manager and participate in ongoing transactions.
+      -->
+      <transaction
+            transactionManagerLookupClass="org.infinispan.transaction.lookup.GenericTransactionManagerLookup"
+            syncRollbackPhase="false"
+            syncCommitPhase="false"
+            useEagerLocking="false"/>
+
+      <!--
+      Used to register JMX statistics in any available MBean server
+      -->
+      <jmxStatistics enabled="false"/>
+
+      <lazyDeserialization enabled="false"/>
+
+      <!--
+         Used to enable invocation batching and allow the use of Cache.startBatch()/endBatch() methods.
+      -->
+      <invocationBatching enabled="false"/>
+
+       <!--<clustering mode="distribution">-->
+          <!--<sync/>-->
+          <!--<hash numOwners="3" rehashWait="120000" rehashRpcTimeout="600000"/>-->
+          <!--<l1 enabled="true" lifespan="600000"/>-->
+       <!--</clustering>-->
+   </default>
+
+    <!--
+    distributed cache
+    -->
+   <namedCache name="securityCache">
+      <!--<clustering mode="distribution">-->
+         <!--<sync/>-->
+         <!--<hash numOwners="3" rehashWait="120000" rehashRpcTimeout="600000"/>-->
+         <!--<l1 enabled="true" lifespan="600000"/>-->
+      <!--</clustering>-->
+   </namedCache>
+</infinispan>

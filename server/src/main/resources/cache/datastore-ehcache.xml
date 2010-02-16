@@ -1,0 +1,178 @@
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="../../../../doc/ehcache.xsd">
+
+
+    <diskStore path="${ehcache.location}/dataStore/"/>
+
+<!--
+    <cacheManagerPeerProviderFactory
+            class="net.sf.ehcache.distribution.jgroups.JGroupsCacheManagerPeerProviderFactory"
+            properties="connect=
+            UDP(mcast_addr=228.8.8.50;mcast_port=45566;ip_ttl=1;mcast_send_buf_size=130000;mcast_recv_buf_size=80000;loopback=true):
+            PING(timeout=2000;num_initial_members=2;break_on_coord_rsp=true;discovery_timeout=0):
+            MPING(break_on_coord_rsp=true;discovery_timeout=0;ip_ttl=1):
+            MERGE2:
+            FD:
+            FD_ALL:
+            VERIFY_SUSPECT(timeout=1500,num_msgs=5):
+            pbcast.NAKACK(gc_lag=10;retransmit_timeout=3000;discard_delivered_msgs=true):
+            pbcast.STABLE(desired_avg_gossip=10000):
+            VIEW_SYNC(avg_send_interval=60000):
+            pbcast.GMS(join_timeout=5000;print_local_addr=true;leave_timeout=30000;view_bundling=true;use_flush_if_present=true):
+            pbcast.FLUSH"
+            propertySeparator=":"/>
+-->
+    <!--pbcast.STATE_TRANSFER:-->
+
+    <!--
+    Mandatory Default Cache configuration. These settings will be applied to caches
+    created programmtically using CacheManager.add(String cacheName).
+
+    The defaultCache has an implicit name "default" which is a reserved cache name.
+    -->
+    <defaultCache
+            maxElementsInMemory="10000"
+            eternal="true"
+            timeToIdleSeconds="0"
+            timeToLiveSeconds="0"
+            overflowToDisk="true"
+            diskSpoolBufferSizeMB="30"
+            diskPersistent="true"
+            diskExpiryThreadIntervalSeconds="120"
+            memoryStoreEvictionPolicy="LRU"
+            />
+
+    <cache name="activityMetaDataDataStore"
+           maxElementsInMemory="10"
+           eternal="true"
+           timeToIdleSeconds="0"
+           timeToLiveSeconds="0"
+           overflowToDisk="true"
+           memoryStoreEvictionPolicy="LRU"
+           diskPersistent="true"
+           diskExpiryThreadIntervalSeconds="31556926"
+           diskSpoolBufferSizeMB="100"
+            >
+        <!--
+                <cacheEventListenerFactory
+                        class="net.sf.ehcache.distribution.jgroups.JGroupsCacheReplicatorFactory"
+                        properties="replicateAsynchronously=true, replicatePuts=true,
+            replicateUpdates=true, replicateUpdatesViaCopy=false,
+            replicateRemovals=true"/>
+        -->
+    </cache>
+    <cache name="privateActivityDataStore"
+           maxElementsInMemory="10"
+           eternal="true"
+           overflowToDisk="true"
+           timeToIdleSeconds="0"
+           timeToLiveSeconds="0"
+           memoryStoreEvictionPolicy="LRU"
+           diskPersistent="true"
+           diskExpiryThreadIntervalSeconds="31556926"
+           diskSpoolBufferSizeMB="100"
+            >
+        <!--
+                <cacheEventListenerFactory
+                        class="net.sf.ehcache.distribution.jgroups.JGroupsCacheReplicatorFactory"
+                        properties="replicateAsynchronously=true, replicatePuts=true,
+            replicateUpdates=true, replicateUpdatesViaCopy=false,
+            replicateRemovals=true"/>
+        -->
+    </cache>
+    <cache name="globalActivityDataStore"
+           maxElementsInMemory="10"
+           eternal="true"
+           timeToIdleSeconds="0"
+           timeToLiveSeconds="0"
+           overflowToDisk="true"
+           memoryStoreEvictionPolicy="LRU"
+           diskPersistent="true"
+           diskExpiryThreadIntervalSeconds="31556926"
+           diskSpoolBufferSizeMB="100"
+            >
+        <!--
+                <cacheEventListenerFactory
+                        class="net.sf.ehcache.distribution.jgroups.JGroupsCacheReplicatorFactory"
+                        properties="replicateAsynchronously=true, replicatePuts=true,
+            replicateUpdates=true, replicateUpdatesViaCopy=false,
+            replicateRemovals=true"/>
+        -->
+    </cache>
+    <cache name="privateFriendsActivityDataStore"
+           maxElementsInMemory="30"
+           eternal="true"
+           timeToIdleSeconds="0"
+           timeToLiveSeconds="0"
+           overflowToDisk="true"
+           memoryStoreEvictionPolicy="LRU"
+           diskPersistent="true"
+           diskExpiryThreadIntervalSeconds="31556926"
+           diskSpoolBufferSizeMB="100"
+            >
+        <!--
+                <cacheEventListenerFactory
+                        class="net.sf.ehcache.distribution.jgroups.JGroupsCacheReplicatorFactory"
+                        properties="replicateAsynchronously=true, replicatePuts=true,
+            replicateUpdates=true, replicateUpdatesViaCopy=false,
+            replicateRemovals=true"/>
+        -->
+    </cache>
+    <cache name="privateFollowingActivityDataStore"
+           maxElementsInMemory="30"
+           eternal="true"
+           overflowToDisk="true"
+           timeToIdleSeconds="0"
+           timeToLiveSeconds="0"
+           memoryStoreEvictionPolicy="LRU"
+           diskPersistent="true"
+           diskExpiryThreadIntervalSeconds="31556926"
+           diskSpoolBufferSizeMB="100"
+            >
+        <!--
+                <cacheEventListenerFactory
+                        class="net.sf.ehcache.distribution.jgroups.JGroupsCacheReplicatorFactory"
+                        properties="replicateAsynchronously=true, replicatePuts=true,
+            replicateUpdates=true, replicateUpdatesViaCopy=false,
+            replicateRemovals=true"/>
+        -->
+    </cache>
+    <cache name="globalChildActivityDataStore"
+           maxElementsInMemory="30"
+           eternal="true"
+           timeToIdleSeconds="0"
+           timeToLiveSeconds="0"
+           overflowToDisk="true"
+           memoryStoreEvictionPolicy="LRU"
+           diskPersistent="true"
+           diskExpiryThreadIntervalSeconds="31556926"
+           diskSpoolBufferSizeMB="100"
+            >
+        <!--
+                <cacheEventListenerFactory
+                        class="net.sf.ehcache.distribution.jgroups.JGroupsCacheReplicatorFactory"
+                        properties="replicateAsynchronously=true, replicatePuts=true,
+            replicateUpdates=true, replicateUpdatesViaCopy=false,
+            replicateRemovals=true"/>
+        -->
+    </cache>
+    <cache name="privateChildActivityDataStore"
+           maxElementsInMemory="30"
+           eternal="true"
+           timeToIdleSeconds="0"
+           timeToLiveSeconds="0"
+           overflowToDisk="true"
+           memoryStoreEvictionPolicy="LRU"
+           diskPersistent="true"
+           diskExpiryThreadIntervalSeconds="31556926"
+           diskSpoolBufferSizeMB="100"
+            >
+        <!--
+                <cacheEventListenerFactory
+                        class="net.sf.ehcache.distribution.jgroups.JGroupsCacheReplicatorFactory"
+                        properties="replicateAsynchronously=true, replicatePuts=true,
+            replicateUpdates=true, replicateUpdatesViaCopy=false,
+            replicateRemovals=true"/>
+        -->
+    </cache>
+</ehcache>

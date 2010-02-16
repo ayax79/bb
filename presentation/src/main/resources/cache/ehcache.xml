@@ -1,0 +1,124 @@
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="../../../../doc/ehcache.xsd">
+
+
+    <diskStore path="${ehcache.location}"/>
+
+    <!--
+        <cacheManagerPeerProviderFactory
+                class="net.sf.ehcache.distribution.jgroups.JGroupsCacheManagerPeerProviderFactory"
+                properties="connect=
+                UDP(mcast_addr=228.8.8.50;mcast_port=45566;ip_ttl=1;mcast_send_buf_size=130000;mcast_recv_buf_size=80000;loopback=true):
+                PING(timeout=2000;num_initial_members=2;break_on_coord_rsp=true;discovery_timeout=0):
+                MPING(break_on_coord_rsp=true;discovery_timeout=0;ip_ttl=1):
+                MERGE2:
+                FD:
+                FD_ALL:
+                VERIFY_SUSPECT(timeout=1500,num_msgs=5):
+                pbcast.NAKACK(gc_lag=10;retransmit_timeout=3000;discard_delivered_msgs=true):
+                pbcast.STABLE(desired_avg_gossip=10000):
+                VIEW_SYNC(avg_send_interval=60000):
+                pbcast.GMS(join_timeout=5000;print_local_addr=true;leave_timeout=30000;view_bundling=true;use_flush_if_present=true):
+                pbcast.FLUSH"
+                propertySeparator=":"/>
+    -->
+    <!--pbcast.STATE_TRANSFER:-->
+
+    <!--
+    Mandatory Default Cache configuration. These settings will be applied to caches
+    created programmtically using CacheManager.add(String cacheName).
+
+    The defaultCache has an implicit name "default" which is a reserved cache name.
+    -->
+    <defaultCache
+            maxElementsInMemory="10000"
+            eternal="false"
+            timeToIdleSeconds="120"
+            timeToLiveSeconds="120"
+            overflowToDisk="true"
+            diskSpoolBufferSizeMB="30"
+            maxElementsOnDisk="10000000"
+            diskPersistent="false"
+            diskExpiryThreadIntervalSeconds="120"
+            memoryStoreEvictionPolicy="LRU"
+            />
+
+    <cache name="securityCache"
+           maxElementsInMemory="500"
+           eternal="false"
+           overflowToDisk="true"
+           memoryStoreEvictionPolicy="LRU"
+           timeToLiveSeconds="31556926"
+           maxElementsOnDisk="5000"
+           diskPersistent="true"
+           diskExpiryThreadIntervalSeconds="31556926"
+            >
+        <!--
+                <cacheEventListenerFactory
+                        class="net.sf.ehcache.distribution.jgroups.JGroupsCacheReplicatorFactory"
+                        properties="replicateAsynchronously=true, replicatePuts=true,
+            replicateUpdates=true, replicateUpdatesViaCopy=false,
+            replicateRemovals=true"/>
+        -->
+    </cache>
+
+    <cache name="avatarCache"
+           maxElementsInMemory="500"
+           eternal="false"
+           overflowToDisk="true"
+           memoryStoreEvictionPolicy="LRU"
+           timeToLiveSeconds="600"
+           maxElementsOnDisk="5000"
+           diskPersistent="true"
+           diskExpiryThreadIntervalSeconds="600"
+            >
+    </cache>
+
+    <cache name="displayNameCache"
+           maxElementsInMemory="500"
+           eternal="false"
+           overflowToDisk="true"
+           memoryStoreEvictionPolicy="LRU"
+           timeToLiveSeconds="600"
+           maxElementsOnDisk="5000"
+           diskPersistent="true"
+           diskExpiryThreadIntervalSeconds="600"
+            >
+    </cache>
+
+    <cache name="corkboardCache"
+           maxElementsInMemory="500"
+           eternal="false"
+           overflowToDisk="true"
+           memoryStoreEvictionPolicy="LRU"
+           timeToLiveSeconds="31556926"
+           maxElementsOnDisk="5000"
+           diskPersistent="true"
+           diskExpiryThreadIntervalSeconds="31556926"
+            >
+    </cache>
+
+    <cache name="publicCache"
+           maxElementsInMemory="25"
+           eternal="false"
+           overflowToDisk="false"
+           memoryStoreEvictionPolicy="LRU"
+           timeToLiveSeconds="300"
+           maxElementsOnDisk="25"
+           diskPersistent="false"
+           diskExpiryThreadIntervalSeconds="300"
+            >
+    </cache>
+
+    <cache name="prePublishedMessageCache"
+           maxElementsInMemory="10000"
+           eternal="false"
+           overflowToDisk="false"
+           memoryStoreEvictionPolicy="LRU"
+           timeToLiveSeconds="90"
+           diskPersistent="false"
+            >
+    </cache>
+
+
+</ehcache>

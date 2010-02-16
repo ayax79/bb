@@ -1,0 +1,403 @@
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="../../../../doc/ehcache.xsd">
+
+
+    <diskStore path="${ehcache.location}"/>
+
+<!--
+    <cacheManagerPeerProviderFactory
+            class="net.sf.ehcache.distribution.jgroups.JGroupsCacheManagerPeerProviderFactory"
+            properties="connect=
+            UDP(mcast_addr=228.8.8.50;mcast_port=45566;ip_ttl=1;mcast_send_buf_size=130000;mcast_recv_buf_size=80000;loopback=true):
+            PING(timeout=2000;num_initial_members=2;break_on_coord_rsp=true;discovery_timeout=0):
+            MPING(break_on_coord_rsp=true;discovery_timeout=0;ip_ttl=1):
+            MERGE2:
+            FD:
+            FD_ALL:
+            VERIFY_SUSPECT(timeout=1500,num_msgs=5):
+            pbcast.NAKACK(gc_lag=10;retransmit_timeout=3000;discard_delivered_msgs=true):
+            pbcast.STABLE(desired_avg_gossip=10000):
+            VIEW_SYNC(avg_send_interval=60000):
+            pbcast.GMS(join_timeout=5000;print_local_addr=true;leave_timeout=30000;view_bundling=true;use_flush_if_present=true):
+            pbcast.FLUSH"
+            propertySeparator=":"/>
+-->
+    <!--pbcast.STATE_TRANSFER:-->
+
+    <!--
+    Mandatory Default Cache configuration. These settings will be applied to caches
+    created programmtically using CacheManager.add(String cacheName).
+
+    The defaultCache has an implicit name "default" which is a reserved cache name.
+    -->
+    <defaultCache
+            maxElementsInMemory="10000"
+            eternal="false"
+            timeToIdleSeconds="120"
+            timeToLiveSeconds="120"
+            overflowToDisk="true"
+            diskSpoolBufferSizeMB="30"
+            maxElementsOnDisk="10000000"
+            diskPersistent="false"
+            diskExpiryThreadIntervalSeconds="120"
+            memoryStoreEvictionPolicy="LRU"
+            />
+
+    <cache name="miniProfileCache"
+           maxElementsInMemory="500"
+           eternal="false"
+           overflowToDisk="true"
+           memoryStoreEvictionPolicy="LRU"
+           timeToLiveSeconds="31556926"
+           maxElementsOnDisk="5000"
+           diskPersistent="true"
+           diskExpiryThreadIntervalSeconds="31556926"
+            >
+        <!--
+                <cacheEventListenerFactory
+                        class="net.sf.ehcache.distribution.jgroups.JGroupsCacheReplicatorFactory"
+                        properties="replicateAsynchronously=true, replicatePuts=true,
+            replicateUpdates=true, replicateUpdatesViaCopy=false,
+            replicateRemovals=true"/>
+        -->
+    </cache>
+    <cache name="userCache"
+           maxElementsInMemory="500"
+           eternal="false"
+           overflowToDisk="true"
+           memoryStoreEvictionPolicy="LRU"
+           timeToLiveSeconds="31556926"
+           maxElementsOnDisk="5000"
+           diskPersistent="true"
+           diskExpiryThreadIntervalSeconds="31556926"
+            >
+        <!--
+                <cacheEventListenerFactory
+                        class="net.sf.ehcache.distribution.jgroups.JGroupsCacheReplicatorFactory"
+                        properties="replicateAsynchronously=true, replicatePuts=true,
+            replicateUpdates=true, replicateUpdatesViaCopy=false,
+            replicateRemovals=true"/>
+        -->
+    </cache>
+    <cache name="userGuidCache"
+           maxElementsInMemory="500"
+           eternal="false"
+           overflowToDisk="true"
+           memoryStoreEvictionPolicy="LRU"
+           timeToLiveSeconds="31556926"
+           maxElementsOnDisk="5000"
+           diskPersistent="true"
+           diskExpiryThreadIntervalSeconds="31556926"
+            >
+        <!--
+                <cacheEventListenerFactory
+                        class="net.sf.ehcache.distribution.jgroups.JGroupsCacheReplicatorFactory"
+                        properties="replicateAsynchronously=true, replicatePuts=true,
+            replicateUpdates=true, replicateUpdatesViaCopy=false,
+            replicateRemovals=true"/>
+        -->
+    </cache>
+   
+    <cache name="userRefreshCache"
+           maxElementsInMemory="500"
+           eternal="false"
+           overflowToDisk="true"
+           memoryStoreEvictionPolicy="LRU"
+           timeToLiveSeconds="31556926"
+           maxElementsOnDisk="5000"
+           diskPersistent="true"
+           diskExpiryThreadIntervalSeconds="31556926"
+            >
+        <!--
+                <cacheEventListenerFactory
+                        class="net.sf.ehcache.distribution.jgroups.JGroupsCacheReplicatorFactory"
+                        properties="replicateAsynchronously=true, replicatePuts=true,
+            replicateUpdates=true, replicateUpdatesViaCopy=false,
+            replicateRemovals=true"/>
+        -->
+    </cache>
+    <cache name="relationshipCache"
+           maxElementsInMemory="500"
+           eternal="false"
+           overflowToDisk="true"
+           memoryStoreEvictionPolicy="LRU"
+           timeToLiveSeconds="31556926"
+           maxElementsOnDisk="10000000"
+           diskPersistent="true"
+           diskExpiryThreadIntervalSeconds="604800"
+            >
+        <!--
+                <cacheEventListenerFactory
+                        class="net.sf.ehcache.distribution.jgroups.JGroupsCacheReplicatorFactory"
+                        properties="replicateAsynchronously=true, replicatePuts=true,
+            replicateUpdates=true, replicateUpdatesViaCopy=false,
+            replicateRemovals=true"/>
+        -->
+    </cache>
+    <cache name="followedByCache"
+           maxElementsInMemory="500"
+           eternal="false"
+           overflowToDisk="true"
+           memoryStoreEvictionPolicy="LRU"
+           timeToLiveSeconds="31556926"
+           maxElementsOnDisk="10000000"
+           diskPersistent="true"
+           diskExpiryThreadIntervalSeconds="604800"
+            >
+        <!--
+                <cacheEventListenerFactory
+                        class="net.sf.ehcache.distribution.jgroups.JGroupsCacheReplicatorFactory"
+                        properties="replicateAsynchronously=true, replicatePuts=true,
+            replicateUpdates=true, replicateUpdatesViaCopy=false,
+            replicateRemovals=true"/>
+        -->
+    </cache>
+
+    <cache name="avatarImageCache"
+           maxElementsInMemory="500"
+           eternal="false"
+           overflowToDisk="true"
+           memoryStoreEvictionPolicy="LRU"
+           timeToLiveSeconds="31556926"
+           maxElementsOnDisk="5000"
+           diskPersistent="true"
+           diskExpiryThreadIntervalSeconds="31556926"
+            >
+    </cache>
+    <cache name="wishStatusCache"
+           maxElementsInMemory="500"
+           eternal="false"
+           overflowToDisk="true"
+           memoryStoreEvictionPolicy="LRU"
+           timeToLiveSeconds="31556926"
+           maxElementsOnDisk="5000"
+           diskPersistent="true"
+           diskExpiryThreadIntervalSeconds="31556926"
+            >
+     </cache>
+    <cache name="wordFrequencyCache"
+           maxElementsInMemory="500"
+           eternal="false"
+           overflowToDisk="true"
+           memoryStoreEvictionPolicy="LRU"
+           timeToLiveSeconds="7200"
+           maxElementsOnDisk="5000"
+           diskPersistent="true"
+           diskExpiryThreadIntervalSeconds="7200"
+            >
+     </cache>
+
+    <cache name="viewByCache"
+           maxElementsInMemory="500"
+           eternal="false"
+           overflowToDisk="true"
+           memoryStoreEvictionPolicy="LRU"
+           timeToLiveSeconds="300"
+           maxElementsOnDisk="5000"
+           diskPersistent="true"
+           diskExpiryThreadIntervalSeconds="300"
+            >
+     </cache>
+     <cache name="profileImageCache"
+           maxElementsInMemory="500"
+           eternal="false"
+           overflowToDisk="true"
+           memoryStoreEvictionPolicy="LRU"
+           timeToLiveSeconds="31556926"
+           maxElementsOnDisk="5000"
+           diskPersistent="true"
+           diskExpiryThreadIntervalSeconds="31556926"
+            >
+    </cache>
+    <cache name="ownerMediaLibraryCache"
+           maxElementsInMemory="500"
+           eternal="false"
+           overflowToDisk="true"
+           memoryStoreEvictionPolicy="LRU"
+           timeToLiveSeconds="31556926"
+           maxElementsOnDisk="5000"
+           diskPersistent="true"
+           diskExpiryThreadIntervalSeconds="31556926"
+            >
+    </cache>
+    <cache name="vouchTargetCache"
+           maxElementsInMemory="500"
+           eternal="false"
+           overflowToDisk="true"
+           memoryStoreEvictionPolicy="LRU"
+           timeToLiveSeconds="31556926"
+           maxElementsOnDisk="5000"
+           diskPersistent="true"
+           diskExpiryThreadIntervalSeconds="31556926"
+            >
+    </cache>
+    <cache name="vouchVoucherCache"
+           maxElementsInMemory="500"
+           eternal="false"
+           overflowToDisk="true"
+           memoryStoreEvictionPolicy="LRU"
+           timeToLiveSeconds="31556926"
+           maxElementsOnDisk="5000"
+           diskPersistent="true"
+           diskExpiryThreadIntervalSeconds="31556926"
+            >
+    </cache>
+    <cache name="connectionCache"
+           maxElementsInMemory="500"
+           eternal="false"
+           overflowToDisk="true"
+           memoryStoreEvictionPolicy="LRU"
+           timeToLiveSeconds="31556926"
+           maxElementsOnDisk="5000"
+           diskPersistent="true"
+           diskExpiryThreadIntervalSeconds="31556926"
+            >
+    </cache>
+    <cache name="userVouchCache"
+           maxElementsInMemory="500"
+           eternal="false"
+           overflowToDisk="true"
+           memoryStoreEvictionPolicy="LRU"
+           timeToLiveSeconds="31556926"
+           maxElementsOnDisk="5000"
+           diskPersistent="true"
+           diskExpiryThreadIntervalSeconds="31556926"
+            >
+    </cache>
+    <cache name="privacyCache"
+           maxElementsInMemory="500"
+           eternal="false"
+           overflowToDisk="true"
+           memoryStoreEvictionPolicy="LRU"
+           timeToLiveSeconds="86400"
+           maxElementsOnDisk="5000"
+           diskPersistent="true"
+           diskExpiryThreadIntervalSeconds="86400"
+            >
+    </cache>
+    <cache name="vouchCountCache"
+           maxElementsInMemory="500"
+           eternal="false"
+           overflowToDisk="true"
+           memoryStoreEvictionPolicy="LRU"
+           timeToLiveSeconds="86400"
+           maxElementsOnDisk="5000"
+           diskPersistent="true"
+           diskExpiryThreadIntervalSeconds="86400"
+            >
+    </cache>
+    <cache name="wishCountCache"
+           maxElementsInMemory="500"
+           eternal="false"
+           overflowToDisk="true"
+           memoryStoreEvictionPolicy="LRU"
+           timeToLiveSeconds="86400"
+           maxElementsOnDisk="5000"
+           diskPersistent="true"
+           diskExpiryThreadIntervalSeconds="86400"
+            >
+    </cache>
+    <cache name="attendeeOccasionCache"
+           maxElementsInMemory="500"
+           eternal="false"
+           overflowToDisk="true"
+           memoryStoreEvictionPolicy="LRU"
+           timeToLiveSeconds="86400"
+           maxElementsOnDisk="5000"
+           diskPersistent="true"
+           diskExpiryThreadIntervalSeconds="86400"
+            >
+    </cache>
+    <cache name="userWishCache"
+           maxElementsInMemory="500"
+           eternal="false"
+           overflowToDisk="true"
+           memoryStoreEvictionPolicy="LRU"
+           timeToLiveSeconds="31556926"
+           maxElementsOnDisk="5000"
+           diskPersistent="true"
+           diskExpiryThreadIntervalSeconds="31556926"
+            >
+    </cache>
+    <cache name="userExploreResultsCache"
+           maxElementsInMemory="1000"
+           eternal="false"
+           overflowToDisk="true"
+           memoryStoreEvictionPolicy="LRU"
+           timeToLiveSeconds="300"
+           maxElementsOnDisk="100000"
+           diskPersistent="true"
+           diskExpiryThreadIntervalSeconds="300"
+            >
+    </cache>
+    <cache name="userLastExploreRequestCache"
+           maxElementsInMemory="50"
+           eternal="false"
+           overflowToDisk="true"
+           memoryStoreEvictionPolicy="LRU"
+           timeToLiveSeconds="31556926"
+           maxElementsOnDisk="1000000"
+           diskPersistent="true"
+           diskExpiryThreadIntervalSeconds="31556926"
+            >
+    </cache>
+    <cache name="eventExploreResultsCache"
+           maxElementsInMemory="1000"
+           eternal="false"
+           overflowToDisk="true"
+           memoryStoreEvictionPolicy="LRU"
+           timeToLiveSeconds="300"
+           maxElementsOnDisk="100000"
+           diskPersistent="true"
+           diskExpiryThreadIntervalSeconds="300"
+            >
+    </cache>
+    <cache name="eventLastExploreRequestCache"
+           maxElementsInMemory="50"
+           eternal="false"
+           overflowToDisk="true"
+           memoryStoreEvictionPolicy="LRU"
+           timeToLiveSeconds="31556926"
+           maxElementsOnDisk="1000000"
+           diskPersistent="true"
+           diskExpiryThreadIntervalSeconds="31556926"
+            >
+    </cache>
+    <cache name="trainRockCommentCache"
+           maxElementsInMemory="500"
+           eternal="false"
+           overflowToDisk="true"
+           memoryStoreEvictionPolicy="LRU"
+           timeToLiveSeconds="31556926"
+           maxElementsOnDisk="1000000"
+           diskPersistent="true"
+           diskExpiryThreadIntervalSeconds="31556926"
+            >
+    </cache>
+    <cache name="individualActivityThreadResultCache"
+           maxElementsInMemory="50"
+           eternal="false"
+           overflowToDisk="true"
+           memoryStoreEvictionPolicy="LRU"
+           timeToIdleSeconds="60"
+           timeToLiveSeconds="60"
+           maxElementsOnDisk="1000000"
+           diskPersistent="true"
+           diskExpiryThreadIntervalSeconds="28800"
+            >
+    </cache>
+
+    <cache name="activityThreadChildrenResultCache"
+           maxElementsInMemory="100"
+           eternal="false"
+           overflowToDisk="true"
+           memoryStoreEvictionPolicy="LRU"
+           timeToIdleSeconds="300"
+           timeToLiveSeconds="300"
+           maxElementsOnDisk="1000000"
+           diskPersistent="true"
+           diskExpiryThreadIntervalSeconds="28800"
+            >
+    </cache>
+
+</ehcache>
