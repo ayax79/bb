@@ -44,7 +44,7 @@ TABS
 }
 
 .esub-tab-container {
-    
+
 }
 
 .esub-tab-container-right {
@@ -635,28 +635,28 @@ PRIVACY CONTROL WIDGET
 ul.privacy_control,ul.privacy_options{list-style:none;margin:0;padding:0}
 ul.privacy_control{float:left;position:relative;margin-top:4px;}
 ul.privacy_control li.menu_selection{background:transparent url(${library.prefix}/images/controls/permissions_menu.png) no-repeat left -228px;padding-left:6px}
-ul.privacy_control li a.top{background:transparent url(${library.prefix}/images/controls/permissions_menu.png) no-repeat right -247px;color:#fff!important;display:block;font-size:9px;font-weight:400;line-height:19px;padding-right:6px}
+ul.privacy_control li span.top{background:transparent url(${library.prefix}/images/controls/permissions_menu.png) no-repeat right -247px;color:#fff!important;display:block;font-size:9px;font-weight:400;line-height:19px;padding-right:6px}
 ul.privacy_options{display:none;left:0;position:absolute;width:100%}
 ul.privacy_options li{background:transparent url(${library.prefix}/images/controls/permissions_menu-bg.png) repeat-y left top;font-size:11px;margin:0;padding-left:8px}
 ul.privacy_options li span{background:transparent url(${library.prefix}/images/controls/permissions_menu-bg.png) repeat-y right top;display:block;line-height:20px}
 ul.privacy_options li.last{background:transparent url(${library.prefix}/images/controls/permissions_menu-bottom.png) no-repeat left top}
 ul.privacy_options li.last span{background:transparent url(${library.prefix}/images/controls/permissions_menu-bottom.png) no-repeat right -6px;display:block;line-height:6px}
 ul.privacy_control li.FRIENDS{background-position:left 0}
-ul.privacy_control li.FRIENDS a.top{background-position:right -19px}
+ul.privacy_control li.FRIENDS span.top{background-position:right -19px}
 ul.privacy_control li.active.FRIENDS{background:transparent url(${library.prefix}/images/controls/permissions_menu.png) no-repeat left -38px!important}
-ul.privacy_control li.active.FRIENDS a.top{background:transparent url(${library.prefix}/images/controls/permissions_menu.png) no-repeat right -57px!important}
+ul.privacy_control li.active.FRIENDS span.top{background:transparent url(${library.prefix}/images/controls/permissions_menu.png) no-repeat right -57px!important}
 ul.privacy_control li.WORLD{background-position:left -76px}
-ul.privacy_control li.WORLD a.top{background-position:right -95px}
+ul.privacy_control li.WORLD span.top{background-position:right -95px}
 ul.privacy_control li.active.WORLD{background:transparent url(${library.prefix}/images/controls/permissions_menu.png) no-repeat left -114px!important}
-ul.privacy_control li.active.WORLD a.top{background:transparent url(${library.prefix}/images/controls/permissions_menu.png) no-repeat right -133px!important}
+ul.privacy_control li.active.WORLD span.top{background:transparent url(${library.prefix}/images/controls/permissions_menu.png) no-repeat right -133px!important}
 ul.privacy_control li.ALL_MEMBERS{background-position:left -152px}
-ul.privacy_control li.ALL_MEMBERS a.top{background-position:right -171px}
+ul.privacy_control li.ALL_MEMBERS span.top{background-position:right -171px}
 ul.privacy_control li.active.ALL_MEMBERS{background:transparent url(${library.prefix}/images/controls/permissions_menu.png) no-repeat left -190px!important}
-ul.privacy_control li.active.ALL_MEMBERS a.top{background:transparent url(${library.prefix}/images/controls/permissions_menu.png) no-repeat right -209px!important}
+ul.privacy_control li.active.ALL_MEMBERS span.top{background:transparent url(${library.prefix}/images/controls/permissions_menu.png) no-repeat right -209px!important}
 ul.privacy_control li.DIRECT{background-position:left -228px}
-ul.privacy_control li.DIRECT a.top{background-position:right -247px}
+ul.privacy_control li.DIRECT span.top{background-position:right -247px}
 ul.privacy_control li.active.DIRECT{background:transparent url(${library.prefix}/images/controls/permissions_menu.png) no-repeat left -266px!important}
-ul.privacy_control li.active.DIRECT a.top{background:transparent url(${library.prefix}/images/controls/permissions_menu.png) no-repeat right -285px!important}
+ul.privacy_control li.active.DIRECT span.top{background:transparent url(${library.prefix}/images/controls/permissions_menu.png) no-repeat right -285px!important}
 
 /***********************************************************************************************************************
 WIDGET TABS
@@ -2085,7 +2085,7 @@ MINI PROFILES
 .col-l img {
 	display:block;
 	}
-	
+
 .mini-member-persona .col-l .profile-image-container {
 	float:none;
 	}
@@ -2365,7 +2365,7 @@ a.ntwrk-btn.state_implied span {
 	margin: 8px 0 0 0;
 	padding: 0;
 	}
-	
+
 .mp-vouches span p span {
 	color:#DE3700;
 	}
@@ -2617,7 +2617,7 @@ BLURBS
 
 .video-block {
     margin:6px 0;
-    
+
 }
 
 .video-block .article-link {
@@ -3190,7 +3190,7 @@ div.token-input-dropdown-facebook ul li.token-input-selected-dropdown-item-faceb
 
 /* NOTIFICATIONS */
 #noNotificationsMsg, .noMoreNotifications {
-    padding:10px;    
+    padding:10px;
 }
 
 #notifications .noMoreNotifications {
@@ -3288,11 +3288,11 @@ label span {
 	padding-top: 10px;
 	border-top: 1px solid #ddd;
 	}
-	
+
 .faq p {
 	font-size: 13px;
 	}
-	
+
 .faq p strong {
 	font-weight: bold;
 	}
