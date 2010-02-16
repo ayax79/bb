@@ -1,6 +1,7 @@
 #!/bin/sh
 dropdb blackbox
 createdb -O blackbox blackbox
+unzip -o -d script script/dbdump.zip
 psql blackbox < script/blackbox.ddl
 psql blackbox < script/dbdump.dmp
 psql blackbox < script/cleandbdump.sql
