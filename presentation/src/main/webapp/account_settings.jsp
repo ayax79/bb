@@ -9,6 +9,9 @@
 	<%--<link rel="stylesheet" href="${bb:libraryResource('/library/css/register.css')}" type="text/css" media="screen, projection" />--%>
 
 	<script src="${bb:libraryResource('/library/js/jquery.maskedinput-1.2.2.min.js')}" type="text/javascript"></script>
+	<script src="${bb:libraryResource('/library/js/jquery.validate.pack.js')}" type="text/javascript"></script>
+	<script src="${bb:libraryResource('/library/js/jquery.stripesValidation.js')}" type="text/javascript"></script>
+	<script src="${bb:libraryResource('/library/js/stripes.jquery.validation.js')}" type="text/javascript"></script>
 	<script type="text/javascript">
 
 		<c:set var="activeTab" value="0"/>

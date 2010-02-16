@@ -47,16 +47,12 @@ don't modify this cache key without first modifying that method.
 <link rel="stylesheet" href="${bb:libraryResource('/library/css/jquery.lightbox-0.5.css')}" type="text/css"/>
 <link rel="stylesheet" href="${bb:libraryResource('/library/uploadify/uploadify.css')}" type="text/css"/>
 <link rel="stylesheet" href="${bb:libraryResource('/library/css/vid_pop.css')}" type="text/css" media="screen, projection"/>
-<link rel="stylesheet" href="${bb:libraryResource('/library/css/jqModal.css')}" type="text/css" media="screen, projection"/>
-<link href="${bb:libraryResource('/library/css/psevent.css')}" rel="stylesheet" type="text/css"/>
 
 <script src="${bb:libraryResource("/library/js/jquery.lightbox-0.5.js")}" type="text/javascript"></script>
 <script src="${bb:libraryResource("/library/js/publisher.js")}" type="text/javascript"></script>
 <script src="${bb:libraryResource("/library/uploadify/swfobject.js")}" type="text/javascript"></script>
-<script src="${bb:libraryResource("/library/js/jcarousellite_1.0.1.js")}" type="text/javascript"></script>
 <script src="${bb:libraryResource("/library/uploadify/jquery.uploadify.js")}" type="text/javascript"></script>
-<script src="${bb:libraryResource("/library/js/corner.js")}" type="text/javascript"></script>
-<script src="${bb:libraryResource("/library/js/jqModal.js")}" type="text/javascript"></script>
+<script src="${bb:libraryResource('/library/js/jquery.tokeninput.js')}" type="text/javascript"></script>
 
 <script type="text/javascript">
 //<![CDATA[
@@ -194,7 +190,7 @@ $(function() {
 					<div id="persona-icons">
 						<ul>
                             <c:if test="${not bb:isLimited(actionBean.currentUser) or actionBean.owner}">
-							<li class="vouch"><a id="vouch_btn" title="Vouch" href="#" class="jqModal  <c:if test="${actionBean.vouched || not bb:isVouched(actionBean.currentUser.guid) || actionBean.blocksCurrentUser}"> disabled </c:if><c:if test="${not bb:isVouched(actionBean.currentUser.guid)}"> unvouched </c:if><c:if test="${actionBean.blocksCurrentUser}"> blocked </c:if>">
+							<li class="vouch"><a id="vouch_btn" title="Vouch" href="#" class="<c:if test="${actionBean.vouched || not bb:isVouched(actionBean.currentUser.guid) || actionBean.blocksCurrentUser}"> disabled </c:if><c:if test="${not bb:isVouched(actionBean.currentUser.guid)}"> unvouched </c:if><c:if test="${actionBean.blocksCurrentUser}"> blocked </c:if>">
                                 <c:choose>
                                     <c:when test = "${actionBean.totalVouches < 1}">
                                         <span id="unvouched" class="vouch-icon">0</span>
@@ -216,7 +212,7 @@ $(function() {
 							</c:if>
 
 							<li class="wish">
-								<a id="wish_btn" title="Wish" href="#" class="jqModal <c:if test="${'WISHED' == s:enumName(actionBean.persona.wishStatus) || 'MUTUAL' == s:enumName(actionBean.persona.wishStatus) || not bb:isVouched(actionBean.currentUser.guid) || actionBean.blocksCurrentUser}">disabled</c:if> <c:if test="${not bb:isVouched(actionBean.currentUser.guid)}"> unvouched </c:if><c:if test="${actionBean.blocksCurrentUser}"> blocked </c:if>">
+								<a id="wish_btn" title="Wish" href="#" class="<c:if test="${'WISHED' == s:enumName(actionBean.persona.wishStatus) || 'MUTUAL' == s:enumName(actionBean.persona.wishStatus) || not bb:isVouched(actionBean.currentUser.guid) || actionBean.blocksCurrentUser}">disabled</c:if> <c:if test="${not bb:isVouched(actionBean.currentUser.guid)}"> unvouched </c:if><c:if test="${actionBean.blocksCurrentUser}"> blocked </c:if>">
 								<c:set var="wishClass" value="${actionBean.persona.wishStatus}"/>
 								<span id="wished-icon" class="wish-icon ${wishClass}"></span>
 								<span id="WISHED_LABEL" class="wish-label <c:if test="${'WISHED' == s:enumName(actionBean.persona.wishStatus)}">active</c:if>">Wished</span>

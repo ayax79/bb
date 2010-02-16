@@ -666,8 +666,6 @@ $.extend(bb, {
 			$.each($(".article-media img.lightbox", scope), function() {
 				$(this).parent().lightBox({showImgNbr:'no'});
 			});
-			//$(".tt-ur", scope).qtip(bb.style.tooltips.ur);
-			//$(".tt-fm", scope).qtip(bb.style.tooltips.ttfm);
 			/**********************************************/
 
 		},

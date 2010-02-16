@@ -1,6 +1,8 @@
 <%@ tag language="java" %>
 <%@ attribute name="scriptLocation" required="true" %>
+<%@ attribute name="domainString" required="false" %>
 <%@ include file="/WEB-INF/jsp/include/taglibs.jspf" %>
+
 <c:choose>
 	<c:when test="${scriptLocation == 'head'}">
 <script type="text/javascript">var _sf_startpt=(new Date()).getTime();</script>
@@ -8,7 +10,7 @@
 	<c:when test="${scriptLocation == 'foot'}">
 <script type="text/javascript">
 
-var _sf_async_config={uid:2828,domain:"app.blackboxrepublic.com"};
+var _sf_async_config={uid:2828,domain:"<c:out value="${domainString}" default="app.blackboxrepublic.com"/>"};
 (function(){
 	function loadChartbeat() {
 		window._sf_endpt=(new Date()).getTime();
