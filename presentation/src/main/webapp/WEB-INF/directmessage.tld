@@ -12,14 +12,14 @@
         <description>Checks to see if a thread is read</description>
         <name>isRead</name>
         <function-class>com.blackbox.presentation.action.activity.InboxActionBean</function-class>
-        <function-signature>boolean isRead(com.blackbox.activity.IActivityThread,com.blackbox.foundation.user.User)</function-signature>
+        <function-signature>boolean isRead(com.blackbox.foundation.activity.IActivityThread,com.blackbox.foundation.user.User)</function-signature>
     </function>
 
     <function>
         <description>Checks to see if the thread has been replied too</description>
         <name>isReply</name>
         <function-class>com.blackbox.presentation.action.activity.InboxActionBean</function-class>
-        <function-signature>boolean isReply(com.blackbox.activity.IActivityThread,com.blackbox.foundation.user.User)</function-signature>
+        <function-signature>boolean isReply(com.blackbox.foundation.activity.IActivityThread,com.blackbox.foundation.user.User)</function-signature>
     </function>
 
 </taglib>
