@@ -1,4 +1,4 @@
-package com.blackbox.system;
+package com.blackbox.foundation.system;
 
 import com.blackbox.foundation.BBPersistentObject;
 import org.joda.time.DateTime;

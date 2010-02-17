@@ -1,4 +1,4 @@
-package com.blackbox.system;
+package com.blackbox.foundation.system;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
