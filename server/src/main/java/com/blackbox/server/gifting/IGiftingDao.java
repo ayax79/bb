@@ -5,7 +5,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 import com.blackbox.foundation.activity.IActivity;
-import com.blackbox.gifting.GiftLayout;
+import com.blackbox.foundation.gifting.GiftLayout;
 
 public interface IGiftingDao {
 

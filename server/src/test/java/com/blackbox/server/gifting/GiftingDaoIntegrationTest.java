@@ -7,7 +7,7 @@ import com.blackbox.foundation.media.MediaMetaData;
 import com.blackbox.foundation.media.MediaRecipient;
 import com.blackbox.foundation.user.User;
 import com.blackbox.foundation.social.NetworkTypeEnum;
-import com.blackbox.gifting.GiftLayout;
+import com.blackbox.foundation.gifting.GiftLayout;
 import com.blackbox.foundation.activity.IActivity;
 import org.junit.Test;
 import org.yestech.publish.objectmodel.ArtifactType;

@@ -5,8 +5,8 @@
  */
 package com.blackbox.server.activity;
 
-import com.blackbox.common.ActivitySenderOwnerPredicate;
-import com.blackbox.common.ActivityThreadsMessageOwnerPredicate;
+import com.blackbox.foundation.common.ActivitySenderOwnerPredicate;
+import com.blackbox.foundation.common.ActivityThreadsMessageOwnerPredicate;
 import com.blackbox.foundation.EntityReference;
 import com.blackbox.foundation.EntityType;
 import com.blackbox.foundation.IEntityManager;

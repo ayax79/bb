@@ -1,4 +1,4 @@
-package com.blackbox.util;
+package com.blackbox.foundation.util;
 
 import com.blackbox.foundation.util.Affirm;
 import com.google.common.base.Predicate;

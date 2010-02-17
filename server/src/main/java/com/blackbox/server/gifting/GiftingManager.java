@@ -1,8 +1,8 @@
 package com.blackbox.server.gifting;
 
 import com.blackbox.foundation.Utils;
-import com.blackbox.gifting.IGiftingManager;
-import com.blackbox.gifting.GiftLayout;
+import com.blackbox.foundation.gifting.IGiftingManager;
+import com.blackbox.foundation.gifting.GiftLayout;
 import com.blackbox.foundation.media.IMediaManager;
 import com.blackbox.foundation.media.MediaMetaData;
 import com.blackbox.foundation.media.MediaPublish;

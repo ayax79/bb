@@ -86,7 +86,7 @@
 
     <bean name="/GiftingManager" parent="baseHessianManager">
         <property name="service" ref="giftingManager"/>
-        <property name="serviceInterface" value="com.blackbox.gifting.IGiftingManager"/>
+        <property name="serviceInterface" value="com.blackbox.foundation.gifting.IGiftingManager"/>
     </bean>
 
     <bean name="/AdminManager" parent="baseHessianManager">

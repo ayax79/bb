@@ -2,8 +2,8 @@ package com.blackbox.presentation.action.media;
 
 import com.blackbox.foundation.EntityReference;
 import com.blackbox.foundation.activity.IActivity;
-import com.blackbox.gifting.GiftLayout;
-import com.blackbox.gifting.IGiftingManager;
+import com.blackbox.foundation.gifting.GiftLayout;
+import com.blackbox.foundation.gifting.IGiftingManager;
 import com.blackbox.foundation.media.MediaMetaData;
 import com.blackbox.foundation.media.MediaPublish;
 import com.blackbox.foundation.media.MediaRecipient;

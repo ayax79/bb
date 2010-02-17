@@ -11,7 +11,7 @@ import com.blackbox.foundation.IEntity;
 import com.blackbox.foundation.util.NameInfo;
 import com.blackbox.foundation.activity.*;
 import com.blackbox.foundation.bookmark.Bookmark;
-import com.blackbox.gifting.GiftLayout;
+import com.blackbox.foundation.gifting.GiftLayout;
 import com.blackbox.foundation.media.AvatarImage;
 import com.blackbox.foundation.media.CorkboardImage;
 import com.blackbox.foundation.media.MediaLibrary;

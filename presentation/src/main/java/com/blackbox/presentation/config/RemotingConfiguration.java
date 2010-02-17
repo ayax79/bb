@@ -4,7 +4,7 @@ import com.blackbox.foundation.IEntityManager;
 import com.blackbox.foundation.activity.IActivityManager;
 import com.blackbox.foundation.billing.IBillingManager;
 import com.blackbox.foundation.bookmark.IBookmarkManager;
-import com.blackbox.gifting.IGiftingManager;
+import com.blackbox.foundation.gifting.IGiftingManager;
 import com.blackbox.foundation.media.IMediaManager;
 import com.blackbox.foundation.message.IMessageManager;
 import com.blackbox.foundation.occasion.IOccasionManager;

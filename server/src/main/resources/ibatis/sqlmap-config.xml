@@ -61,9 +61,9 @@
                      handler="com.blackbox.server.system.ibatis.enumimpl.DateFormatHandler" />
         <typeHandler javaType="com.blackbox.foundation.occasion.OccasionLayout$LayoutType"
                      handler="com.blackbox.server.system.ibatis.enumimpl.OccasionLayoutType" />
-        <typeHandler javaType="com.blackbox.gifting.GiftLayout$Shelf"
+        <typeHandler javaType="com.blackbox.foundation.gifting.GiftLayout$Shelf"
                      handler="com.blackbox.server.system.ibatis.enumimpl.GiftLayoutShelfHandler" />
-        <typeHandler javaType="com.blackbox.gifting.GiftLayout$GiftLayoutSize"
+        <typeHandler javaType="com.blackbox.foundation.gifting.GiftLayout$GiftLayoutSize"
                      handler="com.blackbox.server.system.ibatis.enumimpl.GiftLayoutSizeHandler" />
         <typeHandler javaType="com.blackbox.foundation.occasion.AttendeeSource"
                      handler="com.blackbox.server.system.ibatis.enumimpl.AttendeeSourceHandler" />

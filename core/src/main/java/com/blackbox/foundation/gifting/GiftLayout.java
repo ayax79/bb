@@ -1,4 +1,4 @@
-package com.blackbox.gifting;
+package com.blackbox.foundation.gifting;
 
 import com.blackbox.foundation.BBPersistentObject;
 import com.blackbox.foundation.EntityReference;

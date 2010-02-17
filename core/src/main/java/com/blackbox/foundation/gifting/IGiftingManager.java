@@ -1,4 +1,4 @@
-package com.blackbox.gifting;
+package com.blackbox.foundation.gifting;
 
 import com.blackbox.foundation.activity.IActivity;
 import com.blackbox.foundation.media.MediaMetaData;

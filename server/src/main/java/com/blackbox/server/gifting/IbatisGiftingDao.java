@@ -1,7 +1,7 @@
 package com.blackbox.server.gifting;
 
 import com.blackbox.foundation.activity.IActivity;
-import com.blackbox.gifting.GiftLayout;
+import com.blackbox.foundation.gifting.GiftLayout;
 import com.blackbox.server.util.PersistenceUtil;
 import org.springframework.orm.ibatis3.SqlSessionOperations;
 import org.springframework.stereotype.Repository;

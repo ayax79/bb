@@ -8,7 +8,7 @@ import com.blackbox.foundation.BaseEntity;
 import com.blackbox.foundation.EntityReference;
 import com.blackbox.foundation.activity.*;
 import com.blackbox.foundation.bookmark.WishStatus;
-import com.blackbox.gifting.IGiftingManager;
+import com.blackbox.foundation.gifting.IGiftingManager;
 import com.blackbox.foundation.media.IMediaManager;
 import com.blackbox.foundation.media.MediaLibrary;
 import com.blackbox.foundation.media.MediaLibrary.MediaLibraryType;

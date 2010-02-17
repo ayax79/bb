@@ -1,4 +1,4 @@
-package com.blackbox.common;
+package com.blackbox.foundation.common;
 
 import com.blackbox.foundation.EntityReference;
 import com.blackbox.foundation.activity.IActivityThread;

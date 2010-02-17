@@ -16,7 +16,7 @@ import com.blackbox.foundation.bookmark.UserWish;
 import com.blackbox.foundation.user.PaginationResults;
 import com.blackbox.foundation.user.IUserManager;
 import com.blackbox.foundation.user.User;
-import com.blackbox.gifting.IGiftingManager;
+import com.blackbox.foundation.gifting.IGiftingManager;
 import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.DefaultHandler;

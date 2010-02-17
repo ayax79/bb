@@ -11,7 +11,7 @@ import com.blackbox.foundation.social.Vouch;
 import com.blackbox.foundation.user.IUserManager;
 import com.blackbox.foundation.user.User;
 import com.blackbox.foundation.media.IMediaManager;
-import com.blackbox.gifting.IGiftingManager;
+import com.blackbox.foundation.gifting.IGiftingManager;
 import com.blackbox.foundation.occasion.OccasionRequest;
 import com.blackbox.foundation.occasion.IOccasionManager;
 import com.blackbox.foundation.occasion.AttendingStatus;
