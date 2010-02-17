@@ -8,16 +8,21 @@ import com.blackbox.server.system.email.SimpleEmailDelivery;
 import com.blackbox.social.NetworkTypeEnum;
 import com.blackbox.user.IUserManager;
 import com.blackbox.user.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.yestech.event.ResultReference;
 import org.yestech.event.annotation.AsyncListener;
 import org.yestech.event.annotation.ListenedEvents;
 
 import javax.annotation.Resource;
+import java.text.MessageFormat;
 import java.util.List;
 
 @ListenedEvents(PublishMessageEvent.class)
 @AsyncListener
 public class DirectMessageEmailNotificationListener extends BaseBlackboxListener<PublishMessageEvent, Object> {
+
+    private static final Logger logger = LoggerFactory.getLogger(DirectMessageEmailNotificationListener.class);
 
     @Resource
     IUserManager userManager;
@@ -40,7 +45,12 @@ public class DirectMessageEmailNotificationListener extends BaseBlackboxListener
         com.blackbox.activity.IRecipient msgRecipient = recipients.get(0);
         final User recipientUser = userManager.loadUserByGuid(msgRecipient.getRecipient().getGuid());
         final User senderUser = userManager.loadUserByGuid(message.getArtifactMetaData().getArtifactOwner().getGuid());
-        assert senderUser != null;
+
+        if (recipientUser == null || senderUser == null) {
+            logger.warn(MessageFormat.format("Unable to send email when senderUser {0} or recipientUser {0} are unavailable", senderUser, recipientUser));
+            return;
+        }
+
         final String recipientName = recipientUser.getName();
 
         emailDelivery.send(new EmailDefinition() {

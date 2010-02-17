@@ -64,8 +64,7 @@ public class PublicActionBean extends BaseBlackBoxActionBean {
             }
             return createJSONResolutionWithText(getContext(), json);
         } else {
-            Collection<IActivityThread> threads = activityManager.loadPublicActivityThreads(0, 25);
-            return new ForwardResolution("todo");
+            throw new UnsupportedOperationException();
         }
 
     }

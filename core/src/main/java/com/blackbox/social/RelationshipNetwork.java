@@ -56,7 +56,6 @@ public class RelationshipNetwork implements Serializable {
      * @param search The name or fragement there off to search for in your network.
      * @return List of children matching the query.
      */
-    @SuppressWarnings("unchecked")
     public List<Pair<String, NameInfo>> find(String search) {
         if (isEmpty(search)) return Collections.emptyList();
 
