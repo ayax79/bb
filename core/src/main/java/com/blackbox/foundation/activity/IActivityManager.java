@@ -25,8 +25,6 @@ public interface IActivityManager {
                                                                  int startIndex,
                                                                  int maxResults);
 
-    Collection<IActivityThread> loadPublicActivityThreads(int startIndex, int maxResults);
-
     IActivityThread loadActivityThreadByParentGuid(String parentGuid);
 
     IActivity publish(Activity activity);

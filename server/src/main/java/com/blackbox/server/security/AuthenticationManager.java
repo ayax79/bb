@@ -63,9 +63,8 @@ public class AuthenticationManager extends BaseServiceContainer implements IAuth
             }
 
             if (user == null) {
-                throw new IncorrectCredentialsException();
-            }
-            else {
+                throw new IncorrectCredentialsException("For user: " + ((BlackBoxAuthenticationToken) token).getUsername());
+            } else {
                 populateAuthenticationInfo(info, user, authenticationToken.getRealm().toString());
                 info.setCredentials(user.getPassword());
 
@@ -73,16 +72,14 @@ public class AuthenticationManager extends BaseServiceContainer implements IAuth
 
             }
 
-        }
-        else if (token instanceof UsernameOnlyAuthToken) {
+        } else if (token instanceof UsernameOnlyAuthToken) {
 
             UsernameOnlyAuthToken authToken = (UsernameOnlyAuthToken) token;
 
             User user = userDao.loadUserByUsername(authToken.getUsername());
             if (user == null) {
-                throw new IncorrectCredentialsException();
-            }
-            else {
+                throw new IncorrectCredentialsException("For user: " + ((UsernameOnlyAuthToken) token).getUsername());
+            } else {
                 populateAuthenticationInfo(info, user, authToken.getRealm().toString());
                 info.setCredentials(user.getUsername());
                 getEventMulticaster().process(new AuthenticationEvent(authToken, authToken.getRealm(), info));

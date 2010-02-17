@@ -5,6 +5,8 @@
  */
 package com.blackbox.server.activity;
 
+import com.blackbox.common.ActivitySenderOwnerPredicate;
+import com.blackbox.common.ActivityThreadsMessageOwnerPredicate;
 import com.blackbox.foundation.EntityReference;
 import com.blackbox.foundation.EntityType;
 import com.blackbox.foundation.IEntityManager;
@@ -12,6 +14,7 @@ import com.blackbox.foundation.Utils;
 import com.blackbox.foundation.activity.*;
 import com.blackbox.foundation.media.IMediaManager;
 import com.blackbox.foundation.message.IMessageManager;
+
 import com.blackbox.server.activity.event.LoadActivityThreadEvent;
 import com.blackbox.server.activity.event.LoadAssociateActivityThreadEvent;
 import com.blackbox.server.activity.event.LoadLastActivityEvent;
@@ -21,6 +24,8 @@ import com.blackbox.server.message.IMessageDao;
 import com.blackbox.foundation.social.ISocialManager;
 import com.blackbox.foundation.social.NetworkTypeEnum;
 import com.blackbox.foundation.util.Bounds;
+import com.google.common.base.Predicates;
+import com.google.common.collect.Collections2;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -30,6 +35,7 @@ import org.yestech.event.multicaster.BaseServiceContainer;
 import javax.annotation.Resource;
 import java.text.MessageFormat;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import static com.google.common.collect.Lists.newArrayList;
@@ -75,24 +81,36 @@ public class ActivityManager extends BaseServiceContainer implements IActivityMa
     public Collection<IActivityThread> loadActivityThreads(ActivityRequest request) {
         Collection<IActivityThread> threads = (Collection<IActivityThread>) getEventMulticaster().process(new LoadActivityThreadEvent(request));
         logger.debug(MessageFormat.format("For user [{0}], all threads [{1}]", request.getOwner().getGuid(), threads));
-        inflateStreamParts(threads);
+        return inflateStreamParts(trimIgnoredUserStuff(request, threads));
+    }
+
+    private Collection<IActivityThread> trimIgnoredUserStuff(ActivityRequest request, Collection<IActivityThread> threads) {
+        List<EntityReference> ignored = loadIgnoresOnlyForAllMembersRequest(request);
+        threads = Collections2.filter(threads, Predicates.not(new ActivityThreadsMessageOwnerPredicate(ignored)));
+        for (IActivityThread thread : threads) {
+            thread.setChildren(Collections2.filter(thread.getChildren(), Predicates.not(new ActivitySenderOwnerPredicate(ignored))));
+        }
         return threads;
     }
 
-    @Override
-    public Collection<IActivityThread> loadPublicActivityThreads(final int startIndex, final int maxResults) {
-        return inflateStreamParts(activityStreamDao.loadPublicActivity(startIndex, maxResults));
+    /**
+     * Builds out a list of blocks (read: hard ignore) or an empty list should the request have not been for ALL_MEMBERS
+     * For any non-all members request, the hard ignore functionality of deleting relationships will drop those from contention
+     * way before this filtering is necessary.
+     */
+    private List<EntityReference> loadIgnoresOnlyForAllMembersRequest(ActivityRequest request) {
+        return request.getTypes().contains(NetworkTypeEnum.ALL_MEMBERS) ? socialManager.loadBlocks(request.getOwner().getGuid()) : Collections.<EntityReference>emptyList();
     }
 
     private Collection<IActivityThread> inflateStreamParts(Collection<IActivityThread> threads) {
         for (IActivityThread thread : threads) {
-            IActivity parent = thread.getParent();
-            if (parent instanceof IVirtualGiftable) {
-                EntityType type = (parent.getActivityType() == ActivityTypeEnum.MESSAGE ? EntityType.MESSAGE : EntityType.MEDIA);
-                parent = (IActivity) entityManager.loadEntity(parent.getGuid(), type);
-                thread.setParent(parent);
+            IActivity parentalUnit = thread.getParent();
+            if (parentalUnit instanceof IVirtualGiftable) {
+                EntityType type = (parentalUnit.getActivityType() == ActivityTypeEnum.MESSAGE ? EntityType.MESSAGE : EntityType.MEDIA);
+                parentalUnit = (IActivity) entityManager.loadEntity(parentalUnit.getGuid(), type);
+                thread.setParent(parentalUnit);
             } else {
-                logger.info(MessageFormat.format("Dropping thread from activity thread because it [{0}] is not an IVirtualGiftable", parent));
+                logger.info(MessageFormat.format("Dropping thread from activity thread because it [{0}] is not an IVirtualGiftable", parentalUnit));
             }
         }
         return threads;

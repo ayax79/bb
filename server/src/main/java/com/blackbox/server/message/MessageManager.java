@@ -28,6 +28,7 @@ import com.blackbox.foundation.message.Message;
 import com.blackbox.foundation.message.MessageRecipient;
 import static com.blackbox.server.activity.ActivityUtil.createActivityThreadList;
 import static com.blackbox.server.activity.ActivityUtil.createActivityThreadListTyped;
+
 import com.blackbox.server.bookmark.IBookmarkDao;
 import com.blackbox.server.media.IMediaDao;
 import com.blackbox.server.message.event.DeleteMessageEvent;
@@ -42,17 +43,18 @@ import com.blackbox.foundation.user.User;
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Collections2;
-import static com.google.common.collect.Lists.transform;
+import org.apache.shiro.authz.UnauthorizedException;
 import org.springframework.stereotype.Service;
 import org.yestech.event.multicaster.BaseServiceContainer;
-import org.apache.shiro.authz.UnauthorizedException;
 import org.yestech.publish.client.IPublishBridge;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.Collection;
-import static java.util.Collections.sort;
 import java.util.List;
+
+import static com.google.common.collect.Lists.transform;
+import static java.util.Collections.sort;
 
 
 @Service("messageManager")

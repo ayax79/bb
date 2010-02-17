@@ -25,22 +25,21 @@
 	</c:otherwise>
 </c:choose>
 <ul class="privacy_control" <c:if test="${not empty id}"> id="${id}" </c:if>>
-	<li class="menu_selection ${defaultValue}"><a href="#" class="top">To <span class="pval">${pval}</span></a>
-		<s:form beanclass="${beanclass}" method="post">
-		<div>
-		<%--<s:form action="${beanclass}" method="post">--%>
-		<input type="hidden" name="guid" value="${guid}"/>
-		<input type="hidden" name="ownerType" value="${ownerType}"/>
-		<input type="hidden" name="event" value="${event}"/>
-		<ul class="privacy_options">
-			<li><span>Change privacy</span></li>
-			<li><span><input type="radio" name="privacy_settings" value="WORLD" <c:if test="${defaultValue == 'WORLD'}"> checked="checked"</c:if>/><label>World</label></span></li>
-			<li><span><input type="radio" name="privacy_settings" value="ALL_MEMBERS" <c:if test="${defaultValue == 'ALL_MEMBERS'}"> checked="checked"</c:if>/><label>BB</label></span></li>
-			<li><span><input type="radio" name="privacy_settings" value="FRIENDS" <c:if test="${defaultValue == 'FRIENDS'}"> checked="checked"</c:if>/><label>Friends</label></span></li>
-			<%--<li><span><a href="#">Delete video</a></span></li>--%>
-			<li class="last"><span>&nbsp;</span></li>
-		</ul>
-		</div>
-		</s:form>
+	<li class="menu_selection ${defaultValue}"><span href="#" class="top">To <span class="pval">${pval}</span></span>
+		<%--<s:form beanclass="${beanclass}" method="post">--%>
+		<%--<div>--%>
+		<%--<input type="hidden" name="guid" value="${guid}"/>--%>
+		<%--<input type="hidden" name="ownerType" value="${ownerType}"/>--%>
+		<%--<input type="hidden" name="event" value="${event}"/>--%>
+		<%--<ul class="privacy_options">--%>
+			<%--<li><span>Change privacy</span></li>--%>
+			<%--<li><span><input type="radio" name="privacy_settings" value="WORLD" <c:if test="${defaultValue == 'WORLD'}"> checked="checked"</c:if>/><label>World</label></span></li>--%>
+			<%--<li><span><input type="radio" name="privacy_settings" value="ALL_MEMBERS" <c:if test="${defaultValue == 'ALL_MEMBERS'}"> checked="checked"</c:if>/><label>BB</label></span></li>--%>
+			<%--<li><span><input type="radio" name="privacy_settings" value="FRIENDS" <c:if test="${defaultValue == 'FRIENDS'}"> checked="checked"</c:if>/><label>Friends</label></span></li>--%>
+			<%--&lt;%&ndash;<li><span><a href="#">Delete video</a></span></li>&ndash;%&gt;--%>
+			<%--<li class="last"><span>&nbsp;</span></li>--%>
+		<%--</ul>--%>
+		<%--</div>--%>
+		<%--</s:form>--%>
 	</li>
 </ul>
