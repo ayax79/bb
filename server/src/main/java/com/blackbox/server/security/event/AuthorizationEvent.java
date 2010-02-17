@@ -5,7 +5,7 @@
  */
 package com.blackbox.server.security.event;
 
-import com.blackbox.security.IBlackBoxAuthorizationInfo;
+import com.blackbox.foundation.security.IBlackBoxAuthorizationInfo;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.yestech.event.annotation.EventResultType;
 import org.yestech.event.event.BaseEvent;

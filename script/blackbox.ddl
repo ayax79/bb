@@ -1127,10 +1127,8 @@ ALTER TABLE public.bb_user OWNER TO blackbox;
 ALTER TABLE ONLY bb_user
     ADD CONSTRAINT bb_user_bb_users_username_key UNIQUE (username);
 
---ALTER TABLE ONLY bb_user
+-- ALTER TABLE ONLY bb_user
 --    ADD CONSTRAINT bb_user_bb_users_email_key UNIQUE (email);
-
-
 
 --
 -- Name: bb_user_status; Type: TABLE; Schema: public; Owner: blackbox; Tablespace: 

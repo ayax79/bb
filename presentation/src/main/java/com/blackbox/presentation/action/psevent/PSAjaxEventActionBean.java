@@ -1,20 +1,20 @@
 package com.blackbox.presentation.action.psevent;
 
-import com.blackbox.Utils;
-import com.blackbox.business.UserToAttendingAttendeeFunction;
-import com.blackbox.media.IMediaManager;
-import com.blackbox.media.MediaLibrary;
-import com.blackbox.media.MediaMetaData;
-import com.blackbox.occasion.*;
+import com.blackbox.foundation.Utils;
+import com.blackbox.foundation.business.UserToAttendingAttendeeFunction;
+import com.blackbox.foundation.media.IMediaManager;
+import com.blackbox.foundation.media.MediaLibrary;
+import com.blackbox.foundation.media.MediaMetaData;
+import com.blackbox.foundation.occasion.*;
 import com.blackbox.presentation.action.util.CommaStringConverter;
 import com.blackbox.presentation.action.util.MediaUtil;
 import com.blackbox.presentation.action.util.PeriodTypeConverter;
 import com.blackbox.presentation.extension.JodaShortDateTimeConverter;
-import com.blackbox.social.Address;
-import com.blackbox.user.IUserManager;
-import com.blackbox.user.User;
-import com.blackbox.util.AmPmEnum;
-import com.blackbox.util.GeoUtil;
+import com.blackbox.foundation.social.Address;
+import com.blackbox.foundation.user.IUserManager;
+import com.blackbox.foundation.user.User;
+import com.blackbox.foundation.util.AmPmEnum;
+import com.blackbox.foundation.util.GeoUtil;
 import net.sourceforge.stripes.action.*;
 import net.sourceforge.stripes.integration.spring.SpringBean;
 import net.sourceforge.stripes.validation.Validate;
@@ -37,7 +37,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.blackbox.presentation.action.util.PresentationUtil.createResolutionWithText;
-import static com.blackbox.util.DateUtil.join;
+import static com.blackbox.foundation.util.DateUtil.join;
 import static org.apache.commons.lang.StringUtils.isNotBlank;
 
 @UrlBinding("/action/ajax/event")

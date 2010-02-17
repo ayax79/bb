@@ -6,16 +6,10 @@
 package com.blackbox.presentation.extension;
 
 import net.sourceforge.stripes.action.ActionBeanContext;
-import com.blackbox.user.IUser;
-import com.blackbox.user.Profile;
-import com.blackbox.user.User;
-import com.blackbox.social.RelationshipNetwork;
-import com.blackbox.social.Ignore;
-import com.blackbox.social.Vouch;
-import com.blackbox.social.Relationship;
-import com.blackbox.EntityReference;
-import com.blackbox.bookmark.Bookmark;
-import org.terracotta.modules.annotations.Root;
+import com.blackbox.foundation.user.User;
+import com.blackbox.foundation.social.RelationshipNetwork;
+import com.blackbox.foundation.social.Relationship;
+import com.blackbox.foundation.EntityReference;
 import org.terracotta.modules.annotations.InstrumentedClass;
 
 import java.util.List;

@@ -1,10 +1,10 @@
 package com.blackbox.server.occasion;
 
-import com.blackbox.occasion.Occasion;
+import com.blackbox.foundation.occasion.Occasion;
 import com.blackbox.server.BaseIntegrationTest;
 import com.blackbox.server.user.IUserDao;
-import com.blackbox.user.User;
-import com.blackbox.util.Bounds;
+import com.blackbox.foundation.user.User;
+import com.blackbox.foundation.util.Bounds;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.orm.ibatis3.SqlSessionTemplate;

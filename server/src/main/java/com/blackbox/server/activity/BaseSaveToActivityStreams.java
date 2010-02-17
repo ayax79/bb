@@ -1,14 +1,14 @@
 package com.blackbox.server.activity;
 
-import com.blackbox.message.Message;
-import com.blackbox.message.MessageRecipient;
-import com.blackbox.social.Relationship;
-import com.blackbox.social.NetworkTypeEnum;
+import com.blackbox.foundation.message.Message;
+import com.blackbox.foundation.message.MessageRecipient;
+import com.blackbox.foundation.social.Relationship;
+import com.blackbox.foundation.social.NetworkTypeEnum;
 import com.blackbox.server.social.INetworkDao;
 import static com.blackbox.server.activity.ActivityUtil.cloneActivity;
-import com.blackbox.media.MediaMetaData;
-import com.blackbox.media.MediaRecipient;
-import com.blackbox.activity.IRecipient;
+import com.blackbox.foundation.media.MediaMetaData;
+import com.blackbox.foundation.media.MediaRecipient;
+import com.blackbox.foundation.activity.IRecipient;
 import static com.google.common.collect.Lists.newArrayList;
 
 import javax.annotation.Resource;

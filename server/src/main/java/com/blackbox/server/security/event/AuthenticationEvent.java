@@ -5,8 +5,8 @@
  */
 package com.blackbox.server.security.event;
 
-import com.blackbox.security.IBlackBoxAuthenticationInfo;
-import com.blackbox.security.SecurityRealmEnum;
+import com.blackbox.foundation.security.IBlackBoxAuthenticationInfo;
+import com.blackbox.foundation.security.SecurityRealmEnum;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.yestech.event.annotation.EventResultType;

@@ -2,9 +2,9 @@ package com.blackbox.presentation.action.persona;
 
 import com.blackbox.presentation.extension.BlackBoxContext;
 import com.blackbox.presentation.extension.MockBlackBoxContext;
-import com.blackbox.social.ISocialManager;
-import com.blackbox.social.Relationship;
-import com.blackbox.user.User;
+import com.blackbox.foundation.social.ISocialManager;
+import com.blackbox.foundation.social.Relationship;
+import com.blackbox.foundation.user.User;
 import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.action.StreamingResolution;
 import org.junit.Before;
@@ -15,7 +15,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import javax.servlet.http.HttpServletResponse;
 
-import static com.blackbox.social.Relationship.RelationStatus;
+import static com.blackbox.foundation.social.Relationship.RelationStatus;
 import static junit.framework.Assert.*;
 import static org.mockito.Mockito.*;
 

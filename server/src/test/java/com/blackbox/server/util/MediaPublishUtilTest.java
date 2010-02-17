@@ -6,7 +6,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 import org.yestech.lib.util.Pair;
 import static com.blackbox.server.util.MediaPublishUtil.isStreamMedia;
-import com.blackbox.media.MediaMetaData;
+import com.blackbox.foundation.media.MediaMetaData;
 import org.yestech.publish.objectmodel.ArtifactType;
 
 import java.io.File;

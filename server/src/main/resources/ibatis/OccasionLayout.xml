@@ -2,24 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="OccasionLayout">
 
-    <resultMap id="OccasionLayoutResult" type="com.blackbox.occasion.OccasionLayout"
+    <resultMap id="OccasionLayoutResult" type="com.blackbox.foundation.occasion.OccasionLayout"
                extends="BBPersistentObject.BBPersistentObjectResult">
         <result property="backgroundColor"/>
         <result property="bodySize"/>
         <result property="boxcolor"/>
-        <result property="dataFormat" javaType="com.blackbox.occasion.OccasionLayout$DateFormat" jdbcType="INTEGER"/>
+        <result property="dataFormat" javaType="com.blackbox.foundation.occasion.OccasionLayout$DateFormat" jdbcType="INTEGER"/>
         <result property="font"/>
         <result property="headerFont"/>
         <result property="headerSize"/>
         <result property="imageGuid"/>
-        <result property="layoutType" javaType="com.blackbox.occasion.OccasionLayout$LayoutType" jdbcType="INTEGER"/>
+        <result property="layoutType" javaType="com.blackbox.foundation.occasion.OccasionLayout$LayoutType" jdbcType="INTEGER"/>
         <result property="showHeading" />
         <result property="textAlign"/>
         <result property="textColor"/>
         <result property="videoGuid"/>
     </resultMap>
 
-    <insert id="insert" parameterType="com.blackbox.occasion.OccasionLayout">
+    <insert id="insert" parameterType="com.blackbox.foundation.occasion.OccasionLayout">
         insert into bb_occasion_layout
         (backgroundColor, bodySize, boxcolor, created, dataFormat, font, headerFont, headerSize, imageGuid, layoutType,
         modified, showHeading, textAlign, textColor, version, videoGuid, guid)
@@ -31,7 +31,7 @@
         #{guid,jdbcType=VARCHAR})
     </insert>
 
-    <update id="update" parameterType="com.blackbox.occasion.OccasionLayout">
+    <update id="update" parameterType="com.blackbox.foundation.occasion.OccasionLayout">
         update bb_occasion_layout set
         backgroundColor = #{backgroundColor,jdbcType=VARCHAR},
         bodySize = #{bodySize,jdbcType=INTEGER},

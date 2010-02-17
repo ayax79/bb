@@ -1,13 +1,13 @@
 <%@ tag import="org.springframework.web.context.WebApplicationContext" %>
 <%@ tag import="org.springframework.web.context.support.WebApplicationContextUtils" %>
 <%@ tag import="com.blackbox.presentation.action.util.AvatarCacheKey" %>
-<%@ tag import="com.blackbox.media.IMediaManager" %>
-<%@ tag import="com.blackbox.user.IUserManager" %>
-<%@ tag import="com.blackbox.user.User" %>
+<%@ tag import="com.blackbox.foundation.media.IMediaManager" %>
+<%@ tag import="com.blackbox.foundation.user.IUserManager" %>
+<%@ tag import="com.blackbox.foundation.user.User" %>
 <%@ tag import="com.blackbox.presentation.extension.DefaultBlackBoxContext" %>
-<%@ tag import="com.blackbox.media.AvatarImage" %>
+<%@ tag import="com.blackbox.foundation.media.AvatarImage" %>
 <%@ tag import="org.yestech.cache.ICacheManager" %>
-<%@ tag import="com.blackbox.EntityType" %>
+<%@ tag import="com.blackbox.foundation.EntityType" %>
 <%@ tag import="com.blackbox.presentation.action.util.JspFunctions" %>
 <%@ tag import="static org.apache.commons.lang.StringUtils.isNotBlank" %>
 <%@ tag import="com.blackbox.presentation.action.util.PresentationUtil" %>
@@ -18,7 +18,7 @@
 <%@ attribute name="color" required="false" %>
 <%@ attribute name="showUserType" required="false" %>
 <%@ attribute name="linkToProfile" required="false" %>
-<%@ attribute name="entityType" type="com.blackbox.EntityType" %>
+<%@ attribute name="entityType" type="com.blackbox.foundation.EntityType" %>
 
 <%@include file="/WEB-INF/jsp/include/taglibs.jspf" %>
 

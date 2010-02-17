@@ -1,6 +1,6 @@
 package com.blackbox.server.external;
 
-import com.blackbox.message.Message;
+import com.blackbox.foundation.message.Message;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.springframework.beans.factory.annotation.Required;

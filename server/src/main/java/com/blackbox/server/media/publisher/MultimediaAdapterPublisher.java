@@ -5,10 +5,10 @@
  */
 package com.blackbox.server.media.publisher;
 
-import com.blackbox.media.MediaMetaData;
+import com.blackbox.foundation.media.MediaMetaData;
 import static com.blackbox.server.activity.ActivityUtil.checkNetworkDepth;
 import com.blackbox.server.activity.BaseActivityPublisher;
-import com.blackbox.social.NetworkTypeEnum;
+import com.blackbox.foundation.social.NetworkTypeEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.yestech.publish.objectmodel.ArtifactType;

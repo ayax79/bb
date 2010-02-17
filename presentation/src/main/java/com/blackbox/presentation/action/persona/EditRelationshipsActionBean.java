@@ -1,20 +1,20 @@
 package com.blackbox.presentation.action.persona;
 
-import com.blackbox.EntityReference;
+import com.blackbox.foundation.EntityReference;
 
-import static com.blackbox.EntityType.USER;
+import static com.blackbox.foundation.EntityType.USER;
 
 import com.blackbox.presentation.action.BaseBlackBoxActionBean;
 
 import static com.blackbox.presentation.action.util.PresentationUtil.createResolutionWithText;
 
-import com.blackbox.social.ISocialManager;
-import com.blackbox.social.Relationship;
+import com.blackbox.foundation.social.ISocialManager;
+import com.blackbox.foundation.social.Relationship;
 
-import static com.blackbox.social.Relationship.RelationStatus.IN_RELATIONSHIP;
+import static com.blackbox.foundation.social.Relationship.RelationStatus.IN_RELATIONSHIP;
 
-import com.blackbox.user.User;
-import com.blackbox.user.IUserManager;
+import com.blackbox.foundation.user.User;
+import com.blackbox.foundation.user.IUserManager;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.Resolution;

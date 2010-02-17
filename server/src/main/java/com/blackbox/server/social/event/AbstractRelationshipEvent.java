@@ -1,6 +1,6 @@
 package com.blackbox.server.social.event;
 
-import com.blackbox.social.Relationship;
+import com.blackbox.foundation.social.Relationship;
 import org.yestech.event.event.BaseEvent;
 
 /**

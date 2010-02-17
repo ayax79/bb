@@ -2,13 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="PromoCode">
 
-    <resultMap id="BasePromoCodeResult" type="com.blackbox.user.BasePromoCode"
+    <resultMap id="BasePromoCodeResult" type="com.blackbox.foundation.user.BasePromoCode"
                extends="BBPersistentObject.BBPersistentObjectResult">
         <result property="code"/>
         <result property="evaluationPeriod"/>
         <result property="expirationDate" javaType="jodaDate"/>
-        <result property="userType" javaType="com.blackbox.user.User$UserType" jdbcType="INTEGER"/>
-        <result property="type" javaType="com.blackbox.user.BasePromoCode$PromoCodeType" jdbcType="INTEGER"/>
+        <result property="userType" javaType="com.blackbox.foundation.user.User$UserType" jdbcType="INTEGER"/>
+        <result property="type" javaType="com.blackbox.foundation.user.BasePromoCode$PromoCodeType" jdbcType="INTEGER"/>
         <result property="master.guid" column="master_guid"/>
         <discriminator javaType="string" column="type">
             <case value="SINGLE_USE" resultMap="SingleUsePromoCodeResult" />
@@ -16,17 +16,17 @@
         </discriminator>
     </resultMap>
 
-    <resultMap id="SingleUsePromoCodeResult" type="com.blackbox.user.SingleUsePromoCode"
+    <resultMap id="SingleUsePromoCodeResult" type="com.blackbox.foundation.user.SingleUsePromoCode"
                extends="PromoCode.BasePromoCodeResult">
         <result property="email"/>
     </resultMap>
 
-    <resultMap id="MultiUsePromoCodeResult" type="com.blackbox.user.MultiUserPromoCode"
+    <resultMap id="MultiUsePromoCodeResult" type="com.blackbox.foundation.user.MultiUserPromoCode"
                extends="PromoCode.BasePromoCodeResult">
         <result property="promoCampaignName"/>
     </resultMap>
 
-    <insert id="insertSingleUse" parameterType="com.blackbox.user.SingleUsePromoCode">
+    <insert id="insertSingleUse" parameterType="com.blackbox.foundation.user.SingleUsePromoCode">
         insert into bb_promo
         (code, created, email, evaluationPeriod, expirationDate, modified, promoType,
         userType, version, master_guid, guid)
@@ -35,7 +35,7 @@
         #{promoType}, #{userType}, #{version}, #{master.guid}, #{guid})
     </insert>
 
-    <insert id="insertMultiUse" parameterType="com.blackbox.user.SingleUsePromoCode">
+    <insert id="insertMultiUse" parameterType="com.blackbox.foundation.user.SingleUsePromoCode">
         insert into bb_promo
         (code, created, promoCampaignName, evaluationPeriod, expirationDate, modified, promoType,
         userType, version, master_guid, guid)

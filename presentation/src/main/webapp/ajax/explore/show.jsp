@@ -22,16 +22,16 @@
 
 
                     <c:forEach var="result" items="${actionBean.results.results}">
-                        <%--@elvariable id="result" type="com.blackbox.search.SearchResult"--%>
+                        <%--@elvariable id="result" type="com.blackbox.foundation.search.SearchResult"--%>
 
                         <c:set var="user" value="${result.entity}"/>
-                        <%--@elvariable id="user" type="com.blackbox.user.User"--%>
+                        <%--@elvariable id="user" type="com.blackbox.foundation.user.User"--%>
 
                         <c:set var="activity" value="${result.latest}"/>
-                        <%--@elvariable id="activity" type="com.blackbox.activity.IActivity"--%>
+                        <%--@elvariable id="activity" type="com.blackbox.foundation.activity.IActivity"--%>
 
                         <c:set var="network" value="${result.network}"/>
-                        <%--@elvariable id="network" type="com.blackbox.social.RelationshipNetwork"--%>
+                        <%--@elvariable id="network" type="com.blackbox.foundation.social.RelationshipNetwork"--%>
 
                         <ui:roundedBox className="rounded-comment xplr-results-container">
                             <div class="xplr-content-overlay">

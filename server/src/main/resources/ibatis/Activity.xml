@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="Activity">
 
-    <resultMap id="ActivityResult" type="com.blackbox.activity.Activity">
+    <resultMap id="ActivityResult" type="com.blackbox.foundation.activity.Activity">
         <result property="acknowledged" />
         <result property="activityType" />
         <result property="artifactType" />
@@ -20,7 +20,7 @@
         <association property="occasion" resultMap="ActivityOccasionResult" />
     </resultMap>
 
-    <resultMap id="ActivityOccasionResult" type="com.blackbox.occasion.ActivityOccasion">
+    <resultMap id="ActivityOccasionResult" type="com.blackbox.foundation.occasion.ActivityOccasion">
         <result property="guid" column="occasionguid"/>
         <result property="description" column="occasiondescription" />
         <result property="avatarLocation" column="occasionavatarlocation" />
@@ -32,7 +32,7 @@
         <association property="address" resultMap="OccasionAddressResult" />
     </resultMap>
 
-    <resultMap id="OccasionAddressResult" type="com.blackbox.social.Address">
+    <resultMap id="OccasionAddressResult" type="com.blackbox.foundation.social.Address">
         <result property="address1" column="occasionaddress1" />
         <result property="address2" column="occasionaddress2" />
         <result property="city" column="occasioncity" />
@@ -46,50 +46,50 @@
     </resultMap>
 
 
-    <resultMap id="ParentActivityResult" type="com.blackbox.activity.ActivityReference">
-        <result property="activityType" column="parentActivityType" javaType="com.blackbox.activity.ActivityTypeEnum"
+    <resultMap id="ParentActivityResult" type="com.blackbox.foundation.activity.ActivityReference">
+        <result property="activityType" column="parentActivityType" javaType="com.blackbox.foundation.activity.ActivityTypeEnum"
                 jdbcType="INTEGER"/>
         <result property="guid" column="parentguid"/>
         <result property="postDate" column="parentActivityPostDate" javaType="jodaDate"/>
-        <result property="ownerType" column="parentOwnerType" javaType="com.blackbox.EntityType" jdbcType="INTEGER"/>
+        <result property="ownerType" column="parentOwnerType" javaType="com.blackbox.foundation.EntityType" jdbcType="INTEGER"/>
     </resultMap>
 
-    <resultMap id="MessageResult" type="com.blackbox.message.Message" extends="BaseEntity.BaseEntityResult">
+    <resultMap id="MessageResult" type="com.blackbox.foundation.message.Message" extends="BaseEntity.BaseEntityResult">
         <result property="acknowledged"/>
         <result property="body"/>
         <result property="postDate" javaType="jodaDate"/>
         <result property="published"/>
-        <result property="recipientDepth" javaType="com.blackbox.social.NetworkTypeEnum" jdbcType="INTEGER"/>
+        <result property="recipientDepth" javaType="com.blackbox.foundation.social.NetworkTypeEnum" jdbcType="INTEGER"/>
         <result property="subject"/>
         <result property="virtualGift"/>
         <association property="artifactMetaData" resultMap="MessageMetaData.MessageMetaDataResult"/>
         <association property="parentActivity" resultMap="ParentActivityResult"/>
     </resultMap>
 
-    <resultMap id="LightParentActivityResult" type="com.blackbox.activity.ActivityReference">
+    <resultMap id="LightParentActivityResult" type="com.blackbox.foundation.activity.ActivityReference">
         <result property="guid" column="parentguid"/>
     </resultMap>
 
-    <resultMap id="ChildMessageResult" type="com.blackbox.message.Message">
+    <resultMap id="ChildMessageResult" type="com.blackbox.foundation.message.Message">
         <result property="guid" jdbcType="VARCHAR" javaType="string" column="guid"/>
         <result property="body"/>
         <result property="postDate" javaType="jodaDate"/>
-        <result property="recipientDepth" javaType="com.blackbox.social.NetworkTypeEnum" jdbcType="INTEGER"/>
+        <result property="recipientDepth" javaType="com.blackbox.foundation.social.NetworkTypeEnum" jdbcType="INTEGER"/>
         <association property="parentActivity" resultMap="LightParentActivityResult"/>
         <association property="artifactMetaData" resultMap="MessageMetaData.MessageMetaDataResult"/>
     </resultMap>
 
-    <resultMap id="ChildMediaResult" type="com.blackbox.media.MediaMetaData">
+    <resultMap id="ChildMediaResult" type="com.blackbox.foundation.media.MediaMetaData">
         <result property="guid" jdbcType="VARCHAR" javaType="string" column="guid"/>
         <result property="body"/>
         <result property="postDate" javaType="jodaDate"/>
-        <result property="recipientDepth" javaType="com.blackbox.social.NetworkTypeEnum" jdbcType="INTEGER"/>
+        <result property="recipientDepth" javaType="com.blackbox.foundation.social.NetworkTypeEnum" jdbcType="INTEGER"/>
         <result property="owner.ownerType" column="ownerownerType" jdbcType="INTEGER"/>
         <result property="owner.guid" column="ownerguid" />
         <association property="parentActivity" resultMap="LightParentActivityResult"/>
     </resultMap>
 
-    <resultMap id="MediaResult" type="com.blackbox.media.MediaMetaData">
+    <resultMap id="MediaResult" type="com.blackbox.foundation.media.MediaMetaData">
         <result property="guid" />
         <result property="postDate" />
         <result property="recipientDepth" />
@@ -102,7 +102,7 @@
         <result property="virtualGift" />
     </resultMap>
 
-    <insert id="insert" parameterType="com.blackbox.activity.Activity">
+    <insert id="insert" parameterType="com.blackbox.foundation.activity.Activity">
         insert into bb_activity
         (acknowledged, activitytype, artifacttype, aspect, assetid, avatar, comment, contentsize, created, episodeid,
         filename, location, loosepic, mimetype, modified, occasionaddress1, occasionaddress2, occasionavatarlocation,
@@ -132,7 +132,7 @@
         #{virtualGift,jdbcType=BOOLEAN}, #{guid,jdbcType=VARCHAR})
     </insert>
 
-    <update id="update" parameterType="com.blackbox.activity.Activity">
+    <update id="update" parameterType="com.blackbox.foundation.activity.Activity">
         update bb_activity set
         acknowledged = #{acknowledged,jdbcType=BOOLEAN},
         activitytype = #{activityType,jdbcType=INTEGER},

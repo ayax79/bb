@@ -1,6 +1,6 @@
 package com.blackbox.server.media.listener;
 
-import com.blackbox.media.MediaLibrary;
+import com.blackbox.foundation.media.MediaLibrary;
 import com.blackbox.server.media.IMediaDao;
 import com.blackbox.server.media.event.SaveMediaLibraryEvent;
 import com.blackbox.server.BaseBlackboxListener;

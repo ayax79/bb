@@ -1,7 +1,7 @@
 package com.blackbox.server.user;
 
-import com.blackbox.user.Profile;
-import com.blackbox.social.Address;
+import com.blackbox.foundation.user.Profile;
+import com.blackbox.foundation.social.Address;
 
 import java.util.List;
 

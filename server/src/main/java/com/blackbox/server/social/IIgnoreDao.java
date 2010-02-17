@@ -1,7 +1,7 @@
 package com.blackbox.server.social;
 
-import com.blackbox.social.Ignore;
-import com.blackbox.EntityReference;
+import com.blackbox.foundation.EntityReference;
+import com.blackbox.foundation.social.Ignore;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
 package com.blackbox.presentation.action.util;
 
-import com.blackbox.social.Address;
-import com.blackbox.billing.BillingInfo;
+import com.blackbox.foundation.social.Address;
+import com.blackbox.foundation.billing.BillingInfo;
 import net.sourceforge.stripes.action.ActionBeanContext;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;

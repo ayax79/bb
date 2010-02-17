@@ -7,8 +7,8 @@ package com.blackbox.server.media.event;
 
 import org.yestech.event.event.BaseEvent;
 import org.yestech.event.annotation.EventResultType;
-import com.blackbox.media.MediaLibrary;
-import com.blackbox.media.MediaMetaData;
+import com.blackbox.foundation.media.MediaLibrary;
+import com.blackbox.foundation.media.MediaMetaData;
 
 /**
  *

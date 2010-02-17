@@ -1,12 +1,11 @@
 package com.blackbox.server.gifting;
 
-import com.blackbox.activity.IActivity;
-import com.blackbox.gifting.GiftLayout;
+import com.blackbox.foundation.activity.IActivity;
+import com.blackbox.foundation.gifting.GiftLayout;
 import com.blackbox.server.util.PersistenceUtil;
 import org.springframework.orm.ibatis3.SqlSessionOperations;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import org.yestech.publish.objectmodel.ArtifactType;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;

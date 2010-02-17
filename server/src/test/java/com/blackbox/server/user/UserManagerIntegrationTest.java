@@ -1,15 +1,15 @@
 package com.blackbox.server.user;
 
-import com.blackbox.Utils;
-import com.blackbox.exception.UserAlreadyExistsException;
-import com.blackbox.search.ExploreRequest;
-import com.blackbox.search.SearchResult;
+import com.blackbox.foundation.Utils;
+import com.blackbox.foundation.exception.UserAlreadyExistsException;
+import com.blackbox.foundation.search.ExploreRequest;
+import com.blackbox.foundation.search.SearchResult;
 import com.blackbox.server.BaseIntegrationTest;
 import com.blackbox.testingutils.UserFixture;
 import com.blackbox.testingutils.UserHelper;
-import com.blackbox.user.IUserManager;
-import com.blackbox.user.PaginationResults;
-import com.blackbox.user.User;
+import com.blackbox.foundation.user.IUserManager;
+import com.blackbox.foundation.user.PaginationResults;
+import com.blackbox.foundation.user.User;
 import org.junit.Test;
 
 import javax.annotation.Resource;

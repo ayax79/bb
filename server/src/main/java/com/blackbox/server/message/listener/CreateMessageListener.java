@@ -5,11 +5,11 @@
 
 package com.blackbox.server.message.listener;
 
-import com.blackbox.BaseEntity;
-import com.blackbox.EntityReference;
-import com.blackbox.activity.ActivityProfile;
-import com.blackbox.media.MediaMetaData;
-import com.blackbox.message.Message;
+import com.blackbox.foundation.BaseEntity;
+import com.blackbox.foundation.EntityReference;
+import com.blackbox.foundation.activity.ActivityProfile;
+import com.blackbox.foundation.media.MediaMetaData;
+import com.blackbox.foundation.message.Message;
 import com.blackbox.server.BaseBlackboxListener;
 import com.blackbox.server.entity.IEntityDao;
 import com.blackbox.server.media.IMediaDao;

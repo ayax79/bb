@@ -12,7 +12,7 @@ package com.blackbox.presentation.action;
 
 import com.blackbox.presentation.extension.BlackBoxContext;
 import com.blackbox.presentation.session.UserSessionService;
-import com.blackbox.user.*;
+import com.blackbox.foundation.user.*;
 import net.sourceforge.stripes.action.*;
 import net.sourceforge.stripes.integration.spring.SpringBean;
 

@@ -1,6 +1,6 @@
 package com.blackbox.presentation.action.util;
 
-import com.blackbox.Utils;
+import com.blackbox.foundation.Utils;
 import net.sourceforge.stripes.controller.StripesFilter;
 import net.sourceforge.stripes.tag.StripesTagSupport;
 import org.apache.commons.lang.StringUtils;

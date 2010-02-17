@@ -5,7 +5,7 @@
  */
 package com.blackbox.server.message.publisher;
 
-import com.blackbox.message.Message;
+import com.blackbox.foundation.message.Message;
 import static com.blackbox.server.activity.ActivityUtil.checkNetworkDepth;
 import com.blackbox.server.activity.BaseActivityPublisher;
 import org.slf4j.Logger;

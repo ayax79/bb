@@ -2,26 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="Vouch">
 
-    <resultMap id="VouchResult" type="com.blackbox.social.Vouch" extends="BBPersistentObject.BBPersistentObjectResult">
+    <resultMap id="VouchResult" type="com.blackbox.foundation.social.Vouch" extends="BBPersistentObject.BBPersistentObjectResult">
         <result property="accepted" />
         <result property="count" />
         <result property="description"/>
         <result property="expirationDate" javaType="jodaDate"/>
         <result property="target.guid" column="targetGuid"/>
-        <result property="target.ownerType" column="targetOwnerType" javaType="com.blackbox.EntityType"
+        <result property="target.ownerType" column="targetOwnerType" javaType="com.blackbox.foundation.EntityType"
                 jdbcType="INTEGER"/>
         <result property="voucher.guid" column="voucherGuid"/>
-        <result property="voucher.ownerType" column="voucherOwnerType" javaType="com.blackbox.EntityType"
+        <result property="voucher.ownerType" column="voucherOwnerType" javaType="com.blackbox.foundation.EntityType"
                 jdbcType="INTEGER"/>
     </resultMap>
 
-    <resultMap id="ShallowVouchResult" type="com.blackbox.social.Vouch">
+    <resultMap id="ShallowVouchResult" type="com.blackbox.foundation.social.Vouch">
         <result property="voucher.guid" column="voucherGuid" />
         <result property="target.guid" column="targetGuid" />
         <result property="description" />
     </resultMap>
 
-    <insert id="insert" parameterType="com.blackbox.social.Vouch">
+    <insert id="insert" parameterType="com.blackbox.foundation.social.Vouch">
         insert into bb_vouch (accepted, count, created, description, expirationDate, modified, targetGuid,
         targetOwnerType, version, voucherGuid, voucherOwnerType, guid)
         values
@@ -31,7 +31,7 @@
         #{voucher.ownerType,jdbcType=INTEGER}, #{guid,jdbcType=VARCHAR})
     </insert>
 
-    <update id="update" parameterType="com.blackbox.social.Vouch">
+    <update id="update" parameterType="com.blackbox.foundation.social.Vouch">
         update bb_vouch set
         accepted = #{accepted,jdbcType=BOOLEAN},
         count = #{count,jdbcType=INTEGER},
@@ -110,7 +110,7 @@
         v.targetguid = #{guid}) and ( v.expirationDate > CURRENT_TIMESTAMP or v.expirationDate is null)
     </select>
 
-    <select id="loadByVoucherAndVouchee" parameterType="map" resultType="com.blackbox.social.Vouch">
+    <select id="loadByVoucherAndVouchee" parameterType="map" resultType="com.blackbox.foundation.social.Vouch">
         select guid as guid from bb_vouch where voucherGuid = #{voucherGuid,jdbcType=VARCHAR} and targetGuid = #{targetGuid,jdbcType=VARCHAR}
     </select>
 

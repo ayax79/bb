@@ -5,10 +5,10 @@
 
 package com.blackbox.server.security;
 
-import com.blackbox.security.ApplicationPermission;
-import com.blackbox.security.BaseBBPermission;
-import com.blackbox.security.SocialPermission;
-import com.blackbox.security.Privacy;
+import com.blackbox.foundation.security.ApplicationPermission;
+import com.blackbox.foundation.security.BaseBBPermission;
+import com.blackbox.foundation.security.SocialPermission;
+import com.blackbox.foundation.security.Privacy;
 
 /**
  *

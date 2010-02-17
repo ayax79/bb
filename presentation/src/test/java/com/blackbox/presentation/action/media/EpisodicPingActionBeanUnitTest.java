@@ -1,7 +1,7 @@
 package com.blackbox.presentation.action.media;
 
-import com.blackbox.media.IMediaManager;
-import com.blackbox.media.MediaMetaData;
+import com.blackbox.foundation.media.IMediaManager;
+import com.blackbox.foundation.media.MediaMetaData;
 import org.json.JSONException;
 import org.junit.Before;
 import org.junit.Test;

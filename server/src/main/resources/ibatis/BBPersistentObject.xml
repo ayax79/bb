@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="BBPersistentObject">
 
-    <resultMap id="BBPersistentObjectResult" type="com.blackbox.BBPersistentObject">
+    <resultMap id="BBPersistentObjectResult" type="com.blackbox.foundation.BBPersistentObject">
         <id property="guid" jdbcType="VARCHAR" javaType="string" column="guid" />
         <result property="created" jdbcType="DATE" javaType="jodaDate" column="created" />
         <result property="modified" jdbcType="DATE" javaType="jodaDate" column="modified" />

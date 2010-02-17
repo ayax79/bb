@@ -1,27 +1,27 @@
 package com.blackbox.presentation.action.activity;
 
-import com.blackbox.EntityType;
-import com.blackbox.EntityReference;
-import com.blackbox.notification.Notifications;
-import com.blackbox.activity.*;
+import com.blackbox.foundation.EntityType;
+import com.blackbox.foundation.EntityReference;
+import com.blackbox.foundation.notification.Notifications;
+import com.blackbox.foundation.activity.*;
 
-import static com.blackbox.activity.IRecipient.RecipientStatus.DELETED;
-import static com.blackbox.activity.IRecipient.RecipientStatus.ARCHIVED;
+import static com.blackbox.foundation.activity.IRecipient.RecipientStatus.DELETED;
+import static com.blackbox.foundation.activity.IRecipient.RecipientStatus.ARCHIVED;
 
-import com.blackbox.message.IMessageManager;
-import com.blackbox.message.Message;
-import com.blackbox.message.MessageRecipient;
-import com.blackbox.message.MailboxRequest;
+import com.blackbox.foundation.message.IMessageManager;
+import com.blackbox.foundation.message.Message;
+import com.blackbox.foundation.message.MessageRecipient;
+import com.blackbox.foundation.message.MailboxRequest;
 import com.blackbox.presentation.action.BaseBlackBoxActionBean;
 import com.blackbox.presentation.action.util.CommaStringConverter;
 import com.blackbox.presentation.action.util.JspFunctions;
 
-import static com.blackbox.social.NetworkTypeEnum.SUPER_DIRECT;
+import static com.blackbox.foundation.social.NetworkTypeEnum.SUPER_DIRECT;
 
-import com.blackbox.social.ISocialManager;
-import com.blackbox.user.IUserManager;
-import com.blackbox.user.User;
-import com.blackbox.user.PaginationResults;
+import com.blackbox.foundation.social.ISocialManager;
+import com.blackbox.foundation.user.IUserManager;
+import com.blackbox.foundation.user.User;
+import com.blackbox.foundation.user.PaginationResults;
 import com.google.common.collect.Lists;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.DontValidate;
@@ -225,7 +225,7 @@ public class InboxActionBean extends BaseBlackBoxActionBean {
     }
 
     /**
-     * Grabs the {@link com.blackbox.activity.IRecipient} that correctly matches a specific user.
+     * Grabs the {@link com.blackbox.foundation.activity.IRecipient} that correctly matches a specific user.
      *
      * @param m The message to find a recipient for.
      * @param u The user object that will match the recipient.

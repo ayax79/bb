@@ -1,13 +1,13 @@
 package com.blackbox.presentation.action.psevent;
 
-import com.blackbox.media.IMediaManager;
-import com.blackbox.media.MediaMetaData;
-import com.blackbox.occasion.*;
-import com.blackbox.user.IUserManager;
-import com.blackbox.user.User;
-import com.blackbox.user.ViewedBy.ViewedByType;
-import com.blackbox.activity.IActivityManager;
-import com.blackbox.activity.IActivity;
+import com.blackbox.foundation.media.IMediaManager;
+import com.blackbox.foundation.media.MediaMetaData;
+import com.blackbox.foundation.occasion.*;
+import com.blackbox.foundation.user.IUserManager;
+import com.blackbox.foundation.user.User;
+import com.blackbox.foundation.user.ViewedBy.ViewedByType;
+import com.blackbox.foundation.activity.IActivityManager;
+import com.blackbox.foundation.activity.IActivity;
 import static com.google.common.collect.Lists.newArrayList;
 
 import java.io.File;

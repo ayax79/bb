@@ -1,20 +1,21 @@
 package com.blackbox.server.activity.engine;
 
-import com.blackbox.EntityReference;
-import static com.blackbox.activity.AscendingActivityComparator.getAscendingActivityComparator;
-import com.blackbox.activity.AssociatedActivityFilterType;
-import static com.blackbox.activity.DescendingActivityThreadComparator.getDescendingActivityThreadComparator;
-import com.blackbox.activity.IActivity;
-import com.blackbox.activity.IActivityThread;
-import com.blackbox.media.MediaMetaData;
-import com.blackbox.message.Message;
+import com.blackbox.foundation.EntityReference;
+import static com.blackbox.foundation.activity.AscendingActivityComparator.getAscendingActivityComparator;
+
+import com.blackbox.foundation.activity.AssociatedActivityFilterType;
+import static com.blackbox.foundation.activity.DescendingActivityThreadComparator.getDescendingActivityThreadComparator;
+import com.blackbox.foundation.activity.IActivity;
+import com.blackbox.foundation.activity.IActivityThread;
+import com.blackbox.foundation.media.MediaMetaData;
+import com.blackbox.foundation.message.Message;
 import static com.blackbox.server.activity.ActivityUtil.createActivityThreadList;
 import com.blackbox.server.media.IMediaDao;
 import com.blackbox.server.message.IMessageDao;
-import com.blackbox.util.PaginationUtil;
-import com.blackbox.social.NetworkTypeEnum;
-import static com.blackbox.social.NetworkTypeEnum.*;
-import com.blackbox.util.Bounds;
+import com.blackbox.foundation.util.PaginationUtil;
+import com.blackbox.foundation.social.NetworkTypeEnum;
+import static com.blackbox.foundation.social.NetworkTypeEnum.*;
+import com.blackbox.foundation.util.Bounds;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;

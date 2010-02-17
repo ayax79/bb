@@ -5,14 +5,14 @@
 
 package com.blackbox.server.entity;
 
-import com.blackbox.EntityType;
-import com.blackbox.IEntityManager;
-import com.blackbox.BBPersistentObject;
-import com.blackbox.EntityReference;
-import com.blackbox.occasion.IOccasionManager;
-import com.blackbox.message.IMessageManager;
-import com.blackbox.media.IMediaManager;
-import com.blackbox.user.IUserManager;
+import com.blackbox.foundation.EntityType;
+import com.blackbox.foundation.IEntityManager;
+import com.blackbox.foundation.BBPersistentObject;
+import com.blackbox.foundation.EntityReference;
+import com.blackbox.foundation.occasion.IOccasionManager;
+import com.blackbox.foundation.message.IMessageManager;
+import com.blackbox.foundation.media.IMediaManager;
+import com.blackbox.foundation.user.IUserManager;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

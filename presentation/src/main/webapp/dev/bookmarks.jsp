@@ -1,4 +1,4 @@
-<%@ page import="com.blackbox.EntityType" %>
+<%@ page import="com.blackbox.foundation.EntityType" %>
 <%@ include file="/WEB-INF/jsp/include/taglibs.jspf" %>
 <html>
 <head>
@@ -22,7 +22,7 @@
     <div>
         <c:choose>
             <c:when test="${s:enumName(bookmark.target.ownerType) eq 'USER'}" >
-                <%--@elvariable id="user" type="com.blackbox.user.User"--%>
+                <%--@elvariable id="user" type="com.blackbox.foundation.user.User"--%>
                 <c:set var="user" value="${bookmark.targetObject}" />
 
                 <s:link beanclass="com.blackbox.presentation.action.persona.PersonaActionBean">

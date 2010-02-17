@@ -1,9 +1,9 @@
 package com.blackbox.server.billing;
 
-import com.blackbox.billing.IBillingManager;
-import com.blackbox.billing.Money;
-import com.blackbox.billing.Transaction;
-import com.blackbox.user.User;
+import com.blackbox.foundation.billing.IBillingManager;
+import com.blackbox.foundation.billing.Money;
+import com.blackbox.foundation.billing.Transaction;
+import com.blackbox.foundation.user.User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

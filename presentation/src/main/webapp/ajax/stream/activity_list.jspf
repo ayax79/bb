@@ -1,6 +1,6 @@
-<%@ page import="com.blackbox.activity.ActivityTypeEnum" %>
-<%@ page import="com.blackbox.activity.IActivityThread" %>
-<%@ page import="com.blackbox.activity.IActivity" %>
+<%@ page import="com.blackbox.foundation.activity.ActivityTypeEnum" %>
+<%@ page import="com.blackbox.foundation.activity.IActivityThread" %>
+<%@ page import="com.blackbox.foundation.activity.IActivity" %>
 <%@ page import="com.blackbox.presentation.action.util.JSONUtil" %>
 
 <%@include file="/WEB-INF/jsp/include/page_header.jspf" %>

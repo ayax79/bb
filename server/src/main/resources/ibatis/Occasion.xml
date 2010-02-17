@@ -2,26 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="Occasion">
 
-    <resultMap id="SenderProfileResult" type="com.blackbox.activity.ActivityProfile">
+    <resultMap id="SenderProfileResult" type="com.blackbox.foundation.activity.ActivityProfile">
         <result property="senderAvatarImage"/>
         <result property="senderDisplayName"/>
         <result property="senderProfileImage"/>
     </resultMap>
 
-    <resultMap id="ParentActivityResult" type="com.blackbox.activity.ActivityReference">
-        <result property="activityType" column="parentActivityType" javaType="com.blackbox.activity.ActivityTypeEnum"
+    <resultMap id="ParentActivityResult" type="com.blackbox.foundation.activity.ActivityReference">
+        <result property="activityType" column="parentActivityType" javaType="com.blackbox.foundation.activity.ActivityTypeEnum"
                 jdbcType="INTEGER"/>
         <result property="guid" column="parentguid"/>
         <result property="postDate" column="parentActivityPostDate" javaType="jodaDate"/>
-        <result property="ownerType" column="parentOwnerType" javaType="com.blackbox.EntityType" jdbcType="INTEGER"/>
+        <result property="ownerType" column="parentOwnerType" javaType="com.blackbox.foundation.EntityType" jdbcType="INTEGER"/>
     </resultMap>
 
-    <resultMap id="GeoPointResult" type="com.blackbox.geo.GeoPoint">
+    <resultMap id="GeoPointResult" type="com.blackbox.foundation.geo.GeoPoint">
         <result property="latitude"/>
         <result property="longitude"/>
     </resultMap>
 
-    <resultMap id="AddressResult" type="com.blackbox.social.Address">
+    <resultMap id="AddressResult" type="com.blackbox.foundation.social.Address">
         <result property="address1"/>
         <result property="address2"/>
         <result property="city"/>
@@ -32,7 +32,7 @@
         <association property="geoLocation" resultMap="Occasion.GeoPointResult"/>
     </resultMap>
 
-    <resultMap id="OccasionNotifyOption" type="com.blackbox.occasion.OccasionNotifyOption">
+    <resultMap id="OccasionNotifyOption" type="com.blackbox.foundation.occasion.OccasionNotifyOption">
         <result property="guestBringFriendNbr"/>
         <result property="guestCanForward"/>
         <result property="guestMaxNbr"/>
@@ -45,13 +45,13 @@
         <result property="thankNotesSendViaEmail"/>
     </resultMap>
 
-    <resultMap id="ShallowOccasionResult" type="com.blackbox.occasion.Occasion" extends="BaseEntity.BaseEntityResult">
+    <resultMap id="ShallowOccasionResult" type="com.blackbox.foundation.occasion.Occasion" extends="BaseEntity.BaseEntityResult">
         <result property="description"/>
         <result property="location"/>
-        <result property="occasionLevel" javaType="com.blackbox.occasion.OccasionLevel" jdbcType="INTEGER"/>
+        <result property="occasionLevel" javaType="com.blackbox.foundation.occasion.OccasionLevel" jdbcType="INTEGER"/>
         <result property="postDate" javaType="jodaDate"/>
         <result property="owner.guid" column="owner_guid"/>
-        <result property="status" javaType="com.blackbox.Status" jdbcType="INTEGER"/>
+        <result property="status" javaType="com.blackbox.foundation.Status" jdbcType="INTEGER"/>
         <result property="totalEvents"/>
         <result property="twitterDescription"/>
         <result property="withGoogleMap"/>
@@ -62,7 +62,7 @@
         <association property="address" resultMap="Occasion.AddressResult"/>
     </resultMap>
 
-    <resultMap id="OccasionResult" type="com.blackbox.occasion.Occasion" extends="Occasion.ShallowOccasionResult">
+    <resultMap id="OccasionResult" type="com.blackbox.foundation.occasion.Occasion" extends="Occasion.ShallowOccasionResult">
         <association property="owner" select="User.loadByGuid" column="owner_guid"/>
         <association property="occasionWebDetail" select="OccasionWebDetail.load" column="occasionwebdetail_guid"/>
         <association property="layout" select="OccasionLayout.load" column="layout_guid"/>
@@ -72,7 +72,7 @@
         delete from bb_occasion where guid = #{value}
     </delete>
 
-    <insert id="insert" parameterType="com.blackbox.occasion.Occasion">
+    <insert id="insert" parameterType="com.blackbox.foundation.occasion.Occasion">
         insert into bb_occasion
         (address1, address2, avatarLocation, city, country, county, created, description, email, eventEndTime, eventTime,
         eventUrl, guestBringFriendNbr, guestCanForward, guestMaxNbr, hostBy, latitude, location, longitude, modified,
@@ -105,7 +105,7 @@
         #{owner.guid,jdbcType=VARCHAR}, #{guid,jdbcType=VARCHAR})
     </insert>
 
-    <update id="update" parameterType="com.blackbox.occasion.Occasion">
+    <update id="update" parameterType="com.blackbox.foundation.occasion.Occasion">
         update bb_occasion set
         address1 = #{address.address1,jdbcType=VARCHAR},
         address2 = #{address.address2,jdbcType=VARCHAR},
@@ -205,7 +205,7 @@
         select * from bb_occasion where owner_guid = #{value}
     </select>
 
-    <resultMap id="SceneOccasionResult" type="com.blackbox.occasion.Occasion">
+    <resultMap id="SceneOccasionResult" type="com.blackbox.foundation.occasion.Occasion">
         <result property="guid"/>
         <result property="address.city" column="city"/>
         <result property="address.state" column="state"/>
@@ -240,7 +240,7 @@
         </if>
     </select>
 
-    <select id="loadExplore" resultMap="Occasion.OccasionResult" parameterType="com.blackbox.search.ExploreRequest">
+    <select id="loadExplore" resultMap="Occasion.OccasionResult" parameterType="com.blackbox.foundation.search.ExploreRequest">
         select distinct o.* from
         bb_occasion o
         join bb_user u on (o.owner_guid = u.guid)
@@ -293,7 +293,7 @@
         </where>
     </select>
 
-    <select id="loadOccasions" parameterType="com.blackbox.occasion.OccasionRequest"
+    <select id="loadOccasions" parameterType="com.blackbox.foundation.occasion.OccasionRequest"
             resultMap="Occasion.OccasionResult">
         select o.* from bb_occasion o, bb_user u
         where

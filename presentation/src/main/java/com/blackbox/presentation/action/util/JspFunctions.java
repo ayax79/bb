@@ -1,22 +1,25 @@
 package com.blackbox.presentation.action.util;
 
-import com.blackbox.EntityReference;
-import com.blackbox.IEntity;
-import com.blackbox.activity.ActivityThread;
-import com.blackbox.activity.ActivityTypeEnum;
-import com.blackbox.activity.IActivity;
-import com.blackbox.occasion.Occasion;
+import com.blackbox.foundation.EntityReference;
+import com.blackbox.foundation.IEntity;
+import com.blackbox.foundation.activity.ActivityThread;
+import com.blackbox.foundation.activity.ActivityTypeEnum;
+import com.blackbox.foundation.activity.IActivity;
+import com.blackbox.foundation.occasion.Occasion;
+
 import static com.blackbox.presentation.action.util.PresentationUtil.getProperty;
 import static com.blackbox.presentation.action.util.PresentationUtil.getNameInfo;
+
 import com.blackbox.presentation.extension.BlackBoxContext;
-import com.blackbox.social.Relationship;
-import com.blackbox.social.RelationshipNetwork;
-import com.blackbox.social.ISocialManager;
-import com.blackbox.social.Vouch;
-import com.blackbox.user.User;
-import static com.blackbox.user.User.UserType.*;
-import com.blackbox.util.DateUtil;
-import com.blackbox.util.NameInfo;
+import com.blackbox.foundation.social.Relationship;
+import com.blackbox.foundation.social.RelationshipNetwork;
+import com.blackbox.foundation.social.ISocialManager;
+import com.blackbox.foundation.social.Vouch;
+import com.blackbox.foundation.user.User;
+import static com.blackbox.foundation.user.User.UserType.*;
+import com.blackbox.foundation.util.DateUtil;
+import com.blackbox.foundation.util.NameInfo;
+
 import net.sourceforge.stripes.action.ActionBeanContext;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
@@ -37,7 +40,9 @@ import org.yestech.lib.i18n.USStateEnum;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
+
 import static java.lang.Boolean.getBoolean;
+
 import java.lang.reflect.Method;
 import java.net.URLEncoder;
 import java.util.*;
@@ -71,7 +76,7 @@ public class JspFunctions {
             RelationshipNetwork network = context.getNetwork();
             if (network != null) {
                 return network.isFriend(e.getGuid()) ||
-                        network.isInRelationship(e.getGuid()) || 
+                        network.isInRelationship(e.getGuid()) ||
                         network.isRelationStatus(e.getGuid(), Relationship.RelationStatus.IN_RELATIONSHIP_PENDING);
             }
         }
@@ -79,6 +84,12 @@ public class JspFunctions {
     }
 
     public static boolean isBlocked(IEntity e) {
+        if (e == null) {
+            logger.warn("Null value passed into JspFunctions:isBlocked");
+            return false;
+        }
+
+
         ActionBeanContext actionBeanContext = PresentationResourceHolder.getContext();
         if (actionBeanContext instanceof BlackBoxContext) {
             BlackBoxContext context = (BlackBoxContext) actionBeanContext;
@@ -88,6 +99,11 @@ public class JspFunctions {
     }
 
     public static boolean isPending(IEntity e) {
+        if (e == null) {
+            logger.warn("Null value passed into JspFunctions:isPending");
+            return false;
+        }
+
         ActionBeanContext actionBeanContext = PresentationResourceHolder.getContext();
         if (actionBeanContext instanceof BlackBoxContext) {
 
@@ -108,6 +124,7 @@ public class JspFunctions {
             logger.warn("Null value passed into JspFunctions:isInRelationship");
             return false;
         }
+
         ActionBeanContext actionBeanContext = PresentationResourceHolder.getContext();
         if (actionBeanContext instanceof BlackBoxContext) {
 
@@ -150,6 +167,7 @@ public class JspFunctions {
             logger.warn("Null value passed into JspFunctions:isFollowing");
             return false;
         }
+
         ActionBeanContext actionBeanContext = PresentationResourceHolder.getContext();
         if (actionBeanContext instanceof BlackBoxContext) {
 
@@ -233,7 +251,7 @@ public class JspFunctions {
         return ActivityTypeEnum.MEDIA == activity.getActivityType();
     }
 
-    public static String activityThreadToJson(ActivityThread activityThread) throws JSONException {
+    public static String activityThreadToJson(ActivityThread<IActivity> activityThread) throws JSONException {
         return JSONUtil.toJSON(activityThread).toString();
     }
 
@@ -634,29 +652,29 @@ public class JspFunctions {
         return returnValue;
     }
 
-	public static boolean isAllowedToFollow(User user, String privacyUserGuid) {
-		return PrivacyUtils.isAllowedToFollow(user, privacyUserGuid);
-	}
+    public static boolean isAllowedToFollow(User user, String privacyUserGuid) {
+        return PrivacyUtils.isAllowedToFollow(user, privacyUserGuid);
+    }
 
-	public static boolean isAllowedToSearch(User user, String privacyUserGuid) {
-		return PrivacyUtils.isAllowedToSearch(user, privacyUserGuid);
-	}
+    public static boolean isAllowedToSearch(User user, String privacyUserGuid) {
+        return PrivacyUtils.isAllowedToSearch(user, privacyUserGuid);
+    }
 
-	public static boolean isAllowedToPrivateMessage(User user, String privacyUserGuid) {
-		return PrivacyUtils.isAllowedToPrivateMessage(user, privacyUserGuid);
-	}
+    public static boolean isAllowedToPrivateMessage(User user, String privacyUserGuid) {
+        return PrivacyUtils.isAllowedToPrivateMessage(user, privacyUserGuid);
+    }
 
-	public static boolean isAllowedToViewPersona(User user, String privacyUserGuid) {
-		return PrivacyUtils.isAllowedToViewPersona(user, privacyUserGuid);
-	}
+    public static boolean isAllowedToViewPersona(User user, String privacyUserGuid) {
+        return PrivacyUtils.isAllowedToViewPersona(user, privacyUserGuid);
+    }
 
-	public static boolean isAllowedToGift(User user, String privacyUserGuid) {
-		return PrivacyUtils.isAllowedToGift(user, privacyUserGuid);
-	}
+    public static boolean isAllowedToGift(User user, String privacyUserGuid) {
+        return PrivacyUtils.isAllowedToGift(user, privacyUserGuid);
+    }
 
-	public static boolean isAllowedToSeeStalk(User user, String privacyUserGuid) {
-		return PrivacyUtils.isAllowedToSeeStalk(user, privacyUserGuid);
-	}
+    public static boolean isAllowedToSeeStalk(User user, String privacyUserGuid) {
+        return PrivacyUtils.isAllowedToSeeStalk(user, privacyUserGuid);
+    }
 
 
 }

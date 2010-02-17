@@ -1,7 +1,7 @@
 package com.blackbox.server.user;
 
 import com.blackbox.server.util.PersistenceUtil;
-import com.blackbox.user.ExternalCredentials;
+import com.blackbox.foundation.user.ExternalCredentials;
 import org.springframework.orm.ibatis3.SqlSessionOperations;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;

@@ -1,21 +1,21 @@
 package com.blackbox.server.message;
 
-import com.blackbox.activity.IRecipient;
-import com.blackbox.message.MailboxRequest;
-import com.blackbox.message.Message;
-import com.blackbox.message.MessageRecipient;
+import com.blackbox.foundation.activity.IRecipient;
+import com.blackbox.foundation.message.MailboxRequest;
+import com.blackbox.foundation.message.Message;
+import com.blackbox.foundation.message.MessageRecipient;
 import com.blackbox.server.BaseIntegrationTest;
 import com.blackbox.server.user.IUserDao;
-import com.blackbox.social.NetworkTypeEnum;
+import com.blackbox.foundation.social.NetworkTypeEnum;
 import com.blackbox.testingutils.UserFixture;
-import com.blackbox.user.User;
+import com.blackbox.foundation.user.User;
 import org.joda.time.DateTime;
 import org.junit.Test;
 
 import javax.annotation.Resource;
 import java.util.List;
 
-import static com.blackbox.message.MailboxRequest.MailboxFolder.*;
+import static com.blackbox.foundation.message.MailboxRequest.MailboxFolder.*;
 import static junit.framework.Assert.*;
 
 public class MessageDaoIntegrationTest extends BaseIntegrationTest {

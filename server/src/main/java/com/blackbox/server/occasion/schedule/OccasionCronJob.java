@@ -5,13 +5,13 @@
 
 package com.blackbox.server.occasion.schedule;
 
-import com.blackbox.occasion.IOccasionManager;
-import com.blackbox.occasion.Occasion;
-import com.blackbox.occasion.OccasionRequest;
+import com.blackbox.foundation.occasion.IOccasionManager;
+import com.blackbox.foundation.occasion.Occasion;
+import com.blackbox.foundation.occasion.OccasionRequest;
 import com.blackbox.server.occasion.event.Occasion1DayReminderEvent;
 import com.blackbox.server.occasion.event.Occasion7DayReminderEvent;
 import com.blackbox.server.occasion.event.OccasionRsvpListEvent;
-import com.blackbox.util.Bounds;
+import com.blackbox.foundation.util.Bounds;
 import org.joda.time.DateMidnight;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

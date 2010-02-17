@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="AvatarImage">
 
-    <resultMap id="AvatarImageResult" type="com.blackbox.media.AvatarImage">
+    <resultMap id="AvatarImageResult" type="com.blackbox.foundation.media.AvatarImage">
         <result property="entityGuid" column="guid"/>
         <result property="userType" column="type"/>
         <result property="name" column="username"/>

@@ -2,8 +2,8 @@ package com.blackbox.server.social;
 
 import com.blackbox.server.BaseIntegrationTest;
 import com.blackbox.server.user.IUserDao;
-import com.blackbox.social.Relationship;
-import com.blackbox.user.User;
+import com.blackbox.foundation.social.Relationship;
+import com.blackbox.foundation.user.User;
 import org.junit.Test;
 
 import javax.annotation.Resource;

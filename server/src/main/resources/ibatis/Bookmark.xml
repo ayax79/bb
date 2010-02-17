@@ -2,27 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="Bookmark">
 
-    <resultMap id="TargetResult" type="com.blackbox.EntityReference">
+    <resultMap id="TargetResult" type="com.blackbox.foundation.EntityReference">
         <result property="guid" column="referenceguid"/>
-        <result property="ownerType" column="referencetype" javaType="com.blackbox.EntityType" jdbcType="INTEGER"/>
+        <result property="ownerType" column="referencetype" javaType="com.blackbox.foundation.EntityType" jdbcType="INTEGER"/>
     </resultMap>
 
-    <resultMap id="BookmarkResult" type="com.blackbox.bookmark.Bookmark"
+    <resultMap id="BookmarkResult" type="com.blackbox.foundation.bookmark.Bookmark"
                extends="BBPersistentObject.BBPersistentObjectResult">
         <result property="owner.guid" column="owner_guid"/>
         <result property="description"/>
-        <result property="type" javaType="com.blackbox.bookmark.Bookmark$BookmarkType" jdbcType="INTEGER"/>
+        <result property="type" javaType="com.blackbox.foundation.bookmark.Bookmark$BookmarkType" jdbcType="INTEGER"/>
         <result property="acknowledged"/>
         <association property="target" resultMap="TargetResult"/>
     </resultMap>
 
-    <resultMap id="PartialBookmarkResult" type="com.blackbox.bookmark.Bookmark">
+    <resultMap id="PartialBookmarkResult" type="com.blackbox.foundation.bookmark.Bookmark">
         <result property="owner.guid" column="owner_guid"/>
         <result property="target.guid" column="referenceguid"/>
         <result property="description"/>
     </resultMap>
 
-    <insert id="insert" parameterType="com.blackbox.bookmark.Bookmark">
+    <insert id="insert" parameterType="com.blackbox.foundation.bookmark.Bookmark">
         insert into bb_bookmark
         (acknowledged, created, description, modified, referenceGuid, referenceType, type, version, owner_guid, guid)
         values
@@ -31,7 +31,7 @@
         #{version,jdbcType=INTEGER},#{owner.guid,jdbcType=VARCHAR},#{guid,jdbcType=VARCHAR})
     </insert>
 
-    <update id="update" parameterType="com.blackbox.bookmark.Bookmark">
+    <update id="update" parameterType="com.blackbox.foundation.bookmark.Bookmark">
         update bb_bookmark set
         acknowledged = #{acknowledged,jdbcType=BOOLEAN},
         description = #{description,jdbcType=VARCHAR},

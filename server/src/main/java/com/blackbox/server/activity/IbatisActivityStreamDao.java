@@ -1,16 +1,16 @@
 package com.blackbox.server.activity;
 
-import com.blackbox.EntityReference;
-import com.blackbox.activity.*;
-import com.blackbox.media.MediaMetaData;
-import com.blackbox.message.Message;
+import com.blackbox.foundation.EntityReference;
+import com.blackbox.foundation.activity.*;
+import com.blackbox.foundation.media.MediaMetaData;
+import com.blackbox.foundation.message.Message;
 import com.blackbox.server.media.IMediaDao;
 import com.blackbox.server.message.IMessageDao;
 import com.blackbox.server.util.PersistenceUtil;
-import com.blackbox.social.NetworkTypeEnum;
-import com.blackbox.social.Relationship;
-import com.blackbox.util.Bounds;
-import com.blackbox.util.PaginationUtil;
+import com.blackbox.foundation.social.NetworkTypeEnum;
+import com.blackbox.foundation.social.Relationship;
+import com.blackbox.foundation.util.Bounds;
+import com.blackbox.foundation.util.PaginationUtil;
 import org.compass.core.CompassOperations;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,11 +23,11 @@ import javax.annotation.Resource;
 import java.text.MessageFormat;
 import java.util.*;
 
-import static com.blackbox.activity.AscendingActivityComparator.getAscendingActivityComparator;
-import static com.blackbox.activity.DescendingActivityThreadComparator.getDescendingActivityThreadComparator;
+import static com.blackbox.foundation.activity.AscendingActivityComparator.getAscendingActivityComparator;
+import static com.blackbox.foundation.activity.DescendingActivityThreadComparator.getDescendingActivityThreadComparator;
 import static com.blackbox.server.activity.ActivityUtil.createActivityThreadList;
 import static com.blackbox.server.activity.ActivityUtil.isComment;
-import static com.blackbox.social.NetworkTypeEnum.*;
+import static com.blackbox.foundation.social.NetworkTypeEnum.*;
 import static com.google.common.collect.Lists.newArrayList;
 import static com.google.common.collect.Maps.newHashMap;
 import static com.google.common.collect.Sets.newTreeSet;
@@ -86,7 +86,7 @@ public class IbatisActivityStreamDao implements IActivityStreamDao {
 //
 //    @Language("HQL")
 //    private static final String FOLLOWING_MESSAGE_QUERY = "select " +
-//            " new com.blackbox.message.Message(m.guid, m.postDate, m.recipientDepth, m.body, " +
+//            " new com.blackbox.foundation.message.Message(m.guid, m.postDate, m.recipientDepth, m.body, " +
 //            " mm.artifactOwner.guid, mm.artifactOwner.ownerType, m.virtualGift ) " +
 //            " from Message m, MessageMetaData mm " +
 //            " where " +
@@ -104,7 +104,7 @@ public class IbatisActivityStreamDao implements IActivityStreamDao {
 //
 //    @Language("HQL")
 //    private static final String FOLLOWING_MEDIA_QUERY = "select " +
-//            " new com.blackbox.media.MediaMetaData(mm.guid, mm.postDate, mm.recipientDepth, mm.comment, mm.location," +
+//            " new com.blackbox.foundation.media.MediaMetaData(mm.guid, mm.postDate, mm.recipientDepth, mm.comment, mm.location," +
 //            " mm.mimeType, mm.thumbnailLocation, " +
 //            " mm.artifactOwner.guid, mm.artifactOwner.ownerType, mm.virtualGift ) " +
 //            " from MediaMetaData mm " +
@@ -124,7 +124,7 @@ public class IbatisActivityStreamDao implements IActivityStreamDao {
 //
 //    @Language("HQL")
 //    private static final String FRIEND_MESSAGE_QUERY = "select " +
-//            " new com.blackbox.message.Message(m.guid, m.postDate, m.recipientDepth, m.body, " +
+//            " new com.blackbox.foundation.message.Message(m.guid, m.postDate, m.recipientDepth, m.body, " +
 //            " mm.artifactOwner.guid, mm.artifactOwner.ownerType, m.virtualGift ) " +
 //            " from Message m, MessageMetaData mm " +
 //            " where " +
@@ -142,7 +142,7 @@ public class IbatisActivityStreamDao implements IActivityStreamDao {
 //
 //    @Language("HQL")
 //    private static final String FRIEND_MEDIA_QUERY = "select " +
-//            " new com.blackbox.media.MediaMetaData(mm.guid, mm.postDate, mm.recipientDepth, mm.comment, mm.location," +
+//            " new com.blackbox.foundation.media.MediaMetaData(mm.guid, mm.postDate, mm.recipientDepth, mm.comment, mm.location," +
 //            " mm.mimeType, mm.thumbnailLocation, " +
 //            " mm.artifactOwner.guid, mm.artifactOwner.ownerType, mm.virtualGift ) " +
 //            " from MediaMetaData mm " +
@@ -163,7 +163,7 @@ public class IbatisActivityStreamDao implements IActivityStreamDao {
 //
 //    @Language("HQL")
 //    private static final String EVERYTHING_MESSAGE_QUERY = "select " +
-//            " new com.blackbox.message.Message(m.guid, m.postDate, m.recipientDepth, m.body, " +
+//            " new com.blackbox.foundation.message.Message(m.guid, m.postDate, m.recipientDepth, m.body, " +
 //            " mm.artifactOwner.guid, mm.artifactOwner.ownerType, m.virtualGift ) " +
 //            " from Message m, MessageMetaData mm " +
 //            " where " +
@@ -200,7 +200,7 @@ public class IbatisActivityStreamDao implements IActivityStreamDao {
 //
 //    @Language("HQL")
 //    private static final String EVERYTHING_MEDIA_QUERY = "select " +
-//            " new com.blackbox.media.MediaMetaData(mm.guid, mm.postDate, mm.recipientDepth, mm.comment, mm.location," +
+//            " new com.blackbox.foundation.media.MediaMetaData(mm.guid, mm.postDate, mm.recipientDepth, mm.comment, mm.location," +
 //            " mm.mimeType, mm.thumbnailLocation, " +
 //            " mm.artifactOwner.guid, mm.artifactOwner.ownerType, mm.virtualGift ) " +
 //            " from MediaMetaData mm " +
@@ -240,7 +240,7 @@ public class IbatisActivityStreamDao implements IActivityStreamDao {
 //
 //    @Language("HQL")
 //    private static final String PUBLIC_MESSAGE_QUERY = "select " +
-//            " new com.blackbox.message.Message(m.guid, m.postDate, m.recipientDepth, m.body, " +
+//            " new com.blackbox.foundation.message.Message(m.guid, m.postDate, m.recipientDepth, m.body, " +
 //            " mm.artifactOwner.guid, mm.artifactOwner.ownerType, m.virtualGift ) " +
 //            " from Message m, MessageMetaData mm " +
 //            " where " +
@@ -252,7 +252,7 @@ public class IbatisActivityStreamDao implements IActivityStreamDao {
 //
 //    @Language("HQL")
 //    private static final String PUBLIC_MEDIA_QUERY = "select " +
-//            " new com.blackbox.media.MediaMetaData(mm.guid, mm.postDate, mm.recipientDepth, mm.comment, mm.location," +
+//            " new com.blackbox.foundation.media.MediaMetaData(mm.guid, mm.postDate, mm.recipientDepth, mm.comment, mm.location," +
 //            " mm.mimeType, mm.thumbnailLocation, " +
 //            " mm.artifactOwner.guid, mm.artifactOwner.ownerType, mm.virtualGift ) " +
 //            " from MediaMetaData mm " +

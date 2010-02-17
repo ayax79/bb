@@ -1,6 +1,6 @@
 package com.blackbox.server.user.event;
 
-import com.blackbox.user.User;
+import com.blackbox.foundation.user.User;
 import org.yestech.event.event.IEvent;
 
 /**

@@ -1,5 +1,5 @@
 <%@ tag language="java" %>
-<%@ attribute name="user" required="true" type="com.blackbox.user.User" %>
+<%@ attribute name="user" required="true" type="com.blackbox.foundation.user.User" %>
 <%@ attribute name="relationshipType" required="true" %>
 <%@ attribute name="beanclass" required="true" %>
 <%@ attribute name="event" required="true" %>

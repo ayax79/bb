@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="BillingInfo">
 
-    <resultMap id="BillingInfoResult" type="com.blackbox.billing.BillingInfo">
+    <resultMap id="BillingInfoResult" type="com.blackbox.foundation.billing.BillingInfo">
         <result property="address.address1" column="address1"/>
         <result property="address.address2" column="address2"/>
         <result property="address.city" column="city" />
@@ -14,7 +14,7 @@
         <result property="address.zipCode" column="zipCode"/>
         <result property="providerGuid" />
         <result property="billingPhone" />
-        <result property="provider" javaType="com.blackbox.billing.BillingInfo$BillingProvider" jdbcType="INTEGER" />
+        <result property="provider" javaType="com.blackbox.foundation.billing.BillingInfo$BillingProvider" jdbcType="INTEGER" />
         <result property="lastBilled" javaType="jodaDate" />
         <result property="lastExpirationDate" javaType="jodaDate" />
         <result property="nextBillDate" javaType="jodaDate" />
@@ -28,7 +28,7 @@
         <result property="user.guid" column="user_guid" />
     </resultMap>
 
-    <insert id="insert" parameterType="com.blackbox.billing.BillingInfo">
+    <insert id="insert" parameterType="com.blackbox.foundation.billing.BillingInfo">
         insert into bb_billing_info
         (address1, address2, authResponse, billingPhone, city, country, county, created, lastAmount, lastBilled,
         lastCardNum, lastCardType, lastExpirationDate, lastResponse, latitude, longitude, modified, nextBillDate, provider,
@@ -63,7 +63,7 @@
         #{guid,jdbcType=VARCHAR} )
     </insert>
 
-    <update id="update" parameterType="com.blackbox.billing.BillingInfo">
+    <update id="update" parameterType="com.blackbox.foundation.billing.BillingInfo">
         update bb_billing_info set
         address1 = #{address.address1,jdbcType=VARCHAR},
         address2 = #{address.address2,jdbcType=VARCHAR},

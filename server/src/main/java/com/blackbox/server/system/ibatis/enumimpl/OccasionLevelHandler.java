@@ -1,7 +1,7 @@
 package com.blackbox.server.system.ibatis.enumimpl;
 
 import com.blackbox.server.system.ibatis.OrdinalEnumTypeHandler;
-import com.blackbox.occasion.OccasionLevel;
+import com.blackbox.foundation.occasion.OccasionLevel;
 
 public class OccasionLevelHandler extends OrdinalEnumTypeHandler {
 

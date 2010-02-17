@@ -1,7 +1,7 @@
 package com.blackbox.server.media.event;
 
 import org.yestech.event.event.BaseEvent;
-import com.blackbox.activity.IActivity;
+import com.blackbox.foundation.activity.IActivity;
 
 public class VirtualGiftAcceptedEvent extends BaseEvent<IActivity> {
 

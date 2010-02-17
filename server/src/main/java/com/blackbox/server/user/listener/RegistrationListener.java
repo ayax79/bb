@@ -10,7 +10,7 @@ import org.yestech.event.multicaster.IEventMulticaster;
 import org.yestech.event.annotation.ListenedEvents;
 import org.yestech.event.annotation.AsyncListener;
 import com.blackbox.server.user.event.RegisterUserEvent;
-import com.blackbox.user.IUser;
+import com.blackbox.foundation.user.IUser;
 
 /**
  * @author Artie Copeland

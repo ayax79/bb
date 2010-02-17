@@ -1,6 +1,6 @@
 package com.blackbox.server.system.ibatis.enumimpl;
 
-import com.blackbox.occasion.AttendeeSource;
+import com.blackbox.foundation.occasion.AttendeeSource;
 import com.blackbox.server.system.ibatis.OrdinalEnumTypeHandler;
 
 /**

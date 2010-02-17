@@ -1,12 +1,12 @@
 package com.blackbox.server.media;
 
-import com.blackbox.*;
-import com.blackbox.bookmark.IBookmarkManager;
-import com.blackbox.media.AvatarImage;
-import com.blackbox.media.MediaLibrary;
-import com.blackbox.media.MediaMetaData;
+import com.blackbox.foundation.*;
+import com.blackbox.foundation.bookmark.IBookmarkManager;
+import com.blackbox.foundation.media.AvatarImage;
+import com.blackbox.foundation.media.MediaLibrary;
+import com.blackbox.foundation.media.MediaMetaData;
 import com.blackbox.server.user.IUserDao;
-import com.blackbox.user.User;
+import com.blackbox.foundation.user.User;
 
 import static com.google.common.collect.Lists.newArrayList;
 import static junit.framework.Assert.assertNotNull;
@@ -40,7 +40,8 @@ import static java.lang.String.valueOf;
 @Ignore
 public class MediaManagerUnitTest {
 
-    @Mock IEntity ownerMock;
+    @Mock
+    IEntity ownerMock;
     @Mock ICacheManager<String, AvatarImage> avatarImageCache;
     @Mock IMediaDao mediaDao;
     @Mock IBookmarkManager bookmarkManager;

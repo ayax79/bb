@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import static org.mockito.Mockito.*;
 import com.blackbox.server.external.IUrlShortener;
-import com.blackbox.message.Message;
+import com.blackbox.foundation.message.Message;
 
 import java.io.IOException;
 

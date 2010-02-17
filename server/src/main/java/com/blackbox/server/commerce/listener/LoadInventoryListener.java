@@ -5,15 +5,14 @@
  */
 package com.blackbox.server.commerce.listener;
 
-import com.blackbox.commerce.Inventory;
-import com.blackbox.commerce.Product;
+import com.blackbox.foundation.commerce.Inventory;
+import com.blackbox.foundation.commerce.Product;
 import com.blackbox.server.BaseBlackboxListener;
 import com.blackbox.server.commerce.IInventoryDao;
 import com.blackbox.server.commerce.event.LoadInventoryEvent;
 import org.yestech.event.ResultReference;
 import org.yestech.event.annotation.ListenedEvents;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**

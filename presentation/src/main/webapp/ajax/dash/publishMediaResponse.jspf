@@ -1,5 +1,5 @@
 <%@ page import="com.blackbox.presentation.action.util.JSONUtil" %>
-<%@ page import="com.blackbox.media.MediaMetaData" %>
+<%@ page import="com.blackbox.foundation.media.MediaMetaData" %>
 <%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
 <%--@elvariable id="actionBean" type="com.blackbox.presentation.action.media.PublishActionBean"--%>
 <c:set var="mmd" value="${actionBean.mediaMetaData}" />

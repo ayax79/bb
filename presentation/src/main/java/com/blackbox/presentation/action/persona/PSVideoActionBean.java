@@ -4,8 +4,8 @@
  */
 package com.blackbox.presentation.action.persona;
 
-import com.blackbox.media.IMediaManager;
-import com.blackbox.media.MediaLibrary;
+import com.blackbox.foundation.media.IMediaManager;
+import com.blackbox.foundation.media.MediaLibrary;
 import com.blackbox.presentation.action.BaseBlackBoxActionBean;
 import net.sourceforge.stripes.action.DontValidate;
 import net.sourceforge.stripes.action.FileBean;

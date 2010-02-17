@@ -1,6 +1,6 @@
 package com.blackbox.server.user;
 
-import com.blackbox.user.ViewedBy;
+import com.blackbox.foundation.user.ViewedBy;
 import com.blackbox.server.util.PersistenceUtil;
 import org.springframework.orm.ibatis3.SqlSessionOperations;
 import org.springframework.stereotype.Repository;

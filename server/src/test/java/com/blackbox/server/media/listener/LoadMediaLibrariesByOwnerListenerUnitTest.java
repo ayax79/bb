@@ -1,11 +1,11 @@
 package com.blackbox.server.media.listener;
 
-import com.blackbox.EntityReference;
-import com.blackbox.media.MediaLibrary;
+import com.blackbox.foundation.EntityReference;
+import com.blackbox.foundation.media.MediaLibrary;
 import com.blackbox.server.media.IMediaDao;
 import com.blackbox.server.media.event.LoadMediaLibrariesByOwnerEvent;
 import static com.blackbox.server.BBTestUtils.assertValidListener;
-import com.blackbox.user.User;
+import com.blackbox.foundation.user.User;
 import static com.google.common.collect.Lists.newArrayList;
 import org.jmock.Expectations;
 import org.jmock.Mockery;

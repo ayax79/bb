@@ -9,7 +9,7 @@ import com.blackbox.point.Point;
 import com.blackbox.point.Points;
 import com.blackbox.server.point.event.AddPointEvent;
 import com.blackbox.server.point.event.LoadPointsByUserGuidEvent;
-import com.blackbox.user.User;
+import com.blackbox.foundation.user.User;
 import static com.google.common.collect.Lists.newArrayList;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;

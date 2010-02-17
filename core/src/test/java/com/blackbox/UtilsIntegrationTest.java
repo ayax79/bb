@@ -6,6 +6,8 @@
 package com.blackbox;
 
 import static org.junit.Assert.assertEquals;
+
+import com.blackbox.foundation.Utils;
 import org.junit.Test;
 
 import java.io.IOException;

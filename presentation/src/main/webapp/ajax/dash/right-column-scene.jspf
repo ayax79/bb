@@ -61,7 +61,7 @@
 
 	<c:choose>
 		<c:when test="${not empty actionBean.occasions}">
-			<%--@elvariable id="occasion" type="com.blackbox.occasion.Occasion"--%>
+			<%--@elvariable id="occasion" type="com.blackbox.foundation.occasion.Occasion"--%>
 			<c:forEach var="occasion" items="${actionBean.occasions}">
 				<div class="events-container section">
                     <s:link beanclass="com.blackbox.presentation.action.psevent.PSShowEventActionBean"><s:param name="eventParam" value="${occasion.guid}"/>

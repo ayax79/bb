@@ -1,6 +1,6 @@
 <%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
-<%@ page import="com.blackbox.user.LookingForEnum" %>
-<%@ page import="com.blackbox.user.SexEnum" %>
+<%@ page import="com.blackbox.foundation.user.LookingForEnum" %>
+<%@ page import="com.blackbox.foundation.user.SexEnum" %>
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -96,7 +96,7 @@
     <div class="edit_con_list">
         <div class="edit_con_tit"><s:label for="profile.sex"/></div>
         <div class="edit_con_inp">
-            <c:forEach var="val" items="${bb:enumValues('com.blackbox.user.SexEnum')}" varStatus="status">
+            <c:forEach var="val" items="${bb:enumValues('com.blackbox.foundation.user.SexEnum')}" varStatus="status">
                 <div class="edit_inp_con1">
                     <s:checkbox name="profile.sex" value="${s:enumName(val)}"/><fmt:message key="SexEnum.${s:enumName(val)}"/>
                 </div>
@@ -118,7 +118,7 @@
     <div class="edit_con_list">
         <div class="edit_con_tit"><s:label for="profile.lookingFor"/></div>
         <div class="edit_con_inp">
-            <c:forEach var="val" items="${bb:enumValues('com.blackbox.user.LookingForEnum')}"
+            <c:forEach var="val" items="${bb:enumValues('com.blackbox.foundation.user.LookingForEnum')}"
                        varStatus="status">
                 <div class="edit_inp_con1"><s:checkbox name="profile.lookingFor.${s:enumName(val)}"/><fmt:message
                         key="LookingForEnum.${s:enumName(val)}"/></div>

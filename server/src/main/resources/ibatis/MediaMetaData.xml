@@ -2,26 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="MediaMetaData">
 
-    <resultMap id="OwnerResult" type="com.blackbox.EntityReference">
+    <resultMap id="OwnerResult" type="com.blackbox.foundation.EntityReference">
         <result property="guid" column="ownerGuid"/>
-        <result property="ownerType" column="ownerOwnerType" javaType="com.blackbox.EntityType" jdbcType="INTEGER"/>
+        <result property="ownerType" column="ownerOwnerType" javaType="com.blackbox.foundation.EntityType" jdbcType="INTEGER"/>
     </resultMap>
 
-    <resultMap id="ParentActivityResult" type="com.blackbox.activity.ActivityReference">
-        <result property="activityType" column="parentActivityType" javaType="com.blackbox.activity.ActivityTypeEnum"
+    <resultMap id="ParentActivityResult" type="com.blackbox.foundation.activity.ActivityReference">
+        <result property="activityType" column="parentActivityType" javaType="com.blackbox.foundation.activity.ActivityTypeEnum"
                 jdbcType="INTEGER"/>
         <result property="guid" column="parentGuid"/>
-        <result property="ownerType" column="parentOwnerType" javaType="com.blackbox.EntityType" jdbcType="INTEGER"/>
+        <result property="ownerType" column="parentOwnerType" javaType="com.blackbox.foundation.EntityType" jdbcType="INTEGER"/>
         <result property="postDate" column="parentActivityType" javaType="jodaDate"/>
     </resultMap>
 
-    <resultMap id="SenderProfileResult" type="com.blackbox.activity.ActivityProfile">
+    <resultMap id="SenderProfileResult" type="com.blackbox.foundation.activity.ActivityProfile">
         <result property="senderAvatarImage"/>
         <result property="senderDisplayName"/>
         <result property="senderProfileImage"/>
     </resultMap>
 
-    <resultMap id="MediaMetaDataResult" type="com.blackbox.media.MediaMetaData" extends="BaseEntity.BaseEntityResult">
+    <resultMap id="MediaMetaDataResult" type="com.blackbox.foundation.media.MediaMetaData" extends="BaseEntity.BaseEntityResult">
         <result property="acknowledged"/>
         <result property="artifactType" typeHandler="com.blackbox.server.system.ibatis.enumimpl.ArtifactTypeHandler"
                 javaType="artifactType" jdbcType="INTEGER"/>
@@ -38,7 +38,7 @@
         <result property="passwordProtect"/>
         <result property="postDate" javaType="jodaDate"/>
         <result property="profile"/>
-        <result property="recipientDepth" javaType="com.blackbox.social.NetworkTypeEnum" jdbcType="INTEGER"/>
+        <result property="recipientDepth" javaType="com.blackbox.foundation.social.NetworkTypeEnum" jdbcType="INTEGER"/>
         <result property="virtualGift"/>
         <association property="senderProfile" resultMap="MediaMetaData.SenderProfileResult"/>
         <association property="artifactOwner" resultMap="OwnerResult"/>
@@ -48,7 +48,7 @@
         delete from bb_media_meta_data where guid = #{value}
     </delete>
 
-    <insert id="insert" parameterType="com.blackbox.media.MediaMetaData">
+    <insert id="insert" parameterType="com.blackbox.foundation.media.MediaMetaData">
         insert into bb_media_meta_data
         (acknowledged, artifactType, aspect, assetId, avatar, comment, contentSize, created, episodeId, fileName,
         libraryMedia, location, loosePic, mimeType, modified, ownerGuid, ownerOwnerType, parentActivityPostDate,
@@ -76,7 +76,7 @@
         #{guid,jdbcType=VARCHAR})
     </insert>
 
-    <update id="update" parameterType="com.blackbox.media.MediaMetaData">
+    <update id="update" parameterType="com.blackbox.foundation.media.MediaMetaData">
         update bb_media_meta_data set
         acknowledged = #{acknowledged,jdbcType=BOOLEAN},
         artifactType = #{artifactType,javaType=artifactType,jdbcType=INTEGER},

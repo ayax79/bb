@@ -1,6 +1,6 @@
 package com.blackbox.server.activity.event;
 
-import com.blackbox.activity.ActivityRequest;
+import com.blackbox.foundation.activity.ActivityRequest;
 import org.yestech.event.event.BaseEvent;
 
 /**

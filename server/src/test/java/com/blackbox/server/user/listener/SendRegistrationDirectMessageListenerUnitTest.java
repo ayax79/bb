@@ -1,11 +1,11 @@
 package com.blackbox.server.user.listener;
 
-import com.blackbox.activity.IRecipient;
-import com.blackbox.message.IMessageManager;
-import com.blackbox.message.Message;
-import com.blackbox.message.MessageRecipient;
+import com.blackbox.foundation.activity.IRecipient;
+import com.blackbox.foundation.message.IMessageManager;
+import com.blackbox.foundation.message.Message;
+import com.blackbox.foundation.message.MessageRecipient;
 import com.blackbox.server.user.event.RegisterUserEvent;
-import com.blackbox.user.User;
+import com.blackbox.foundation.user.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;

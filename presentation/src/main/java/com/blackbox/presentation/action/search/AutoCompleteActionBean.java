@@ -1,10 +1,10 @@
 package com.blackbox.presentation.action.search;
 
 import com.blackbox.presentation.action.BaseBlackBoxActionBean;
-import com.blackbox.social.RelationshipNetwork;
-import com.blackbox.user.IUserManager;
-import com.blackbox.user.User;
-import com.blackbox.util.NameInfo;
+import com.blackbox.foundation.social.RelationshipNetwork;
+import com.blackbox.foundation.user.IUserManager;
+import com.blackbox.foundation.user.User;
+import com.blackbox.foundation.util.NameInfo;
 import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 import net.sourceforge.stripes.action.ForwardResolution;

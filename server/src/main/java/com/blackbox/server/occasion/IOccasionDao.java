@@ -5,13 +5,13 @@
 
 package com.blackbox.server.occasion;
 
-import com.blackbox.occasion.Attendee;
-import com.blackbox.occasion.AttendingStatus;
-import com.blackbox.occasion.Occasion;
-import com.blackbox.occasion.OccasionRequest;
-import com.blackbox.search.ExploreRequest;
-import com.blackbox.user.PaginationResults;
-import com.blackbox.util.Bounds;
+import com.blackbox.foundation.occasion.Attendee;
+import com.blackbox.foundation.occasion.AttendingStatus;
+import com.blackbox.foundation.occasion.Occasion;
+import com.blackbox.foundation.occasion.OccasionRequest;
+import com.blackbox.foundation.search.ExploreRequest;
+import com.blackbox.foundation.user.PaginationResults;
+import com.blackbox.foundation.util.Bounds;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;

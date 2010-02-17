@@ -1,11 +1,11 @@
 package com.blackbox.presentation.action.persona;
 
-import com.blackbox.EntityReference;
-import com.blackbox.social.ISocialManager;
-import com.blackbox.user.IUserManager;
-import com.blackbox.user.MiniProfile;
+import com.blackbox.foundation.EntityReference;
+import com.blackbox.foundation.social.ISocialManager;
+import com.blackbox.foundation.user.IUserManager;
+import com.blackbox.foundation.user.MiniProfile;
 import com.blackbox.presentation.action.BaseBlackBoxActionBean;
-import com.blackbox.user.User;
+import com.blackbox.foundation.user.User;
 import net.sourceforge.stripes.action.*;
 import net.sourceforge.stripes.integration.spring.SpringBean;
 

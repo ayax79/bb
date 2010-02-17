@@ -6,7 +6,7 @@ package com.blackbox.presentation.action.user;
 
 import com.blackbox.presentation.action.BaseBlackBoxActionBean;
 import com.blackbox.presentation.action.util.PresentationUtil;
-import com.blackbox.user.IUserManager;
+import com.blackbox.foundation.user.IUserManager;
 import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.action.UrlBinding;
 import net.sourceforge.stripes.integration.spring.SpringBean;

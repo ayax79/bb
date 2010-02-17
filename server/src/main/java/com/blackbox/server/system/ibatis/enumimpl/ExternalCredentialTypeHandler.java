@@ -1,7 +1,7 @@
 package com.blackbox.server.system.ibatis.enumimpl;
 
 import com.blackbox.server.system.ibatis.OrdinalEnumTypeHandler;
-import com.blackbox.user.ExternalCredentials;
+import com.blackbox.foundation.user.ExternalCredentials;
 
 /**
  * @author A.J. Wright

@@ -1,12 +1,12 @@
 package com.blackbox.presentation.action.bookmark;
 
-import com.blackbox.EntityReference;
-import com.blackbox.bookmark.Bookmark;
-import com.blackbox.bookmark.IBookmarkManager;
+import com.blackbox.foundation.EntityReference;
+import com.blackbox.foundation.bookmark.Bookmark;
+import com.blackbox.foundation.bookmark.IBookmarkManager;
 import com.blackbox.presentation.action.BaseBlackBoxActionBean;
 import static com.blackbox.presentation.action.util.JSONUtil.toJSON;
-import com.blackbox.user.IUser;
-import com.blackbox.user.User;
+import com.blackbox.foundation.user.IUser;
+import com.blackbox.foundation.user.User;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.Resolution;

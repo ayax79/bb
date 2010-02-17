@@ -5,7 +5,7 @@
 
 package com.blackbox.server.occasion.listener;
 
-import com.blackbox.occasion.Occasion;
+import com.blackbox.foundation.occasion.Occasion;
 import com.blackbox.server.occasion.event.OccasionEvent;
 import com.blackbox.server.BaseBlackboxListener;
 import org.slf4j.Logger;

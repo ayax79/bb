@@ -5,9 +5,9 @@
  */
 package com.blackbox.server.commerce;
 
-import com.blackbox.commerce.ShoppingCart;
-import com.blackbox.commerce.Invoice;
-import com.blackbox.commerce.Merchant;
+import com.blackbox.foundation.commerce.ShoppingCart;
+import com.blackbox.foundation.commerce.Invoice;
+import com.blackbox.foundation.commerce.Merchant;
 
 import java.util.UUID;
 

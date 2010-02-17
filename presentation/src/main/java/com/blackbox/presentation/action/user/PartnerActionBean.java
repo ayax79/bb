@@ -1,5 +1,6 @@
 package com.blackbox.presentation.action.user;
 
+import com.blackbox.foundation.EntityType;
 import net.sourceforge.stripes.action.*;
 import net.sourceforge.stripes.integration.spring.SpringBean;
 import static org.apache.commons.lang.StringUtils.isNotBlank;
@@ -8,17 +9,15 @@ import org.json.JSONException;
 
 import javax.servlet.http.Cookie;
 
-import com.blackbox.presentation.action.util.PresentationUtil;
 import static com.blackbox.presentation.action.util.PresentationUtil.getProperty;
 import static com.blackbox.presentation.action.util.PresentationUtil.createResolutionWithJson;
-import com.blackbox.presentation.action.BaseBlackBoxActionBean;
-import com.blackbox.user.IUserManager;
-import com.blackbox.user.User;
-import com.blackbox.media.IMediaManager;
-import com.blackbox.media.AvatarImage;
-import com.blackbox.media.MediaMetaData;
-import com.blackbox.EntityType;
-import com.blackbox.EntityReference;
+
+import com.blackbox.foundation.user.IUserManager;
+import com.blackbox.foundation.user.User;
+import com.blackbox.foundation.media.IMediaManager;
+import com.blackbox.foundation.media.AvatarImage;
+import com.blackbox.foundation.media.MediaMetaData;
+import com.blackbox.foundation.EntityReference;
 
 /**
  * @author A.J. Wright

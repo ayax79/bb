@@ -1,15 +1,15 @@
 package com.blackbox.presentation.action.util;
 
-import com.blackbox.EntityReference;
-import com.blackbox.Utils;
-import com.blackbox.activity.ActivityFactory;
-import com.blackbox.media.IMediaManager;
-import com.blackbox.media.MediaLibrary;
-import com.blackbox.media.MediaLibrary.MediaLibraryType;
-import com.blackbox.media.MediaMetaData;
-import com.blackbox.media.MediaPublish;
-import com.blackbox.social.NetworkTypeEnum;
-import com.blackbox.user.User;
+import com.blackbox.foundation.EntityReference;
+import com.blackbox.foundation.Utils;
+import com.blackbox.foundation.activity.ActivityFactory;
+import com.blackbox.foundation.media.IMediaManager;
+import com.blackbox.foundation.media.MediaLibrary;
+import com.blackbox.foundation.media.MediaLibrary.MediaLibraryType;
+import com.blackbox.foundation.media.MediaMetaData;
+import com.blackbox.foundation.media.MediaPublish;
+import com.blackbox.foundation.social.NetworkTypeEnum;
+import com.blackbox.foundation.user.User;
 import net.sourceforge.stripes.action.FileBean;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
@@ -23,7 +23,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.blackbox.IBlackBoxConstants.BUFFER_SIZE;
+import static com.blackbox.foundation.IBlackBoxConstants.BUFFER_SIZE;
 import static com.blackbox.presentation.action.util.JspFunctions.isBlocked;
 import static com.blackbox.presentation.action.util.JspFunctions.isFriend;
 import static com.google.common.collect.Lists.newArrayList;

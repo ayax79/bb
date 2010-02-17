@@ -50,7 +50,7 @@
                         </s:form>
                         <div id="events">
                             <h2>${actionBean.title}</h2>
-                            <%--@elvariable id="event" type="com.blackbox.occasion.Occasion"--%>
+                            <%--@elvariable id="event" type="com.blackbox.foundation.occasion.Occasion"--%>
                             <c:forEach var="event" items="${actionBean.occasions}">
                                 <div id="${event.guid}">
                                     <div class="event-container">

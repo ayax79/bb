@@ -5,15 +5,13 @@
  */
 package com.blackbox.server.activity.listener;
 
-import com.blackbox.activity.ActivityRequest;
-import com.blackbox.activity.ActivityThread;
-import com.blackbox.activity.IActivityThread;
-import com.blackbox.activity.IActivity;
+import com.blackbox.foundation.activity.ActivityRequest;
+import com.blackbox.foundation.activity.IActivityThread;
 import com.blackbox.server.BaseBlackboxListener;
 import com.blackbox.server.activity.IActivityStreamDao;
 import com.blackbox.server.activity.event.LoadActivityThreadEvent;
-import com.blackbox.util.Bounds;
-import com.blackbox.social.NetworkTypeEnum;
+import com.blackbox.foundation.util.Bounds;
+import com.blackbox.foundation.social.NetworkTypeEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.yestech.event.ResultReference;
@@ -22,7 +20,6 @@ import org.yestech.cache.ICacheManager;
 
 import javax.annotation.Resource;
 import java.util.Collection;
-import java.util.NavigableSet;
 import java.io.Serializable;
 
 /**

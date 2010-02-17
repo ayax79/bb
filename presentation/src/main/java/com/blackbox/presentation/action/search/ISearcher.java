@@ -1,9 +1,9 @@
 package com.blackbox.presentation.action.search;
 
-import com.blackbox.search.ExploreRequest;
-import com.blackbox.user.Profile;
-import com.blackbox.user.User;
-import com.blackbox.user.PaginationResults;
+import com.blackbox.foundation.search.ExploreRequest;
+import com.blackbox.foundation.user.Profile;
+import com.blackbox.foundation.user.User;
+import com.blackbox.foundation.user.PaginationResults;
 
 /**
  *

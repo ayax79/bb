@@ -1,8 +1,8 @@
 package com.blackbox.presentation.action.psevent;
 
-import com.blackbox.occasion.Attendee;
-import com.blackbox.occasion.IOccasionManager;
-import com.blackbox.occasion.Occasion;
+import com.blackbox.foundation.occasion.Attendee;
+import com.blackbox.foundation.occasion.IOccasionManager;
+import com.blackbox.foundation.occasion.Occasion;
 import com.blackbox.presentation.action.BaseBlackBoxActionBean;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;

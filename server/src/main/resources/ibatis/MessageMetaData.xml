@@ -2,18 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="MessageMetaData">
 
-    <resultMap id="ArtifactOwnerResult" type="com.blackbox.EntityReference" >
+    <resultMap id="ArtifactOwnerResult" type="com.blackbox.foundation.EntityReference" >
         <result property="guid" column="ownerGuid" />
-        <result property="ownerType" column="ownerOwnerType" javaType="com.blackbox.EntityType" jdbcType="INTEGER" />
+        <result property="ownerType" column="ownerOwnerType" javaType="com.blackbox.foundation.EntityType" jdbcType="INTEGER" />
     </resultMap>
     
-    <resultMap id="MessageMetaDataResult" type="com.blackbox.message.MessageMetaData" extends="BBPersistentObject.BBPersistentObjectResult">
+    <resultMap id="MessageMetaDataResult" type="com.blackbox.foundation.message.MessageMetaData" extends="BBPersistentObject.BBPersistentObjectResult">
         <result property="artifactType" javaType="org.yestech.publish.objectmodel.ArtifactType" jdbcType="INTEGER" />
         <association property="senderProfile" resultMap="SenderActivityProfile" />
         <association property="artifactOwner" resultMap="ArtifactOwnerResult" />
     </resultMap>
 
-    <resultMap id="MessageMetaDataWithRecipientsResult" type="com.blackbox.message.MessageMetaData" extends="BBPersistentObject.BBPersistentObjectResult">
+    <resultMap id="MessageMetaDataWithRecipientsResult" type="com.blackbox.foundation.message.MessageMetaData" extends="BBPersistentObject.BBPersistentObjectResult">
         <result property="artifactType" javaType="org.yestech.publish.objectmodel.ArtifactType" jdbcType="INTEGER" />
         <association property="senderProfile" resultMap="SenderActivityProfile" />
         <association property="artifactOwner" resultMap="ArtifactOwnerResult" />
@@ -21,13 +21,13 @@
     </resultMap>
 
 
-    <resultMap id="SenderActivityProfile" type="com.blackbox.activity.ActivityProfile">
+    <resultMap id="SenderActivityProfile" type="com.blackbox.foundation.activity.ActivityProfile">
         <result property="senderAvatarImage" />
         <result property="senderDisplayName" />
         <result property="senderProfileImage" />
     </resultMap>
 
-    <insert id="insert" parameterType="com.blackbox.message.MessageMetaData">
+    <insert id="insert" parameterType="com.blackbox.foundation.message.MessageMetaData">
         insert into bb_message_meta_data
         (artifacttype, created, modified, ownerguid, ownerownertype, version, guid)
         values
@@ -36,7 +36,7 @@
         #{guid,jdbcType=DATE})
     </insert>
 
-    <update id="update" parameterType="com.blackbox.media.MediaMetaData">
+    <update id="update" parameterType="com.blackbox.foundation.media.MediaMetaData">
         update bb_message_meta_data set
         artifactType = #{artifactType,jdbcType=INTEGER},
         modified = #{modified,jdbcType=DATE},

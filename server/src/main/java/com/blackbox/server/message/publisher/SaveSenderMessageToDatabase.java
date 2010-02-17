@@ -5,8 +5,8 @@
  */
 package com.blackbox.server.message.publisher;
 
-import com.blackbox.message.Message;
-import static com.blackbox.security.AccessControlList.cloneAccessControlList;
+import com.blackbox.foundation.message.Message;
+import static com.blackbox.foundation.security.AccessControlList.cloneAccessControlList;
 import com.blackbox.server.message.IMessageDao;
 import org.apache.camel.Exchange;
 import org.slf4j.Logger;

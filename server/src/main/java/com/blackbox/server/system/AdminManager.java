@@ -1,14 +1,12 @@
 package com.blackbox.server.system;
 
-import com.blackbox.message.IMessageManager;
+import com.blackbox.foundation.system.CacheName;
+import com.blackbox.foundation.system.IAdminManager;
 import com.blackbox.server.activity.IActivityStreamDao;
 import com.blackbox.server.media.IMediaDao;
 import com.blackbox.server.message.IMessageDao;
 import com.blackbox.server.occasion.IOccasionDao;
 import com.blackbox.server.user.IUserDao;
-import com.blackbox.system.CacheName;
-import com.blackbox.system.IAdminManager;
-import com.blackbox.user.IUserManager;
 import net.sf.ehcache.CacheManager;
 
 import javax.annotation.Resource;

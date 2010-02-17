@@ -2,13 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="GiftLayout">
 
-    <resultMap id="GiftLayoutResult" type="com.blackbox.gifting.GiftLayout"
+    <resultMap id="GiftLayoutResult" type="com.blackbox.foundation.gifting.GiftLayout"
                extends="BBPersistentObject.BBPersistentObjectResult">
         <result property="active"/>
         <result property="frame"/>
         <result property="iconLocation"/>
         <result property="activityReference.guid" column="referenceGuid"/>
-        <result property="activityReference.ownerType" column="referenceType" javaType="com.blackbox.EntityType"
+        <result property="activityReference.ownerType" column="referenceType" javaType="com.blackbox.foundation.EntityType"
                 jdbcType="INTEGER"/>
         <result property="shelf"/>
         <result property="size"/>
@@ -19,12 +19,12 @@
         <result property="type" />
     </resultMap>
 
-    <resultMap id="MediaGiftResult" type="com.blackbox.gifting.GiftLayout" extends="GiftLayoutResult">
+    <resultMap id="MediaGiftResult" type="com.blackbox.foundation.gifting.GiftLayout" extends="GiftLayoutResult">
         <result property="location"/>
     </resultMap>
 
 
-    <insert id="insert" parameterType="com.blackbox.gifting.GiftLayout">
+    <insert id="insert" parameterType="com.blackbox.foundation.gifting.GiftLayout">
         insert into bb_gift_layout
         (active, created, frame, iconLocation, modified, referenceGuid, referenceType, shelf, size, version, x, y, z, guid)
         values
@@ -34,7 +34,7 @@
         #{z,jdbcType=INTEGER}, #{guid,jdbcType=VARCHAR})
     </insert>
 
-    <update id="update" parameterType="com.blackbox.gifting.GiftLayout">
+    <update id="update" parameterType="com.blackbox.foundation.gifting.GiftLayout">
         update bb_gift_layout set
         active = #{active,jdbcType=BOOLEAN},
         frame = #{frame,jdbcType=VARCHAR},

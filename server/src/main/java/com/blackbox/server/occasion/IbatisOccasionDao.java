@@ -5,13 +5,13 @@
 
 package com.blackbox.server.occasion;
 
-import com.blackbox.Status;
-import com.blackbox.occasion.*;
-import com.blackbox.search.ExploreRequest;
+import com.blackbox.foundation.Status;
+import com.blackbox.foundation.occasion.*;
+import com.blackbox.foundation.search.ExploreRequest;
 import com.blackbox.server.util.GeoHelper;
 import com.blackbox.server.util.PersistenceUtil;
-import com.blackbox.user.PaginationResults;
-import com.blackbox.util.Bounds;
+import com.blackbox.foundation.user.PaginationResults;
+import com.blackbox.foundation.util.Bounds;
 import org.compass.core.CompassOperations;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Map;
 
 import static com.blackbox.server.util.PersistenceUtil.insertOrUpdate;
-import static com.blackbox.util.PaginationUtil.buildPaginationResults;
+import static com.blackbox.foundation.util.PaginationUtil.buildPaginationResults;
 import static com.google.common.collect.Lists.newArrayList;
 
 /**

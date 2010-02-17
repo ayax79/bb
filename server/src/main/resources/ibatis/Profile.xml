@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="Profile">
 
-    <resultMap id="ProfileResult" type="com.blackbox.user.Profile">
+    <resultMap id="ProfileResult" type="com.blackbox.foundation.user.Profile">
         <id property="guid" jdbcType="VARCHAR" javaType="string" column="guid"/>
         <result property="created" jdbcType="DATE" javaType="jodaDate" column="created"/>
         <result property="modified" jdbcType="DATE" javaType="jodaDate" column="modified"/>
@@ -25,14 +25,14 @@
         <result property="phoneOther" javaType="string" jdbcType="VARCHAR"/>
         <result property="lookingForExplain" javaType="string" jdbcType="VARCHAR"/>
         <result property="mostly" javaType="string" jdbcType="VARCHAR"/>
-        <result property="sex" javaType="com.blackbox.user.SexEnum" jdbcType="INTEGER"/>
+        <result property="sex" javaType="com.blackbox.foundation.user.SexEnum" jdbcType="INTEGER"/>
         <result property="website" javaType="string" jdbcType="VARCHAR"/>
         <result property="visibleToPersona" column="visibleToPersona" javaType="boolean" jdbcType="BOOLEAN"/>
         <result property="visibleToPubStream" column="visibleToPubStream" javaType="boolean" jdbcType="BOOLEAN"/>
         <result property="visibleToSearch" column="visibleToSearch" javaType="boolean" jdbcType="BOOLEAN"/>
         <result property="visibleToPubStream" column="visibleToPubStream" javaType="boolean" jdbcType="BOOLEAN"/>
         <result property="visibleToTrialMember" column="visibleToTrialMember" javaType="boolean" jdbcType="BOOLEAN"/>
-        <association property="location" javaType="com.blackbox.social.Address">
+        <association property="location" javaType="com.blackbox.foundation.social.Address">
             <result property="address1" column="address1" javaType="string" jdbcType="VARCHAR"/>
             <result property="address2" column="address2" javaType="string" jdbcType="VARCHAR"/>
             <result property="city" column="city" javaType="string" jdbcType="VARCHAR"/>
@@ -43,7 +43,7 @@
             <result property="latitude" column="latitude" javaType="Long" jdbcType="BIGINT"/>
             <result property="longitude" column="longitude" javaType="Long" jdbcType="VARCHAR"/>
         </association>
-        <association property="lookingFor" javaType="com.blackbox.user.LookingFor">
+        <association property="lookingFor" javaType="com.blackbox.foundation.user.LookingFor">
             <result property="dates" column="dates" javaType="boolean" jdbcType="BOOLEAN"/>
             <result property="donkeySex" column="donkeySex" javaType="boolean" jdbcType="BOOLEAN"/>
             <result property="friends" column="friends" javaType="boolean" jdbcType="BOOLEAN"/>
@@ -52,7 +52,7 @@
             <result property="love" column="love" javaType="boolean" jdbcType="BOOLEAN"/>
             <result property="snuggling" column="snuggling" javaType="boolean" jdbcType="BOOLEAN"/>
         </association>
-        <association property="mood" javaType="com.blackbox.user.MoodThermometer">
+        <association property="mood" javaType="com.blackbox.foundation.user.MoodThermometer">
             <result property="energyLevel" column="energyLevel" javaType="int" jdbcType="INTEGER"/>
             <result property="interestLevel" column="interestLevel" javaType="int" jdbcType="INTEGER"/>
             <result property="makePrivate" column="makePrivate" javaType="boolean" jdbcType="BOOLEAN"/>
@@ -60,7 +60,7 @@
             <result property="polyStatus" column="polyStatus" javaType="int" jdbcType="INTEGER"/>
             <result property="relationshipStatus" column="relationshipStatus" javaType="int" jdbcType="INTEGER"/>
         </association>
-        <association property="currentAddress" javaType="com.blackbox.social.Address">
+        <association property="currentAddress" javaType="com.blackbox.foundation.social.Address">
             <result property="address1" column="current_address1" javaType="string" jdbcType="VARCHAR"/>
             <result property="address2" column="current_address2" javaType="string" jdbcType="VARCHAR"/>
             <result property="city" column="current_city" javaType="string" jdbcType="VARCHAR"/>
@@ -73,7 +73,7 @@
         </association>
     </resultMap>
 
-    <insert id="insert" parameterType="com.blackbox.user.Profile">
+    <insert id="insert" parameterType="com.blackbox.foundation.user.Profile">
         INSERT INTO bb_profile (
             acceptsGifts ,address1 ,address2 ,birthday ,birthdayInVisible ,bodymods ,city ,country ,county ,created ,current_address1
             ,current_address2 ,current_city ,current_country ,current_county ,current_latitude ,current_longitude ,current_state
@@ -109,7 +109,7 @@
             )
     </insert>
 
-    <update id="update" parameterType="com.blackbox.user.Profile">
+    <update id="update" parameterType="com.blackbox.foundation.user.Profile">
             update bb_profile set
             acceptsGifts=#{acceptsGifts,jdbcType=BOOLEAN},
             address1=#{location.address1,jdbcType=VARCHAR},

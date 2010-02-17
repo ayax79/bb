@@ -1,7 +1,7 @@
 package com.blackbox.server.group;
 
-import com.blackbox.group.IGroupManager;
-import com.blackbox.group.Group;
+import com.blackbox.foundation.group.IGroupManager;
+import com.blackbox.foundation.group.Group;
 import com.blackbox.server.group.event.LoadGroupEvent;
 import org.yestech.event.multicaster.BaseServiceContainer;
 import org.yestech.event.multicaster.IEventMulticaster;

@@ -4,8 +4,8 @@ import org.junit.Test;
 
 import javax.annotation.Resource;
 
-import com.blackbox.user.User;
-import com.blackbox.user.AffiliateMapping;
+import com.blackbox.foundation.user.User;
+import com.blackbox.foundation.user.AffiliateMapping;
 import com.blackbox.server.BaseIntegrationTest;
 import static com.google.common.collect.Lists.newArrayList;
 

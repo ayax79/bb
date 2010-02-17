@@ -4,7 +4,7 @@
 	</div>
 	<div class="sidebar-images clearfix">
 	<c:forEach var="album" items="${actionBean.mediaLibList}" varStatus="albumLoopCount">
-		<%--@elvariable id="album" type="com.blackbox.media.MediaLibrary"--%>
+        <%--@elvariable id="album" type="com.blackbox.foundation.media.MediaLibrary"--%>
 		<div class="album-cover"><a href="#${album.guid}" class="album-link"><img src="${album.media[0].thumbnailLocation}" alt="album-thumb-dummy"/></a></div>
 	</c:forEach>
 	</div>

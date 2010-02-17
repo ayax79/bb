@@ -1,16 +1,16 @@
 package com.blackbox.presentation.action.persona;
 
-import com.blackbox.EntityReference;
-import com.blackbox.IEntity;
-import com.blackbox.bookmark.Bookmark;
-import com.blackbox.bookmark.IBookmarkManager;
-import com.blackbox.media.AvatarImage;
+import com.blackbox.foundation.EntityReference;
+import com.blackbox.foundation.IEntity;
+import com.blackbox.foundation.bookmark.Bookmark;
+import com.blackbox.foundation.bookmark.IBookmarkManager;
+import com.blackbox.foundation.media.AvatarImage;
 import com.blackbox.presentation.action.BaseBlackBoxActionBean;
 import com.blackbox.presentation.action.util.AvatarCacheKey;
-import com.blackbox.social.ISocialManager;
-import com.blackbox.social.Ignore;
-import com.blackbox.social.Relationship;
-import com.blackbox.user.User;
+import com.blackbox.foundation.social.ISocialManager;
+import com.blackbox.foundation.social.Ignore;
+import com.blackbox.foundation.social.Relationship;
+import com.blackbox.foundation.user.User;
 import net.sourceforge.stripes.integration.spring.SpringBean;
 import org.yestech.cache.ICacheManager;
 

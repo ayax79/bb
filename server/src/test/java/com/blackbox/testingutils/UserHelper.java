@@ -1,8 +1,8 @@
 package com.blackbox.testingutils;
 
-import com.blackbox.Utils;
-import com.blackbox.user.IUserManager;
-import com.blackbox.user.User;
+import com.blackbox.foundation.Utils;
+import com.blackbox.foundation.user.IUserManager;
+import com.blackbox.foundation.user.User;
 
 /**
  * @author colin@blackboxrepublic.com

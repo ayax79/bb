@@ -2,22 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="MessageRecipient">
 
-    <resultMap id="RecipientResult" type="com.blackbox.EntityReference">
+    <resultMap id="RecipientResult" type="com.blackbox.foundation.EntityReference">
         <result property="guid" column="recipientGuid"/>
-        <result property="ownerType" column="recipientOwnerType" javaType="com.blackbox.EntityType" jdbcType="INTEGER"/>
+        <result property="ownerType" column="recipientOwnerType" javaType="com.blackbox.foundation.EntityType" jdbcType="INTEGER"/>
     </resultMap>
 
-    <resultMap id="MessageRecipientResult" type="com.blackbox.message.MessageRecipient"
+    <resultMap id="MessageRecipientResult" type="com.blackbox.foundation.message.MessageRecipient"
                extends="BBPersistentObject.BBPersistentObjectResult">
         <result property="messageGuid"/>
         <result property="read" />
         <result property="replyDate" javaType="jodaDate"/>
-        <result property="status" javaType="com.blackbox.activity.IRecipient$RecipientStatus" jdbcType="INTEGER"/>
+        <result property="status" javaType="com.blackbox.foundation.activity.IRecipient$RecipientStatus" jdbcType="INTEGER"/>
         <result property="messageMetaData.guid" column="messageMetaData_guid"/>
         <association property="recipient" resultMap="RecipientResult"/>
     </resultMap>
 
-    <insert id="insert" parameterType="com.blackbox.message.MessageRecipient">
+    <insert id="insert" parameterType="com.blackbox.foundation.message.MessageRecipient">
         insert into bb_message_recipient (created, messageguid, modified, read, recipientguid, recipientownertype, replydate,
         status, version, messagemetadata_guid, guid)
         values
@@ -29,7 +29,7 @@
         )
     </insert>
 
-    <update id="update" parameterType="com.blackbox.message.MessageRecipient">
+    <update id="update" parameterType="com.blackbox.foundation.message.MessageRecipient">
         update bb_message_recipient set
         status = #{status,jdbcType=INTEGER},
         read = #{read,jdbcType=BOOLEAN},

@@ -1,13 +1,13 @@
 package com.blackbox.server.user.listener;
 
-import com.blackbox.EntityReference;
-import com.blackbox.message.IMessageManager;
-import com.blackbox.message.Message;
-import com.blackbox.message.MessageRecipient;
+import com.blackbox.foundation.EntityReference;
+import com.blackbox.foundation.message.IMessageManager;
+import com.blackbox.foundation.message.Message;
+import com.blackbox.foundation.message.MessageRecipient;
 import com.blackbox.server.BaseBlackboxListener;
 import com.blackbox.server.user.event.RegisterUserEvent;
 import com.blackbox.server.util.VelocityUtil;
-import com.blackbox.user.IUser;
+import com.blackbox.foundation.user.IUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.yestech.event.ResultReference;
@@ -18,8 +18,8 @@ import javax.annotation.Resource;
 import java.io.Serializable;
 import java.util.HashMap;
 
-import static com.blackbox.EntityType.USER;
-import static com.blackbox.social.NetworkTypeEnum.SUPER_DIRECT;
+import static com.blackbox.foundation.EntityType.USER;
+import static com.blackbox.foundation.social.NetworkTypeEnum.SUPER_DIRECT;
 
 @AsyncListener
 @ListenedEvents(RegisterUserEvent.class)

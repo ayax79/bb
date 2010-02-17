@@ -5,7 +5,7 @@
 
 package com.blackbox.server.media.listener;
 
-import com.blackbox.exception.MediaStoreException;
+import com.blackbox.foundation.exception.MediaStoreException;
 import com.blackbox.server.media.event.LoadContentEvent;
 import com.blackbox.server.BaseBlackboxListener;
 import org.apache.commons.io.IOUtils;

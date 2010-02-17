@@ -1,8 +1,8 @@
 package com.blackbox.presentation.action.search;
 
-import com.blackbox.occasion.IOccasionManager;
+import com.blackbox.foundation.occasion.IOccasionManager;
 import com.blackbox.presentation.extension.BlackBoxContext;
-import com.blackbox.user.IUserManager;
+import com.blackbox.foundation.user.IUserManager;
 import static org.apache.commons.lang.StringUtils.equalsIgnoreCase;
 
 /**

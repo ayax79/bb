@@ -5,8 +5,8 @@
 
 package com.blackbox.server.user.event;
 
-import com.blackbox.user.User;
-import com.blackbox.billing.BillingInfo;
+import com.blackbox.foundation.user.User;
+import com.blackbox.foundation.billing.BillingInfo;
 import org.yestech.event.event.BaseEvent;
 import org.yestech.event.annotation.EventResultType;
 

@@ -1,6 +1,6 @@
 <%@ include file="/WEB-INF/jsp/include/page_header.jspf" %>
 <%--@elvariable id="actionBean" type="com.blackbox.presentation.action.persona.PersonaActionBean"--%>
-<%--@elvariable id="user" type="com.blackbox.user.User"--%>
+<%--@elvariable id="user" type="com.blackbox.foundation.user.User"--%>
 <c:set var="friends" value="${actionBean.persona.friends}"/>
 <c:set var="following" value="${actionBean.persona.following}"/>
 <c:set var="viewedByUsers" value="${actionBean.viewedBy}"/>
@@ -211,7 +211,7 @@
 			<h3>Friends (<a class="viewMoreLink more-friends-link" href="#${actionBean.user.guid}" title="View all friends">${f:length(friends)}</a>)</h3>
 			<div class="box clearfix">
 				<c:forEach var="relationship" items="${friends}" varStatus="i">
-					<%--@elvariable id="actionBean" type="com.blackbox.social.Relationship"--%>
+					<%--@elvariable id="actionBean" type="com.blackbox.foundation.social.Relationship"--%>
                      <c:if test="${i.index<10}">
 						<ui:profileImage guid="${relationship.toEntity.guid}" size="small" color="white" linkToProfile="true" showMiniProfile="true" showUserType="true"/>
 					</c:if>

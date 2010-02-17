@@ -6,8 +6,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
-import com.blackbox.social.Ignore;
-import com.blackbox.EntityReference;
+import com.blackbox.foundation.social.Ignore;
+import com.blackbox.foundation.EntityReference;
 import static com.blackbox.server.util.PersistenceUtil.insert;
 
 import java.util.List;

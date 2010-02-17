@@ -1,7 +1,7 @@
 package com.blackbox.server.user;
 
-import com.blackbox.user.BasePromoCode;
-import com.blackbox.user.User;
+import com.blackbox.foundation.user.BasePromoCode;
+import com.blackbox.foundation.user.User;
 import org.springframework.transaction.annotation.Transactional;
 
 public interface IPromoCodeDao {

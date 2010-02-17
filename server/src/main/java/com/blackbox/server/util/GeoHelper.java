@@ -1,9 +1,9 @@
 package com.blackbox.server.util;
 
-import com.blackbox.geo.GeoPoint;
-import com.blackbox.search.ExploreRequest;
-import com.blackbox.util.Affirm;
-import com.blackbox.util.GeoUtil;
+import com.blackbox.foundation.geo.GeoPoint;
+import com.blackbox.foundation.search.ExploreRequest;
+import com.blackbox.foundation.util.Affirm;
+import com.blackbox.foundation.util.GeoUtil;
 
 /**
  * @author colin@blackboxrepublic.com

@@ -5,11 +5,12 @@
  */
 package com.blackbox.server.util;
 
-import com.blackbox.BBPersistentObject;
-import com.blackbox.Status;
-import com.blackbox.IStatusable;
-import com.blackbox.Utils;
-import static com.blackbox.Utils.getCurrentDateTime;
+import com.blackbox.foundation.Status;
+import com.blackbox.foundation.IStatusable;
+import com.blackbox.foundation.Utils;
+import static com.blackbox.foundation.Utils.getCurrentDateTime;
+
+import com.blackbox.foundation.BBPersistentObject;
 import org.joda.time.DateTime;
 import org.springframework.orm.hibernate3.HibernateOperations;
 import org.springframework.orm.ibatis3.SqlSessionOperations;
@@ -42,8 +43,8 @@ final public class PersistenceUtil {
 
     /**
      * determines which dates need to be initialized with now time stamp.  it only sets the created date if
-     * {@link com.blackbox.BBPersistentObject#getVersion()} is null.  if you always want to set both dates
-     * then use {@link #setDatesAlways(com.blackbox.BBPersistentObject)}.
+     * {@link com.blackbox.foundation.BBPersistentObject#getVersion()} is null.  if you always want to set both dates
+     * then use {@link #setDatesAlways(com.blackbox.foundation.BBPersistentObject)}.
      *
      * @param entity to affect
      */
@@ -58,8 +59,8 @@ final public class PersistenceUtil {
 
     /**
      * it iterates through the collection and determines which dates need to be initialized with now time stamp.  it only sets the created date if
-     * {@link com.blackbox.BBPersistentObject#getVersion()}  is null.  if you always want to set both dates
-     * then use {@link #setDatesAlways(com.blackbox.BBPersistentObject)}.
+     * {@link com.blackbox.foundation.BBPersistentObject#getVersion()}  is null.  if you always want to set both dates
+     * then use {@link #setDatesAlways(com.blackbox.foundation.BBPersistentObject)}.
      *
      * @param entities to affect
      */
@@ -71,8 +72,8 @@ final public class PersistenceUtil {
 
     /**
      * it iterates through the array and determines which dates need to be initialized with now time stamp.  it only sets the created date if
-     * {@link com.blackbox.BBPersistentObject#getVersion()}  is null.  if you always want to set both dates
-     * then use {@link #setDatesAlways(com.blackbox.BBPersistentObject)}.
+     * {@link com.blackbox.foundation.BBPersistentObject#getVersion()}  is null.  if you always want to set both dates
+     * then use {@link #setDatesAlways(com.blackbox.foundation.BBPersistentObject)}.
      *
      * @param entities to affect
      */

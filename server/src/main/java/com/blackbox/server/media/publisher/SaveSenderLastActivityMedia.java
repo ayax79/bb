@@ -5,7 +5,7 @@
  */
 package com.blackbox.server.media.publisher;
 
-import com.blackbox.media.MediaMetaData;
+import com.blackbox.foundation.media.MediaMetaData;
 import com.blackbox.server.activity.IActivityStreamDao;
 import static com.blackbox.server.util.MediaPublishUtil.isStreamMedia;
 import org.apache.camel.Exchange;

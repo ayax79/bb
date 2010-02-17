@@ -21,8 +21,8 @@
 
 				<c:set var="message" value="${activity.parent}"/>
 				<c:set var="latestmessage" value="${bb:latestActivity(activity)}"/>
-				<%--@elvariable id="message" type="com.blackbox.activity.IActivity"--%>
-				<%--@elvariable id="latestmessage" type="com.blackbox.activity.IActivity"--%>
+                <%--@elvariable id="message" type="com.blackbox.foundation.activity.IActivity"--%>
+                <%--@elvariable id="latestmessage" type="com.blackbox.foundation.activity.IActivity"--%>
 				<c:choose>
 					<c:when test="${actionBean.mailboxRequest.folder eq 'SENT_FOLDER'}">
 						<c:set var="msgUser" value="${actionBean.userGuidMap[latestmessage.recipients[0].recipient.guid]}"/>
@@ -31,7 +31,7 @@
 						<c:set var="msgUser" value="${actionBean.userGuidMap[latestmessage.artifactMetaData.artifactOwner.guid]}"/>
 					</c:otherwise>
 				</c:choose>
-				<%--@elvariable id="msgUser" type="com.blackbox.user.User"--%>
+                <%--@elvariable id="msgUser" type="com.blackbox.foundation.user.User"--%>
 				<c:choose>
 					<c:when test="${dm:isReply(activity, actionBean.currentUser)}">
 						<c:set var="msgStatus" value="replied"/>

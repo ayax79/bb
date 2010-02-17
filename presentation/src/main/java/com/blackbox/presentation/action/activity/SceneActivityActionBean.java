@@ -1,12 +1,12 @@
 package com.blackbox.presentation.action.activity;
 
-import com.blackbox.Status;
-import com.blackbox.social.ISocialManager;
-import com.blackbox.notification.Notifications;
-import com.blackbox.occasion.IOccasionManager;
-import com.blackbox.occasion.Occasion;
-import com.blackbox.occasion.OccasionRequest;
-import com.blackbox.util.Bounds;
+import com.blackbox.foundation.Status;
+import com.blackbox.foundation.social.ISocialManager;
+import com.blackbox.foundation.notification.Notifications;
+import com.blackbox.foundation.occasion.IOccasionManager;
+import com.blackbox.foundation.occasion.Occasion;
+import com.blackbox.foundation.occasion.OccasionRequest;
+import com.blackbox.foundation.util.Bounds;
 import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.integration.spring.SpringBean;

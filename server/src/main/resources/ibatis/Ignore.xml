@@ -2,18 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="Ignore">
 
-    <resultMap id="IgnorerResult" type="com.blackbox.EntityReference" >
+    <resultMap id="IgnorerResult" type="com.blackbox.foundation.EntityReference" >
         <result property="guid" column="ignorerguid" />
-        <result property="ownerType" column="ignorerownertype" javaType="com.blackbox.EntityType" jdbcType="INTEGER" />
+        <result property="ownerType" column="ignorerownertype" javaType="com.blackbox.foundation.EntityType" jdbcType="INTEGER" />
     </resultMap>
 
-    <resultMap id="TargetResult" type="com.blackbox.EntityReference" >
+    <resultMap id="TargetResult" type="com.blackbox.foundation.EntityReference" >
         <result property="guid" column="targetguid" />
-        <result property="ownerType" column="targetOwnerType" javaType="com.blackbox.EntityType" jdbcType="INTEGER" />
+        <result property="ownerType" column="targetOwnerType" javaType="com.blackbox.foundation.EntityType" jdbcType="INTEGER" />
     </resultMap>
 
-    <resultMap id="IgnoreResult" type="com.blackbox.social.Ignore" extends="BBPersistentObject.BBPersistentObjectResult">
-        <result property="type" column="type" javaType="com.blackbox.social.Ignore$IgnoreType" jdbcType="INTEGER" />
+    <resultMap id="IgnoreResult" type="com.blackbox.foundation.social.Ignore" extends="BBPersistentObject.BBPersistentObjectResult">
+        <result property="type" column="type" javaType="com.blackbox.foundation.social.Ignore$IgnoreType" jdbcType="INTEGER" />
         <association property="target" resultMap="TargetResult" />
         <association property="ignorer" resultMap="IgnorerResult" />
     </resultMap>

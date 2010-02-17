@@ -26,42 +26,42 @@
 
     <bean name="/AuthenticationManager" parent="baseHessianManager">
         <property name="service" ref="authenticationManager"/>
-        <property name="serviceInterface" value="com.blackbox.security.IAuthenticationManager"/>
+        <property name="serviceInterface" value="com.blackbox.foundation.security.IAuthenticationManager"/>
     </bean>
 
     <bean name="/AuthorizationManager" parent="baseHessianManager">
         <property name="service" ref="authorizationManager"/>
-        <property name="serviceInterface" value="com.blackbox.security.IAuthorizationManager"/>
+        <property name="serviceInterface" value="com.blackbox.foundation.security.IAuthorizationManager"/>
     </bean>
 
     <bean name="/UserManager" parent="baseHessianManager">
         <property name="service" ref="userManager"/>
-        <property name="serviceInterface" value="com.blackbox.user.IUserManager"/>
+        <property name="serviceInterface" value="com.blackbox.foundation.user.IUserManager"/>
     </bean>
 
     <bean name="/MediaManager" parent="baseHessianManager">
         <property name="service" ref="mediaManager"/>
-        <property name="serviceInterface" value="com.blackbox.media.IMediaManager"/>
+        <property name="serviceInterface" value="com.blackbox.foundation.media.IMediaManager"/>
     </bean>
 
     <bean name="/SocialManager" parent="baseHessianManager">
         <property name="service" ref="socialManager"/>
-        <property name="serviceInterface" value="com.blackbox.social.ISocialManager"/>
+        <property name="serviceInterface" value="com.blackbox.foundation.social.ISocialManager"/>
     </bean>
 
     <bean name="/EntityManager" parent="baseHessianManager">
         <property name="service" ref="entityManager"/>
-        <property name="serviceInterface" value="com.blackbox.IEntityManager"/>
+        <property name="serviceInterface" value="com.blackbox.foundation.IEntityManager"/>
     </bean>
 
     <bean name="/OccasionManager" parent="baseHessianManager">
         <property name="service" ref="occasionManager"/>
-        <property name="serviceInterface" value="com.blackbox.occasion.IOccasionManager"/>
+        <property name="serviceInterface" value="com.blackbox.foundation.occasion.IOccasionManager"/>
     </bean>
 
     <bean name="/MessageManager" parent="baseHessianManager">
         <property name="service" ref="messageManager"/>
-        <property name="serviceInterface" value="com.blackbox.message.IMessageManager"/>
+        <property name="serviceInterface" value="com.blackbox.foundation.message.IMessageManager"/>
     </bean>
 
     <bean name="/PointManager" parent="baseHessianManager">
@@ -71,27 +71,27 @@
 
     <bean name="/BookmarkManager" parent="baseHessianManager">
         <property name="service" ref="bookmarkManager"/>
-        <property name="serviceInterface" value="com.blackbox.bookmark.IBookmarkManager"/>
+        <property name="serviceInterface" value="com.blackbox.foundation.bookmark.IBookmarkManager"/>
     </bean>
 
     <bean name="/ActivityManager" parent="baseHessianManager">
         <property name="service" ref="activityManager"/>
-        <property name="serviceInterface" value="com.blackbox.activity.IActivityManager"/>
+        <property name="serviceInterface" value="com.blackbox.foundation.activity.IActivityManager"/>
     </bean>
 
     <bean name="/BillingManager" parent="baseHessianManager">
         <property name="service" ref="billingManager"/>
-        <property name="serviceInterface" value="com.blackbox.billing.IBillingManager"/>
+        <property name="serviceInterface" value="com.blackbox.foundation.billing.IBillingManager"/>
     </bean>
 
     <bean name="/GiftingManager" parent="baseHessianManager">
         <property name="service" ref="giftingManager"/>
-        <property name="serviceInterface" value="com.blackbox.gifting.IGiftingManager"/>
+        <property name="serviceInterface" value="com.blackbox.foundation.gifting.IGiftingManager"/>
     </bean>
 
     <bean name="/AdminManager" parent="baseHessianManager">
         <property name="service" ref="adminManager" />
-        <property name="serviceInterface" value="com.blackbox.system.IAdminManager" />
+        <property name="serviceInterface" value="com.blackbox.foundation.system.IAdminManager" />
     </bean>
 
 </beans>

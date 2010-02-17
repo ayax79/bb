@@ -1,22 +1,26 @@
 package com.blackbox.server.social.listener;
 
 import com.blackbox.server.BaseBlackboxListener;
-import com.blackbox.server.message.event.PublishMessageEvent;
 import com.blackbox.server.social.event.CreateRelationshipEvent;
 import com.blackbox.server.system.email.EmailDefinition;
 import com.blackbox.server.system.email.SimpleEmailDelivery;
-import com.blackbox.social.Relationship;
-import com.blackbox.user.IUserManager;
-import com.blackbox.user.User;
+import com.blackbox.foundation.social.Relationship;
+import com.blackbox.foundation.user.IUserManager;
+import com.blackbox.foundation.user.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.yestech.event.ResultReference;
 import org.yestech.event.annotation.AsyncListener;
 import org.yestech.event.annotation.ListenedEvents;
 
 import javax.annotation.Resource;
+import java.text.MessageFormat;
 
 @ListenedEvents(CreateRelationshipEvent.class)
 @AsyncListener
 public class NewRelationshipRequestEmailListener extends BaseBlackboxListener<CreateRelationshipEvent, Object> {
+
+    private static final Logger logger = LoggerFactory.getLogger(NewRelationshipRequestEmailListener.class);
 
     @Resource
     SimpleEmailDelivery emailDelivery;
@@ -33,7 +37,12 @@ public class NewRelationshipRequestEmailListener extends BaseBlackboxListener<Cr
 
             final User recipientUser = userManager.loadUserByGuid(r.getToEntity().getGuid());
             final User senderUser = userManager.loadUserByGuid(r.getFromEntity().getGuid());
-            assert senderUser != null;
+
+            if (recipientUser == null || senderUser == null) {
+                logger.warn(MessageFormat.format("Unable to send email when senderUser {0} or recipientUser {0} are unavailable", senderUser, recipientUser));
+                return;
+            }
+
             final String recipientName = recipientUser.getName();
 
             emailDelivery.send(new EmailDefinition() {

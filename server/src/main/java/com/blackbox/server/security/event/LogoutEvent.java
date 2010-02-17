@@ -5,7 +5,7 @@
  */
 package com.blackbox.server.security.event;
 
-import com.blackbox.user.IUser;
+import com.blackbox.foundation.user.IUser;
 import org.yestech.event.event.BaseEvent;
 import org.yestech.event.annotation.EventResultType;
 

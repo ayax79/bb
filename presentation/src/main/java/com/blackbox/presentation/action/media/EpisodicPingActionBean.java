@@ -1,7 +1,7 @@
 package com.blackbox.presentation.action.media;
 
-import com.blackbox.media.IMediaManager;
-import com.blackbox.media.MediaMetaData;
+import com.blackbox.foundation.media.IMediaManager;
+import com.blackbox.foundation.media.MediaMetaData;
 import net.sourceforge.stripes.action.ActionBean;
 import net.sourceforge.stripes.action.ActionBeanContext;
 import net.sourceforge.stripes.action.DefaultHandler;

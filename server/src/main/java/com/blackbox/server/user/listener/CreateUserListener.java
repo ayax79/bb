@@ -1,11 +1,11 @@
 package com.blackbox.server.user.listener;
 
+import com.blackbox.foundation.Utils;
 import com.blackbox.server.user.IUserDao;
 import com.blackbox.server.user.event.CreateUserEvent;
 import com.blackbox.server.BaseBlackboxListener;
-import com.blackbox.user.User;
-import com.blackbox.user.IUser;
-import com.blackbox.Utils;
+import com.blackbox.foundation.user.User;
+import com.blackbox.foundation.user.IUser;
 import org.yestech.event.annotation.ListenedEvents;
 import org.yestech.event.ResultReference;
 

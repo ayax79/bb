@@ -2,7 +2,7 @@ package com.blackbox.presentation.session;
 
 import static com.blackbox.presentation.extension.DefaultBlackBoxContext.USER_KEY;
 import static com.blackbox.presentation.action.util.PresentationUtil.getSpringContext;
-import com.blackbox.user.User;
+import com.blackbox.foundation.user.User;
 import org.springframework.web.context.WebApplicationContext;
 import static org.springframework.web.context.WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE;
 

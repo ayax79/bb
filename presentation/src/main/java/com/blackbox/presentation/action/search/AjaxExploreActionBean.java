@@ -5,9 +5,9 @@ import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.Before;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.controller.LifecycleStage;
-import com.blackbox.user.User;
-import com.blackbox.search.ExploreRequest;
-import com.blackbox.social.Address;
+import com.blackbox.foundation.user.User;
+import com.blackbox.foundation.search.ExploreRequest;
+import com.blackbox.foundation.social.Address;
 
 
 public class AjaxExploreActionBean extends BaseExploreActionBean {

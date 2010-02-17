@@ -26,7 +26,7 @@
 					<label for="paymentInfo_creditCardType">Card type<em>*</em></label>
 					<s:select id="paymentInfo_creditCardType" name="paymentInfo.creditCard.creditCardType">
 						<s:option><fmt:message key="register.select.creditcard" /></s:option>
-						<s:options-enumeration enum="com.blackbox.user.CreditCardType" />
+						<s:options-enumeration enum="com.blackbox.foundation.user.CreditCardType" />
 					</s:select>
 				</li>
 				<li>

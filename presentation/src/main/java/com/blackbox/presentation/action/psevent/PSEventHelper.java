@@ -1,12 +1,12 @@
 
 package com.blackbox.presentation.action.psevent;
 
-import com.blackbox.EntityReference;
-import com.blackbox.Status;
-import com.blackbox.media.IMediaManager;
-import com.blackbox.media.MediaLibrary;
-import com.blackbox.media.MediaLibrary.MediaLibraryType;
-import com.blackbox.media.MediaMetaData;
+import com.blackbox.foundation.EntityReference;
+import com.blackbox.foundation.Status;
+import com.blackbox.foundation.media.IMediaManager;
+import com.blackbox.foundation.media.MediaLibrary;
+import com.blackbox.foundation.media.MediaLibrary.MediaLibraryType;
+import com.blackbox.foundation.media.MediaMetaData;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;

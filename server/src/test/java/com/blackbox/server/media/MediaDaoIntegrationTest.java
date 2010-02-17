@@ -5,24 +5,24 @@
 
 package com.blackbox.server.media;
 
-import com.blackbox.EntityReference;
-import com.blackbox.EntityType;
-import com.blackbox.Utils;
-import com.blackbox.activity.ActivityFactory;
-import com.blackbox.media.*;
+import com.blackbox.foundation.EntityReference;
+import com.blackbox.foundation.EntityType;
+import com.blackbox.foundation.Utils;
+import com.blackbox.foundation.activity.ActivityFactory;
+import com.blackbox.foundation.media.*;
 import com.blackbox.server.BaseIntegrationTest;
 import com.blackbox.server.user.IUserDao;
-import com.blackbox.social.NetworkTypeEnum;
+import com.blackbox.foundation.social.NetworkTypeEnum;
 import com.blackbox.testingutils.UserFixture;
-import com.blackbox.user.User;
-import com.blackbox.util.Bounds;
+import com.blackbox.foundation.user.User;
+import com.blackbox.foundation.util.Bounds;
 import org.junit.Test;
 import org.yestech.publish.objectmodel.ArtifactType;
 
 import javax.annotation.Resource;
 import java.util.List;
 
-import static com.blackbox.social.NetworkTypeEnum.*;
+import static com.blackbox.foundation.social.NetworkTypeEnum.*;
 import static com.google.common.collect.Lists.newArrayList;
 import static org.junit.Assert.*;
 

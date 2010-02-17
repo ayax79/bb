@@ -1,6 +1,6 @@
 package com.blackbox.server.occasion.listener;
 
-import com.blackbox.search.ExploreRequest;
+import com.blackbox.foundation.search.ExploreRequest;
 import com.blackbox.server.BaseBlackboxListener;
 import com.blackbox.server.occasion.event.LoadLastExplorerEvent;
 import org.yestech.cache.ICacheManager;

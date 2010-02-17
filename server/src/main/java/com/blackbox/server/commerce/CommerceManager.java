@@ -5,13 +5,12 @@
  */
 package com.blackbox.server.commerce;
 
-import com.blackbox.Status;
-import com.blackbox.commerce.*;
+import com.blackbox.foundation.Status;
+import com.blackbox.foundation.commerce.*;
 import com.blackbox.server.commerce.event.LoadMerchantEvent;
 import com.blackbox.server.commerce.event.PurchaseCartEvent;
 import com.blackbox.server.commerce.event.SaveCartEvent;
 import com.blackbox.server.commerce.event.SaveMerchantEvent;
-import org.springframework.stereotype.Service;
 import org.yestech.cache.ICacheManager;
 import org.yestech.event.multicaster.BaseServiceContainer;
 

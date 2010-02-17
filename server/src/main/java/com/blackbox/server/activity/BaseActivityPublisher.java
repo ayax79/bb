@@ -5,10 +5,6 @@
  */
 package com.blackbox.server.activity;
 
-import com.blackbox.media.MediaMetaData;
-import com.blackbox.activity.ActivityReference;
-import com.blackbox.activity.ActivityTypeEnum;
-import com.blackbox.message.Message;
 import com.blackbox.server.message.IMessageDao;
 import com.blackbox.server.media.IMediaDao;
 

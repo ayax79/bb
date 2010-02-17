@@ -1,15 +1,16 @@
 package com.blackbox.server.activity.engine;
 
-import com.blackbox.activity.IActivity;
-import com.blackbox.activity.ActivityThread;
-import com.blackbox.activity.DescendingActivityAndGuidComparator;
-import com.blackbox.activity.IActivityThread;
-import com.blackbox.EntityReference;
+import com.blackbox.foundation.EntityReference;
+import com.blackbox.foundation.activity.IActivity;
+import com.blackbox.foundation.activity.ActivityThread;
+import com.blackbox.foundation.activity.DescendingActivityAndGuidComparator;
+import com.blackbox.foundation.activity.IActivityThread;
+
 import static com.blackbox.server.activity.engine.LockManager.locateFriendsPrimaryLock;
 import com.blackbox.server.activity.ActivityUtil;
 import static com.blackbox.server.activity.ActivityUtil.isParent;
-import com.blackbox.util.Bounds;
-import com.blackbox.social.NetworkTypeEnum;
+import com.blackbox.foundation.util.Bounds;
+import com.blackbox.foundation.social.NetworkTypeEnum;
 import static com.google.common.collect.Lists.newArrayList;
 
 import javax.annotation.Resource;

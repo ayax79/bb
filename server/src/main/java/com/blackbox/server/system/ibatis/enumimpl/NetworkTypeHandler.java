@@ -1,7 +1,7 @@
 package com.blackbox.server.system.ibatis.enumimpl;
 
 import com.blackbox.server.system.ibatis.OrdinalEnumTypeHandler;
-import com.blackbox.social.NetworkTypeEnum;
+import com.blackbox.foundation.social.NetworkTypeEnum;
 
 /**
  * @author A.J. Wright

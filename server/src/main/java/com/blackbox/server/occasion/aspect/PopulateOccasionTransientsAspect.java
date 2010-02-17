@@ -3,10 +3,10 @@ package com.blackbox.server.occasion.aspect;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.annotation.AfterReturning;
-import com.blackbox.occasion.Occasion;
-import com.blackbox.occasion.OccasionLayout;
-import com.blackbox.media.IMediaManager;
-import com.blackbox.media.MediaMetaData;
+import com.blackbox.foundation.occasion.Occasion;
+import com.blackbox.foundation.occasion.OccasionLayout;
+import com.blackbox.foundation.media.IMediaManager;
+import com.blackbox.foundation.media.MediaMetaData;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -21,12 +21,12 @@ public class PopulateOccasionTransientsAspect {
     private IMediaManager mediaManager;
 
 
-    @Pointcut("execution(public com.blackbox.occasion.Occasion com.blackbox.occasion.IOccasionManager.load*(..)) || " +
-            "execution(public com.blackbox.occasion.Occasion com.blackbox.occasion.IOccasionManager.updateOccasion(..))")
+    @Pointcut("execution(public com.blackbox.foundation.occasion.Occasion com.blackbox.foundation.occasion.IOccasionManager.load*(..)) || " +
+            "execution(public com.blackbox.foundation.occasion.Occasion com.blackbox.foundation.occasion.IOccasionManager.updateOccasion(..))")
     private void returnsOccasionPointcut() {
     }
 
-    @Pointcut("execution(public java.util.List com.blackbox.occasion.IOccasionManager.*(..))")
+    @Pointcut("execution(public java.util.List com.blackbox.foundation.occasion.IOccasionManager.*(..))")
     private void returnsOccasionList() {
     }
 

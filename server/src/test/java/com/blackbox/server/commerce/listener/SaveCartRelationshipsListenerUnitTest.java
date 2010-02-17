@@ -5,15 +5,16 @@
  */
 package com.blackbox.server.commerce.listener;
 
-import com.blackbox.commerce.CartItem;
-import com.blackbox.commerce.Invoice;
-import com.blackbox.commerce.ShoppingCart;
-import com.blackbox.commerce.Split;
+import com.blackbox.foundation.EntityReference;
+import com.blackbox.foundation.commerce.CartItem;
+import com.blackbox.foundation.commerce.Invoice;
+import com.blackbox.foundation.commerce.ShoppingCart;
+import com.blackbox.foundation.commerce.Split;
 import com.blackbox.server.commerce.event.PurchaseCartEvent;
 import com.blackbox.server.social.INetworkDao;
-import com.blackbox.social.Relationship;
-import com.blackbox.user.User;
-import com.blackbox.EntityReference;
+import com.blackbox.foundation.social.Relationship;
+import com.blackbox.foundation.user.User;
+
 import static com.google.common.collect.Lists.newArrayList;
 import org.jmock.Expectations;
 import org.jmock.Mockery;

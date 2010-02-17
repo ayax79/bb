@@ -5,9 +5,9 @@
  */
 package com.blackbox.server.notification;
 
-import com.blackbox.message.Message;
-import com.blackbox.social.NetworkTypeEnum;
-import com.blackbox.user.IUser;
+import com.blackbox.foundation.message.Message;
+import com.blackbox.foundation.social.NetworkTypeEnum;
+import com.blackbox.foundation.user.IUser;
 import static com.blackbox.server.activity.ActivityUtil.checkNetworkDepth;
 import org.apache.camel.Exchange;
 import org.slf4j.Logger;

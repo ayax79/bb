@@ -1,9 +1,9 @@
 package com.blackbox.server.activity.listener;
 
+import com.blackbox.foundation.Utils;
 import com.blackbox.server.BaseBlackboxListener;
 import com.blackbox.server.activity.event.PublishActivityEvent;
-import com.blackbox.Utils;
-import com.blackbox.activity.Activity;
+import com.blackbox.foundation.activity.Activity;
 import org.yestech.event.ResultReference;
 import org.yestech.event.annotation.AsyncListener;
 import org.yestech.event.annotation.ListenedEvents;

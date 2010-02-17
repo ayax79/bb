@@ -18,7 +18,7 @@
 		</div>
 		<div id="main-albums">
 			<c:forEach var="album" items="${actionBean.mediaLibList}" varStatus="albumLoopCount">
-			<%--@elvariable id="album" type="com.blackbox.media.MediaLibrary"--%>
+			<%--@elvariable id="album" type="com.blackbox.foundation.media.MediaLibrary"--%>
 			<div class="album_${album.guid} photo-album clearfix">
 				<div class="album-cover">
 					<a href="#${album.guid}" class="album-link"><img src="<c:out value="${album.media[0].thumbnailLocation}" default="${bb:libraryResource('/library/images/default-album-cover.png')}"/>" alt="album-thumb-dummy"/></a>

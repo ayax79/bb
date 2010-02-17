@@ -5,9 +5,7 @@
 
 package com.blackbox.server.activity.event;
 
-import com.blackbox.message.Message;
-import com.blackbox.media.MediaMetaData;
-import com.blackbox.activity.Activity;
+import com.blackbox.foundation.activity.Activity;
 import org.yestech.event.event.BaseEvent;
 import org.yestech.event.annotation.EventResultType;
 

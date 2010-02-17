@@ -5,7 +5,7 @@
  */
 package com.blackbox.server.commerce.listener;
 
-import com.blackbox.commerce.Product;
+import com.blackbox.foundation.commerce.Product;
 import com.blackbox.server.commerce.IInventorySearchDao;
 import com.blackbox.server.commerce.event.LoadProductsByMerchantEvent;
 import com.blackbox.server.BaseBlackboxListener;

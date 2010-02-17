@@ -1,9 +1,9 @@
 package com.blackbox.server.occasion.aspect;
 
-import com.blackbox.media.IMediaManager;
-import com.blackbox.media.MediaMetaData;
-import com.blackbox.occasion.Occasion;
-import com.blackbox.occasion.OccasionLayout;
+import com.blackbox.foundation.media.IMediaManager;
+import com.blackbox.foundation.media.MediaMetaData;
+import com.blackbox.foundation.occasion.Occasion;
+import com.blackbox.foundation.occasion.OccasionLayout;
 import static com.google.common.collect.Lists.newArrayList;
 import org.junit.Test;
 import static org.junit.Assert.*;

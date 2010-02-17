@@ -7,8 +7,8 @@ package com.blackbox.presentation.action.user;
 
 import com.blackbox.presentation.action.BaseBlackBoxActionBean;
 import static com.blackbox.presentation.action.util.JSONUtil.toJSON;
-import com.blackbox.user.IUserManager;
-import com.blackbox.user.User;
+import com.blackbox.foundation.user.IUserManager;
+import com.blackbox.foundation.user.User;
 import net.sourceforge.stripes.action.HandlesEvent;
 import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.action.StreamingResolution;

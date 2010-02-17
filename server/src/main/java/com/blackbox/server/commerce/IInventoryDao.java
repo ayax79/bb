@@ -5,9 +5,9 @@
  */
 package com.blackbox.server.commerce;
 
-import com.blackbox.commerce.Product;
-import com.blackbox.commerce.Merchant;
-import com.blackbox.social.Category;
+import com.blackbox.foundation.commerce.Product;
+import com.blackbox.foundation.commerce.Merchant;
+import com.blackbox.foundation.social.Category;
 
 import java.util.List;
 

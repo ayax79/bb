@@ -19,7 +19,7 @@
                 <h2>Import events</h2>
                 <s:form beanclass="com.blackbox.presentation.action.admin.EventsAdminActionBean">
                     <s:select name="promoter">
-                        <s:options-enumeration enum="com.blackbox.occasion.PromoterPartnerEnum"/>
+                        <s:options-enumeration enum="com.blackbox.foundation.occasion.PromoterPartnerEnum"/>
                         <s:submit name="reviewFeed">Get Feed</s:submit>
                     </s:select>
                 </s:form>

@@ -1,6 +1,6 @@
 package com.blackbox.server.activity.event;
 
-import com.blackbox.EntityReference;
+import com.blackbox.foundation.EntityReference;
 import org.yestech.event.event.BaseEvent;
 
 /**

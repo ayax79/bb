@@ -1,11 +1,11 @@
 package com.blackbox.presentation.action.activity;
 
-import com.blackbox.activity.IActivityManager;
-import com.blackbox.activity.IActivityThread;
-import com.blackbox.message.IMessageManager;
-import com.blackbox.message.Message;
+import com.blackbox.foundation.activity.IActivityManager;
+import com.blackbox.foundation.activity.IActivityThread;
+import com.blackbox.foundation.message.IMessageManager;
+import com.blackbox.foundation.message.Message;
 import com.blackbox.presentation.action.BaseBlackBoxActionBean;
-import com.blackbox.user.IUserManager;
+import com.blackbox.foundation.user.IUserManager;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.Resolution;
@@ -64,8 +64,7 @@ public class PublicActionBean extends BaseBlackBoxActionBean {
             }
             return createJSONResolutionWithText(getContext(), json);
         } else {
-            Collection<IActivityThread> threads = activityManager.loadPublicActivityThreads(0, 25);
-            return new ForwardResolution("todo");
+            throw new UnsupportedOperationException();
         }
 
     }

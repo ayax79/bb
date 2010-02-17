@@ -2,17 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="Attendee">
 
-    <resultMap id="AttendeeResult" type="com.blackbox.occasion.Attendee"
+    <resultMap id="AttendeeResult" type="com.blackbox.foundation.occasion.Attendee"
                extends="BBPersistentObject.BBPersistentObjectResult">
         <result property="acknowledged" />
-        <result property="attendingStatus" javaType="com.blackbox.occasion.AttendingStatus" jdbcType="INTEGER"/>
-        <result property="attendeeSource" javaType="com.blackbox.occasion.AttendeeSource" jdbcType="INTEGER"/>
+        <result property="attendingStatus" javaType="com.blackbox.foundation.occasion.AttendingStatus" jdbcType="INTEGER"/>
+        <result property="attendeeSource" javaType="com.blackbox.foundation.occasion.AttendeeSource" jdbcType="INTEGER"/>
         <result property="bbxUserGuid"/>
         <result property="bbxUserName"/>
         <result property="password"/>
     </resultMap>
 
-    <insert id="insert" parameterType="com.blackbox.occasion.Attendee">
+    <insert id="insert" parameterType="com.blackbox.foundation.occasion.Attendee">
         insert into bb_occasion_attendee
         (acknowledged, attendeeSource, attendingStatus, bbxUserGuid, bbxUsername, created, email, modified,
         password, version, guid)
@@ -23,7 +23,7 @@
         #{guid,jdbcType=VARCHAR})
     </insert>
 
-    <update id="update" parameterType="com.blackbox.occasion.Attendee">
+    <update id="update" parameterType="com.blackbox.foundation.occasion.Attendee">
         update bb_occasion_attendee set
         acknowledged = #{acknowledged,jdbcType=BOOLEAN},
         attendeeSource = #{attendeeSource,jdbcType=INTEGER},

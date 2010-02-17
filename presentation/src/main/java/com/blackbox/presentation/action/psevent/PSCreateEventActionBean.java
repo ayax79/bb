@@ -1,21 +1,19 @@
 package com.blackbox.presentation.action.psevent;
 
-import com.blackbox.EntityType;
-import com.blackbox.Status;
-import com.blackbox.Utils;
-import com.blackbox.media.IMediaManager;
-import com.blackbox.media.MediaLibrary;
-import com.blackbox.media.MediaMetaData;
-import com.blackbox.occasion.IOccasionManager;
-import com.blackbox.occasion.Occasion;
-import com.blackbox.occasion.OccasionLayout;
-import com.blackbox.user.User.UserType;
+import com.blackbox.foundation.EntityType;
+import com.blackbox.foundation.Status;
+import com.blackbox.foundation.Utils;
+import com.blackbox.foundation.media.IMediaManager;
+import com.blackbox.foundation.media.MediaLibrary;
+import com.blackbox.foundation.media.MediaMetaData;
+import com.blackbox.foundation.occasion.IOccasionManager;
+import com.blackbox.foundation.occasion.Occasion;
+import com.blackbox.foundation.occasion.OccasionLayout;
 import net.sourceforge.stripes.action.*;
 import net.sourceforge.stripes.integration.spring.SpringBean;
 import org.joda.time.DateTime;
 
 import javax.servlet.http.HttpSession;
-import java.util.Date;
 import java.util.List;
 
 @UrlBinding("/event/create")

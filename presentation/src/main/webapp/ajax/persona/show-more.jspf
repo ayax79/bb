@@ -13,7 +13,7 @@
 		<table>
 			<tbody>
 				<c:forEach var="user" items="${actionBean.paginationResults.results}">
-				<%--@elvariable id="user" type="com.blackbox.user.User"--%>
+				<%--@elvariable id="user" type="com.blackbox.foundation.user.User"--%>
 					<ui:meBoxUserRow user="${user}" type="connection"  hideActionMenu="true"/>
 				</c:forEach>
 			</tbody>

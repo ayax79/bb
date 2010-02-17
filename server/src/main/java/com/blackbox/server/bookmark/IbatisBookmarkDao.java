@@ -1,8 +1,8 @@
 package com.blackbox.server.bookmark;
 
-import com.blackbox.EntityType;
-import com.blackbox.bookmark.Bookmark;
-import static com.blackbox.bookmark.Bookmark.BookmarkType.WISH;
+import com.blackbox.foundation.EntityType;
+import com.blackbox.foundation.bookmark.Bookmark;
+import static com.blackbox.foundation.bookmark.Bookmark.BookmarkType.WISH;
 import com.blackbox.server.util.PersistenceUtil;
 import org.joda.time.DateTime;
 import org.springframework.orm.ibatis3.SqlSessionOperations;

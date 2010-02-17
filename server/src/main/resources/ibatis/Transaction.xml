@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="Transaction">
 
-    <resultMap id="TransactionResult" type="com.blackbox.billing.Transaction" extends="BBPersistentObject.BBPersistentObjectResult">
+    <resultMap id="TransactionResult" type="com.blackbox.foundation.billing.Transaction" extends="BBPersistentObject.BBPersistentObjectResult">
         <result property="amount.amount" column="amount" />
-        <result property="status" javaType="com.blackbox.billing.Transaction$TransactionStatus" jdbcType="INTEGER" />
+        <result property="status" javaType="com.blackbox.foundation.billing.Transaction$TransactionStatus" jdbcType="INTEGER" />
         <result property="user.guid" column="user_guid" />
     </resultMap>
 

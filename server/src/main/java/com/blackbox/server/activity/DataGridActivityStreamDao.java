@@ -1,12 +1,12 @@
 package com.blackbox.server.activity;
 
-import com.blackbox.EntityReference;
-import com.blackbox.activity.*;
+import com.blackbox.foundation.EntityReference;
+import com.blackbox.foundation.activity.*;
 import com.blackbox.server.activity.engine.EngineFactory;
 import com.blackbox.server.activity.engine.EngineType;
 import com.blackbox.server.activity.engine.IActivityStreamEngine;
-import com.blackbox.social.NetworkTypeEnum;
-import com.blackbox.util.Bounds;
+import com.blackbox.foundation.social.NetworkTypeEnum;
+import com.blackbox.foundation.util.Bounds;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;

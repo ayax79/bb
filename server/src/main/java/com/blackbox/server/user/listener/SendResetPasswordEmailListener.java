@@ -5,7 +5,7 @@ import com.blackbox.server.system.email.EmailDefinition;
 import com.blackbox.server.system.email.SimpleEmailDelivery;
 import com.blackbox.server.user.IUserDao;
 import com.blackbox.server.user.event.ForgotPasswordEvent;
-import com.blackbox.user.User;
+import com.blackbox.foundation.user.User;
 import org.yestech.event.ResultReference;
 import org.yestech.event.annotation.AsyncListener;
 import org.yestech.event.annotation.ListenedEvents;

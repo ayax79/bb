@@ -12,9 +12,9 @@
 		<table class="me-table">
 			<tbody>
 			<c:forEach var="wish" items="${actionBean.wishes.results}">
-				<%--@elvariable id="wish" type="com.blackbox.bookmark.UserWish"--%>
+                <%--@elvariable id="wish" type="com.blackbox.foundation.bookmark.UserWish"--%>
 				<c:set var="user" value="${wish.user}"/>
-				<%--@elvariable id="user" type="com.blackbox.user.User"--%>
+				<%--@elvariable id="user" type="com.blackbox.foundation.user.User"--%>
 				<ui:meBoxUserRow user="${user}" type="wishes" wish="${wish}"/>
 			</c:forEach>
 			</tbody>

@@ -5,7 +5,7 @@
  */
 package com.blackbox.server.media.publisher;
 
-import com.blackbox.media.MediaMetaData;
+import com.blackbox.foundation.media.MediaMetaData;
 import com.blackbox.server.media.IMediaDao;
 import org.apache.camel.Exchange;
 import org.slf4j.Logger;

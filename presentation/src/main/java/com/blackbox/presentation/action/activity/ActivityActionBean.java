@@ -4,16 +4,16 @@
  */
 package com.blackbox.presentation.action.activity;
 
-import com.blackbox.activity.ActivityRequest;
-import com.blackbox.activity.IActivityManager;
-import com.blackbox.activity.IActivityThread;
-import com.blackbox.message.PrePublicationUtil;
+import com.blackbox.foundation.activity.ActivityRequest;
+import com.blackbox.foundation.activity.IActivityManager;
+import com.blackbox.foundation.activity.IActivityThread;
+import com.blackbox.foundation.message.PrePublicationUtil;
 import com.blackbox.presentation.action.BaseBlackBoxActionBean;
 import com.blackbox.presentation.action.util.FilterType;
 import com.blackbox.presentation.action.util.JSONUtil;
-import com.blackbox.user.IUserManager;
-import com.blackbox.user.User;
-import com.blackbox.util.Bounds;
+import com.blackbox.foundation.user.IUserManager;
+import com.blackbox.foundation.user.User;
+import com.blackbox.foundation.util.Bounds;
 import net.sourceforge.stripes.action.*;
 import net.sourceforge.stripes.integration.spring.SpringBean;
 import org.joda.time.DateMidnight;
@@ -29,7 +29,7 @@ import static com.blackbox.presentation.action.BaseBlackBoxActionBean.ViewType.j
 import static com.blackbox.presentation.action.activity.ActivityActionBean.Scope.Today;
 import static com.blackbox.presentation.action.activity.ActivityActionBean.Scope.Yesterday;
 import static com.blackbox.presentation.action.util.PresentationUtil.createResolutionWithJsonArray;
-import static com.blackbox.social.NetworkTypeEnum.*;
+import static com.blackbox.foundation.social.NetworkTypeEnum.*;
 import static com.google.common.collect.Lists.newArrayList;
 
 /**
@@ -53,7 +53,7 @@ public abstract class ActivityActionBean extends BaseBlackBoxActionBean {
     protected IActivityManager activityManager;
 
     @SpringBean("prePublishedMessageCache")
-    ICacheManager<String, Collection<com.blackbox.message.Message>> prePublishedMessageCache;
+    ICacheManager<String, Collection<com.blackbox.foundation.message.Message>> prePublishedMessageCache;
 
     private Scope scope;
     private Collection<IActivityThread> activities;

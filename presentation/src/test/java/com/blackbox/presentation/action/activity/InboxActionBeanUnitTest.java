@@ -1,39 +1,27 @@
 package com.blackbox.presentation.action.activity;
 
-import com.blackbox.activity.ActivityThread;
-import com.blackbox.message.IMessageManager;
-import com.blackbox.message.Message;
-import com.blackbox.message.MessageRecipient;
+import com.blackbox.foundation.activity.ActivityThread;
+import com.blackbox.foundation.message.IMessageManager;
+import com.blackbox.foundation.message.Message;
+import com.blackbox.foundation.message.MessageRecipient;
 import static com.blackbox.presentation.TestUtil.buildRoundTrip;
-import com.blackbox.presentation.session.UserSessionService;
-import com.blackbox.presentation.extension.BlackBoxContext;
-import com.blackbox.presentation.extension.DefaultBlackBoxContext;
+
 import com.blackbox.presentation.extension.MockBlackBoxContext;
-import com.blackbox.user.User;
-import com.blackbox.user.IUserManager;
-import com.blackbox.social.ISocialManager;
-import com.blackbox.activity.IRecipient;
-import static com.blackbox.activity.IRecipient.RecipientStatus.DELETED;
-import static com.blackbox.activity.IRecipient.RecipientStatus.ARCHIVED;
-import static com.blackbox.Utils.array;
-import net.sourceforge.stripes.mock.MockRoundtrip;
-import net.sourceforge.stripes.validation.ValidationErrors;
+import com.blackbox.foundation.user.User;
+import com.blackbox.foundation.activity.IRecipient;
+
+import static com.blackbox.foundation.Utils.array;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.*;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.Before;
-import org.junit.Assert;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.ArgumentCaptor;
 import org.mockito.runners.MockitoJUnitRunner;
 import static org.mockito.Mockito.*;
-import org.springframework.web.context.WebApplicationContext;
 
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**

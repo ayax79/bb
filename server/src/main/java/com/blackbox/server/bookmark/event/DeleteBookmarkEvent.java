@@ -1,6 +1,6 @@
 package com.blackbox.server.bookmark.event;
 
-import com.blackbox.bookmark.Bookmark;
+import com.blackbox.foundation.bookmark.Bookmark;
 
 /**
  *

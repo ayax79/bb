@@ -1,6 +1,6 @@
 package com.blackbox.server.occasion.event;
 
-import com.blackbox.occasion.Occasion;
+import com.blackbox.foundation.occasion.Occasion;
 import org.yestech.event.event.IEvent;
 
 /**

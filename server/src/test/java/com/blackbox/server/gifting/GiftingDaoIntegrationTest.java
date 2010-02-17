@@ -3,12 +3,12 @@ package com.blackbox.server.gifting;
 import com.blackbox.server.BaseIntegrationTest;
 import com.blackbox.server.media.IMediaDao;
 import com.blackbox.server.user.IUserDao;
-import com.blackbox.media.MediaMetaData;
-import com.blackbox.media.MediaRecipient;
-import com.blackbox.user.User;
-import com.blackbox.social.NetworkTypeEnum;
-import com.blackbox.gifting.GiftLayout;
-import com.blackbox.activity.IActivity;
+import com.blackbox.foundation.media.MediaMetaData;
+import com.blackbox.foundation.media.MediaRecipient;
+import com.blackbox.foundation.user.User;
+import com.blackbox.foundation.social.NetworkTypeEnum;
+import com.blackbox.foundation.gifting.GiftLayout;
+import com.blackbox.foundation.activity.IActivity;
 import org.junit.Test;
 import org.yestech.publish.objectmodel.ArtifactType;
 

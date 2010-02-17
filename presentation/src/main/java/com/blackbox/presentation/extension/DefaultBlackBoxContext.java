@@ -5,10 +5,10 @@
  */
 package com.blackbox.presentation.extension;
 
-import com.blackbox.EntityReference;
-import com.blackbox.social.Relationship;
-import com.blackbox.social.RelationshipNetwork;
-import com.blackbox.user.User;
+import com.blackbox.foundation.EntityReference;
+import com.blackbox.foundation.social.Relationship;
+import com.blackbox.foundation.social.RelationshipNetwork;
+import com.blackbox.foundation.user.User;
 import org.terracotta.modules.annotations.InstrumentedClass;
 
 import java.util.List;

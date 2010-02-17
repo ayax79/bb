@@ -5,13 +5,12 @@
 
 package com.blackbox.server.message;
 
-import com.blackbox.activity.ActivityReference;
-import com.blackbox.activity.IRecipient;
-import com.blackbox.message.MailboxRequest;
-import com.blackbox.message.Message;
-import com.blackbox.message.MessageRecipient;
-import com.blackbox.social.NetworkTypeEnum;
-import com.blackbox.util.Bounds;
+import com.blackbox.foundation.activity.IRecipient;
+import com.blackbox.foundation.message.MailboxRequest;
+import com.blackbox.foundation.message.Message;
+import com.blackbox.foundation.message.MessageRecipient;
+import com.blackbox.foundation.social.NetworkTypeEnum;
+import com.blackbox.foundation.util.Bounds;
 import org.compass.core.CompassOperations;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,10 +21,10 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import java.util.*;
 
-import static com.blackbox.activity.IRecipient.RecipientStatus.ARCHIVED;
-import static com.blackbox.activity.IRecipient.RecipientStatus.INBOX;
-import static com.blackbox.message.MailboxRequest.MailboxFolder.*;
-import static com.blackbox.message.MailboxRequest.ReadState;
+import static com.blackbox.foundation.activity.IRecipient.RecipientStatus.ARCHIVED;
+import static com.blackbox.foundation.activity.IRecipient.RecipientStatus.INBOX;
+import static com.blackbox.foundation.message.MailboxRequest.MailboxFolder.*;
+import static com.blackbox.foundation.message.MailboxRequest.ReadState;
 import static com.blackbox.server.util.PersistenceUtil.insertOrUpdate;
 
 /**

@@ -1,8 +1,8 @@
 package com.blackbox.presentation.action.occasion;
 
-import com.blackbox.occasion.AttendingStatus;
-import com.blackbox.occasion.IOccasionManager;
-import com.blackbox.occasion.OccasionRequest;
+import com.blackbox.foundation.occasion.AttendingStatus;
+import com.blackbox.foundation.occasion.IOccasionManager;
+import com.blackbox.foundation.occasion.OccasionRequest;
 import com.blackbox.presentation.action.BaseBlackBoxActionBean;
 import com.blackbox.presentation.action.util.PresentationUtil;
 import net.sourceforge.stripes.action.Resolution;
