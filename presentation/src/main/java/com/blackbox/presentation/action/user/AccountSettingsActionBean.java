@@ -14,13 +14,13 @@ import com.blackbox.presentation.action.util.StringToLowerCaseConverter;
 
 import static com.blackbox.presentation.action.util.PresentationUtil.createResolutionWithText;
 
-import com.blackbox.user.ExternalCredentials;
+import com.blackbox.foundation.user.ExternalCredentials;
 
-import static com.blackbox.user.ExternalCredentials.CredentialType.TWITTER;
+import static com.blackbox.foundation.user.ExternalCredentials.CredentialType.TWITTER;
 
-import com.blackbox.user.IUserManager;
-import com.blackbox.user.User;
-import com.blackbox.util.GeoUtil;
+import com.blackbox.foundation.user.IUserManager;
+import com.blackbox.foundation.user.User;
+import com.blackbox.foundation.util.GeoUtil;
 import net.sourceforge.stripes.action.*;
 import net.sourceforge.stripes.controller.LifecycleStage;
 import net.sourceforge.stripes.integration.spring.SpringBean;

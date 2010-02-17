@@ -1,6 +1,6 @@
 package com.blackbox.server.system.ibatis.enumimpl;
 
-import com.blackbox.billing.Transaction;
+import com.blackbox.foundation.billing.Transaction;
 import com.blackbox.server.system.ibatis.OrdinalEnumTypeHandler;
 
 /**

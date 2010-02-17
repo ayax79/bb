@@ -1,7 +1,7 @@
  <%@ tag language="java" %>
 <%@ attribute name="type" required="true" %>
 <%@ attribute name="includeCheck" required="false" %>
-<%@ attribute name="notification" type="com.blackbox.notification.Notification" required="false" %>
+<%@ attribute name="notification" type="com.blackbox.foundation.notification.Notification" required="false" %>
 <%@include file="/WEB-INF/jsp/include/taglibs.jspf" %>
 <c:set var="type" value="${f:toLowerCase(type)}"/>
 

@@ -1,9 +1,10 @@
 package com.blackbox.server.system.ibatis;
 
+import com.blackbox.foundation.Status;
 import org.junit.runner.RunWith;
 import org.junit.Test;
 import org.mockito.Mock;
-import org.mockito.Mockito;
+
 import static org.mockito.Mockito.*;
 import org.apache.ibatis.type.JdbcType;
 
@@ -11,7 +12,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 
-import com.blackbox.Status;
 import static junit.framework.Assert.assertEquals;
 
 /**

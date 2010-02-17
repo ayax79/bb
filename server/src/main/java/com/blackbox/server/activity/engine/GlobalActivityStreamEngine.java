@@ -1,14 +1,14 @@
 package com.blackbox.server.activity.engine;
 
-import com.blackbox.EntityReference;
-import com.blackbox.activity.*;
+import com.blackbox.foundation.EntityReference;
+import com.blackbox.foundation.activity.*;
 import com.blackbox.server.activity.ActivityUtil;
 import static com.blackbox.server.activity.ActivityUtil.isParent;
 import static com.blackbox.server.activity.engine.LockManager.*;
 import static com.blackbox.server.activity.engine.LockManager.locateGlobalLock;
 import static com.blackbox.server.activity.engine.LockManager.locateGlobalChildMetaDataLock;
-import com.blackbox.social.NetworkTypeEnum;
-import com.blackbox.util.Bounds;
+import com.blackbox.foundation.social.NetworkTypeEnum;
+import com.blackbox.foundation.util.Bounds;
 import static com.google.common.collect.Lists.newArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

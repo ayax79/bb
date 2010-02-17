@@ -1,9 +1,9 @@
 package com.blackbox.presentation.action.persona;
 
-import com.blackbox.media.IMediaManager;
-import com.blackbox.media.MediaLibrary;
+import com.blackbox.foundation.media.IMediaManager;
+import com.blackbox.foundation.media.MediaLibrary;
 import com.blackbox.presentation.extension.BlackBoxContext;
-import com.blackbox.user.IUser;
+import com.blackbox.foundation.user.IUser;
 import net.sourceforge.stripes.action.ActionBeanContext;
 import net.sourceforge.stripes.action.FileBean;
 

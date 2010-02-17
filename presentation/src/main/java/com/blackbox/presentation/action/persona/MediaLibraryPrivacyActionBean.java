@@ -5,9 +5,9 @@
 
 package com.blackbox.presentation.action.persona;
 
-import com.blackbox.media.IMediaManager;
-import com.blackbox.media.MediaLibrary;
-import com.blackbox.social.NetworkTypeEnum;
+import com.blackbox.foundation.media.IMediaManager;
+import com.blackbox.foundation.media.MediaLibrary;
+import com.blackbox.foundation.social.NetworkTypeEnum;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.DontValidate;
 import net.sourceforge.stripes.action.Resolution;

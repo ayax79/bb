@@ -1,8 +1,8 @@
 package com.blackbox.server.occasion.listener;
 
-import com.blackbox.occasion.Attendee;
-import com.blackbox.occasion.Occasion;
-import com.blackbox.occasion.OccasionType;
+import com.blackbox.foundation.occasion.Attendee;
+import com.blackbox.foundation.occasion.Occasion;
+import com.blackbox.foundation.occasion.OccasionType;
 import com.blackbox.server.occasion.event.CreateOccasionEvent;
 import com.blackbox.server.occasion.event.OccasionEvent;
 import com.blackbox.server.occasion.event.UpdateOccasionEvent;

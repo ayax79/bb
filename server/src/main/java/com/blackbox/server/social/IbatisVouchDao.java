@@ -1,7 +1,7 @@
 package com.blackbox.server.social;
 
 import static com.blackbox.server.util.PersistenceUtil.insertOrUpdate;
-import com.blackbox.social.Vouch;
+import com.blackbox.foundation.social.Vouch;
 import org.joda.time.DateTime;
 import org.springframework.orm.ibatis3.SqlSessionOperations;
 import org.springframework.stereotype.Repository;

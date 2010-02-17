@@ -1,6 +1,6 @@
 package com.blackbox.server.system.ibatis;
 
-import com.blackbox.Utils;
+import com.blackbox.foundation.Utils;
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
 import org.springframework.util.Assert;

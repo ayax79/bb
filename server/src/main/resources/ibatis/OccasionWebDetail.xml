@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="OccasionWebDetail">
 
-    <resultMap id="OccasionWebDetailResult" type="com.blackbox.occasion.OccasionWebDetail"
+    <resultMap id="OccasionWebDetailResult" type="com.blackbox.foundation.occasion.OccasionWebDetail"
             extends="BBPersistentObject.BBPersistentObjectResult">
         <result property="canSharePhoto" />
         <result property="canViewGuestList"  />
@@ -13,7 +13,7 @@
         <association property="extraWebLinks" column="bb_occasion_webdetail_guid" select="OccasionWebDetailExtraWebLink.loadByOccasionWebDetailGuid" />
     </resultMap>
 
-    <insert id="insert" parameterType="com.blackbox.occasion.OccasionWebDetail">
+    <insert id="insert" parameterType="com.blackbox.foundation.occasion.OccasionWebDetail">
         insert into bb_occasion_webdetail
         (canSharePhoto, canViewGuestList, created, facebookMsg, modified, promoteOnFacebook,
         promoteOnTwitter, twitterMsg, version, guid)
@@ -24,7 +24,7 @@
         #{guid,jdbcType=VARCHAR})
     </insert>
 
-    <update id="update" parameterType="com.blackbox.occasion.OccasionWebDetail">
+    <update id="update" parameterType="com.blackbox.foundation.occasion.OccasionWebDetail">
         update bb_occasion_webdetail set
         canSharePhoto = #{canSharePhoto,jdbcType=BOOLEAN},
         canViewGuestList = #{canViewGuestList,jdbcType=INTEGER},

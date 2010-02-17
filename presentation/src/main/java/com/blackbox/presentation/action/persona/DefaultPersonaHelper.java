@@ -4,20 +4,20 @@
  */
 package com.blackbox.presentation.action.persona;
 
-import com.blackbox.EntityReference;
-import com.blackbox.Status;
-import com.blackbox.Utils;
-import com.blackbox.activity.ActivityFactory;
-import com.blackbox.media.IMediaManager;
-import com.blackbox.media.MediaLibrary;
-import com.blackbox.media.MediaLibrary.MediaLibraryType;
-import com.blackbox.media.MediaMetaData;
-import com.blackbox.media.MediaPublish;
+import com.blackbox.foundation.EntityReference;
+import com.blackbox.foundation.Status;
+import com.blackbox.foundation.Utils;
+import com.blackbox.foundation.activity.ActivityFactory;
+import com.blackbox.foundation.media.IMediaManager;
+import com.blackbox.foundation.media.MediaLibrary;
+import com.blackbox.foundation.media.MediaLibrary.MediaLibraryType;
+import com.blackbox.foundation.media.MediaMetaData;
+import com.blackbox.foundation.media.MediaPublish;
 import com.blackbox.presentation.action.media.SessionImageActionBean;
 import com.blackbox.presentation.action.util.PresentationUtil;
 import com.blackbox.presentation.extension.BlackBoxContext;
-import com.blackbox.social.NetworkTypeEnum;
-import com.blackbox.user.IUser;
+import com.blackbox.foundation.social.NetworkTypeEnum;
+import com.blackbox.foundation.user.IUser;
 import com.opensymphony.oscache.base.Cache;
 import com.opensymphony.oscache.base.NeedsRefreshException;
 import com.opensymphony.oscache.web.ServletCacheAdministrator;
@@ -38,8 +38,8 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.blackbox.IBlackBoxConstants.BUFFER_SIZE;
-import static com.blackbox.Utils.getCurrentDateTime;
+import static com.blackbox.foundation.IBlackBoxConstants.BUFFER_SIZE;
+import static com.blackbox.foundation.Utils.getCurrentDateTime;
 import static org.apache.commons.io.FileUtils.openOutputStream;
 import static org.apache.commons.io.FilenameUtils.getName;
 import static org.yestech.multimedia.image.jdk.ImageUtil.crop;

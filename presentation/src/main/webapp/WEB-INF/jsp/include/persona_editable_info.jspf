@@ -272,7 +272,7 @@
         <div id="profile.lookingFor" class="inf_list" target="false">
             <div id="lookingFor_q" class="inf_lis_lef"><fmt:message key="com.blackbox.presentation.action.persona.PSProfileActionBean.profile.lookingFor" /></div>
             <div id="lookingFor_a" class="inf_bg_rig" style="">
-                <c:forEach var="val" items="${bb:enumValues('com.blackbox.user.LookingForEnum')}"
+                <c:forEach var="val" items="${bb:enumValues('com.blackbox.foundation.user.LookingForEnum')}"
                            varStatus="status">
                     <input type="checkbox" id="profile.lookingFor.${s:enumName(val)}"
                            name="lookingFor"

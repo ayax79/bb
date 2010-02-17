@@ -2,9 +2,9 @@
 <%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
 
 <c:set var="thread" value="${actionBean.thread}"/>
-<%--@elvariable id="thread" type="com.blackbox.activity.ActivityThread"--%>
+<%--@elvariable id="thread" type="com.blackbox.foundation.activity.ActivityThread"--%>
 <c:set var="sender" value="${actionBean.userGuidMap[thread.parent.artifactMetaData.artifactOwner.guid]}"/>
-<%--@elvariable id="sender" type="com.blackbox.user.User"--%>
+<%--@elvariable id="sender" type="com.blackbox.foundation.user.User"--%>
 
 <c:set var="newLine" value="
 "/>
@@ -66,7 +66,7 @@
 	</div>
 	<div class="clear"></div>
 	<c:forEach var="child" items="${thread.children}">
-		<%--@elvariable id="child" type="com.blackbox.activity.ActivityThread"--%>
+        <%--@elvariable id="child" type="com.blackbox.foundation.activity.ActivityThread"--%>
 		<c:set var="sender" value="${actionBean.userGuidMap[child.artifactMetaData.artifactOwner.guid]}"/>
 		<div class="message-container clearfix">
 			<div class="message-leftcol reply-leftcol">

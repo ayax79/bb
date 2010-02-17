@@ -5,8 +5,8 @@
  */
 package com.blackbox.server.activity.listener;
 
-import com.blackbox.EntityReference;
-import com.blackbox.activity.IActivityThread;
+import com.blackbox.foundation.EntityReference;
+import com.blackbox.foundation.activity.IActivityThread;
 import com.blackbox.server.BaseBlackboxListener;
 import com.blackbox.server.activity.IActivityStreamDao;
 import com.blackbox.server.activity.event.LoadAssociateActivityThreadEvent;

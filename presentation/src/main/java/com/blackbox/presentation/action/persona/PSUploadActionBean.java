@@ -4,18 +4,18 @@
  */
 package com.blackbox.presentation.action.persona;
 
-import com.blackbox.Status;
-import com.blackbox.Utils;
-import com.blackbox.activity.ActivityProfile;
-import com.blackbox.media.*;
-import com.blackbox.media.MediaLibrary.MediaLibraryType;
+import com.blackbox.foundation.Status;
+import com.blackbox.foundation.Utils;
+import com.blackbox.foundation.activity.ActivityProfile;
+import com.blackbox.foundation.media.*;
+import com.blackbox.foundation.media.MediaLibrary.MediaLibraryType;
 import com.blackbox.presentation.action.BaseBlackBoxActionBean;
 import com.blackbox.presentation.action.media.SessionImageActionBean;
 import com.blackbox.presentation.action.util.AvatarCacheKey;
 import com.blackbox.presentation.action.util.MediaUtil;
-import com.blackbox.social.NetworkTypeEnum;
-import com.blackbox.user.IUserManager;
-import com.blackbox.user.User;
+import com.blackbox.foundation.social.NetworkTypeEnum;
+import com.blackbox.foundation.user.IUserManager;
+import com.blackbox.foundation.user.User;
 import net.sourceforge.stripes.action.*;
 import net.sourceforge.stripes.integration.spring.SpringBean;
 import org.apache.commons.io.IOUtils;
@@ -32,9 +32,9 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.blackbox.EntityReference.createEntityReference;
-import static com.blackbox.IBlackBoxConstants.BUFFER_SIZE;
-import static com.blackbox.Utils.getCurrentDateTime;
+import static com.blackbox.foundation.EntityReference.createEntityReference;
+import static com.blackbox.foundation.IBlackBoxConstants.BUFFER_SIZE;
+import static com.blackbox.foundation.Utils.getCurrentDateTime;
 import static com.blackbox.presentation.action.util.PresentationUtil.createResolutionWithJson;
 import static com.blackbox.presentation.action.util.PresentationUtil.createResolutionWithText;
 import static org.apache.commons.io.FileUtils.deleteDirectory;

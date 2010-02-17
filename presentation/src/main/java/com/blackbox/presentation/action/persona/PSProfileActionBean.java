@@ -10,7 +10,7 @@ import static com.blackbox.presentation.action.util.JSONUtil.toJSON;
 import static com.blackbox.presentation.action.util.PresentationUtil.createResolutionWithJson;
 import static com.blackbox.presentation.action.util.PresentationUtil.createResolutionWithText;
 import com.blackbox.presentation.extension.JodaShortDateTimeConverter;
-import com.blackbox.user.*;
+import com.blackbox.foundation.user.*;
 import net.sourceforge.stripes.action.*;
 import net.sourceforge.stripes.integration.spring.SpringBean;
 import net.sourceforge.stripes.validation.Validate;

@@ -4,15 +4,15 @@
  */
 package com.blackbox.presentation.action.persona;
 
-import com.blackbox.media.IMediaManager;
-import com.blackbox.media.MediaLibrary;
-import com.blackbox.media.MediaLibrary.MediaLibraryType;
+import com.blackbox.foundation.media.IMediaManager;
+import com.blackbox.foundation.media.MediaLibrary;
+import com.blackbox.foundation.media.MediaLibrary.MediaLibraryType;
 import com.blackbox.presentation.action.util.DateTimeUtils;
 import static com.blackbox.presentation.action.util.JSONUtil.toJSON;
 import com.blackbox.presentation.action.util.MediaUtil;
-import com.blackbox.social.RelationshipNetwork;
-import com.blackbox.user.IUserManager;
-import com.blackbox.user.User;
+import com.blackbox.foundation.social.RelationshipNetwork;
+import com.blackbox.foundation.user.IUserManager;
+import com.blackbox.foundation.user.User;
 import net.sourceforge.stripes.action.*;
 import net.sourceforge.stripes.integration.spring.SpringBean;
 import org.json.JSONArray;

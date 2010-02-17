@@ -5,10 +5,10 @@
 
 package com.blackbox.server.user;
 
-import com.blackbox.media.MediaMetaData;
+import com.blackbox.foundation.media.MediaMetaData;
 import com.blackbox.server.media.IMediaDao;
 import com.blackbox.server.user.event.VerifyUserEvent;
-import com.blackbox.user.*;
+import com.blackbox.foundation.user.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
@@ -16,7 +16,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.yestech.event.multicaster.IEventMulticaster;
 import java.util.Collection;
-import static com.blackbox.user.User.UserType.AFFILIATE;
+import static com.blackbox.foundation.user.User.UserType.AFFILIATE;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;

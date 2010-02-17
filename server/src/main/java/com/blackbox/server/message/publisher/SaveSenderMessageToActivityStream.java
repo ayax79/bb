@@ -5,9 +5,9 @@
  */
 package com.blackbox.server.message.publisher;
 
-import com.blackbox.message.Message;
+import com.blackbox.foundation.message.Message;
 import com.blackbox.server.activity.IActivityStreamDao;
-import com.blackbox.social.NetworkTypeEnum;
+import com.blackbox.foundation.social.NetworkTypeEnum;
 import org.apache.camel.Exchange;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

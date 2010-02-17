@@ -1,7 +1,7 @@
 package com.blackbox.server.system.ibatis.enumimpl;
 
 import com.blackbox.server.system.ibatis.OrdinalEnumTypeHandler;
-import com.blackbox.activity.IRecipient;
+import com.blackbox.foundation.activity.IRecipient;
 
 /**
  * @author A.J. Wright

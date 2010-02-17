@@ -1,12 +1,12 @@
 package com.blackbox.server.activity;
 
-import com.blackbox.EntityReference;
-import com.blackbox.activity.Activity;
-import com.blackbox.activity.AssociatedActivityFilterType;
-import com.blackbox.activity.IActivity;
-import com.blackbox.activity.IActivityThread;
-import com.blackbox.social.NetworkTypeEnum;
-import com.blackbox.util.Bounds;
+import com.blackbox.foundation.EntityReference;
+import com.blackbox.foundation.activity.Activity;
+import com.blackbox.foundation.activity.AssociatedActivityFilterType;
+import com.blackbox.foundation.activity.IActivity;
+import com.blackbox.foundation.activity.IActivityThread;
+import com.blackbox.foundation.social.NetworkTypeEnum;
+import com.blackbox.foundation.util.Bounds;
 
 import java.util.Collection;
 import java.util.List;

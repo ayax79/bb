@@ -3,7 +3,7 @@ package com.blackbox.server.message.listener;
 import com.blackbox.server.BaseBlackboxListener;
 import com.blackbox.server.message.event.DeleteMessageEvent;
 import com.blackbox.server.activity.IActivityStreamDao;
-import com.blackbox.message.Message;
+import com.blackbox.foundation.message.Message;
 import org.yestech.event.ResultReference;
 import org.yestech.event.annotation.ListenedEvents;
 import org.yestech.event.annotation.AsyncListener;

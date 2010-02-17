@@ -1,13 +1,13 @@
 package com.blackbox.server.occasion.listener;
 
-import com.blackbox.Utils;
-import com.blackbox.occasion.*;
+import com.blackbox.foundation.Utils;
+import com.blackbox.foundation.occasion.*;
 import com.blackbox.server.BaseBlackboxListener;
 import com.blackbox.server.occasion.IOccasionDao;
 import com.blackbox.server.occasion.event.OccasionRsvpEvent;
 import com.blackbox.server.user.IUserDao;
 import com.blackbox.server.util.PersistenceUtil;
-import com.blackbox.user.User;
+import com.blackbox.foundation.user.User;
 import static com.google.common.collect.Lists.newArrayList;
 import org.yestech.event.ResultReference;
 import org.yestech.event.annotation.ListenedEvents;

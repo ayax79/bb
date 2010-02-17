@@ -1,12 +1,12 @@
 package com.blackbox.server.media.listener;
 
+import com.blackbox.foundation.EntityReference;
 import org.yestech.event.ResultReference;
 import org.yestech.event.annotation.ListenedEvents;
 import com.blackbox.server.media.event.LoadProfileMediaMetaDataEvent;
 import com.blackbox.server.media.IMediaDao;
 import com.blackbox.server.BaseBlackboxListener;
-import com.blackbox.media.MediaMetaData;
-import com.blackbox.EntityReference;
+import com.blackbox.foundation.media.MediaMetaData;
 
 import javax.annotation.Resource;
 

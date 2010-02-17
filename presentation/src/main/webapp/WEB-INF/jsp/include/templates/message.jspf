@@ -1,6 +1,6 @@
 <%@ page import="java.util.Arrays" %>
 <%@ page import="java.util.StringTokenizer" %>
-<%--@elvariable id="activity" type="com.blackbox.activity.ActivityThread"--%>
+<%--@elvariable id="activity" type="com.blackbox.foundation.activity.ActivityThread"--%>
 <%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
 <c:set var="newLine" value="
 "/>

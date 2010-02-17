@@ -5,10 +5,9 @@
 
 package com.blackbox.server.entity;
 
-import com.blackbox.BaseEntity;
-import com.blackbox.EntityType;
-import com.blackbox.EntityReference;
-import com.blackbox.BBPersistentObject;
+import com.blackbox.foundation.BBPersistentObject;
+import com.blackbox.foundation.EntityType;
+import com.blackbox.foundation.EntityReference;
 
 /**
  *

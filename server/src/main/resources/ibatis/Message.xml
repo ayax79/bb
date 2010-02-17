@@ -2,39 +2,39 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="Message">
 
-    <resultMap id="ParentActivityResult" type="com.blackbox.activity.ActivityReference">
-        <result property="activityType" column="parentActivityType" javaType="com.blackbox.activity.ActivityTypeEnum"
+    <resultMap id="ParentActivityResult" type="com.blackbox.foundation.activity.ActivityReference">
+        <result property="activityType" column="parentActivityType" javaType="com.blackbox.foundation.activity.ActivityTypeEnum"
                 jdbcType="INTEGER"/>
         <result property="guid" column="parentguid"/>
         <result property="postDate" column="parentActivityPostDate" javaType="jodaDate"/>
-        <result property="ownerType" column="parentOwnerType" javaType="com.blackbox.EntityType" jdbcType="INTEGER"/>
+        <result property="ownerType" column="parentOwnerType" javaType="com.blackbox.foundation.EntityType" jdbcType="INTEGER"/>
     </resultMap>
 
-    <resultMap id="MessageResult" type="com.blackbox.message.Message" extends="BaseEntity.BaseEntityResult">
+    <resultMap id="MessageResult" type="com.blackbox.foundation.message.Message" extends="BaseEntity.BaseEntityResult">
         <result property="acknowledged" />
         <result property="body"/>
         <result property="postDate" javaType="jodaDate"/>
         <result property="published" />
-        <result property="recipientDepth" javaType="com.blackbox.social.NetworkTypeEnum" jdbcType="INTEGER"/>
+        <result property="recipientDepth" javaType="com.blackbox.foundation.social.NetworkTypeEnum" jdbcType="INTEGER"/>
         <result property="subject"/>
         <result property="virtualGift" />
         <association property="parentActivity" resultMap="ParentActivityResult"/>
         <association property="artifactMetaData" resultMap="MessageMetaData.MessageMetaDataResult"/>
     </resultMap>
 
-     <resultMap id="MessageWithRecipientsResult" type="com.blackbox.message.Message" extends="BaseEntity.BaseEntityResult">
+     <resultMap id="MessageWithRecipientsResult" type="com.blackbox.foundation.message.Message" extends="BaseEntity.BaseEntityResult">
         <result property="acknowledged" />
         <result property="body"/>
         <result property="postDate" javaType="jodaDate"/>
         <result property="published" />
-        <result property="recipientDepth" javaType="com.blackbox.social.NetworkTypeEnum" jdbcType="INTEGER"/>
+        <result property="recipientDepth" javaType="com.blackbox.foundation.social.NetworkTypeEnum" jdbcType="INTEGER"/>
         <result property="subject"/>
         <result property="virtualGift" />
         <association property="parentActivity" resultMap="ParentActivityResult"/>
         <association property="artifactMetaData" resultMap="MessageMetaData.MessageMetaDataWithRecipientsResult"/>
     </resultMap>
 
-    <insert id="insert" parameterType="com.blackbox.message.Message">
+    <insert id="insert" parameterType="com.blackbox.foundation.message.Message">
         insert into bb_message (acknowledged, body, created, modified, parentactivitypostdate, parentactivitytype,
         parentguid, parentownertype, postdate, published, recipientdepth,
         subject, version, virtualgift, artifactmetadata_guid, guid)
@@ -48,7 +48,7 @@
         )
     </insert>
 
-    <update id="update" parameterType="com.blackbox.message.Message">
+    <update id="update" parameterType="com.blackbox.foundation.message.Message">
         update bb_message set
         acknowledged = #{acknowledged,jdbcType=BOOLEAN},
         body = #{body,jdbcType=VARCHAR},

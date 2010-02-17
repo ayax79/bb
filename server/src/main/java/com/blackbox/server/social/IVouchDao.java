@@ -1,7 +1,6 @@
 package com.blackbox.server.social;
 
-import com.blackbox.social.Vouch;
-import com.blackbox.EntityReference;
+import com.blackbox.foundation.social.Vouch;
 
 import java.util.List;
 

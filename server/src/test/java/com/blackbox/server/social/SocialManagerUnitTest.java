@@ -7,11 +7,11 @@ package com.blackbox.server.social;
 
 import com.blackbox.server.user.IUserDao;
 import com.blackbox.server.util.PersistenceUtil;
-import com.blackbox.social.*;
-import com.blackbox.user.IUserManager;
-import com.blackbox.user.PaginationResults;
-import com.blackbox.user.User;
-import com.blackbox.util.DateUtil;
+import com.blackbox.foundation.social.*;
+import com.blackbox.foundation.user.IUserManager;
+import com.blackbox.foundation.user.PaginationResults;
+import com.blackbox.foundation.user.User;
+import com.blackbox.foundation.util.DateUtil;
 import com.google.common.base.Predicate;
 import org.apache.commons.lang.StringUtils;
 import org.joda.time.DateTime;
@@ -28,7 +28,7 @@ import org.yestech.event.multicaster.IEventMulticaster;
 
 import java.util.List;
 
-import static com.blackbox.social.Connection.ConnectionType;
+import static com.blackbox.foundation.social.Connection.ConnectionType;
 import static com.google.common.collect.Collections2.filter;
 import static com.google.common.collect.Lists.newArrayList;
 import static org.junit.Assert.*;

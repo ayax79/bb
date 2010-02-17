@@ -5,14 +5,11 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
 import org.joda.time.DateTime;
 import com.blackbox.presentation.extension.MockBlackBoxContext;
-import static com.blackbox.social.Relationship.createRelationship;
-import com.blackbox.user.User;
-import com.blackbox.bookmark.Bookmark;
-import static com.blackbox.bookmark.Bookmark.BookmarkType.WISH;
-import com.blackbox.activity.ActivityThread;
-import com.blackbox.message.Message;
+import static com.blackbox.foundation.social.Relationship.createRelationship;
+import com.blackbox.foundation.user.User;
+import com.blackbox.foundation.bookmark.Bookmark;
+import static com.blackbox.foundation.bookmark.Bookmark.BookmarkType.WISH;
 import static com.google.common.collect.Lists.newArrayList;
-import junit.framework.Assert;
 
 /**
  * @author A.J. Wright

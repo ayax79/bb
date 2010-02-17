@@ -2,14 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="MediaLibrary">
 
-    <resultMap id="MediaLibraryResult" type="com.blackbox.media.MediaLibrary"
+    <resultMap id="MediaLibraryResult" type="com.blackbox.foundation.media.MediaLibrary"
                extends="BaseEntity.BaseEntityResult">
         <result property="description"/>
-        <result property="networkTypeEnum" javaType="com.blackbox.social.NetworkTypeEnum" jdbcType="INTEGER"/>
-        <result property="type" javaType="com.blackbox.media.MediaLibrary$MediaLibraryType" jdbcType="INTEGER"/>
+        <result property="networkTypeEnum" javaType="com.blackbox.foundation.social.NetworkTypeEnum" jdbcType="INTEGER"/>
+        <result property="type" javaType="com.blackbox.foundation.media.MediaLibrary$MediaLibraryType" jdbcType="INTEGER"/>
         <result property="owner.guid" column="referenceGuid"/>
         <result property="owner.ownerType" column="referenceType"/>
-        <collection property="media" ofType="com.blackbox.media.MediaMetaData">
+        <collection property="media" ofType="com.blackbox.foundation.media.MediaMetaData">
             <id property="guid" column="mediaGuid"/>
             <result property="fileName" column="mediaFilename"/>
             <result property="comment" column="mediaComment"/>
@@ -23,7 +23,7 @@
         </collection>
     </resultMap>
 
-    <insert id="insert" parameterType="com.blackbox.media.MediaLibrary">
+    <insert id="insert" parameterType="com.blackbox.foundation.media.MediaLibrary">
         insert into bb_media_library
         (created, description, modified, name, networktypeenum, referenceguid, referencetype, status, type, version, guid)
         values
@@ -36,7 +36,7 @@
         insert into bb_media_library_bb_media_meta_data (bb_media_library_guid, media_guid) values (#{library.guid}, #{media.guid})
     </insert>
 
-    <update id="update" parameterType="com.blackbox.media.MediaLibrary">
+    <update id="update" parameterType="com.blackbox.foundation.media.MediaLibrary">
         update bb_media_library set
         description = #{description,jdbcType=VARCHAR},
         name = #{name,jdbcType=VARCHAR},
@@ -88,7 +88,7 @@
         where ml.guid = #{value}
     </select>
 
-    <select id="loadByMediaMetaDataGuid" resultType="com.blackbox.media.MediaLibrary" parameterType="string">
+    <select id="loadByMediaMetaDataGuid" resultType="com.blackbox.foundation.media.MediaLibrary" parameterType="string">
         select
         <include refid="librarySelectClause"/>
         from bb_media_library ml

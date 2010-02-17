@@ -44,7 +44,7 @@
             <tr>
                 <td><s:label for="userType">User type:</s:label></td>
                 <td><s:select name="userType">
-                    <s:options-enumeration enum="com.blackbox.user.User.UserType"/>
+                    <s:options-enumeration enum="com.blackbox.foundation.user.User.UserType"/>
                 </s:select></td>
             </tr>
             <tr>
@@ -82,7 +82,7 @@
             <tr>
                 <td><s:label for="usertype">User type:</s:label></td>
                 <td><s:select name="userType">
-                    <s:options-enumeration enum="com.blackbox.user.User.UserType"/>
+                    <s:options-enumeration enum="com.blackbox.foundation.user.User.UserType"/>
                 </s:select></td>
             </tr>
             <tr>

@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
 
-import com.blackbox.billing.Money;
+import com.blackbox.foundation.billing.Money;
 
 /**
  * @author A.J. Wright

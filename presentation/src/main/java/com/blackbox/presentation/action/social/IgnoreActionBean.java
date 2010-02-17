@@ -2,19 +2,16 @@ package com.blackbox.presentation.action.social;
 
 import com.blackbox.presentation.action.BaseBlackBoxActionBean;
 import com.blackbox.presentation.action.util.JSONUtil;
-import com.blackbox.social.ISocialManager;
-import com.blackbox.social.Ignore;
-import com.blackbox.user.IUser;
-import com.blackbox.EntityReference;
+import com.blackbox.foundation.social.ISocialManager;
+import com.blackbox.foundation.user.IUser;
+import com.blackbox.foundation.EntityReference;
 import net.sourceforge.stripes.action.DontValidate;
 import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.Resolution;
-import net.sourceforge.stripes.action.StreamingResolution;
 import net.sourceforge.stripes.integration.spring.SpringBean;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import java.io.StringReader;
 import java.util.List;
 
 /**

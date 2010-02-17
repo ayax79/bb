@@ -5,16 +5,11 @@
  */
 package com.blackbox.server.cache;
 
-import com.blackbox.message.Message;
-import com.blackbox.user.MiniProfile;
-import com.blackbox.activity.IActivity;
-import com.blackbox.social.NetworkTypeEnum;
+import com.blackbox.foundation.message.Message;
+import com.blackbox.foundation.social.NetworkTypeEnum;
 import org.apache.camel.Exchange;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.yestech.cache.ICacheManager;
-
-import javax.annotation.Resource;
 
 /**
  * @author Artie Copeland

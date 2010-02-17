@@ -20,8 +20,8 @@ import java.io.ByteArrayInputStream;
 import java.util.Map;
 import java.util.HashMap;
 
-import com.blackbox.media.MediaMetaData;
-import com.blackbox.activity.ActivityFactory;
+import com.blackbox.foundation.media.MediaMetaData;
+import com.blackbox.foundation.activity.ActivityFactory;
 
 /**
  * @author Artie Copeland

@@ -1,8 +1,8 @@
 <%@ tag language="java" %>
-<%@ attribute name="user" required="true" type="com.blackbox.user.User"%>
+<%@ attribute name="user" required="true" type="com.blackbox.foundation.user.User"%>
 <%@ attribute name="type" required="true"%>
-<%@ attribute name="vouch" required="false" type="com.blackbox.social.UserVouch" %>
-<%@ attribute name="wish" required="false" type="com.blackbox.bookmark.UserWish" %>
+<%@ attribute name="vouch" required="false" type="com.blackbox.foundation.social.UserVouch" %>
+<%@ attribute name="wish" required="false" type="com.blackbox.foundation.bookmark.UserWish" %>
 <%@ attribute name="hideActionMenu" required="false"%>
 <%@include file="/WEB-INF/jsp/include/taglibs.jspf" %>
 

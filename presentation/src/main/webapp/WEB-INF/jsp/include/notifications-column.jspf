@@ -2,7 +2,7 @@
 <%@include file="/WEB-INF/jsp/include/taglibs.jspf" %>
 
 <c:set var="notifications" value="${actionBean.notifications}"/>
-<%--@elvariable id="notifications" type="com.blackbox.notification.Notifications"--%>
+<%--@elvariable id="notifications" type="com.blackbox.foundation.notification.Notifications"--%>
 <div id="notifications-col">
 
 	<%--<c:if test="${displayHeader ne 'false'}"><h2>Notifications</h2></c:if>--%>

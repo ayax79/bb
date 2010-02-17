@@ -7,8 +7,8 @@ package com.blackbox.server.user.listener;
 
 import com.blackbox.server.user.IUserDao;
 import com.blackbox.server.user.event.UpdateUserEvent;
-import com.blackbox.user.IUser;
-import com.blackbox.user.User;
+import com.blackbox.foundation.user.IUser;
+import com.blackbox.foundation.user.User;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.jmock.integration.junit4.JMock;

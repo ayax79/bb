@@ -5,17 +5,17 @@
 
 package com.blackbox.server.message;
 
-import com.blackbox.EntityType;
-import com.blackbox.IEntityManager;
-import com.blackbox.activity.IActivityThread;
-import com.blackbox.bookmark.Bookmark;
-import com.blackbox.message.MailboxRequest;
-import static com.blackbox.message.MailboxRequest.MailboxFilter.WISHED;
-import com.blackbox.message.Message;
-import com.blackbox.message.MessageRecipient;
+import com.blackbox.foundation.EntityType;
+import com.blackbox.foundation.IEntityManager;
+import com.blackbox.foundation.activity.IActivityThread;
+import com.blackbox.foundation.bookmark.Bookmark;
+import com.blackbox.foundation.message.MailboxRequest;
+import static com.blackbox.foundation.message.MailboxRequest.MailboxFilter.WISHED;
+import com.blackbox.foundation.message.Message;
+import com.blackbox.foundation.message.MessageRecipient;
 import com.blackbox.server.bookmark.IBookmarkDao;
-import com.blackbox.user.PaginationResults;
-import com.blackbox.user.User;
+import com.blackbox.foundation.user.PaginationResults;
+import com.blackbox.foundation.user.User;
 import com.google.common.collect.Lists;
 import static com.google.common.collect.Lists.newArrayList;
 import static org.junit.Assert.assertEquals;

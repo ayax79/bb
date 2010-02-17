@@ -5,10 +5,10 @@
 
 package com.blackbox.server.social;
 
-import com.blackbox.EntityType;
+import com.blackbox.foundation.EntityType;
 import static com.blackbox.server.util.PersistenceUtil.insertOrUpdate;
-import com.blackbox.social.Relationship;
-import static com.blackbox.social.Relationship.RelationStatus.*;
+import com.blackbox.foundation.social.Relationship;
+import static com.blackbox.foundation.social.Relationship.RelationStatus.*;
 import org.springframework.orm.ibatis3.SqlSessionOperations;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;

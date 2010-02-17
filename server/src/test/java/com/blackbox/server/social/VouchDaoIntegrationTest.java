@@ -1,8 +1,8 @@
 package com.blackbox.server.social;
 
 import com.blackbox.server.BaseIntegrationTest;
-import com.blackbox.social.Vouch;
-import com.blackbox.user.User;
+import com.blackbox.foundation.social.Vouch;
+import com.blackbox.foundation.user.User;
 
 import javax.annotation.Resource;
 

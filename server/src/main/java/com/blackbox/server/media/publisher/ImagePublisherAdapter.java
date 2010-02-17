@@ -1,6 +1,6 @@
 package com.blackbox.server.media.publisher;
 
-import com.blackbox.media.MediaMetaData;
+import com.blackbox.foundation.media.MediaMetaData;
 import static com.blackbox.server.util.MediaPublishUtil.buildThumbnailUniqueName;
 import static org.apache.commons.io.FileUtils.deleteQuietly;
 import org.apache.commons.io.IOUtils;

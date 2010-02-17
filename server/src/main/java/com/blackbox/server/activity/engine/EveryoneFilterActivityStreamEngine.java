@@ -1,9 +1,9 @@
 package com.blackbox.server.activity.engine;
 
-import com.blackbox.EntityReference;
-import com.blackbox.activity.*;
-import com.blackbox.social.NetworkTypeEnum;
-import com.blackbox.util.Bounds;
+import com.blackbox.foundation.EntityReference;
+import com.blackbox.foundation.activity.*;
+import com.blackbox.foundation.social.NetworkTypeEnum;
+import com.blackbox.foundation.util.Bounds;
 import static com.google.common.collect.Lists.newArrayList;
 import static com.google.common.collect.Sets.newTreeSet;
 import org.slf4j.Logger;

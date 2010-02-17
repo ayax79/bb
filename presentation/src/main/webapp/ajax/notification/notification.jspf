@@ -2,7 +2,7 @@
 <%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
 
 <c:forEach var="notification" items="${actionBean.group.items}">
-	<%--@elvariable id="notification" type="com.blackbox.notification.Notification"--%>
+	<%--@elvariable id="notification" type="com.blackbox.foundation.notification.Notification"--%>
 	<ui:notificationBlock type="${notification.type}" notification="${notification}"/>
 </c:forEach>
 

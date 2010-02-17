@@ -5,26 +5,27 @@
 
 package com.blackbox.server.message;
 
-import com.blackbox.BaseEntity;
-import com.blackbox.EntityReference;
-import com.blackbox.EntityType;
-import com.blackbox.IEntityManager;
-import static com.blackbox.Utils.applyGuid;
-import com.blackbox.activity.ActivityProfile;
-import com.blackbox.activity.ActivityThread;
-import static com.blackbox.activity.AscendingActivityComparator.getAscendingActivityComparator;
-import static com.blackbox.activity.DescendingActivityThreadComparator.getDescendingActivityThreadComparator;
-import com.blackbox.activity.IActivityThread;
-import com.blackbox.activity.IRecipient;
-import com.blackbox.bookmark.Bookmark;
-import com.blackbox.media.IMediaManager;
-import com.blackbox.media.AvatarImage;
-import com.blackbox.message.IMessageManager;
-import com.blackbox.message.MailboxRequest;
-import static com.blackbox.message.MailboxRequest.MailboxFilter;
-import static com.blackbox.message.MailboxRequest.MailboxFolder.INBOX_FOLDER;
-import com.blackbox.message.Message;
-import com.blackbox.message.MessageRecipient;
+import com.blackbox.foundation.*;
+import com.blackbox.foundation.EntityReference;
+
+import static com.blackbox.foundation.Utils.applyGuid;
+
+import com.blackbox.foundation.BaseEntity;
+import com.blackbox.foundation.activity.ActivityProfile;
+import com.blackbox.foundation.activity.ActivityThread;
+import static com.blackbox.foundation.activity.AscendingActivityComparator.getAscendingActivityComparator;
+
+import com.blackbox.foundation.activity.IActivityThread;
+import com.blackbox.foundation.activity.IRecipient;
+import com.blackbox.foundation.bookmark.Bookmark;
+import com.blackbox.foundation.media.IMediaManager;
+import com.blackbox.foundation.media.AvatarImage;
+import com.blackbox.foundation.message.IMessageManager;
+import com.blackbox.foundation.message.MailboxRequest;
+import static com.blackbox.foundation.message.MailboxRequest.MailboxFilter;
+
+import com.blackbox.foundation.message.Message;
+import com.blackbox.foundation.message.MessageRecipient;
 import static com.blackbox.server.activity.ActivityUtil.createActivityThreadList;
 import static com.blackbox.server.activity.ActivityUtil.createActivityThreadListTyped;
 import com.blackbox.server.bookmark.IBookmarkDao;
@@ -33,11 +34,11 @@ import com.blackbox.server.message.event.DeleteMessageEvent;
 import com.blackbox.server.message.event.PublishMessageEvent;
 import com.blackbox.server.social.INetworkDao;
 import com.blackbox.server.user.IUserDao;
-import com.blackbox.util.PaginationUtil;
-import com.blackbox.social.Relationship;
-import static com.blackbox.social.Relationship.RelationStatus;
-import com.blackbox.user.PaginationResults;
-import com.blackbox.user.User;
+import com.blackbox.foundation.util.PaginationUtil;
+import com.blackbox.foundation.social.Relationship;
+import static com.blackbox.foundation.social.Relationship.RelationStatus;
+import com.blackbox.foundation.user.PaginationResults;
+import com.blackbox.foundation.user.User;
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Collections2;

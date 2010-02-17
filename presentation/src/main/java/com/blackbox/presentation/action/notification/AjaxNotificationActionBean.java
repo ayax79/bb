@@ -2,14 +2,14 @@ package com.blackbox.presentation.action.notification;
 
 import net.sourceforge.stripes.action.*;
 
-import com.blackbox.social.Relationship;
-import com.blackbox.notification.Notification;
-import com.blackbox.user.User;
-import com.blackbox.user.IUser;
-import com.blackbox.activity.IActivity;
-import com.blackbox.util.JaxbSafeCollectionWrapper;
+import com.blackbox.foundation.social.Relationship;
+import com.blackbox.foundation.notification.Notification;
+import com.blackbox.foundation.user.User;
+import com.blackbox.foundation.user.IUser;
+import com.blackbox.foundation.activity.IActivity;
+import com.blackbox.foundation.util.JaxbSafeCollectionWrapper;
 import static com.blackbox.presentation.action.util.PresentationUtil.createResolutionWithText;
-import com.blackbox.occasion.AttendingStatus;
+import com.blackbox.foundation.occasion.AttendingStatus;
 import com.google.common.collect.Maps;
 import com.google.common.base.Function;
 import org.json.JSONException;

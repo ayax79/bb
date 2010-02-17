@@ -1,7 +1,7 @@
 package com.blackbox.presentation.action.activity;
 
-import com.blackbox.activity.IActivity;
-import com.blackbox.activity.IActivityManager;
+import com.blackbox.foundation.activity.IActivity;
+import com.blackbox.foundation.activity.IActivityManager;
 import com.blackbox.presentation.action.BaseBlackBoxActionBean;
 import static com.blackbox.presentation.action.BaseBlackBoxActionBean.ViewType.json;
 import com.blackbox.presentation.action.util.JSONUtil;

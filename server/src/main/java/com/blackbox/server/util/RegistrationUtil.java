@@ -10,8 +10,8 @@
  */
 package com.blackbox.server.util;
 
-import com.blackbox.user.IUser;
-import com.blackbox.user.User;
+import com.blackbox.foundation.user.IUser;
+import com.blackbox.foundation.user.User;
 import org.apache.commons.lang.StringUtils;
 import static org.yestech.lib.crypto.MessageDigestUtils.sha1Hash;
 import org.yestech.cache.ICacheManager;

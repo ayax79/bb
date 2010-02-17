@@ -4,14 +4,14 @@
  */
 package com.blackbox.server.activity;
 
-import com.blackbox.activity.*;
-import com.blackbox.media.MediaMetaData;
-import com.blackbox.media.MediaRecipient;
-import com.blackbox.message.Message;
-import com.blackbox.message.MessageRecipient;
-import com.blackbox.occasion.Occasion;
-import com.blackbox.social.NetworkTypeEnum;
-import com.blackbox.social.Relationship;
+import com.blackbox.foundation.activity.*;
+import com.blackbox.foundation.media.MediaMetaData;
+import com.blackbox.foundation.media.MediaRecipient;
+import com.blackbox.foundation.message.Message;
+import com.blackbox.foundation.message.MessageRecipient;
+import com.blackbox.foundation.occasion.Occasion;
+import com.blackbox.foundation.social.NetworkTypeEnum;
+import com.blackbox.foundation.social.Relationship;
 import com.google.common.base.Function;
 import com.google.common.collect.ImmutableCollection;
 import com.google.common.collect.ImmutableMultimap;

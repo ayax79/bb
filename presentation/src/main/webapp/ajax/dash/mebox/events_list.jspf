@@ -11,7 +11,7 @@
 	<c:when test="${not empty actionBean.occasions.results}">
 
 			<c:forEach var="occasion" items="${actionBean.occasions.results}">
-				<%--@elvariable id="occasion" type="com.blackbox.occasion.Occasion"--%>
+				<%--@elvariable id="occasion" type="com.blackbox.foundation.occasion.Occasion"--%>
                 <c:set var="guid" value="${occasion.guid}" />
                 <c:set var="hostby" value="${occasion.hostBy}" />
                 <c:set var="name" value="${occasion.name}" />

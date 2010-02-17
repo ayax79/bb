@@ -1,11 +1,11 @@
 package com.blackbox.server.message.publisher;
 
-import com.blackbox.message.Message;
+import com.blackbox.foundation.message.Message;
 import com.blackbox.server.external.ITwitterClient;
 import com.blackbox.server.external.IUrlShortener;
 import com.blackbox.server.user.IExternalCredentialsDao;
-import com.blackbox.user.ExternalCredentials;
-import static com.blackbox.user.ExternalCredentials.CredentialType.TWITTER;
+import com.blackbox.foundation.user.ExternalCredentials;
+import static com.blackbox.foundation.user.ExternalCredentials.CredentialType.TWITTER;
 import org.apache.camel.Exchange;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

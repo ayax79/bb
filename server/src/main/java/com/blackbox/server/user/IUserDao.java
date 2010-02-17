@@ -5,10 +5,10 @@
 
 package com.blackbox.server.user;
 
-import com.blackbox.Status;
-import com.blackbox.search.ExploreRequest;
-import com.blackbox.search.WordFrequency;
-import com.blackbox.user.*;
+import com.blackbox.foundation.Status;
+import com.blackbox.foundation.search.ExploreRequest;
+import com.blackbox.foundation.search.WordFrequency;
+import com.blackbox.foundation.user.*;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;

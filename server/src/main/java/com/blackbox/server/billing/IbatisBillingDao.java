@@ -1,7 +1,7 @@
 package com.blackbox.server.billing;
 
-import com.blackbox.billing.BillingInfo;
-import com.blackbox.billing.Transaction;
+import com.blackbox.foundation.billing.BillingInfo;
+import com.blackbox.foundation.billing.Transaction;
 import com.blackbox.server.util.PersistenceUtil;
 import org.joda.time.DateTime;
 import org.springframework.orm.ibatis3.SqlSessionOperations;

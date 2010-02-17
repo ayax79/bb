@@ -1,9 +1,8 @@
 package com.blackbox.presentation.action.util;
 
-import com.blackbox.billing.Money;
+import com.blackbox.foundation.billing.Money;
 import static com.blackbox.presentation.action.util.PresentationUtil.getProperty;
 import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.params.HttpClientParams;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;

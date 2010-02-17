@@ -1,6 +1,6 @@
 package com.blackbox.server.media.listener;
 
-import com.blackbox.media.MediaMetaData;
+import com.blackbox.foundation.media.MediaMetaData;
 import com.blackbox.server.media.event.DeleteMediaMetaDataEvent;
 import com.blackbox.server.BaseBlackboxListener;
 import com.blackbox.server.activity.IActivityStreamDao;

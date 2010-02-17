@@ -1,8 +1,7 @@
 package com.blackbox.server.bookmark;
 
-import com.blackbox.group.Group;
-import com.blackbox.bookmark.Bookmark;
-import com.blackbox.EntityType;
+import com.blackbox.foundation.EntityType;
+import com.blackbox.foundation.bookmark.Bookmark;
 
 import java.util.List;
 

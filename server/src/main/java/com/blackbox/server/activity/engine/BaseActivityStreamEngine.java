@@ -1,9 +1,9 @@
 package com.blackbox.server.activity.engine;
 
-import com.blackbox.EntityReference;
-import com.blackbox.activity.*;
-import com.blackbox.social.NetworkTypeEnum;
-import com.blackbox.util.Bounds;
+import com.blackbox.foundation.EntityReference;
+import com.blackbox.foundation.activity.*;
+import com.blackbox.foundation.social.NetworkTypeEnum;
+import com.blackbox.foundation.util.Bounds;
 import org.yestech.cache.ICacheManager;
 
 import javax.annotation.Resource;

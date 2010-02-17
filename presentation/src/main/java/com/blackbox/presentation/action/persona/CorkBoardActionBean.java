@@ -4,14 +4,14 @@
  */
 package com.blackbox.presentation.action.persona;
 
-import com.blackbox.media.CorkboardImage;
-import com.blackbox.media.CorkboardPublish;
-import com.blackbox.media.IMediaManager;
-import com.blackbox.media.MediaMetaData;
+import com.blackbox.foundation.media.CorkboardImage;
+import com.blackbox.foundation.media.CorkboardPublish;
+import com.blackbox.foundation.media.IMediaManager;
+import com.blackbox.foundation.media.MediaMetaData;
 import com.blackbox.presentation.action.BaseBlackBoxActionBean;
 import com.blackbox.presentation.action.util.PresentationUtil;
-import com.blackbox.social.NetworkTypeEnum;
-import com.blackbox.user.User;
+import com.blackbox.foundation.social.NetworkTypeEnum;
+import com.blackbox.foundation.user.User;
 import com.google.common.base.Function;
 import com.google.common.collect.Maps;
 import net.sourceforge.stripes.action.*;

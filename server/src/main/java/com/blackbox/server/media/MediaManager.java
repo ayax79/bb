@@ -5,17 +5,17 @@
 
 package com.blackbox.server.media;
 
-import com.blackbox.EntityReference;
-import com.blackbox.EntityType;
-import com.blackbox.Utils;
-import com.blackbox.bookmark.IBookmarkManager;
-import com.blackbox.exception.MediaStoreException;
-import com.blackbox.media.*;
+import com.blackbox.foundation.EntityReference;
+import com.blackbox.foundation.EntityType;
+import com.blackbox.foundation.Utils;
+import com.blackbox.foundation.bookmark.IBookmarkManager;
+import com.blackbox.foundation.exception.MediaStoreException;
+import com.blackbox.foundation.media.*;
 import com.blackbox.server.media.event.*;
 import com.blackbox.server.user.IUserDao;
 import com.blackbox.server.util.MediaPublishUtil;
-import com.blackbox.user.User;
-import com.blackbox.util.Count;
+import com.blackbox.foundation.user.User;
+import com.blackbox.foundation.util.Count;
 import com.google.common.base.Function;
 import com.google.common.collect.Maps;
 import org.apache.commons.io.IOUtils;
@@ -39,7 +39,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import static com.blackbox.Utils.getCurrentDateTime;
+import static com.blackbox.foundation.Utils.getCurrentDateTime;
 import static com.blackbox.server.util.MediaPublishUtil.buildThumbnailUniqueName;
 import static org.apache.commons.io.FileUtils.openOutputStream;
 import static org.apache.commons.io.FileUtils.touch;

@@ -5,18 +5,17 @@
 
 package com.blackbox.server.media;
 
-import com.blackbox.EntityReference;
-import com.blackbox.EntityType;
-import com.blackbox.activity.IRecipient;
-import com.blackbox.media.*;
+import com.blackbox.foundation.EntityReference;
+import com.blackbox.foundation.EntityType;
+import com.blackbox.foundation.activity.IRecipient;
+import com.blackbox.foundation.media.*;
 import static com.blackbox.server.util.PersistenceUtil.insertOrUpdate;
-import com.blackbox.social.NetworkTypeEnum;
-import static com.blackbox.social.NetworkTypeEnum.ALL_MEMBERS;
-import static com.blackbox.social.NetworkTypeEnum.WORLD;
-import com.blackbox.util.Bounds;
+import com.blackbox.foundation.social.NetworkTypeEnum;
+import static com.blackbox.foundation.social.NetworkTypeEnum.ALL_MEMBERS;
+import static com.blackbox.foundation.social.NetworkTypeEnum.WORLD;
+import com.blackbox.foundation.util.Bounds;
 import static com.google.common.collect.Lists.newArrayList;
 
-import org.apache.ibatis.builder.MapperBuilderAssistant;
 import org.compass.core.CompassOperations;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

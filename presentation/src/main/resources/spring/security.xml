@@ -25,13 +25,13 @@
         </property>
     </bean>
 
-    <bean id="serviceRealm" class="com.blackbox.security.BlackboxSecurityRealm"/>
+    <bean id="serviceRealm" class="com.blackbox.foundation.security.BlackboxSecurityRealm"/>
 
     <!--<bean id="defaultRealm" class="org.jsecurity.realm.text.PropertiesRealm"-->
     <!--p:resourcePath="classpath:/realm/default.properties" p:cacheManager-ref="securityCacheManager"/>-->
 
     <!--<bean id="securityCacheManager" class="org.jsecurity.cache.HashtableCacheManager"/>-->
-    <bean id="securityCacheManager" class="com.blackbox.security.SecurityCacheManager" p:cache-ref="securityCache"/>
+    <bean id="securityCacheManager" class="com.blackbox.foundation.security.SecurityCacheManager" p:cache-ref="securityCache"/>
     <bean id="securityCache" class="org.yestech.cache.impl.EhCacheCacheManager" p:cache-ref="securityCacheDelagate"/>
     <bean id="securityCacheDelagate" class="org.springframework.cache.ehcache.EhCacheFactoryBean"
           p:cacheManager-ref="cacheManager" p:cacheName="securityCache"/>

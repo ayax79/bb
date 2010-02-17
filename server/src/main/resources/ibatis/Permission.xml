@@ -2,39 +2,39 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="Permission">
 
-    <resultMap id="BasePermissionResult" type="com.blackbox.security.BaseBBPermission" extends="BBPersistentObject.BBPersistentObjectResult">
-        <result property="type" javaType="com.blackbox.security.PermissionTypeEnum" jdbcType="INTEGER" />
+    <resultMap id="BasePermissionResult" type="com.blackbox.foundation.security.BaseBBPermission" extends="BBPersistentObject.BBPersistentObjectResult">
+        <result property="type" javaType="com.blackbox.foundation.security.PermissionTypeEnum" jdbcType="INTEGER" />
         <result property="key" />
         <result property="artifactType" />
     </resultMap>
 
-    <resultMap id="SocialPermissionResult" type="com.blackbox.security.SocialPermission" extends="BasePermissionResult">
+    <resultMap id="SocialPermissionResult" type="com.blackbox.foundation.security.SocialPermission" extends="BasePermissionResult">
         <result property="trustLevel" />
         <result property="depth" />
         <result property="relationshipType" />
     </resultMap>
 
-    <resultMap id="ApplicationPermissionResult" type="com.blackbox.security.ApplicationPermission" extends="BasePermissionResult">
+    <resultMap id="ApplicationPermissionResult" type="com.blackbox.foundation.security.ApplicationPermission" extends="BasePermissionResult">
         <result property="category" />
         <result property="access" />
         <result property="field" />
     </resultMap>
 
-    <insert id="insertSocialPermission" parameterType="com.blackbox.security.SocialPermission">
+    <insert id="insertSocialPermission" parameterType="com.blackbox.foundation.security.SocialPermission">
         insert into bb_social_permission
         (guid, version, created, modified, type, key, trustLevel, depth, relationshipType)
         values
         (#{guid}, #{version}, #{created}, #{modified}, #{type}, #{key}, #{trustLevel}, #{depth}, #{relationshipType})
     </insert>
 
-    <insert id="insertApplicationPermission" parameterType="com.blackbox.security.ApplicationPermission">
+    <insert id="insertApplicationPermission" parameterType="com.blackbox.foundation.security.ApplicationPermission">
         insert into bb_application_permission
         (guid, version,created, modified, type, key, category, access, field)
         values
         (#{guid}, #{version}, #{created}, #{modified}, #{type}, #{key}, #{category}, #{access}, #{field})
     </insert>
 
-    <update id="updateSocialPermission" parameterType="com.blackbox.security.SocialPermission">
+    <update id="updateSocialPermission" parameterType="com.blackbox.foundation.security.SocialPermission">
         update bb_social_permission set
         version = #{version},
         modified = #{modified},
@@ -47,7 +47,7 @@
         guid = #{guid}
     </update>
 
-    <update id="updateApplicationPermission" parameterType="com.blackbox.security.ApplicationPermission">
+    <update id="updateApplicationPermission" parameterType="com.blackbox.foundation.security.ApplicationPermission">
         update bb_social_permission set
         version = #{version},
         modified = #{modified},

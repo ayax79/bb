@@ -1,8 +1,8 @@
 package com.blackbox.presentation.action.search;
 
-import com.blackbox.search.ExploreRequest;
-import com.blackbox.user.IUserManager;
-import com.blackbox.user.PaginationResults;
+import com.blackbox.foundation.search.ExploreRequest;
+import com.blackbox.foundation.user.IUserManager;
+import com.blackbox.foundation.user.PaginationResults;
 import net.sourceforge.stripes.action.*;
 import static org.apache.commons.lang.StringUtils.isBlank;
 

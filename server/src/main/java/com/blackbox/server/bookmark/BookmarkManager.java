@@ -1,16 +1,16 @@
 package com.blackbox.server.bookmark;
 
-import com.blackbox.EntityType;
-import com.blackbox.bookmark.Bookmark;
-import com.blackbox.bookmark.IBookmarkManager;
-import com.blackbox.bookmark.UserWish;
-import com.blackbox.bookmark.WishStatus;
+import com.blackbox.foundation.EntityType;
+import com.blackbox.foundation.bookmark.Bookmark;
+import com.blackbox.foundation.bookmark.IBookmarkManager;
+import com.blackbox.foundation.bookmark.UserWish;
+import com.blackbox.foundation.bookmark.WishStatus;
 import com.blackbox.server.bookmark.event.CreateBookmarkEvent;
 import com.blackbox.server.bookmark.event.DeleteBookmarkEvent;
-import com.blackbox.user.IUserManager;
-import com.blackbox.user.PaginationResults;
-import com.blackbox.user.User;
-import com.blackbox.util.Count;
+import com.blackbox.foundation.user.IUserManager;
+import com.blackbox.foundation.user.PaginationResults;
+import com.blackbox.foundation.user.User;
+import com.blackbox.foundation.util.Count;
 import org.joda.time.DateMidnight;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import static com.blackbox.util.PaginationUtil.buildPaginationResults;
+import static com.blackbox.foundation.util.PaginationUtil.buildPaginationResults;
 
 /**
  *

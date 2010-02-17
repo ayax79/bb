@@ -7,11 +7,11 @@ import com.blackbox.server.BaseBlackboxListener;
 import com.blackbox.server.system.email.SimpleEmailDelivery;
 import com.blackbox.server.system.email.EmailDefinition;
 import com.blackbox.server.gifting.event.CreateGiftEvent;
-import com.blackbox.user.IUserManager;
-import com.blackbox.user.User;
-import com.blackbox.activity.IActivity;
-import com.blackbox.activity.IVirtualGiftable;
-import com.blackbox.activity.IRecipient;
+import com.blackbox.foundation.user.IUserManager;
+import com.blackbox.foundation.user.User;
+import com.blackbox.foundation.activity.IActivity;
+import com.blackbox.foundation.activity.IVirtualGiftable;
+import com.blackbox.foundation.activity.IRecipient;
 
 import javax.annotation.Resource;
 import java.util.List;

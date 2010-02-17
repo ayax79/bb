@@ -19,7 +19,7 @@
             <td>
                 <s:select name="user.type">
                     <s:options-enumeration
-                            enum="com.blackbox.user.User.UserType"></s:options-enumeration>
+                            enum="com.blackbox.foundation.user.User.UserType"></s:options-enumeration>
                 </s:select>
             </td>
         </tr>

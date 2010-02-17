@@ -1,7 +1,7 @@
 package com.blackbox.server.system.ibatis.enumimpl;
 
+import com.blackbox.foundation.Status;
 import com.blackbox.server.system.ibatis.OrdinalEnumTypeHandler;
-import com.blackbox.Status;
 
 /**
  * @author A.J. Wright

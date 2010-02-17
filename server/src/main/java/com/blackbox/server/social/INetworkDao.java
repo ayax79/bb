@@ -5,7 +5,7 @@
 
 package com.blackbox.server.social;
 
-import com.blackbox.social.Relationship;
+import com.blackbox.foundation.social.Relationship;
 
 import java.util.List;
 

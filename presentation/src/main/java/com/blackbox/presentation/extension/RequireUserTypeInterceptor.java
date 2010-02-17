@@ -9,7 +9,7 @@ import net.sourceforge.stripes.action.ActionBean;
 import net.sourceforge.stripes.action.ActionBeanContext;
 import org.apache.shiro.authz.AuthorizationException;
 import com.blackbox.presentation.action.util.RequireUserType;
-import com.blackbox.user.User;
+import com.blackbox.foundation.user.User;
 
 /**
  * Check to see if the action contains a {@link com.blackbox.presentation.action.util.RequireUserType}

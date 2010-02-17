@@ -6,8 +6,8 @@
 package com.blackbox.server.activity.publisher;
 
 import com.blackbox.server.activity.IActivityStreamDao;
-import com.blackbox.activity.Activity;
-import com.blackbox.activity.ActivityFactory;
+import com.blackbox.foundation.activity.Activity;
+import com.blackbox.foundation.activity.ActivityFactory;
 import org.apache.camel.Exchange;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

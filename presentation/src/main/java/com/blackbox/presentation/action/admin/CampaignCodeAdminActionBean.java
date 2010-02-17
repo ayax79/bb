@@ -3,7 +3,7 @@ package com.blackbox.presentation.action.admin;
 import com.blackbox.presentation.action.util.RequireUserType;
 import com.blackbox.presentation.action.util.PresentationUtil;
 import com.blackbox.presentation.action.BaseBlackBoxActionBean;
-import com.blackbox.user.*;
+import com.blackbox.foundation.user.*;
 import net.sourceforge.stripes.integration.spring.SpringBean;
 import net.sourceforge.stripes.action.*;
 import net.sourceforge.stripes.controller.LifecycleStage;

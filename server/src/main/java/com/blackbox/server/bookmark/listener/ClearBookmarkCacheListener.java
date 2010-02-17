@@ -1,8 +1,8 @@
 package com.blackbox.server.bookmark.listener;
 
-import com.blackbox.bookmark.Bookmark;
-import com.blackbox.bookmark.WishStatus;
-import com.blackbox.bookmark.UserWish;
+import com.blackbox.foundation.bookmark.Bookmark;
+import com.blackbox.foundation.bookmark.WishStatus;
+import com.blackbox.foundation.bookmark.UserWish;
 import com.blackbox.server.BaseBlackboxListener;
 import com.blackbox.server.bookmark.WishStatusCacheKey;
 import com.blackbox.server.bookmark.WishCountCacheKey;

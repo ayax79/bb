@@ -1,17 +1,14 @@
 package com.blackbox.server.social;
 
-import com.blackbox.EntityReference;
-import com.blackbox.user.User;
-import static com.blackbox.EntityType.USER;
+import com.blackbox.foundation.user.User;
 import com.blackbox.server.BaseIntegrationTest;
 import com.blackbox.server.user.IUserDao;
-import com.blackbox.social.Ignore;
+import com.blackbox.foundation.social.Ignore;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 /**
  *

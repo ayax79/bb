@@ -7,7 +7,7 @@ package com.blackbox.server.message.event;
 
 import org.yestech.event.event.BaseEvent;
 import org.yestech.event.annotation.EventResultType;
-import com.blackbox.message.Message;
+import com.blackbox.foundation.message.Message;
 
 /**
  *

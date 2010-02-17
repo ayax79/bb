@@ -1,6 +1,6 @@
 <%--@elvariable id="actionBean" type="com.blackbox.presentation.action.persona.EditRelationshipsActionBean"--%>
 <%@include file="/WEB-INF/jsp/include/taglibs.jspf" %>
-<%--@elvariable id="relationship" type="com.blackbox.social.Relationship"--%>
+<%--@elvariable id="relationship" type="com.blackbox.foundation.social.Relationship"--%>
 
 <%--
 Because things "had" to change... we can no longer expect the displayMode param to be included in the param map.

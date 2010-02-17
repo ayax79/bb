@@ -1,13 +1,13 @@
 package com.blackbox.presentation.session;
 
-import com.blackbox.EntityReference;
-import com.blackbox.bookmark.IBookmarkManager;
+import com.blackbox.foundation.EntityReference;
+import com.blackbox.foundation.bookmark.IBookmarkManager;
 import com.blackbox.presentation.extension.BlackBoxContext;
-import com.blackbox.social.ISocialManager;
-import com.blackbox.social.RelationshipNetwork;
-import com.blackbox.social.Relationship;
-import com.blackbox.user.User;
-import com.blackbox.user.IUserManager;
+import com.blackbox.foundation.social.ISocialManager;
+import com.blackbox.foundation.social.RelationshipNetwork;
+import com.blackbox.foundation.social.Relationship;
+import com.blackbox.foundation.user.User;
+import com.blackbox.foundation.user.IUserManager;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

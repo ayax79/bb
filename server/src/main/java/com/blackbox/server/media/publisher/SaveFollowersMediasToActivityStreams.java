@@ -5,12 +5,12 @@
  */
 package com.blackbox.server.media.publisher;
 
-import com.blackbox.media.MediaMetaData;
+import com.blackbox.foundation.media.MediaMetaData;
 import static com.blackbox.server.activity.ActivityUtil.*;
 import static com.blackbox.server.activity.ActivityUtil.checkNetworkDepth;
 import com.blackbox.server.activity.BaseSaveToActivityStreams;
 import static com.blackbox.server.util.MediaPublishUtil.isStreamMedia;
-import com.blackbox.social.NetworkTypeEnum;
+import com.blackbox.foundation.social.NetworkTypeEnum;
 import static com.google.common.collect.Lists.newArrayList;
 import org.apache.camel.Exchange;
 import org.slf4j.Logger;

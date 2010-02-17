@@ -9,7 +9,7 @@
             <c:when test="${not empty actionBean.users}">
                 <ul>
                     <c:forEach var="r" items="${actionBean.users}" varStatus="status" begin="0" end="14">
-                        <%--@elvariable id="r" type="com.blackbox.user.User"--%>
+                        <%--@elvariable id="r" type="com.blackbox.foundation.user.User"--%>
                         <li class="ls-result <c:if test='${status.first}'>first</c:if><c:if test='${status.last}'>last</c:if>">
 							<span class="meta">
 									${bb:limitString(r.profile.location.city, 20)},
@@ -60,7 +60,7 @@
             <%--<c:when test="${f:length(actionBean.occasions) > 0}">--%>
                 <%--<ul>--%>
                     <%--<c:forEach var="r" items="${actionBean.occasions}" varStatus="status">--%>
-                        <%--@elvariable id="r" type="com.blackbox.occasion.Occasion"--%>
+                        <%--@elvariable id="r" type="com.blackbox.foundation.occasion.Occasion"--%>
                         <%--<li class="ls-result <c:if test='${status.first}'>first</c:if><c:if test='${status.last}'>last</c:if>">--%>
 							<%--<span class="meta">--%>
                                 <%--${r.address.city},--%>

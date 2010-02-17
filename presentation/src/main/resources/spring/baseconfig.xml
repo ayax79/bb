@@ -20,7 +20,7 @@
     <context:annotation-config/>
     <context:component-scan base-package="com.blackbox.presentation"/>
 
-    <bean id="presentation-properties" class="com.blackbox.util.ExternalConfigPropertyConfigurer"
+    <bean id="presentation-properties" class="com.blackbox.foundation.util.ExternalConfigPropertyConfigurer"
           p:systemPropertiesMode="2"
           p:external="/usr/local/jetty/presentation.properties">
         <property name="locations">

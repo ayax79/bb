@@ -1,7 +1,7 @@
 package com.blackbox.server.system.ibatis.enumimpl;
 
 import com.blackbox.server.system.ibatis.OrdinalEnumTypeHandler;
-import com.blackbox.social.Ignore;
+import com.blackbox.foundation.social.Ignore;
 
 /**
  * @author A.J. Wright

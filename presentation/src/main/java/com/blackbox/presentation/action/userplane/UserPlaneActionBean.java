@@ -2,9 +2,9 @@ package com.blackbox.presentation.action.userplane;
 
 import com.blackbox.presentation.action.BaseBlackBoxActionBean;
 import com.blackbox.presentation.action.util.JspFunctions;
-import com.blackbox.user.IUserManager;
-import com.blackbox.user.SexEnum;
-import com.blackbox.userplane.*;
+import com.blackbox.foundation.user.IUserManager;
+import com.blackbox.foundation.user.SexEnum;
+import com.blackbox.foundation.userplane.*;
 import net.sourceforge.stripes.action.*;
 import net.sourceforge.stripes.integration.spring.SpringBean;
 import org.slf4j.Logger;
@@ -134,9 +134,9 @@ public class UserPlaneActionBean extends BaseBlackBoxActionBean implements Actio
         Communicationsuite suite = new Communicationsuite();
         suite.setTime(DatatypeFactory.newInstance().newXMLGregorianCalendar());
 
-        com.blackbox.userplane.User userType = new com.blackbox.userplane.User();
+        com.blackbox.foundation.userplane.User userType = new com.blackbox.foundation.userplane.User();
         suite.setUser(userType);
-        com.blackbox.user.User user = userManager.loadUserByGuid(sessionGUID);
+        com.blackbox.foundation.user.User user = userManager.loadUserByGuid(sessionGUID);
 
 		if (user == null) {
             userType.setUserid("INVALID");
@@ -145,7 +145,7 @@ public class UserPlaneActionBean extends BaseBlackBoxActionBean implements Actio
 
             userType.setUserid(user.getGuid());
             userType.setDisplayname(user.getUsername());
-            userType.setAdmin(user.getType() == com.blackbox.user.User.UserType.BLACKBOX_ADMIN);
+            userType.setAdmin(user.getType() == com.blackbox.foundation.user.User.UserType.BLACKBOX_ADMIN);
 
 			Images images = new Images();
 			userType.setImages(images);

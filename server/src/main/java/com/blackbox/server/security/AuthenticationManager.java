@@ -5,13 +5,13 @@
 
 package com.blackbox.server.security;
 
-import com.blackbox.Status;
-import com.blackbox.security.*;
+import com.blackbox.foundation.Status;
+import com.blackbox.foundation.security.*;
 import com.blackbox.server.security.event.AuthenticationEvent;
 import com.blackbox.server.security.event.LogoutEvent;
 import com.blackbox.server.user.IUserDao;
-import com.blackbox.user.IUser;
-import com.blackbox.user.User;
+import com.blackbox.foundation.user.IUser;
+import com.blackbox.foundation.user.User;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.subject.SimplePrincipalCollection;
 import org.yestech.cache.ICacheManager;

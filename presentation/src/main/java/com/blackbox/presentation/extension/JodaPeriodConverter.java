@@ -1,6 +1,6 @@
 package com.blackbox.presentation.extension;
 
-import static com.blackbox.util.JodaDateTools.convertFromDuration;
+import static com.blackbox.foundation.util.JodaDateTools.convertFromDuration;
 import net.sourceforge.stripes.validation.TypeConverter;
 import net.sourceforge.stripes.validation.ValidationError;
 import org.joda.time.DateTime;

@@ -5,7 +5,7 @@
  */
 package com.blackbox.server.commerce.event;
 
-import com.blackbox.commerce.Inventory;
+import com.blackbox.foundation.commerce.Inventory;
 import org.yestech.event.event.BaseEvent;
 
 /**

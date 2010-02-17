@@ -21,7 +21,7 @@
 			<div id="photo-album" class="clearfix">
 				<div class="photo-album-images">
 					<c:forEach var="image" items="${actionBean.currentAlbum.media}" varStatus="counter">
-						<%--@elvariable id="image" type="com.blackbox.media.MediaMetaData"--%>
+						<%--@elvariable id="image" type="com.blackbox.foundation.media.MediaMetaData"--%>
 						<div class="album-image <c:if test="${(counter.index) mod 5 == 0}">row-start</c:if> image_${image.guid}">
 							<c:if test="${actionBean.owner}">
 								<a href="#${image.guid}" class="image-action-link">&nbsp;</a>

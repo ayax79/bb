@@ -1,7 +1,7 @@
 package com.blackbox.server.activity.event;
 
-import com.blackbox.activity.AssociatedActivityFilterType;
-import com.blackbox.util.Bounds;
+import com.blackbox.foundation.activity.AssociatedActivityFilterType;
+import com.blackbox.foundation.util.Bounds;
 import org.yestech.event.event.BaseEvent;
 
 /**

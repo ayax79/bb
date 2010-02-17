@@ -1,7 +1,8 @@
 package com.blackbox;
 
-import com.blackbox.commerce.Merchant;
-import com.blackbox.user.User;
+import com.blackbox.foundation.EntityType;
+import com.blackbox.foundation.commerce.Merchant;
+import com.blackbox.foundation.user.User;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 

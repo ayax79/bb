@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="CorkboardImage">
 
-    <resultMap id="CorkboardImageResult" type="com.blackbox.media.CorkboardImage">
+    <resultMap id="CorkboardImageResult" type="com.blackbox.foundation.media.CorkboardImage">
         <result property="owner.guid" column="referenceGuid" />
-        <result property="owner.ownerType" column="referenceType" javaType="com.blackbox.EntityType" jdbcType="INTEGER" />
+        <result property="owner.ownerType" column="referenceType" javaType="com.blackbox.foundation.EntityType" jdbcType="INTEGER" />
         <result property="metaDataGuid" />
         <result property="x" />
         <result property="y" />
@@ -15,7 +15,7 @@
         <result property="fileName" />
     </resultMap>
 
-    <insert id="insert" parameterType="com.blackbox.media.CorkboardImage">
+    <insert id="insert" parameterType="com.blackbox.foundation.media.CorkboardImage">
         insert into bb_corkboard_image
         (created, metaDataGuid, modified, referenceGuid, referenceType, rotation, scale, version, x, y, z, guid)
         values
@@ -24,7 +24,7 @@
         #{x,jdbcType=INTEGER}, #{y,jdbcType=INTEGER}, #{z,jdbcType=INTEGER}, #{guid,jdbcType=VARCHAR})
     </insert>
 
-    <update id="update" parameterType="com.blackbox.media.CorkboardImage">
+    <update id="update" parameterType="com.blackbox.foundation.media.CorkboardImage">
         update bb_corkboard_image set
         metaDataGuid = #{metaDataGuid,jdbcType=VARCHAR},
         modified = #{modified,jdbcType=DATE},

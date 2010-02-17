@@ -23,17 +23,17 @@
         maxtemporaryvouches integer
     );
     -->
-    <resultMap id="UserResult" type="com.blackbox.user.User" extends="BaseEntity.BaseEntityResult">
+    <resultMap id="UserResult" type="com.blackbox.foundation.user.User" extends="BaseEntity.BaseEntityResult">
         <result property="email" column="email" javaType="string" jdbcType="VARCHAR"/>
         <result property="lastOnline" column="lastonline" javaType="jodaDate" jdbcType="DATE"/>
         <result property="lastname" column="lastname" javaType="string" jdbcType="VARCHAR"/>
         <result property="maxPermanentVouches" column="maxPermanentVouches" javaType="integer" jdbcType="INTEGER"/>
         <result property="maxWishes" column="maxWishes" javaType="integer" jdbcType="INTEGER"/>
         <result property="password" column="password" javaType="string" jdbcType="VARCHAR"/>
-        <result property="type" column="type" javaType="com.blackbox.user.User$UserType" jdbcType="INTEGER"/>
+        <result property="type" column="type" javaType="com.blackbox.foundation.user.User$UserType" jdbcType="INTEGER"/>
         <result property="username" column="username" javaType="string" jdbcType="VARCHAR"/>
         <result property="maxTemporaryVouches" column="maxTemporaryVouches" javaType="integer" jdbcType="INTEGER"/>
-        <association property="profile" javaType="com.blackbox.user.Profile">
+        <association property="profile" javaType="com.blackbox.foundation.user.Profile">
             <id property="guid" jdbcType="VARCHAR" javaType="string" column="profile_guid"/>
             <result property="created" jdbcType="DATE" javaType="jodaDate" column="profile_created"/>
             <result property="modified" jdbcType="DATE" javaType="jodaDate" column="profile_modified"/>
@@ -56,7 +56,7 @@
             <result property="phoneOther" javaType="string" jdbcType="VARCHAR"/>
             <result property="lookingForExplain" javaType="string" jdbcType="VARCHAR"/>
             <result property="mostly" javaType="string" jdbcType="VARCHAR"/>
-            <result property="sex" javaType="com.blackbox.user.SexEnum" jdbcType="INTEGER"/>
+            <result property="sex" javaType="com.blackbox.foundation.user.SexEnum" jdbcType="INTEGER"/>
             <result property="website" javaType="string" jdbcType="VARCHAR"/>
             <result property="visibleToPersona" column="visibleToPersona" javaType="boolean" jdbcType="BOOLEAN"/>
             <result property="visibleToPubStream" column="visibleToPubStream" javaType="boolean" jdbcType="BOOLEAN"/>
@@ -64,7 +64,7 @@
             <result property="visibleToPubStream" column="visibleToPubStream" javaType="boolean" jdbcType="BOOLEAN"/>
             <result property="visibleToTrialMember" column="visibleToTrialMember" javaType="boolean"
                     jdbcType="BOOLEAN"/>
-            <association property="location" javaType="com.blackbox.social.Address">
+            <association property="location" javaType="com.blackbox.foundation.social.Address">
                 <result property="address1" column="address1" javaType="string" jdbcType="VARCHAR"/>
                 <result property="address2" column="address2" javaType="string" jdbcType="VARCHAR"/>
                 <result property="city" column="city" javaType="string" jdbcType="VARCHAR"/>
@@ -73,7 +73,7 @@
                 <result property="state" column="state" javaType="string" jdbcType="VARCHAR"/>
                 <result property="zipCode" column="zipcode" javaType="string" jdbcType="VARCHAR"/>
             </association>
-            <association property="lookingFor" javaType="com.blackbox.user.LookingFor">
+            <association property="lookingFor" javaType="com.blackbox.foundation.user.LookingFor">
                 <result property="dates" column="dates" javaType="boolean" jdbcType="BOOLEAN"/>
                 <result property="donkeySex" column="donkeySex" javaType="boolean" jdbcType="BOOLEAN"/>
                 <result property="friends" column="friends" javaType="boolean" jdbcType="BOOLEAN"/>
@@ -82,7 +82,7 @@
                 <result property="love" column="love" javaType="boolean" jdbcType="BOOLEAN"/>
                 <result property="snuggling" column="snuggling" javaType="boolean" jdbcType="BOOLEAN"/>
             </association>
-            <association property="mood" javaType="com.blackbox.user.MoodThermometer">
+            <association property="mood" javaType="com.blackbox.foundation.user.MoodThermometer">
                 <result property="energyLevel" column="energyLevel" javaType="int" jdbcType="INTEGER"/>
                 <result property="interestLevel" column="interestLevel" javaType="int" jdbcType="INTEGER"/>
                 <result property="makePrivate" column="makePrivate" javaType="boolean" jdbcType="BOOLEAN"/>
@@ -90,7 +90,7 @@
                 <result property="polyStatus" column="polyStatus" javaType="int" jdbcType="INTEGER"/>
                 <result property="relationshipStatus" column="relationshipStatus" javaType="int" jdbcType="INTEGER"/>
             </association>
-            <association property="currentAddress" javaType="com.blackbox.social.Address">
+            <association property="currentAddress" javaType="com.blackbox.foundation.social.Address">
                 <result property="address1" column="current_address1" javaType="string" jdbcType="VARCHAR"/>
                 <result property="address2" column="current_address2" javaType="string" jdbcType="VARCHAR"/>
                 <result property="city" column="current_city" javaType="string" jdbcType="VARCHAR"/>
@@ -102,7 +102,7 @@
         </association>
     </resultMap>
 
-    <resultMap id="UserPartial" type="com.blackbox.user.User">
+    <resultMap id="UserPartial" type="com.blackbox.foundation.user.User">
         <result property="username" column="username" javaType="string" jdbcType="VARCHAR"/>
         <result property="guid" jdbcType="VARCHAR" javaType="string" column="guid"/>
         <result property="name" column="name" javaType="string" jdbcType="INTEGER"/>
@@ -110,7 +110,7 @@
         <result property="username" column="username" javaType="string" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <resultMap id="MiniProfileResult" type="com.blackbox.user.MiniProfile">
+    <resultMap id="MiniProfileResult" type="com.blackbox.foundation.user.MiniProfile">
         <id property="guid"/>
         <result property="username"/>
         <result property="name"/>
@@ -123,7 +123,7 @@
         <result property="totalVouches"/>
     </resultMap>
 
-    <insert id="insert" parameterType="com.blackbox.user.User">
+    <insert id="insert" parameterType="com.blackbox.foundation.user.User">
         INSERT INTO bb_user
         (guid, created, modified, version, name, status, email, lastonline,
         lastname, maxpermanentvouches, maxwishes, password, type, username, profile_guid, maxtemporaryvouches)
@@ -134,7 +134,7 @@
         #{maxTemporaryVouches,jdbcType=INTEGER})
     </insert>
 
-    <update id="update" parameterType="com.blackbox.user.User">
+    <update id="update" parameterType="com.blackbox.foundation.user.User">
         UPDATE bb_user SET
         modified = #{modified,jdbcType=DATE},
         version = #{version,jdbcType=INTEGER},

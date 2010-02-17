@@ -5,15 +5,13 @@
  */
 package com.blackbox.server.commerce.listener;
 
-import com.blackbox.Utils;
-import com.blackbox.commerce.Merchant;
+import com.blackbox.foundation.Utils;
+import com.blackbox.foundation.commerce.Merchant;
 import com.blackbox.server.BaseBlackboxListener;
 import com.blackbox.server.commerce.ICommerceDao;
 import com.blackbox.server.commerce.event.SaveMerchantEvent;
 import org.yestech.event.ResultReference;
 import org.yestech.event.annotation.ListenedEvents;
-
-import javax.annotation.Resource;
 
 /**
  * @author Artie Copeland

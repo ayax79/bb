@@ -1,7 +1,7 @@
 package com.blackbox.server.util;
 
-import com.blackbox.occasion.Occasion;
-import com.blackbox.occasion.Attendee;
+import com.blackbox.foundation.occasion.Occasion;
+import com.blackbox.foundation.occasion.Attendee;
 
 import java.util.List;
 

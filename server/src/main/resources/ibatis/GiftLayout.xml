@@ -8,7 +8,7 @@
         <result property="frame"/>
         <result property="iconLocation"/>
         <result property="activityReference.guid" column="referenceGuid"/>
-        <result property="activityReference.ownerType" column="referenceType" javaType="com.blackbox.EntityType"
+        <result property="activityReference.ownerType" column="referenceType" javaType="com.blackbox.foundation.EntityType"
                 jdbcType="INTEGER"/>
         <result property="shelf"/>
         <result property="size"/>

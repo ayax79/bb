@@ -10,7 +10,7 @@
  */
 package com.blackbox.server.occasion;
 
-import com.blackbox.user.IUser;
+import com.blackbox.foundation.user.IUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Required;

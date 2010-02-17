@@ -5,7 +5,7 @@ import net.sourceforge.stripes.action.ActionBeanContext;
 import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.action.DefaultHandler;
 import static com.blackbox.presentation.action.util.PresentationUtil.createResolutionWithText;
-import com.blackbox.Utils;
+import com.blackbox.foundation.Utils;
 
 import java.io.IOException;
 

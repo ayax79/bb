@@ -5,14 +5,14 @@
 
 package com.blackbox.server.user;
 
-import com.blackbox.Status;
-import com.blackbox.search.ExploreRequest;
-import com.blackbox.search.WordFrequency;
+import com.blackbox.foundation.Status;
+import com.blackbox.foundation.search.ExploreRequest;
+import com.blackbox.foundation.search.WordFrequency;
 import com.blackbox.server.security.AuthenticationManager;
 import com.blackbox.server.util.GeoHelper;
 import com.blackbox.server.util.PersistenceUtil;
-import com.blackbox.user.*;
-import com.blackbox.util.Affirm;
+import com.blackbox.foundation.user.*;
+import com.blackbox.foundation.util.Affirm;
 import org.apache.commons.lang.StringUtils;
 import org.apache.lucene.index.TermFreqVector;
 import org.compass.core.*;

@@ -5,11 +5,11 @@
 
 package com.blackbox.server.message;
 
-import com.blackbox.message.Message;
-import com.blackbox.message.MessageRecipient;
-import com.blackbox.message.MailboxRequest;
-import com.blackbox.social.NetworkTypeEnum;
-import com.blackbox.util.Bounds;
+import com.blackbox.foundation.message.Message;
+import com.blackbox.foundation.message.MessageRecipient;
+import com.blackbox.foundation.message.MailboxRequest;
+import com.blackbox.foundation.social.NetworkTypeEnum;
+import com.blackbox.foundation.util.Bounds;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;

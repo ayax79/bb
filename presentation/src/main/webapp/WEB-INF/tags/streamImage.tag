@@ -1,7 +1,7 @@
 <%@ tag language="java" %>
 <%@ include file="/WEB-INF/jsp/include/taglibs.jspf" %>
 
-<%@ attribute name="msgObject" required="false" type="com.blackbox.BBPersistentObject" %>
+<%@ attribute name="msgObject" required="false" type="com.blackbox.foundation.BBPersistentObject" %>
 
 <a href="${msgObject.location}">
 	<c:choose>

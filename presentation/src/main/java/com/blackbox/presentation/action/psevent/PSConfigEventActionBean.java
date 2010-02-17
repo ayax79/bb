@@ -4,19 +4,19 @@
  */
 package com.blackbox.presentation.action.psevent;
 
-import com.blackbox.media.IMediaManager;
-import com.blackbox.media.MediaLibrary;
-import com.blackbox.media.MediaLibrary.MediaLibraryType;
-import com.blackbox.media.MediaMetaData;
+import com.blackbox.foundation.media.IMediaManager;
+import com.blackbox.foundation.media.MediaLibrary;
+import com.blackbox.foundation.media.MediaLibrary.MediaLibraryType;
+import com.blackbox.foundation.media.MediaMetaData;
 import com.blackbox.presentation.action.util.MediaUtil;
 import com.blackbox.presentation.action.util.PresentationUtil;
-import com.blackbox.social.ISocialManager;
-import com.blackbox.social.Relationship;
-import com.blackbox.social.RelationshipNetwork;
-import com.blackbox.user.ExternalCredentials;
-import static com.blackbox.user.ExternalCredentials.CredentialType.TWITTER;
-import com.blackbox.user.IUser;
-import com.blackbox.user.IUserManager;
+import com.blackbox.foundation.social.ISocialManager;
+import com.blackbox.foundation.social.Relationship;
+import com.blackbox.foundation.social.RelationshipNetwork;
+import com.blackbox.foundation.user.ExternalCredentials;
+import static com.blackbox.foundation.user.ExternalCredentials.CredentialType.TWITTER;
+import com.blackbox.foundation.user.IUser;
+import com.blackbox.foundation.user.IUserManager;
 import com.google.code.facebookapi.FacebookJsonRestClient;
 import net.sourceforge.stripes.action.*;
 import net.sourceforge.stripes.integration.spring.SpringBean;

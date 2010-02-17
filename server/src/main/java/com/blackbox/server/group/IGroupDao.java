@@ -1,6 +1,6 @@
 package com.blackbox.server.group;
 
-import com.blackbox.group.Group;
+import com.blackbox.foundation.group.Group;
 
 /**
  *

@@ -1,6 +1,6 @@
 package com.blackbox.presentation.action.util;
 
-import com.blackbox.billing.Money;
+import com.blackbox.foundation.billing.Money;
 
 import javax.xml.stream.XMLStreamException;
 import javax.xml.xpath.XPathExpressionException;

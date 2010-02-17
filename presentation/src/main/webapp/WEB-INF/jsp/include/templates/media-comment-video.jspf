@@ -1,3 +1,3 @@
 <%@ include file="/WEB-INF/jsp/include/taglibs.jspf" %>
-<%--@elvariable id="activity" type="com.blackbox.activity.ActivityThread"--%>
+<%--@elvariable id="activity" type="com.blackbox.foundation.activity.ActivityThread"--%>
 <ui:video id="small_video_${childActivity.guid}" uri="${childActivity.location}" cssClass="video-small" excludeJS="${exludeJS}"/>

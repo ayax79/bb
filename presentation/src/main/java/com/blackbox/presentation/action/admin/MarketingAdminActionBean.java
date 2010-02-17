@@ -1,7 +1,7 @@
 package com.blackbox.presentation.action.admin;
 
-import com.blackbox.user.IUserManager;
-import com.blackbox.user.User;
+import com.blackbox.foundation.user.IUserManager;
+import com.blackbox.foundation.user.User;
 import com.blackbox.presentation.action.BaseBlackBoxActionBean;
 import com.blackbox.presentation.action.util.RequireUserType;
 import net.sourceforge.stripes.action.*;

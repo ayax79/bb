@@ -5,22 +5,22 @@
  */
 package com.blackbox.server.activity;
 
-import com.blackbox.EntityReference;
-import com.blackbox.EntityType;
-import com.blackbox.IEntityManager;
-import com.blackbox.Utils;
-import com.blackbox.activity.*;
-import com.blackbox.media.IMediaManager;
-import com.blackbox.message.IMessageManager;
+import com.blackbox.foundation.EntityReference;
+import com.blackbox.foundation.EntityType;
+import com.blackbox.foundation.IEntityManager;
+import com.blackbox.foundation.Utils;
+import com.blackbox.foundation.activity.*;
+import com.blackbox.foundation.media.IMediaManager;
+import com.blackbox.foundation.message.IMessageManager;
 import com.blackbox.server.activity.event.LoadActivityThreadEvent;
 import com.blackbox.server.activity.event.LoadAssociateActivityThreadEvent;
 import com.blackbox.server.activity.event.LoadLastActivityEvent;
 import com.blackbox.server.activity.event.PublishActivityEvent;
 import com.blackbox.server.media.IMediaDao;
 import com.blackbox.server.message.IMessageDao;
-import com.blackbox.social.ISocialManager;
-import com.blackbox.social.NetworkTypeEnum;
-import com.blackbox.util.Bounds;
+import com.blackbox.foundation.social.ISocialManager;
+import com.blackbox.foundation.social.NetworkTypeEnum;
+import com.blackbox.foundation.util.Bounds;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

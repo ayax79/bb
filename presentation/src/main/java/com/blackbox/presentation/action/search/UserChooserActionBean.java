@@ -1,13 +1,11 @@
 package com.blackbox.presentation.action.search;
 
-import com.blackbox.EntityReference;
-import com.blackbox.EntityType;
 import com.blackbox.presentation.action.BaseBlackBoxActionBean;
 import static com.blackbox.presentation.action.util.JspFunctions.displayName;
-import com.blackbox.social.Relationship;
-import com.blackbox.social.RelationshipNetwork;
-import com.blackbox.user.User;
-import com.blackbox.user.IUserManager;
+
+import com.blackbox.foundation.social.RelationshipNetwork;
+import com.blackbox.foundation.user.User;
+import com.blackbox.foundation.user.IUserManager;
 import com.google.common.base.Function;
 import static com.google.common.collect.Collections2.transform;
 import net.sourceforge.stripes.action.DefaultHandler;

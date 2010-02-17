@@ -1,12 +1,12 @@
 package com.blackbox.server.occasion;
 
-import com.blackbox.Status;
-import com.blackbox.occasion.IOccasionManager;
-import com.blackbox.occasion.Occasion;
-import com.blackbox.occasion.OccasionRequest;
+import com.blackbox.foundation.Status;
+import com.blackbox.foundation.occasion.IOccasionManager;
+import com.blackbox.foundation.occasion.Occasion;
+import com.blackbox.foundation.occasion.OccasionRequest;
 import com.blackbox.server.BaseIntegrationTest;
 import com.blackbox.server.occasion.event.Occasion7DayReminderEvent;
-import com.blackbox.util.Bounds;
+import com.blackbox.foundation.util.Bounds;
 import org.joda.time.DateMidnight;
 import org.junit.Test;
 import org.yestech.event.multicaster.IEventMulticaster;

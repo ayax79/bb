@@ -47,7 +47,7 @@
         </description>
         <name>userFullName</name>
         <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
-        <function-signature>java.lang.String userFullName(com.blackbox.user.User)</function-signature>
+        <function-signature>java.lang.String userFullName(com.blackbox.foundation.user.User)</function-signature>
     </function>
 
     <function>
@@ -102,7 +102,7 @@
         </description>
         <name>occasionToJson</name>
         <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
-        <function-signature>java.lang.String occasionToJson(com.blackbox.occasion.Occasion)</function-signature>
+        <function-signature>java.lang.String occasionToJson(com.blackbox.foundation.occasion.Occasion)</function-signature>
     </function>
 
     <function>
@@ -270,28 +270,28 @@
         <description>Checks to see if the user is some kind of affiliate</description>
         <name>isAffiliate</name>
         <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
-        <function-signature>boolean isAffiliate(com.blackbox.user.User)</function-signature>
+        <function-signature>boolean isAffiliate(com.blackbox.foundation.user.User)</function-signature>
     </function>
 
     <function>
         <description>Checks to see if the user is a marketing-level admin</description>
         <name>isMarketing</name>
         <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
-        <function-signature>boolean isMarketing(com.blackbox.user.User)</function-signature>
+        <function-signature>boolean isMarketing(com.blackbox.foundation.user.User)</function-signature>
     </function>
 
     <function>
         <description>Checks to see if the user is a Blackbox Employee</description>
         <name>isEmployee</name>
         <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
-        <function-signature>boolean isEmployee(com.blackbox.user.User)</function-signature>
+        <function-signature>boolean isEmployee(com.blackbox.foundation.user.User)</function-signature>
     </function>
 
     <function>
         <description>Checks to see if the user is a Blackbox System Admin</description>
         <name>isAdmin</name>
         <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
-        <function-signature>boolean isAdmin(com.blackbox.user.User)</function-signature>
+        <function-signature>boolean isAdmin(com.blackbox.foundation.user.User)</function-signature>
     </function>
 
     <function>
@@ -362,14 +362,14 @@
         <description>FUCK</description>
         <name>isAllowedToFollow</name>
         <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
-        <function-signature>boolean isAllowedToFollow(com.blackbox.user.User,java.lang.String)</function-signature>
+        <function-signature>boolean isAllowedToFollow(com.blackbox.foundation.user.User,java.lang.String)</function-signature>
     </function>
 
    <function>
         <description>FUCK</description>
         <name>isAllowedToPrivateMessage</name>
         <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
-        <function-signature>boolean isAllowedToPrivateMessage(com.blackbox.user.User,java.lang.String)</function-signature>
+        <function-signature>boolean isAllowedToPrivateMessage(com.blackbox.foundation.user.User,java.lang.String)</function-signature>
     </function>
 
 
@@ -377,7 +377,7 @@
         <description>FUCK</description>
         <name>isAllowedToSearch</name>
         <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
-        <function-signature>boolean isAllowedToSearch(com.blackbox.user.User,java.lang.String)</function-signature>
+        <function-signature>boolean isAllowedToSearch(com.blackbox.foundation.user.User,java.lang.String)</function-signature>
     </function>
 
 
@@ -385,7 +385,7 @@
         <description>FUCK</description>
         <name>isAllowedToViewPersona</name>
         <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
-        <function-signature>boolean isAllowedToViewPersona(com.blackbox.user.User,java.lang.String)</function-signature>
+        <function-signature>boolean isAllowedToViewPersona(com.blackbox.foundation.user.User,java.lang.String)</function-signature>
     </function>
 
 
@@ -393,7 +393,7 @@
         <description>FUCK</description>
         <name>isAllowedToGift</name>
         <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
-        <function-signature>boolean isAllowedToGift(com.blackbox.user.User,java.lang.String)</function-signature>
+        <function-signature>boolean isAllowedToGift(com.blackbox.foundation.user.User,java.lang.String)</function-signature>
     </function>
 
 
@@ -401,7 +401,7 @@
         <description>FUCK</description>
         <name>isAllowedToSeeStalk</name>
         <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
-        <function-signature>boolean isAllowedToSeeStalk(com.blackbox.user.User,java.lang.String)</function-signature>
+        <function-signature>boolean isAllowedToSeeStalk(com.blackbox.foundation.user.User,java.lang.String)</function-signature>
     </function>
 
 

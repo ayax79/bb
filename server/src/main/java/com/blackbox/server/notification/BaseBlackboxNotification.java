@@ -12,7 +12,7 @@ import org.yestech.notify.constant.MessageTypeEnum;
 import org.springframework.beans.factory.annotation.Required;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.blackbox.user.IUser;
+import com.blackbox.foundation.user.IUser;
 import com.blackbox.server.util.RegistrationUtil;
 import com.blackbox.server.social.INetworkDao;
 

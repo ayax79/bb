@@ -3,7 +3,7 @@ package com.blackbox.presentation.config;
 import com.blackbox.groovy.GroovyConsoleService;
 import com.blackbox.presentation.action.util.DefaultEpxClient;
 import com.blackbox.presentation.action.util.EpxClient;
-import com.blackbox.util.GeoUtil;
+import com.blackbox.foundation.util.GeoUtil;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

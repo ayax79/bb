@@ -3,8 +3,8 @@ package com.blackbox.server.occasion.listener;
 import com.blackbox.server.BaseBlackboxListener;
 import com.blackbox.server.occasion.event.LoadOccasionForSceneEvent;
 import com.blackbox.server.occasion.IOccasionDao;
-import com.blackbox.occasion.Occasion;
-import com.blackbox.occasion.OccasionRequest;
+import com.blackbox.foundation.occasion.Occasion;
+import com.blackbox.foundation.occasion.OccasionRequest;
 import org.yestech.event.ResultReference;
 import org.yestech.event.annotation.ListenedEvents;
 

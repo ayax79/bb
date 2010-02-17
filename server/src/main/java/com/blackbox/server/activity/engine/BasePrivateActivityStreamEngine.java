@@ -1,17 +1,16 @@
 package com.blackbox.server.activity.engine;
 
-import com.blackbox.activity.ActivityThread;
-import com.blackbox.activity.IActivity;
-import com.blackbox.activity.AscendingActivityAndGuidComparator;
+import com.blackbox.foundation.activity.ActivityThread;
+import com.blackbox.foundation.activity.IActivity;
+import com.blackbox.foundation.activity.AscendingActivityAndGuidComparator;
 import static com.blackbox.server.activity.engine.LockManager.locateNonGlobalChildLock;
-import com.blackbox.social.NetworkTypeEnum;
+import com.blackbox.foundation.social.NetworkTypeEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.yestech.cache.ICacheManager;
 
 import javax.annotation.Resource;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.NavigableSet;
 import java.util.concurrent.locks.Lock;
 

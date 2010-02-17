@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/jsp/include/taglibs.jspf" %>
 <fmt:setBundle basename="StripesResources"/>
 
-<%@ attribute name="user" required="true" type="com.blackbox.user.User" %>
+<%@ attribute name="user" required="true" type="com.blackbox.foundation.user.User" %>
 <%@ attribute name="className" required="false" %>
 
 <c:choose>

@@ -1,6 +1,6 @@
 package com.blackbox.server.user;
 
-import com.blackbox.user.ExternalCredentials;
+import com.blackbox.foundation.user.ExternalCredentials;
 
 import java.util.List;
 

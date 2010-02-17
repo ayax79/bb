@@ -1,16 +1,16 @@
 package com.blackbox.server.user;
 
-import com.blackbox.Status;
-import com.blackbox.common.PrivateProfilePredicate;
-import com.blackbox.common.UserToProfileFunctor;
-import com.blackbox.common.UserToUserNameFunction;
-import com.blackbox.search.ExploreRequest;
+import com.blackbox.foundation.Status;
+import com.blackbox.foundation.common.PrivateProfilePredicate;
+import com.blackbox.foundation.common.UserToProfileFunctor;
+import com.blackbox.foundation.common.UserToUserNameFunction;
+import com.blackbox.foundation.search.ExploreRequest;
 import com.blackbox.server.BaseIntegrationTest;
 import com.blackbox.server.util.PersistenceUtil;
-import com.blackbox.social.NetworkTypeEnum;
+import com.blackbox.foundation.social.NetworkTypeEnum;
 import com.blackbox.testingutils.UserFixture;
-import com.blackbox.user.*;
-import com.blackbox.util.Range;
+import com.blackbox.foundation.user.*;
+import com.blackbox.foundation.util.Range;
 import com.google.common.collect.Collections2;
 import org.apache.commons.collections15.iterators.LoopingIterator;
 import org.joda.time.DateTime;

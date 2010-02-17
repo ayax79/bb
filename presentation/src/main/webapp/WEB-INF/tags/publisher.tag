@@ -4,7 +4,7 @@
 <%@ attribute name="config" required="true" %>
 <%@ attribute name="recipientIdentifier" required="false" %>
 <%@ attribute name="parentGuid" required="false" %>
-<%@ attribute name="sourceUser" required="false" type="com.blackbox.user.User" %>
+<%@ attribute name="sourceUser" required="false" type="com.blackbox.foundation.user.User" %>
 <%@ include file="/WEB-INF/jsp/include/taglibs.jspf" %>
 
 <c:choose>

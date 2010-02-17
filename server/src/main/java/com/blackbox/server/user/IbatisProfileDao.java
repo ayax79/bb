@@ -1,6 +1,6 @@
 package com.blackbox.server.user;
 
-import com.blackbox.user.Profile;
+import com.blackbox.foundation.user.Profile;
 import org.springframework.orm.ibatis3.SqlSessionOperations;
 import org.springframework.stereotype.Repository;
 

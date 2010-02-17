@@ -5,7 +5,9 @@
  */
 package com.blackbox;
 
-import com.blackbox.user.SexEnum;
+import com.blackbox.foundation.BBPersistentObject;
+import com.blackbox.foundation.Utils;
+import com.blackbox.foundation.user.SexEnum;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import org.junit.Test;

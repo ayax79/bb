@@ -209,7 +209,7 @@
             <label for="register_timezone"><fmt:message key="register.field.timezone"/><em>*</em></label>
             <s:select name="profile.timeZone" id="register_timezone">
                 <s:option value="" disabled="disabled" selected="selected"><fmt:message key="register.field.timezone.select"/> </s:option>
-                <s:options-enumeration enum="com.blackbox.user.TimeZoneEnum"/>
+                <s:options-enumeration enum="com.blackbox.foundation.user.TimeZoneEnum"/>
             </s:select>
         </li>
 

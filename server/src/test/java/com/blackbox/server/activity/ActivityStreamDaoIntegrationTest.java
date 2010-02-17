@@ -2,11 +2,11 @@ package com.blackbox.server.activity;
 
 import com.blackbox.server.BaseIntegrationTest;
 import com.blackbox.server.user.IUserDao;
-import com.blackbox.user.User;
-import com.blackbox.activity.AssociatedActivityFilterType;
-import com.blackbox.activity.IActivityThread;
-import com.blackbox.util.Bounds;
-import com.blackbox.social.NetworkTypeEnum;
+import com.blackbox.foundation.user.User;
+import com.blackbox.foundation.activity.AssociatedActivityFilterType;
+import com.blackbox.foundation.activity.IActivityThread;
+import com.blackbox.foundation.util.Bounds;
+import com.blackbox.foundation.social.NetworkTypeEnum;
 import org.junit.Test;
 
 import javax.annotation.Resource;

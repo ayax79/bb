@@ -35,7 +35,7 @@
             <td>
                 <s:select name="user.type">
                     <s:options-enumeration
-                            enum="com.blackbox.user.User.UserType"></s:options-enumeration>
+                            enum="com.blackbox.foundation.user.User.UserType"></s:options-enumeration>
                 </s:select>
             </td>
         </tr>
@@ -44,7 +44,7 @@
             <td>
                 <s:select name="user.status">
                     <s:options-enumeration
-                            enum="com.blackbox.Status"></s:options-enumeration>
+                            enum="com.blackbox.foundation.Status"></s:options-enumeration>
                 </s:select>
             </td>
         </tr>

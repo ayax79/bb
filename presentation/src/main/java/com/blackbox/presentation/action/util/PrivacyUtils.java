@@ -1,12 +1,12 @@
 package com.blackbox.presentation.action.util;
 
-import com.blackbox.security.Privacy;
-import com.blackbox.user.User;
-import com.blackbox.user.IUserManager;
+import com.blackbox.foundation.security.Privacy;
+import com.blackbox.foundation.user.User;
+import com.blackbox.foundation.user.IUserManager;
 import static com.blackbox.presentation.action.util.JspFunctions.getSpringBean;
-import com.blackbox.social.ISocialManager;
-import com.blackbox.social.Vouch;
-import com.blackbox.social.RelationshipNetwork;
+import com.blackbox.foundation.social.ISocialManager;
+import com.blackbox.foundation.social.Vouch;
+import com.blackbox.foundation.social.RelationshipNetwork;
 
 import java.util.List;
 

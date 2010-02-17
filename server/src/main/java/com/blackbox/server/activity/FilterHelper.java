@@ -1,6 +1,6 @@
 package com.blackbox.server.activity;
 
-import com.blackbox.social.NetworkTypeEnum;
+import com.blackbox.foundation.social.NetworkTypeEnum;
 
 import java.util.Collection;
 import java.util.Collections;

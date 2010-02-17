@@ -5,18 +5,18 @@
 
 package com.blackbox.server.social;
 
-import com.blackbox.EntityReference;
-import com.blackbox.EntityType;
-import com.blackbox.activity.IActivity;
-import com.blackbox.bookmark.Bookmark;
-import com.blackbox.media.MediaMetaData;
-import com.blackbox.notification.Notification;
-import com.blackbox.notification.NotificationGroup;
-import com.blackbox.notification.Notifications;
-import com.blackbox.occasion.Attendee;
-import com.blackbox.occasion.AttendingStatus;
-import com.blackbox.occasion.Occasion;
-import com.blackbox.occasion.OccasionLayout;
+import com.blackbox.foundation.EntityReference;
+import com.blackbox.foundation.EntityType;
+import com.blackbox.foundation.activity.IActivity;
+import com.blackbox.foundation.bookmark.Bookmark;
+import com.blackbox.foundation.media.MediaMetaData;
+import com.blackbox.foundation.notification.Notification;
+import com.blackbox.foundation.notification.NotificationGroup;
+import com.blackbox.foundation.notification.Notifications;
+import com.blackbox.foundation.occasion.Attendee;
+import com.blackbox.foundation.occasion.AttendingStatus;
+import com.blackbox.foundation.occasion.Occasion;
+import com.blackbox.foundation.occasion.OccasionLayout;
 import com.blackbox.server.bookmark.IBookmarkDao;
 import com.blackbox.server.exception.NotFoundException;
 import com.blackbox.server.gifting.IGiftingDao;
@@ -26,14 +26,14 @@ import com.blackbox.server.social.event.CreateRelationshipEvent;
 import com.blackbox.server.social.event.UpdateRelationshipEvent;
 import com.blackbox.server.social.event.VouchEvent;
 import com.blackbox.server.user.IUserDao;
-import com.blackbox.social.*;
-import com.blackbox.user.IUserManager;
-import com.blackbox.user.MiniProfile;
-import com.blackbox.user.PaginationResults;
-import com.blackbox.user.User;
-import com.blackbox.util.Count;
-import com.blackbox.util.DateUtil;
-import com.blackbox.util.NameInfo;
+import com.blackbox.foundation.social.*;
+import com.blackbox.foundation.user.IUserManager;
+import com.blackbox.foundation.user.MiniProfile;
+import com.blackbox.foundation.user.PaginationResults;
+import com.blackbox.foundation.user.User;
+import com.blackbox.foundation.util.Count;
+import com.blackbox.foundation.util.DateUtil;
+import com.blackbox.foundation.util.NameInfo;
 import org.apache.commons.lang.StringUtils;
 import org.joda.time.DateMidnight;
 import org.joda.time.DateTime;
@@ -51,15 +51,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.blackbox.Utils.reversePair;
-import static com.blackbox.notification.Notification.Type;
+import static com.blackbox.foundation.Utils.reversePair;
+import static com.blackbox.foundation.notification.Notification.Type;
 import static com.blackbox.server.util.OccasionUtil.cleanAttendee;
-import static com.blackbox.social.Connection.ConnectionType;
-import static com.blackbox.social.Relationship.RelationStatus;
-import static com.blackbox.social.Relationship.RelationStatus.*;
-import static com.blackbox.social.UserVouch.VouchDirection;
-import static com.blackbox.user.User.UserType;
-import static com.blackbox.util.PaginationUtil.buildPaginationResults;
+import static com.blackbox.foundation.social.Connection.ConnectionType;
+import static com.blackbox.foundation.social.Relationship.RelationStatus;
+import static com.blackbox.foundation.social.Relationship.RelationStatus.*;
+import static com.blackbox.foundation.social.UserVouch.VouchDirection;
+import static com.blackbox.foundation.user.User.UserType;
+import static com.blackbox.foundation.util.PaginationUtil.buildPaginationResults;
 
 /**
  *
@@ -998,7 +998,7 @@ public class SocialManager extends BaseServiceContainer implements ISocialManage
     }
 
     /**
-     * Maps {@link com.blackbox.social.Relationship.RelationStatus} to {@link NetworkTypeEnum}
+     * Maps {@link com.blackbox.foundation.social.Relationship.RelationStatus} to {@link NetworkTypeEnum}
      *
      * @param weight The relationship weight
      * @return The NetworkTypeEnum

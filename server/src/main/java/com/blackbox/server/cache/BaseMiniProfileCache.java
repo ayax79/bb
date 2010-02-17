@@ -1,7 +1,7 @@
 package com.blackbox.server.cache;
 
-import com.blackbox.user.MiniProfile;
-import com.blackbox.activity.IActivity;
+import com.blackbox.foundation.user.MiniProfile;
+import com.blackbox.foundation.activity.IActivity;
 import org.yestech.cache.ICacheManager;
 
 import javax.annotation.Resource;

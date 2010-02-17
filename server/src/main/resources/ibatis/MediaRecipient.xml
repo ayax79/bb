@@ -2,21 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="MediaRecipient">
 
-    <resultMap id="RecipientResult" type="com.blackbox.EntityReference">
+    <resultMap id="RecipientResult" type="com.blackbox.foundation.EntityReference">
         <result property="guid" column="recipientGuid"/>
-        <result property="ownerType" column="recipientOwnerType" javaType="com.blackbox.EntityType" jdbcType="INTEGER"/>
+        <result property="ownerType" column="recipientOwnerType" javaType="com.blackbox.foundation.EntityType" jdbcType="INTEGER"/>
     </resultMap>
 
-    <resultMap id="MediaRecipientResult" type="com.blackbox.media.MediaRecipient"
+    <resultMap id="MediaRecipientResult" type="com.blackbox.foundation.media.MediaRecipient"
                extends="BBPersistentObject.BBPersistentObjectResult">
         <result property="read" />
         <result property="replyDate" javaType="jodaDate"/>
-        <result property="status" javaType="com.blackbox.activity.IRecipient$RecipientStatus" jdbcType="INTEGER"/>
+        <result property="status" javaType="com.blackbox.foundation.activity.IRecipient$RecipientStatus" jdbcType="INTEGER"/>
         <result property="MediaMetaData.guid" column="media_guid"/>
         <association property="recipient" resultMap="RecipientResult"/>
     </resultMap>
 
-    <insert id="insert" parameterType="com.blackbox.media.MediaRecipient">
+    <insert id="insert" parameterType="com.blackbox.foundation.media.MediaRecipient">
         insert into bb_media_recipient (created, modified, recipientguid, recipientownertype,
         status, version, media_guid, guid)
         values (
@@ -30,7 +30,7 @@
         #{guid})
     </insert>
 
-    <update id="update" parameterType="com.blackbox.media.MediaRecipient">
+    <update id="update" parameterType="com.blackbox.foundation.media.MediaRecipient">
         update bb_media_recipient set
         status = #{status,javaType=recipientStatus,jdbcType=INTEGER},
         read = #{read},

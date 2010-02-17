@@ -1,6 +1,6 @@
 package com.blackbox.server.social;
 
-import com.blackbox.social.Vouch;
+import com.blackbox.foundation.social.Vouch;
 import org.joda.time.DateTime;
 
 import java.io.Serializable;

@@ -52,9 +52,9 @@
 		<div class="section-list">
 			
 			<c:forEach var="connection" items="${actionBean.connections.results}">
-			<%--@elvariable id="connection" type="com.blackbox.social.Connection"--%>
+			<%--@elvariable id="connection" type="com.blackbox.foundation.social.Connection"--%>
 			<c:set var="user" value="${connection.user}"/>
-			<%--@elvariable id="user" type="com.blackbox.user.User"--%>
+			<%--@elvariable id="user" type="com.blackbox.foundation.user.User"--%>
 
 			<div class="clearfix list-item user_connection">
 				<ui:profileImage guid="${user.guid}" size="small" linkToProfile="true" showMiniProfile="true" showUserType="true"/>
@@ -120,9 +120,9 @@
 
 		<div class="section-list">
 			<c:forEach var="wish" items="${actionBean.wishes.results}">
-			<%--@elvariable id="wish" type="com.blackbox.bookmark.UserWish"--%>
+                <%--@elvariable id="wish" type="com.blackbox.foundation.bookmark.UserWish"--%>
 			<c:set var="user" value="${wish.user}"/>
-			<%--@elvariable id="user" type="com.blackbox.user.User"--%>
+			<%--@elvariable id="user" type="com.blackbox.foundation.user.User"--%>
 			<div class="clearfix list-item user_connection">
 				<ui:profileImage guid="${user.guid}" size="small" linkToProfile="true" showMiniProfile="true" showUserType="true"/>
 			    <p>
@@ -226,9 +226,9 @@
 		<c:if test="${not empty actionBean.vouches.results}">
 		<div class="section-list">
 			<c:forEach var="vouch" items="${actionBean.vouches.results}">
-			<%--@elvariable id="vouch" type="com.blackbox.social.UserVouch"--%>
+			<%--@elvariable id="vouch" type="com.blackbox.foundation.social.UserVouch"--%>
 			<c:set var="user" value="${vouch.user}"/>
-			<%--@elvariable id="user" type="com.blackbox.user.User"--%>
+			<%--@elvariable id="user" type="com.blackbox.foundation.user.User"--%>
 			<div class="clearfix list-item user_connection">
 				<ui:profileImage guid="${user.guid}" size="small" linkToProfile="true" showMiniProfile="true" showUserType="true"/>
 			    <p>

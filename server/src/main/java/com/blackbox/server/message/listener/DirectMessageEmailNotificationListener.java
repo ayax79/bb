@@ -1,13 +1,13 @@
 package com.blackbox.server.message.listener;
 
-import com.blackbox.message.Message;
+import com.blackbox.foundation.message.Message;
 import com.blackbox.server.BaseBlackboxListener;
 import com.blackbox.server.message.event.PublishMessageEvent;
 import com.blackbox.server.system.email.EmailDefinition;
 import com.blackbox.server.system.email.SimpleEmailDelivery;
-import com.blackbox.social.NetworkTypeEnum;
-import com.blackbox.user.IUserManager;
-import com.blackbox.user.User;
+import com.blackbox.foundation.social.NetworkTypeEnum;
+import com.blackbox.foundation.user.IUserManager;
+import com.blackbox.foundation.user.User;
 import org.yestech.event.ResultReference;
 import org.yestech.event.annotation.AsyncListener;
 import org.yestech.event.annotation.ListenedEvents;
@@ -35,9 +35,9 @@ public class DirectMessageEmailNotificationListener extends BaseBlackboxListener
 
     protected void sendEmail(Message message) {
 
-        List<com.blackbox.activity.IRecipient> recipients = message.getRecipients();
+        List<com.blackbox.foundation.activity.IRecipient> recipients = message.getRecipients();
         assert recipients != null && !recipients.isEmpty();
-        com.blackbox.activity.IRecipient msgRecipient = recipients.get(0);
+        com.blackbox.foundation.activity.IRecipient msgRecipient = recipients.get(0);
         final User recipientUser = userManager.loadUserByGuid(msgRecipient.getRecipient().getGuid());
         final User senderUser = userManager.loadUserByGuid(message.getArtifactMetaData().getArtifactOwner().getGuid());
         assert senderUser != null;

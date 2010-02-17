@@ -4,12 +4,12 @@
  */
 package com.blackbox.presentation.action.persona;
 
-import com.blackbox.EntityReference;
-import com.blackbox.bookmark.Bookmark;
-import com.blackbox.bookmark.IBookmarkManager;
+import com.blackbox.foundation.EntityReference;
+import com.blackbox.foundation.bookmark.Bookmark;
+import com.blackbox.foundation.bookmark.IBookmarkManager;
 import com.blackbox.presentation.action.BaseBlackBoxActionBean;
 import static com.blackbox.presentation.action.util.JSONUtil.toJSON;
-import com.blackbox.user.IUser;
+import com.blackbox.foundation.user.IUser;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.action.StreamingResolution;

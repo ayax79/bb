@@ -1,7 +1,7 @@
 package com.blackbox.presentation.config;
 
-import com.blackbox.media.AvatarImage;
-import com.blackbox.message.Message;
+import com.blackbox.foundation.media.AvatarImage;
+import com.blackbox.foundation.message.Message;
 import com.blackbox.presentation.action.util.AvatarCacheKey;
 import com.blackbox.presentation.action.util.DisplayNameCacheKey;
 import net.sf.ehcache.Cache;

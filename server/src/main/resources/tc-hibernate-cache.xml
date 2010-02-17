@@ -11,16 +11,16 @@
      defined in the <cache> blocks below. -->
 
   <cache>
-    <region-name>com.blackbox.commerce.Merchant</region-name>
-    <region-name>com.blackbox.commerce.Product</region-name>
-    <region-name>com.blackbox.commerce.ShoppingCart</region-name>
-    <region-name>com.blackbox.media.ContentMetaData</region-name>
-    <region-name>com.blackbox.occasion.Promoter</region-name>
-    <region-name>com.blackbox.security.Permissions</region-name>
-    <region-name>com.blackbox.security.Role</region-name>
-    <region-name>com.blackbox.social.Category</region-name>
-    <region-name>com.blackbox.social.Relationship</region-name>
-    <region-name>com.blackbox.user.User</region-name>
+    <region-name>com.blackbox.foundation.commerce.Merchant</region-name>
+    <region-name>com.blackbox.foundation.commerce.Product</region-name>
+    <region-name>com.blackbox.foundation.commerce.ShoppingCart</region-name>
+    <region-name>com.blackbox.foundation.media.ContentMetaData</region-name>
+    <region-name>com.blackbox.foundation.occasion.Promoter</region-name>
+    <region-name>com.blackbox.foundation.security.Permissions</region-name>
+    <region-name>com.blackbox.foundation.security.Role</region-name>
+    <region-name>com.blackbox.foundation.social.Category</region-name>
+    <region-name>com.blackbox.foundation.social.Relationship</region-name>
+    <region-name>com.blackbox.foundation.user.User</region-name>
     <configuration>
       <time-to-idle-seconds>120</time-to-idle-seconds>
       <time-to-live-seconds>600</time-to-live-seconds>

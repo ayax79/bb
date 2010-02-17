@@ -5,12 +5,11 @@
 
 package com.blackbox.server.message.event;
 
+import com.blackbox.foundation.EntityReference;
 import org.yestech.event.event.BaseEvent;
 import org.yestech.event.annotation.EventResultType;
 
 import java.util.List;
-
-import com.blackbox.EntityReference;
 
 /**
  *

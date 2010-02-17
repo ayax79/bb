@@ -2,17 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="Relationship">
 
-    <resultMap id="FromEntityResult" type="com.blackbox.EntityReference">
+    <resultMap id="FromEntityResult" type="com.blackbox.foundation.EntityReference">
         <result property="guid" column="fromguid" javaType="string"/>
-        <result property="ownerType" column="fromownertype" javaType="com.blackbox.EntityType" jdbcType="INTEGER"/>
+        <result property="ownerType" column="fromownertype" javaType="com.blackbox.foundation.EntityType" jdbcType="INTEGER"/>
     </resultMap>
 
-    <resultMap id="ToEntityResult" type="com.blackbox.EntityReference">
+    <resultMap id="ToEntityResult" type="com.blackbox.foundation.EntityReference">
         <result property="guid" column="toguid" javaType="string"/>
-        <result property="ownerType" column="toownertype" javaType="com.blackbox.EntityType" jdbcType="INTEGER"/>
+        <result property="ownerType" column="toownertype" javaType="com.blackbox.foundation.EntityType" jdbcType="INTEGER"/>
     </resultMap>
 
-    <resultMap id="RelationshipResult" type="com.blackbox.social.Relationship"
+    <resultMap id="RelationshipResult" type="com.blackbox.foundation.social.Relationship"
                extends="BBPersistentObject.BBPersistentObjectResult">
         <result property="acknowledged" javaType="boolean"/>
         <result property="description" javaType="string"/>
@@ -22,7 +22,7 @@
         <association property="toEntity" resultMap="ToEntityResult"/>
     </resultMap>
 
-    <insert id="insert" parameterType="com.blackbox.social.Relationship">
+    <insert id="insert" parameterType="com.blackbox.foundation.social.Relationship">
         insert into bb_relationship
         (acknowledged, created, description, fromguid, fromownertype, modified, previousweight, toguid, toownertype, version, weight, guid)
         values
@@ -31,7 +31,7 @@
         #{toEntity.ownerType,jdbcType=INTEGER}, #{version,jdbcType=INTEGER}, #{weight,jdbcType=INTEGER}, #{guid,jdbcType=VARCHAR})
     </insert>
 
-    <update id="update" parameterType="com.blackbox.social.Relationship">
+    <update id="update" parameterType="com.blackbox.foundation.social.Relationship">
         update bb_relationship set
         acknowledged = #{acknowledged,jdbcType=BOOLEAN},
         description = #{description,jdbcType=VARCHAR},

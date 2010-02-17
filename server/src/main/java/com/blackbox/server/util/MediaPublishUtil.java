@@ -1,6 +1,6 @@
 package com.blackbox.server.util;
 
-import com.blackbox.media.MediaMetaData;
+import com.blackbox.foundation.media.MediaMetaData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.yestech.publish.objectmodel.ArtifactType;

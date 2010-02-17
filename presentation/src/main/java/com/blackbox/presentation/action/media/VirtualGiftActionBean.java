@@ -1,17 +1,17 @@
 package com.blackbox.presentation.action.media;
 
-import com.blackbox.EntityReference;
-import com.blackbox.activity.IActivity;
+import com.blackbox.foundation.EntityReference;
+import com.blackbox.foundation.activity.IActivity;
 import com.blackbox.gifting.GiftLayout;
 import com.blackbox.gifting.IGiftingManager;
-import com.blackbox.media.MediaMetaData;
-import com.blackbox.media.MediaPublish;
-import com.blackbox.media.MediaRecipient;
-import com.blackbox.message.Message;
-import com.blackbox.message.MessageRecipient;
+import com.blackbox.foundation.media.MediaMetaData;
+import com.blackbox.foundation.media.MediaPublish;
+import com.blackbox.foundation.media.MediaRecipient;
+import com.blackbox.foundation.message.Message;
+import com.blackbox.foundation.message.MessageRecipient;
 import com.blackbox.presentation.action.BaseBlackBoxActionBean;
 import com.blackbox.presentation.action.util.JSONUtil;
-import com.blackbox.user.User;
+import com.blackbox.foundation.user.User;
 import net.sourceforge.stripes.action.*;
 import net.sourceforge.stripes.integration.spring.SpringBean;
 import net.sourceforge.stripes.util.Base64;
@@ -23,7 +23,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.blackbox.EntityType.USER;
+import static com.blackbox.foundation.EntityType.USER;
 import static com.blackbox.presentation.action.media.VirtualGiftActionBean.FilterType.RECEIVED;
 import static com.blackbox.presentation.action.media.VirtualGiftActionBean.FilterType.SENT;
 import static com.blackbox.presentation.action.util.JSONUtil.toJSON;

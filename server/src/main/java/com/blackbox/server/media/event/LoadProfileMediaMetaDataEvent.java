@@ -5,8 +5,8 @@
 
 package com.blackbox.server.media.event;
 
-import com.blackbox.EntityReference;
-import com.blackbox.media.MediaMetaData;
+import com.blackbox.foundation.EntityReference;
+import com.blackbox.foundation.media.MediaMetaData;
 import org.yestech.event.event.BaseEvent;
 import org.yestech.event.annotation.EventResultType;
 

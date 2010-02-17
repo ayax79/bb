@@ -5,8 +5,8 @@
 
 package com.blackbox.server.occasion.event;
 
-import com.blackbox.occasion.Occasion;
-import com.blackbox.occasion.OccasionRequest;
+import com.blackbox.foundation.occasion.Occasion;
+import com.blackbox.foundation.occasion.OccasionRequest;
 import org.yestech.event.event.IEvent;
 import org.yestech.event.event.BaseEvent;
 import org.yestech.event.annotation.EventResultType;

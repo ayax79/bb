@@ -1,12 +1,12 @@
 package com.blackbox.server.bookmark.listener;
 
-import com.blackbox.bookmark.Bookmark;
+import com.blackbox.foundation.bookmark.Bookmark;
 import com.blackbox.server.BaseBlackboxListener;
 import com.blackbox.server.bookmark.event.CreateBookmarkEvent;
 import com.blackbox.server.system.email.EmailDefinition;
 import com.blackbox.server.system.email.SimpleEmailDelivery;
-import com.blackbox.user.IUserManager;
-import com.blackbox.user.User;
+import com.blackbox.foundation.user.IUserManager;
+import com.blackbox.foundation.user.User;
 import org.yestech.event.ResultReference;
 import org.yestech.event.annotation.ListenedEvents;
 import org.yestech.event.annotation.AsyncListener;

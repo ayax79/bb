@@ -4,19 +4,18 @@
  */
 package com.blackbox.presentation.action.psevent;
 
-import com.blackbox.Status;
-import com.blackbox.util.Bounds;
-import com.blackbox.occasion.IOccasionManager;
-import com.blackbox.occasion.Occasion;
-import com.blackbox.occasion.OccasionType;
-import com.blackbox.occasion.OccasionRequest;
+import com.blackbox.foundation.Status;
+import com.blackbox.foundation.util.Bounds;
+import com.blackbox.foundation.occasion.IOccasionManager;
+import com.blackbox.foundation.occasion.Occasion;
+import com.blackbox.foundation.occasion.OccasionType;
+import com.blackbox.foundation.occasion.OccasionRequest;
 import com.blackbox.presentation.action.BaseBlackBoxActionBean;
-import com.blackbox.search.SearchResult;
-import com.blackbox.user.User;
-import com.google.common.collect.Lists;
+import com.blackbox.foundation.search.SearchResult;
+import com.blackbox.foundation.user.User;
+
 import static com.google.common.collect.Lists.newArrayList;
 
-import java.util.Calendar;
 import java.util.ArrayList;
 
 import net.sourceforge.stripes.action.*;

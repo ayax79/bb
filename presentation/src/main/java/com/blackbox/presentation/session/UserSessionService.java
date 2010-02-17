@@ -1,6 +1,6 @@
 package com.blackbox.presentation.session;
 
-import com.blackbox.user.User;
+import com.blackbox.foundation.user.User;
 import com.blackbox.presentation.extension.BlackBoxContext;
 
 import java.util.Collection;

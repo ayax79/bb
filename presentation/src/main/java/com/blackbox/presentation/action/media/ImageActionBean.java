@@ -5,8 +5,8 @@
 
 package com.blackbox.presentation.action.media;
 
-import com.blackbox.media.MediaMetaData;
-import com.blackbox.media.IMediaManager;
+import com.blackbox.foundation.media.MediaMetaData;
+import com.blackbox.foundation.media.IMediaManager;
 import com.blackbox.presentation.action.BaseBlackBoxActionBean;
 import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.Resolution;

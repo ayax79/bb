@@ -5,17 +5,15 @@
  */
 package com.blackbox.server.commerce;
 
-import com.blackbox.Status;
-import com.blackbox.commerce.IInventoryManager;
-import com.blackbox.commerce.Inventory;
-import com.blackbox.commerce.Product;
-import com.blackbox.commerce.Merchant;
+import com.blackbox.foundation.Status;
+import com.blackbox.foundation.commerce.IInventoryManager;
+import com.blackbox.foundation.commerce.Inventory;
+import com.blackbox.foundation.commerce.Product;
+import com.blackbox.foundation.commerce.Merchant;
 import com.blackbox.server.commerce.event.*;
-import com.blackbox.social.Category;
-import org.springframework.stereotype.Service;
+import com.blackbox.foundation.social.Category;
 import org.yestech.event.multicaster.BaseServiceContainer;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**

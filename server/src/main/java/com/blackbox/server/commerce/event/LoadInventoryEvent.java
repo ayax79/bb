@@ -5,7 +5,6 @@
  */
 package com.blackbox.server.commerce.event;
 
-import com.blackbox.commerce.Product;
 import org.yestech.event.event.BaseEvent;
 
 /**

@@ -1,9 +1,9 @@
 package com.blackbox.server.user;
 
 import com.blackbox.server.util.PersistenceUtil;
-import com.blackbox.user.BasePromoCode;
-import com.blackbox.user.MultiUserPromoCode;
-import com.blackbox.user.SingleUsePromoCode;
+import com.blackbox.foundation.user.BasePromoCode;
+import com.blackbox.foundation.user.MultiUserPromoCode;
+import com.blackbox.foundation.user.SingleUsePromoCode;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.orm.ibatis3.SqlSessionOperations;
 import org.springframework.stereotype.Repository;

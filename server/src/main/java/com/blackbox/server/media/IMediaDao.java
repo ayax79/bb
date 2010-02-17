@@ -5,11 +5,11 @@
 
 package com.blackbox.server.media;
 
-import com.blackbox.media.*;
-import com.blackbox.EntityReference;
-import com.blackbox.EntityType;
-import com.blackbox.util.Bounds;
-import com.blackbox.social.NetworkTypeEnum;
+import com.blackbox.foundation.media.*;
+import com.blackbox.foundation.EntityReference;
+import com.blackbox.foundation.EntityType;
+import com.blackbox.foundation.util.Bounds;
+import com.blackbox.foundation.social.NetworkTypeEnum;
 
 import java.util.List;
 import java.util.Collection;
@@ -35,10 +35,10 @@ public interface IMediaDao
     /**
      * Inserts or updates a media library entry.
      *
-     * This method will cascade to the underlying {@link com.blackbox.media.MediaMetaData} objects,
+     * This method will cascade to the underlying {@link com.blackbox.foundation.media.MediaMetaData} objects,
      * if and only if they have not been previously persisted
      * (version == null). This will prevent updates being performed on partial objects, since most of the media library
-     * methods return only partial objects for {@link com.blackbox.media.MediaMetaData}.
+     * methods return only partial objects for {@link com.blackbox.foundation.media.MediaMetaData}.
      *
      * 
      * @param library The library object to insert or updated.

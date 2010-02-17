@@ -1,8 +1,8 @@
 package com.blackbox.server.activity;
 
 import org.springframework.transaction.annotation.Transactional;
-import com.blackbox.activity.TrainRockEntry;
-import com.blackbox.activity.TrainRockVote;
+import com.blackbox.foundation.activity.TrainRockEntry;
+import com.blackbox.foundation.activity.TrainRockVote;
 
 import java.util.List;
 

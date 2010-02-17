@@ -5,7 +5,7 @@
 
 package com.blackbox.server.commerce.event;
 
-import com.blackbox.commerce.Product;
+import com.blackbox.foundation.commerce.Product;
 import org.yestech.event.event.BaseEvent;
 import org.yestech.event.annotation.EventResultType;
 

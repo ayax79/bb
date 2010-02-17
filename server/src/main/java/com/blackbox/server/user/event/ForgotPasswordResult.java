@@ -2,7 +2,7 @@ package com.blackbox.server.user.event;
 
 import java.io.Serializable;
 
-import com.blackbox.user.User;
+import com.blackbox.foundation.user.User;
 
 public class ForgotPasswordResult implements Serializable {
 

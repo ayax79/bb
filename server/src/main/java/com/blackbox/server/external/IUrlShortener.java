@@ -1,6 +1,6 @@
 package com.blackbox.server.external;
 
-import com.blackbox.message.Message;
+import com.blackbox.foundation.message.Message;
 
 import java.io.IOException;
 

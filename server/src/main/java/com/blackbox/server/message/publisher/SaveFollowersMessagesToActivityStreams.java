@@ -5,8 +5,8 @@
  */
 package com.blackbox.server.message.publisher;
 
-import com.blackbox.message.Message;
-import com.blackbox.social.NetworkTypeEnum;
+import com.blackbox.foundation.message.Message;
+import com.blackbox.foundation.social.NetworkTypeEnum;
 import com.blackbox.server.social.INetworkDao;
 import static com.blackbox.server.activity.ActivityUtil.checkNetworkDepth;
 import static com.blackbox.server.activity.ActivityUtil.isParent;

@@ -2,7 +2,7 @@
 <%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
 
 <c:forEach var="user" items="${actionBean.users}">
-	<%--@elvariable id="user" type="com.blackbox.user.User"--%>
+	<%--@elvariable id="user" type="com.blackbox.foundation.user.User"--%>
 	<div class="picker-user">
 
 			<%--<c:if test="${param.allowMultiple ne 'true'}">--%>

@@ -1,6 +1,6 @@
 package com.blackbox.server.user;
 
-import com.blackbox.user.AffiliateMapping;
+import com.blackbox.foundation.user.AffiliateMapping;
 import org.springframework.transaction.annotation.Transactional;
 
 /**

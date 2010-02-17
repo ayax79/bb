@@ -5,19 +5,19 @@
 
 package com.blackbox.server.occasion;
 
-import com.blackbox.Utils;
-import com.blackbox.activity.ActivityFactory;
-import com.blackbox.business.UserToAttendingAttendeeFunction;
-import com.blackbox.occasion.Attendee;
-import com.blackbox.occasion.Occasion;
-import com.blackbox.occasion.OccasionLevel;
-import com.blackbox.occasion.OccasionRequest;
+import com.blackbox.foundation.Utils;
+import com.blackbox.foundation.activity.ActivityFactory;
+import com.blackbox.foundation.business.UserToAttendingAttendeeFunction;
+import com.blackbox.foundation.occasion.Attendee;
+import com.blackbox.foundation.occasion.Occasion;
+import com.blackbox.foundation.occasion.OccasionLevel;
+import com.blackbox.foundation.occasion.OccasionRequest;
 import com.blackbox.server.BaseIntegrationTest;
 import com.blackbox.server.user.IUserDao;
-import com.blackbox.social.Address;
+import com.blackbox.foundation.social.Address;
 import com.blackbox.testingutils.UserFixture;
-import com.blackbox.user.User;
-import com.blackbox.util.Bounds;
+import com.blackbox.foundation.user.User;
+import com.blackbox.foundation.util.Bounds;
 import org.joda.time.DateTime;
 import org.junit.Ignore;
 import org.junit.Test;

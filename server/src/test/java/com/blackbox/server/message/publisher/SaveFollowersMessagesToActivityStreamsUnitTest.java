@@ -13,11 +13,11 @@ import static org.mockito.Mockito.doNothing;
 import org.apache.camel.Exchange;
 import com.blackbox.server.social.INetworkDao;
 import com.blackbox.server.activity.IActivityStreamDao;
-import com.blackbox.message.Message;
-import com.blackbox.activity.ActivityFactory;
-import com.blackbox.social.NetworkTypeEnum;
-import com.blackbox.social.Relationship;
-import com.blackbox.EntityReference;
+import com.blackbox.foundation.message.Message;
+import com.blackbox.foundation.activity.ActivityFactory;
+import com.blackbox.foundation.social.NetworkTypeEnum;
+import com.blackbox.foundation.social.Relationship;
+import com.blackbox.foundation.EntityReference;
 
 import java.util.List;
 

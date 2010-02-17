@@ -8,7 +8,7 @@ import org.jmock.integration.junit4.JUnit4Mockery;
 import org.jmock.Mockery;
 import org.jmock.Expectations;
 import org.yestech.event.multicaster.IEventMulticaster;
-import com.blackbox.group.Group;
+import com.blackbox.foundation.group.Group;
 import com.blackbox.server.group.event.LoadGroupEvent;
 
 /**

@@ -5,8 +5,8 @@
 
 package com.blackbox.server.security;
 
-import com.blackbox.security.IAuthorizationManager;
-import com.blackbox.security.IBlackBoxAuthorizationInfo;
+import com.blackbox.foundation.security.IAuthorizationManager;
+import com.blackbox.foundation.security.IBlackBoxAuthorizationInfo;
 import com.blackbox.server.security.event.AuthorizationEvent;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.stereotype.Service;

@@ -5,7 +5,7 @@
 
 package com.blackbox.server.message.listener;
 
-import com.blackbox.message.Message;
+import com.blackbox.foundation.message.Message;
 import com.blackbox.server.message.IMessageDao;
 import com.blackbox.server.message.event.LoadMessageByGuidEvent;
 import org.jmock.Expectations;

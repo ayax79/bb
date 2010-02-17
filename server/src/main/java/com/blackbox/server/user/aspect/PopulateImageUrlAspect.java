@@ -1,12 +1,11 @@
 package com.blackbox.server.user.aspect;
 
-import com.blackbox.EntityType;
-import com.blackbox.media.AvatarImage;
-import com.blackbox.media.IMediaManager;
-import com.blackbox.media.MediaMetaData;
-import com.blackbox.server.media.IMediaDao;
-import com.blackbox.user.Profile;
-import com.blackbox.user.User;
+import com.blackbox.foundation.EntityType;
+import com.blackbox.foundation.media.AvatarImage;
+import com.blackbox.foundation.media.IMediaManager;
+import com.blackbox.foundation.media.MediaMetaData;
+import com.blackbox.foundation.user.Profile;
+import com.blackbox.foundation.user.User;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
@@ -26,8 +25,8 @@ public class PopulateImageUrlAspect {
 
     @Pointcut("execution(public org.apache.shiro.authc.AuthenticationInfo com.blackbox.server.security.AuthenticationManager.load(org.apache.shiro.authc.AuthenticationToken)) || " +
             "execution(public java.util.List com.blackbox.server.user.UserManager.*(..)) || " +
-            "execution(public com.blackbox.user.User com.blackbox.server.user.UserManager.*(..)) || " +
-            "execution(public com.blackbox.user.Profile com.blackbox.server.user.UserManager.*(..)) || " +
+            "execution(public com.blackbox.foundation.user.User com.blackbox.server.user.UserManager.*(..)) || " +
+            "execution(public com.blackbox.foundation.user.Profile com.blackbox.server.user.UserManager.*(..)) || " +
             "execution(public * com.blackbox.server.entity.EntityManager.loadEntity(..))")
 
     private void populateImageUrlPointcut() {

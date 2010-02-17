@@ -1,6 +1,6 @@
 package com.blackbox.presentation.action.util;
 
-import com.blackbox.user.User;
+import com.blackbox.foundation.user.User;
 
 import java.lang.annotation.*;
 

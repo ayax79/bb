@@ -1,6 +1,6 @@
 package com.blackbox.server.media.event;
 
-import com.blackbox.EntityReference;
+import com.blackbox.foundation.EntityReference;
 import org.yestech.event.event.IEvent;
 import org.yestech.event.annotation.EventResultType;
 

@@ -1,7 +1,7 @@
 package com.blackbox.server.gifting.event;
 
 import org.yestech.event.event.BaseEvent;
-import com.blackbox.activity.IActivity;
+import com.blackbox.foundation.activity.IActivity;
 
 /**
  * @author A.J. Wright

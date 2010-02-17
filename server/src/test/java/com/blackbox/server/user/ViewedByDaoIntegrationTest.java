@@ -1,8 +1,8 @@
 package com.blackbox.server.user;
 
 import com.blackbox.server.BaseIntegrationTest;
-import com.blackbox.user.ViewedBy;
-import com.blackbox.user.User;
+import com.blackbox.foundation.user.ViewedBy;
+import com.blackbox.foundation.user.User;
 import org.junit.Test;
 import org.joda.time.DateTime;
 

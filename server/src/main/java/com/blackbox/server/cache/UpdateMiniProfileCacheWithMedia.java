@@ -5,8 +5,8 @@
  */
 package com.blackbox.server.cache;
 
-import com.blackbox.media.MediaMetaData;
-import com.blackbox.user.MiniProfile;
+import com.blackbox.foundation.media.MediaMetaData;
+import com.blackbox.foundation.user.MiniProfile;
 import org.apache.camel.Exchange;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +16,7 @@ import org.yestech.cache.ICacheManager;
 import javax.annotation.Resource;
 
 /**
- * Caches {@link com.blackbox.media.MediaMetaData} in the userMessageCache.
+ * Caches {@link com.blackbox.foundation.media.MediaMetaData} in the userMessageCache.
  *
  * @author Artie Copeland
  * @version $Revision: $

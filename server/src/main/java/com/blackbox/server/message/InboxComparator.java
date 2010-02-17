@@ -1,7 +1,7 @@
 package com.blackbox.server.message;
 
-import com.blackbox.activity.IActivity;
-import com.blackbox.activity.IActivityThread;
+import com.blackbox.foundation.activity.IActivity;
+import com.blackbox.foundation.activity.IActivityThread;
 import org.joda.time.DateTime;
 
 import java.util.Comparator;

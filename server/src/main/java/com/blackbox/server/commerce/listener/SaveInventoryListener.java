@@ -5,11 +5,11 @@
  */
 package com.blackbox.server.commerce.listener;
 
-import static com.blackbox.Utils.applyGuid;
-import static com.blackbox.Utils.getCurrentDateTime;
-import com.blackbox.commerce.Inventory;
-import com.blackbox.commerce.Merchant;
-import com.blackbox.commerce.Product;
+import static com.blackbox.foundation.Utils.applyGuid;
+import static com.blackbox.foundation.Utils.getCurrentDateTime;
+import com.blackbox.foundation.commerce.Inventory;
+import com.blackbox.foundation.commerce.Merchant;
+import com.blackbox.foundation.commerce.Product;
 import com.blackbox.server.BaseBlackboxListener;
 import com.blackbox.server.commerce.ICommerceDao;
 import com.blackbox.server.commerce.IInventoryDao;
@@ -17,8 +17,6 @@ import com.blackbox.server.commerce.event.SaveInventoryEvent;
 import org.yestech.event.ResultReference;
 import org.yestech.event.annotation.AsyncListener;
 import org.yestech.event.annotation.ListenedEvents;
-
-import javax.annotation.Resource;
 
 /**
  * @author Artie Copeland

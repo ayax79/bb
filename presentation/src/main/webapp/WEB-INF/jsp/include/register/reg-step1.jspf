@@ -284,7 +284,7 @@
         <div class="referral">
             <s:label for="referral_source"><fmt:message key="register.field.referral"/></s:label>
             <s:select name="profile.referFrom.referFromType" id="referral_source">
-                <s:options-enumeration enum="com.blackbox.user.ReferFrom.ReferFromType"/>
+                <s:options-enumeration enum="com.blackbox.foundation.user.ReferFrom.ReferFromType"/>
             </s:select>
         </div>
 

@@ -2,10 +2,10 @@ package com.blackbox.presentation.action.search;
 
 import com.blackbox.presentation.action.BaseBlackBoxActionBean;
 import com.blackbox.presentation.extension.JodaPeriodConverter;
-import com.blackbox.search.ExploreRequest;
-import com.blackbox.social.Address;
-import com.blackbox.user.IUserManager;
-import com.blackbox.occasion.IOccasionManager;
+import com.blackbox.foundation.search.ExploreRequest;
+import com.blackbox.foundation.social.Address;
+import com.blackbox.foundation.user.IUserManager;
+import com.blackbox.foundation.occasion.IOccasionManager;
 import net.sourceforge.stripes.action.Before;
 import net.sourceforge.stripes.action.After;
 import net.sourceforge.stripes.controller.LifecycleStage;

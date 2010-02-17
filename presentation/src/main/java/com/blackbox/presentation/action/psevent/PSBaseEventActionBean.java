@@ -1,11 +1,11 @@
 package com.blackbox.presentation.action.psevent;
 
-import com.blackbox.occasion.Occasion;
+import com.blackbox.foundation.occasion.Occasion;
 import com.blackbox.presentation.action.BaseBlackBoxActionBean;
 import com.blackbox.presentation.action.media.SessionImageActionBean;
 import com.blackbox.presentation.action.util.PresentationUtil;
 import com.blackbox.presentation.extension.BlackBoxContext;
-import com.blackbox.user.User;
+import com.blackbox.foundation.user.User;
 import net.sourceforge.stripes.action.Before;
 import net.sourceforge.stripes.action.FileBean;
 import net.sourceforge.stripes.controller.LifecycleStage;

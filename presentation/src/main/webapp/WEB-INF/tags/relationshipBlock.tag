@@ -1,8 +1,8 @@
 <%@include file="/WEB-INF/jsp/include/taglibs.jspf" %>
-<%@ attribute name="user" required="true" type="com.blackbox.user.User" %>
+<%@ attribute name="user" required="true" type="com.blackbox.foundation.user.User" %>
 <%@ attribute name="relationshipDescription" required="true" %>
 <%@ attribute name="displayMode" required="false" %>
-<%--@elvariable id="user" type="com.blackbox.user.User"--%>
+<%--@elvariable id="user" type="com.blackbox.foundation.user.User"--%>
 <c:choose>
 	<c:when test="${displayMode == 'horizontal'}">
 		<div class="tog_list clearfix">

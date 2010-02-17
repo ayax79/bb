@@ -1,11 +1,11 @@
 package com.blackbox.server.activity;
 
-import com.blackbox.activity.ActivityRequest;
-import com.blackbox.activity.IActivityThread;
-import com.blackbox.media.MediaMetaData;
-import com.blackbox.message.Message;
-import com.blackbox.user.User;
-import com.blackbox.util.Bounds;
+import com.blackbox.foundation.activity.ActivityRequest;
+import com.blackbox.foundation.activity.IActivityThread;
+import com.blackbox.foundation.media.MediaMetaData;
+import com.blackbox.foundation.message.Message;
+import com.blackbox.foundation.user.User;
+import com.blackbox.foundation.util.Bounds;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;

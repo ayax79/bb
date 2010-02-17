@@ -5,7 +5,7 @@
  */
 package com.blackbox.server.security;
 
-import com.blackbox.security.IBlackBoxAuthenticationInfo;
+import com.blackbox.foundation.security.IBlackBoxAuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 
 /**

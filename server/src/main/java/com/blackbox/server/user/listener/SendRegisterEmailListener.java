@@ -14,7 +14,7 @@ import com.blackbox.server.user.event.RegisterUserEvent;
 import com.blackbox.server.BaseBlackboxListener;
 import com.blackbox.server.system.email.SimpleEmailDelivery;
 import com.blackbox.server.system.email.EmailDefinition;
-import com.blackbox.user.IUser;
+import com.blackbox.foundation.user.IUser;
 import org.yestech.event.ResultReference;
 import org.yestech.event.annotation.ListenedEvents;
 import org.yestech.event.annotation.AsyncListener;

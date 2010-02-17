@@ -1,8 +1,8 @@
 package com.blackbox.server.occasion.event;
 
 import org.yestech.event.event.BaseEvent;
-import com.blackbox.search.ExploreRequest;
-import com.blackbox.occasion.OccasionRequest;
+import com.blackbox.foundation.search.ExploreRequest;
+import com.blackbox.foundation.occasion.OccasionRequest;
 
 /**
  *

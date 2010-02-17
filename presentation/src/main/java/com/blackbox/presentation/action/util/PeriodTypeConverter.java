@@ -14,7 +14,7 @@ import static org.apache.commons.lang.StringUtils.isBlank;
 import java.util.Collection;
 import java.util.Locale;
 
-import com.blackbox.util.DateUtil;
+import com.blackbox.foundation.util.DateUtil;
 
 /**
  * @author A.J. Wright

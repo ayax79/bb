@@ -5,13 +5,13 @@
  */
 package com.blackbox.server.user.listener;
 
-import com.blackbox.security.IBlackBoxAuthenticationInfo;
-import com.blackbox.security.SecurityUtil;
+import com.blackbox.foundation.security.IBlackBoxAuthenticationInfo;
+import com.blackbox.foundation.security.SecurityUtil;
 import com.blackbox.server.BaseBlackboxListener;
 import com.blackbox.server.security.event.AuthenticationEvent;
 import com.blackbox.server.user.IUserDao;
-import com.blackbox.user.IUser;
-import com.blackbox.user.MiniProfile;
+import com.blackbox.foundation.user.IUser;
+import com.blackbox.foundation.user.MiniProfile;
 import org.joda.time.DateTime;
 import org.yestech.cache.ICacheManager;
 import org.yestech.event.ResultReference;

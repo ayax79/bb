@@ -1,8 +1,8 @@
 package com.blackbox.server.activity.engine;
 
-import com.blackbox.activity.IActivity;
+import com.blackbox.foundation.activity.IActivity;
 import com.blackbox.server.activity.FilterHelper;
-import com.blackbox.social.NetworkTypeEnum;
+import com.blackbox.foundation.social.NetworkTypeEnum;
 import org.springframework.beans.factory.annotation.Required;
 
 import java.util.Collection;

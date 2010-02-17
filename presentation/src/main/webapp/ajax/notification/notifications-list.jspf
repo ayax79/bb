@@ -95,7 +95,7 @@
 			<div class="section ${actionBean.viewAllType}">
 				<div class="items" <c:if test="${actionBean.viewAllType eq 'gift'}"> id="gifts" </c:if>>
 				<c:forEach var="notification" items="${nlist.items}">
-					<%--@elvariable id="notification" type="com.blackbox.notification.Notification"--%>
+					<%--@elvariable id="notification" type="com.blackbox.foundation.notification.Notification"--%>
 					  <c:choose>
 						<c:when test="${actionBean.viewAllType eq 'gift'}">
 

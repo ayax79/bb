@@ -1,9 +1,9 @@
 package com.blackbox.server.billing;
 
-import com.blackbox.billing.BillingInfo;
+import com.blackbox.foundation.billing.BillingInfo;
 import com.blackbox.server.BaseIntegrationTest;
 import com.blackbox.server.user.IUserDao;
-import com.blackbox.user.User;
+import com.blackbox.foundation.user.User;
 import org.joda.time.DateTime;
 import org.junit.Test;
 import org.yestech.lib.i18n.CountryEnum;

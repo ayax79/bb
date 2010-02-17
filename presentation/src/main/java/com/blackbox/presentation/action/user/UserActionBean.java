@@ -7,7 +7,7 @@ package com.blackbox.presentation.action.user;
 
 import com.blackbox.presentation.action.BaseBlackBoxActionBean;
 import static com.blackbox.presentation.action.util.JSONUtil.toJSON;
-import com.blackbox.user.*;
+import com.blackbox.foundation.user.*;
 import net.sourceforge.stripes.action.*;
 import net.sourceforge.stripes.integration.spring.SpringBean;
 import net.sourceforge.stripes.validation.Validate;

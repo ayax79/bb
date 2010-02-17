@@ -5,8 +5,8 @@
  */
 package com.blackbox.server.activity.event;
 
-import com.blackbox.EntityReference;
-import com.blackbox.activity.ActivityTypeEnum;
+import com.blackbox.foundation.EntityReference;
+import com.blackbox.foundation.activity.ActivityTypeEnum;
 import org.yestech.event.event.BaseEvent;
 
 /**

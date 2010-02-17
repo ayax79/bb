@@ -12,68 +12,68 @@
 
     <typeAliases>
         <typeAlias alias="jodaDate" type="org.joda.time.DateTime"/>
-        <typeAlias alias="networkType" type="com.blackbox.social.NetworkTypeEnum" />
-        <typeAlias alias="entityType" type="com.blackbox.EntityType" />
+        <typeAlias alias="networkType" type="com.blackbox.foundation.social.NetworkTypeEnum" />
+        <typeAlias alias="entityType" type="com.blackbox.foundation.EntityType" />
         <typeAlias alias="artifactType" type="org.yestech.publish.objectmodel.ArtifactType"/>
-        <typeAlias alias="recipientStatus" type="com.blackbox.activity.IRecipient$RecipientStatus" />
-        <typeAlias alias="mediaLibraryType" type="com.blackbox.media.MediaLibrary$MediaLibraryType" />
-        <typeAlias alias="status" type="com.blackbox.Status" />
-        <typeAlias alias="userType" type="com.blackbox.user.User$UserType" />
+        <typeAlias alias="recipientStatus" type="com.blackbox.foundation.activity.IRecipient$RecipientStatus" />
+        <typeAlias alias="mediaLibraryType" type="com.blackbox.foundation.media.MediaLibrary$MediaLibraryType" />
+        <typeAlias alias="status" type="com.blackbox.foundation.Status" />
+        <typeAlias alias="userType" type="com.blackbox.foundation.user.User$UserType" />
     </typeAliases>
 
     <typeHandlers>
         <typeHandler javaType="org.joda.time.DateTime"
                      handler="com.blackbox.server.system.ibatis.DateTimeTypeHandler"/>
 
-        <typeHandler javaType="com.blackbox.EntityType"
+        <typeHandler javaType="com.blackbox.foundation.EntityType"
                      handler="com.blackbox.server.system.ibatis.enumimpl.EntityTypeHandler"/>
-        <typeHandler javaType="com.blackbox.activity.ActivityTypeEnum"
+        <typeHandler javaType="com.blackbox.foundation.activity.ActivityTypeEnum"
                      handler="com.blackbox.server.system.ibatis.enumimpl.ActivityTypeHandler"/>
         <typeHandler javaType="org.yestech.publish.objectmodel.ArtifactType"
                      handler="com.blackbox.server.system.ibatis.enumimpl.ArtifactTypeHandler"/>
-        <typeHandler javaType="com.blackbox.social.NetworkTypeEnum"
+        <typeHandler javaType="com.blackbox.foundation.social.NetworkTypeEnum"
                      handler="com.blackbox.server.system.ibatis.enumimpl.NetworkTypeHandler"/>
-        <typeHandler javaType="com.blackbox.activity.IRecipient$RecipientStatus"
+        <typeHandler javaType="com.blackbox.foundation.activity.IRecipient$RecipientStatus"
                      handler="com.blackbox.server.system.ibatis.enumimpl.RecipientStatusHandler"/>
-        <typeHandler javaType="com.blackbox.media.MediaLibrary$MediaLibraryType"
+        <typeHandler javaType="com.blackbox.foundation.media.MediaLibrary$MediaLibraryType"
                      handler="com.blackbox.server.system.ibatis.enumimpl.MediaLibraryTypeHandler" />
-        <typeHandler javaType="com.blackbox.Status"
+        <typeHandler javaType="com.blackbox.foundation.Status"
                      handler="com.blackbox.server.system.ibatis.enumimpl.StatusHandler" />
-        <typeHandler javaType="com.blackbox.user.User$UserType"
+        <typeHandler javaType="com.blackbox.foundation.user.User$UserType"
                      handler="com.blackbox.server.system.ibatis.enumimpl.UserTypeHandler" />
-        <typeHandler javaType="com.blackbox.bookmark.Bookmark$BookmarkType"
+        <typeHandler javaType="com.blackbox.foundation.bookmark.Bookmark$BookmarkType"
                      handler="com.blackbox.server.system.ibatis.enumimpl.BookmarkTypeHandler" />
-        <typeHandler javaType="com.blackbox.user.SexEnum"
+        <typeHandler javaType="com.blackbox.foundation.user.SexEnum"
                      handler="com.blackbox.server.system.ibatis.enumimpl.SexHandler" />
-        <typeHandler javaType="com.blackbox.occasion.OccasionWebDetail$CanViewGuestList"
+        <typeHandler javaType="com.blackbox.foundation.occasion.OccasionWebDetail$CanViewGuestList"
                      handler="com.blackbox.server.system.ibatis.enumimpl.CanViewGuestListHandler" />
-        <typeHandler javaType="com.blackbox.occasion.OccasionLevel"
+        <typeHandler javaType="com.blackbox.foundation.occasion.OccasionLevel"
                      handler="com.blackbox.server.system.ibatis.enumimpl.OccasionLevelHandler"/>
-        <typeHandler javaType="com.blackbox.occasion.OccasionType"
+        <typeHandler javaType="com.blackbox.foundation.occasion.OccasionType"
                      handler="com.blackbox.server.system.ibatis.enumimpl.OccasionTypeHandler"/>
-        <typeHandler javaType="com.blackbox.occasion.AttendingStatus"
+        <typeHandler javaType="com.blackbox.foundation.occasion.AttendingStatus"
                      handler="com.blackbox.server.system.ibatis.enumimpl.AttendingStatusHandler"/>
-        <typeHandler javaType="com.blackbox.social.Ignore$IgnoreType"
+        <typeHandler javaType="com.blackbox.foundation.social.Ignore$IgnoreType"
                      handler="com.blackbox.server.system.ibatis.enumimpl.IgnoreTypeHandler" />
-        <typeHandler javaType="com.blackbox.user.ViewedBy$ViewedByType"
+        <typeHandler javaType="com.blackbox.foundation.user.ViewedBy$ViewedByType"
                      handler="com.blackbox.server.system.ibatis.enumimpl.ViewedByTypeHandler" />
-        <typeHandler javaType="com.blackbox.occasion.OccasionLayout$DateFormat"
+        <typeHandler javaType="com.blackbox.foundation.occasion.OccasionLayout$DateFormat"
                      handler="com.blackbox.server.system.ibatis.enumimpl.DateFormatHandler" />
-        <typeHandler javaType="com.blackbox.occasion.OccasionLayout$LayoutType"
+        <typeHandler javaType="com.blackbox.foundation.occasion.OccasionLayout$LayoutType"
                      handler="com.blackbox.server.system.ibatis.enumimpl.OccasionLayoutType" />
         <typeHandler javaType="com.blackbox.gifting.GiftLayout$Shelf"
                      handler="com.blackbox.server.system.ibatis.enumimpl.GiftLayoutShelfHandler" />
         <typeHandler javaType="com.blackbox.gifting.GiftLayout$GiftLayoutSize"
                      handler="com.blackbox.server.system.ibatis.enumimpl.GiftLayoutSizeHandler" />
-        <typeHandler javaType="com.blackbox.occasion.AttendeeSource"
+        <typeHandler javaType="com.blackbox.foundation.occasion.AttendeeSource"
                      handler="com.blackbox.server.system.ibatis.enumimpl.AttendeeSourceHandler" />
-        <typeHandler javaType="com.blackbox.user.ExternalCredentials$CredentialType"
+        <typeHandler javaType="com.blackbox.foundation.user.ExternalCredentials$CredentialType"
                      handler="com.blackbox.server.system.ibatis.enumimpl.ExternalCredentialTypeHandler" />
-        <typeHandler javaType="com.blackbox.billing.BillingInfo$BillingProvider"
+        <typeHandler javaType="com.blackbox.foundation.billing.BillingInfo$BillingProvider"
                      handler="com.blackbox.server.system.ibatis.enumimpl.BillingProviderHandler" />
-        <typeHandler javaType="com.blackbox.user.ReferFrom$ReferFromType"
+        <typeHandler javaType="com.blackbox.foundation.user.ReferFrom$ReferFromType"
                      handler="com.blackbox.server.system.ibatis.enumimpl.ReferFromTypeHandler" />
-        <typeHandler javaType="com.blackbox.billing.Transaction$TransactionStatus"
+        <typeHandler javaType="com.blackbox.foundation.billing.Transaction$TransactionStatus"
                      handler="com.blackbox.server.system.ibatis.enumimpl.TransactionStatusHandler" />
 
     </typeHandlers>
