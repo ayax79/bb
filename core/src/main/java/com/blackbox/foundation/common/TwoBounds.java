@@ -62,6 +62,16 @@ public class TwoBounds {
         return new TwoBounds(Bounds.firstTen(), Bounds.firstTen());
     }
 
+    public void setStartIndex(int startIndex) {
+        mediaMetaDataBounds.setStartIndex(startIndex);
+        messageBounds.setStartIndex(startIndex);
+    }
+
+    public void setMaxResults(int maxResults) {
+        mediaMetaDataBounds.setMaxResults(maxResults);
+        messageBounds.setMaxResults(maxResults);
+    }
+
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this);

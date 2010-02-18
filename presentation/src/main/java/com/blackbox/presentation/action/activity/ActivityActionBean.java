@@ -108,6 +108,7 @@ public abstract class ActivityActionBean extends BaseBlackBoxActionBean {
 
     protected abstract Resolution handle();
 
+    @SuppressWarnings({"unchecked"})
     protected JSONArray threadsToJson(Collection<IActivityThread> threads) throws JSONException {
 
         JSONArray array = new JSONArray();

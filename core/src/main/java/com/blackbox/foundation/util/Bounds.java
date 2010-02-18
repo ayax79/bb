@@ -63,6 +63,14 @@ public class Bounds implements Serializable {
         this.endDate = endDate;
     }
 
+    public void setStartIndex(int startIndex) {
+        this.startIndex = startIndex;
+    }
+
+    public void setMaxResults(int maxResults) {
+        this.maxResults = maxResults;
+    }
+
     public DateTime getStartDate() {
         return startDate;
     }
