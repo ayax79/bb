@@ -23,8 +23,8 @@
 	<div class="clear"></div>
 </div>
 
-<ui:publisher id="legendPublisher" className=""     config="legends"/>
-<ui:publisher id="miniPublisher"   className="mini" config="mini"/>
+<ui:publisher id="legendPublisher" className=""     pubConfig="legends"/>
+<ui:publisher id="miniPublisher"   className="mini" pubConfig="mini"/>
 
 <div class="bb-right right-col last">
 	<%@include file="/ajax/dash/right-column-legends.jspf"%>

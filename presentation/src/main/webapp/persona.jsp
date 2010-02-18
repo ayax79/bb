@@ -296,7 +296,7 @@ $(function() {
 
 <div id="gift-publisher-container">
 	<ui:mainPublisher inputId="gift-publisher" defaultText="Type a message (e.g. a poem, story or joke)"/>
-	<ui:publisher id="giftPublisher" className="gift" config="gift" recipientIdentifier="${actionBean.user.guid}"/>
+	<ui:publisher id="giftPublisher" className="gift" pubConfig="gift" recipientIdentifier="${actionBean.user.guid}"/>
 </div>
 <div id="vouchForm">
 	<s:form beanclass="com.blackbox.presentation.action.persona.PersonaActionBean" class="bbform">

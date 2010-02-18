@@ -1,14 +1,14 @@
 <%@ tag language="java" %>
 <%@ attribute name="id" required="true" %>
 <%@ attribute name="className" required="true" %>
-<%@ attribute name="config" required="true" %>
+<%@ attribute name="pubConfig" required="true" %>
 <%@ attribute name="recipientIdentifier" required="false" %>
 <%@ attribute name="parentGuid" required="false" %>
 <%@ attribute name="sourceUser" required="false" type="com.blackbox.foundation.user.User" %>
 <%@ include file="/WEB-INF/jsp/include/taglibs.jspf" %>
 
 <c:choose>
-    <c:when test="${config == 'gift'}">
+    <c:when test="${pubConfig == 'gift'}">
         <c:set var="beanClass" value="com.blackbox.presentation.action.media.VirtualGiftActionBean"/>
         <c:set var="textMessageEvent" value="sendMessage"/>
         <c:set var="videoWebcamEvent" value=""/>
@@ -111,7 +111,7 @@
 
             <form action="" method="post" id="${id}_form" class="recipients_form">
                 <c:choose>
-                    <c:when test="${config == 'main'}">
+                    <c:when test="${pubConfig == 'main'}">
                         <div class="post-to">
                             <label>Post to:</label>
 							<c:set var="allowRecipientDepth" value="true"/>
@@ -128,22 +128,22 @@
                         </div>
                     </c:when>
 
-					<c:when test="${config == 'invitation'}">
+					<c:when test="${pubConfig == 'invitation'}">
 						<input type="hidden" name="recipientDepth" value="WORLD" />
 						<input type="hidden" name="parent.guid" value="${parentGuid}" />
 						<input type="hidden" name="parent.ownerType" value="OCCASION" />
 						<button class="bbbutton post-to-button" title="Post"><span>Post message</span></button>
 					</c:when>
 
-                    <c:when test="${config == 'legends'}">
+                    <c:when test="${pubConfig == 'legends'}">
                         <input type="hidden" name="recipientDepth" value="WORLD"/>
                     </c:when>
 
-                    <c:when test="${config == 'mini'}">
+                    <c:when test="${pubConfig == 'mini'}">
                         <button class="bbbutton post-to-button" title="Post"><span>Post reply</span></button>
                     </c:when>
 
-                    <c:when test="${config == 'gift'}">
+                    <c:when test="${pubConfig == 'gift'}">
                         <button class="bbbutton post-to-button" title="Post"><span>Send Gift</span></button>
                         <input type="hidden" name="recipientDepth" value="ALL_MEMBERS"/>
                         <input type="hidden" name="recipientIdentifier" value="${recipientIdentifier}"/>
@@ -158,7 +158,7 @@
 
     </div>
 
-	<c:if test="${config == 'main'}">
+	<c:if test="${pubConfig == 'main'}">
 
 	<div class="post-to-public-confirm">
 		<h2>You are about to post this to the entire world.</h2>
