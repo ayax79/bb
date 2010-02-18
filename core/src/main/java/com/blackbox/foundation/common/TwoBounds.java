@@ -5,12 +5,14 @@ import com.blackbox.foundation.util.Bounds;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.joda.time.DateTime;
 
+import java.io.Serializable;
+
 /**
  * A way to keep around 2 bounds instances when we need them
  *
  * @author colin@blackboxrepublic.com
  */
-public class TwoBounds {
+public class TwoBounds implements Serializable {
 
     // yes, these have business/entity type names and they are in util and that's not cool. but this can't go in either media or message so where? 
     private Bounds mediaMetaDataBounds;
