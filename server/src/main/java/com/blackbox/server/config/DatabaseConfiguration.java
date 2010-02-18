@@ -1,5 +1,6 @@
 package com.blackbox.server.config;
 
+import com.blackbox.foundation.exception.BlackBoxException;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.apache.ibatis.mapping.Environment;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -7,6 +8,8 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.session.defaults.DefaultSqlSessionFactory;
 import org.apache.ibatis.transaction.TransactionFactory;
 import org.apache.ibatis.transaction.managed.ManagedTransactionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,6 +18,8 @@ import org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy;
 import org.springframework.orm.ibatis3.SqlSessionOperations;
 import org.springframework.orm.ibatis3.SqlSessionTemplate;
 
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.sql.DataSource;
 import javax.transaction.TransactionManager;
 import java.io.InputStreamReader;
@@ -25,6 +30,8 @@ import java.sql.Connection;
  */
 @Configuration
 public class DatabaseConfiguration {
+
+    private static final Logger logger = LoggerFactory.getLogger(DatabaseConfiguration.class);
 
     @Value("${jdbc.driverClassName}")
     String jdbcDriverClassName;
@@ -38,19 +45,32 @@ public class DatabaseConfiguration {
     @Value("${jdbc.password}")
     String jdbcPassword;
 
+    @Value("${jdbc.jndiName}")
+    String jndiName;
+
     @Bean
     public DataSource targetDataSource() {
-        BasicDataSource basic = new BasicDataSource();
-        basic.setUrl(jdbcUrl);
-        basic.setDriverClassName(jdbcDriverClassName);
-        basic.setUsername(jdbcUsername);
-        basic.setPassword(jdbcPassword);
-        basic.setDefaultAutoCommit(true);
-        basic.setDefaultTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
-        basic.setValidationQuery("SELECT 1");
-        basic.setMaxActive(100);
-        basic.setMaxWait(1000L);
-        return basic;
+        if (jndiName != null) {
+            try {
+                InitialContext ctx = new InitialContext();
+                return (DataSource) ctx.lookup(jndiName);
+            } catch (NamingException e) {
+                logger.error("Failed to configure database with jndi connection " + jndiName);
+                throw new BlackBoxException(e.getMessage(), e);
+            }
+        } else {
+            BasicDataSource basic = new BasicDataSource();
+            basic.setUrl(jdbcUrl);
+            basic.setDriverClassName(jdbcDriverClassName);
+            basic.setUsername(jdbcUsername);
+            basic.setPassword(jdbcPassword);
+            basic.setDefaultAutoCommit(true);
+            basic.setDefaultTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
+            basic.setValidationQuery("SELECT 1");
+            basic.setMaxActive(100);
+            basic.setMaxWait(1000L);
+            return basic;
+        }
     }
 
     @Bean
