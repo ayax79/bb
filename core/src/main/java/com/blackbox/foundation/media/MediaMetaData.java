@@ -76,7 +76,6 @@ public class MediaMetaData extends BBPersistentObject implements IFileArtifactMe
 
     public MediaMetaData() {
         recipients = new ArrayList<IRecipient>();
-//        accessControlList = new AccessControlList();
         senderProfile = new ActivityProfile();
         owner = EntityReference.createEntityReference();
 

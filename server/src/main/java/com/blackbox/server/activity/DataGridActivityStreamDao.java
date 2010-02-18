@@ -2,6 +2,7 @@ package com.blackbox.server.activity;
 
 import com.blackbox.foundation.EntityReference;
 import com.blackbox.foundation.activity.*;
+import com.blackbox.foundation.common.TwoBounds;
 import com.blackbox.server.activity.engine.EngineFactory;
 import com.blackbox.server.activity.engine.EngineType;
 import com.blackbox.server.activity.engine.IActivityStreamEngine;
@@ -85,12 +86,8 @@ public class DataGridActivityStreamDao implements IActivityStreamDao {
     }
 
     @Override
-    public Collection<IActivityThread> loadActivities(EntityReference entity, Collection<NetworkTypeEnum> types, Bounds bounds) {
-        if (logger.isInfoEnabled()) {
-            logger.info("called loadActivities");
-        }
-        IActivityStreamEngine activityStreamEngine = EngineFactory.create(types);
-        return activityStreamEngine.loadThreads(entity, types, bounds);
+    public Collection<IActivityThread> loadActivities(EntityReference owner, Collection<NetworkTypeEnum> types, TwoBounds bounds) {
+        throw new UnsupportedOperationException("");
     }
 
     @Override

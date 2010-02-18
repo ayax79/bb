@@ -7,39 +7,35 @@ package com.blackbox.presentation.action.activity;
 import com.blackbox.foundation.activity.ActivityRequest;
 import com.blackbox.foundation.activity.IActivityManager;
 import com.blackbox.foundation.activity.IActivityThread;
+import com.blackbox.foundation.common.TwoBounds;
 import com.blackbox.foundation.message.PrePublicationUtil;
-import com.blackbox.presentation.action.BaseBlackBoxActionBean;
-import com.blackbox.presentation.action.util.FilterType;
-import com.blackbox.presentation.action.util.JSONUtil;
 import com.blackbox.foundation.user.IUserManager;
 import com.blackbox.foundation.user.User;
 import com.blackbox.foundation.util.Bounds;
+import com.blackbox.presentation.action.BaseBlackBoxActionBean;
+import com.blackbox.presentation.action.util.FilterType;
+import com.blackbox.presentation.action.util.JSONUtil;
 import net.sourceforge.stripes.action.*;
 import net.sourceforge.stripes.integration.spring.SpringBean;
 import org.joda.time.DateMidnight;
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.yestech.cache.ICacheManager;
 
 import java.util.Collection;
 
+import static com.blackbox.foundation.social.NetworkTypeEnum.*;
 import static com.blackbox.presentation.action.BaseBlackBoxActionBean.ViewType.json;
 import static com.blackbox.presentation.action.activity.ActivityActionBean.Scope.Today;
 import static com.blackbox.presentation.action.activity.ActivityActionBean.Scope.Yesterday;
 import static com.blackbox.presentation.action.util.PresentationUtil.createResolutionWithJsonArray;
-import static com.blackbox.foundation.social.NetworkTypeEnum.*;
 import static com.google.common.collect.Lists.newArrayList;
 
 /**
  *
  *
  */
-@SuppressWarnings("unchecked")
 public abstract class ActivityActionBean extends BaseBlackBoxActionBean {
-
-    private static final Logger logger = LoggerFactory.getLogger(ActivityActionBean.class);
 
     public static enum Scope {
         Yesterday,
@@ -61,7 +57,7 @@ public abstract class ActivityActionBean extends BaseBlackBoxActionBean {
 
     private FilterType filter;
     private User user;
-    private Bounds bounds = new Bounds();
+    private TwoBounds twoBounds = new TwoBounds(new Bounds(), new Bounds());
 
     @Before
     public void prepare() {
@@ -77,21 +73,21 @@ public abstract class ActivityActionBean extends BaseBlackBoxActionBean {
 
         if (Yesterday == scope) {
             DateMidnight today = new DateMidnight();
-            bounds.setStartDate(today.toDateTime());
+            twoBounds.setStartDate(today.toDateTime());
             DateMidnight yesterday = today.minusDays(1);
-            bounds.setEndDate(yesterday.toDateTime());
+            twoBounds.setEndDate(yesterday.toDateTime());
         } else if (Today == scope) {
             DateMidnight today = new DateMidnight();
-            bounds.setStartDate(today.toDateTime());
+            twoBounds.setStartDate(today.toDateTime());
             DateMidnight tomorrow = today.plusDays(1);
-            bounds.setEndDate(tomorrow.toDateTime());
+            twoBounds.setEndDate(tomorrow.toDateTime());
         }
     }
 
     @DontValidate
     @DefaultHandler
     public Resolution load() throws JSONException {
-        activities = PrePublicationUtil.applyPrePublishedMessages(user, loadThreads(user, filter, bounds), prePublishedMessageCache);
+        activities = PrePublicationUtil.applyPrePublishedMessages(user, loadThreads(user, filter, twoBounds), prePublishedMessageCache);
 
         if (getView() == json) {
             return createResolutionWithJsonArray(getContext(), threadsToJson(activities));
@@ -101,7 +97,7 @@ public abstract class ActivityActionBean extends BaseBlackBoxActionBean {
 
     @DontValidate
     public Resolution loadPartial() throws JSONException {
-        activities = PrePublicationUtil.applyPrePublishedMessages(user, loadThreads(user, filter, bounds), prePublishedMessageCache);
+        activities = PrePublicationUtil.applyPrePublishedMessages(user, loadThreads(user, filter, twoBounds), prePublishedMessageCache);
 
         if (getView() == json) {
             return createResolutionWithJsonArray(getContext(), threadsToJson(activities));
@@ -112,6 +108,7 @@ public abstract class ActivityActionBean extends BaseBlackBoxActionBean {
 
     protected abstract Resolution handle();
 
+    @SuppressWarnings({"unchecked"})
     protected JSONArray threadsToJson(Collection<IActivityThread> threads) throws JSONException {
 
         JSONArray array = new JSONArray();
@@ -121,7 +118,7 @@ public abstract class ActivityActionBean extends BaseBlackBoxActionBean {
         return array;
     }
 
-    protected Collection<IActivityThread> loadThreads(User user, FilterType filter, Bounds bounds) {
+    protected Collection<IActivityThread> loadThreads(User user, FilterType filter, TwoBounds bounds) {
         if (filter == FilterType.friends_following) {
             return activityManager.loadActivityThreads(new ActivityRequest(user.toEntityReference(), newArrayList(FRIENDS, FOLLOWING), bounds));
         } else if (filter == FilterType.friends) {
@@ -131,10 +128,6 @@ public abstract class ActivityActionBean extends BaseBlackBoxActionBean {
         } else {
             return activityManager.loadActivityThreads(new ActivityRequest(user.toEntityReference(), newArrayList(FRIENDS, FOLLOWING, ALL_MEMBERS, WORLD), bounds));
         }
-    }
-
-    public void setActivityManager(IActivityManager activityManager) {
-        this.activityManager = activityManager;
     }
 
     public Collection<IActivityThread> getActivities() {
@@ -165,12 +158,8 @@ public abstract class ActivityActionBean extends BaseBlackBoxActionBean {
         return filter;
     }
 
-    public Bounds getBounds() {
-        return bounds;
-    }
-
-    public void setBounds(Bounds bounds) {
-        this.bounds = bounds;
+    public TwoBounds getBounds() {
+        return twoBounds;
     }
 
     @Override

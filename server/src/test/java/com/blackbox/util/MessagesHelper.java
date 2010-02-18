@@ -5,6 +5,7 @@ import com.blackbox.foundation.activity.ActivityFactory;
 import com.blackbox.foundation.activity.ActivityRequest;
 import com.blackbox.foundation.activity.IActivityManager;
 import com.blackbox.foundation.activity.IActivityThread;
+import com.blackbox.foundation.common.TwoBounds;
 import com.blackbox.foundation.message.IMessageManager;
 import com.blackbox.foundation.message.Message;
 import com.blackbox.foundation.message.PrePublicationUtil;
@@ -66,26 +67,26 @@ public class MessagesHelper {
         messageManager.publish(message);
     }
 
-    public Collection<IActivityThread> fetchMessages(User viewer, NetworkTypeEnum... breadth) {
-        return fetchMessages(viewer, Arrays.asList(breadth));
+    public Collection<IActivityThread> fetchMessages(User viewer, TwoBounds bounds, NetworkTypeEnum... breadth) {
+        return fetchMessages(viewer, Arrays.asList(breadth), bounds);
     }
 
-    public Collection<IActivityThread> fetchMessages(User viewer, Collection<NetworkTypeEnum> breadth) {
-        Collection<IActivityThread> serverActivitiesThread = activityManager.loadActivityThreads(new ActivityRequest(viewer.getEntityReference(), newArrayList(breadth), new Bounds(0, 10)));
+    public Collection<IActivityThread> fetchMessages(User viewer, Collection<NetworkTypeEnum> breadth, TwoBounds bounds) {
+        Collection<IActivityThread> serverActivitiesThread = activityManager.loadActivityThreads(new ActivityRequest(viewer.getEntityReference(), newArrayList(breadth), bounds));
         // this call to ActivityUtil emulates what happens in presentation layer which we do not have access to from here...
         return PrePublicationUtil.applyPrePublishedMessages(viewer, serverActivitiesThread, prePublishedMessageCache);
     }
 
-    public Collection<IActivityThread> fetchFriendsMessages(User viewer) {
-        return fetchMessages(viewer, newArrayList(FRIENDS));
+    public Collection<IActivityThread> fetchFriendsMessages(User viewer, TwoBounds bounds) {
+        return fetchMessages(viewer, newArrayList(FRIENDS), bounds);
     }
 
-    public Collection<IActivityThread> fetchFollowingMessages(User viewer) {
-        return fetchMessages(viewer, newArrayList(FOLLOWING));
+    public Collection<IActivityThread> fetchFollowingMessages(User viewer, TwoBounds bounds) {
+        return fetchMessages(viewer, newArrayList(FOLLOWING), bounds);
     }
 
-    public Collection<IActivityThread> fetchAllMessages(User viewer) {
-        return fetchMessages(viewer, newArrayList(FRIENDS, FOLLOWING, ALL_MEMBERS, WORLD));
+    public Collection<IActivityThread> fetchAllMessages(User viewer, TwoBounds bounds) {
+        return fetchMessages(viewer, newArrayList(FRIENDS, FOLLOWING, ALL_MEMBERS, WORLD), bounds);
     }
 
 }

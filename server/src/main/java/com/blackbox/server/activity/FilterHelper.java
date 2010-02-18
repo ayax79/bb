@@ -12,11 +12,11 @@ import static com.google.common.collect.Lists.newArrayList;
  */
 public final class FilterHelper {
 
-    private static final Collection<NetworkTypeEnum> instance =
+    private static final Collection<NetworkTypeEnum> everyoneInstance =
             Collections.unmodifiableCollection(newArrayList(NetworkTypeEnum.FRIENDS, NetworkTypeEnum.FOLLOWING, NetworkTypeEnum.ALL_MEMBERS, NetworkTypeEnum.WORLD));
 
     public static Collection<NetworkTypeEnum> everyoneFilter() {
-        return instance;
+        return everyoneInstance;
     }
 
     public static boolean isEveryOneFilter(Collection<NetworkTypeEnum> networkTypeEnums) {

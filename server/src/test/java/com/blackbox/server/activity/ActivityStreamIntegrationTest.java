@@ -4,9 +4,10 @@ import com.blackbox.foundation.activity.IActivityManager;
 import com.blackbox.foundation.activity.IActivityThread;
 import com.blackbox.foundation.common.ActivitySenderOwnerPredicate;
 import com.blackbox.foundation.common.ActivityThreadsMessageOwnerPredicate;
+import com.blackbox.foundation.common.TwoBounds;
 import com.blackbox.foundation.message.IMessageManager;
 import com.blackbox.foundation.message.Message;
-import com.blackbox.foundation.util.CollectionUtils;
+import com.blackbox.foundation.util.CollectionHelper;
 import com.blackbox.server.BaseIntegrationTest;
 import com.blackbox.foundation.social.ISocialManager;
 import com.blackbox.foundation.social.Ignore;
@@ -73,20 +74,21 @@ public class ActivityStreamIntegrationTest extends BaseIntegrationTest {
         messagesHelper.publishMessage(jim, "dear friends, happy happy, love jim", NetworkTypeEnum.FRIENDS);
         Thread.sleep(5000);
 
-        activities = messagesHelper.fetchFriendsMessages(sally);
+        activities = messagesHelper.fetchFriendsMessages(sally, TwoBounds.firstTen());
         assertEquals("unexpected message found! sally has no relationship to jim", 0, activities.size());
 
-        activities = messagesHelper.fetchFollowingMessages(sally);
+        activities = messagesHelper.fetchFollowingMessages(sally, TwoBounds.firstTen());
         assertEquals("unexpected message found! sally has no relationship to jim", 0, activities.size());
 
         relationsHelper.createFriendship(sally, jim);
-        activities = messagesHelper.fetchFriendsMessages(sally);
+        activities = messagesHelper.fetchFriendsMessages(sally, TwoBounds.firstTen());
         assertEquals("the upgrading of the sally to friend should have allowed the finding of the friendly published message", 1, activities.size());
     }
 
     // APP-189 Donkey kick doesn?'?t work as expected
     //    Removing posts from the stream is going to have to be an AJ thing and I'm guessing will be a lot more difficult. I'll pass this to AJ and let him chime in...
 
+    @SuppressWarnings({"unchecked"})
     @Test
     public void donkeyKickingSomeoneHidesTheirPostsFromMyStream() throws Exception {
         assertCleanStart(sally);
@@ -100,22 +102,22 @@ public class ActivityStreamIntegrationTest extends BaseIntegrationTest {
 
         relationsHelper.createFriendship(sally, jim);
 
-        activities = messagesHelper.fetchFriendsMessages(sally);
+        activities = messagesHelper.fetchFriendsMessages(sally, TwoBounds.firstTen());
         assertEquals(2, activities.size());
 
-        activities = messagesHelper.fetchAllMessages(sally);
+        activities = messagesHelper.fetchAllMessages(sally, TwoBounds.firstTen());
         int numberOfJimPostings = Collections2.filter(activities, new ActivityThreadsMessageOwnerPredicate(jim.toEntityReference())).size();
         assertEquals("unable to find jim's posting to all members", 2, numberOfJimPostings);
 
         socialManager.ignore(new Ignore(sally.toEntityReference(), jim.toEntityReference(), Ignore.IgnoreType.HARD));
         assertFalse(relationsHelper.isFriends(sally, jim));
 
-        activities = messagesHelper.fetchFriendsMessages(sally);
+        activities = messagesHelper.fetchFriendsMessages(sally, TwoBounds.firstTen());
         assertEquals(1, activities.size()); // she gets her own top level activity back
         numberOfJimPostings = Collections2.filter(activities, new ActivityThreadsMessageOwnerPredicate(jim.toEntityReference())).size();
         assertEquals("able to find jim's posting to friends [we should not after ignore]", 0, numberOfJimPostings);
 
-        activities = messagesHelper.fetchAllMessages(sally);
+        activities = messagesHelper.fetchAllMessages(sally, TwoBounds.firstTen());
         assertFalse(activities.isEmpty());
         numberOfJimPostings = Collections2.filter(activities, new ActivityThreadsMessageOwnerPredicate(jim.toEntityReference())).size();
         assertEquals("able to find jim's posting to all members [we should not after ignore]", 0, numberOfJimPostings);
@@ -124,14 +126,14 @@ public class ActivityStreamIntegrationTest extends BaseIntegrationTest {
         Collection<IActivityThread> sallyParent = Collections2.filter(activities, new ActivityThreadsMessageOwnerPredicate(sally.toEntityReference()));
         assertEquals(1, sallyParent.size());
 
-        numberOfJimPostings = Collections2.filter(CollectionUtils.guaranteeOne(sallyParent).getChildren(), new ActivitySenderOwnerPredicate(jim.toEntityReference())).size();
+        numberOfJimPostings = Collections2.filter(CollectionHelper.guaranteeOne(sallyParent).getChildren(), new ActivitySenderOwnerPredicate(jim.toEntityReference())).size();
         assertEquals("able to find jim's posting to all members [we should not after ignore]", 0, numberOfJimPostings);
     }
 
     private void assertCleanStart(User user) {
-        Collection<IActivityThread> messages = messagesHelper.fetchFriendsMessages(user);
+        Collection<IActivityThread> messages = messagesHelper.fetchFriendsMessages(user, TwoBounds.firstTen());
         assertTrue(messages.isEmpty());
-        messages = messagesHelper.fetchFollowingMessages(user);
+        messages = messagesHelper.fetchFollowingMessages(user, TwoBounds.firstTen());
         assertTrue(messages.isEmpty());
     }
 

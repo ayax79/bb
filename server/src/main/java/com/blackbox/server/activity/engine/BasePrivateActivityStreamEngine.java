@@ -3,7 +3,9 @@ package com.blackbox.server.activity.engine;
 import com.blackbox.foundation.activity.ActivityThread;
 import com.blackbox.foundation.activity.IActivity;
 import com.blackbox.foundation.activity.AscendingActivityAndGuidComparator;
+
 import static com.blackbox.server.activity.engine.LockManager.locateNonGlobalChildLock;
+
 import com.blackbox.foundation.social.NetworkTypeEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,16 +23,12 @@ import java.util.concurrent.locks.Lock;
 @SuppressWarnings("unchecked")
 public abstract class BasePrivateActivityStreamEngine extends BaseActivityStreamEngine {
     final private static Logger logger = LoggerFactory.getLogger(BasePrivateActivityStreamEngine.class);
-    
+
     @Resource(name = "privateChildActivityDataStore")
     private ICacheManager<String, NavigableSet<IActivity>> privateChildActivityDataStore;
 
     public ICacheManager<String, NavigableSet<IActivity>> getPrivateChildActivityDataStore() {
         return privateChildActivityDataStore;
-    }
-
-    public void setPrivateChildActivityDataStore(ICacheManager<String, NavigableSet<IActivity>> privateChildActivityDataStore) {
-        this.privateChildActivityDataStore = privateChildActivityDataStore;
     }
 
     @Override
@@ -111,12 +109,12 @@ public abstract class BasePrivateActivityStreamEngine extends BaseActivityStream
         }
         //need to abstract out
         final String parentGuid = parentActivity.getGuid();
-            final NavigableSet<IActivity> navigableSet = getPrivateChildActivityDataStore().get(parentGuid);
-            if (navigableSet != null) {
-                for (IActivity aNavigableSet : navigableSet) {
-                    activityThread.addChild(aNavigableSet);
-                }
+        final NavigableSet<IActivity> navigableSet = getPrivateChildActivityDataStore().get(parentGuid);
+        if (navigableSet != null) {
+            for (IActivity aNavigableSet : navigableSet) {
+                activityThread.addChild(aNavigableSet);
             }
+        }
 
     }
 

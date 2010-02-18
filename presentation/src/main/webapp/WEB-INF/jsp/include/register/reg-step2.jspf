@@ -314,7 +314,7 @@
             <!-- promo code -->
             <li style="margin-top:10px;">
                 <s:label for="pc">Got a promo code?</s:label>
-                <s:text name="pc" id="pc"/>
+                <s:text name="pc" id="pc" value="omfgfree"/>
             </li>
         </ul>
 
