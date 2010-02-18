@@ -47,7 +47,6 @@
 
 
 			function updateChatCount() {
-				console.log("ASdfasdfasdf")
 				$.getJSON("http://api.chartbeat.com/recent/?host=app.blackboxrepublic.com&path=/community/dashboard&apikey=1e3163125f7cea893e8e62c7c55d84e1&jsonp=?", function(data) {
 					var count = 0;
 					var uuids = [];

@@ -15,7 +15,7 @@
 	<%@ include file="/ajax/stream/activity_list.jspf"%>
 </div>
 
-<ui:publisher id="miniPublisher" className="mini" config="mini"/>
+<ui:publisher id="miniPublisher" className="mini" pubConfig="mini"/>
 
 <c:if test="${not empty actionBean.threads}">
 	<a href="#" id="persona-more-link" class="more-activity"><span>Load 10 more</span></a>

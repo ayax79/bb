@@ -28,8 +28,8 @@
 </div>
 <div class="clear"></div>
 
-<ui:publisher id="publisher"     className="main" config="main" sourceUser="${actionBean.currentUser}"/>
-<ui:publisher id="miniPublisher" className="mini" config="mini"/>
+<ui:publisher id="publisher"     className="main" pubConfig="main" sourceUser="${actionBean.currentUser}"/>
+<ui:publisher id="miniPublisher" className="mini" pubConfig="mini"/>
 
 <script type="text/javascript">
 //<![CDATA[

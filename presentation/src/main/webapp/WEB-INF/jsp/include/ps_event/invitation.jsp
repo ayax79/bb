@@ -696,7 +696,7 @@
 			</div>
 		</div>
 	</div>
-		<ui:publisher id="miniPublisher" className="mini" config="invitation" parentGuid="${actionBean.occasion.guid}"/>
+		<ui:publisher id="miniPublisher" className="mini" pubConfig="invitation" parentGuid="${actionBean.occasion.guid}"/>
 	</c:when>
 
 	<%-----------------------------%>
