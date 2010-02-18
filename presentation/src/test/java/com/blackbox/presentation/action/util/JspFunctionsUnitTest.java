@@ -1,13 +1,19 @@
 package com.blackbox.presentation.action.util;
 
 import org.junit.Test;
+
+import static junit.framework.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
+
 import org.joda.time.DateTime;
 import com.blackbox.presentation.extension.MockBlackBoxContext;
+
 import static com.blackbox.foundation.social.Relationship.createRelationship;
+
 import com.blackbox.foundation.user.User;
 import com.blackbox.foundation.bookmark.Bookmark;
+
 import static com.blackbox.foundation.bookmark.Bookmark.BookmarkType.WISH;
 import static com.google.common.collect.Lists.newArrayList;
 
@@ -64,6 +70,14 @@ public class JspFunctionsUnitTest {
         String body = "sadfasdflkj sdfajsldef adslfkjslefd asdlkfj{DONKEY} A;LSDKFJSADF ";
         String result = JspFunctions.replaceDonkey(body, "poop");
         assertTrue(result.contains("poop"));
+    }
+
+    @Test
+    public void testSubstring() {
+        String foo = "sladkjalsdfksdflasldkfalsdfkasdflkjsdfakdfsajkdfsajk";
+        String substring = foo.substring(3, 10);
+        assertEquals(substring, JspFunctions.substring(foo, 3, 10));
+        assertNull(JspFunctions.substring(null, 23, 23));
     }
 
 
