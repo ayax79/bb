@@ -50,7 +50,7 @@ public class DatabaseConfiguration {
 
     @Bean
     public DataSource targetDataSource() {
-        if (jndiName != null) {
+        if (jndiName != null && !"NONE".equals(jndiName)) {
             try {
                 InitialContext ctx = new InitialContext();
                 return (DataSource) ctx.lookup(jndiName);
