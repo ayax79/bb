@@ -240,7 +240,9 @@ public class UserManager extends BaseServiceContainer implements IUserManager {
     @Override
     public void register(Registration registration) {
         User user = registration.getUser();
-        if (user.getGuid() == null) Utils.applyGuid(user);
+        if (user.getGuid() == null) {
+            Utils.applyGuid(user);
+        }
 
         // make sure we get the correct version, etc that we don't want to save
         User oldRecord = userDao.loadUserByGuid(user.getGuid());
@@ -251,8 +253,8 @@ public class UserManager extends BaseServiceContainer implements IUserManager {
         user = userDao.save(user);
 
         if (registration.getPromoCodeGuid() != null) {
-            BasePromoCode promoCode = promoCodeDao.loadPromoCodeByCode(registration.getPromoCodeGuid());
-            if (promoCode != null && (promoCode instanceof SingleUsePromoCode)) {
+            BasePromoCode promoCode = promoCodeDao.loadPromoCodeByGuid(registration.getPromoCodeGuid());
+            if (promoCode != null && BasePromoCode.PromoCodeType.SINGLE_USE.equals(promoCode.getType())) {
                 promoCodeDao.delete(promoCode);
             }
         }
@@ -264,8 +266,7 @@ public class UserManager extends BaseServiceContainer implements IUserManager {
             affiliate(registration.getAffiliateId(), user.getGuid());
         }
 
-        final RegisterUserEvent registerEvent = new RegisterUserEvent(user,
-                registration.getLeechEmails());
+        final RegisterUserEvent registerEvent = new RegisterUserEvent(user, registration.getLeechEmails());
         if (registration.getPromoCodeGuid() != null)
             registerEvent.setPromoCodeGuid(registration.getPromoCodeGuid());
 

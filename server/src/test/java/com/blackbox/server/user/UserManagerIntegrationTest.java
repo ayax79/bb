@@ -1,16 +1,14 @@
 package com.blackbox.server.user;
 
 import com.blackbox.foundation.Utils;
+import com.blackbox.foundation.exception.BlackBoxException;
 import com.blackbox.foundation.exception.UserAlreadyExistsException;
 import com.blackbox.foundation.search.ExploreRequest;
 import com.blackbox.foundation.search.SearchResult;
-import com.blackbox.foundation.user.BasePromoCode;
+import com.blackbox.foundation.user.*;
 import com.blackbox.server.BaseIntegrationTest;
 import com.blackbox.testingutils.UserFixture;
 import com.blackbox.testingutils.UserHelper;
-import com.blackbox.foundation.user.IUserManager;
-import com.blackbox.foundation.user.PaginationResults;
-import com.blackbox.foundation.user.User;
 import org.junit.Test;
 
 import javax.annotation.Resource;
@@ -98,18 +96,27 @@ public class UserManagerIntegrationTest extends BaseIntegrationTest {
     }
 
     @Test
-    public void canWeLoadPromoCode() {
-        BasePromoCode code = userManager.loadPromoCodeByCode("eeuw58wx");
+    public void testRegistrationWithSingleUsePromoCode() {
+        String promoCode = "xlnczjqo";
+        BasePromoCode code = userManager.loadPromoCodeByCode(promoCode);
         assertNotNull(code);
+        Registration registration = new Registration();
+        registration.setUser(UserHelper.createNamedUser("colin", userManager));
+        registration.setPromoCodeGuid(code.getGuid());
+        userManager.register(registration);
+        assertNull(userManager.loadPromoCodeByCode(promoCode));
     }
 
-//    @Test
-//    public void testTimeToLoadAllUsers() {
-//        long start = System.currentTimeMillis();
-//        ExploreRequest exploreRequest = new ExploreRequest();
-//        exploreRequest.setUserGuid("105433d2148545d371fb1c71ef4851efb8c04392");
-//        userManager.explore(exploreRequest);
-//        System.out.println("time to explore all users = " + (System.currentTimeMillis() - start));
-//    }
+    @Test
+    public void testRegistrationWithMultipleUsePromoCode() {
+        String promoCode = "eeuw58wx";
+        BasePromoCode code = userManager.loadPromoCodeByCode(promoCode);
+        assertNotNull(code);
+        Registration registration = new Registration();
+        registration.setUser(UserHelper.createNamedUser("colin", userManager));
+        registration.setPromoCodeGuid(code.getGuid());
+        userManager.register(registration);
+        assertNotNull(userManager.loadPromoCodeByCode(promoCode));
+    }
 
 }

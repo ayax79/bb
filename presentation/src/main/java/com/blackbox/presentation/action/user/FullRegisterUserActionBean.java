@@ -71,10 +71,11 @@ public class FullRegisterUserActionBean extends BaseBlackBoxActionBean {
 
     /**
      * Contains a list of hardcoded promo codes.
-     *
+     * <p/>
      * todo This should be refactored out to use the promocode api
      */
     private static final HashMap<String, InternalPromoCodeInfo> INTERNAL_PROMO_CODES = new HashMap<String, InternalPromoCodeInfo>();
+
     static {
         InternalPromoCodeInfo info = new InternalPromoCodeInfo("track", User.UserType.PROMOTER);
         INTERNAL_PROMO_CODES.put(info.getPromoCode(), info);
@@ -97,7 +98,7 @@ public class FullRegisterUserActionBean extends BaseBlackBoxActionBean {
 
     /**
      * Contains all of the current registration information for the current registration.
-     * This value will be stored in the session with the session key {@link #REGISTRATION_USER}. 
+     * This value will be stored in the session with the session key {@link #REGISTRATION_USER}.
      */
     @ValidateNestedProperties({
             @Validate(field = "username", required = true, mask = "\\w+", maxlength = 25, on = "step2", minlength = 3),
@@ -427,7 +428,9 @@ public class FullRegisterUserActionBean extends BaseBlackBoxActionBean {
 
         String affiliateIdentifier = getAffiliateIdentifier();
         Registration registration = new Registration(user, affiliateIdentifier, leechEmails != null ? Arrays.asList(leechEmails) : null);
-        if (promoCode != null) registration.setPromoCodeGuid(promoCode.getGuid());
+        if (promoCode != null) {
+            registration.setPromoCodeGuid(promoCode.getGuid());
+        }
 
         userManger.register(registration);
 
@@ -448,7 +451,7 @@ public class FullRegisterUserActionBean extends BaseBlackBoxActionBean {
         userSessionService.populateContext(user, getContext());
 
         return new RedirectResolution(PersonaActionBean.class)
-                        .addParameter("firstTime", "true");
+                .addParameter("firstTime", "true");
 
     }
 
