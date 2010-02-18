@@ -250,4 +250,12 @@ public class MediaDaoIntegrationTest extends BaseIntegrationTest {
     }
 
 
+    @Test
+    public void totalPhotosByAssociatedAlbumForUser() {
+        User april = userDao.loadUserByUsername("april");
+        // stupid just tests the query to make sure it doesn't blow up.
+        mediaDao.totalPhotosByAssociatedAlbumForUser(april.getGuid());
+    }
+
+
 }

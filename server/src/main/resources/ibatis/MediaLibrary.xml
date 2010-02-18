@@ -122,12 +122,12 @@
     </select>
 
     <select id="countPhotosByAlbum" resultType="int" parameterType="map">
-        select count(m.guid)
+        select count(md.guid)
         from bb_media_library ml
         join bb_media_library_bb_media_meta_data mlmd on (mlmd.bb_media_library_guid = ml.guid)
         join bb_media_meta_data md on (mlmd.media_guid = md.guid)
         where
-        and ml.guid = #{guid}
+        ml.guid = #{guid}
         and md.artifactType = #{type}
     </select>
 
