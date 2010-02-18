@@ -81,10 +81,10 @@ public class ActivityManager extends BaseServiceContainer implements IActivityMa
     public Collection<IActivityThread> loadActivityThreads(ActivityRequest request) {
         Collection<IActivityThread> threads = (Collection<IActivityThread>) getEventMulticaster().process(new LoadActivityThreadEvent(request));
         logger.debug(MessageFormat.format("For user [{0}], all threads [{1}]", request.getOwner().getGuid(), threads));
-        return inflateStreamParts(trimIgnoredUserStuff(request, threads));
+        return inflateStreamParts(trimHardIgnoredUserStuffFromStream(request, threads));
     }
 
-    private Collection<IActivityThread> trimIgnoredUserStuff(ActivityRequest request, Collection<IActivityThread> threads) {
+    private Collection<IActivityThread> trimHardIgnoredUserStuffFromStream(ActivityRequest request, Collection<IActivityThread> threads) {
         List<EntityReference> ignored = loadIgnoresOnlyForAllMembersRequest(request);
         threads = Collections2.filter(threads, Predicates.not(new ActivityThreadsMessageOwnerPredicate(ignored)));
         for (IActivityThread thread : threads) {

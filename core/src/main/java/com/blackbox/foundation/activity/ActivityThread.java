@@ -6,6 +6,7 @@ import com.blackbox.foundation.message.Message;
 import com.blackbox.foundation.occasion.Occasion;
 import com.blackbox.foundation.social.NetworkTypeEnum;
 import com.blackbox.foundation.util.Affirm;
+import org.apache.commons.collections15.CollectionUtils;
 import org.joda.time.DateTime;
 
 import javax.xml.bind.annotation.XmlElementWrapper;
@@ -89,6 +90,7 @@ public class ActivityThread<E extends IActivity> implements IActivityThread<E> {
         this.parent = parent;
     }
 
+    @SuppressWarnings({"unchecked", "RedundantIfStatement"})
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -96,8 +98,8 @@ public class ActivityThread<E extends IActivity> implements IActivityThread<E> {
 
         ActivityThread that = (ActivityThread) o;
 
-        if (children != null ? !children.equals(that.children) : that.children != null) return false;
-        //noinspection RedundantIfStatement
+        if (children != null ? !CollectionUtils.<E>isEqualCollection(children, that.getChildren()) : that.children != null)
+            return false;
         if (parent != null ? !parent.equals(that.parent) : that.parent != null) return false;
 
         return true;

@@ -18,6 +18,12 @@ public interface IActivityManager {
 
     Collection<IActivityThread> loadActivityThreads(ActivityRequest request);
 
+    Collection<ActivityThread<IActivity>> loadAssociatedActivityFilterNetworkTypes(String guid,
+                                                                                   AssociatedActivityFilterType filterType,
+                                                                                   NetworkTypeEnum[] networkTypes,
+                                                                                   int startIndex,
+                                                                                   int maxResults);
+
     IActivity loadLastActivity(EntityReference owner);
 
     Collection<ActivityThread<IActivity>> loadAssociatedActivity(String guid,
@@ -31,10 +37,4 @@ public interface IActivityManager {
 
     Collection<IActivity> loadChildrenActivityByParent(String parentGuid);
 
-
-    Collection<ActivityThread<IActivity>> loadAssociatedActivityFilterNetworkTypes(String guid,
-                                                                                   AssociatedActivityFilterType filterType,
-                                                                                   NetworkTypeEnum[] networkTypes,
-                                                                                   int startIndex,
-                                                                                   int maxResults);
 }

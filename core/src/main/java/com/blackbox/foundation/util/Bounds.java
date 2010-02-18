@@ -1,7 +1,6 @@
 package com.blackbox.foundation.util;
 
 import org.joda.time.DateTime;
-import org.joda.time.ReadableDateTime;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -17,7 +16,6 @@ import java.io.Serializable;
 public class Bounds implements Serializable {
 
     private int startIndex;
-    private int offset;
     private int maxResults = 10;
     @XmlJavaTypeAdapter(JodaDateTimeXmlAdapter.class)
     private DateTime startDate;
@@ -37,12 +35,6 @@ public class Bounds implements Serializable {
         this.maxResults = maxResults;
     }
 
-    public Bounds(int startIndex, int offset, int maxResults) {
-        this.startIndex = startIndex;
-        this.offset = offset;
-        this.maxResults = maxResults;
-    }
-
     public Bounds(DateTime startDate, DateTime endDate) {
         this.startDate = startDate;
         this.endDate = endDate;
@@ -55,61 +47,28 @@ public class Bounds implements Serializable {
         this.endDate = endDate;
     }
 
-    public Bounds(int startIndex, int offset, int maxResults, DateTime startDate, DateTime endDate) {
-        this.startIndex = startIndex;
-        this.offset = offset;
-        this.maxResults = maxResults;
-        this.startDate = startDate;
-        this.endDate = endDate;
-    }
-
-    public int getOffset() {
-        return offset;
-    }
-
-    public void setOffset(int offset) {
-        this.offset = offset;
-    }
-
     public int getStartIndex() {
         return startIndex;
-    }
-
-    public void setStartIndex(int startIndex) {
-        this.startIndex = startIndex;
     }
 
     public int getMaxResults() {
         return maxResults;
     }
 
-    public void setMaxResults(int maxResults) {
-        this.maxResults = maxResults;
-    }
-
-    public ReadableDateTime getStartDate() {
-        return startDate;
-    }
-
     public void setStartDate(DateTime startDate) {
         this.startDate = startDate;
-    }
-
-    public ReadableDateTime getEndDate() {
-        return endDate;
     }
 
     public void setEndDate(DateTime endDate) {
         this.endDate = endDate;
     }
 
-    public static Bounds copyBounds(Bounds bounds) {
-        Bounds b = new Bounds();
-        b.endDate = bounds.endDate;
-        b.startDate = bounds.startDate;
-        b.startIndex = bounds.startIndex;
-        b.maxResults = bounds.maxResults;
-        return b;
+    public DateTime getStartDate() {
+        return startDate;
+    }
+
+    public DateTime getEndDate() {
+        return endDate;
     }
 
     public Bounds next(int numberMore) {
@@ -118,14 +77,17 @@ public class Bounds implements Serializable {
     }
 
     public static Bounds boundLess() {
-        return new Bounds(0, Integer.MAX_VALUE);
+        return new ImmutableBounds(0, Integer.MAX_VALUE);
     }
 
+    public static Bounds firstTen() {
+        return new ImmutableBounds(0, 10);
+    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || !(o instanceof Bounds)) return false;
 
         Bounds bounds = (Bounds) o;
 
@@ -156,4 +118,22 @@ public class Bounds implements Serializable {
                 ", endDate=" + endDate +
                 '}';
     }
+
+    private static class ImmutableBounds extends Bounds {
+
+        private ImmutableBounds(int startIndex, int maxResults) {
+            super(startIndex, maxResults);
+        }
+
+        @Override
+        public void setStartDate(DateTime startDate) {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public void setEndDate(DateTime endDate) {
+            throw new UnsupportedOperationException();
+        }
+    }
+
 }

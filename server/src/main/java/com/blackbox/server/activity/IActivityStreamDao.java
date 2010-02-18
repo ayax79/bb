@@ -5,6 +5,7 @@ import com.blackbox.foundation.activity.Activity;
 import com.blackbox.foundation.activity.AssociatedActivityFilterType;
 import com.blackbox.foundation.activity.IActivity;
 import com.blackbox.foundation.activity.IActivityThread;
+import com.blackbox.foundation.common.TwoBounds;
 import com.blackbox.foundation.social.NetworkTypeEnum;
 import com.blackbox.foundation.util.Bounds;
 
@@ -16,13 +17,22 @@ import java.util.List;
  *
  */
 public interface IActivityStreamDao {
+
     IActivity getLatestActivity(EntityReference entity);
 
-    Collection<IActivityThread> loadActivities(EntityReference owner, Collection<NetworkTypeEnum> types, Bounds bounds);
-
-    void saveSender(IActivity activity, EntityReference sender);
+    /**
+     * Loads activities for owner and type using bounds
+     *
+     * @param bounds is a 2 pack
+     * @return
+     */
+    Collection<IActivityThread> loadActivities(EntityReference owner, Collection<NetworkTypeEnum> types, TwoBounds bounds);
 
     Collection<IActivityThread> loadPublishedActivities(EntityReference entity, AssociatedActivityFilterType filterType, Bounds bounds);
+
+    Collection<IActivityThread> loadPublishedActivities(EntityReference entity, AssociatedActivityFilterType filterType, Bounds bounds, NetworkTypeEnum... types);
+
+    void saveSender(IActivity activity, EntityReference sender);
 
     void deletePrimary(IActivity activity, NetworkTypeEnum type, boolean parent);
 
@@ -45,8 +55,6 @@ public interface IActivityStreamDao {
     void save(Activity activity);
 
     Collection<IActivity> loadChildren(String parentGuid);
-
-    Collection<IActivityThread> loadPublishedActivities(EntityReference entity, AssociatedActivityFilterType filterType, Bounds bounds, NetworkTypeEnum... types);
 
     void reindex();
 }

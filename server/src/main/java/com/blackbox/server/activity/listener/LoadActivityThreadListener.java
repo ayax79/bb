@@ -7,20 +7,20 @@ package com.blackbox.server.activity.listener;
 
 import com.blackbox.foundation.activity.ActivityRequest;
 import com.blackbox.foundation.activity.IActivityThread;
+import com.blackbox.foundation.social.NetworkTypeEnum;
+import com.blackbox.foundation.util.Bounds;
 import com.blackbox.server.BaseBlackboxListener;
 import com.blackbox.server.activity.IActivityStreamDao;
 import com.blackbox.server.activity.event.LoadActivityThreadEvent;
-import com.blackbox.foundation.util.Bounds;
-import com.blackbox.foundation.social.NetworkTypeEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.yestech.cache.ICacheManager;
 import org.yestech.event.ResultReference;
 import org.yestech.event.annotation.ListenedEvents;
-import org.yestech.cache.ICacheManager;
 
 import javax.annotation.Resource;
-import java.util.Collection;
 import java.io.Serializable;
+import java.util.Collection;
 
 /**
  * @author Artie Copeland
@@ -51,7 +51,7 @@ public class LoadActivityThreadListener extends BaseBlackboxListener<LoadActivit
         ActivityThreadCacheKey cacheKey = new ActivityThreadCacheKey(request.getOwner().getGuid(), request.getBounds(), request.getTypes());
         Collection<IActivityThread> iActivityThreadCollection = individualActivityThreadResultCache.get(cacheKey);
         if (iActivityThreadCollection == null) {
-            iActivityThreadCollection = activityStreamDao.loadActivities(request.getOwner(), request.getTypes(), request.getBounds());
+            iActivityThreadCollection = activityStreamDao.loadActivities(request.getOwner(), request.getTypes(), request.getTwoBounds());
 //            individualActivityThreadResultCache.put(cacheKey, iActivityThreadCollection);
         }
         result.setResult(iActivityThreadCollection);
@@ -64,6 +64,7 @@ public class LoadActivityThreadListener extends BaseBlackboxListener<LoadActivit
         private String guid;
         private Bounds criteria;
         private Collection<NetworkTypeEnum> types;
+
         private ActivityThreadCacheKey(String guid, Bounds criteria, Collection<NetworkTypeEnum> types) {
             this.guid = guid;
             this.criteria = criteria;

@@ -3,6 +3,7 @@ package com.blackbox.foundation.activity;
 import com.blackbox.foundation.EntityReference;
 import com.blackbox.foundation.social.NetworkTypeEnum;
 import com.blackbox.foundation.util.Bounds;
+import com.blackbox.foundation.common.TwoBounds;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -21,6 +22,7 @@ public class ActivityRequest implements Serializable {
     protected EntityReference owner;
     protected Collection<NetworkTypeEnum> types;
     protected Bounds bounds;
+    protected TwoBounds twoBounds;
 
     public ActivityRequest() {
         bounds = new Bounds();
@@ -31,6 +33,12 @@ public class ActivityRequest implements Serializable {
         this.owner = owner;
         this.types = types;
         this.bounds = bounds;
+    }
+
+    public ActivityRequest(EntityReference owner, Collection<NetworkTypeEnum> types, TwoBounds bounds) {
+        this.owner = owner;
+        this.types = types;
+        this.twoBounds = bounds;
     }
 
     public ActivityRequest(Collection<NetworkTypeEnum> types, Bounds bounds) {
@@ -56,6 +64,10 @@ public class ActivityRequest implements Serializable {
 
     public Bounds getBounds() {
         return bounds;
+    }
+
+    public TwoBounds getTwoBounds() {
+        return twoBounds;
     }
 
     public void setBounds(Bounds bounds) {

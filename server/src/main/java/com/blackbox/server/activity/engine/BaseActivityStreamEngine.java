@@ -25,10 +25,6 @@ public abstract class BaseActivityStreamEngine implements IActivityStreamEngine 
         return activityMetaDataDataStore;
     }
 
-    public void setActivityMetaDataDataStore(ICacheManager<String, ActivityMetaData> activityMetaDataDataStore) {
-        this.activityMetaDataDataStore = activityMetaDataDataStore;
-    }
-
     protected ActivityMetaData getMetaData(String guid) {
         return activityMetaDataDataStore.get(guid);
     }
@@ -75,8 +71,8 @@ public abstract class BaseActivityStreamEngine implements IActivityStreamEngine 
     }
 
     protected NavigableSet<IActivity> getStreamForReadingOnly(String entityGuid, ICacheManager<String,
-            NavigableSet<IActivity>> dataStore,Comparator<IActivity> comparator
-                                                              ) {
+            NavigableSet<IActivity>> dataStore, Comparator<IActivity> comparator
+    ) {
         NavigableSet<IActivity> stream = dataStore.get(entityGuid);
         if (stream == null) {
             stream = createNewSet(comparator);

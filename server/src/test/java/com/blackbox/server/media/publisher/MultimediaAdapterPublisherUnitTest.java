@@ -57,7 +57,6 @@ public class MultimediaAdapterPublisherUnitTest {
         Map<ArtifactType, IPublisher> adaptees = new HashMap<ArtifactType, IPublisher>();
         adaptees.put(ArtifactType.IMAGE, adapteePublisher);
         publisher.setAdaptees(adaptees);
-//        publisher.setMediaDao(iMediaDao);
         publisher.publish(artifact);
     }
 
@@ -73,15 +72,15 @@ public class MultimediaAdapterPublisherUnitTest {
         artifact.setStream(stream);
         artifact.setArtifactMetaData(metaData);
 
-        context.checking(new Expectations() {{
-            oneOf(adapteePublisher).publish(artifact);
+        context.checking(new Expectations() {
+            {
+                oneOf(adapteePublisher).publish(artifact);
 //            oneOf(iMediaDao).save(with(aNonNull(MediaMetaData.class)));
-        }
+            }
         });
         Map<ArtifactType, IPublisher> adaptees = new HashMap<ArtifactType, IPublisher>();
         adaptees.put(ArtifactType.VIDEO, adapteePublisher);
         publisher.setAdaptees(adaptees);
-//        publisher.setMediaDao(iMediaDao);
         publisher.publish(artifact);
     }
 
@@ -119,15 +118,15 @@ public class MultimediaAdapterPublisherUnitTest {
         artifact.setStream(stream);
         artifact.setArtifactMetaData(metaData);
 
-        context.checking(new Expectations() {{
-            oneOf(adapteePublisher).publish(artifact);
+        context.checking(new Expectations() {
+            {
+                oneOf(adapteePublisher).publish(artifact);
 //            oneOf(iMediaDao).save(with(aNonNull(MediaMetaData.class)));
-        }
+            }
         });
         Map<ArtifactType, IPublisher> adaptees = new HashMap<ArtifactType, IPublisher>();
         adaptees.put(ArtifactType.AUDIO, adapteePublisher);
         publisher.setAdaptees(adaptees);
-//        publisher.setMediaDao(iMediaDao);
         publisher.publish(artifact);
     }
 }

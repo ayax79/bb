@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<project xsi:schemaLocation='http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns='http://maven.apache.org/POM/4.0.0'>
+<project xsi:schemaLocation='http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd'
+         xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns='http://maven.apache.org/POM/4.0.0'>
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.blackbox</groupId>
     <artifactId>blackbox</artifactId>
@@ -35,7 +36,7 @@
         <inifinispan.location>/var/cache/bbr/infinispan</inifinispan.location>
     </properties>
     <dependencies>
-         <dependency>
+        <dependency>
             <groupId>org.yestech</groupId>
             <artifactId>yesepisodic</artifactId>
             <version>${yesepisodic.version}</version>
@@ -159,6 +160,11 @@
             <groupId>org.slf4j</groupId>
             <artifactId>log4j-over-slf4j</artifactId>
             <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.4</version>
         </dependency>
         <dependency>
             <groupId>org.terracotta.modules</groupId>
@@ -374,7 +380,7 @@
         </repository>
     </repositories>
     <pluginRepositories>
-         <pluginRepository>
+        <pluginRepository>
             <id>blackbox.release</id>
             <name>Blackbox release repository</name>
             <url>http://nexus.blackboxrepublic.com/nexus/content/groups/public/</url>
