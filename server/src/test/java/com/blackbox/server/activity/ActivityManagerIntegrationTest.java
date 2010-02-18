@@ -232,6 +232,7 @@ public class ActivityManagerIntegrationTest extends BaseIntegrationTest {
         }
     }
 
+    @Ignore
     @Test
     /**
      * This test just builds out 2 listings: a paginated one and an 'all items' listing...

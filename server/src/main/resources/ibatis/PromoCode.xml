@@ -8,11 +8,12 @@
         <result property="evaluationPeriod"/>
         <result property="expirationDate" javaType="jodaDate"/>
         <result property="userType" javaType="com.blackbox.foundation.user.User$UserType" jdbcType="INTEGER"/>
-        <result property="type" javaType="com.blackbox.foundation.user.BasePromoCode$PromoCodeType" jdbcType="INTEGER"/>
+        <result property="type" column="promotype" javaType="com.blackbox.foundation.user.BasePromoCode$PromoCodeType"
+                jdbcType="INTEGER"/>
         <result property="master.guid" column="master_guid"/>
-        <discriminator javaType="string" column="type">
-            <case value="SINGLE_USE" resultMap="SingleUsePromoCodeResult" />
-            <case value="MULTI_USE" resultMap="MultiUsePromoCodeResult" />
+        <discriminator javaType="string" column="promotype">
+            <case value="SINGLE_USE" resultMap="SingleUsePromoCodeResult"/>
+            <case value="MULTI_USE" resultMap="MultiUsePromoCodeResult"/>
         </discriminator>
     </resultMap>
 
