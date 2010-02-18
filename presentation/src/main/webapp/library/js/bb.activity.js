@@ -147,7 +147,7 @@ Activity.Factory.ObjectClass.CHILD   = "CHILD";
 Activity.Factory.createObject = function(data) {
 	var objectClass;
 	var domObject;
-	if(data.parentActivity && data.parentActivity.guid) {
+	if(data.parentActivity && data.parentActivity.guid && data.parentActivity.guid != data.guid) {
 		objectClass = Activity.Factory.ObjectClass.CHILD;
 	} else {
 		objectClass = Activity.Factory.ObjectClass.PARENT;
@@ -413,10 +413,12 @@ Activity.Stream.prototype.bindShowMore = function($showMore, url) {
 		paramsObj[ref.maxResultsParamName] = Activity.Stream.PAGESIZE;
 
 		$.post(url, paramsObj, function(response) {
+
 			if(response.length < 1) {
 				$.bbDialog.alert("No more results to display.");	
 			} else {
 				for(var i = 0; i < response.length; i++) {
+
 					ref.addStreamObject(response[i], true);
 					if(response[i].children.length > 0) {
 						for(var ii = 0; ii < response[i].children.length; ii++) {
@@ -529,7 +531,7 @@ Activity.Stream.prototype.addStreamObject = function(data, append) {
 	} else if(data.ownerType == Activity.Factory.ObjectType.OCCASION) {
 		objectType = Activity.Factory.ObjectType.OCCASION;
 	}
-	if(data.parentActivity && data.parentActivity.guid) {
+	if(data.parentActivity && data.parentActivity.guid && data.parentActivity.guid != data.guid) {
 		objectClass = Activity.Factory.ObjectClass.CHILD;
 	} else {
 		objectClass = Activity.Factory.ObjectClass.PARENT;
