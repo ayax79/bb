@@ -14,6 +14,6 @@ addToClassPath(HESSIAN_JAR)
 addToClassPath(CORE_JAR)
 
 def proxyFactory = Class.forName("com.caucho.hessian.client.HessianProxyFactory").newInstance()
-def mgr = proxyFactory.create(Class.forName('com.blackbox.system.IAdminManager'), SERVER_HOST + "/remoting/AdminManager")
+def mgr = proxyFactory.create(Class.forName('com.blackbox.foundation.system.IAdminManager'), SERVER_HOST + "/remoting/AdminManager")
 args.each { x -> mgr.reindex(x) }
 

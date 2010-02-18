@@ -29,7 +29,7 @@
         </description>
         <name>displayName</name>
         <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
-        <function-signature>java.lang.String displayName(com.blackbox.IEntity)</function-signature>
+        <function-signature>java.lang.String displayName(com.blackbox.foundation.IEntity)</function-signature>
     </function>
 
     <function>
@@ -38,7 +38,7 @@
         </description>
         <name>userName</name>
         <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
-        <function-signature>java.lang.String userName(com.blackbox.IEntity)</function-signature>
+        <function-signature>java.lang.String userName(com.blackbox.foundation.IEntity)</function-signature>
     </function>
 
     <function>
@@ -65,7 +65,7 @@
         </description>
         <name>isOccasion</name>
         <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
-        <function-signature>boolean isOccasion(com.blackbox.activity.IActivity)</function-signature>
+        <function-signature>boolean isOccasion(com.blackbox.foundation.activity.IActivity)</function-signature>
     </function>
 
     <function>
@@ -74,7 +74,7 @@
         </description>
         <name>isMessage</name>
         <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
-        <function-signature>boolean isMessage(com.blackbox.activity.IActivity)</function-signature>
+        <function-signature>boolean isMessage(com.blackbox.foundation.activity.IActivity)</function-signature>
     </function>
 
     <function>
@@ -83,7 +83,7 @@
         </description>
         <name>isMedia</name>
         <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
-        <function-signature>boolean isMedia(com.blackbox.activity.IActivity)</function-signature>
+        <function-signature>boolean isMedia(com.blackbox.foundation.activity.IActivity)</function-signature>
     </function>
 
     <function>
@@ -92,7 +92,7 @@
         </description>
         <name>activityThreadToJson</name>
         <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
-        <function-signature>java.lang.String activityThreadToJson(com.blackbox.activity.ActivityThread)
+        <function-signature>java.lang.String activityThreadToJson(com.blackbox.foundation.activity.ActivityThread)
         </function-signature>
     </function>
 
@@ -151,63 +151,63 @@
         <description>Whether the given entity is friended</description>
         <name>isFriend</name>
         <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
-        <function-signature>boolean isFriend(com.blackbox.IEntity)</function-signature>
+        <function-signature>boolean isFriend(com.blackbox.foundation.IEntity)</function-signature>
     </function>
 
     <function>
         <description>Returns the weight of the relationship if there is one</description>
         <name>getWeight</name>
         <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
-        <function-signature>java.lang.Integer getWeight(com.blackbox.IEntity)</function-signature>
+        <function-signature>java.lang.Integer getWeight(com.blackbox.foundation.IEntity)</function-signature>
     </function>
 
     <function>
         <description>Whether the given entity is blocked</description>
         <name>isBlocked</name>
         <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
-        <function-signature>boolean isBlocked(com.blackbox.IEntity)</function-signature>
+        <function-signature>boolean isBlocked(com.blackbox.foundation.IEntity)</function-signature>
     </function>
 
     <function>
         <description>Whether the given entity is pending friend status</description>
         <name>isPending</name>
         <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
-        <function-signature>boolean isPending(com.blackbox.IEntity)</function-signature>
+        <function-signature>boolean isPending(com.blackbox.foundation.IEntity)</function-signature>
     </function>
 
     <function>
         <description>Whether the given entity is being followed</description>
         <name>isFollowing</name>
         <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
-        <function-signature>boolean isFollowing(com.blackbox.IEntity)</function-signature>
+        <function-signature>boolean isFollowing(com.blackbox.foundation.IEntity)</function-signature>
     </function>
 
     <function>
         <description>Whether the given entity is in a relationship with the current user</description>
         <name>isInRelationship</name>
         <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
-        <function-signature>boolean isInRelationship(com.blackbox.IEntity)</function-signature>
+        <function-signature>boolean isInRelationship(com.blackbox.foundation.IEntity)</function-signature>
     </function>
 
     <function>
         <description>Whether the current user can see the given entity's full name</description>
         <name>canSeeName</name>
         <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
-        <function-signature>boolean canSeeName(com.blackbox.IEntity)</function-signature>
+        <function-signature>boolean canSeeName(com.blackbox.foundation.IEntity)</function-signature>
     </function>
 
     <function>
         <description>Whether the given user has a limited membership type</description>
         <name>isLimited</name>
         <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
-        <function-signature>boolean isLimited(com.blackbox.IEntity)</function-signature>
+        <function-signature>boolean isLimited(com.blackbox.foundation.IEntity)</function-signature>
     </function>
 
     <function>
         <description>Returns true if the current user is friended by a particular user.</description>
         <name>isFriendedBy</name>
         <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
-        <function-signature>boolean isFriendedBy(com.blackbox.IEntity)</function-signature>
+        <function-signature>boolean isFriendedBy(com.blackbox.foundation.IEntity)</function-signature>
     </function>
 
     <function>
@@ -221,7 +221,7 @@
         <description>Returns true if the current user is followed by a particular user.</description>
         <name>isFollowedBy</name>
         <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
-        <function-signature>boolean isFollowedBy(com.blackbox.IEntity)</function-signature>
+        <function-signature>boolean isFollowedBy(com.blackbox.foundation.IEntity)</function-signature>
     </function>
 
     <function>
@@ -256,7 +256,7 @@
         <description>Returns the latest activity from a thread.</description>
         <name>latestActivity</name>
         <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
-        <function-signature>T latestActivity(com.blackbox.activity.ActivityThread)</function-signature>
+        <function-signature>T latestActivity(com.blackbox.foundation.activity.ActivityThread)</function-signature>
     </function>
 
     <function>
@@ -312,7 +312,7 @@
         <description>Displays the description of the relationship with a specified individual</description>
         <name>relationshipDescription</name>
         <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
-        <function-signature>java.lang.String relationshipDescription(com.blackbox.IEntity)</function-signature>
+        <function-signature>java.lang.String relationshipDescription(com.blackbox.foundation.IEntity)</function-signature>
     </function>
 
     <function>
