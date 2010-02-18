@@ -59,5 +59,12 @@ public class JspFunctionsUnitTest {
 
     }
 
+    @Test
+    public void testReplaceDonkey() {
+        String body = "sadfasdflkj sdfajsldef adslfkjslefd asdlkfj{DONKEY} A;LSDKFJSADF ";
+        String result = JspFunctions.replaceDonkey(body, "poop");
+        assertTrue(result.contains("poop"));
+    }
+
 
 }

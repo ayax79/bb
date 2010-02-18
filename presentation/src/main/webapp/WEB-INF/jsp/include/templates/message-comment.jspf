@@ -24,7 +24,7 @@
 		<div class="article-comment-meat">
 			<div class="comment-meat">
 				<c:set var="donkeySrc"><img src="${bb:libraryResource('/library/images/icons/donkey.jpg')}" alt="donkey"/></c:set>
-				<c:set var="body">${f:replace(childActivity.body, "{DONKEY}", donkeySrc)}</c:set>
+				<c:set var="body">${bb:replaceDonkey(childActivity.body, donkeySrc)}</c:set>
 				${f:replace(body, newLine, "<br/>")}
 			</div>
 		</div>

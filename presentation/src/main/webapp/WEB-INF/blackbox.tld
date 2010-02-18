@@ -404,5 +404,11 @@
         <function-signature>boolean isAllowedToSeeStalk(com.blackbox.foundation.user.User,java.lang.String)</function-signature>
     </function>
 
+    <function>
+        <description>replaces {DONKEY}</description>
+        <name>replaceDonkey</name>
+        <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
+        <function-signature>java.lang.String replaceDonkey(java.lang.String,java.lang.String)</function-signature>
+    </function>
 
 </taglib>

@@ -27,7 +27,7 @@
 				</div>
 
 				<c:set var="donkeySrc"><img src="${bb:libraryResource('/library/images/icons/donkey.jpg')}" alt="donkey"/></c:set>
-				<c:set var="cmnt">${f:replace(activity.parent.comment, "{DONKEY}", donkeySrc)}</c:set>
+				<c:set var="cmnt">${bb:replaceDonkey(activity.parent.comment, donkeySrc)}</c:set>
 				<div class="article-meat">${f:replace(cmnt, newLine, "<br/>")}</div>
 				<div class="article-media">
 					<c:if test="${not empty activity.parent.location}">

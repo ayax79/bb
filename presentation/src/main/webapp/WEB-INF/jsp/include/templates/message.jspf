@@ -38,8 +38,8 @@
 					<div class="clear"></div>
 				</div>
 				<c:set var="donkeySrc"><img src="${bb:libraryResource('/library/images/icons/donkey.jpg')}" alt="donkey"/></c:set>
-				<c:set var="body">${f:replace(activity.parent.body, "{DONKEY}", donkeySrc)}</c:set>
-				<div class="article-meat">${f:replace(body, newLine, "<br/>")}</div>
+				<c:set var="body">${bb:replaceDonkey(activity.parent.body, donkeySrc)}</c:set>
+                <div class="article-meat">${f:replace(body, newLine, "<br/>")}</div>
 				<%@include file="/WEB-INF/jsp/include/templates/comments.jspf" %>
 			</div>
 		</div>

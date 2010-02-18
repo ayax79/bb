@@ -676,5 +676,10 @@ public class JspFunctions {
         return PrivacyUtils.isAllowedToSeeStalk(user, privacyUserGuid);
     }
 
+    public static String replaceDonkey(String body, String val) {
+        if (body == null) return null;
+        return body.replaceAll("\\{DONKEY\\}", val);
+    }
+
 
 }
