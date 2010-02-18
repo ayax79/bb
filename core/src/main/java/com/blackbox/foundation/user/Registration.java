@@ -20,6 +20,7 @@ public class Registration implements Serializable {
 
     public Registration(User user, String affiliateId, List<String> leechEmails) {
         this.user = user;
+        this.affiliateId = affiliateId;
         this.leechEmails = leechEmails;
     }
 

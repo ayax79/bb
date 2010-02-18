@@ -681,5 +681,8 @@ public class JspFunctions {
         return body.replaceAll("\\{DONKEY\\}", val);
     }
 
-
+    public static String substring(String string, int start, int end) {
+        if (string == null) return null;
+        return string.substring(start, end);
+    }
 }

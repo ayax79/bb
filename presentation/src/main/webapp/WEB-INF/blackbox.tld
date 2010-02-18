@@ -411,4 +411,11 @@
         <function-signature>java.lang.String replaceDonkey(java.lang.String,java.lang.String)</function-signature>
     </function>
 
+    <function>
+        <description>substring (resin 3.1.9 doesn't seem to support it)</description>
+        <name>substring</name>
+        <function-class>com.blackbox.presentation.action.util.JspFunctions</function-class>
+        <function-signature>java.lang.String substring(java.lang.String,int,int)</function-signature>
+    </function>
+
 </taglib>
