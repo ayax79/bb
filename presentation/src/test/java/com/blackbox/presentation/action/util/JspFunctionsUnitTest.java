@@ -78,6 +78,9 @@ public class JspFunctionsUnitTest {
         String substring = foo.substring(3, 10);
         assertEquals(substring, JspFunctions.substring(foo, 3, 10));
         assertNull(JspFunctions.substring(null, 23, 23));
+
+        foo = "sldkfj";
+        assertEquals("kfj", JspFunctions.substring(foo, 3, 10));
     }
 
 

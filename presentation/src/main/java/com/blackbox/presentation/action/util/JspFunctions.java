@@ -682,7 +682,13 @@ public class JspFunctions {
     }
 
     public static String substring(String string, int start, int end) {
-        if (string == null) return null;
+        if (string == null) {
+            return null;
+        }
+        if (end > string.length()) {
+            end = string.length();
+        }
+        
         return string.substring(start, end);
     }
 }
