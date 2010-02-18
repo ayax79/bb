@@ -4,6 +4,7 @@ import com.blackbox.foundation.Utils;
 import com.blackbox.foundation.exception.UserAlreadyExistsException;
 import com.blackbox.foundation.search.ExploreRequest;
 import com.blackbox.foundation.search.SearchResult;
+import com.blackbox.foundation.user.BasePromoCode;
 import com.blackbox.server.BaseIntegrationTest;
 import com.blackbox.testingutils.UserFixture;
 import com.blackbox.testingutils.UserHelper;
@@ -94,6 +95,12 @@ public class UserManagerIntegrationTest extends BaseIntegrationTest {
             assertNotNull("we have incomplete user search results data [wish status]", userSearchResult.getWishStatus());
             assertNotNull("we have incomplete user search results data [vouch count]", userSearchResult.getVouchCount());
         }
+    }
+
+    @Test
+    public void canWeLoadPromoCode() {
+        BasePromoCode code = userManager.loadPromoCodeByCode("eeuw58wx");
+        assertNotNull(code);
     }
 
 //    @Test
