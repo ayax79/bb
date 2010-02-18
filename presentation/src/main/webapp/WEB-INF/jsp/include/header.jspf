@@ -73,7 +73,7 @@
 					<input type="text" id="quicksearch" class="dv span-5 search input-default" value="Search..." />
 
 					<ul id="nav-right" class="header-nav">
-						<c:if test="${actionBean.hasIntro}"><li><a id="intro" href="#" rel='prettyPhoto'><span>Video Help</span></a></li></c:if>
+						<%--<c:if test="${actionBean.hasIntro}"><li><a id="intro" href="#" rel='prettyPhoto'><span>Video Help</span></a></li></c:if>--%>
 						<li><a href="#" id="feedback_idd"><span>Feedback</span></a></li>
 
                         <li><a href="http://www.blackboxrepublic.com/faq" target="_blank"><span>FAQs</span></a></li>

@@ -12,17 +12,17 @@ import com.blackbox.foundation.media.IMediaManager;
 import com.blackbox.foundation.media.MediaMetaData;
 import com.blackbox.foundation.media.MediaPublish;
 import com.blackbox.foundation.media.MediaRecipient;
+import com.blackbox.foundation.security.SecurityRealmEnum;
+import com.blackbox.foundation.security.UsernameOnlyAuthToken;
+import com.blackbox.foundation.social.NetworkTypeEnum;
+import com.blackbox.foundation.user.*;
+import com.blackbox.foundation.util.IGeoUtil;
 import com.blackbox.presentation.action.BaseBlackBoxActionBean;
 import com.blackbox.presentation.action.persona.PersonaActionBean;
 import com.blackbox.presentation.action.util.EighteenOrOlderTypeConverter;
 import com.blackbox.presentation.action.util.MediaUtil;
 import com.blackbox.presentation.extension.BlackBoxContext;
 import com.blackbox.presentation.session.UserSessionService;
-import com.blackbox.foundation.security.SecurityRealmEnum;
-import com.blackbox.foundation.security.UsernameOnlyAuthToken;
-import com.blackbox.foundation.social.NetworkTypeEnum;
-import com.blackbox.foundation.user.*;
-import com.blackbox.foundation.util.IGeoUtil;
 import net.sourceforge.stripes.action.*;
 import net.sourceforge.stripes.controller.LifecycleStage;
 import net.sourceforge.stripes.integration.spring.SpringBean;
@@ -43,7 +43,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.InputStream;
 import java.util.Arrays;
-import java.util.HashMap;
 
 import static com.blackbox.foundation.EntityReference.createEntityReference;
 import static com.blackbox.foundation.IBlackBoxConstants.BUFFER_SIZE;
@@ -68,22 +67,6 @@ public class FullRegisterUserActionBean extends BaseBlackBoxActionBean {
     public static final String DEFAULT_PLACEHOLDER = "/library/images/defaultplaceholder.jpg";
 
     private static final Logger logger = LoggerFactory.getLogger(FullRegisterUserActionBean.class);
-
-    /**
-     * Contains a list of hardcoded promo codes.
-     * <p/>
-     * todo This should be refactored out to use the promocode api
-     */
-    private static final HashMap<String, InternalPromoCodeInfo> INTERNAL_PROMO_CODES = new HashMap<String, InternalPromoCodeInfo>();
-
-    static {
-        InternalPromoCodeInfo info = new InternalPromoCodeInfo("track", User.UserType.PROMOTER);
-        INTERNAL_PROMO_CODES.put(info.getPromoCode(), info);
-        info = new InternalPromoCodeInfo("cutie", 6, User.UserType.NORMAL);
-        INTERNAL_PROMO_CODES.put(info.getPromoCode(), info);
-        info = new InternalPromoCodeInfo("internal", 6, User.UserType.NORMAL);
-        INTERNAL_PROMO_CODES.put(info.getPromoCode(), info);
-    }
 
     @SpringBean("mediaManager")
     IMediaManager mediaManager;
@@ -221,7 +204,7 @@ public class FullRegisterUserActionBean extends BaseBlackBoxActionBean {
 
         // They are already logged in, don't let them through registration.
         if (getCurrentUser() != null) {
-            logger.warn("Attempted to go through registration as a already logged in user");
+            logger.warn("Attempted to go through registration as a already logged in user: " + getCurrentUser());
             return new RedirectResolution(DashBoardActionBean.class);
         }
 
@@ -299,13 +282,6 @@ public class FullRegisterUserActionBean extends BaseBlackBoxActionBean {
     public Resolution code() {
         if (pc != null) {
 
-            InternalPromoCodeInfo info = INTERNAL_PROMO_CODES.get(pc);
-            if (info != null) {
-                promoCode = new SingleUsePromoCode();
-                promoCode.setCode(pc);
-                promoCode.setGuid(userManger.loadUserByUsername(info.getUsername()).getGuid());
-            }
-
             if (promoCode == null) {
                 promoCode = userManger.loadPromoCodeByCode(pc);
             }
@@ -363,14 +339,6 @@ public class FullRegisterUserActionBean extends BaseBlackBoxActionBean {
     @ValidationMethod(on = "step3")
     public void validateConfirm(ValidationErrors errors) {
         if (pc != null) {
-
-            InternalPromoCodeInfo info = INTERNAL_PROMO_CODES.get(pc);
-            if (info != null) {
-                promoCode = new SingleUsePromoCode();
-                promoCode.setCode(pc);
-                promoCode.setGuid(userManger.loadUserByUsername(info.getUsername()).getGuid());
-            }
-
             if (promoCode == null) {
                 promoCode = userManger.loadPromoCodeByCode(pc);
             }
@@ -386,17 +354,7 @@ public class FullRegisterUserActionBean extends BaseBlackBoxActionBean {
 
     public Resolution step3() {
         // step 3 used to be billing, now it just goes to the confirm page.
-
         logger.info("called step3");
-        if (promoCode != null) {
-            // if the promo code was hardcoded, then lets set the user type
-            if (isHardcodedPromoCode(promoCode.getCode())) {
-                InternalPromoCodeInfo info = INTERNAL_PROMO_CODES.get(promoCode.getCode());
-                user.setType(info.getUserType());
-            }
-
-        }
-
         return new ForwardResolution("/WEB-INF/jsp/include/register/confirm.jspf");
     }
 
@@ -406,8 +364,6 @@ public class FullRegisterUserActionBean extends BaseBlackBoxActionBean {
      * @return A redirect resolution to login with login credentials specified.
      */
     public Resolution register() {
-
-
         logger.info("called register");
         user.setStatus(Status.ENABLED);
         user.setOwnerType(EntityType.USER);
@@ -557,13 +513,9 @@ public class FullRegisterUserActionBean extends BaseBlackBoxActionBean {
         mb.setProviderGuid(promoCode.getGuid());
         mb.setProvider(BillingInfo.BillingProvider.LEECH);
         mb.setLastBilled(new DateTime());
-        InternalPromoCodeInfo info = INTERNAL_PROMO_CODES.get(promoCode.getCode());
-        if (info != null && info.getExpirationTime() != null) {
-            mb.setNextBillDate(new DateTime().plusMonths(info.getExpirationTime()));
-        } else if (promoCode.getEvaluationPeriod() != null) {
+        if (promoCode.getEvaluationPeriod() != null) {
             mb.setNextBillDate(new DateTime().plusMonths(promoCode.getEvaluationPeriod()));
         }
-
         return mb;
     }
 
@@ -732,14 +684,6 @@ public class FullRegisterUserActionBean extends BaseBlackBoxActionBean {
     }
 
     String getAffiliateIdentifier() {
-        if (promoCode != null && promoCode.getCode() != null) {
-            String username = INTERNAL_PROMO_CODES.get(promoCode.getCode()).getUsername();
-            User user = userManger.loadUserByUsername(username);
-            if (user != null) {
-                return user.getGuid();
-            }
-        }
-
         Cookie[] cookies = getContext().getRequest().getCookies();
         for (Cookie cookie : cookies) {
             if (PartnerActionBean.AFFILIATE_COOKIE_KEY.equals(cookie.getName())) {
@@ -747,54 +691,6 @@ public class FullRegisterUserActionBean extends BaseBlackBoxActionBean {
             }
         }
         return null;
-    }
-
-    private boolean isHardcodedPromoCode(String pc) {
-        return INTERNAL_PROMO_CODES.get(pc) != null;
-    }
-
-    private static class InternalPromoCodeInfo {
-
-        public String codeKey;
-        public Integer expirationTime;
-        public User.UserType userType;
-
-        InternalPromoCodeInfo(String codeKey, Integer expirationTime, User.UserType userType) {
-            this.codeKey = codeKey;
-            this.expirationTime = expirationTime;
-            this.userType = userType;
-        }
-
-        InternalPromoCodeInfo(String codeKey, User.UserType userType) {
-            this.codeKey = codeKey;
-            this.userType = userType;
-        }
-
-        String getCodeKey() {
-            return codeKey;
-        }
-
-        String getUsername() {
-            return getProperty(format("register.code.%s.username", codeKey));
-        }
-
-        String getPromoCode() {
-            return getProperty(format("register.code.%s", codeKey));
-        }
-
-        /**
-         * Time to expiration in months
-         *
-         * @return Time to expiration in months
-         */
-        Integer getExpirationTime() {
-            return expirationTime;
-        }
-
-        User.UserType getUserType() {
-            return userType;
-        }
-
     }
 
 
