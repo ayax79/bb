@@ -1,6 +1,5 @@
 <%@include file="/WEB-INF/jsp/include/page_header.jspf" %>
 <head>
-    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
     <%@include file="/WEB-INF/jsp/include/ps_event/ps_event_header.jspf" %>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Event</title>
@@ -176,7 +175,7 @@
                         <div class='promote_field_container'>
                             <input type="checkbox" name="publishToTwitter" id="publish_to_twitter_checkbox" <c:if test="${actionBean.occasion.publishToTwitter == 'TRUE'}"> checked='checked'</c:if>> <label for="publish_to_twitter_checkbox" style="font-weight: bold;">Tweet the deets.</label>
                             <br />
-                            <textarea name="twitterDescription" id="twitter_text">${fn:substring(actionBean.occasion.description, 0, 120)}</textarea>
+                            <textarea name="twitterDescription" id="twitter_text">${bb:substring(actionBean.occasion.description, 0, 120)}</textarea>
                             <div id="twitter_creds" style="display: none; font-size: 11px;">
                                 Username: <input type="text" name="twitterUsername" id="twitterUsername" size="6">
                                 Password: <input type="password" name="twitterPassword" id="twitterPassword" size="6">
