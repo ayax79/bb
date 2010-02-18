@@ -82,9 +82,9 @@ $(function() {
 	});
 	myPictureTab.bindAlbumCovers($("#main-albums"));
 
-	<c:if test="${actionBean.firstTime}">
-    $.prettyPhoto.open('http://cdn.episodic.com/player/EpisodicPlayer.swf?width=480&height=360&config=http%3A%2F%2Fcdn.episodic.com%2Fshows%2Fob0pj9jq17up%2Fob0tc2cv668i%2Fconfig.xml');
-    </c:if>
+	<%--<c:if test="${actionBean.firstTime}">--%>
+    <%--$.prettyPhoto.open('http://cdn.episodic.com/player/EpisodicPlayer.swf?width=480&height=360&config=http%3A%2F%2Fcdn.episodic.com%2Fshows%2Fob0pj9jq17up%2Fob0tc2cv668i%2Fconfig.xml');--%>
+    <%--</c:if>--%>
 
     $("#intro").click(function() {
        $.prettyPhoto.open('http://cdn.episodic.com/player/EpisodicPlayer.swf?width=480&height=360&config=http%3A%2F%2Fcdn.episodic.com%2Fshows%2Fob0pj9jq17up%2Fob0tc2cv668i%2Fconfig.xml');
