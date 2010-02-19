@@ -26,10 +26,7 @@ import com.blackbox.server.exception.NotFoundException;
 import com.blackbox.server.media.IMediaDao;
 import com.blackbox.server.security.ISecurityDao;
 import com.blackbox.server.social.IVouchDao;
-import com.blackbox.server.user.event.LoadUserStatsEvent;
-import com.blackbox.server.user.event.MarkProfileViewedEvent;
-import com.blackbox.server.user.event.RegisterUserEvent;
-import com.blackbox.server.user.event.VerifyUserEvent;
+import com.blackbox.server.user.event.*;
 import com.blackbox.foundation.social.Address;
 import com.blackbox.foundation.social.ISocialManager;
 import com.blackbox.foundation.social.Relationship;
@@ -44,6 +41,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.yestech.cache.ICacheManager;
 import org.yestech.event.multicaster.BaseServiceContainer;
+import org.yestech.lib.crypto.PasswordGenerator;
 
 import javax.annotation.Resource;
 import java.text.MessageFormat;
@@ -56,6 +54,7 @@ import static com.blackbox.foundation.Utils.transform;
 import static com.blackbox.foundation.user.User.UserType.*;
 import static com.blackbox.foundation.util.PaginationUtil.buildPaginationResults;
 import static com.google.common.collect.Lists.newArrayList;
+import static org.yestech.lib.crypto.MessageDigestUtils.sha1Hash;
 
 /**
  *
@@ -321,7 +320,23 @@ public class UserManager extends BaseServiceContainer implements IUserManager {
 
     @Override
     public void forgotPassword(String email) {
-        throw new UnsupportedOperationException();
+        if (email == null) throw new IllegalArgumentException("email cannot be null");
+
+        User user = userDao.loadUserByEmail(email);
+
+        if (user == null) {
+            throw new NotFoundException("User with the specified email does not exist.");
+        }
+
+        String password = PasswordGenerator.createPassword(8).toLowerCase();
+        user.setPassword(sha1Hash(password));
+        userDao.save(user);
+
+        ForgotPasswordResult result = new ForgotPasswordResult();
+        result.setTemporaryPassword(password);
+        result.setUpdatedUser(user);
+
+        getEventMulticaster().process(new ForgotPasswordEvent(user, password));
     }
 
 
@@ -472,7 +487,8 @@ public class UserManager extends BaseServiceContainer implements IUserManager {
         Collection<User> users = mapping.getUsers();
         if (users == null) {
             mapping.setUsers(newArrayList(user));
-        } else {
+        }
+        else {
             mapping.getUsers().add(user);
         }
 
