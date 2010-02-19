@@ -67,6 +67,7 @@ public class ActivityStreamIntegrationTest extends BaseIntegrationTest {
     //Sally *should not be able to* see Jim's "Friends Only" post in the stream
 
     @Test
+    @org.junit.Ignore
     public void testLoadFollowingActivityThreadsWhenFollowedPublishedMessage() throws Exception {
         relationsHelper.createFollowing(sally, jim);
         assertCleanStart(sally);
