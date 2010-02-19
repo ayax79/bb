@@ -362,13 +362,6 @@
         <url-pattern>/chat/*</url-pattern>
     </servlet-mapping>
 
-    <!--
-    4hrs in seconds
-    -->
-    <session-config>
-        <session-timeout>240</session-timeout>
-    </session-config>
-
     <error-page>
         <error-code>404</error-code>
         <location>/error-404.jsp</location>
