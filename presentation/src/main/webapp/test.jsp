@@ -29,7 +29,7 @@
 			background:transparent url(${bb:libraryResource('/library/images/controls/checkbox.png')}) no-repeat bottom left;
 		}
 	</style>
-	<script src="${bb:libraryResource('/library/js/jquery-1.4.1.min.js')}" type="text/javascript"></script>
+	<script src="${bb:libraryResource('/library/js/jquery-1.4.2.min.js')}" type="text/javascript"></script>
 	<script src="${bb:libraryResource('/library/js/jquery-ui-1.7.2.custom.min.js')}" type="text/javascript"></script>
 	<%@ include file="/WEB-INF/jsp/include/blackbox_js.jspf" %>
 	<script src="${bb:libraryResource('/library/js/core.js')}" type="text/javascript"></script>

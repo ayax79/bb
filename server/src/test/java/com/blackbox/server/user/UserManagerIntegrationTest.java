@@ -2,21 +2,19 @@ package com.blackbox.server.user;
 
 import com.blackbox.foundation.Utils;
 import com.blackbox.foundation.common.BBPersistentObjectToGuidFunction;
-import com.blackbox.foundation.exception.BlackBoxException;
 import com.blackbox.foundation.exception.UserAlreadyExistsException;
 import com.blackbox.foundation.search.ExploreRequest;
 import com.blackbox.foundation.search.SearchResult;
 import com.blackbox.foundation.user.*;
-import com.blackbox.foundation.util.CollectionHelper;
 import com.blackbox.server.BaseIntegrationTest;
-import com.blackbox.testingutils.UserFixture;
 import com.blackbox.testingutils.UserHelper;
 import com.google.common.collect.Collections2;
 import org.junit.Test;
 
 import javax.annotation.Resource;
 
-import static com.blackbox.testingutils.UserFixture.*;
+import static com.blackbox.testingutils.UserFixture.april;
+import static com.blackbox.testingutils.UserFixture.sam;
 import static junit.framework.Assert.*;
 
 /**
@@ -150,7 +148,7 @@ public class UserManagerIntegrationTest extends BaseIntegrationTest {
         assertNotNull(affiliates);
         assertFalse("User should not already be affiliated", Collections2.<User, String>transform(affiliates.getUsers(), new BBPersistentObjectToGuidFunction<User>()).contains(user.getGuid()));
         userManager.affiliate(affiliates.getAffiliate().getGuid(), user.getGuid());
-        affiliates = affiliateMappingDao.loadByAffiliatesGuid(user.getGuid());
+        affiliates = affiliateMappingDao.loadByAffiliatesGuid("cb5fd23ef2d9c3b884b5ce9e8d376f954861b448");
         assertFalse("User should be affiliated", Collections2.<User, String>transform(affiliates.getUsers(), new BBPersistentObjectToGuidFunction<User>()).contains(user.getGuid()));
     }
 

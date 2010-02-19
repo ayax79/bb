@@ -29,7 +29,7 @@
           media="screen, projection"/>
 
     <%-- Libraries --%>
-    <script src="${bb:libraryResource('/library/js/jquery-1.4.1.min.js')}" type="text/javascript"></script>
+    <script src="${bb:libraryResource('/library/js/jquery-1.4.2.min.js')}" type="text/javascript"></script>
     <script src="${bb:libraryResource('/library/js/jquery-ui-1.7.2.custom.min.js')}" type="text/javascript"></script>
     <script src="${bb:libraryResource('/library/js/json_parse.js')}" type="text/javascript"></script>
     <script src="${bb:libraryResource('/library/js/autoresize.jquery.js')}" type="text/javascript"></script>

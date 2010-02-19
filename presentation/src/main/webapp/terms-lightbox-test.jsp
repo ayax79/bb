@@ -5,7 +5,7 @@
 <title><fmt:message key="pageTitlePrefix" /></title>
 
 <link rel="stylesheet" href="${bb:libraryResource('/library/css/prettyPhoto.css')}" type="text/css"/>
-<script src="${bb:libraryResource('/library/js/jquery-1.4.1.min.js')}" type="text/javascript"></script>
+<script src="${bb:libraryResource('/library/js/jquery-1.4.2.min.js')}" type="text/javascript"></script>
 <script src="${bb:libraryResource('/library/js/jquery.prettyPhoto.js')}" type="text/javascript"></script>
 
 <script type="text/javascript">
