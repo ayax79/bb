@@ -10,15 +10,15 @@
     <artifactId>presentation</artifactId>
     <name>presentation</name>
     <packaging>war</packaging>
-    <version>1.0.0.b19-SNAPSHOT</version>
+    <version>1.0.0.b19</version>
     <parent>
         <groupId>com.blackbox</groupId>
         <artifactId>blackbox</artifactId>
-        <version>1.0.0.b19-SNAPSHOT</version>
+        <version>1.0.0.b19</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <properties>
-        <blackbox-core.version>1.0.0.b19-SNAPSHOT</blackbox-core.version>
+        <blackbox-core.version>1.0.0.b19</blackbox-core.version>
         <blackbox.console>false</blackbox.console>
         <library.local>true</library.local>
         <presentation.domain>localhost</presentation.domain>
