@@ -1,16 +1,8 @@
-<%@ tag import="org.springframework.web.context.WebApplicationContext" %>
-<%@ tag import="org.springframework.web.context.support.WebApplicationContextUtils" %>
-<%@ tag import="com.blackbox.presentation.action.util.AvatarCacheKey" %>
-<%@ tag import="com.blackbox.foundation.media.IMediaManager" %>
-<%@ tag import="com.blackbox.foundation.user.IUserManager" %>
-<%@ tag import="com.blackbox.foundation.user.User" %>
-<%@ tag import="com.blackbox.presentation.extension.DefaultBlackBoxContext" %>
 <%@ tag import="com.blackbox.foundation.media.AvatarImage" %>
-<%@ tag import="org.yestech.cache.ICacheManager" %>
-<%@ tag import="com.blackbox.foundation.EntityType" %>
-<%@ tag import="com.blackbox.presentation.action.util.JspFunctions" %>
-<%@ tag import="static org.apache.commons.lang.StringUtils.isNotBlank" %>
+<%@ tag import="com.blackbox.foundation.user.User" %>
 <%@ tag import="com.blackbox.presentation.action.util.PresentationUtil" %>
+<%@ tag import="com.blackbox.presentation.extension.DefaultBlackBoxContext" %>
+<%@ tag import="static org.apache.commons.lang.StringUtils.isNotBlank" %>
 <%@ tag language="java" %>
 <%@ attribute name="guid" required="true" %>
 <%@ attribute name="showMiniProfile" required="false" %>
@@ -21,8 +13,6 @@
 <%@ attribute name="entityType" type="com.blackbox.foundation.EntityType" %>
 
 <%@include file="/WEB-INF/jsp/include/taglibs.jspf" %>
-
-<cache:cache key="profileImage-${guid}-${size}-${showUserType}-${linkToProfile}" time="10" scope="session" refresh="${not empty param.refresh}">
 
 <%
     boolean showDefault = false;
@@ -94,4 +84,3 @@
 	<img class="profile-image" alt="${alt}" src="${imageUrl}" />
     <c:if test="${linkToProfile == 'true' or showMiniProfile == 'true'}"></a> </c:if>
 </div>
-</cache:cache>

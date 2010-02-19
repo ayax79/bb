@@ -171,7 +171,6 @@ public class AccountSettingsActionBean extends BaseBlackBoxActionBean implements
             user.setPassword(sha1Hash(user.getPassword()));
         }
         user = userManager.save(user);
-        personaHelper.flushPersonaPageCache(getContext());
         displayNameCache.flush(new DisplayNameCacheKey(currentUserGuid, currentUserGuid));
         return new ForwardResolution("/account_settings.jsp");
     }
@@ -196,7 +195,6 @@ public class AccountSettingsActionBean extends BaseBlackBoxActionBean implements
                 new GeoUtil().fetchGeoInfoForAddress(user.getProfile().getLocation())
         );
         user = userManager.save(user);
-        personaHelper.flushPersonaPageCache(getContext());
         displayNameCache.flush(new DisplayNameCacheKey(currentUserGuid, currentUserGuid));
         return new ForwardResolution("/account_settings.jsp");
     }
@@ -234,7 +232,6 @@ public class AccountSettingsActionBean extends BaseBlackBoxActionBean implements
 
         // @todo Implement account settings integration update
 
-        personaHelper.flushPersonaPageCache(getContext());
         return new RedirectResolution(PersonaActionBean.class);
     }
 

@@ -296,7 +296,6 @@ public class PSUploadActionBean extends BaseBlackBoxActionBean {
         //User newTmpU = userManager.loadUserByGuid(getContext().getUser().getGuid());
         //_logger.info("after save: imgUrl :" + newTmpU.getProfile().getProfileImgUrl() + "; avatar:" + newTmpU.getProfile().getAvatarUrl());
 
-        personaHelper.flushPersonaPageCache(getContext());
         return createResolutionWithText(getContext(), location);
     }
 
@@ -331,14 +330,12 @@ public class PSUploadActionBean extends BaseBlackBoxActionBean {
         } catch (Exception ex) {
             _logger.error("mediaMgr publish throws Exception", ex);
         }
-        personaHelper.flushPersonaPageCache(getContext());
     }
 
     private void saveMediaLib() {
         _logger.info("save media lib");
         MediaLibrary ml = (MediaLibrary) getSession().getAttribute(MEDIA_LIB);
         mediaManager.saveMediaLibrary(ml);
-        personaHelper.flushPersonaPageCache(getContext());
         clearMediaSession();
     }
 

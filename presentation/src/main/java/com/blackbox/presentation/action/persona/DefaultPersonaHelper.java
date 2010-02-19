@@ -15,12 +15,8 @@ import com.blackbox.foundation.media.MediaMetaData;
 import com.blackbox.foundation.media.MediaPublish;
 import com.blackbox.presentation.action.media.SessionImageActionBean;
 import com.blackbox.presentation.action.util.PresentationUtil;
-import com.blackbox.presentation.extension.BlackBoxContext;
 import com.blackbox.foundation.social.NetworkTypeEnum;
 import com.blackbox.foundation.user.IUser;
-import com.opensymphony.oscache.base.Cache;
-import com.opensymphony.oscache.base.NeedsRefreshException;
-import com.opensymphony.oscache.web.ServletCacheAdministrator;
 import net.sourceforge.stripes.action.ActionBeanContext;
 import net.sourceforge.stripes.action.FileBean;
 import org.apache.commons.lang.StringUtils;
@@ -260,42 +256,5 @@ public class DefaultPersonaHelper implements PersonaHelper {
         session.setAttribute(SessionImageActionBean.SESSION_IMAGE_PARAM, fileData);
     }
 
-
-    @Override
-    public void flushPersonaPageCache(ActionBeanContext context) {
-        HttpServletRequest request = context.getRequest();
-        ServletContext servletContext = request.getSession().getServletContext();
-
-        Cache cache = ServletCacheAdministrator.getInstance(servletContext).getCache(request, PageContext.SESSION_SCOPE);
-        cache.flushGroup("persona-header");
-        cache.flushGroup("persona-body");
-    }
-
-    @Override
-    public boolean containsPersonaPageCache(BlackBoxContext context, String username) {
-        HttpServletRequest request = context.getRequest();
-        ServletContext servletContext = request.getSession().getServletContext();
-        String key = "persona-" + username;
-        ServletCacheAdministrator cacheAdministrator = ServletCacheAdministrator.getInstance(servletContext);
-        key = cacheAdministrator.generateEntryKey(key, request, PageContext.SESSION_SCOPE, null, null);
-        Cache cache = cacheAdministrator.getCache(request, PageContext.SESSION_SCOPE);
-
-        try {
-
-            if (request.getParameter("refresh") != null || username.equals(context.getUser().getUsername())) {
-                flushPersonaPageCache(context);
-                return false;
-            }
-
-            Object value = cache.getFromCache(key, 300) != null;
-            return value != null;
-        } catch (NeedsRefreshException e) {
-            flushPersonaPageCache(context);
-            return false;
-        }
-        finally {
-            cache.cancelUpdate(key);
-        }
-    }
 
 }

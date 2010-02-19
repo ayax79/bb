@@ -13,13 +13,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
-/**
- * Created by IntelliJ IDEA.
- * User: andrew
- * Date: Feb 9, 2010
- * Time: 3:57:28 PM
- * To change this template use File | Settings | File Templates.
- */
 public interface PersonaHelper {
     String CORKBOARDNAME = "CORKBOARD";
 
@@ -45,7 +38,4 @@ public interface PersonaHelper {
 
     void resetSessionImage(HttpSession session, FileBean fileData) throws Exception;
 
-    void flushPersonaPageCache(ActionBeanContext context);
-
-    boolean containsPersonaPageCache(BlackBoxContext context, String username);
 }

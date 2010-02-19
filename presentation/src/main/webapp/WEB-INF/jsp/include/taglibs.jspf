@@ -4,4 +4,3 @@
 <%@ taglib prefix="s" uri="http://stripes.sourceforge.net/stripes.tld" %>
 <%@ taglib prefix="ui" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="bb" uri="/WEB-INF/blackbox.tld" %>
-<%@ taglib prefix="cache" uri="http://www.opensymphony.com/oscache" %>
