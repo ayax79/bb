@@ -60,7 +60,7 @@ public class Bounds implements Serializable {
     }
 
     public void setStartDate(DateTime startDate) {
-        this.changed = !EqualsBuilder.reflectionEquals(this.startDate, startDate);
+        this.changed = startDate == null || !EqualsBuilder.reflectionEquals(this.startDate, startDate);
         this.startDate = startDate;
     }
 
@@ -143,6 +143,11 @@ public class Bounds implements Serializable {
 
         private ImmutableBounds(int startIndex, int maxResults) {
             super(startIndex, maxResults);
+        }
+
+        @Override
+        public void setStartIndex(int startIndex) {
+            throw new UnsupportedOperationException();
         }
 
         @Override

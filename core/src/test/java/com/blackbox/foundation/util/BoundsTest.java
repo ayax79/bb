@@ -31,6 +31,7 @@ public class BoundsTest {
         assertFalse(bounds.isChanged());
         bounds.setStartIndex(bounds.getStartIndex());
         assertFalse(bounds.isChanged());
+        bounds.setStartDate(new DateTime());
         bounds.setStartDate(bounds.getStartDate());
         assertFalse(bounds.isChanged());
         bounds.setStartDate(null);
