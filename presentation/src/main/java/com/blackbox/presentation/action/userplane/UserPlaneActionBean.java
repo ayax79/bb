@@ -18,6 +18,7 @@ import javax.xml.datatype.DatatypeFactory;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 @SuppressWarnings({"UnusedDeclaration"})
@@ -79,7 +80,9 @@ public class UserPlaneActionBean extends BaseBlackBoxActionBean implements Actio
 	@DontValidate
     public Resolution getDomainPreferences() throws JAXBException, DatatypeConfigurationException {
         Communicationsuite suite = new Communicationsuite();
-        suite.setTime(DatatypeFactory.newInstance().newXMLGregorianCalendar(new GregorianCalendar()));
+        GregorianCalendar gregorianCalendar = new GregorianCalendar();
+        gregorianCalendar.setTime(new Date());
+        suite.setTime(DatatypeFactory.newInstance().newXMLGregorianCalendar(gregorianCalendar));
 
         Domain domain = new Domain();
         suite.setDomain(domain);
