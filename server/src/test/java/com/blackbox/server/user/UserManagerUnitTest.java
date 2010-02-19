@@ -15,7 +15,9 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.yestech.event.multicaster.IEventMulticaster;
+
 import java.util.Collection;
+
 import static com.blackbox.foundation.user.User.UserType.AFFILIATE;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.verify;
@@ -110,7 +112,7 @@ public class UserManagerUnitTest {
         um.affiliate(affiliate.getGuid(), user.getGuid());
 
         ArgumentCaptor<AffiliateMapping> am = ArgumentCaptor.forClass(AffiliateMapping.class);
-        verify(affiliateMappingDao).insert(am.capture());
+        verify(affiliateMappingDao).save(am.capture());
 
 
         AffiliateMapping affiliateMapping = am.getValue();

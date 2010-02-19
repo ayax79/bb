@@ -5,6 +5,7 @@ package com.blackbox.testingutils;
  */
 public class UserFixture {
 
+    public static final UserParts sam = new UserParts("sam", "412566b7f3e257e22bab9c8f697056edc9779481");
     public static final UserParts april = new UserParts("april", "105433d2148545d371fb1c71ef4851efb8c04392");
     public static final UserParts aj = new UserParts("aj", "35c68cff468635c4308390d25143d4451fc44de7");
 

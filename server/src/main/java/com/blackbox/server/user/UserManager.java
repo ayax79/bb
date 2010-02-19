@@ -445,7 +445,9 @@ public class UserManager extends BaseServiceContainer implements IUserManager {
     @Override
     public void affiliate(String affiliateIdentifier, String userGuid) {
         User affiliate = userDao.loadUserByGuid(affiliateIdentifier);
-        if (affiliate == null) affiliate = userDao.loadUserByUsername(affiliateIdentifier);
+        if (affiliate == null) {
+            affiliate = userDao.loadUserByUsername(affiliateIdentifier);
+        }
 
         User user = userDao.loadUserByGuid(userGuid);
 
@@ -476,7 +478,7 @@ public class UserManager extends BaseServiceContainer implements IUserManager {
             mapping.getUsers().add(user);
         }
 
-        affiliateMappingDao.insert(mapping);
+        affiliateMappingDao.save(mapping);
     }
 
     @Override

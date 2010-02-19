@@ -37,6 +37,7 @@ import static com.blackbox.testingutils.UserHelper.createNamedUser;
 import static com.google.common.collect.Lists.newArrayList;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
+import static junit.framework.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -134,7 +135,7 @@ public class ActivityManagerIntegrationTest extends BaseIntegrationTest {
     @Test
     //APP-215 Inconsistency in stream posts. user posts multiple posts to 'friends' and they only see one of the posts
     // and that post will 'cycle' amongst those posts.
-    @NotTransactional
+    //@NotTransactional
     // for some reason, if this test case is transactional, we never get any posts on fetch calls...
     @Ignore
     public void testLoadGlobalActivityThreads() throws Exception {
@@ -245,8 +246,9 @@ public class ActivityManagerIntegrationTest extends BaseIntegrationTest {
             logger.debug("---------------------------------------------------------------------------");
             paginatedMessageListing = messagesHelper.fetchMessages(viewer, FilterHelper.everyoneFilter(), bounds.next(10));
             logger.debug("bounds = " + bounds);
-            for (IActivityThread message : paginatedMessageListing) {
-                logger.debug(++totalPaginatedMessageSize + "message.getParent().getPostDate() = " + format(message));
+            for (IActivityThread activityThread : paginatedMessageListing) {
+                assertNull("bad! activityThread: " + activityThread, activityThread.getParent().getParentActivity());
+                logger.debug(++totalPaginatedMessageSize + "activityThread.getParent().getPostDate() = " + format(activityThread));
             }
             totalPaginatedListing.addAll(paginatedMessageListing);
         } while (!paginatedMessageListing.isEmpty());
@@ -257,8 +259,9 @@ public class ActivityManagerIntegrationTest extends BaseIntegrationTest {
         int i = 0;
         logger.debug("ActivityManagerIntegrationTest.testLoadGlobalActivityThreads.all at once");
         Collection<IActivityThread> wholeMessageListing = messagesHelper.fetchMessages(viewer, FilterHelper.everyoneFilter(), TwoBounds.boundLess());
-        for (IActivityThread message : wholeMessageListing) {
-            logger.debug(++i + "message.getParent().getPostDate() = " + format(message));
+        for (IActivityThread activityThread : wholeMessageListing) {
+            assertNull("bad! activity: " + activityThread, activityThread.getParent().getParentActivity());
+            logger.debug(++i + "activityThread.getParent().getPostDate() = " + format(activityThread));
         }
         logger.debug("---------------------------------------------------------------------------");
 

@@ -1,5 +1,6 @@
 package com.blackbox.foundation.util;
 
+import org.apache.commons.lang.builder.EqualsBuilder;
 import org.joda.time.DateTime;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -15,13 +16,16 @@ import java.io.Serializable;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Bounds implements Serializable {
 
+    private static final long serialVersionUID = 5125897299531895866L;
+
     private int startIndex;
     private int maxResults = 10;
     @XmlJavaTypeAdapter(JodaDateTimeXmlAdapter.class)
     private DateTime startDate;
     @XmlJavaTypeAdapter(JodaDateTimeXmlAdapter.class)
     private DateTime endDate;
-    private static final long serialVersionUID = 5125897299531895866L;
+
+    private boolean changed;
 
     public Bounds() {
     }
@@ -56,6 +60,7 @@ public class Bounds implements Serializable {
     }
 
     public void setStartDate(DateTime startDate) {
+        this.changed = startDate == null || !EqualsBuilder.reflectionEquals(this.startDate, startDate);
         this.startDate = startDate;
     }
 
@@ -64,6 +69,9 @@ public class Bounds implements Serializable {
     }
 
     public void setStartIndex(int startIndex) {
+        if (this.startIndex != startIndex) {
+            changed = true;
+        }
         this.startIndex = startIndex;
     }
 
@@ -80,7 +88,7 @@ public class Bounds implements Serializable {
     }
 
     public Bounds next(int numberMore) {
-        startIndex = startIndex + numberMore;
+        setStartIndex(startIndex + numberMore);
         return this;
     }
 
@@ -127,10 +135,19 @@ public class Bounds implements Serializable {
                 '}';
     }
 
+    public boolean isChanged() {
+        return changed;
+    }
+
     private static class ImmutableBounds extends Bounds {
 
         private ImmutableBounds(int startIndex, int maxResults) {
             super(startIndex, maxResults);
+        }
+
+        @Override
+        public void setStartIndex(int startIndex) {
+            throw new UnsupportedOperationException();
         }
 
         @Override
