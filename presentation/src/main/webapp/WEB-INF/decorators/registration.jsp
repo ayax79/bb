@@ -23,7 +23,7 @@
 	<link rel="stylesheet" href="${bb:libraryResource('/library/css/explorer.css')}" type="text/css" media="screen, projection" />
 	<link rel="stylesheet" href="${bb:libraryResource('/library/uploadify/uploadify.css')}" type="text/css"/>
 	<!--[if IE]><link rel="stylesheet" href="${bb:libraryResource('/library/css/ie.css')}" type="text/css" media="screen, projection"/><![endif]-->
-	<script src="${bb:libraryResource('/library/js/jquery-1.4.1.min.js')}" type="text/javascript"></script>
+	<script src="${bb:libraryResource('/library/js/jquery-1.4.2.min.js')}" type="text/javascript"></script>
 	<script src="${bb:libraryResource('/library/js/jquery-ui-1.7.2.custom.min.js')}" type="text/javascript"></script>
 	<script src="${bb:libraryResource('/library/js/jquery.validate.pack.js')}" type="text/javascript"></script>
 	<script src="${bb:libraryResource('/library/js/jquery.stripesValidation.js')}" type="text/javascript"></script>
