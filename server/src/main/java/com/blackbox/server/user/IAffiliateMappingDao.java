@@ -8,10 +8,10 @@ import org.springframework.transaction.annotation.Transactional;
  */
 public interface IAffiliateMappingDao {
 
-    @Transactional
-    void insert(AffiliateMapping mapping);
-
     AffiliateMapping loadByAffiliatesGuid(String userGuid);
+
+    @Transactional
+    void save(AffiliateMapping mapping);
 
     @Transactional
     void delete(AffiliateMapping mapping);

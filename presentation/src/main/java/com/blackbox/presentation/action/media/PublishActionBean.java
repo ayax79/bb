@@ -16,13 +16,13 @@ import com.blackbox.foundation.message.IMessageManager;
 import com.blackbox.foundation.message.Message;
 import com.blackbox.foundation.message.MessageRecipient;
 import com.blackbox.foundation.message.PrePublicationUtil;
-import com.blackbox.presentation.action.BaseBlackBoxActionBean;
-import com.blackbox.presentation.action.util.PresentationUtil;
 import com.blackbox.foundation.social.NetworkTypeEnum;
 import com.blackbox.foundation.user.ExternalCredentials;
 import com.blackbox.foundation.user.IUser;
 import com.blackbox.foundation.user.IUserManager;
 import com.blackbox.foundation.user.User;
+import com.blackbox.presentation.action.BaseBlackBoxActionBean;
+import com.blackbox.presentation.action.util.PresentationUtil;
 import net.sourceforge.stripes.action.*;
 import net.sourceforge.stripes.integration.spring.SpringBean;
 import net.sourceforge.stripes.util.Base64;
@@ -38,10 +38,10 @@ import java.io.IOException;
 import java.text.MessageFormat;
 import java.util.Collection;
 
+import static com.blackbox.foundation.user.ExternalCredentials.CredentialType.TWITTER;
 import static com.blackbox.presentation.action.BaseBlackBoxActionBean.ViewType.json;
 import static com.blackbox.presentation.action.util.JSONUtil.toJSON;
 import static com.blackbox.presentation.action.util.PresentationUtil.*;
-import static com.blackbox.foundation.user.ExternalCredentials.CredentialType.TWITTER;
 
 /**
  * @author Artie Copeland
@@ -241,6 +241,7 @@ public class PublishActionBean extends BaseBlackBoxActionBean {
     }
 
     public Resolution deleteMessage() {
+        PrePublicationUtil.flushMessage(guid, getCurrentUser(), prePublishedMessageCache);
         messageManager.deleteMessage(guid, getCurrentUser().getGuid());
 
         if (getView() == json) {

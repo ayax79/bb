@@ -12,7 +12,6 @@ import com.blackbox.foundation.message.PrePublicationUtil;
 import com.blackbox.foundation.social.NetworkTypeEnum;
 import com.blackbox.foundation.user.User;
 import com.blackbox.foundation.util.Affirm;
-import com.blackbox.foundation.util.Bounds;
 import org.joda.time.DateTime;
 import org.yestech.cache.ICacheManager;
 import org.yestech.cache.impl.HashMapCacheManager;
@@ -74,7 +73,7 @@ public class MessagesHelper {
     public Collection<IActivityThread> fetchMessages(User viewer, Collection<NetworkTypeEnum> breadth, TwoBounds bounds) {
         Collection<IActivityThread> serverActivitiesThread = activityManager.loadActivityThreads(new ActivityRequest(viewer.getEntityReference(), newArrayList(breadth), bounds));
         // this call to ActivityUtil emulates what happens in presentation layer which we do not have access to from here...
-        return PrePublicationUtil.applyPrePublishedMessages(viewer, serverActivitiesThread, prePublishedMessageCache);
+        return PrePublicationUtil.applyPrePublishedMessages(viewer, serverActivitiesThread, bounds, prePublishedMessageCache);
     }
 
     public Collection<IActivityThread> fetchFriendsMessages(User viewer, TwoBounds bounds) {

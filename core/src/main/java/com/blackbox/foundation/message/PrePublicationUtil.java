@@ -3,15 +3,13 @@ package com.blackbox.foundation.message;
 import com.blackbox.foundation.activity.ActivityThread;
 import com.blackbox.foundation.activity.IActivity;
 import com.blackbox.foundation.activity.IActivityThread;
+import com.blackbox.foundation.common.TwoBounds;
 import com.blackbox.foundation.user.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.yestech.cache.ICacheManager;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 import static com.google.common.collect.Lists.newArrayList;
 
@@ -28,7 +26,11 @@ public final class PrePublicationUtil {
     private static final Logger logger = LoggerFactory.getLogger(PrePublicationUtil.class);
 
     @SuppressWarnings({"unchecked"})
-    public static Collection<IActivityThread> applyPrePublishedMessages(User user, Collection<IActivityThread> activityThreads, ICacheManager<String, Collection<Message>> prePublishedMessageCache) {
+    public static Collection<IActivityThread> applyPrePublishedMessages(User user, Collection<IActivityThread> activityThreads, TwoBounds bounds, ICacheManager<String, Collection<Message>> prePublishedMessageCache) {
+        if (bounds.isChanged()) {
+            return activityThreads;
+        }
+
         Collection<com.blackbox.foundation.message.Message> prePublishedMessages = prePublishedMessageCache.get(user.getGuid());
         if (prePublishedMessages == null || prePublishedMessages.isEmpty()) {
             return activityThreads;
@@ -81,14 +83,35 @@ public final class PrePublicationUtil {
     }
 
     public static void prePublish(Message message, ICacheManager<String, Collection<Message>> prePublishedMessageCache) {
-        String owner = message.getArtifactMetaData().getArtifactOwner().getGuid();
-        Collection<Message> messages = prePublishedMessageCache.get(owner);
+        String ownerGuid = message.getArtifactMetaData().getArtifactOwner().getGuid();
+        Collection<Message> messages = prePublishedMessageCache.get(ownerGuid);
         if (messages == null) {
             messages = new HashSet<Message>();
-            prePublishedMessageCache.put(owner, messages);
+            prePublishedMessageCache.put(ownerGuid, messages);
         }
         messages.add(message);
     }
 
 
+    /**
+     * Removes message from caches should that message exist.
+     */
+    public static void flushMessage(String guid, User user, ICacheManager<String, Collection<Message>> prePublishedMessageCache) {
+        if (guid == null || user == null) {
+            return;
+        }
+
+        Collection<Message> messages = prePublishedMessageCache.get(user.getGuid());
+        if (messages == null) {
+            return;
+        }
+
+        Iterator<Message> iterator = messages.iterator();
+        while (iterator.hasNext()) {
+            Message message = iterator.next();
+            if (message.getGuid().equals(guid)) {
+                iterator.remove();
+            }
+        }
+    }
 }

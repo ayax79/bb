@@ -11,8 +11,10 @@ import com.blackbox.testingutils.UserFixture;
 import com.blackbox.foundation.user.User;
 import org.joda.time.DateTime;
 import org.junit.Test;
+import org.yestech.cache.ICacheManager;
 
 import javax.annotation.Resource;
+import java.util.Collection;
 import java.util.List;
 
 import static com.blackbox.foundation.message.MailboxRequest.MailboxFolder.*;
@@ -54,6 +56,8 @@ public class MessageDaoIntegrationTest extends BaseIntegrationTest {
         assertEquals(m.getSubject(), m2.getSubject());
 
         messageDao.delete(m);
+
+        assertNull(messageDao.loadByGuid(m.getGuid()));
     }
 
     @Test

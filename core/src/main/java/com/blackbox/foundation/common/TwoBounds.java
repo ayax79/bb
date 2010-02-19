@@ -36,6 +36,10 @@ public class TwoBounds implements Serializable {
         return messageBounds;
     }
 
+    public int getStartIndex() {
+        return mediaMetaDataBounds.getStartIndex();
+    }
+
     public int getMaxResults() {
         return mediaMetaDataBounds.getMaxResults();
     }
@@ -72,6 +76,15 @@ public class TwoBounds implements Serializable {
     public void setMaxResults(int maxResults) {
         mediaMetaDataBounds.setMaxResults(maxResults);
         messageBounds.setMaxResults(maxResults);
+    }
+
+    /**
+     * The assumption here is this method may be used to determine if the bounds has 'progressed' to another page.
+     *
+     * @return true if *either* subjugate bounds has changed.
+     */
+    public boolean isChanged() {
+        return mediaMetaDataBounds.isChanged() || messageBounds.isChanged();
     }
 
     @Override

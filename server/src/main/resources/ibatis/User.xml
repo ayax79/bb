@@ -341,7 +341,7 @@
 
     <select id="explore" resultMap="User.UserResult" parameterType="map">
         select distinct u.*, p.makeprivate, p.sex, p.orientation, p.polyStatus, p.relationshipStatus, p.interestLevel,
-        p.energyLevel, p.lookingForExplain
+        p.energyLevel, p.lookingForExplain, p.current_city, p.city
         from bb_user u, bb_profile p
         <if test="(er.isInRelationship() != null and er.isInRelationship()) or (er.isSingle() != null and er.isSingle())">
             , bb_relationship r
@@ -395,7 +395,7 @@
             <if test="er.energyLevel != null">
                 and (
                 p.energyLevel &gt;= #{er.energyLevel.startIndex}
-                and p.energyLevel &lt; #{er.energyLevel.lastIndex}
+                and p.energyLevel &lt;= #{er.energyLevel.lastIndex}
                 )
             </if>
             <if test="er.registrationDate != null">
@@ -422,8 +422,13 @@
             </if>
             <if test="er.name != null">
                 and (
-                lower(u.username) like lower(#{er.name,jdbcType=VARCHAR})
-                or lower(p.lookingForExplain) like lower(#{er.name,jdbcType=VARCHAR})
+                lower(u.username) like lower('%'||#{er.name}||'%')
+                or lower(p.lookingForExplain) like lower('%'||#{er.name}||'%')
+                or lower(p.current_city) like lower('%'||#{er.name}||'%')
+                or lower(p.city) like lower('%'||#{er.name}||'%')
+                or lower(p.state) like lower('%'||#{er.name}||'%')
+                or lower(p.current_state) like lower('%'||#{er.name}||'%')
+
                 )
             </if>
             and (
