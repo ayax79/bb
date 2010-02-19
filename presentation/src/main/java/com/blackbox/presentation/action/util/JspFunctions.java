@@ -62,7 +62,7 @@ public class JspFunctions {
 
     public static boolean isFriend(IEntity e) {
         if (e == null) {
-            logger.warn("Null value passed into JspFunctions:isFriend");
+            logger.debug("Null value passed into JspFunctions:isFriend");
             return false;
         }
 
