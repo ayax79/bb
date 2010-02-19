@@ -63,7 +63,7 @@ public class PersonaActionBean extends BasePersonaActionBean {
     @SpringBean("giftingManager")
     IGiftingManager giftingManager;
     @SpringBean("personaHelper") protected PersonaHelper personaHelper;
-    
+
 
     final private static Logger logger = LoggerFactory.getLogger(PersonaActionBean.class);
     private List<MediaLibrary> mediaLibList;
@@ -101,7 +101,7 @@ public class PersonaActionBean extends BasePersonaActionBean {
     protected Profile profile;
 
     // Vouches for this user
-	private PaginationResults<UserVouch> vouches;
+    private PaginationResults<UserVouch> vouches;
 
 
     // Vouches this user has given
@@ -132,19 +132,19 @@ public class PersonaActionBean extends BasePersonaActionBean {
     }
 
 
-	public int getTotalVouches() {
-		int total = 0;
-		if(vouches.getResults() != null) {
-			for(UserVouch vouch: vouches.getResults()) {
-				if(vouch != null) {
-					if(vouch.getDirection() == UserVouch.VouchDirection.MUTUAL || vouch.getDirection() == UserVouch.VouchDirection.INCOMING) {
-						total++;
-					}
-				}
-			}
-		}
-		return total;
-	}
+    public int getTotalVouches() {
+        int total = 0;
+        if (vouches.getResults() != null) {
+            for (UserVouch vouch : vouches.getResults()) {
+                if (vouch != null) {
+                    if (vouch.getDirection() == UserVouch.VouchDirection.MUTUAL || vouch.getDirection() == UserVouch.VouchDirection.INCOMING) {
+                        total++;
+                    }
+                }
+            }
+        }
+        return total;
+    }
 
     @DefaultHandler
     @DontValidate
@@ -153,49 +153,48 @@ public class PersonaActionBean extends BasePersonaActionBean {
         if (user == null) throw new IllegalArgumentException("An invalid user param was passed in.");
 
         int userStatus = user.getStatus().getValue();
-        if(userStatus == 1 || userStatus == 3 || userStatus == 5) {
-             return new RedirectResolution("/persona_inactive.jsp");
+        if (userStatus == 1 || userStatus == 3 || userStatus == 5) {
+            return new RedirectResolution("/persona_inactive.jsp");
         }
 
-        if (!personaHelper.containsPersonaPageCache(getContext(), user.getUsername())) {
-            profile = user.getProfile();
+        profile = user.getProfile();
 
 
-			vouches = getSocialManager().loadUserVouches(user.getGuid(), 0, 666); //THE NUMBER OF THE BEAST
+        vouches = getSocialManager().loadUserVouches(user.getGuid(), 0, 666); //THE NUMBER OF THE BEAST
 
-            hasVouched = getSocialManager().loadOutgoingByVoucher(user.getGuid());
-            persona = userManager.loadUserPersona(user.getGuid(), getCurrentUser().getGuid());
-            threads = loadActivityThreads(0, 4);
+        hasVouched = getSocialManager().loadOutgoingByVoucher(user.getGuid());
+        persona = userManager.loadUserPersona(user.getGuid(), getCurrentUser().getGuid());
+        threads = loadActivityThreads(0, 4);
 
-            // If the user is not the current user
-            // The we need to mark that this profile has been viewed
-            if (user != null && !isOwner()) {
-                // execute on the thread pole, because we don't care about results
-                threadPool.execute(new Runnable() {
-                    @Override
-                    public void run() {
-                        userManager.saveViewedBy(getCurrentUser().getGuid(), user.getGuid(), ViewedByType.PROFILE);
-                    }
-                });
-            }
-
-            if (isOwner()) {
-                getContext().getRequest().getSession().removeAttribute("ownerGuid");
-            } else {
-                getContext().getRequest().getSession().setAttribute("ownerGuid", user.getGuid());
-                viewer = userManager.loadUserByGuid(user.getGuid()).getProfile();
-                setViewerProfileImage(profile.getProfileImgUrl());
-            }
-
-            loadAlbums();
-
-            viewedBy = persona.getViewedBy();
-            ownerProfileImage = persona.getProfileImageUrl();
-            relationships = persona.getRelationships();
-            occasionList = occasionManager.loadByOwnerGuid(user.getGuid());
-
-            vouched = isAlreadyVouched();
+        // If the user is not the current user
+        // The we need to mark that this profile has been viewed
+        if (user != null && !isOwner()) {
+            // execute on the thread pole, because we don't care about results
+            threadPool.execute(new Runnable() {
+                @Override
+                public void run() {
+                    userManager.saveViewedBy(getCurrentUser().getGuid(), user.getGuid(), ViewedByType.PROFILE);
+                }
+            });
         }
+
+        if (isOwner()) {
+            getContext().getRequest().getSession().removeAttribute("ownerGuid");
+        }
+        else {
+            getContext().getRequest().getSession().setAttribute("ownerGuid", user.getGuid());
+            viewer = userManager.loadUserByGuid(user.getGuid()).getProfile();
+            setViewerProfileImage(profile.getProfileImgUrl());
+        }
+
+        loadAlbums();
+
+        viewedBy = persona.getViewedBy();
+        ownerProfileImage = persona.getProfileImageUrl();
+        relationships = persona.getRelationships();
+        occasionList = occasionManager.loadByOwnerGuid(user.getGuid());
+
+        vouched = isAlreadyVouched();
 
         return new ForwardResolution("/persona.jsp");
     }
@@ -436,13 +435,13 @@ public class PersonaActionBean extends BasePersonaActionBean {
         return userSessionService.isUserOnline(user.getGuid());
     }
 
-	public PaginationResults<UserVouch> getVouches() {
-		return vouches;
-	}
+    public PaginationResults<UserVouch> getVouches() {
+        return vouches;
+    }
 
-	public void setVouches(PaginationResults<UserVouch> vouches) {
-		this.vouches = vouches;
-	}
+    public void setVouches(PaginationResults<UserVouch> vouches) {
+        this.vouches = vouches;
+    }
 
     public boolean isVouched() {
         return vouched;
@@ -463,7 +462,6 @@ public class PersonaActionBean extends BasePersonaActionBean {
             getSocialManager().vouch(new VouchRequest(vouch, permanentVouch));
         }
 
-        flushPersonaCache();
         return createResolutionWithText(getContext(), "success");
     }
 
@@ -481,8 +479,8 @@ public class PersonaActionBean extends BasePersonaActionBean {
     @DontValidate
     public Resolution wish() throws JSONException {
         executeWish(user.toEntityReference());
-		WishStatus wishStatus = getBookmarkManager().loadWishStatus(getCurrentUser().getGuid(), user.getGuid());
-		return createResolutionWithText(getContext(), wishStatus.toString());
+        WishStatus wishStatus = getBookmarkManager().loadWishStatus(getCurrentUser().getGuid(), user.getGuid());
+        return createResolutionWithText(getContext(), wishStatus.toString());
     }
 
 
@@ -492,7 +490,6 @@ public class PersonaActionBean extends BasePersonaActionBean {
         if (!owner) {
             getSocialManager().deleteVouch(getCurrentUser().getGuid(), user.getGuid());
         }
-        flushPersonaCache();
         return createResolutionWithText(getContext(), "success");
     }
 
@@ -502,7 +499,6 @@ public class PersonaActionBean extends BasePersonaActionBean {
         if (!owner) {
             getSocialManager().deleteVouch(user.getGuid(), getCurrentUser().getGuid());
         }
-        flushPersonaCache();
         return createResolutionWithText(getContext(), "success");
     }
 
@@ -514,7 +510,6 @@ public class PersonaActionBean extends BasePersonaActionBean {
             getSocialManager().deleteRelationship(current.getGuid(), user.getGuid());
         }
 
-        flushPersonaCache();
         if ("persona".equals(returnPage)) {
             return new RedirectResolution("/persona/" + user.getGuid());
         }
@@ -542,7 +537,6 @@ public class PersonaActionBean extends BasePersonaActionBean {
             User current = getCurrentUser();
             getSocialManager().ignore(new Ignore(current.toEntityReference(), user.toEntityReference(), Ignore.IgnoreType.HARD));
         }
-        flushPersonaCache();
 
         if ("persona".equals(returnPage)) {
             return new RedirectResolution("/persona/" + user.getGuid());
@@ -558,7 +552,6 @@ public class PersonaActionBean extends BasePersonaActionBean {
             getSocialManager().deleteIgnore(current.getGuid(), user.getGuid());
         }
 
-        flushPersonaCache();
         if ("persona".equals(returnPage)) {
             return new RedirectResolution("/persona/" + user.getGuid());
         }
@@ -583,7 +576,6 @@ public class PersonaActionBean extends BasePersonaActionBean {
     public Resolution reject() {
         User current = getCurrentUser();
         getSocialManager().rejectRequest(current.getGuid(), user.getGuid());
-        flushPersonaCache();
         return createResolutionWithText(getContext(), "success");
     }
 
@@ -604,7 +596,6 @@ public class PersonaActionBean extends BasePersonaActionBean {
         getBookmarkManager().deleteBookmark(current.getGuid(), user.getGuid());
         getAvatarCache().flush(new AvatarCacheKey(current.getGuid(), user.getGuid()));
         getAvatarCache().flush(new AvatarCacheKey(user.getGuid(), current.getGuid()));
-        flushPersonaCache();
         if ("persona".equals(returnPage)) {
             return new RedirectResolution("/persona/" + user.getGuid());
         }
@@ -622,7 +613,6 @@ public class PersonaActionBean extends BasePersonaActionBean {
                     Relationship.RelationStatus.FRIEND_PENDING);
             getSocialManager().relate(r);
         }
-        flushPersonaCache();
         if ("persona".equals(returnPage)) {
             return new RedirectResolution("/persona/" + user.getGuid());
         }
@@ -698,10 +688,6 @@ public class PersonaActionBean extends BasePersonaActionBean {
         this.startIndex = startIndex;
     }
 
-    protected void flushPersonaCache() {
-        personaHelper.flushPersonaPageCache(getContext());
-    }
-
     public void setIdentifier(String identifier) {
         this.identifier = identifier;
     }
@@ -733,7 +719,8 @@ public class PersonaActionBean extends BasePersonaActionBean {
     protected Collection<ActivityThread<IActivity>> loadActivityThreads(int startIndex, int maxResults) {
         if (getCurrentUser().getGuid().equals(user.getGuid()) || JspFunctions.isFriend(getCurrentUser())) {
             return activityManager.loadAssociatedActivity(user.getGuid(), AssociatedActivityFilterType.ALL, startIndex, maxResults);
-        } else {
+        }
+        else {
             return activityManager.loadAssociatedActivityFilterNetworkTypes(user.getGuid(), AssociatedActivityFilterType.ALL,
                     new NetworkTypeEnum[]{NetworkTypeEnum.ALL_MEMBERS, NetworkTypeEnum.WORLD}, startIndex, maxResults);
         }
@@ -768,9 +755,9 @@ public class PersonaActionBean extends BasePersonaActionBean {
         this.hasVouched = hasVouched;
     }
 
-	public boolean getBlocksCurrentUser() {
-		List<EntityReference> blocks = getSocialManager().loadBlocks(user.getGuid());
-		return blocks.contains(getCurrentUser().toEntityReference());
-	}
+    public boolean getBlocksCurrentUser() {
+        List<EntityReference> blocks = getSocialManager().loadBlocks(user.getGuid());
+        return blocks.contains(getCurrentUser().toEntityReference());
+    }
 
 }

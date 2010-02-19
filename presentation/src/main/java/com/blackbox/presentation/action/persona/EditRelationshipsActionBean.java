@@ -77,7 +77,6 @@ public class EditRelationshipsActionBean extends BaseBlackBoxActionBean {
 
         socialManager.relate(relationship);
 
-        personaHelper.flushPersonaPageCache(getContext());
         return new ForwardResolution("/ajax/relationships/edit-relationships-relationship.jspf");
     }
 
@@ -89,7 +88,6 @@ public class EditRelationshipsActionBean extends BaseBlackBoxActionBean {
             r.setDescription(null);
         }
         socialManager.relate(r);
-        personaHelper.flushPersonaPageCache(getContext());
         return createResolutionWithText(getContext(), "success");
     }
 

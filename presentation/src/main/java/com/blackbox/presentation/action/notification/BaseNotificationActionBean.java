@@ -193,7 +193,6 @@ public class BaseNotificationActionBean extends BasePersonaActionBean {
             if (vouch.getTarget().getGuid().equals(getCurrentUser().getGuid())) {
                 vouch.setAccepted(true);
                 socialManager.saveVouch(vouch);
-                flushPersonaCache();
             }
         }
         group = socialManager.loadNewestNotificationWithLimit(getCurrentUser().getGuid(), Notification.Type.Vouch, 2);
@@ -204,7 +203,6 @@ public class BaseNotificationActionBean extends BasePersonaActionBean {
             Vouch vouch = socialManager.loadVouchByGuid(id);
             if (vouch.getTarget().getGuid().equals(getCurrentUser().getGuid())) {
                 socialManager.deleteVouch(vouch.getGuid());
-                flushPersonaCache();
             }
         }
         group = socialManager.loadNewestNotificationWithLimit(getCurrentUser().getGuid(), Notification.Type.Vouch, 2);

@@ -114,7 +114,12 @@ public class RemoteEmailDelivery extends EmailDelivery implements SimpleEmailDel
                     post.addParameter("textbody", textTemplate);
                     post.addParameter("htmlbody", htmlTemplate);
                     post.addParameter("to_email", builder.getRecipient().getEmail());
-                    post.addParameter("to_name", builder.getRecipient().getName());
+                    if (builder.getRecipient().getName() != null) {
+                        post.addParameter("to_name", builder.getRecipient().getName());
+                    }
+                    else {
+                        post.addParameter("to_name", builder.getRecipient().getEmail());
+                    }
                     send(post);
                 }
                 catch (Exception e) {

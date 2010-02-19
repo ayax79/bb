@@ -1,4 +1,3 @@
-<%@ taglib prefix="cache" uri="http://www.opensymphony.com/oscache" %>
 <%--@elvariable id="actionBean" type="com.blackbox.presentation.action.persona.PersonaActionBean"--%>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.blackbox.presentation.action.persona.PersonaActionBean" %>
@@ -10,7 +9,6 @@
 There is a time check and flushing in DefaultPersonaHelper#containsPersonaPageCache
 don't modify this cache key without first modifying that method.
 --%>
-<cache:cache key="persona-${actionBean.user.username}" scope="session" groups="persona-header,persona-body">
 
 <%
 	List<String> lookingFor = new ArrayList<String>();
@@ -38,7 +36,6 @@ don't modify this cache key without first modifying that method.
 %>
 
 <head>
-<cache:addgroup group="persona-header">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <title><fmt:message key="pageTitlePrefix"/> : ${bb:displayName(actionBean.user)}</title>
 
@@ -97,10 +94,7 @@ $(function() {
 //]]>
 </script>
 
-</cache:addgroup>
-
 </head>
-<cache:addgroup group="presentation-body">
 <body id="persona-page">
 
 <%@include file="/WEB-INF/jsp/include/stream-templates.jspf" %>
@@ -321,6 +315,4 @@ $(function() {
 	</s:form>
 </div>
 </body>
-</cache:addgroup>
 </html>
-</cache:cache>

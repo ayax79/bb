@@ -41,14 +41,9 @@ public abstract class BasePersonaActionBean extends BaseBlackBoxActionBean {
         this.returnPage = returnPage;
     }
 
-    protected void flushPersonaCache() {
-        personaHelper.flushPersonaPageCache(getContext());
-    }
-
 
     protected void executeAccept(String targetGuid) {
         User current = getCurrentUser();
-        flushPersonaCache();
         socialManager.acceptRequest(current.getGuid(), targetGuid);
     }
 
@@ -60,7 +55,6 @@ public abstract class BasePersonaActionBean extends BaseBlackBoxActionBean {
                     toEntity,
                     Relationship.RelationStatus.FOLLOW);
             socialManager.relate(r);
-            flushPersonaCache();
         }
     }
 
@@ -68,7 +62,6 @@ public abstract class BasePersonaActionBean extends BaseBlackBoxActionBean {
         User current = getCurrentUser();
         if (!isOwner(target)) {
             socialManager.ignore(new Ignore(current.toEntityReference(), target, Ignore.IgnoreType.SOFT));
-            flushPersonaCache();
         }
     }
 
@@ -80,7 +73,6 @@ public abstract class BasePersonaActionBean extends BaseBlackBoxActionBean {
             bm.setOwner(current);
             bm.setTarget(target);
             bm.setDescription(description);
-            flushPersonaCache();
             bookmarkManager.createBookmark(bm);
             avatarCache.flush(new AvatarCacheKey(current.getGuid(), target.getGuid()));
             avatarCache.flush(new AvatarCacheKey(target.getGuid(), current.getGuid()));
