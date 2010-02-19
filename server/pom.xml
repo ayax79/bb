@@ -8,12 +8,12 @@
     <groupId>com.blackbox</groupId>
     <artifactId>server</artifactId>
     <packaging>war</packaging>
-    <version>1.0.0.b19</version>
+    <version>1.0.0.b20-SNAPSHOT</version>
     <name>server</name>
     <parent>
         <groupId>com.blackbox</groupId>
         <artifactId>blackbox</artifactId>
-        <version>1.0.0.b19</version>
+        <version>1.0.0.b20-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <scm>
@@ -37,7 +37,7 @@
         </developer>
     </developers>
     <properties>
-        <blackbox-core.version>1.0.0.b19</blackbox-core.version>
+        <blackbox-core.version>1.0.0.b20-SNAPSHOT</blackbox-core.version>
         <blackbox.console>false</blackbox.console>
         <!--<server.context>server</server.context>-->
         <server.context/>
