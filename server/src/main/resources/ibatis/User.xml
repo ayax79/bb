@@ -317,6 +317,17 @@
         u.profile_guid = p.guid
     </select>
 
+    <select id="loadByEmail" resultMap="User.UserResult" parameterType="string">
+        SELECT
+        <include refid="fullFromSql"/>
+        FROM
+        bb_user u,
+        bb_profile p
+        WHERE
+        u.email = #{value} AND
+        u.profile_guid = p.guid
+    </select>
+
     <select id="loadByUsername" resultMap="User.UserResult" parameterType="string">
         SELECT
         <include refid="fullFromSql"/>
