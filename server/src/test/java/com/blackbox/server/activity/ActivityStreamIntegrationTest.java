@@ -90,7 +90,7 @@ public class ActivityStreamIntegrationTest extends BaseIntegrationTest {
     //    Removing posts from the stream is going to have to be an AJ thing and I'm guessing will be a lot more difficult. I'll pass this to AJ and let him chime in...
 
     @SuppressWarnings({"unchecked"})
-    @org.junit.Ignore(value = "junit.framework.AssertionFailedError: where's our missing messages? expected:<5> but was:<1>")
+    @org.junit.Ignore(value = "junit.framework.AssertionFailedError: where's our missing messages? expected:<2> but was:<1>")
     @Test
     public void donkeyKickingSomeoneHidesTheirPostsFromMyStream() throws Exception {
         assertCleanStart(sally);
