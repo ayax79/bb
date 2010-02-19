@@ -9,11 +9,13 @@
     </resultMap>
 
     <resultMap id="ParentActivityResult" type="com.blackbox.foundation.activity.ActivityReference">
-        <result property="activityType" column="parentActivityType" javaType="com.blackbox.foundation.activity.ActivityTypeEnum"
+        <result property="activityType" column="parentActivityType"
+                javaType="com.blackbox.foundation.activity.ActivityTypeEnum"
                 jdbcType="INTEGER"/>
         <result property="guid" column="parentguid"/>
         <result property="postDate" column="parentActivityPostDate" javaType="jodaDate"/>
-        <result property="ownerType" column="parentOwnerType" javaType="com.blackbox.foundation.EntityType" jdbcType="INTEGER"/>
+        <result property="ownerType" column="parentOwnerType" javaType="com.blackbox.foundation.EntityType"
+                jdbcType="INTEGER"/>
     </resultMap>
 
     <resultMap id="GeoPointResult" type="com.blackbox.foundation.geo.GeoPoint">
@@ -45,7 +47,8 @@
         <result property="thankNotesSendViaEmail"/>
     </resultMap>
 
-    <resultMap id="ShallowOccasionResult" type="com.blackbox.foundation.occasion.Occasion" extends="BaseEntity.BaseEntityResult">
+    <resultMap id="ShallowOccasionResult" type="com.blackbox.foundation.occasion.Occasion"
+               extends="BaseEntity.BaseEntityResult">
         <result property="description"/>
         <result property="location"/>
         <result property="occasionLevel" javaType="com.blackbox.foundation.occasion.OccasionLevel" jdbcType="INTEGER"/>
@@ -62,7 +65,8 @@
         <association property="address" resultMap="Occasion.AddressResult"/>
     </resultMap>
 
-    <resultMap id="OccasionResult" type="com.blackbox.foundation.occasion.Occasion" extends="Occasion.ShallowOccasionResult">
+    <resultMap id="OccasionResult" type="com.blackbox.foundation.occasion.Occasion"
+               extends="Occasion.ShallowOccasionResult">
         <association property="owner" select="User.loadByGuid" column="owner_guid"/>
         <association property="occasionWebDetail" select="OccasionWebDetail.load" column="occasionwebdetail_guid"/>
         <association property="layout" select="OccasionLayout.load" column="layout_guid"/>
@@ -240,7 +244,8 @@
         </if>
     </select>
 
-    <select id="loadExplore" resultMap="Occasion.OccasionResult" parameterType="com.blackbox.foundation.search.ExploreRequest">
+    <select id="loadExplore" resultMap="Occasion.OccasionResult"
+            parameterType="com.blackbox.foundation.search.ExploreRequest">
         select distinct o.* from
         bb_occasion o
         join bb_user u on (o.owner_guid = u.guid)
@@ -268,8 +273,8 @@
             </if>
             <if test="name != null">
                 and (
-                lower(o.name) like lower(#{name}) or
-                lower(o.description) like lower(#{name})
+                lower(o.name) like lower('%'||#{name}||'%')
+                or lower(o.description) like lower('%'||#{name}||'%')
                 )
             </if>
             <if test="zipcode != null">

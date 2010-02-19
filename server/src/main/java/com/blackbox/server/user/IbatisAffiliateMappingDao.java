@@ -19,8 +19,8 @@ public class IbatisAffiliateMappingDao implements IAffiliateMappingDao {
 
     @Override
     @Transactional
-    public void insert(AffiliateMapping mapping) {
-        PersistenceUtil.insert(mapping, template, "AffiliateMapping.insert");
+    public void save(AffiliateMapping mapping) {
+        PersistenceUtil.insertOrUpdate(mapping, template, "AffiliateMapping.insert", "AffiliateMapping.update");
     }
 
     @Override

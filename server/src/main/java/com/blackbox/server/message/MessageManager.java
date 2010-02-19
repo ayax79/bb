@@ -13,6 +13,7 @@ import static com.blackbox.foundation.Utils.applyGuid;
 import com.blackbox.foundation.BaseEntity;
 import com.blackbox.foundation.activity.ActivityProfile;
 import com.blackbox.foundation.activity.ActivityThread;
+
 import static com.blackbox.foundation.activity.AscendingActivityComparator.getAscendingActivityComparator;
 
 import com.blackbox.foundation.activity.IActivityThread;
@@ -22,10 +23,12 @@ import com.blackbox.foundation.media.IMediaManager;
 import com.blackbox.foundation.media.AvatarImage;
 import com.blackbox.foundation.message.IMessageManager;
 import com.blackbox.foundation.message.MailboxRequest;
+
 import static com.blackbox.foundation.message.MailboxRequest.MailboxFilter;
 
 import com.blackbox.foundation.message.Message;
 import com.blackbox.foundation.message.MessageRecipient;
+
 import static com.blackbox.server.activity.ActivityUtil.createActivityThreadList;
 import static com.blackbox.server.activity.ActivityUtil.createActivityThreadListTyped;
 
@@ -37,18 +40,23 @@ import com.blackbox.server.social.INetworkDao;
 import com.blackbox.server.user.IUserDao;
 import com.blackbox.foundation.util.PaginationUtil;
 import com.blackbox.foundation.social.Relationship;
+
 import static com.blackbox.foundation.social.Relationship.RelationStatus;
+
 import com.blackbox.foundation.user.PaginationResults;
 import com.blackbox.foundation.user.User;
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Collections2;
 import org.apache.shiro.authz.UnauthorizedException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.yestech.event.multicaster.BaseServiceContainer;
 import org.yestech.publish.client.IPublishBridge;
 
 import javax.annotation.Resource;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -59,6 +67,8 @@ import static java.util.Collections.sort;
 
 @Service("messageManager")
 public class MessageManager extends BaseServiceContainer implements IMessageManager {
+
+    private static final Logger logger = LoggerFactory.getLogger(MessageManager.class);
 
     @Resource
     IMediaDao mediaDao;
@@ -103,7 +113,8 @@ public class MessageManager extends BaseServiceContainer implements IMessageMana
     public void deleteMessage(String messageGuid, String userDeletingGuid) {
         Message message = messageDao.loadByGuid(messageGuid);
         if (message == null) {
-            throw new IllegalArgumentException("No message with the specified guid exists : " + messageGuid);
+            logger.warn(MessageFormat.format("No message with the specified guid {0} exists. This is probably when message is in process of being added asynchronously...", messageGuid));
+            return;
         }
 
         User user = userDao.loadUserByGuid(userDeletingGuid);

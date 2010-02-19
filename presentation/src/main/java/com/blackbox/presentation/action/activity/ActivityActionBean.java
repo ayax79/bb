@@ -16,12 +16,14 @@ import com.blackbox.presentation.action.BaseBlackBoxActionBean;
 import com.blackbox.presentation.action.util.FilterType;
 import com.blackbox.presentation.action.util.JSONUtil;
 import net.sourceforge.stripes.action.*;
+import net.sourceforge.stripes.controller.LifecycleStage;
 import net.sourceforge.stripes.integration.spring.SpringBean;
 import org.joda.time.DateMidnight;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.yestech.cache.ICacheManager;
 
+import javax.servlet.http.HttpSession;
 import java.util.Collection;
 
 import static com.blackbox.foundation.social.NetworkTypeEnum.*;
@@ -37,6 +39,8 @@ import static com.google.common.collect.Lists.newArrayList;
  */
 public abstract class ActivityActionBean extends BaseBlackBoxActionBean {
 
+    public static final String BOUNDS_KEY = "twoBoundsKey";
+
     public static enum Scope {
         Yesterday,
         Today
@@ -49,7 +53,7 @@ public abstract class ActivityActionBean extends BaseBlackBoxActionBean {
     protected IActivityManager activityManager;
 
     @SpringBean("prePublishedMessageCache")
-    ICacheManager<String, Collection<com.blackbox.foundation.message.Message>> prePublishedMessageCache;
+    protected ICacheManager<String, Collection<com.blackbox.foundation.message.Message>> prePublishedMessageCache;
 
     private Scope scope;
     private Collection<IActivityThread> activities;
@@ -57,7 +61,17 @@ public abstract class ActivityActionBean extends BaseBlackBoxActionBean {
 
     private FilterType filter;
     private User user;
-    private TwoBounds twoBounds = new TwoBounds(new Bounds(), new Bounds());
+    private TwoBounds twoBounds;
+
+    @Before(stages = LifecycleStage.BindingAndValidation)
+    public void initializeBounds() {
+        HttpSession session = getContext().getRequest().getSession();
+        twoBounds = (TwoBounds) session.getAttribute(BOUNDS_KEY);
+        if (twoBounds == null) {
+            twoBounds = new TwoBounds(new Bounds(), new Bounds());
+            session.setAttribute(BOUNDS_KEY, twoBounds);
+        }
+    }
 
     @Before
     public void prepare() {
@@ -87,7 +101,7 @@ public abstract class ActivityActionBean extends BaseBlackBoxActionBean {
     @DontValidate
     @DefaultHandler
     public Resolution load() throws JSONException {
-        activities = PrePublicationUtil.applyPrePublishedMessages(user, loadThreads(user, filter, twoBounds), prePublishedMessageCache);
+        activities = PrePublicationUtil.applyPrePublishedMessages(user, loadThreads(user, filter, twoBounds), twoBounds, prePublishedMessageCache);
 
         if (getView() == json) {
             return createResolutionWithJsonArray(getContext(), threadsToJson(activities));
@@ -97,7 +111,7 @@ public abstract class ActivityActionBean extends BaseBlackBoxActionBean {
 
     @DontValidate
     public Resolution loadPartial() throws JSONException {
-        activities = PrePublicationUtil.applyPrePublishedMessages(user, loadThreads(user, filter, twoBounds), prePublishedMessageCache);
+        activities = PrePublicationUtil.applyPrePublishedMessages(user, loadThreads(user, filter, twoBounds), twoBounds, prePublishedMessageCache);
 
         if (getView() == json) {
             return createResolutionWithJsonArray(getContext(), threadsToJson(activities));
@@ -166,4 +180,13 @@ public abstract class ActivityActionBean extends BaseBlackBoxActionBean {
     public boolean isHasIntro() {
         return false;
     }
+
+    @After
+    public void saveBounds() {
+        if (twoBounds != null) {
+            getContext().getRequest().getSession().setAttribute(BOUNDS_KEY, twoBounds);
+        }
+    }
+
+
 }

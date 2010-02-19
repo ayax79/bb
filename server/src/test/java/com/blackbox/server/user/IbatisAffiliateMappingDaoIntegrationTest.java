@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import com.blackbox.foundation.user.User;
 import com.blackbox.foundation.user.AffiliateMapping;
 import com.blackbox.server.BaseIntegrationTest;
+
 import static com.google.common.collect.Lists.newArrayList;
 
 /**
@@ -33,7 +34,7 @@ public class IbatisAffiliateMappingDaoIntegrationTest extends BaseIntegrationTes
             mapping.setAffiliate(issac);
             mapping.setUsers(newArrayList(jimmy));
 
-            affiliateMappingDao.insert(mapping);
+            affiliateMappingDao.save(mapping);
         } finally {
             if (mapping != null) affiliateMappingDao.delete(mapping);
         }
