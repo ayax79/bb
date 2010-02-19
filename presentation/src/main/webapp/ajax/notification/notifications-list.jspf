@@ -96,7 +96,7 @@
 				<div class="items" <c:if test="${actionBean.viewAllType eq 'gift'}"> id="gifts" </c:if>>
 				<c:forEach var="notification" items="${nlist.items}">
 					<%--@elvariable id="notification" type="com.blackbox.foundation.notification.Notification"--%>
-					  <c:choose>
+					<c:choose>
 						<c:when test="${actionBean.viewAllType eq 'gift'}">
 
 						   <c:set var="gift" value="${actionBean.giftMap[notification.guid]}" />
@@ -134,7 +134,7 @@
 										</c:choose>
 									</c:if>
 								</p>
-								<p class="date-received">Received: ${gift.formattedPostDate}</p>
+								<p class="date-received">Received: <abbr class="timeago" title="${gift.formattedPostDate}">${gift.formattedPostDate}</abbr></p>
 							</div>
 							<div class="gift-status">
 								<ul>
@@ -163,3 +163,22 @@
 	</div>
 	<div class="clear"></div>
 </div>
+
+<c:if test="${actionBean.viewAllType eq 'gift'}">
+<script type="text/javascript">
+$(function() {
+
+	$(".gift-row").each(function() {
+		$.each($(".article-media img.lightbox", this), function() {
+			$(this).parent().lightBox({showImgNbr:'no'});
+		});
+		$('*[class*=timeago]:first', this).timeago();
+	});
+
+
+
+
+});
+</script>
+</c:if>
+

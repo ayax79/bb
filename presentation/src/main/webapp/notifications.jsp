@@ -28,7 +28,8 @@
 	<title><fmt:message key="pageTitlePrefix" /> : <fmt:message key="pageTitle.notifications" /></title>
 	<link rel="stylesheet" href="${bb:libraryResource('/library/css/messages.css')}" type="text/css" media="screen, projection"/>
 	<link rel="stylesheet" href="${bb:libraryResource('/library/css/notifications.css')}" type="text/css" media="screen, projection"/>
-
+	<link rel="stylesheet" href="${bb:libraryResource('/library/css/jquery.lightbox-0.5.css')}" type="text/css" />
+	<script src="${bb:libraryResource('/library/js/jquery.lightbox-0.5.js')}" type="text/javascript"></script> 
 	<script type="text/javascript">
 		$(function() {
 			$("#notifications-tabs").bbTabs({
