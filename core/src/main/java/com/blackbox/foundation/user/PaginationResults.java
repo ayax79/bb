@@ -57,6 +57,10 @@ public class PaginationResults<E> implements Serializable {
         this.numResults = numResults;
     }
 
+    public boolean isEmpty() {
+        return getTotalResults() == 0;
+    }
+
     /**
      * Total amount of threads in the system that match the request.
      *

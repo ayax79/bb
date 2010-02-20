@@ -30,6 +30,12 @@ public final class CollectionHelper {
     public static <E> E guaranteeOne(Collection<E> values) {
         Affirm.isNotNull(values, "values", IllegalArgumentException.class);
         Affirm.that(values.size() == 1, "values size is not one: " + values.size(), IllegalArgumentException.class);
+        return guaranteeFirst(values);
+    }
+
+    public static <E> E guaranteeFirst(Collection<E> values) {
+        Affirm.isNotNull(values, "values", IllegalArgumentException.class);
+        Affirm.that(!values.isEmpty(), "values is empty!", IllegalArgumentException.class);
         return values.iterator().next();
     }
 

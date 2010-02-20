@@ -3,33 +3,36 @@
 <mapper namespace="Message">
 
     <resultMap id="ParentActivityResult" type="com.blackbox.foundation.activity.ActivityReference">
-        <result property="activityType" column="parentActivityType" javaType="com.blackbox.foundation.activity.ActivityTypeEnum"
+        <result property="activityType" column="parentActivityType"
+                javaType="com.blackbox.foundation.activity.ActivityTypeEnum"
                 jdbcType="INTEGER"/>
         <result property="guid" column="parentguid"/>
         <result property="postDate" column="parentActivityPostDate" javaType="jodaDate"/>
-        <result property="ownerType" column="parentOwnerType" javaType="com.blackbox.foundation.EntityType" jdbcType="INTEGER"/>
+        <result property="ownerType" column="parentOwnerType" javaType="com.blackbox.foundation.EntityType"
+                jdbcType="INTEGER"/>
     </resultMap>
 
     <resultMap id="MessageResult" type="com.blackbox.foundation.message.Message" extends="BaseEntity.BaseEntityResult">
-        <result property="acknowledged" />
+        <result property="acknowledged"/>
         <result property="body"/>
         <result property="postDate" javaType="jodaDate"/>
-        <result property="published" />
+        <result property="published"/>
         <result property="recipientDepth" javaType="com.blackbox.foundation.social.NetworkTypeEnum" jdbcType="INTEGER"/>
         <result property="subject"/>
-        <result property="virtualGift" />
+        <result property="virtualGift"/>
         <association property="parentActivity" resultMap="ParentActivityResult"/>
         <association property="artifactMetaData" resultMap="MessageMetaData.MessageMetaDataResult"/>
     </resultMap>
 
-     <resultMap id="MessageWithRecipientsResult" type="com.blackbox.foundation.message.Message" extends="BaseEntity.BaseEntityResult">
-        <result property="acknowledged" />
+    <resultMap id="MessageWithRecipientsResult" type="com.blackbox.foundation.message.Message"
+               extends="BaseEntity.BaseEntityResult">
+        <result property="acknowledged"/>
         <result property="body"/>
         <result property="postDate" javaType="jodaDate"/>
-        <result property="published" />
+        <result property="published"/>
         <result property="recipientDepth" javaType="com.blackbox.foundation.social.NetworkTypeEnum" jdbcType="INTEGER"/>
         <result property="subject"/>
-        <result property="virtualGift" />
+        <result property="virtualGift"/>
         <association property="parentActivity" resultMap="ParentActivityResult"/>
         <association property="artifactMetaData" resultMap="MessageMetaData.MessageMetaDataWithRecipientsResult"/>
     </resultMap>
@@ -76,8 +79,9 @@
         m.virtualGift = false
         and m.acknowledged = true
         and md.ownerguid = #{guid,jdbcType=VARCHAR}
-        <if test="types != null" >
-            and m.recipientDepth in <foreach collection="types" item="item" open="(" separator="," close=")">#{item}</foreach>
+        <if test="types != null">
+            and m.recipientDepth in
+            <foreach collection="types" item="item" open="(" separator="," close=")">#{item}</foreach>
         </if>
         order by m.postDate desc
     </select>
@@ -94,26 +98,28 @@
     <select id="loadPublicParentMessages" resultMap="Message.MessageResult">
         <include refid="Message.defaultSelectAndJoins"/>
         <where>
-        m.virtualGift = false
-        and m.acknowledged = true
-        and m.recipientDepth = 6
-        and m.parentGuid is null
-        order by m.postDate desc
+            m.virtualGift = false
+            and m.acknowledged = true
+            and m.recipientDepth = 6
+            and m.parentGuid is null
+            order by m.postDate desc
         </where>
     </select>
 
-    <select id="loadWithParent" resultMap="Message.MessageWithRecipientsResult" >
+    <select id="loadWithParent" resultMap="Message.MessageWithRecipientsResult">
         <include refid="Message.defaultSelectAndJoins"/>
         <where>
-        m.guid in <foreach item="item" collection="list" open="(" separator="," close=")">#{item}</foreach>
-        or m.parentguid in <foreach item="item" collection="list" open="(" separator="," close=")">#{item}</foreach>
+            m.guid in
+            <foreach item="item" collection="list" open="(" separator="," close=")">#{item}</foreach>
+            or m.parentguid in
+            <foreach item="item" collection="list" open="(" separator="," close=")">#{item}</foreach>
         </where>
     </select>
 
     <select id="load" resultMap="Message.MessageWithRecipientsResult" parameterType="string">
         <include refid="Message.defaultSelectAndJoins"/>
         <where>
-        m.guid = #{value}
+            m.guid = #{value}
         </where>
     </select>
 
@@ -129,17 +135,19 @@
         <choose>
             <when test="folder.name() == 'INBOX_FOLDER'">
                 and r.recipientguid = #{userGuid,jdbcType=VARCHAR}
-                <!-- and r.status = #{status,jdbcType=INTEGER} -->
+                and r.status = #{status,jdbcType=INTEGER}
             </when>
-            <when test="folder.name() == 'ARCHIVED_FOLDER'" >
+            <when test="folder.name() == 'ARCHIVED_FOLDER'">
                 and r.recipientguid = #{userGuid,jdbcType=VARCHAR}
-                <!-- and r.status = #{status,jdbcType=INTEGER} -->
+                and r.status = #{status,jdbcType=INTEGER}
             </when>
-            <when test="folder.name() == 'DRAFTS_FOLDER'" >
+            <when test="folder.name() == 'DRAFTS_FOLDER'">
                 and md.ownerguid = #{userGuid,jdbcType=VARCHAR}
+                and m.published = false
             </when>
-            <when test="folder.name() == 'SENT_FOLDER'" >
+            <when test="folder.name() == 'SENT_FOLDER'">
                 and md.ownerguid = #{userGuid,jdbcType=VARCHAR}
+                and r is not null
             </when>
         </choose>
         <choose>
@@ -150,11 +158,11 @@
                 and r.read = false
             </when>
         </choose>
-        <include refid="BBPersistentObject.boundsSql" />
+        <include refid="BBPersistentObject.boundsSql"/>
     </select>
 
     <select id="loadAll" resultMap="MessageResult">
-        <include refid="defaultSelectAndJoins" />
+        <include refid="defaultSelectAndJoins"/>
     </select>
 
 
