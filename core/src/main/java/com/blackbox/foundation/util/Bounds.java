@@ -92,6 +92,9 @@ public class Bounds implements Serializable {
         return this;
     }
 
+    /**
+     * @return an ImmutableBounds instance which may, then, be stored as a constant and such
+     */
     public static Bounds boundLess() {
         return new ImmutableBounds(0, Integer.MAX_VALUE);
     }

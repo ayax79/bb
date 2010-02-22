@@ -11,6 +11,7 @@ import com.blackbox.foundation.user.IUserManager;
 import com.blackbox.foundation.user.User;
 import com.blackbox.foundation.util.Bounds;
 import com.blackbox.server.BaseIntegrationTest;
+import com.blackbox.testingutils.UserFixture;
 import com.blackbox.util.MessagesHelper;
 import com.blackbox.util.RelationsHelper;
 import org.apache.commons.collections15.CollectionUtils;
@@ -35,9 +36,7 @@ import java.util.Date;
 import static com.blackbox.foundation.util.CollectionHelper.sameSize;
 import static com.blackbox.testingutils.UserHelper.createNamedUser;
 import static com.google.common.collect.Lists.newArrayList;
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertNotNull;
-import static junit.framework.Assert.assertNull;
+import static junit.framework.Assert.*;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -180,9 +179,14 @@ public class ActivityManagerIntegrationTest extends BaseIntegrationTest {
     }
 
     @Test
-    //APP-215 Inconsistency in stream posts. user posts multiple posts to 'friends' and they only see one of the posts
-    // and that post will 'cycle' amongst those posts.
+    //APP-269 Following filter in stream [Following filter shows only my posts. Should show posts of users I follow.]
     public void testLoadFollowerActivityThreads() throws Exception {
+        User user = userManager.loadUserByGuid(UserFixture.aj.getGuid());
+        Collection<IActivityThread> followedThreads = messagesHelper.fetchMessages(user, new TwoBounds(0, Integer.MAX_VALUE), NetworkTypeEnum.FOLLOWING);
+        assertTrue("we need some threads to assure we are not seeing our posts in follower posts", followedThreads.size() > 0);
+        for (IActivityThread followedThread : followedThreads) {
+            assertFalse("should not see users posts in following thread", user.toEntityReference().equals(followedThread.getParent().getSender()));
+        }
     }
 
     @Test

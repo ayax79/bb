@@ -3,55 +3,57 @@
 <mapper namespace="Activity">
 
     <resultMap id="ActivityResult" type="com.blackbox.foundation.activity.Activity">
-        <result property="acknowledged" />
-        <result property="activityType" />
-        <result property="artifactType" />
-        <result property="aspect" />
-        <result property="avatar" />
-        <result property="comment" />
-        <result property="contentSize" />
-        <result property="created" />
-        <result property="episodeId" />
-        <result property="fileName" />
-        <result property="location" />
-        <result property="loosePic" />
-        <result property="mimeType" />
-        <result property="modified" />
-        <association property="occasion" resultMap="ActivityOccasionResult" />
+        <result property="acknowledged"/>
+        <result property="activityType"/>
+        <result property="artifactType"/>
+        <result property="aspect"/>
+        <result property="avatar"/>
+        <result property="comment"/>
+        <result property="contentSize"/>
+        <result property="created"/>
+        <result property="episodeId"/>
+        <result property="fileName"/>
+        <result property="location"/>
+        <result property="loosePic"/>
+        <result property="mimeType"/>
+        <result property="modified"/>
+        <association property="occasion" resultMap="ActivityOccasionResult"/>
     </resultMap>
 
     <resultMap id="ActivityOccasionResult" type="com.blackbox.foundation.occasion.ActivityOccasion">
         <result property="guid" column="occasionguid"/>
-        <result property="description" column="occasiondescription" />
-        <result property="avatarLocation" column="occasionavatarlocation" />
+        <result property="description" column="occasiondescription"/>
+        <result property="avatarLocation" column="occasionavatarlocation"/>
         <result property="hostBy" column="occasionhostby"/>
         <result property="eventTime" column="occasioneventtime"/>
         <result property="eventEndTime" column="occasioneventendtime"/>
         <result property="occasionType" column="occasiontype"/>
         <result property="eventUrl" column="occasioneventurl"/>
-        <association property="address" resultMap="OccasionAddressResult" />
+        <association property="address" resultMap="OccasionAddressResult"/>
     </resultMap>
 
     <resultMap id="OccasionAddressResult" type="com.blackbox.foundation.social.Address">
-        <result property="address1" column="occasionaddress1" />
-        <result property="address2" column="occasionaddress2" />
-        <result property="city" column="occasioncity" />
-        <result property="state" column="occasionstate" />
-        <result property="country" column="occasioncountry" />
-        <result property="zipCode" column="occasionzipCode" />
-        <result property="county" column="occasioncounty" />
-        <result property="latitude" column="occasionlatitude" />
-        <result property="longitude" column="occasionlongitude" />
-        <result property="timeZone" column="occasiontimeZone" />
+        <result property="address1" column="occasionaddress1"/>
+        <result property="address2" column="occasionaddress2"/>
+        <result property="city" column="occasioncity"/>
+        <result property="state" column="occasionstate"/>
+        <result property="country" column="occasioncountry"/>
+        <result property="zipCode" column="occasionzipCode"/>
+        <result property="county" column="occasioncounty"/>
+        <result property="latitude" column="occasionlatitude"/>
+        <result property="longitude" column="occasionlongitude"/>
+        <result property="timeZone" column="occasiontimeZone"/>
     </resultMap>
 
 
     <resultMap id="ParentActivityResult" type="com.blackbox.foundation.activity.ActivityReference">
-        <result property="activityType" column="parentActivityType" javaType="com.blackbox.foundation.activity.ActivityTypeEnum"
+        <result property="activityType" column="parentActivityType"
+                javaType="com.blackbox.foundation.activity.ActivityTypeEnum"
                 jdbcType="INTEGER"/>
         <result property="guid" column="parentguid"/>
         <result property="postDate" column="parentActivityPostDate" javaType="jodaDate"/>
-        <result property="ownerType" column="parentOwnerType" javaType="com.blackbox.foundation.EntityType" jdbcType="INTEGER"/>
+        <result property="ownerType" column="parentOwnerType" javaType="com.blackbox.foundation.EntityType"
+                jdbcType="INTEGER"/>
     </resultMap>
 
     <resultMap id="MessageResult" type="com.blackbox.foundation.message.Message" extends="BaseEntity.BaseEntityResult">
@@ -85,21 +87,21 @@
         <result property="postDate" javaType="jodaDate"/>
         <result property="recipientDepth" javaType="com.blackbox.foundation.social.NetworkTypeEnum" jdbcType="INTEGER"/>
         <result property="owner.ownerType" column="ownerownerType" jdbcType="INTEGER"/>
-        <result property="owner.guid" column="ownerguid" />
+        <result property="owner.guid" column="ownerguid"/>
         <association property="parentActivity" resultMap="LightParentActivityResult"/>
     </resultMap>
 
     <resultMap id="MediaResult" type="com.blackbox.foundation.media.MediaMetaData">
-        <result property="guid" />
-        <result property="postDate" />
-        <result property="recipientDepth" />
-        <result property="comment" />
-        <result property="location" />
-        <result property="mimeType" />
-        <result property="thumbnailLocation" />
-        <result property="owner.guid" />
-        <result property="owner.ownerType" />
-        <result property="virtualGift" />
+        <result property="guid"/>
+        <result property="postDate"/>
+        <result property="recipientDepth"/>
+        <result property="comment"/>
+        <result property="location"/>
+        <result property="mimeType"/>
+        <result property="thumbnailLocation"/>
+        <result property="owner.guid"/>
+        <result property="owner.ownerType"/>
+        <result property="virtualGift"/>
     </resultMap>
 
     <insert id="insert" parameterType="com.blackbox.foundation.activity.Activity">
@@ -234,8 +236,6 @@
         and
         r.toguid = u.guid
         )
-        or
-        mm.ownerguid = #{fromGuid}
         )
         and
         mm.recipientDepth in (#{allMembers},#{world})
@@ -265,16 +265,14 @@
         (
         mm.ownerguid in
         (
-            select u.guid from bb_relationship r, bb_user u
-            where
-            r.weight = #{followWeight}
-            and
-            r.fromguid = #{fromGuid}
-            and
-            r.toguid = u.guid
+        select u.guid from bb_relationship r, bb_user u
+        where
+        r.weight = #{followWeight}
+        and
+        r.fromguid = #{fromGuid}
+        and
+        r.toguid = u.guid
         )
-        or
-        mm.ownerguid = #{fromGuid}
         )
         and
         m.artifactMetaData_guid = mm.guid
