@@ -56,6 +56,10 @@
         delete from bb_media_library_bb_media_meta_data where bb_media_library_guid = #{value}
     </delete>
 
+    <delete id="deleteJoinByMediaGuid" parameterType="string">
+        delete from bb_media_library_bb_media_meta_data where media_guid = #{value}
+    </delete>
+
     <sql id="librarySelectClause">
         ml.guid,
         ml.created,

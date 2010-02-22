@@ -70,6 +70,7 @@ public interface IMediaManager {
 
     void deleteMediaLibrary(String libraryGuid);
 
+    @Transactional
     Count deleteMediaMetaDataFromLibrary(String guid, String userGuid);
 
     MediaMetaData saveLibraryImage(MediaMetaData md);
