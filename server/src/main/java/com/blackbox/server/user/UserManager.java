@@ -55,6 +55,7 @@ import static com.blackbox.foundation.EntityType.USER;
 import static com.blackbox.foundation.Utils.transform;
 import static com.blackbox.foundation.user.User.UserType.*;
 import static com.blackbox.foundation.util.PaginationUtil.buildPaginationResults;
+import static com.google.common.collect.Lists.newArrayList;
 import static org.yestech.lib.crypto.MessageDigestUtils.sha1Hash;
 
 /**
@@ -491,6 +492,14 @@ public class UserManager extends BaseServiceContainer implements IUserManager {
             mapping = new AffiliateMapping();
         }
         mapping.setAffiliate(affiliate);
+
+        Affirm.isNotNull(mapping.getAffiliate(), "mapping.affiliate", IllegalArgumentException.class);
+        Collection<User> users = mapping.getUsers();
+        if (users == null) {
+            mapping.setUsers(newArrayList(user));
+        } else {
+            mapping.getUsers().add(user);
+        }
 
         affiliateMappingDao.affiliateUser(mapping, user);
     }

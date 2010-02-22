@@ -43,14 +43,6 @@ public class IbatisAffiliateMappingDao implements IAffiliateMappingDao {
     @Override
     @Transactional
     public void affiliateUser(AffiliateMapping mapping, User user) {
-        Affirm.isNotNull(mapping.getAffiliate(), "mapping.affiliate", IllegalArgumentException.class);
-        Collection<User> users = mapping.getUsers();
-        if (users == null) {
-            mapping.setUsers(newArrayList(user));
-        } else {
-            mapping.getUsers().add(user);
-        }
-
         template.insert("AffiliateMapping.insertNewlyAffiliatedUser", new Pair<String, String>(mapping.getGuid(), user.getGuid()));
         save(mapping);
     }
