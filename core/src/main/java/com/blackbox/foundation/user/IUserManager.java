@@ -163,6 +163,12 @@ public interface IUserManager {
 
     PaginationResults<SearchResult<User>> explore(ExploreRequest er);
 
+    /**
+     * Affiliates the userGuid user with the affiliateIdentifier affiliate.
+     *
+     * @param affiliateIdentifier may be either the affiliate guid or the affiliate user name
+     * @throws "NotFoundException" should the affiliate or the user not be found
+     */
     void affiliate(String affiliateIdentifier, String userGuid);
 
     User loadSessionCacheUserByGuid(String guid);

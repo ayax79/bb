@@ -37,6 +37,8 @@ import com.blackbox.foundation.util.Affirm;
 import com.blackbox.foundation.util.GeoUtil;
 import com.google.common.base.Function;
 import org.apache.commons.collections15.Closure;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.yestech.cache.ICacheManager;
@@ -63,6 +65,8 @@ import static org.yestech.lib.crypto.MessageDigestUtils.sha1Hash;
 @SuppressWarnings("unchecked")
 @Service("userManager")
 public class UserManager extends BaseServiceContainer implements IUserManager {
+
+    private static final Logger logger = LoggerFactory.getLogger(UserManager.class);
 
     @Resource(name = "mediaManager")
     IMediaManager mediaManager;
@@ -238,6 +242,7 @@ public class UserManager extends BaseServiceContainer implements IUserManager {
     @Transactional
     @Override
     public void register(Registration registration) {
+        logger.debug("Registering user....");
         User user = registration.getUser();
         if (user.getGuid() == null) {
             Utils.applyGuid(user);
@@ -249,10 +254,12 @@ public class UserManager extends BaseServiceContainer implements IUserManager {
         user.setVersion(oldRecord.getVersion());
         user.setPassword(oldRecord.getPassword());
         user.setStatus(Status.ENABLED); // make them enabled now
+        logger.debug(MessageFormat.format("Saving enabled user: {0}", user));
         user = userDao.save(user);
 
         if (registration.getPromoCodeGuid() != null) {
             BasePromoCode promoCode = promoCodeDao.loadPromoCodeByGuid(registration.getPromoCodeGuid());
+            logger.debug(MessageFormat.format("Registration was via promotional code: {0}", promoCode));
             if (promoCode != null && BasePromoCode.PromoCodeType.SINGLE_USE.equals(promoCode.getType())) {
                 promoCodeDao.delete(promoCode);
             }
@@ -459,6 +466,7 @@ public class UserManager extends BaseServiceContainer implements IUserManager {
 
     @Override
     public void affiliate(String affiliateIdentifier, String userGuid) {
+        logger.debug(MessageFormat.format("Affiliating user: {0} with affiliate: {1}", userGuid, affiliateIdentifier));
         User affiliate = userDao.loadUserByGuid(affiliateIdentifier);
         if (affiliate == null) {
             affiliate = userDao.loadUserByUsername(affiliateIdentifier);
@@ -472,7 +480,7 @@ public class UserManager extends BaseServiceContainer implements IUserManager {
 
         User.UserType type = affiliate.getType();
         if (type != AFFILIATE && type != FOUNDER && type != VENDOR && type != PROMOTER && type != BLACKBOX_ADMIN && type != BLACKBOX_EMPLOYEE) {
-            throw new IllegalArgumentException("Can affiliate registrtion with type: " + type);
+            throw new IllegalArgumentException("Cannot affiliate registration with type: " + type);
         }
 
         if (user == null) {
@@ -483,18 +491,9 @@ public class UserManager extends BaseServiceContainer implements IUserManager {
         if (mapping == null) {
             mapping = new AffiliateMapping();
         }
-
         mapping.setAffiliate(affiliate);
 
-        Collection<User> users = mapping.getUsers();
-        if (users == null) {
-            mapping.setUsers(newArrayList(user));
-        }
-        else {
-            mapping.getUsers().add(user);
-        }
-
-        affiliateMappingDao.save(mapping);
+        affiliateMappingDao.affiliateUser(mapping, user);
     }
 
     @Override

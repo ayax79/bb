@@ -10,6 +10,7 @@ import com.blackbox.server.BaseIntegrationTest;
 import com.blackbox.testingutils.UserHelper;
 import com.google.common.collect.Collections2;
 import org.junit.Test;
+import org.springframework.test.annotation.NotTransactional;
 
 import javax.annotation.Resource;
 
@@ -149,7 +150,7 @@ public class UserManagerIntegrationTest extends BaseIntegrationTest {
         assertFalse("User should not already be affiliated", Collections2.<User, String>transform(affiliates.getUsers(), new BBPersistentObjectToGuidFunction<User>()).contains(user.getGuid()));
         userManager.affiliate(affiliates.getAffiliate().getGuid(), user.getGuid());
         affiliates = affiliateMappingDao.loadByAffiliatesGuid("cb5fd23ef2d9c3b884b5ce9e8d376f954861b448");
-        assertFalse("User should be affiliated", Collections2.<User, String>transform(affiliates.getUsers(), new BBPersistentObjectToGuidFunction<User>()).contains(user.getGuid()));
+        assertTrue("User should be affiliated", Collections2.<User, String>transform(affiliates.getUsers(), new BBPersistentObjectToGuidFunction<User>()).contains(user.getGuid()));
     }
 
 }
