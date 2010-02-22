@@ -20,7 +20,10 @@
     </insert>
 
     <update id="update" parameterType="com.blackbox.foundation.user.AffiliateMapping">
-        <!--         todo: i need to update affiliate mappings bb users -->
+        update bb_affiliate_mapping set
+        modified = #{modified,jdbcType=DATE},
+        affiliate_guid = #{affiliate.guid}
+        where guid = #{affiliate.guid}
     </update>
 
     <delete id="delete" parameterType="string">
@@ -34,5 +37,13 @@
     <select id="loadByAffiliateGuid" resultMap="AffiliateMapping.AffiliateMappingResult" parameterType="string">
         select * from bb_affiliate_mapping where affiliate_guid = #{value}
     </select>
+
+    <insert id="insertNewlyAffiliatedUser" parameterType="org.yestech.lib.util.Pair">
+        insert into bb_affiliate_mapping_bb_user
+        (bb_affiliate_mapping_guid, users_guid)
+        values
+        (#{first}, #{second})
+    </insert>
+
 
 </mapper>

@@ -6,9 +6,9 @@
 package com.blackbox.server.user;
 
 import com.blackbox.foundation.EntityReference;
-import com.blackbox.foundation.*;
-import com.blackbox.foundation.Status;
 import com.blackbox.foundation.EntityType;
+import com.blackbox.foundation.Status;
+import com.blackbox.foundation.Utils;
 import com.blackbox.foundation.activity.ActivityFactory;
 import com.blackbox.foundation.activity.IActivity;
 import com.blackbox.foundation.activity.IActivityManager;
@@ -21,12 +21,6 @@ import com.blackbox.foundation.search.ExploreRequest;
 import com.blackbox.foundation.search.SearchResult;
 import com.blackbox.foundation.search.WordFrequency;
 import com.blackbox.foundation.security.Privacy;
-import com.blackbox.server.billing.IBillingDao;
-import com.blackbox.server.exception.NotFoundException;
-import com.blackbox.server.media.IMediaDao;
-import com.blackbox.server.security.ISecurityDao;
-import com.blackbox.server.social.IVouchDao;
-import com.blackbox.server.user.event.*;
 import com.blackbox.foundation.social.Address;
 import com.blackbox.foundation.social.ISocialManager;
 import com.blackbox.foundation.social.Relationship;
@@ -35,8 +29,16 @@ import com.blackbox.foundation.user.*;
 import com.blackbox.foundation.user.ViewedBy.ViewedByType;
 import com.blackbox.foundation.util.Affirm;
 import com.blackbox.foundation.util.GeoUtil;
+import com.blackbox.server.billing.IBillingDao;
+import com.blackbox.server.exception.NotFoundException;
+import com.blackbox.server.media.IMediaDao;
+import com.blackbox.server.security.ISecurityDao;
+import com.blackbox.server.social.IVouchDao;
+import com.blackbox.server.user.event.*;
 import com.google.common.base.Function;
 import org.apache.commons.collections15.Closure;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.yestech.cache.ICacheManager;
@@ -63,6 +65,8 @@ import static org.yestech.lib.crypto.MessageDigestUtils.sha1Hash;
 @SuppressWarnings("unchecked")
 @Service("userManager")
 public class UserManager extends BaseServiceContainer implements IUserManager {
+
+    private static final Logger logger = LoggerFactory.getLogger(UserManager.class);
 
     @Resource(name = "mediaManager")
     IMediaManager mediaManager;
@@ -238,6 +242,7 @@ public class UserManager extends BaseServiceContainer implements IUserManager {
     @Transactional
     @Override
     public void register(Registration registration) {
+        logger.debug("Registering user....");
         User user = registration.getUser();
         if (user.getGuid() == null) {
             Utils.applyGuid(user);
@@ -249,10 +254,12 @@ public class UserManager extends BaseServiceContainer implements IUserManager {
         user.setVersion(oldRecord.getVersion());
         user.setPassword(oldRecord.getPassword());
         user.setStatus(Status.ENABLED); // make them enabled now
+        logger.debug(MessageFormat.format("Saving enabled user: {0}", user));
         user = userDao.save(user);
 
         if (registration.getPromoCodeGuid() != null) {
             BasePromoCode promoCode = promoCodeDao.loadPromoCodeByGuid(registration.getPromoCodeGuid());
+            logger.debug(MessageFormat.format("Registration was via promotional code: {0}", promoCode));
             if (promoCode != null && BasePromoCode.PromoCodeType.SINGLE_USE.equals(promoCode.getType())) {
                 promoCodeDao.delete(promoCode);
             }
@@ -459,6 +466,7 @@ public class UserManager extends BaseServiceContainer implements IUserManager {
 
     @Override
     public void affiliate(String affiliateIdentifier, String userGuid) {
+        logger.debug(MessageFormat.format("Affiliating user: {0} with affiliate: {1}", userGuid, affiliateIdentifier));
         User affiliate = userDao.loadUserByGuid(affiliateIdentifier);
         if (affiliate == null) {
             affiliate = userDao.loadUserByUsername(affiliateIdentifier);
@@ -472,7 +480,7 @@ public class UserManager extends BaseServiceContainer implements IUserManager {
 
         User.UserType type = affiliate.getType();
         if (type != AFFILIATE && type != FOUNDER && type != VENDOR && type != PROMOTER && type != BLACKBOX_ADMIN && type != BLACKBOX_EMPLOYEE) {
-            throw new IllegalArgumentException("Can affiliate registrtion with type: " + type);
+            throw new IllegalArgumentException("Cannot affiliate registration with type: " + type);
         }
 
         if (user == null) {
@@ -483,18 +491,17 @@ public class UserManager extends BaseServiceContainer implements IUserManager {
         if (mapping == null) {
             mapping = new AffiliateMapping();
         }
-
         mapping.setAffiliate(affiliate);
 
+        Affirm.isNotNull(mapping.getAffiliate(), "mapping.affiliate", IllegalArgumentException.class);
         Collection<User> users = mapping.getUsers();
         if (users == null) {
             mapping.setUsers(newArrayList(user));
-        }
-        else {
+        } else {
             mapping.getUsers().add(user);
         }
 
-        affiliateMappingDao.save(mapping);
+        affiliateMappingDao.affiliateUser(mapping, user);
     }
 
     @Override

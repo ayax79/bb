@@ -20,6 +20,7 @@ import java.util.Collection;
 
 import static com.blackbox.foundation.user.User.UserType.AFFILIATE;
 import static org.junit.Assert.*;
+import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -112,11 +113,12 @@ public class UserManagerUnitTest {
         um.affiliate(affiliate.getGuid(), user.getGuid());
 
         ArgumentCaptor<AffiliateMapping> am = ArgumentCaptor.forClass(AffiliateMapping.class);
-        verify(affiliateMappingDao).save(am.capture());
+        verify(affiliateMappingDao).affiliateUser(am.capture(), eq(user));
 
 
         AffiliateMapping affiliateMapping = am.getValue();
         Collection<User> users = affiliateMapping.getUsers();
+        assertNotNull(users);
         assertEquals(1, users.size());
         assertEquals(user, users.iterator().next());
     }
