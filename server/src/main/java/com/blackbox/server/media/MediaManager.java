@@ -231,9 +231,20 @@ public class MediaManager extends BaseServiceContainer implements IMediaManager 
 
         if (user.getType() == User.UserType.BLACKBOX_ADMIN ||
                 user.getGuid().equals(metaData.getArtifactOwner().getGuid())) {
-
-            mediaDao.delete(metaData);
             MediaLibrary library = mediaDao.loadMediaLibraryByMediaMetaGuid(guid);
+            if (library != null) {
+                library = mediaDao.loadMediaLibraryByGuid(library.getGuid()); // otherwise the number of results will be off.
+            }
+
+            /**
+             * If this is the last media then delete the album
+             */
+            if (library != null && library.getMedia().size() == 1) {
+                mediaDao.delete(library);
+            }
+            else {
+                mediaDao.delete(metaData);
+            }
             ownerMediaLibraryCache.flush(userGuid);
             if (library != null) {
                 totalPhotosInAlbum = totalPhotosByAssociatedAlbumForUser(library.getGuid(), userGuid);
