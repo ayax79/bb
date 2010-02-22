@@ -1,12 +1,12 @@
 package com.blackbox.server.activity;
 
+import com.blackbox.foundation.activity.ActivityRequest;
 import com.blackbox.foundation.activity.IActivityManager;
 import com.blackbox.foundation.activity.IActivityThread;
 import com.blackbox.foundation.common.TwoBounds;
 import com.blackbox.foundation.message.IMessageManager;
 import com.blackbox.foundation.message.Message;
 import com.blackbox.foundation.social.ISocialManager;
-import com.blackbox.foundation.social.NetworkTypeEnum;
 import com.blackbox.foundation.user.IUserManager;
 import com.blackbox.foundation.user.User;
 import com.blackbox.foundation.util.Bounds;
@@ -32,6 +32,7 @@ import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
 
+import static com.blackbox.foundation.social.NetworkTypeEnum.*;
 import static com.blackbox.foundation.util.CollectionHelper.sameSize;
 import static com.blackbox.testingutils.UserHelper.createNamedUser;
 import static com.google.common.collect.Lists.newArrayList;
@@ -43,6 +44,7 @@ import static org.junit.Assert.assertTrue;
 /**
  * @author colin@blackboxrepublic.com
  */
+@SuppressWarnings({"deprecation"})
 public class ActivityManagerIntegrationTest extends BaseIntegrationTest {
 
     private static final Logger logger = LoggerFactory.getLogger(ActivityManagerIntegrationTest.class);
@@ -90,28 +92,28 @@ public class ActivityManagerIntegrationTest extends BaseIntegrationTest {
     public void testLoadFriendsActivityThreads() throws Exception {
         relationsHelper.createBidirectionalFriendship(poster, viewer);
 
-        Collection<IActivityThread> messages = messagesHelper.fetchMessages(viewer, new TwoBounds(0, 10), NetworkTypeEnum.FRIENDS);
+        Collection<IActivityThread> messages = messagesHelper.fetchMessages(viewer, new TwoBounds(0, 10), FRIENDS);
         assertTrue(messages.isEmpty());
 
-        messagesHelper.publishMessage(poster, bodyMessageBeginning + 1, NetworkTypeEnum.FRIENDS);
-        messagesHelper.publishMessage(poster, bodyMessageBeginning + 2, NetworkTypeEnum.FRIENDS);
+        messagesHelper.publishMessage(poster, bodyMessageBeginning + 1, FRIENDS);
+        messagesHelper.publishMessage(poster, bodyMessageBeginning + 2, FRIENDS);
 
         // why the poster? the viewer always has zero here!
-        messages = messagesHelper.fetchMessages(poster, new TwoBounds(0, 10), NetworkTypeEnum.FRIENDS);
+        messages = messagesHelper.fetchMessages(poster, new TwoBounds(0, 10), FRIENDS);
 
         assertEquals("where's our missing messages?", 2, messages.size());
 
-        messagesHelper.publishMessage(poster, bodyMessageBeginning + 3, NetworkTypeEnum.FRIENDS);
-        Message parent = messagesHelper.publishMessage(poster, bodyMessageBeginning + 4, NetworkTypeEnum.FRIENDS);
-        messagesHelper.publishChildMessage(poster, parent, bodyMessageBeginning + 5, NetworkTypeEnum.FRIENDS);
+        messagesHelper.publishMessage(poster, bodyMessageBeginning + 3, FRIENDS);
+        Message parent = messagesHelper.publishMessage(poster, bodyMessageBeginning + 4, FRIENDS);
+        messagesHelper.publishChildMessage(poster, parent, bodyMessageBeginning + 5, FRIENDS);
 
-        messagesHelper.publishMessage(poster, bodyMessageBeginning + 6, NetworkTypeEnum.FRIENDS);
+        messagesHelper.publishMessage(poster, bodyMessageBeginning + 6, FRIENDS);
 
-        assertEndStateIsCorrect(messagesHelper.fetchMessages(poster, new TwoBounds(0, 10), NetworkTypeEnum.FRIENDS));
+        assertEndStateIsCorrect(messagesHelper.fetchMessages(poster, new TwoBounds(0, 10), FRIENDS));
 
         prePublishedMessageCache.flushAll();   // hang up your boots
         Thread.sleep(5000); // let all messages digest and the server will give them to us...
-        assertEndStateIsCorrect(messagesHelper.fetchMessages(poster, new TwoBounds(0, 10), NetworkTypeEnum.FRIENDS));
+        assertEndStateIsCorrect(messagesHelper.fetchMessages(poster, new TwoBounds(0, 10), FRIENDS));
     }
 
     private void assertEndStateIsCorrect(Collection<IActivityThread> messages) {
@@ -121,7 +123,7 @@ public class ActivityManagerIntegrationTest extends BaseIntegrationTest {
             for (Object object : message.getChildren()) {
                 Message childMessage = (Message) object;
                 assertTrue(childMessage.getBody().startsWith(bodyMessageBeginning));
-                assertEquals(NetworkTypeEnum.FRIENDS, childMessage.getRecipientDepth());
+                assertEquals(FRIENDS, childMessage.getRecipientDepth());
                 int messageNumber = Integer.parseInt(StringUtils.substringAfter(childMessage.getBody(), bodyMessageBeginning).trim());
                 if (messageNumber == 5) {
                     assertNotNull(childMessage.getParentActivity());
@@ -148,16 +150,16 @@ public class ActivityManagerIntegrationTest extends BaseIntegrationTest {
 
         // todo: change this test to test for if the server is returning the message (then there will be 10 instead of 11)
         // or if the message it *only* in cache...
-        messagesHelper.publishMessage(poster, bodyMessageBeginning + 1, NetworkTypeEnum.WORLD);
+        messagesHelper.publishMessage(poster, bodyMessageBeginning + 1, WORLD);
 
         messages = fetch10GlobalMessages(poster);
         assertEquals("where's our message?", numberOfMessagesAtStart + 1, messages.size());
 
         // we are seeing one message come through then not others so, let's add some more....
-        messagesHelper.publishMessage(poster, bodyMessageBeginning + 2, NetworkTypeEnum.WORLD);
-        messagesHelper.publishMessage(poster, bodyMessageBeginning + 3, NetworkTypeEnum.WORLD);
-        messagesHelper.publishMessage(poster, bodyMessageBeginning + 4, NetworkTypeEnum.WORLD);
-        messagesHelper.publishMessage(poster, bodyMessageBeginning + 5, NetworkTypeEnum.WORLD);
+        messagesHelper.publishMessage(poster, bodyMessageBeginning + 2, WORLD);
+        messagesHelper.publishMessage(poster, bodyMessageBeginning + 3, WORLD);
+        messagesHelper.publishMessage(poster, bodyMessageBeginning + 4, WORLD);
+        messagesHelper.publishMessage(poster, bodyMessageBeginning + 5, WORLD);
 
         messages = fetch10GlobalMessages(poster);
         assertEquals("where's our messages?", numberOfMessagesAtStart + 5, messages.size());
@@ -167,7 +169,7 @@ public class ActivityManagerIntegrationTest extends BaseIntegrationTest {
                     Message message = (Message) o;
                     if (poster.getGuid().equals(message.getSender().getGuid())) {
                         assertTrue(message.getBody().startsWith(bodyMessageBeginning));
-                        assertEquals(NetworkTypeEnum.WORLD, message.getRecipientDepth());
+                        assertEquals(WORLD, message.getRecipientDepth());
                     }
                 }
             }
@@ -270,6 +272,18 @@ public class ActivityManagerIntegrationTest extends BaseIntegrationTest {
             IActivityThread two = (IActivityThread) CollectionUtils.get(wholeMessageListing, loop);
             assertEquals(one, two);
         }
+    }
+
+    @Test
+    public void testLoadActivityThreads() {
+        User april = userManager.loadUserByUsername("april");
+        ActivityRequest request = new ActivityRequest(april.toEntityReference(),
+                newArrayList(FRIENDS, FOLLOWING, ALL_MEMBERS, WORLD),
+                new TwoBounds(new Bounds(), new Bounds()));
+
+        // checking for exception when running
+        Collection<IActivityThread> threads = activityManager.loadActivityThreads(request);
+        assertNotNull(threads);
     }
 
     private String format(IActivityThread message) {
