@@ -5,8 +5,8 @@
 
 package com.blackbox.presentation.action.point;
 
-import com.blackbox.point.IPointManager;
-import com.blackbox.point.Points;
+import com.blackbox.foundation.point.IPointManager;
+import com.blackbox.foundation.point.Points;
 import com.blackbox.presentation.action.BaseBlackBoxActionBean;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.HandlesEvent;

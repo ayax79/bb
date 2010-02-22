@@ -3,7 +3,7 @@
  * All rights reserved.
  */
 
-package com.blackbox.point;
+package com.blackbox.foundation.point;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;

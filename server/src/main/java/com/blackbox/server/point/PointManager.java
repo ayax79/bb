@@ -5,8 +5,8 @@
 
 package com.blackbox.server.point;
 
-import com.blackbox.point.IPointManager;
-import com.blackbox.point.Points;
+import com.blackbox.foundation.point.IPointManager;
+import com.blackbox.foundation.point.Points;
 import com.blackbox.server.point.event.AddPointEvent;
 import com.blackbox.server.point.event.LoadPointsByUserGuidEvent;
 import org.springframework.stereotype.Service;

@@ -5,7 +5,7 @@
 
 package com.blackbox.server.point;
 
-import com.blackbox.point.Point;
+import com.blackbox.foundation.point.Point;
 
 import java.util.Collection;
 
