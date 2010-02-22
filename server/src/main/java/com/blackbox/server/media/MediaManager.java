@@ -11,11 +11,14 @@ import com.blackbox.foundation.Utils;
 import com.blackbox.foundation.bookmark.IBookmarkManager;
 import com.blackbox.foundation.exception.MediaStoreException;
 import com.blackbox.foundation.media.*;
-import com.blackbox.server.media.event.*;
-import com.blackbox.server.user.IUserDao;
-import com.blackbox.server.util.MediaPublishUtil;
 import com.blackbox.foundation.user.User;
 import com.blackbox.foundation.util.Count;
+import com.blackbox.server.media.event.LoadContentMetaDataEvent;
+import com.blackbox.server.media.event.LoadMediaLibrariesByOwnerEvent;
+import com.blackbox.server.media.event.LoadProfileMediaMetaDataEvent;
+import com.blackbox.server.media.event.LoadRecentMediaForOwnerEvent;
+import com.blackbox.server.user.IUserDao;
+import com.blackbox.server.util.MediaPublishUtil;
 import com.google.common.base.Function;
 import com.google.common.collect.Maps;
 import org.apache.commons.io.IOUtils;
@@ -35,7 +38,6 @@ import org.yestech.publish.util.PublishUtils;
 
 import javax.annotation.Resource;
 import java.io.*;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -214,6 +216,7 @@ public class MediaManager extends BaseServiceContainer implements IMediaManager 
     }
 
     @Override
+    @Transactional
     public Count deleteMediaMetaDataFromLibrary(String guid, String userGuid) {
         Count totalPhotosInAlbum = new Count(0);
         MediaMetaData metaData = mediaDao.loadMediaMetaDataByGuid(guid);
@@ -226,25 +229,17 @@ public class MediaManager extends BaseServiceContainer implements IMediaManager 
             throw new IllegalArgumentException("No User with object with the specified guid exists : " + userGuid);
         }
 
-        if (user.getType() == User.UserType.BLACKBOX_EMPLOYEE ||
+        if (user.getType() == User.UserType.BLACKBOX_ADMIN ||
                 user.getGuid().equals(metaData.getArtifactOwner().getGuid())) {
-            MediaLibrary templLibrary = mediaDao.loadMediaLibraryByMediaMetaGuid(guid);
-            MediaLibrary library = mediaDao.loadMediaLibraryByGuid(templLibrary.getGuid());
-            List<MediaMetaData> datas = library.getMedia();
-            if (datas != null) {
-                Iterator<MediaMetaData> mediaMetaDataIterator = datas.iterator();
-                while (mediaMetaDataIterator.hasNext()) {
-                    MediaMetaData mediaMetaData = mediaMetaDataIterator.next();
-                    if (mediaMetaData.getGuid().equals(guid)) {
-                        mediaMetaDataIterator.remove();
-                        break;
-                    }
-                }
-                mediaDao.save(library);
-                ownerMediaLibraryCache.flush(userGuid);
+
+            mediaDao.delete(metaData);
+            MediaLibrary library = mediaDao.loadMediaLibraryByMediaMetaGuid(guid);
+            ownerMediaLibraryCache.flush(userGuid);
+            if (library != null) {
                 totalPhotosInAlbum = totalPhotosByAssociatedAlbumForUser(library.getGuid(), userGuid);
             }
-        } else {
+        }
+        else {
             throw new UnauthorizedException("Media cannot be deleted by user " + user.getUsername());
         }
 
@@ -321,7 +316,8 @@ public class MediaManager extends BaseServiceContainer implements IMediaManager 
                 CorkboardImage ci1 = imageMap.get(ci0.getGuid());
                 if (ci1 == null) {
                     mediaDao.delete(ci0);
-                } else {
+                }
+                else {
                     mediaDao.save(ci1);
                 }
             }
