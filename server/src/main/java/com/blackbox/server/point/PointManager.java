@@ -7,6 +7,7 @@ package com.blackbox.server.point;
 
 import com.blackbox.foundation.point.IPointManager;
 import com.blackbox.foundation.point.Point;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
@@ -15,7 +16,7 @@ import java.util.Collection;
  *
  *
  */
-// - disabled @Service("pointManager")
+@Service("pointManager")
 public class PointManager implements IPointManager {
 
     // - disabled @Resource
