@@ -10,7 +10,6 @@ import com.blackbox.server.BaseIntegrationTest;
 import com.blackbox.testingutils.UserHelper;
 import com.google.common.collect.Collections2;
 import org.junit.Test;
-import org.springframework.test.annotation.NotTransactional;
 
 import javax.annotation.Resource;
 

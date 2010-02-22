@@ -6,9 +6,9 @@
 package com.blackbox.server.user;
 
 import com.blackbox.foundation.EntityReference;
-import com.blackbox.foundation.*;
-import com.blackbox.foundation.Status;
 import com.blackbox.foundation.EntityType;
+import com.blackbox.foundation.Status;
+import com.blackbox.foundation.Utils;
 import com.blackbox.foundation.activity.ActivityFactory;
 import com.blackbox.foundation.activity.IActivity;
 import com.blackbox.foundation.activity.IActivityManager;
@@ -21,12 +21,6 @@ import com.blackbox.foundation.search.ExploreRequest;
 import com.blackbox.foundation.search.SearchResult;
 import com.blackbox.foundation.search.WordFrequency;
 import com.blackbox.foundation.security.Privacy;
-import com.blackbox.server.billing.IBillingDao;
-import com.blackbox.server.exception.NotFoundException;
-import com.blackbox.server.media.IMediaDao;
-import com.blackbox.server.security.ISecurityDao;
-import com.blackbox.server.social.IVouchDao;
-import com.blackbox.server.user.event.*;
 import com.blackbox.foundation.social.Address;
 import com.blackbox.foundation.social.ISocialManager;
 import com.blackbox.foundation.social.Relationship;
@@ -35,6 +29,12 @@ import com.blackbox.foundation.user.*;
 import com.blackbox.foundation.user.ViewedBy.ViewedByType;
 import com.blackbox.foundation.util.Affirm;
 import com.blackbox.foundation.util.GeoUtil;
+import com.blackbox.server.billing.IBillingDao;
+import com.blackbox.server.exception.NotFoundException;
+import com.blackbox.server.media.IMediaDao;
+import com.blackbox.server.security.ISecurityDao;
+import com.blackbox.server.social.IVouchDao;
+import com.blackbox.server.user.event.*;
 import com.google.common.base.Function;
 import org.apache.commons.collections15.Closure;
 import org.slf4j.Logger;
@@ -55,7 +55,6 @@ import static com.blackbox.foundation.EntityType.USER;
 import static com.blackbox.foundation.Utils.transform;
 import static com.blackbox.foundation.user.User.UserType.*;
 import static com.blackbox.foundation.util.PaginationUtil.buildPaginationResults;
-import static com.google.common.collect.Lists.newArrayList;
 import static org.yestech.lib.crypto.MessageDigestUtils.sha1Hash;
 
 /**
