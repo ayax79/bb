@@ -10,15 +10,15 @@
     <artifactId>presentation</artifactId>
     <name>presentation</name>
     <packaging>war</packaging>
-    <version>1.0.0.b20-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
     <parent>
         <groupId>com.blackbox</groupId>
         <artifactId>blackbox</artifactId>
-        <version>1.0.0.b20-SNAPSHOT</version>
+        <version>1.0.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <properties>
-        <blackbox-core.version>1.0.0.b20-SNAPSHOT</blackbox-core.version>
+        <blackbox-core.version>1.0.0-SNAPSHOT</blackbox-core.version>
         <blackbox.console>false</blackbox.console>
         <library.local>true</library.local>
         <presentation.domain>localhost</presentation.domain>
@@ -69,6 +69,12 @@
         </developer>
     </developers>
     <dependencies>
+        <dependency>
+            <groupId>org.openqa.selenium.client-drivers</groupId>
+            <artifactId>selenium-java-client-driver</artifactId>
+            <version>0.9.2</version>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>com.google.code</groupId>
             <artifactId>kaptcha</artifactId>
@@ -357,9 +363,9 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
-                    <excludes>
-                        <exclude>**/*ManualTest*</exclude>
-                    </excludes>
+                    <includes>
+                        <include>**/*UnitTest.java</include>
+                    </includes>
                 </configuration>
             </plugin>
         </plugins>
@@ -665,12 +671,17 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
-                        <configuration>
-                            <includes>
-                                <include>**/*UnitTest.java</include>
-                                <include>**/*SeleniumTest.java</include>
-                            </includes>
-                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>selenium-tests</id>
+                                <phase>integration-test</phase>
+                                <configuration>
+                                    <includes>
+                                        <include>**/*SeleniumTest.java</include>
+                                    </includes>
+                                </configuration>
+                            </execution>
+                        </executions>
                     </plugin>
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
@@ -680,6 +691,15 @@
                                 <phase>pre-integration-test</phase>
                                 <goals>
                                     <goal>start-server</goal>
+                                </goals>
+                                <configuration>
+                                    <background>true</background>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <phase>post-integration-test</phase>
+                                <goals>
+                                    <goal>stop-server</goal>
                                 </goals>
                                 <configuration>
                                     <background>true</background>
