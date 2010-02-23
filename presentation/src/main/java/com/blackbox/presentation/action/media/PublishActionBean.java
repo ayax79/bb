@@ -171,6 +171,7 @@ public class PublishActionBean extends BaseBlackBoxActionBean {
         if (!message.isPublishToFacebook()) {
             return;
         }
+
         logger.warn(MessageFormat.format("Facebook publication not supported. Sorry current user {0}", currentUser));
     }
 

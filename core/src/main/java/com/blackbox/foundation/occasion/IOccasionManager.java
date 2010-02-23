@@ -54,4 +54,5 @@ public interface IOccasionManager {
 
     @Transactional
     void addOccasionsFromXml(String occasionsXml);
+
 }

@@ -1,11 +1,16 @@
 package com.blackbox.server.message.publisher;
 
+import com.blackbox.server.util.Twitterizer;
 import org.junit.Test;
+
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertEquals;
+
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
+
 import static org.mockito.Mockito.*;
+
 import com.blackbox.server.external.IUrlShortener;
 import com.blackbox.foundation.message.Message;
 
@@ -35,8 +40,8 @@ public class PublishMessageToTwitterUnitTest {
                 "Nunc molestie tempor euismod. Praesent viverra urna non mauris varius vitae tincidunt quam lacinia.");
 
         when(urlShortener.shortMessageUrl(message)).thenReturn("http://vb.ly/sdlfkjas");
-        
-        String msg = pmtt.buildTwitterMessage(message);
+
+        String msg = Twitterizer.buildTwitterMessage(message, urlShortener);
         assertNotNull(msg);
         assertEquals(140, msg.length());
     }

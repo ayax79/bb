@@ -37,6 +37,9 @@ import static org.apache.commons.beanutils.BeanUtils.cloneBean;
 @Searchable
 @XmlRootElement(name = "message")
 public class Message extends BaseEntity implements IArtifact<MessageMetaData, String>, IEntity, IActivity, IVirtualGiftable, Comparable<IActivity> {
+
+    private static final long serialVersionUID = -8072265383393044065L;
+
     private NetworkTypeEnum recipientDepth;
     private ActivityReference parentActivity;
     private DateTime postDate;
@@ -52,7 +55,6 @@ public class Message extends BaseEntity implements IArtifact<MessageMetaData, St
     private String body;
 
     private boolean published = true;
-    private static final long serialVersionUID = -8072265383393044065L;
     private boolean virtualGift = false;
     private boolean acknowledged = true;
     private boolean publishToTwitter = false;

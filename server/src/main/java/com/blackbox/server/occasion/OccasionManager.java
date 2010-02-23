@@ -15,6 +15,16 @@ import com.blackbox.foundation.media.MediaMetaData;
 import com.blackbox.foundation.occasion.*;
 import com.blackbox.foundation.search.ExploreRequest;
 import com.blackbox.foundation.search.SearchResult;
+import com.blackbox.foundation.social.Address;
+import com.blackbox.foundation.social.ISocialManager;
+import com.blackbox.foundation.social.NetworkTypeEnum;
+import com.blackbox.foundation.social.RelationshipNetwork;
+import com.blackbox.foundation.user.IUserManager;
+import com.blackbox.foundation.user.PaginationResults;
+import com.blackbox.foundation.user.User;
+import com.blackbox.foundation.util.Bounds;
+import com.blackbox.foundation.util.GeoUtil;
+import com.blackbox.foundation.util.PaginationUtil;
 import com.blackbox.server.activity.IActivityStreamDao;
 import com.blackbox.server.external.ITwitterClient;
 import com.blackbox.server.external.IUrlShortener;
@@ -22,27 +32,11 @@ import com.blackbox.server.media.IMediaDao;
 import com.blackbox.server.occasion.event.*;
 import com.blackbox.server.social.IVouchDao;
 import com.blackbox.server.user.IExternalCredentialsDao;
-import com.blackbox.foundation.social.Address;
-import com.blackbox.foundation.social.ISocialManager;
-import com.blackbox.foundation.social.NetworkTypeEnum;
-import com.blackbox.foundation.social.RelationshipNetwork;
-import com.blackbox.foundation.user.ExternalCredentials;
-import com.blackbox.foundation.user.IUserManager;
-import com.blackbox.foundation.user.PaginationResults;
-import com.blackbox.foundation.user.User;
-import com.blackbox.foundation.util.Bounds;
-import com.blackbox.foundation.util.GeoUtil;
-import com.blackbox.foundation.util.PaginationUtil;
-import com.google.code.facebookapi.BundleActionLink;
-import com.google.code.facebookapi.FacebookException;
-import com.google.code.facebookapi.FacebookJsonRestClient;
-import org.apache.commons.lang.StringUtils;
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.JDOMException;
 import org.jdom.input.SAXBuilder;
 import org.joda.time.DateTime;
-import org.joda.time.chrono.ISOChronology;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -59,15 +53,12 @@ import java.io.StringReader;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import static com.blackbox.foundation.Utils.getBodyChildSecondsAsDate;
 import static com.blackbox.foundation.Utils.getChildBodyString;
+import static com.blackbox.foundation.util.PaginationUtil.buildPaginationResults;
 import static com.blackbox.server.util.OccasionUtil.cleanAttendee;
 import static com.blackbox.server.util.OccasionUtil.cleanAttendeeOcassion;
-import static com.blackbox.foundation.user.ExternalCredentials.CredentialType.TWITTER;
-import static com.blackbox.foundation.util.PaginationUtil.buildPaginationResults;
-import static com.google.common.collect.Maps.newHashMap;
 import static org.apache.commons.lang.StringUtils.isNotBlank;
 
 /**
@@ -123,117 +114,7 @@ public class OccasionManager extends BaseServiceContainer implements IOccasionMa
     public void publish(Occasion occasion) {
         Activity activity = ActivityFactory.toActivity(occasion);
         activityStreamDao.save(activity);
-        publishToTwitter(occasion);
-        publishToFacebookEvent(occasion);
-        publishToFacebookWall(occasion);
-    }
-
-    private void publishToFacebookWall(Occasion occasion) {
-        if (occasion.isPublishToFacebook() && OccasionType.OPEN == occasion.getOccasionType()) {
-            try {
-                //enable when facebook integration is there...
-                BundleActionLink link = new BundleActionLink();
-                String url = generateOccasionUrl(occasion);
-                String shortenUrl = urlShortener.shorten(url);
-                link.setHref(shortenUrl);
-                link.setText(StringUtils.substring(occasion.getName(), 0, 20) + "....");
-
-                //enable when facebook integration is there...                
-//                FacebookJsonRestClient client = facebookClient();
-//                long userId = client.users_getLoggedInUser();
-//                
-//                client.stream_publish(occasion.getDescription(), null, newArrayList(link), null, userId);
-            }
-            catch (IOException e) {
-                logger.error("Error creating a shorter url for event", e);
-//            } catch (FacebookException e) {
-//                logger.error("Error creating facebook event", e);
-            }
-        }
-    }
-
-    private FacebookJsonRestClient facebookClient() throws FacebookException {
-        FacebookJsonRestClient client = new FacebookJsonRestClient("4cb68e747ac77669ffa47294696dda59", "4551610afc85f57a63b6565a539db3a7");
-        return client;
-    }
-
-    private void publishToFacebookEvent(Occasion occasion) {
-        if (occasion.isPublishToFacebook() && OccasionType.OPEN == occasion.getOccasionType()) {
-//            try {
-            String occasionUrl = generateOccasionUrl(occasion);
-            Map<String, String> faceBookEvent = newHashMap();
-            faceBookEvent.put("name", occasion.getName());
-            faceBookEvent.put("category", String.valueOf(occasion.getFacebookCategory()));
-            faceBookEvent.put("subcategory", String.valueOf(occasion.getFacebookSubCategory()));
-            faceBookEvent.put("host", occasion.getHostBy());
-            faceBookEvent.put("locaton", occasion.getLocation());
-            faceBookEvent.put("descrption", occasion.getFacebookDescription() + " " + occasionUrl);
-            faceBookEvent.put("privacy_type", "OPEN");
-            faceBookEvent.put("email", occasion.getEmail());
-            faceBookEvent.put("phone", occasion.getPhoneNumber());
-            faceBookEvent.put("street", occasion.getAddress().getAddress1() + " " + occasion.getAddress().getAddress2());
-            faceBookEvent.put("city", occasion.getAddress().getCity());
-            faceBookEvent.put("start_time", String.valueOf(occasion.getEventTime().toDateTime(ISOChronology.getInstanceUTC()).getMillis()));
-            faceBookEvent.put("end_time", String.valueOf(occasion.getEventEndTime().toDateTime(ISOChronology.getInstanceUTC()).getMillis()));
-
-            //enable when facebook integration is there...
-//            FacebookJsonRestClient client = facebookClient();
-//            long userId = client.users_getLoggedInUser();
-//                client.events_create(faceBookEvent);
-//            } catch (FacebookException e) {
-//                logger.error("Error creating facebook event", e);
-//            }
-        }
-    }
-
-    private void publishToTwitter(Occasion occasion) {
-        if (occasion.isPublishToTwitter() && OccasionType.OPEN == occasion.getOccasionType()) {
-            ExternalCredentials externalCredentials = credentialsDao.loadByOwnerAndCredType(occasion.getOwner().getGuid(), TWITTER);
-
-            try {
-                twitterClient.publish(buildTwitterMessage(occasion), externalCredentials.decryptUsername(), externalCredentials.decryptPassword());
-            }
-            catch (IOException e) {
-                logger.error("Error publishing to twitter", e);
-            }
-        }
-    }
-
-    protected String buildTwitterMessage(Occasion occasion) throws IOException {
-        String body = occasion.getTwitterDescription();
-//        String occasionUrl = generateOccasionUrl(occasion);
-//        String url = urlShortener.shorten(occasionUrl);
-        String url = "http://vb.ly/BBR";
-
-        int totalSize = body.length() + url.length() + 4; // plus one is for one extra space;
-
-        StringBuilder builder = new StringBuilder();
-        if (totalSize > 140) {
-            body = body.substring(0, 140 - (url.length() + 4));
-            builder.append(body)
-                    .append("...");
-
-        } else {
-            builder.append(body);
-        }
-
-        return builder
-                .append(" ")
-                .append(url)
-                .toString();
-    }
-
-    private String generateOccasionUrl(Occasion occasion) {
-        String presentationUrl = urlShortener.getPresentationUrl();
-        String occasionUrl = presentationUrl;
-        if (!StringUtils.endsWith(presentationUrl, "/")) {
-            occasionUrl += "/";
-        }
-        if (!StringUtils.endsWith("/community/", occasionUrl)) {
-            occasionUrl += "/community/";
-        }
-        occasionUrl += "event/show/" + occasion.getGuid();
-        return occasionUrl;
+        getEventMulticaster().process(new PublishOccasionEvent(occasion));
     }
 
     @Override
