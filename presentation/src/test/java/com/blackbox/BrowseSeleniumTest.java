@@ -5,7 +5,7 @@ import com.thoughtworks.selenium.SeleneseTestCase;
 public class BrowseSeleniumTest extends SeleneseTestCase {
     
     public void setUp() throws Exception {
-        setUp("http://localhost:8080/", "*chrome");
+        setUp("http://localhost:8080/", "*firefox");
     }
     public void testBrowseSite() throws Exception {
         selenium.open("/community/login");

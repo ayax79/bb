@@ -701,9 +701,6 @@
                                 <goals>
                                     <goal>stop-server</goal>
                                 </goals>
-                                <configuration>
-                                    <background>true</background>
-                                </configuration>
                             </execution>
                         </executions>
                     </plugin>
