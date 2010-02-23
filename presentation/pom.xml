@@ -4,7 +4,8 @@
   -->
 
 <!--suppress CheckTagEmptyBody -->
-<project xsi:schemaLocation='http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns='http://maven.apache.org/POM/4.0.0'>
+<project xsi:schemaLocation='http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd'
+         xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns='http://maven.apache.org/POM/4.0.0'>
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.blackbox</groupId>
     <artifactId>presentation</artifactId>
@@ -661,12 +662,6 @@
         <profile>
             <id>selenium</id>
             <build>
-                <resources>
-                    <resource>
-                        <directory>src/main/resources</directory>
-                        <filtering>true</filtering>
-                    </resource>
-                </resources>
                 <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
@@ -675,6 +670,9 @@
                             <execution>
                                 <id>selenium-tests</id>
                                 <phase>integration-test</phase>
+                                <goals>
+                                    <goal>test</goal>
+                                </goals>
                                 <configuration>
                                     <includes>
                                         <include>**/*SeleniumTest.java</include>
@@ -688,6 +686,7 @@
                         <artifactId>selenium-maven-plugin</artifactId>
                         <executions>
                             <execution>
+                                <id>selenium-start-server</id>
                                 <phase>pre-integration-test</phase>
                                 <goals>
                                     <goal>start-server</goal>
@@ -697,6 +696,7 @@
                                 </configuration>
                             </execution>
                             <execution>
+                                <id>selenium-stop-server</id>
                                 <phase>post-integration-test</phase>
                                 <goals>
                                     <goal>stop-server</goal>
