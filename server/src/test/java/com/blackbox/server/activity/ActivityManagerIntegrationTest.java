@@ -7,6 +7,7 @@ import com.blackbox.foundation.common.TwoBounds;
 import com.blackbox.foundation.message.IMessageManager;
 import com.blackbox.foundation.message.Message;
 import com.blackbox.foundation.social.ISocialManager;
+import com.blackbox.foundation.social.NetworkTypeEnum;
 import com.blackbox.foundation.user.IUserManager;
 import com.blackbox.foundation.user.User;
 import com.blackbox.foundation.util.Bounds;
