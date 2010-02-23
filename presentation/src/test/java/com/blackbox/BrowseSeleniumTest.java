@@ -1,6 +1,9 @@
 package com.blackbox;
 
+import com.thoughtworks.selenium.SeleneseTestCase;
+
 public class BrowseSeleniumTest extends SeleneseTestCase {
+    
     public void setUp() throws Exception {
         setUp("http://localhost:8080/", "*chrome");
     }
