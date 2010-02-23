@@ -24,7 +24,7 @@
     <aop:aspectj-autoproxy/>
     <context:annotation-config/>
     <context:component-scan base-package="com.blackbox"/>
-    <tx:annotation-driven transaction-manager="transactionManager"  />
+    <tx:annotation-driven transaction-manager="transactionManager"/>
 
     <bean class="com.blackbox.server.user.aspect.PopulateImageUrlAspect"/>
     <bean class="com.blackbox.server.occasion.aspect.PopulateOccasionTransientsAspect"/>
@@ -126,4 +126,13 @@
           p:authenticatorUserName="${email.authentication.username}"
           p:authenticatorPassword="${email.authentication.password}"
           p:presentationUrl="${presentation.url}"/>
+
+    <bean id="twitterUpdateUrl" class="java.lang.String">
+        <constructor-arg value="${twitter.api.xml.update}"/>
+    </bean>
+
+    <bean id="twitterSearchUserStatusesUrl" class="java.lang.String">
+        <constructor-arg value="${twitter.api.atom.search}"/>
+    </bean>
+
 </beans>

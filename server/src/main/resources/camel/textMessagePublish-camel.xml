@@ -9,7 +9,7 @@
        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring-2.0.0.xsd
        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
-    <camel:camelContext id="textMessagePublishContext" >
+    <camel:camelContext id="textMessagePublishContext">
         <camel:route>
             <camel:from
                     uri="textMessagePublishBus:textMessagePublishBus?topologyName=text.message.publish.queue&amp;pipeName=text.message.publish.queue"/>
@@ -19,7 +19,10 @@
                     <camel:to uri="bean:textMessageMemberNotification?method=notify"/>
                     <camel:to uri="bean:messagePersistSenderMessageToDatabase?method=save"/>
                     <camel:to uri="bean:persistActivityToDatabase?method=save"/>
-                    <camel:to uri="bean:publishMessageToTwitter" />
+                    <camel:to uri="bean:publishMessageToTwitter"/>
+                    <camel:to uri="bean:publishMessageToFacebook"/>
+                    <camel:to uri="bean:publishOccasionToTwitter"/>
+                    <camel:to uri="bean:publishOccasionToFacebook"/>
                     <!--<camel:to uri="bean:messagePersistSenderLastActivityMessage?method=save"/>-->
                     <!--<camel:to uri="bean:messagePersistSenderMessageToActivityStream?method=save"/>-->
                     <!--<camel:to uri="bean:messagePersistFollowersMessages?method=save"/>-->
@@ -45,12 +48,20 @@
         </property>
     </bean>
 
-    <bean id="messagePersistSenderMessageToDatabase" class="com.blackbox.server.message.publisher.SaveSenderMessageToDatabase"/>
-    <bean id="messagePersistSenderMessageToActivityStream" class="com.blackbox.server.message.publisher.SaveSenderMessageToActivityStream"/>
-    <bean id="messagePersistSenderLastActivityMessage" class="com.blackbox.server.message.publisher.SaveSenderLastActivityMessage"/>
-    <bean id="messagePersistFollowersMessages" class="com.blackbox.server.message.publisher.SaveFollowersMessagesToActivityStreams"/>
-    <bean id="messagePersistFriendsMessages" class="com.blackbox.server.message.publisher.SaveFriendsMessagesToActivityStreams"/>
-    <bean id="publishMessageToTwitter" class="com.blackbox.server.message.publisher.PublishMessageToTwitter" />
+    <bean id="messagePersistSenderMessageToDatabase"
+          class="com.blackbox.server.message.publisher.SaveSenderMessageToDatabase"/>
+    <bean id="messagePersistSenderMessageToActivityStream"
+          class="com.blackbox.server.message.publisher.SaveSenderMessageToActivityStream"/>
+    <bean id="messagePersistSenderLastActivityMessage"
+          class="com.blackbox.server.message.publisher.SaveSenderLastActivityMessage"/>
+    <bean id="messagePersistFollowersMessages"
+          class="com.blackbox.server.message.publisher.SaveFollowersMessagesToActivityStreams"/>
+    <bean id="messagePersistFriendsMessages"
+          class="com.blackbox.server.message.publisher.SaveFriendsMessagesToActivityStreams"/>
+    <bean id="publishMessageToTwitter" class="com.blackbox.server.message.publisher.PublishMessageToTwitter"/>
+    <bean id="publishMessageToFacebook" class="com.blackbox.server.message.publisher.PublishMessageToFacebook"/>
+    <bean id="publishOccasionToTwitter" class="com.blackbox.server.message.publisher.PublishOccasionToTwitter"/>
+    <bean id="publishOccasionToFacebook" class="com.blackbox.server.message.publisher.PublishOccasionToFacebook"/>
 
     <bean id="textMessageMemberNotification" class="com.blackbox.server.notification.MessageMemberNotification"
           p:sender-ref="asciiMessageNotificationSender" p:subject="${message.publish.subject}"

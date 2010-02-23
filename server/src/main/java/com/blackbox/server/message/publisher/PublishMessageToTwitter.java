@@ -5,16 +5,20 @@ import com.blackbox.server.external.ITwitterClient;
 import com.blackbox.server.external.IUrlShortener;
 import com.blackbox.server.user.IExternalCredentialsDao;
 import com.blackbox.foundation.user.ExternalCredentials;
+
 import static com.blackbox.foundation.user.ExternalCredentials.CredentialType.TWITTER;
+
+import com.blackbox.server.util.Twitterizer;
 import org.apache.camel.Exchange;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.Resource;
 import java.io.IOException;
+import java.text.MessageFormat;
 
 public class PublishMessageToTwitter {
-                                                                                   
+
     final private static Logger logger = LoggerFactory.getLogger(PublishMessageToTwitter.class);
 
     @Resource
@@ -30,57 +34,36 @@ public class PublishMessageToTwitter {
         org.apache.camel.Message camelMessage = exchange.getIn();
         if (camelMessage != null) {
             try {
-                Message message = camelMessage.getBody(Message.class);
-                if (message != null && message.isPublishToTwitter()) {
-                    ExternalCredentials cred = message.getCreds();
-                    if (cred == null) {
-                        cred = credentialsDao.loadByOwnerAndCredType(message.getSender().getGuid(), TWITTER);
-                    }
-                    
-                    if (cred != null) {
-                        String twitMessage = buildTwitterMessage(message);
-                        send(cred, twitMessage);
-                    }
-                }
-
+                doPublication(camelMessage.getBody(Message.class));
             } catch (Exception t) {
                 exchange.setException(t);
                 logger.error(t.getMessage(), t);
             }
+        } else {
+            logger.warn("Required camelMessage not found!");
         }
     }
 
-    protected void send(ExternalCredentials cred, String msg) throws IOException {
-        twitterClient.publish(msg, cred.decryptUsername(), cred.decryptPassword());
+    void doPublication(Message message) throws IOException {
+        if (message == null || !message.isPublishToTwitter()) {
+            return;
+        }
+
+        ExternalCredentials externalCredentials = message.getCreds();
+        if (externalCredentials == null) {
+            externalCredentials = credentialsDao.loadByOwnerAndCredType(message.getSender().getGuid(), TWITTER);
+        }
+
+        if (externalCredentials != null) {
+            send(externalCredentials, Twitterizer.buildTwitterMessage(message, urlShortener));
+        } else {
+            logger.warn(MessageFormat.format("External credentials for that message {0} were not found!", message));
+        }
     }
 
-    protected String buildTwitterMessage(Message message) throws IOException {
-        String body = message.getShortBody();
-        if (body == null) {
-            body = message.getBody();
-        }
-
-        String url = urlShortener.shortMessageUrl(message);
-
-        int totalSize = body.length() + url.length() + 4; // plus one is for one extra space;
-
-        StringBuilder builder = new StringBuilder();
-        if (totalSize > 140) {
-            body = body.substring(0, 140 - (url.length() + 4));
-            builder.append(body)
-                    .append("...");
-
-        }
-        else {
-            builder.append(body);
-        }
-        
-        return builder
-                .append(" ")
-                .append(url)
-                .toString();
+    protected void send(ExternalCredentials externalCredentials, String message) throws IOException {
+        twitterClient.publish(message, externalCredentials.decryptUsername(), externalCredentials.decryptPassword());
     }
-
 
 
 }
