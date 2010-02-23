@@ -112,6 +112,9 @@ public class FullRegisterUserActionBean extends BaseBlackBoxActionBean {
     @Validate(required = true, on = "step2")
     protected String kaptcha;
 
+	@Validate(required = true, on = "step3")
+	protected String avatarUploaded;
+
 
     @Validate(required = true, mask = "yes", on = "step2")
     protected String registerLegal;
@@ -263,9 +266,9 @@ public class FullRegisterUserActionBean extends BaseBlackBoxActionBean {
         HttpSession session = getContext().getRequest().getSession();
         String kaptchaExpected = (String) session.getAttribute(KAPTCHA_SESSION_KEY);
 
-        if (kaptcha == null || !kaptcha.equalsIgnoreCase(kaptchaExpected)) {
-            errors.add("kaptcha", new LocalizableError("register.kaptcha.error"));
-        }
+//        if (kaptcha == null || !kaptcha.equalsIgnoreCase(kaptchaExpected)) {
+//            errors.add("kaptcha", new LocalizableError("register.kaptcha.error"));
+//        }
 
         if (!user.getPassword().equals(password2)) {
             errors.put("password2", new LocalizableError("register.validation.password.mismatch"));
@@ -652,7 +655,16 @@ public class FullRegisterUserActionBean extends BaseBlackBoxActionBean {
         return kaptcha;
     }
 
-    public void setKaptcha(String kaptcha) {
+
+	public String getAvatarUploaded() {
+		return avatarUploaded;
+	}
+
+	public void setAvatarUploaded(String avatarUploaded) {
+		this.avatarUploaded = avatarUploaded;
+	}
+
+	public void setKaptcha(String kaptcha) {
         this.kaptcha = kaptcha;
     }
 

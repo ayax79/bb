@@ -33,7 +33,11 @@
             var openUploader = function() {
                 var win = bb.imageUploader.open("<%= request.getContextPath()%>");
 
-                $(window).unbind(".reg4").bind("loaderClose.reg4", function(event, avatarUrl, profileUrl) {
+				$(window).unbind(".reg4");
+				$(window).bind("loaderStart.reg4", function() {
+					$("#avatarUploaded").val("");
+				});
+                $(window).bind("loaderClose.reg4", function(event, avatarUrl, profileUrl) {
 
                     $("#uploadStart").hide();
                     $("#uploadComplete").show();
@@ -63,6 +67,8 @@
                     $("#personaW").val(persona_v.w);
                     $("#personaX").val(persona_v.x);
                     $("#personaY").val(persona_v.y);
+					$("#avatarUploaded").val("true");
+
                     $(win).bbDialog('remove');
                 });
                 return false;
@@ -97,9 +103,7 @@
                         var todaymm = today.getMonth() + 1;
                         var todayyyyy = today.getFullYear();
                         var mindate = new Date(todaymm + "/" + todaydd + "/" + (todayyyyy - 18));
-
                         var birthday = new Date($('#register_birthday').val());
-
                         if (birthday > mindate) {
                             $.bbDialog.info("You must be at least 18 years of age to be a Blackbox member.");
                             $("#register_birthday").val('');
@@ -135,9 +139,10 @@
     <div class="reg-col-l">
 
         <h2 class="first">Create your avatar<em>*</em></h2>
-
         <div id="uploadStart">
             <button id="create_avatar"><span>UPLOAD A PHOTO</span></button>
+			<s:hidden id="avatarUploaded" name="avatarUploaded"/>
+
         </div>
         <div id="uploadComplete" style="display:none;">
             <div class="avatar-column-wrap">
@@ -152,6 +157,7 @@
                     <s:hidden id="avatarW" name="avatarW"/>
                     <s:hidden id="avatarX" name="avatarX"/>
                     <s:hidden id="avatarY" name="avatarY"/>
+
                 </div>
                 <div class="avatar-column">
                     <p>Your persona picture</p>

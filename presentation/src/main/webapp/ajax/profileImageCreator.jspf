@@ -49,6 +49,10 @@ wondering if it really worked.
 				'onError'   : function(event, queueID, fileObj, errorObj) {
 					alert('error' + errorObj.type + ' status: ' + errorObj.status, ' text: ' + errorObj.text);
 				},
+				'onOpen' : function() {
+					$(window).trigger("loaderStart");
+
+				},
 				'onAllComplete' : function() {
 					setStep(1);
 					$("#uploadify-content").hide();
