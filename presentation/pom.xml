@@ -4,7 +4,8 @@
   -->
 
 <!--suppress CheckTagEmptyBody -->
-<project xsi:schemaLocation='http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns='http://maven.apache.org/POM/4.0.0'>
+<project xsi:schemaLocation='http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd'
+         xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns='http://maven.apache.org/POM/4.0.0'>
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.blackbox</groupId>
     <artifactId>presentation</artifactId>
@@ -363,9 +364,7 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
-                    <excludes>
-                        <exclude>**/*ManualTest*</exclude>
-                    </excludes>
+                    <includes>**/*UnitTest*</includes>
                 </configuration>
             </plugin>
         </plugins>
@@ -671,12 +670,17 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
-                        <configuration>
-                            <includes>
-                                <include>**/*UnitTest.java</include>
-                                <include>**/*SeleniumTest.java</include>
-                            </includes>
-                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>selenium-tests</id>
+                                <phase>integration-test</phase>
+                                <configuration>
+                                    <includes>
+                                        <include>**/*SeleniumTest.java</include>
+                                    </includes>
+                                </configuration>
+                            </execution>
+                        </executions>
                     </plugin>
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
@@ -686,6 +690,15 @@
                                 <phase>pre-integration-test</phase>
                                 <goals>
                                     <goal>start-server</goal>
+                                </goals>
+                                <configuration>
+                                    <background>true</background>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <phase>post-integration-test</phase>
+                                <goals>
+                                    <goal>stop-server</goal>
                                 </goals>
                                 <configuration>
                                     <background>true</background>
