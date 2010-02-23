@@ -8,6 +8,7 @@
         <setting name="lazyLoadingEnabled" value="false" />
         <setting name="multipleResultSetsEnabled" value="true" />
         <setting name="useGeneratedKeys" value="false" />
+        <setting name="autoMappingBehavior" value="FULL" />
     </settings>
 
     <typeAliases>

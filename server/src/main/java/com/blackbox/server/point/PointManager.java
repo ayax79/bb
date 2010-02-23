@@ -5,27 +5,31 @@
 
 package com.blackbox.server.point;
 
-import com.blackbox.point.IPointManager;
-import com.blackbox.point.Points;
-import com.blackbox.server.point.event.AddPointEvent;
-import com.blackbox.server.point.event.LoadPointsByUserGuidEvent;
+import com.blackbox.foundation.point.IPointManager;
+import com.blackbox.foundation.point.Point;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.yestech.event.multicaster.BaseServiceContainer;
+
+import java.util.Collection;
 
 /**
  *
  *
  */
 @Service("pointManager")
-public class PointManager extends BaseServiceContainer implements IPointManager {
+public class PointManager implements IPointManager {
+
+    // - disabled @Resource
+    IPointDao pointDao;
+
+
     @Transactional(readOnly = true)
-    public Points loadPointsForUser(String userGuid) {
-        return (Points) getEventMulticaster().process(new LoadPointsByUserGuidEvent(userGuid));
+    public Collection<Point> loadPointsForUser(String userGuid) {
+        return pointDao.loadPointsByUserGuid(userGuid);
     }
 
     @Transactional(readOnly = false)
     public void addPointsToUser(String userGuid, long points) {
-        getEventMulticaster().process(new AddPointEvent(userGuid, points));
+        throw new UnsupportedOperationException("not implemented");
     }
 }

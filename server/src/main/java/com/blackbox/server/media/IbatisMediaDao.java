@@ -77,6 +77,7 @@ public class IbatisMediaDao implements IMediaDao, IEpisodicArtifactPersister {
     @Override
     @Transactional(readOnly = false)
     public void delete(MediaMetaData mediaMetaData) {
+        template.delete("MediaLibrary.deleteJoinByMediaGuid", mediaMetaData.getGuid());
         template.delete("MediaRecipient.deleteByMetaDataGuid", mediaMetaData.getGuid());
         template.delete("MediaMetaData.delete", mediaMetaData.getGuid());
         compassTemplate.delete(mediaMetaData);

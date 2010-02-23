@@ -3,14 +3,16 @@
  * All rights reserved.
  */
 
-package com.blackbox.point;
+package com.blackbox.foundation.point;
+
+import java.util.Collection;
 
 /**
  *
  *
  */
 public interface IPointManager {
-    Points loadPointsForUser(String userGuid);
+    Collection<Point> loadPointsForUser(String userGuid);
 
     void addPointsToUser(String userGuid, long points);
 }

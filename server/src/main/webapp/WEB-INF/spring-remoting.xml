@@ -66,7 +66,7 @@
 
     <bean name="/PointManager" parent="baseHessianManager">
         <property name="service" ref="pointManager"/>
-        <property name="serviceInterface" value="com.blackbox.point.IPointManager"/>
+        <property name="serviceInterface" value="com.blackbox.foundation.point.IPointManager"/>
     </bean>
 
     <bean name="/BookmarkManager" parent="baseHessianManager">

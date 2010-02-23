@@ -56,6 +56,10 @@
         delete from bb_media_library_bb_media_meta_data where bb_media_library_guid = #{value}
     </delete>
 
+    <delete id="deleteJoinByMediaGuid" parameterType="string">
+        delete from bb_media_library_bb_media_meta_data where media_guid = #{value}
+    </delete>
+
     <sql id="librarySelectClause">
         ml.guid,
         ml.created,
@@ -83,17 +87,17 @@
         select
         <include refid="librarySelectClause"/>
         from bb_media_library ml
-        left join bb_media_library_bb_media_meta_data mlmd on (mlmd.bb_media_library_guid = ml.guid)
-        left join bb_media_meta_data md on (mlmd.media_guid = md.guid) 
+        join bb_media_library_bb_media_meta_data mlmd on (mlmd.bb_media_library_guid = ml.guid)
+        join bb_media_meta_data md on (mlmd.media_guid = md.guid)
         where ml.guid = #{value}
     </select>
 
-    <select id="loadByMediaMetaDataGuid" resultType="com.blackbox.foundation.media.MediaLibrary" parameterType="string">
+    <select id="loadByMediaMetaDataGuid" resultMap="MediaLibraryResult" parameterType="string">
         select
         <include refid="librarySelectClause"/>
         from bb_media_library ml
-        left join bb_media_library_bb_media_meta_data mlmd on (mlmd.bb_media_library_guid = ml.guid)
-        left join bb_media_meta_data md on (mlmd.media_guid = md.guid)
+        join bb_media_library_bb_media_meta_data mlmd on (mlmd.bb_media_library_guid = ml.guid)
+        join bb_media_meta_data md on (mlmd.media_guid = md.guid)
         where
         md.guid = #{value}
     </select>
@@ -102,8 +106,8 @@
         select
         <include refid="librarySelectClause"/>
         from bb_media_library ml
-        left join bb_media_library_bb_media_meta_data mlmd on (mlmd.bb_media_library_guid = ml.guid)
-        left join bb_media_meta_data md on (mlmd.media_guid = md.guid)
+        join bb_media_library_bb_media_meta_data mlmd on (mlmd.bb_media_library_guid = ml.guid)
+        join bb_media_meta_data md on (mlmd.media_guid = md.guid)
         where ml.referenceGuid = #{value}
     </select>
 
