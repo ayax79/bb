@@ -4,22 +4,21 @@
   -->
 
 <!--suppress CheckTagEmptyBody -->
-<project xsi:schemaLocation='http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd'
-         xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns='http://maven.apache.org/POM/4.0.0'>
+<project xsi:schemaLocation='http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns='http://maven.apache.org/POM/4.0.0'>
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.blackbox</groupId>
     <artifactId>presentation</artifactId>
     <name>presentation</name>
     <packaging>war</packaging>
-    <version>1.0.0.b20-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
     <parent>
         <groupId>com.blackbox</groupId>
         <artifactId>blackbox</artifactId>
-        <version>1.0.0.b20-SNAPSHOT</version>
+        <version>1.0.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <properties>
-        <blackbox-core.version>1.0.0.b20-SNAPSHOT</blackbox-core.version>
+        <blackbox-core.version>1.0.0-SNAPSHOT</blackbox-core.version>
         <blackbox.console>false</blackbox.console>
         <library.local>true</library.local>
         <presentation.domain>localhost</presentation.domain>
