@@ -70,6 +70,11 @@
     </developers>
     <dependencies>
         <dependency>
+            <groupId>org.seleniumhq.selenium.client-drivers</groupId>
+            <version>1.0.1</version>
+            <artifactId>selenium-client-drivers</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.google.code</groupId>
             <artifactId>kaptcha</artifactId>
             <version>2.3</version>
