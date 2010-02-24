@@ -1,12 +1,14 @@
 package com.blackbox.server.message.publisher;
 
+import com.blackbox.foundation.exception.BlackBoxException;
 import com.blackbox.foundation.message.Message;
+import com.blackbox.foundation.user.ExternalCredentials;
 import com.blackbox.server.external.IUrlShortener;
 import com.blackbox.server.user.IExternalCredentialsDao;
 import com.blackbox.server.util.FacebookClientFactory;
 import com.google.code.facebookapi.BundleActionLink;
 import com.google.code.facebookapi.FacebookException;
-import com.google.code.facebookapi.FacebookJsonRestClient;
+import com.google.code.facebookapi.IFacebookRestClient;
 import org.apache.camel.Exchange;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -41,9 +43,9 @@ public class PublishMessageToFacebook {
         }
     }
 
-    void doPublication(Message message) throws IOException {
+    String doPublication(Message message) throws IOException {
         if (message == null || !message.isPublishToFacebook()) {
-            return;
+            return null;
         }
 
         try {
@@ -53,11 +55,14 @@ public class PublishMessageToFacebook {
             link.setHref(shortenUrl);
             link.setText(StringUtils.substring(message.getName(), 0, 20) + "....");
 
-            FacebookJsonRestClient client = FacebookClientFactory.buildClient();
-            String response = client.stream_publish(message.getBody(), null, newArrayList(link), null, client.users_getLoggedInUser());
+            IFacebookRestClient client = FacebookClientFactory.buildClient(message.getExternalCredentials(ExternalCredentials.CredentialType.FACEBOOK).getExternalKey());
+//            IFacebookRestClient client = FacebookClientFactory.buildClient("b4f23addee3430324e91a65f-100000720294855");
+            client.setCacheAppUser(true);
+            String response = client.stream_publish(message.getBody(), null, newArrayList(link), null, null);
             logger.debug(response);
+            return response;
         } catch (FacebookException e) {
-            logger.error("Error creating facebook event", e);
+            throw new BlackBoxException(e);
         }
     }
 

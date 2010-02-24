@@ -7,6 +7,7 @@ public class BrowseSeleniumTest extends SeleneseTestCase {
     public void setUp() throws Exception {
         setUp("http://localhost:8080/", "*chrome");
     }
+    
     public void testBrowseSite() throws Exception {
         selenium.open("/community/login");
         selenium.type("login_username", "aj");

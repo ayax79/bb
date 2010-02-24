@@ -85,10 +85,10 @@ public class ExternalCredentials extends BBPersistentObject implements Serializa
 
     public static ExternalCredentials buildExternalCredentials(CredentialType type, EntityReference owner, String externalKey) {
         ExternalCredentials credentials = new ExternalCredentials();
+        credentials.setType(type);
         String key = externalKeyBuildKey(credentials);
         credentials.setExternalKey(encrypt(key, externalKey));
         credentials.setOwner(owner);
-        credentials.setType(type);
         return credentials;
     }
 

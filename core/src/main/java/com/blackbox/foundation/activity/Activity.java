@@ -23,7 +23,9 @@ import org.yestech.publish.objectmodel.episodic.IEpisodicArtifact;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -67,12 +69,15 @@ public class Activity extends BBPersistentObject implements IArtifact<Activity, 
     @SearchableComponent(prefix = "occasion_")
     protected ActivityOccasion occasion;
     protected boolean publishToTwitter;
-    protected ExternalCredentials externalCredentials;
+    protected Map<ExternalCredentials.CredentialType, ExternalCredentials> externalCredentials;
+
 
     public Activity() {
-        senderProfile = new ActivityProfile();
-        owner = EntityReference.createEntityReference();
-        occasion = new ActivityOccasion();
+        this.senderProfile = new ActivityProfile();
+        this.owner = EntityReference.createEntityReference();
+        this.occasion = new ActivityOccasion();
+        this.externalCredentials = new HashMap<ExternalCredentials.CredentialType, ExternalCredentials>();
+
     }
 
     @Override
@@ -283,12 +288,11 @@ public class Activity extends BBPersistentObject implements IArtifact<Activity, 
         this.recipientDepth = recipientDepth;
     }
 
-    public void setExternalCredentials(ExternalCredentials externalCredentials) {
-        this.externalCredentials = externalCredentials;
-    }
-
-    public ExternalCredentials getExternalCredentials() {
-        return externalCredentials;
+    public void addExternalCredentials(ExternalCredentials externalCredentials) {
+        if (this.externalCredentials.containsKey(externalCredentials.getType())) {
+            this.externalCredentials.remove(externalCredentials.getType());
+        }
+        this.externalCredentials.put(externalCredentials.getType(), externalCredentials);
     }
 
     public ActivityReference getParentActivity() {

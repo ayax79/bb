@@ -5,12 +5,13 @@ import com.blackbox.foundation.bookmark.Bookmark;
 import com.blackbox.foundation.bookmark.IBookmarkManager;
 import com.blackbox.foundation.bookmark.UserWish;
 import com.blackbox.foundation.bookmark.WishStatus;
-import com.blackbox.server.bookmark.event.CreateBookmarkEvent;
-import com.blackbox.server.bookmark.event.DeleteBookmarkEvent;
 import com.blackbox.foundation.user.IUserManager;
 import com.blackbox.foundation.user.PaginationResults;
 import com.blackbox.foundation.user.User;
+import com.blackbox.foundation.util.Affirm;
 import com.blackbox.foundation.util.Count;
+import com.blackbox.server.bookmark.event.CreateBookmarkEvent;
+import com.blackbox.server.bookmark.event.DeleteBookmarkEvent;
 import org.joda.time.DateMidnight;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
@@ -139,8 +140,7 @@ public class BookmarkManager extends BaseServiceContainer implements IBookmarkMa
             userWishCache.put(guid, wishes);
             fromCache = false;
         }
-        PaginationResults<UserWish> results = buildPaginationResults(wishes, startIndex, maxResults);
-        return results;
+        return buildPaginationResults(wishes, startIndex, maxResults);
     }
 
     @Override
@@ -156,6 +156,7 @@ public class BookmarkManager extends BaseServiceContainer implements IBookmarkMa
     @Override
     public void deleteBookmark(String guid) {
         Bookmark bookmark = bookmarkDao.loadByGuid(guid);
+        Affirm.isNotNull(bookmark, "bookmark", "Unable to find bookmark by for that guid: " + guid, IllegalArgumentException.class);
         bookmarkDao.delete(bookmark);
         getEventMulticaster().process(new DeleteBookmarkEvent(bookmark));
     }

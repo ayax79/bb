@@ -7,6 +7,7 @@ package com.blackbox.foundation;
 
 import com.blackbox.foundation.commerce.Inventory;
 import com.blackbox.foundation.commerce.Product;
+import com.blackbox.foundation.exception.BlackBoxException;
 import com.blackbox.foundation.social.Address;
 import com.blackbox.foundation.social.Category;
 import com.google.common.base.Function;
@@ -198,4 +199,13 @@ public class Utils {
 
     }
 
+    /**
+     * Logs message at error onto logger parameter with message parameter
+     *
+     * @throws BlackBoxException wrapping the exception parameter
+     */
+    public static void logWrapAndThrow(String message, Logger logger, Exception exception) {
+        logger.error(message, exception);
+        throw new BlackBoxException(message, exception);
+    }
 }

@@ -21,7 +21,7 @@ import java.util.Map;
 import static com.google.common.collect.Maps.newHashMap;
 
 /**
- * todo: should to both wall and non-wall
+ * todo: make sure create_event doesn't both create even and publish to wall which will cause us to double post sense we are doing both?
  */
 public class PublishOccasionToFacebook {
 
@@ -34,6 +34,7 @@ public class PublishOccasionToFacebook {
     IUrlShortener urlShortener;
 
     public void save(Exchange exchange) {
+        logger.debug("Starting...");
         org.apache.camel.Message camelMessage = exchange.getIn();
         if (camelMessage != null) {
             try {
@@ -47,8 +48,8 @@ public class PublishOccasionToFacebook {
         }
     }
 
-    void doPublication(Occasion occasion) throws IOException {
-        if (!occasion.isPublishToFacebook() || OccasionType.OPEN != occasion.getOccasionType()) {
+    public void doPublication(Occasion occasion) throws IOException {
+        if (occasion == null || !occasion.isPublishToFacebook() || OccasionType.OPEN != occasion.getOccasionType()) {
             return;
         }
 
@@ -74,7 +75,8 @@ public class PublishOccasionToFacebook {
 //        faceBookEvent.put("session_key", "todo");
 
         try {
-            IFacebookRestClient client = FacebookClientFactory.buildClient();
+//            IFacebookRestClient client = FacebookClientFactory.buildClient(occasion.getExternalCredentials(ExternalCredentials.CredentialType.FACEBOOK).getExternalKey());
+            IFacebookRestClient client = FacebookClientFactory.buildClient(null);
             long userId = client.users_getLoggedInUser();
             Long eventId = client.events_create(faceBookEvent);
             logger.debug(MessageFormat.format("Event cross-posted to Facebook with id {0}", eventId));

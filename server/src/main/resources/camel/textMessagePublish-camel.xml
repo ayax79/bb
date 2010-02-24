@@ -21,8 +21,11 @@
                     <camel:to uri="bean:persistActivityToDatabase?method=save"/>
                     <camel:to uri="bean:publishMessageToTwitter"/>
                     <camel:to uri="bean:publishMessageToFacebook"/>
-                    <camel:to uri="bean:publishOccasionToTwitter"/>
-                    <camel:to uri="bean:publishOccasionToFacebook"/>
+
+                    <!--todo: wire occasion stuffs onto this after pulling out/up an 'externallypublishable' interface from which both will decend -->
+                    <!--<camel:to uri="bean:publishOccasionToTwitter"/>-->
+                    <!--<camel:to uri="bean:publishOccasionToFacebook"/>-->
+
                     <!--<camel:to uri="bean:messagePersistSenderLastActivityMessage?method=save"/>-->
                     <!--<camel:to uri="bean:messagePersistSenderMessageToActivityStream?method=save"/>-->
                     <!--<camel:to uri="bean:messagePersistFollowersMessages?method=save"/>-->

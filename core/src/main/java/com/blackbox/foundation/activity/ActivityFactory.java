@@ -13,6 +13,7 @@ import com.blackbox.foundation.occasion.ActivityOccasion;
 import com.blackbox.foundation.occasion.Occasion;
 import com.blackbox.foundation.occasion.OccasionType;
 import com.blackbox.foundation.social.NetworkTypeEnum;
+import com.blackbox.foundation.user.ExternalCredentials;
 import org.apache.commons.beanutils.BeanUtils;
 import org.joda.time.DateTime;
 import org.joda.time.chrono.ISOChronology;
@@ -121,7 +122,9 @@ public class ActivityFactory {
             activity.setParentActivity(message.getParentActivity());
             activity.setPostDate(message.getPostDate());
             activity.setPublishToTwitter(message.isPublishToTwitter());
-            activity.setExternalCredentials(message.getCreds());
+            for (ExternalCredentials externalCredentials : message.getAllExternalCredentials()) {
+                activity.addExternalCredentials(externalCredentials);
+            }
             activity.setActivityType(message.getActivityType());
             activity.setArtifactType(message.getArtifactMetaData().getArtifactType());
             activity.setSenderProfile(message.getSenderProfile());

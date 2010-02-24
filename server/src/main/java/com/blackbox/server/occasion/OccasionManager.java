@@ -26,12 +26,11 @@ import com.blackbox.foundation.util.Bounds;
 import com.blackbox.foundation.util.GeoUtil;
 import com.blackbox.foundation.util.PaginationUtil;
 import com.blackbox.server.activity.IActivityStreamDao;
-import com.blackbox.server.external.ITwitterClient;
-import com.blackbox.server.external.IUrlShortener;
 import com.blackbox.server.media.IMediaDao;
+import com.blackbox.server.message.publisher.PublishOccasionToFacebook;
+import com.blackbox.server.message.publisher.PublishOccasionToTwitter;
 import com.blackbox.server.occasion.event.*;
 import com.blackbox.server.social.IVouchDao;
-import com.blackbox.server.user.IExternalCredentialsDao;
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.JDOMException;
@@ -89,19 +88,16 @@ public class OccasionManager extends BaseServiceContainer implements IOccasionMa
     IActivityStreamDao activityStreamDao;
 
     @Resource
-    IExternalCredentialsDao credentialsDao;
-
-    @Resource
-    IUrlShortener urlShortener;
-
-    @Resource
     IUserManager userManager;
 
     @Resource
     IVouchDao vouchDao;
 
-    @Resource(name = "twitterService")
-    ITwitterClient twitterClient;
+    @Resource
+    PublishOccasionToTwitter publishOccasionToTwitter;
+
+    @Resource
+    PublishOccasionToFacebook publishOccasionToFacebook;
 
     @Resource(name = "eventExploreResultsCache")
     ICacheManager<ExploreRequest, List<SearchResult<Occasion>>> eventExploreResultsCache;
@@ -114,7 +110,32 @@ public class OccasionManager extends BaseServiceContainer implements IOccasionMa
     public void publish(Occasion occasion) {
         Activity activity = ActivityFactory.toActivity(occasion);
         activityStreamDao.save(activity);
-        getEventMulticaster().process(new PublishOccasionEvent(occasion));
+        // todo: pull out common occasion + message publication stuffs then camelize this...
+        //  getEventMulticaster().process(new PublishOccasionEvent(occasion));
+        safeToTwitter(occasion);
+        safeToFacebook(occasion);
+    }
+
+    /**
+     * Just makes sure we don't blow out of our transaction if this publication blows up...
+     */
+    private void safeToTwitter(Occasion occasion) {
+        try {
+            publishOccasionToTwitter.doPublication(occasion);
+        } catch (Exception e) {
+            logger.warn(MessageFormat.format("Unable to tweet occasion {0}", occasion), e);
+        }
+    }
+
+    /**
+     * Just makes sure we don't blow out of our transaction if this publication blows up...
+     */
+    private void safeToFacebook(Occasion occasion) {
+        try {
+            publishOccasionToFacebook.doPublication(occasion);
+        } catch (Exception e) {
+            logger.warn(MessageFormat.format("Unable to post to facebook occasion {0}", occasion), e);
+        }
     }
 
     @Override
@@ -203,18 +224,6 @@ public class OccasionManager extends BaseServiceContainer implements IOccasionMa
     public List<SearchResult<Occasion>> searchOccasions(String query, String location) {
         List<Occasion> list = occasionDao.search(query, location);
         return buildSearchResults(list);
-    }
-
-    public void setActivityManager(IActivityManager activityManager) {
-        this.activityManager = activityManager;
-    }
-
-    public void setSocialManager(ISocialManager socialManager) {
-        this.socialManager = socialManager;
-    }
-
-    public void setVouchDao(IVouchDao vouchDao) {
-        this.vouchDao = vouchDao;
     }
 
     protected List<SearchResult<Occasion>> buildSearchResults(List<Occasion> occasions) {
@@ -387,14 +396,6 @@ public class OccasionManager extends BaseServiceContainer implements IOccasionMa
         LoadOccasionForSceneEvent event = new LoadOccasionForSceneEvent(request);
         //noinspection unchecked
         return PaginationUtil.subList((List<Occasion>) getEventMulticaster().process(event), request.getBounds().getStartIndex(), request.getBounds().getMaxResults());
-    }
-
-    public IMediaDao getMediaDao() {
-        return mediaDao;
-    }
-
-    public void setMediaDao(IMediaDao mediaDao) {
-        this.mediaDao = mediaDao;
     }
 
     protected String determineFileName(String guid, String location) {

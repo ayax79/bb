@@ -38,8 +38,7 @@ public class DirectMessageEmailNotificationListener extends BaseBlackboxListener
         }
     }
 
-    protected void sendEmail(Message message) {
-
+    void sendEmail(Message message) {
         List<com.blackbox.foundation.activity.IRecipient> recipients = message.getRecipients();
         assert recipients != null && !recipients.isEmpty();
         com.blackbox.foundation.activity.IRecipient msgRecipient = recipients.get(0);
