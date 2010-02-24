@@ -64,9 +64,9 @@
 						$("#lounge-count").hide();
 					}
 				});
-				//setTimeout(updateChatCount, 5000);
+				setTimeout(updateChatCount, 5000);
 			}
-			updateChatCount();
+			//updateChatCount();
 		});
 
 
