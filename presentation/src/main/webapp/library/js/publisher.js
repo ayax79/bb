@@ -406,10 +406,12 @@
 			'OK': function() {
 				//attempt to get FB session id
 				try {
-					ref.$twitterform.find("*[name=facebookSessionId]").val(FB.Facebook.apiClient.get_session().session_key);
+					ref.$twitterform.find("*[name=facebookSessionKey]").val(FB.Facebook.apiClient.get_session().session_key);
+					ref.$twitterform.find("*[name=facebookSessionSecret]").val(FB.Facebook.apiClient.get_session().secret);
+					ref.$twitterform.find("*[name=facebookSessionExpires]").val(FB.Facebook.apiClient.get_session().expires);
+					ref.$twitterform.find("*[name=facebookApiKey]").val(FB.Facebook.apiClient.get_apiKey());
 					//If the user is connected, track the event
 					if(ref.fbUserIsConnected) {
-
 						bb.trackPageEvent('Publisher', 'Publish', "Facebook");
 					}
 				} catch(e) {

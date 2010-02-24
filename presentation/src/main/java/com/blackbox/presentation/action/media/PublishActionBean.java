@@ -85,7 +85,11 @@ public class PublishActionBean extends BaseBlackBoxActionBean {
     private MediaMetaData mediaMetaData;
 
     private boolean publishToFacebook;
-    private String facebookSessionId;
+
+    private String facebookSessionKey;
+    private String facebookSessionSecret;
+    private String facebookSessionExpires;
+    private String facebookApiKey;
 
     private boolean publishToTwitter;
     private boolean twitterRemember;
@@ -168,12 +172,12 @@ public class PublishActionBean extends BaseBlackBoxActionBean {
      * @precondition message.handleFacebookPublication should have been called!
      */
     private void handleFacebookPublication(User currentUser, Message message) {
-        if (!message.isPublishToFacebook() || facebookSessionId == null) {
+        if (!message.isPublishToFacebook() || facebookSessionKey == null) {
             return;
         }
 
         message.addExternalCredentials(ExternalCredentials.buildExternalCredentials(FACEBOOK, currentUser.toEntityReference(),
-                facebookSessionId));
+                facebookSessionKey));
     }
 
     public Resolution publishMedia() throws JSONException, IOException {
@@ -354,15 +358,39 @@ public class PublishActionBean extends BaseBlackBoxActionBean {
         this.publishToFacebook = publishToFacebook;
     }
 
-    public String getFacebookSessionId() {
-        return facebookSessionId;
-    }
+	public String getFacebookApiKey() {
+		return facebookApiKey;
+	}
 
-    public void setFacebookSessionId(String facebookSessionId) {
-        this.facebookSessionId = facebookSessionId;
-    }
+	public void setFacebookApiKey(String facebookApiKey) {
+		this.facebookApiKey = facebookApiKey;
+	}
 
-    public boolean isPublishToTwitter() {
+	public String getFacebookSessionExpires() {
+		return facebookSessionExpires;
+	}
+
+	public void setFacebookSessionExpires(String facebookSessionExpires) {
+		this.facebookSessionExpires = facebookSessionExpires;
+	}
+
+	public String getFacebookSessionSecret() {
+		return facebookSessionSecret;
+	}
+
+	public void setFacebookSessionSecret(String facebookSessionSecret) {
+		this.facebookSessionSecret = facebookSessionSecret;
+	}
+
+	public String getFacebookSessionKey() {
+		return facebookSessionKey;
+	}
+
+	public void setFacebookSessionKey(String facebookSessionKey) {
+		this.facebookSessionKey = facebookSessionKey;
+	}
+
+	public boolean isPublishToTwitter() {
         return publishToTwitter;
     }
 

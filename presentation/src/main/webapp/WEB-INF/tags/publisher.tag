@@ -207,7 +207,7 @@
 				<div class="post-to-wrap">
 
 					<div class="post-to-check-row">
-						<input type="checkbox" id="${id}publishToFacebook" name="publishToFacebook" value="true" disabled="disabled"/>
+						<input type="checkbox" id="${id}publishToFacebook" name="publishToFacebook" value="true"/>
 						<label for="${id}publishToFacebook" class="post-to-label">
 							<span>POST TO</span>
 							<img src="${bb:libraryResource('/library/images/branding/facebook.png')}" alt="Post to Facebook" />
@@ -219,7 +219,10 @@
 						<div id="facebook_connect_status_container" class="clearfix">
 							<fb:login-button v="2" size="medium">Connect with Facebook</fb:login-button>
 						</div>
-						<input type="hidden" name="facebookSessionId" value=""/>
+						<input type="hidden" name="facebookSessionKey" value=""/>
+						<input type="hidden" name="facebookSessionSecret" value=""/>
+						<input type="hidden" name="facebookSessionExpires" value=""/>
+						<input type="hidden" name="facebookApiKey" value=""/>
 					</div>
 
 				</div>
