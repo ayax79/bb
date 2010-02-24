@@ -41,7 +41,10 @@
 						bb.facebook.callInit(function() {
 							bb.facebook.updateFBConnect();
 							$("#facebook_event_fields").show();
-							$("#guest_list_opts_alpha").find("*[name=facebookSessionId]").val(FB.Facebook.apiClient.get_session().session_key);
+							$("#guest_list_opts_alpha").find("*[name=facebookSessionKey]").val(FB.Facebook.apiClient.get_session().session_key);
+							$("#guest_list_opts_alpha").find("*[name=facebookSessionSecret]").val(FB.Facebook.apiClient.get_session().secret);
+							$("#guest_list_opts_alpha").find("*[name=facebookSessionExpires]").val(FB.Facebook.apiClient.get_session().expires);
+							$("#guest_list_opts_alpha").find("*[name=facebookApiKey]").val(FB.Facebook.apiClient.get_apiKey());
 						});
 					} catch(e) {
 						//
@@ -83,8 +86,8 @@
                         <div class="promote_field_icons"><img src="${bb:libraryResource('/library/images/events/fb_icon.jpg')}"></div>
                         <div class='promote_field_container'>
 
-                            <input type="checkbox" name="publishToFacebook" id="publish_to_facebook_checkbox" disabled="disabled"> <label for="publish_to_facebook_checkbox" style="font-weight: bold;">Post to your wall.</label><br />
-                            <textarea name="facebook_text" id="facebook_text" disabled="disabled">Coming soon!${actionBean.occasion.description}</textarea><br/>
+                            <input type="checkbox" name="publishToFacebook" id="publish_to_facebook_checkbox"> <label for="publish_to_facebook_checkbox" style="font-weight: bold;">Post to your wall.</label><br />
+                            <textarea name="facebook_text" id="facebook_text">${actionBean.occasion.description}</textarea><br/>
 
 							<div id="facebook_event_fields">
 							<select name="facebookCategory" id="facebookCategory">
@@ -165,7 +168,10 @@
 								<div id="facebook_connect_status_container" class="clearfix">
 									<fb:login-button v="2" size="medium">Connect with Facebook</fb:login-button>
 								</div>
-								<input type="hidden" name="facebookSessionId" value=""/>
+								<input type="hidden" name="facebookSessionKey" value=""/>
+								<input type="hidden" name="facebookSessionSecret" value=""/>
+								<input type="hidden" name="facebookSessionExpires" value=""/>
+								<input type="hidden" name="facebookApiKey" value=""/>
 							</div>
 
                         </div>
