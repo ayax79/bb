@@ -682,6 +682,24 @@
                                     <includes>
                                         <include>**/*SeleniumTest.java</include>
                                     </includes>
+                                    <systemProperties>
+                                        <property>
+                                            <name>selenium.target.host</name>
+                                            <value>${selenium.target.host}</value>
+                                        </property>
+                                        <property>
+                                            <name>selenium.browser</name>
+                                            <value>${selenium.browser}</value>
+                                        </property>
+                                        <property>
+                                            <name>selenium.testuser.username</name>
+                                            <value>${selenium.testuser.username}</value>
+                                        </property>
+                                        <property>
+                                            <name>selenium.testuser.password</name>
+                                            <value>${selenium.testuser.password}</value>
+                                        </property>
+                                    </systemProperties>
                                 </configuration>
                             </execution>
                         </executions>
