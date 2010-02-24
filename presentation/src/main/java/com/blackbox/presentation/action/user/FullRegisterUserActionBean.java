@@ -49,7 +49,6 @@ import static com.blackbox.foundation.IBlackBoxConstants.BUFFER_SIZE;
 import static com.blackbox.presentation.action.media.SessionImageActionBean.SESSION_IMAGE_PARAM;
 import static com.blackbox.presentation.action.util.PresentationUtil.getProperty;
 import static com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY;
-import static java.lang.String.format;
 import static org.apache.commons.io.FileUtils.deleteDirectory;
 import static org.apache.commons.io.FileUtils.openInputStream;
 import static org.yestech.lib.crypto.MessageDigestUtils.sha1Hash;
@@ -112,8 +111,8 @@ public class FullRegisterUserActionBean extends BaseBlackBoxActionBean {
     @Validate(required = true, on = "step2")
     protected String kaptcha;
 
-	@Validate(required = true, on = "step3")
-	protected String avatarUploaded;
+    @Validate(required = true, on = "step3")
+    protected String avatarUploaded;
 
 
     @Validate(required = true, mask = "yes", on = "step2")
@@ -656,15 +655,15 @@ public class FullRegisterUserActionBean extends BaseBlackBoxActionBean {
     }
 
 
-	public String getAvatarUploaded() {
-		return avatarUploaded;
-	}
+    public String getAvatarUploaded() {
+        return avatarUploaded;
+    }
 
-	public void setAvatarUploaded(String avatarUploaded) {
-		this.avatarUploaded = avatarUploaded;
-	}
+    public void setAvatarUploaded(String avatarUploaded) {
+        this.avatarUploaded = avatarUploaded;
+    }
 
-	public void setKaptcha(String kaptcha) {
+    public void setKaptcha(String kaptcha) {
         this.kaptcha = kaptcha;
     }
 
@@ -696,6 +695,9 @@ public class FullRegisterUserActionBean extends BaseBlackBoxActionBean {
     }
 
     String getAffiliateIdentifier() {
+        if (getContext() == null || getContext().getRequest() == null || getContext().getRequest().getCookies() == null) {
+            return null;
+        }
         Cookie[] cookies = getContext().getRequest().getCookies();
         for (Cookie cookie : cookies) {
             if (PartnerActionBean.AFFILIATE_COOKIE_KEY.equals(cookie.getName())) {

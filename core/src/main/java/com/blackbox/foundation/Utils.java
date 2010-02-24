@@ -144,13 +144,17 @@ public class Utils {
      * This will attempt a GET on the url and return the code.
      *
      * @param url The url to check.
-     * @return the status code.
+     * @return the status code (including 404 in *two* cases: resource not available <strong>or</strong> url is invalid url
      * @throws java.io.IOException If there is a error loading
      */
     public static int checkUrl(String url) throws IOException {
-        GetMethod get = new GetMethod(url);
-        HttpClient client = new HttpClient();
-        return client.executeMethod(get);
+        try {
+            GetMethod get = new GetMethod(url);
+            HttpClient client = new HttpClient();
+            return client.executeMethod(get);
+        } catch (IllegalArgumentException e) {
+            return 404; // emulates resource not there when a *non* url is passed in... 
+        }
     }
 
     public static <K, V> Pair<V, K> reversePair(Pair<K, V> pair) {
@@ -208,4 +212,6 @@ public class Utils {
         logger.error(message, exception);
         throw new BlackBoxException(message, exception);
     }
+
+
 }

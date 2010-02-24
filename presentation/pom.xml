@@ -661,7 +661,7 @@
         <profile>
             <id>selenium</id>
             <properties>
-                <selenium.host>${presentation.url}</selenium.host>
+                <selenium.target.host>http://localhost:8080/community</selenium.target.host>
                 <selenium.browser>*chrome</selenium.browser>
                 <selenium.testuser.username>blackboxangels</selenium.testuser.username>
                 <selenium.testuser.password>testing</selenium.testuser.password>
@@ -682,6 +682,24 @@
                                     <includes>
                                         <include>**/*SeleniumTest.java</include>
                                     </includes>
+                                    <systemProperties>
+                                        <property>
+                                            <name>selenium.target.host</name>
+                                            <value>${selenium.target.host}</value>
+                                        </property>
+                                        <property>
+                                            <name>selenium.browser</name>
+                                            <value>${selenium.browser}</value>
+                                        </property>
+                                        <property>
+                                            <name>selenium.testuser.username</name>
+                                            <value>${selenium.testuser.username}</value>
+                                        </property>
+                                        <property>
+                                            <name>selenium.testuser.password</name>
+                                            <value>${selenium.testuser.password}</value>
+                                        </property>
+                                    </systemProperties>
                                 </configuration>
                             </execution>
                         </executions>

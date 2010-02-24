@@ -13,6 +13,7 @@ import com.blackbox.foundation.activity.*;
 import com.blackbox.foundation.exception.BlackBoxException;
 import com.blackbox.foundation.social.NetworkTypeEnum;
 import com.blackbox.foundation.user.ExternalCredentials;
+import com.blackbox.foundation.util.Affirm;
 import org.compass.annotations.Searchable;
 import org.compass.annotations.SearchableComponent;
 import org.compass.annotations.SearchableProperty;
@@ -265,11 +266,7 @@ public class Message extends BaseEntity implements IArtifact<MessageMetaData, St
     }
 
     public ExternalCredentials getExternalCredentials(ExternalCredentials.CredentialType type) {
-        return externalCredentials.get(type);
-    }
-
-    public Collection<ExternalCredentials> getAllExternalCredentials() {
-        return externalCredentials.values();
+        return Affirm.isNotNull(externalCredentials.get(type), "externalCredentials", "No external credentials registered for that type: " + type, IllegalStateException.class);
     }
 
     public void addExternalCredentials(ExternalCredentials externalCredentials) {

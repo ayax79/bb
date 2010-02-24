@@ -1,5 +1,6 @@
 package com.blackbox.server.util;
 
+import com.blackbox.foundation.user.FacebookCredentials;
 import com.google.code.facebookapi.FacebookException;
 import com.google.code.facebookapi.FacebookJaxbRestClient;
 import com.google.code.facebookapi.IFacebookRestClient;
@@ -9,9 +10,8 @@ import com.google.code.facebookapi.IFacebookRestClient;
  */
 public class FacebookClientFactory {
 
-    public static IFacebookRestClient buildClient(String sessionKey) throws FacebookException {
-        return new FacebookJaxbRestClient("54eb4f351c275836be9a536f4eb73914", "ec814b0cb2070092554d72237a0dc8d7", sessionKey);
+    public static IFacebookRestClient buildClient(FacebookCredentials facebookCredentials) throws FacebookException {
+        return new FacebookJaxbRestClient(facebookCredentials.getApiKey(), facebookCredentials.getSessionSecret(), facebookCredentials.getSessionKey(), true);
     }
-
 
 }

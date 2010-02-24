@@ -50,7 +50,7 @@ public class DirectMessageEmailNotificationListener extends BaseBlackboxListener
             return;
         }
 
-        final String recipientName = recipientUser.getName();
+        final String recipientName = resolveName(recipientUser);
 
         emailDelivery.send(new EmailDefinition() {
             {
@@ -63,6 +63,10 @@ public class DirectMessageEmailNotificationListener extends BaseBlackboxListener
             }
         });
 
+    }
+
+    private String resolveName(User recipientUser) {
+        return recipientUser.getName() != null ? recipientUser.getName() : recipientUser.getUsername();
     }
 
 }
