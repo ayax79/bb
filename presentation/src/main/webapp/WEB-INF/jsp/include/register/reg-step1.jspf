@@ -130,7 +130,6 @@
 		
         //]]>
     </script>
-    <script type="text/javascript" src="${bb:libraryResource('/library/js/bb.plugins.js')}"></script>
     <script type="text/javascript" src="${bb:libraryResource('/library/js/textarea-maxlength.js')}"></script>
     <script type="text/javascript">
 		$(function()
