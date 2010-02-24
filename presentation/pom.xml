@@ -661,7 +661,7 @@
         <profile>
             <id>selenium</id>
             <properties>
-                <selenium.host>http://localhost:8080/community</selenium.host>
+                <selenium.target.host>http://localhost:8080/community</selenium.target.host>
                 <selenium.browser>*chrome</selenium.browser>
                 <selenium.testuser.username>blackboxangels</selenium.testuser.username>
                 <selenium.testuser.password>testing</selenium.testuser.password>

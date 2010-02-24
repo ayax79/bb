@@ -2,6 +2,8 @@ package com.blackbox.presentation;
 
 import com.thoughtworks.selenium.SeleneseTestCase;
 import org.junit.Before;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static java.lang.System.getProperty;
 
@@ -10,9 +12,14 @@ import static java.lang.System.getProperty;
  */
 public class BBSeleneseTestCase extends SeleneseTestCase {
 
+    private static final Logger logger = LoggerFactory.getLogger(BBSeleneseTestCase.class);
+
     @Before
     public void setUp() throws Exception {
-        setUp(getTargetHost(), getBrowser());
+        String targetHost = getTargetHost();
+        String browser = getBrowser();
+        logger.info(String.format("Running selenium test case with host: %s browser: %s", targetHost, browser));
+        setUp(targetHost, browser);
     }
 
     protected String getBrowser() {
