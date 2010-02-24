@@ -11,6 +11,7 @@ import com.blackbox.foundation.EntityTypeAnnotation;
 import com.blackbox.foundation.Status;
 import com.blackbox.foundation.activity.*;
 import com.blackbox.foundation.social.Address;
+import com.blackbox.foundation.user.ExternalCredentials;
 import com.blackbox.foundation.user.User;
 import com.blackbox.foundation.media.MediaMetaData;
 import com.blackbox.foundation.security.IAsset;
@@ -31,7 +32,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.blackbox.foundation.EntityType.OCCASION;
 import static com.google.common.collect.Lists.newArrayList;
@@ -88,10 +92,13 @@ public class Occasion extends BaseEntity implements Serializable, IAsset, IActiv
     private int facebookCategory = 1;
     private int facebookSubCategory = 19;
 
+    private Map<ExternalCredentials.CredentialType, ExternalCredentials> externalCredentials;
+
     public Occasion() {
         super(OCCASION);
         setStatus(Status.ENABLED);
-        address = new Address();
+        this.address = new Address();
+        this.externalCredentials = new HashMap<ExternalCredentials.CredentialType, ExternalCredentials>();
     }
 
     public void setAddress1(String address1) {
@@ -175,7 +182,7 @@ public class Occasion extends BaseEntity implements Serializable, IAsset, IActiv
 
     @Override
     public EntityReference getSender() {
-        return null;
+        return owner == null ? null : owner.toEntityReference();
     }
 
     @Override
@@ -419,6 +426,22 @@ public class Occasion extends BaseEntity implements Serializable, IAsset, IActiv
     public void setFacebookCategory(int facebookCategory) {
         this.facebookCategory = facebookCategory;
     }
+
+    public ExternalCredentials getExternalCredentials(ExternalCredentials.CredentialType type) {
+        return externalCredentials.get(type);
+    }
+
+    public Collection<ExternalCredentials> getAllExternalCredentials() {
+        return externalCredentials.values();
+    }
+
+    public void addExternalCredentials(ExternalCredentials externalCredentials) {
+        if (this.externalCredentials.containsKey(externalCredentials.getType())) {
+            this.externalCredentials.remove(externalCredentials.getType());
+        }
+        this.externalCredentials.put(externalCredentials.getType(), externalCredentials);
+    }
+
 
     @Override
     public String toString() {

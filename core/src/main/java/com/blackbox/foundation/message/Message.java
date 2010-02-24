@@ -25,7 +25,10 @@ import org.yestech.publish.objectmodel.IArtifact;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.blackbox.foundation.EntityReference.createEntityReference;
 import static org.apache.commons.beanutils.BeanUtils.cloneBean;
@@ -59,13 +62,13 @@ public class Message extends BaseEntity implements IArtifact<MessageMetaData, St
     private boolean acknowledged = true;
     private boolean publishToTwitter = false;
     private boolean publishToFacebook = false;
-    private ExternalCredentials creds;
     private String shortBody;
+    private Map<ExternalCredentials.CredentialType, ExternalCredentials> externalCredentials;
 
     public Message() {
         super(EntityType.MESSAGE);
-        artifactMetaData = MessageMetaData.createMessageMetaData();
-//        accessControlList = AccessControlList.createAccessControlList();
+        this.artifactMetaData = MessageMetaData.createMessageMetaData();
+        this.externalCredentials = new HashMap<ExternalCredentials.CredentialType, ExternalCredentials>();
     }
 
     public Message(String guid, DateTime postDate, NetworkTypeEnum recipientDepth, String body,
@@ -76,7 +79,7 @@ public class Message extends BaseEntity implements IArtifact<MessageMetaData, St
         this.recipientDepth = recipientDepth;
         this.body = body;
         this.virtualGift = virtualGift;
-        artifactMetaData.setArtifactOwner(createEntityReference(ownerGuid, ownerType));
+        this.artifactMetaData.setArtifactOwner(createEntityReference(ownerGuid, ownerType));
     }
 
     public void setParentGuid(String parentGuid) {
@@ -261,12 +264,19 @@ public class Message extends BaseEntity implements IArtifact<MessageMetaData, St
         this.publishToFacebook = publishToFacebook;
     }
 
-    public ExternalCredentials getCreds() {
-        return creds;
+    public ExternalCredentials getExternalCredentials(ExternalCredentials.CredentialType type) {
+        return externalCredentials.get(type);
     }
 
-    public void setCreds(ExternalCredentials creds) {
-        this.creds = creds;
+    public Collection<ExternalCredentials> getAllExternalCredentials() {
+        return externalCredentials.values();
+    }
+
+    public void addExternalCredentials(ExternalCredentials externalCredentials) {
+        if (this.externalCredentials.containsKey(externalCredentials.getType())) {
+            this.externalCredentials.remove(externalCredentials.getType());
+        }
+        this.externalCredentials.put(externalCredentials.getType(), externalCredentials);
     }
 
     public String getShortBody() {

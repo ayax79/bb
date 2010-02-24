@@ -1,6 +1,7 @@
 package com.blackbox.testingutils;
 
 import com.blackbox.foundation.user.ExternalCredentials;
+import com.blackbox.foundation.user.User;
 
 /**
  * @author colin@blackboxrepublic.com
@@ -26,6 +27,11 @@ public class ExternalCredentialsFixture {
         public String getPassword() {
             return password;
         }
+
+        public User toUser() {
+            return new User(userName, null, null, null);
+        }
+
     }
 
 

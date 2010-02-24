@@ -3,7 +3,6 @@ package com.blackbox.server.util;
 import com.blackbox.foundation.message.Message;
 import com.blackbox.foundation.occasion.Occasion;
 import com.blackbox.server.external.IUrlShortener;
-import org.apache.commons.lang.StringUtils;
 
 import java.io.IOException;
 
@@ -20,12 +19,12 @@ public final class Twitterizer {
     /**
      * @return a twitter message based on message short body or message body
      */
-    public static String buildTwitterMessage(Message message, IUrlShortener urlShortener) throws IOException {
+    public static String buildTwitterMessage(Message message) throws IOException {
         String body = message.getShortBody();
         if (body == null) {
             body = message.getBody();
         }
-        return makeSmsWorthyPayload(body, urlShortener.shortMessageUrl(message));
+        return makeSmsWorthyPayload(body, "");
     }
 
     /**

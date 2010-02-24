@@ -1,5 +1,7 @@
 package com.blackbox.testingutils;
 
+import com.blackbox.foundation.user.User;
+
 /**
  * @author colin@blackboxrepublic.com
  */
@@ -25,5 +27,10 @@ public class UserFixture {
         public String getGuid() {
             return guid;
         }
+
+        public User toUser() {
+            return new User(userName, guid, null, null);
+        }
+
     }
 }
