@@ -63,16 +63,6 @@ public abstract class ActivityActionBean extends BaseBlackBoxActionBean {
     private User user;
     private TwoBounds twoBounds;
 
-    @Before(stages = LifecycleStage.BindingAndValidation)
-    public void initializeBounds() {
-        HttpSession session = getContext().getRequest().getSession();
-        twoBounds = (TwoBounds) session.getAttribute(BOUNDS_KEY);
-        if (twoBounds == null) {
-            twoBounds = new TwoBounds(new Bounds(), new Bounds());
-            session.setAttribute(BOUNDS_KEY, twoBounds);
-        }
-    }
-
     @Before
     public void prepare() {
         if (this.ownerGuid != null && this.ownerGuid.equals(getCurrentUser().getGuid())) {
@@ -95,6 +85,16 @@ public abstract class ActivityActionBean extends BaseBlackBoxActionBean {
             twoBounds.setStartDate(today.toDateTime());
             DateMidnight tomorrow = today.plusDays(1);
             twoBounds.setEndDate(tomorrow.toDateTime());
+        }
+    }
+
+    @Before(stages = LifecycleStage.BindingAndValidation)
+    public void initializeBounds() {
+        HttpSession session = getContext().getRequest().getSession();
+        twoBounds = (TwoBounds) session.getAttribute(BOUNDS_KEY);
+        if (twoBounds == null) {
+            twoBounds = new TwoBounds(new Bounds(), new Bounds());
+            session.setAttribute(BOUNDS_KEY, twoBounds);
         }
     }
 

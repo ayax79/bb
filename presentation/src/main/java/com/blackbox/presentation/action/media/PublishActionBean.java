@@ -38,7 +38,7 @@ import java.io.IOException;
 import java.text.MessageFormat;
 import java.util.Collection;
 
-import static com.blackbox.foundation.user.ExternalCredentials.CredentialType.TWITTER;
+import static com.blackbox.foundation.user.ExternalCredentials.CredentialType.*;
 import static com.blackbox.presentation.action.BaseBlackBoxActionBean.ViewType.json;
 import static com.blackbox.presentation.action.util.JSONUtil.toJSON;
 import static com.blackbox.presentation.action.util.PresentationUtil.*;
@@ -154,12 +154,12 @@ public class PublishActionBean extends BaseBlackBoxActionBean {
         }
         message.setShortBody(twitterMessageBody);
         if (twitterPassword != null && twitterUsername != null) {
-            ExternalCredentials cred = ExternalCredentials.buildExternalCredentials(TWITTER, currentUser.toEntityReference(),
+            ExternalCredentials credentials = ExternalCredentials.buildExternalCredentials(TWITTER, currentUser.toEntityReference(),
                     twitterUsername, twitterPassword);
-            message.setCreds(cred);
+            message.addExternalCredentials(credentials);
 
             if (twitterRemember) {
-                userManager.saveExternalCredential(cred);
+                userManager.saveExternalCredential(credentials);
             }
         }
     }
@@ -168,11 +168,12 @@ public class PublishActionBean extends BaseBlackBoxActionBean {
      * @precondition message.handleFacebookPublication should have been called!
      */
     private void handleFacebookPublication(User currentUser, Message message) {
-        if (!message.isPublishToFacebook()) {
+        if (!message.isPublishToFacebook() || facebookSessionId == null) {
             return;
         }
 
-        logger.warn(MessageFormat.format("Facebook publication not supported. Sorry current user {0}", currentUser));
+        message.addExternalCredentials(ExternalCredentials.buildExternalCredentials(FACEBOOK, currentUser.toEntityReference(),
+                facebookSessionId));
     }
 
     public Resolution publishMedia() throws JSONException, IOException {

@@ -31,6 +31,7 @@ public class PublishMessageToTwitter {
     ITwitterClient twitterClient;
 
     public void save(Exchange exchange) {
+        logger.debug("Starting...");
         org.apache.camel.Message camelMessage = exchange.getIn();
         if (camelMessage != null) {
             try {
@@ -49,13 +50,13 @@ public class PublishMessageToTwitter {
             return;
         }
 
-        ExternalCredentials externalCredentials = message.getCreds();
+        ExternalCredentials externalCredentials = message.getExternalCredentials(TWITTER);
         if (externalCredentials == null) {
             externalCredentials = credentialsDao.loadByOwnerAndCredType(message.getSender().getGuid(), TWITTER);
         }
 
         if (externalCredentials != null) {
-            send(externalCredentials, Twitterizer.buildTwitterMessage(message, urlShortener));
+            send(externalCredentials, Twitterizer.buildTwitterMessage(message));
         } else {
             logger.warn(MessageFormat.format("External credentials for that message {0} were not found!", message));
         }

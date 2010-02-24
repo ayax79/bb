@@ -21,8 +21,8 @@ public class PublishMessageToTwitterIntegrationTest extends BaseIntegrationTest 
     @Resource
     private PublishMessageToTwitter publishMessageToTwitter;
 
-    private String tweet = "Working from bonfire @ ";
-    private String username = ExternalCredentialsFixture.blackboxTweeter.getUserName();
+    private String tweet = "New working from bonfire @ ";
+    private String userName = ExternalCredentialsFixture.blackboxTweeter.getUserName();
     private String password = ExternalCredentialsFixture.blackboxTweeter.getPassword();
 
     @Test
@@ -30,10 +30,10 @@ public class PublishMessageToTwitterIntegrationTest extends BaseIntegrationTest 
         Message message = new Message();
         message.setBody(tweet + new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss").format(new Date()));
         message.setPublishToTwitter(true);
-        message.setCreds(ExternalCredentials.buildExternalCredentials(ExternalCredentials.CredentialType.TWITTER,
-                message.toEntityReference(), username, password));
+        message.addExternalCredentials(ExternalCredentials.buildExternalCredentials(ExternalCredentials.CredentialType.TWITTER,
+                message.toEntityReference(), userName, password));
         publishMessageToTwitter.doPublication(message);
-        assertTrue(publishMessageToTwitter.twitterClient.thisWasTweeted(tweet, username));
+        assertTrue(publishMessageToTwitter.twitterClient.thisWasTweeted(tweet, userName));
     }
 
 }

@@ -2,7 +2,9 @@ package com.blackbox.server.bookmark;
 
 import com.blackbox.foundation.EntityType;
 import com.blackbox.foundation.bookmark.Bookmark;
+
 import static com.blackbox.foundation.bookmark.Bookmark.BookmarkType.WISH;
+
 import com.blackbox.server.util.PersistenceUtil;
 import org.joda.time.DateTime;
 import org.springframework.orm.ibatis3.SqlSessionOperations;
@@ -45,7 +47,7 @@ public class IbatisBookmarkDao implements IBookmarkDao {
     }
 
     public Bookmark loadByGuid(String guid) {
-        return (Bookmark) template.selectOne("Bookmark.load",  guid);
+        return (Bookmark) template.selectOne("Bookmark.load", guid);
     }
 
     public List<Bookmark> loadByUserGuid(String userGuid) {
@@ -64,7 +66,7 @@ public class IbatisBookmarkDao implements IBookmarkDao {
         Map<String, Object> params = new HashMap<String, Object>(2);
         params.put("guid", userGuid);
         params.put("type", WISH);
-        
+
         return template.selectList("Bookmark.loadAllRelated", params);
     }
 

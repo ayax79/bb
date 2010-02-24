@@ -1,7 +1,6 @@
 package com.blackbox.server.message.publisher;
 
 import com.blackbox.foundation.occasion.Occasion;
-import com.blackbox.foundation.occasion.OccasionType;
 import com.blackbox.foundation.user.ExternalCredentials;
 import com.blackbox.server.external.ITwitterClient;
 import com.blackbox.server.external.IUrlShortener;
@@ -43,18 +42,23 @@ public class PublishOccasionToTwitter {
         }
     }
 
-    boolean doPublication(Occasion occasion) throws IOException {
+    public boolean doPublication(Occasion occasion) throws IOException {
         if (occasion == null || !occasion.isPublishToTwitter()) {
-            return true;
+            return false;
         }
 
-        ExternalCredentials cred = credentialsDao.loadByOwnerAndCredType(occasion.getSender().getGuid(), TWITTER);
-        if (cred != null) {
-            send(cred, Twitterizer.buildTwitterMessage(occasion, OccasionUtil.generateOccasionUrl(occasion, urlShortener), urlShortener));
+        ExternalCredentials externalCredentials = occasion.getExternalCredentials(TWITTER);
+        if (externalCredentials == null) {
+            externalCredentials = credentialsDao.loadByOwnerAndCredType(occasion.getSender().getGuid(), TWITTER);
+        }
+
+        if (externalCredentials != null) {
+            send(externalCredentials, Twitterizer.buildTwitterMessage(occasion, OccasionUtil.generateOccasionUrl(occasion, urlShortener), urlShortener));
+            return true;
         } else {
             logger.warn(MessageFormat.format("External credentials for that occasion {0} were not found!", occasion));
+            return false;
         }
-        return false;
     }
 
     protected void send(ExternalCredentials externalCredentials, String message) throws IOException {

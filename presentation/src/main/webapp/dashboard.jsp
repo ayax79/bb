@@ -66,7 +66,7 @@
 				});
 				setTimeout(updateChatCount, 5000);
 			}
-//			updateChatCount();
+			//updateChatCount();
 		});
 
 

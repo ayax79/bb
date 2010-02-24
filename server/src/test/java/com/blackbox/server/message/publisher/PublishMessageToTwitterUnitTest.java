@@ -41,7 +41,7 @@ public class PublishMessageToTwitterUnitTest {
 
         when(urlShortener.shortMessageUrl(message)).thenReturn("http://vb.ly/sdlfkjas");
 
-        String msg = Twitterizer.buildTwitterMessage(message, urlShortener);
+        String msg = Twitterizer.buildTwitterMessage(message);
         assertNotNull(msg);
         assertEquals(140, msg.length());
     }

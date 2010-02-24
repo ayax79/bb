@@ -1,27 +1,29 @@
 package com.blackbox.server.system.email;
 
+import com.blackbox.foundation.Utils;
+import com.blackbox.server.util.VelocityUtil;
 import org.apache.commons.httpclient.Credentials;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.UsernamePasswordCredentials;
 import org.apache.commons.httpclient.auth.AuthScope;
 import org.apache.commons.httpclient.methods.PostMethod;
-import static org.apache.commons.lang.StringUtils.isNotBlank;
 import org.apache.commons.mail.EmailException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Required;
 import org.yestech.notify.deliver.EmailDelivery;
 import org.yestech.notify.objectmodel.IMessage;
 import org.yestech.notify.objectmodel.INotification;
 import org.yestech.notify.objectmodel.IRecipient;
 import org.yestech.notify.objectmodel.ISender;
 import org.yestech.notify.template.ITemplateLanguage;
-import org.springframework.beans.factory.annotation.Required;
-import com.blackbox.server.util.VelocityUtil;
 
+import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.io.IOException;
+
+import static org.apache.commons.lang.StringUtils.isNotBlank;
 
 /**
  * @author A.J. Wright
@@ -96,6 +98,11 @@ public class RemoteEmailDelivery extends EmailDelivery implements SimpleEmailDel
 
                 try {
 
+                    Map<String, Object> params = builder.getMapParams();
+                    setDefaults(params);
+                    String htmlTemplate = VelocityUtil.transform(builder.getVelocityHtmlTemplate(), params);
+                    String textTemplate = VelocityUtil.transform(builder.getVelocityTextTemplate(), params);
+
                     PostMethod post = new PostMethod(getEmailHost());
                     if (builder.getSender() != null) {
                         post.addParameter("from_email", builder.getSender().getEmail());
@@ -107,24 +114,18 @@ public class RemoteEmailDelivery extends EmailDelivery implements SimpleEmailDel
 
                     post.addParameter("subject", builder.getSubject());
 
-                    Map<String, Object> params = builder.getMapParams();
-                    setDefaults(params);
-                    String htmlTemplate = VelocityUtil.transform(builder.getVelocityHtmlTemplate(), params);
-                    String textTemplate = VelocityUtil.transform(builder.getVelocityTextTemplate(), params);
                     post.addParameter("textbody", textTemplate);
                     post.addParameter("htmlbody", htmlTemplate);
                     post.addParameter("to_email", builder.getRecipient().getEmail());
                     if (builder.getRecipient().getName() != null) {
                         post.addParameter("to_name", builder.getRecipient().getName());
-                    }
-                    else {
+                    } else {
                         post.addParameter("to_name", builder.getRecipient().getEmail());
                     }
                     send(post);
                 }
                 catch (Exception e) {
-                    logger.error(e.getMessage(), e);
-                    throw new RuntimeException(e);
+                    Utils.logWrapAndThrow("Unable to send mail", logger, e);
                 }
 
             }
@@ -140,7 +141,7 @@ public class RemoteEmailDelivery extends EmailDelivery implements SimpleEmailDel
         client.executeMethod(post);
         String result = post.getResponseBodyAsString().trim();
         if (result == null || !"1".equals(result)) {
-            logger.warn("Remote mailer did not send success result back. : "+result);
+            logger.warn("Remote mailer did not send success result back. : " + result);
         }
     }
 

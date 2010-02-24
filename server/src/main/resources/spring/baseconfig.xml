@@ -113,7 +113,8 @@
     </bean>
 
     <bean id="urlShortener" class="com.blackbox.server.external.VioletBlueUrlShortener"
-          p:presentationUrl="${blackbox.home.url}"/>
+          p:presentationUrl="${blackbox.home.url}"
+          p:serviceUrl="${shortener.service.url}"/>
 
     <bean id="adminManager" class="com.blackbox.server.system.AdminManager"
           p:cacheManager-ref="cacheManager"/>
@@ -127,12 +128,9 @@
           p:authenticatorPassword="${email.authentication.password}"
           p:presentationUrl="${presentation.url}"/>
 
-    <bean id="twitterUpdateUrl" class="java.lang.String">
-        <constructor-arg value="${twitter.api.xml.update}"/>
-    </bean>
 
-    <bean id="twitterSearchUserStatusesUrl" class="java.lang.String">
-        <constructor-arg value="${twitter.api.atom.search}"/>
-    </bean>
+    <bean id="twitterClient" class="com.blackbox.server.external.TwitterClient"
+          p:updateUrl="${twitter.api.xml.update}"
+          p:searchUserStatusesUrl="${twitter.api.atom.search}"/>
 
 </beans>

@@ -8,7 +8,9 @@ import com.blackbox.foundation.user.User;
 import com.blackbox.foundation.user.IUser;
 import com.blackbox.foundation.activity.IActivity;
 import com.blackbox.foundation.util.JaxbSafeCollectionWrapper;
+
 import static com.blackbox.presentation.action.util.PresentationUtil.createResolutionWithText;
+
 import com.blackbox.foundation.occasion.AttendingStatus;
 import com.google.common.collect.Maps;
 import com.google.common.base.Function;
@@ -23,7 +25,7 @@ public class AjaxNotificationActionBean extends BaseNotificationActionBean {
     private Map<String, IActivity> giftMap;
 
     public Resolution accept() {
-        for (String guid : ids) {
+        for (String guid : getIdsAsSet()) {
             final Relationship relationship = socialManager.loadRelationshipByGuid(guid);
             executeAccept(relationship.getFromEntity().getGuid());
         }
@@ -32,7 +34,7 @@ public class AjaxNotificationActionBean extends BaseNotificationActionBean {
     }
 
     public Resolution acceptRelationship() {
-        for (String guid : ids) {
+        for (String guid : getIdsAsSet()) {
             final Relationship relationship = socialManager.loadRelationshipByGuid(guid);
             executeAccept(relationship.getFromEntity().getGuid());
         }
@@ -83,7 +85,7 @@ public class AjaxNotificationActionBean extends BaseNotificationActionBean {
         return new ForwardResolution("/ajax/notification/notification.jspf");
     }
 
-    public Resolution   maybeOccasionRequest() {
+    public Resolution maybeOccasionRequest() {
         processOccasionRequest(AttendingStatus.TENATIVE);
         return new ForwardResolution("/ajax/notification/notification.jspf");
     }
@@ -95,7 +97,7 @@ public class AjaxNotificationActionBean extends BaseNotificationActionBean {
 
     @HandlesEvent("ignored")
     public Resolution rejectFriendRequest() {
-        for (String guid : ids) {
+        for (String guid : getIdsAsSet()) {
             final Relationship relationship = socialManager.loadRelationshipByGuid(guid);
             socialManager.rejectRequest(getCurrentUser().getGuid(), relationship.getFromEntity().getGuid());
         }
@@ -104,7 +106,7 @@ public class AjaxNotificationActionBean extends BaseNotificationActionBean {
     }
 
     public Resolution rejectRelationshipRequest() {
-        for (String guid : ids) {
+        for (String guid : getIdsAsSet()) {
             final Relationship relationship = socialManager.loadRelationshipByGuid(guid);
             socialManager.rejectRequest(getCurrentUser().getGuid(), relationship.getFromEntity().getGuid());
         }
