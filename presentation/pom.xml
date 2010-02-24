@@ -660,6 +660,12 @@
         </profile>
         <profile>
             <id>selenium</id>
+            <properties>
+                <selenium.host>${presentation.url}</selenium.host>
+                <selenium.browser>*chrome</selenium.browser>
+                <selenium.testuser.username>blackboxangels</selenium.testuser.username>
+                <selenium.testuser.password>testing</selenium.testuser.password>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
