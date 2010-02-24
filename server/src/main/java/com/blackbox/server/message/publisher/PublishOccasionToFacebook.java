@@ -2,6 +2,7 @@ package com.blackbox.server.message.publisher;
 
 import com.blackbox.foundation.occasion.Occasion;
 import com.blackbox.foundation.occasion.OccasionType;
+import com.blackbox.foundation.user.ExternalCredentials;
 import com.blackbox.server.external.IUrlShortener;
 import com.blackbox.server.user.IExternalCredentialsDao;
 import com.blackbox.server.util.FacebookClientFactory;
@@ -48,14 +49,14 @@ public class PublishOccasionToFacebook {
         }
     }
 
-    public void doPublication(Occasion occasion) throws IOException {
+    public void doPublication(Occasion occasion) throws IOException, FacebookException {
         if (occasion == null || !occasion.isPublishToFacebook() || OccasionType.OPEN != occasion.getOccasionType()) {
             return;
         }
 
         String occasionUrl = OccasionUtil.generateOccasionUrl(occasion, urlShortener);
         Map<String, String> faceBookEvent = newHashMap();
-//        faceBookEvent.put("call_id", String.valueOf(System.currentTimeMillis()));
+        faceBookEvent.put("call_id", String.valueOf(System.currentTimeMillis()));
         faceBookEvent.put("name", occasion.getName());
         faceBookEvent.put("v", String.valueOf(1.0d));
         faceBookEvent.put("category", String.valueOf(occasion.getFacebookCategory()));
@@ -63,27 +64,20 @@ public class PublishOccasionToFacebook {
         faceBookEvent.put("host", occasion.getHostBy());
         faceBookEvent.put("location", occasion.getLocation());
         faceBookEvent.put("description", occasion.getFacebookDescription() + " " + occasionUrl);
-        faceBookEvent.put("privacy_type", "OPEN");
+        faceBookEvent.put("privacy_type", OccasionType.OPEN.name());
         faceBookEvent.put("email", occasion.getEmail());
         faceBookEvent.put("phone", occasion.getPhoneNumber());
         faceBookEvent.put("street", occasion.getAddress().getAddress1() + " " + occasion.getAddress().getAddress2());
         faceBookEvent.put("city", occasion.getAddress().getCity());
 
-        faceBookEvent.put("start_time", String.valueOf(occasion.getEventTime().toDateTime(ISOChronology.getInstanceUTC()).getMillis()));
-        faceBookEvent.put("end_time", String.valueOf(occasion.getEventEndTime().toDateTime(ISOChronology.getInstanceUTC()).getMillis()));
+        faceBookEvent.put("start_time", String.valueOf(occasion.getEventTime().toDateTime(ISOChronology.getInstanceUTC()).getMillis() / 1000));
+        faceBookEvent.put("end_time", String.valueOf(occasion.getEventEndTime().toDateTime(ISOChronology.getInstanceUTC()).getMillis() / 1000));
 
-//        faceBookEvent.put("session_key", "todo");
-
-        try {
-//            IFacebookRestClient client = FacebookClientFactory.buildClient(occasion.getExternalCredentials(ExternalCredentials.CredentialType.FACEBOOK).getExternalKey());
-            IFacebookRestClient client = FacebookClientFactory.buildClient(null);
-            long userId = client.users_getLoggedInUser();
-            Long eventId = client.events_create(faceBookEvent);
-            logger.debug(MessageFormat.format("Event cross-posted to Facebook with id {0}", eventId));
-        } catch (FacebookException e) {
-            logger.error("Error creating facebook event", e);
-        }
+        IFacebookRestClient client = FacebookClientFactory.buildClient(occasion.getExternalCredentials(ExternalCredentials.CredentialType.FACEBOOK).getFacebookCredentials());
+        Long eventId = client.events_create(faceBookEvent);
+        logger.debug(MessageFormat.format("Event cross-posted to Facebook with id {0}", eventId));
     }
 
 
 }
+

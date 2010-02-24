@@ -32,6 +32,9 @@ public class ExternalCredentials extends BBPersistentObject implements Serializa
     private EntityReference owner;
     private String externalKey;
 
+    // cheating a bit here to get this working then we'll look at generalizing it...
+    private FacebookCredentials facebookCredentials;
+
     public String getPassword() {
         return password;
     }
@@ -92,6 +95,14 @@ public class ExternalCredentials extends BBPersistentObject implements Serializa
         return credentials;
     }
 
+    public static ExternalCredentials buildFacebookExternalCredentials(EntityReference owner, FacebookCredentials facebookCredentials) {
+        ExternalCredentials credentials = new ExternalCredentials();
+        credentials.setType(CredentialType.FACEBOOK);
+        credentials.facebookCredentials = facebookCredentials;
+        credentials.setOwner(owner);
+        return credentials;
+    }
+
     private static String passwordBuildKey(ExternalCredentials cred) {
         if (cred.getType() == CredentialType.TWITTER) {
             return TWITTER_PASSWORD_KEY;
@@ -132,4 +143,7 @@ public class ExternalCredentials extends BBPersistentObject implements Serializa
         return decrypt(key, externalKey);
     }
 
+    public FacebookCredentials getFacebookCredentials() {
+        return facebookCredentials;
+    }
 }

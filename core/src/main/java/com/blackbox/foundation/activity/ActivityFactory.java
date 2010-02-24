@@ -122,9 +122,6 @@ public class ActivityFactory {
             activity.setParentActivity(message.getParentActivity());
             activity.setPostDate(message.getPostDate());
             activity.setPublishToTwitter(message.isPublishToTwitter());
-            for (ExternalCredentials externalCredentials : message.getAllExternalCredentials()) {
-                activity.addExternalCredentials(externalCredentials);
-            }
             activity.setActivityType(message.getActivityType());
             activity.setArtifactType(message.getArtifactMetaData().getArtifactType());
             activity.setSenderProfile(message.getSenderProfile());

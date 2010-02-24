@@ -2,8 +2,11 @@ package com.blackbox.server.message.publisher;
 
 import com.blackbox.foundation.occasion.Occasion;
 import com.blackbox.foundation.occasion.OccasionType;
+import com.blackbox.foundation.user.ExternalCredentials;
 import com.blackbox.server.BaseIntegrationTest;
+import com.blackbox.testingutils.ExternalCredentialsFixture;
 import org.joda.time.DateTime;
+import org.joda.time.ReadablePeriod;
 import org.junit.Test;
 
 import javax.annotation.Resource;
@@ -23,7 +26,7 @@ public class PublishOccasionToFacebookIntegrationTest extends BaseIntegrationTes
         Occasion occasion = Occasion.createOccasion();
         occasion.setPublishToFacebook(true);
         occasion.setOccasionType(OccasionType.OPEN);
-//        occasion.set(ExternalCredentials.buildExternalCredentials(ExternalCredentials.CredentialType.FACEBOOK, occasion.toEntityReference(), "johnnie.blackbox", "bla5ph3my"));
+        occasion.addExternalCredentials(ExternalCredentials.buildFacebookExternalCredentials(occasion.toEntityReference(), ExternalCredentialsFixture.facebookPoster));
         occasion.setName(PublishOccasionToFacebookIntegrationTest.class.getSimpleName());
         occasion.setFacebookCategory(1);
         occasion.setFacebookSubCategory(1);
@@ -36,8 +39,9 @@ public class PublishOccasionToFacebookIntegrationTest extends BaseIntegrationTes
         occasion.getAddress().setAddress1("1 se washington");
         occasion.getAddress().setAddress2("suite 152");
         occasion.getAddress().setCity("portland");
-        occasion.setEventTime(new DateTime(2010, 1, 1, 12, 0, 0, 0));
-        occasion.setEventEndTime(new DateTime(2010, 1, 1, 13, 0, 0, 0));
+        DateTime start = new DateTime().plusMonths(1);
+        occasion.setEventTime(start);
+        occasion.setEventEndTime(start.plusHours(2));
 
         publishOccasionToFacebook.doPublication(occasion);
     }

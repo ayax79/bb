@@ -69,15 +69,12 @@ public class Activity extends BBPersistentObject implements IArtifact<Activity, 
     @SearchableComponent(prefix = "occasion_")
     protected ActivityOccasion occasion;
     protected boolean publishToTwitter;
-    protected Map<ExternalCredentials.CredentialType, ExternalCredentials> externalCredentials;
 
 
     public Activity() {
         this.senderProfile = new ActivityProfile();
         this.owner = EntityReference.createEntityReference();
         this.occasion = new ActivityOccasion();
-        this.externalCredentials = new HashMap<ExternalCredentials.CredentialType, ExternalCredentials>();
-
     }
 
     @Override
@@ -286,13 +283,6 @@ public class Activity extends BBPersistentObject implements IArtifact<Activity, 
 
     public void setRecipientDepth(NetworkTypeEnum recipientDepth) {
         this.recipientDepth = recipientDepth;
-    }
-
-    public void addExternalCredentials(ExternalCredentials externalCredentials) {
-        if (this.externalCredentials.containsKey(externalCredentials.getType())) {
-            this.externalCredentials.remove(externalCredentials.getType());
-        }
-        this.externalCredentials.put(externalCredentials.getType(), externalCredentials);
     }
 
     public ActivityReference getParentActivity() {

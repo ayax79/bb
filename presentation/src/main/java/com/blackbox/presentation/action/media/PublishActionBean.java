@@ -17,10 +17,7 @@ import com.blackbox.foundation.message.Message;
 import com.blackbox.foundation.message.MessageRecipient;
 import com.blackbox.foundation.message.PrePublicationUtil;
 import com.blackbox.foundation.social.NetworkTypeEnum;
-import com.blackbox.foundation.user.ExternalCredentials;
-import com.blackbox.foundation.user.IUser;
-import com.blackbox.foundation.user.IUserManager;
-import com.blackbox.foundation.user.User;
+import com.blackbox.foundation.user.*;
 import com.blackbox.presentation.action.BaseBlackBoxActionBean;
 import com.blackbox.presentation.action.util.PresentationUtil;
 import net.sourceforge.stripes.action.*;
@@ -172,12 +169,16 @@ public class PublishActionBean extends BaseBlackBoxActionBean {
      * @precondition message.handleFacebookPublication should have been called!
      */
     private void handleFacebookPublication(User currentUser, Message message) {
-        if (!message.isPublishToFacebook() || facebookSessionKey == null) {
+        if (!message.isPublishToFacebook() || facebookApiKey == null || facebookSessionKey == null || facebookSessionSecret == null) {
+            if (message.isPublishToFacebook()) {
+                logger.warn(MessageFormat.format("We were told to publish to Facebook but were not given all these data we need to do so..." +
+                        "facebookApiKey: {0}, facebookSessionKey: {1}, facebookSessionSecret: {2}", facebookApiKey, facebookSessionKey, facebookSessionSecret));
+            }
             return;
         }
 
-        message.addExternalCredentials(ExternalCredentials.buildExternalCredentials(FACEBOOK, currentUser.toEntityReference(),
-                facebookSessionKey));
+        message.addExternalCredentials(ExternalCredentials.buildFacebookExternalCredentials(currentUser.toEntityReference(),
+                new FacebookCredentials(facebookApiKey, facebookSessionKey, facebookSessionSecret, String.valueOf(0).equals(facebookSessionExpires))));
     }
 
     public Resolution publishMedia() throws JSONException, IOException {
@@ -358,39 +359,39 @@ public class PublishActionBean extends BaseBlackBoxActionBean {
         this.publishToFacebook = publishToFacebook;
     }
 
-	public String getFacebookApiKey() {
-		return facebookApiKey;
-	}
+    public String getFacebookApiKey() {
+        return facebookApiKey;
+    }
 
-	public void setFacebookApiKey(String facebookApiKey) {
-		this.facebookApiKey = facebookApiKey;
-	}
+    public void setFacebookApiKey(String facebookApiKey) {
+        this.facebookApiKey = facebookApiKey;
+    }
 
-	public String getFacebookSessionExpires() {
-		return facebookSessionExpires;
-	}
+    public String getFacebookSessionExpires() {
+        return facebookSessionExpires;
+    }
 
-	public void setFacebookSessionExpires(String facebookSessionExpires) {
-		this.facebookSessionExpires = facebookSessionExpires;
-	}
+    public void setFacebookSessionExpires(String facebookSessionExpires) {
+        this.facebookSessionExpires = facebookSessionExpires;
+    }
 
-	public String getFacebookSessionSecret() {
-		return facebookSessionSecret;
-	}
+    public String getFacebookSessionSecret() {
+        return facebookSessionSecret;
+    }
 
-	public void setFacebookSessionSecret(String facebookSessionSecret) {
-		this.facebookSessionSecret = facebookSessionSecret;
-	}
+    public void setFacebookSessionSecret(String facebookSessionSecret) {
+        this.facebookSessionSecret = facebookSessionSecret;
+    }
 
-	public String getFacebookSessionKey() {
-		return facebookSessionKey;
-	}
+    public String getFacebookSessionKey() {
+        return facebookSessionKey;
+    }
 
-	public void setFacebookSessionKey(String facebookSessionKey) {
-		this.facebookSessionKey = facebookSessionKey;
-	}
+    public void setFacebookSessionKey(String facebookSessionKey) {
+        this.facebookSessionKey = facebookSessionKey;
+    }
 
-	public boolean isPublishToTwitter() {
+    public boolean isPublishToTwitter() {
         return publishToTwitter;
     }
 
