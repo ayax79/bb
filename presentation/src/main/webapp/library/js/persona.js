@@ -465,7 +465,9 @@ picturesTab.prototype.deleteImage = function($link, callback) {
 picturesTab.prototype.deleteImageCall = function(guid, callback) {
 	var ref = this;
 	$.post(bb.urls.photos.deleteImage, {imageGuid:guid}, function(response) {
-
+		if(response.albumTotal == 0) {
+			ref.getAlbumsView();
+		}
 		$(".total-images-" + $("#currentAlbumGuid").val()).text(response.albumTotal);
 		$(".all-albums-total").text(response.allAlbumTotal);
 		var element = $(".image_" + guid);
