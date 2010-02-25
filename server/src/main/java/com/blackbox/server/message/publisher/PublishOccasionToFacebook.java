@@ -3,6 +3,7 @@ package com.blackbox.server.message.publisher;
 import com.blackbox.foundation.occasion.Occasion;
 import com.blackbox.foundation.occasion.OccasionType;
 import com.blackbox.foundation.user.ExternalCredentials;
+import com.blackbox.foundation.user.FacebookCredentials;
 import com.blackbox.server.external.IUrlShortener;
 import com.blackbox.server.user.IExternalCredentialsDao;
 import com.blackbox.server.util.FacebookClientFactory;
@@ -10,7 +11,6 @@ import com.blackbox.server.util.OccasionUtil;
 import com.google.code.facebookapi.FacebookException;
 import com.google.code.facebookapi.IFacebookRestClient;
 import org.apache.camel.Exchange;
-import org.joda.time.chrono.ISOChronology;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -70,12 +70,16 @@ public class PublishOccasionToFacebook {
         faceBookEvent.put("street", occasion.getAddress().getAddress1() + " " + occasion.getAddress().getAddress2());
         faceBookEvent.put("city", occasion.getAddress().getCity());
 
-        faceBookEvent.put("start_time", String.valueOf(occasion.getEventTime().toDateTime(ISOChronology.getInstanceUTC()).getMillis() / 1000));
-        faceBookEvent.put("end_time", String.valueOf(occasion.getEventEndTime().toDateTime(ISOChronology.getInstanceUTC()).getMillis() / 1000));
+        faceBookEvent.put("start_time", String.valueOf(occasion.getEventTime().getMillis() / 1000)); // facebook wants this is PDT or PST. i think this will do that?
+        if (occasion.getEventEndTime() != null) { // end date not required by bbr
+            faceBookEvent.put("end_time", String.valueOf(occasion.getEventEndTime().getMillis() / 1000));
+        }
 
-        IFacebookRestClient client = FacebookClientFactory.buildClient(occasion.getExternalCredentials(ExternalCredentials.CredentialType.FACEBOOK).getFacebookCredentials());
+        FacebookCredentials facebookCredentials = occasion.getExternalCredentials(ExternalCredentials.CredentialType.FACEBOOK).getFacebookCredentials();
+        IFacebookRestClient client = FacebookClientFactory.buildClient(facebookCredentials);
+
         Long eventId = client.events_create(faceBookEvent);
-        logger.debug(MessageFormat.format("Event cross-posted to Facebook with id {0}", eventId));
+        logger.warn(MessageFormat.format("Event cross-posted to Facebook with id {0}", eventId));
     }
 
 

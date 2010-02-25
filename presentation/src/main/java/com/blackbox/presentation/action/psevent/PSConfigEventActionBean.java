@@ -8,16 +8,18 @@ import com.blackbox.foundation.media.IMediaManager;
 import com.blackbox.foundation.media.MediaLibrary;
 import com.blackbox.foundation.media.MediaLibrary.MediaLibraryType;
 import com.blackbox.foundation.media.MediaMetaData;
+import com.blackbox.foundation.user.FacebookCredentials;
 import com.blackbox.presentation.action.util.MediaUtil;
 import com.blackbox.presentation.action.util.PresentationUtil;
 import com.blackbox.foundation.social.ISocialManager;
 import com.blackbox.foundation.social.Relationship;
 import com.blackbox.foundation.social.RelationshipNetwork;
 import com.blackbox.foundation.user.ExternalCredentials;
+
 import static com.blackbox.foundation.user.ExternalCredentials.CredentialType.TWITTER;
+
 import com.blackbox.foundation.user.IUser;
 import com.blackbox.foundation.user.IUserManager;
-import com.google.code.facebookapi.FacebookJsonRestClient;
 import net.sourceforge.stripes.action.*;
 import net.sourceforge.stripes.integration.spring.SpringBean;
 
@@ -51,6 +53,11 @@ public class PSConfigEventActionBean extends PSBaseEventActionBean {
     private int facebookSubCategory;
     private boolean publishToTwitter;
     private boolean publishToFacebook;
+
+    private String facebookSessionKey;
+    private String facebookSessionSecret;
+    private String facebookSessionExpires;
+    private String facebookApiKey;
 
     public int getFacebookCategory() {
         return facebookCategory;
@@ -132,6 +139,38 @@ public class PSConfigEventActionBean extends PSBaseEventActionBean {
         this.twitterPassword = twitterPassword;
     }
 
+    public String getFacebookSessionKey() {
+        return facebookSessionKey;
+    }
+
+    public void setFacebookSessionKey(String facebookSessionKey) {
+        this.facebookSessionKey = facebookSessionKey;
+    }
+
+    public String getFacebookSessionSecret() {
+        return facebookSessionSecret;
+    }
+
+    public void setFacebookSessionSecret(String facebookSessionSecret) {
+        this.facebookSessionSecret = facebookSessionSecret;
+    }
+
+    public String getFacebookSessionExpires() {
+        return facebookSessionExpires;
+    }
+
+    public void setFacebookSessionExpires(String facebookSessionExpires) {
+        this.facebookSessionExpires = facebookSessionExpires;
+    }
+
+    public String getFacebookApiKey() {
+        return facebookApiKey;
+    }
+
+    public void setFacebookApiKey(String facebookApiKey) {
+        this.facebookApiKey = facebookApiKey;
+    }
+
     public String getGuid() {
         return guid;
     }
@@ -209,16 +248,21 @@ public class PSConfigEventActionBean extends PSBaseEventActionBean {
             if (twitterPassword != null && twitterUsername != null) {
                 ExternalCredentials cred = ExternalCredentials.buildExternalCredentials(TWITTER, getCurrentUser().toEntityReference(),
                         twitterUsername, twitterPassword);
-                //override just incase they use a new twitter account....  always use latest
+                //override just in case they use a new twitter account....  always use latest
+                occasion.addExternalCredentials(cred);
                 userManager.saveExternalCredential(cred);
             }
         }
+
         if (publishToFacebook) {
             occasion.setPublishToFacebook(true);
             occasion.setFacebookCategory(facebookCategory);
             occasion.setFacebookSubCategory(facebookSubCategory);
             occasion.setFacebookDescription(facebookDescription);
+            occasion.addExternalCredentials(ExternalCredentials.buildFacebookExternalCredentials(occasion.toEntityReference(),
+                    new FacebookCredentials(facebookApiKey, facebookSessionSecret, facebookSessionKey, true)));
         }
+
         RedirectResolution resolution = new RedirectResolution(PSShowEventActionBean.class);
         resolution.addParameter("eventParam", occasion.getGuid());
         return resolution;

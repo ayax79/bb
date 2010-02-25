@@ -1,5 +1,6 @@
 package com.blackbox.server.external;
 
+import com.blackbox.foundation.Utils;
 import com.blackbox.foundation.message.Message;
 import org.apache.commons.httpclient.Credentials;
 import org.apache.commons.httpclient.HttpClient;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Required;
 import static org.yestech.lib.util.EncoderUtil.uriEncode;
 
 import java.io.IOException;
+import java.text.MessageFormat;
 
 import static java.lang.String.format;
 
@@ -24,20 +26,22 @@ public class VioletBlueUrlShortener implements IUrlShortener {
     private String presentationUrl;
     private String serviceUrl;
 
+    /**
+     * @return a shortened url or the parameter url if the underlying shortener provider was unable to complete the request.
+     */
     public String shorten(String url) throws IOException {
         PostMethod post = new PostMethod(serviceUrl);
         HttpClient client = new HttpClient();
         post.setParameter("url", url);
         int response = client.executeMethod(post);
         if (response != 200 && response != 201) {
-            logger.warn("Unable to shorten url...will return whole url");
+            logger.warn(MessageFormat.format("Unable to shorten url...will return whole url due to response code {0}", response));
             return url;
         }
-        String answer = post.getResponseBodyAsString().trim();
-        // we are getting a 200 back yet the content is this 'Please log in' so let's ignore that for now...(
-        return "Please log in".equals(answer) ? url : answer;
+        String shorty = post.getResponseBodyAsString().trim();
+        // we are getting back 'Please log in' instead of a shorty so let's guard against that...
+        return Utils.isValidUrl(shorty) ? shorty : url;
     }
-
 
     public String shorten() throws IOException {
         return shorten(presentationUrl);
@@ -62,16 +66,3 @@ public class VioletBlueUrlShortener implements IUrlShortener {
         return presentationUrl;
     }
 }
-
-/*    public String shortenGet(String url) throws IOException {
-        HttpClient client = new HttpClient();
-        url = uriEncode(url);
-        GetMethod get = new GetMethod(serviceUrl + url);
-        int response = client.executeMethod(get);
-        if (response != 200 && response != 201) {
-            logger.warn("Unable to shorten url...will return whole url");
-            return url;
-        }
-        return get.getResponseBodyAsString().trim();
-    }
-*/

@@ -22,9 +22,9 @@
                 <ref bean="newFriendRequestEmailListener"/>
                 <ref bean="followEmailListener"/>
                 <!--<ref bean="newRelationshipRequestEmailListener" />-->
-                <ref bean="vouchEmailListener" />
-                <ref bean="newGiftEmailListener" />
-                <ref bean="wishEmailListener" />
+                <ref bean="vouchEmailListener"/>
+                <ref bean="newGiftEmailListener"/>
+                <ref bean="wishEmailListener"/>
             </util:list>
         </property>
     </bean>
@@ -47,14 +47,21 @@
 
     <bean id="followEmailListener" class="com.blackbox.server.social.listener.NewFollowEmailListener"/>
     <!--<bean id="newRelationshipRequestEmailListener" class="com.blackbox.server.social.listener.NewRelationshipRequestEmailListener" />-->
-    <bean id="vouchEmailListener" class="com.blackbox.server.social.listener.VouchEmailListener" />
-    <bean id="newGiftEmailListener" class="com.blackbox.server.gifting.listener.NewGiftEmailListener" />
-    <bean id="wishEmailListener" class="com.blackbox.server.bookmark.listener.WishEmailListener" />
-
-
+    <bean id="vouchEmailListener" class="com.blackbox.server.social.listener.VouchEmailListener"/>
+    <bean id="newGiftEmailListener" class="com.blackbox.server.gifting.listener.NewGiftEmailListener"/>
+    <bean id="wishEmailListener" class="com.blackbox.server.bookmark.listener.WishEmailListener"/>
 
     <bean id="angelsSender" class="org.yestech.notify.objectmodel.Sender"
           p:displayName="${registration.sender.displayName}"
           p:emailAddress="${registration.sender.emailAddress}" p:replyAddress="${registration.sender.replyAddress}"/>
+
+    <bean id="remoteDelivery" class="com.blackbox.server.system.email.RemoteEmailDelivery"
+          init-method="init"
+          destroy-method="destroy"
+          p:emailHost="${email.host}"
+          p:defaultSender-ref="angelsSender"
+          p:authenticatorUserName="${email.authentication.username}"
+          p:authenticatorPassword="${email.authentication.password}"
+          p:presentationUrl="${presentation.url}"/>
 
 </beans>

@@ -25,6 +25,7 @@ import org.yestech.lib.util.Pair;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.net.URL;
 import java.util.*;
 
 import static com.google.common.collect.Maps.newHashMap;
@@ -154,6 +155,15 @@ public class Utils {
             return client.executeMethod(get);
         } catch (IllegalArgumentException e) {
             return 404; // emulates resource not there when a *non* url is passed in... 
+        }
+    }
+
+    public static boolean isValidUrl(String url) {
+        try {
+            new URL(url);
+            return true;
+        } catch (Exception e) {
+            return false;
         }
     }
 

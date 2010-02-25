@@ -10,6 +10,9 @@ import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import static junit.framework.Assert.assertNotNull;
+import static junit.framework.Assert.assertTrue;
+
 /**
  * @author colin@blackboxrepublic.com
  */
@@ -18,8 +21,6 @@ public class PublishMessageToFacebookIntegrationTest extends BaseIntegrationTest
     @Resource
     PublishMessageToFacebook publishMessageToFacebook;
 
-//    @Ignore(value = "development in progress: blowing on: com.google.code.facebookapi.FacebookException: Session key invalid or no longer valid")
-
     @Test
     public void publishToFacebook() throws Exception {
         Message message = new Message();
@@ -27,7 +28,7 @@ public class PublishMessageToFacebookIntegrationTest extends BaseIntegrationTest
         message.setBody("Posting to facebook " + new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss").format(new Date()));
         message.addExternalCredentials(ExternalCredentials.buildFacebookExternalCredentials(message.toEntityReference(), ExternalCredentialsFixture.facebookPoster));
         String results = publishMessageToFacebook.doPublication(message);
-        System.out.println("results = " + results);
-
+        assertNotNull(results);
+        assertTrue("The results didn't seem like a real identifier to me " + results + " @ see http://wiki.developers.facebook.com/index.php/Error_codes ", results.contains("_"));
     }
 }

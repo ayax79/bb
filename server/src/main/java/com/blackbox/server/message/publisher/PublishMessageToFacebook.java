@@ -39,13 +39,15 @@ public class PublishMessageToFacebook {
     }
 
     String doPublication(Message message) throws IOException, FacebookException {
+        logger.debug("Publishing message to facebook...");
         if (message == null || !message.isPublishToFacebook()) {
             return null;
         }
 
         IFacebookRestClient client = FacebookClientFactory.buildClient(message.getExternalCredentials(ExternalCredentials.CredentialType.FACEBOOK).getFacebookCredentials());
+        logger.debug("Built client...");
         String response = client.stream_publish(message.getBody(), null, null, null, null);
-        logger.debug(response);
+        logger.debug("Publication complete response: ", response);
         return response;
     }
 

@@ -21,6 +21,8 @@
         >
     <bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"/>
 
+    <import resource="beans-config.xml"/>
+
     <aop:aspectj-autoproxy/>
     <context:annotation-config/>
     <context:component-scan base-package="com.blackbox"/>
@@ -28,18 +30,6 @@
 
     <bean class="com.blackbox.server.user.aspect.PopulateImageUrlAspect"/>
     <bean class="com.blackbox.server.occasion.aspect.PopulateOccasionTransientsAspect"/>
-
-    <bean class="com.blackbox.groovy.GroovyConsoleService" init-method="initialize"/>
-
-    <bean class="com.blackbox.foundation.util.ExternalConfigPropertyConfigurer"
-          p:systemPropertiesMode="2" p:external="/usr/local/jetty/server.properties">
-        <property name="locations">
-            <util:list>
-                <value>classpath:/jdbc.properties</value>
-                <value>classpath:/server.properties</value>
-            </util:list>
-        </property>
-    </bean>
 
     <!--
     END - Pre JPA Terracotta
@@ -64,14 +54,6 @@
                 <ref bean="emailListeners"/>
             </util:list>
         </property>
-    </bean>
-
-    <bean id="publishTempDir" class="java.io.File">
-        <constructor-arg value="${publish.tmp.directory}"/>
-    </bean>
-
-    <bean id="localPublishConsumerTempDir" class="java.io.File">
-        <constructor-arg value="${publish.download.tmp.directory}"/>
     </bean>
 
     <bean id="publisherProperties" class="org.yestech.publish.objectmodel.PublisherProperties">
@@ -112,25 +94,7 @@
         </property>
     </bean>
 
-    <bean id="urlShortener" class="com.blackbox.server.external.VioletBlueUrlShortener"
-          p:presentationUrl="${blackbox.home.url}"
-          p:serviceUrl="${shortener.service.url}"/>
-
     <bean id="adminManager" class="com.blackbox.server.system.AdminManager"
           p:cacheManager-ref="cacheManager"/>
-
-    <bean id="remoteDelivery" class="com.blackbox.server.system.email.RemoteEmailDelivery"
-          init-method="init"
-          destroy-method="destroy"
-          p:emailHost="${email.host}"
-          p:defaultSender-ref="angelsSender"
-          p:authenticatorUserName="${email.authentication.username}"
-          p:authenticatorPassword="${email.authentication.password}"
-          p:presentationUrl="${presentation.url}"/>
-
-
-    <bean id="twitterClient" class="com.blackbox.server.external.TwitterClient"
-          p:updateUrl="${twitter.api.xml.update}"
-          p:searchUserStatusesUrl="${twitter.api.atom.search}"/>
 
 </beans>

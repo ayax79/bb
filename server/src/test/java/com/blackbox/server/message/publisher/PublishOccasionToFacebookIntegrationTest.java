@@ -5,11 +5,12 @@ import com.blackbox.foundation.occasion.OccasionType;
 import com.blackbox.foundation.user.ExternalCredentials;
 import com.blackbox.server.BaseIntegrationTest;
 import com.blackbox.testingutils.ExternalCredentialsFixture;
+import com.google.code.facebookapi.FacebookException;
 import org.joda.time.DateTime;
-import org.joda.time.ReadablePeriod;
 import org.junit.Test;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 
 /**
  * @author colin@blackboxrepublic.com
@@ -23,6 +24,15 @@ public class PublishOccasionToFacebookIntegrationTest extends BaseIntegrationTes
 
     @Test
     public void testPublishToFacebook() throws Exception {
+        doPublish(2);
+    }
+
+    @Test
+    public void testPublishToFacebookNoEndDate() throws Exception {
+        doPublish(null);
+    }
+
+    private void doPublish(Integer eventDurationInHours) throws IOException, FacebookException {
         Occasion occasion = Occasion.createOccasion();
         occasion.setPublishToFacebook(true);
         occasion.setOccasionType(OccasionType.OPEN);
@@ -41,8 +51,11 @@ public class PublishOccasionToFacebookIntegrationTest extends BaseIntegrationTes
         occasion.getAddress().setCity("portland");
         DateTime start = new DateTime().plusMonths(1);
         occasion.setEventTime(start);
-        occasion.setEventEndTime(start.plusHours(2));
+        if (eventDurationInHours != null) {
+            occasion.setEventEndTime(start.plusHours(eventDurationInHours));
+        }
 
         publishOccasionToFacebook.doPublication(occasion);
     }
+
 }
