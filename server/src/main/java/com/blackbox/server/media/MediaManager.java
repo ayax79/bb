@@ -177,8 +177,10 @@ public class MediaManager extends BaseServiceContainer implements IMediaManager 
 
         if (metaData.isAvatar()) {
             AvatarImage image = avatarImageCache.get(metaData.getArtifactOwner().getGuid());
-            image.setImageLink(metaData.getLocation());
-            avatarImageCache.put(metaData.getArtifactOwner().getGuid(), image);
+            if (image != null) {
+                image.setImageLink(metaData.getLocation());
+                avatarImageCache.put(metaData.getArtifactOwner().getGuid(), image);
+            }
         }
         return metaData;
     }
